@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+    <PropertyGroup>
+        <TargetFramework>net472</TargetFramework>
+        <OutputType>Library</OutputType>
+        <LangVersion>9.0</LangVersion>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+        <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
+        <CopyLocalLockFileAssemblies>false</CopyLocalLockFileAssemblies>
+        <DebugType>None</DebugType>
+        <OutputPath>..\Release\</OutputPath>
+    </PropertyGroup>
+    <ItemGroup>
+        <PackageReference Include="BepInEx.BaseLib" Version="5.4.16" />
+        <PackageReference Include="HarmonyX" Version="2.5.7" />
+        <PackageReference Include="Outward.GameLibs" Version="2022.5.18-r.0" />
+        <PackageReference Include="UnityEngine.Modules" Version="2020.3.26" />
+    </ItemGroup>
+</Project>
