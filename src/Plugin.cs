@@ -8,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
@@ -77,7 +78,36 @@ namespace OutwardArchipelago
 
         private void OnSceneFullyLoaded()
         {
-            if (SceneManagerHelper.ActiveSceneName == "CierzoNewTerrain" && !PhotonNetwork.isNonMasterClientInRoom)
+            if (PhotonNetwork.isNonMasterClientInRoom)
+            {
+                Log.LogMessage("Not master client, skipping item spawn.");
+                return;
+            }
+
+            if (SceneManagerHelper.ActiveSceneName == "CierzoTutorial")
+            {
+                Log.LogMessage("CierzoTutorial detected, checking item manager");
+
+                List<Item> itemsToRemove = new List<Item>();
+                foreach (var key in ItemManager.Instance.WorldItems.Keys)
+                {
+                    var worldItem = ItemManager.Instance.WorldItems[key];
+                    Log.LogMessage($"World item found: '{key}' {worldItem.Name}-{worldItem.ItemID} at position {worldItem.transform.position}");
+                    if (worldItem.ItemID == 5100060)
+                    {
+                        Log.LogMessage("Removing Makeshift Torch!");
+                        itemsToRemove.Add(worldItem);
+                    }
+                }
+
+                foreach (var item in itemsToRemove)
+                {
+                    var newItem = ItemManager.Instance.GenerateItemNetwork(3000250);
+                    newItem.ChangeParent(null, item.transform.position, item.transform.rotation);
+                    ItemManager.Instance.DestroyItem(item);
+                }
+            }
+            else if (SceneManagerHelper.ActiveSceneName == "CierzoNewTerrain")
             {
                 Log.LogMessage("CierzoNewTerrain detected, spawning bird mask.");
                 Item birdMask = ItemManager.Instance.GenerateItemNetwork(3000250);
