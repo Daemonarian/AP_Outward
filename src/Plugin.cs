@@ -6,6 +6,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Management.Instrumentation;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -115,17 +116,25 @@ namespace OutwardArchipelago
             }
         }
 
-        // This is an example of a Harmony patch.
-        // If you're not using this, you should delete it.
-        [HarmonyPatch(typeof(ResourcesPrefabManager), nameof(ResourcesPrefabManager.Load))]
-        public class ResourcesPrefabManager_Load
+        [HarmonyPatch(typeof(CharacterInventory), nameof(CharacterInventory.TakeItem), new Type[] {typeof(Item), typeof(bool)})]
+        public class CharacterInventory_TakeItem
         {
-            static void Postfix()
+            static void Prefix(ref Item takenItem)
             {
-                // This is a "Postfix" (runs after original) on ResourcesPrefabManager.Load
-                // For more documentation on Harmony, see the Harmony Wiki.
                 // https://harmony.pardeike.net/
-                Plugin.Log.LogMessage("ResourcesPrefabManager.Load was called.");
+                Plugin.Log.LogMessage($"CharacterInventory.TakeItem was called for item: {takenItem.Name} ({takenItem.ItemID})");
+
+                if (takenItem.ItemID == 3000250)
+                {
+                    Plugin.Log.LogMessage("Replacing bird mask with makeshift torch.");
+
+                    var newItem = ItemManager.Instance.GenerateItemNetwork(5100060);
+                    newItem.ChangeParent(null, takenItem.transform.position, takenItem.transform.rotation);
+
+                    ItemManager.Instance.DestroyItem(takenItem);
+
+                    takenItem = newItem;
+                }
             }
         }
     }
