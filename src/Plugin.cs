@@ -72,6 +72,11 @@ namespace OutwardArchipelago
 
             Log.LogMessage("Gameplay has resumed");
 
+            OnSceneFullyLoaded();
+        }
+
+        private void OnSceneFullyLoaded()
+        {
             if (SceneManagerHelper.ActiveSceneName == "CierzoNewTerrain" && !PhotonNetwork.isNonMasterClientInRoom)
             {
                 Log.LogMessage("CierzoNewTerrain detected, spawning bird mask.");
