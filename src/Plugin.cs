@@ -2,6 +2,8 @@
 using BepInEx.Configuration;
 using BepInEx.Logging;
 using HarmonyLib;
+using NodeCanvas.DialogueTrees;
+using NodeCanvas.Framework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -37,104 +39,56 @@ namespace OutwardArchipelago
 
             // Harmony is for patching methods. If you're not patching anything, you can comment-out or delete this line.
             new Harmony(GUID).PatchAll();
-
-            SceneManager.sceneLoaded += new UnityAction<Scene, LoadSceneMode>(OnSceneLoaded);
         }
 
-        internal void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        [HarmonyPatch(typeof(QuestEventManager), nameof(QuestEventManager.NotifyOnQEAddedListeners), new Type[] { typeof(QuestEventData) })]
+        public class QuestEventManager_NotifyOnQEAddedListeners
         {
-            if (scene.name.ToLower().Contains("lowmemory") || scene.name.ToLower().Contains("mainmenu"))
+            static void Prefix(QuestEventData _eventData)
             {
-                return;
+                Plugin.Log.LogMessage($"QuestEventAdded: EventUID = {_eventData.EventUID}, Name = {_eventData.Name}");
             }
-
-            Log.LogMessage($"Scene loaded: {scene.name}");
-
-            this.StartCoroutine(WaitForSceneReady());
         }
 
-        private IEnumerator WaitForSceneReady()
+        [HarmonyPatch(typeof(DialogueTree), nameof(DialogueTree.OnGraphStarted))]
+        public class DialogueTree_OnGraphStarted
         {
-            while (!NetworkLevelLoader.Instance.IsOverallLoadingDone || !NetworkLevelLoader.Instance.AllPlayerDoneLoading)
+            static void Prefix(DialogueTree __instance)
             {
-                yield return null;
-            }
+                Plugin.Log.LogInfo($"Started Dialogue Tree: {__instance.name}");
 
-            Log.LogMessage("Scene ready");
-
-            this.StartCoroutine(WaitForGameplayResumed());
-        }
-
-        private IEnumerator WaitForGameplayResumed()
-        {
-            while (NetworkLevelLoader.Instance.IsGameplayPaused)
-            {
-                yield return null;
-            }
-
-            Log.LogMessage("Gameplay has resumed");
-
-            OnSceneFullyLoaded();
-        }
-
-        private void OnSceneFullyLoaded()
-        {
-            if (PhotonNetwork.isNonMasterClientInRoom)
-            {
-                Log.LogMessage("Not master client, skipping item spawn.");
-                return;
-            }
-
-            if (SceneManagerHelper.ActiveSceneName == "CierzoTutorial")
-            {
-                Log.LogMessage("CierzoTutorial detected, checking item manager");
-
-                List<Item> itemsToRemove = new List<Item>();
-                foreach (var key in ItemManager.Instance.WorldItems.Keys)
+                foreach (var node in __instance.allNodes.OfType<MultipleChoiceNodeExt>())
                 {
-                    var worldItem = ItemManager.Instance.WorldItems[key];
-                    Log.LogMessage($"World item found: '{key}' {worldItem.Name}-{worldItem.ItemID} at position {worldItem.transform.position}");
-                    if (worldItem.ItemID == 5100060)
+                    Plugin.Log.LogInfo($"  - Node: {node.ID} - {node.tag}");
+                    foreach (var choice in node.availableChoices)
                     {
-                        Log.LogMessage("Removing Makeshift Torch!");
-                        itemsToRemove.Add(worldItem);
+                        Plugin.Log.LogInfo($"    - Option: '{choice.statement.text}' ({choice.statement.meta})");
                     }
                 }
 
-                foreach (var item in itemsToRemove)
+                if (__instance.name == "Dialogue_RissaAberdeen_Neut_Prequest")
                 {
-                    var newItem = ItemManager.Instance.GenerateItemNetwork(3000250);
-                    newItem.ChangeParent(null, item.transform.position, item.transform.rotation);
-                    ItemManager.Instance.DestroyItem(item);
+                    var node = __instance.GetNodeWithID(55) as MultipleChoiceNodeExt;
+                    if (node != null)
+                    {
+                        var choice = node.availableChoices[0];
+                        if (choice.condition as Condition_CheckLicense != null)
+                        {
+                            var licenseCondition = new Condition_CheckLicense();
+                            choice.condition = licenseCondition;
+                        }
+                    }
                 }
-            }
-            else if (SceneManagerHelper.ActiveSceneName == "CierzoNewTerrain")
-            {
-                Log.LogMessage("CierzoNewTerrain detected, spawning bird mask.");
-                Item birdMask = ItemManager.Instance.GenerateItemNetwork(3000250);
-                birdMask.ChangeParent(null, new UnityEngine.Vector3(-172.2164f, -1500.047f, 759.5696f), UnityEngine.Quaternion.identity);
             }
         }
 
-        [HarmonyPatch(typeof(CharacterInventory), nameof(CharacterInventory.TakeItem), new Type[] {typeof(Item), typeof(bool)})]
-        public class CharacterInventory_TakeItem
+        public class Condition_CheckLicense : ConditionTask
         {
-            static void Prefix(ref Item takenItem)
+            public override string info => $"Requires Quest License Lv 1";
+
+            public override bool OnCheck()
             {
-                // https://harmony.pardeike.net/
-                Plugin.Log.LogMessage($"CharacterInventory.TakeItem was called for item: {takenItem.Name} ({takenItem.ItemID})");
-
-                if (takenItem.ItemID == 3000250)
-                {
-                    Plugin.Log.LogMessage("Replacing bird mask with makeshift torch.");
-
-                    var newItem = ItemManager.Instance.GenerateItemNetwork(5100060);
-                    newItem.ChangeParent(null, takenItem.transform.position, takenItem.transform.rotation);
-
-                    ItemManager.Instance.DestroyItem(takenItem);
-
-                    takenItem = newItem;
-                }
+                return false;
             }
         }
     }
