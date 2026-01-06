@@ -26,19 +26,19 @@ class LocationName:
     QUEST_10 = "Main Quest 10: Liberate the Sun"
     QUEST_11 = "Main Quest 11: Vengeful Ouroboros"
 
-outward_locations: List[LocationData] = [LocationData(BASE_ID + i, name) for i, name in enumerate([
-    LocationName.QUEST_1,
-    LocationName.QUEST_2,
-    LocationName.QUEST_3,
-    LocationName.QUEST_4,
-    LocationName.QUEST_5,
-    LocationName.QUEST_6,
-    #LocationName.QUEST_7,
-    #LocationName.QUEST_8,
-    #LocationName.QUEST_9,
-    #LocationName.QUEST_10,
-    #LocationName.QUEST_11,
-])]
+outward_locations: List[LocationData] = [LocationData(*data) for data in [
+    (1, LocationName.QUEST_1),
+    (2, LocationName.QUEST_2),
+    (3, LocationName.QUEST_3),
+    (4, LocationName.QUEST_4),
+    (5, LocationName.QUEST_5),
+    (6, LocationName.QUEST_6),
+    #(7, LocationName.QUEST_7),
+    #(8, LocationName.QUEST_8),
+    #(9, LocationName.QUEST_9),
+    #(10, LocationName.QUEST_10),
+    #(11, LocationName.QUEST_11),
+]]
 
 outward_locations_by_name: Dict[str, LocationData] = {location.name: location for location in outward_locations}
 outward_location_name_to_id: Dict[str, int] = {location.name: location.code for location in outward_locations}

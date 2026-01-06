@@ -24,9 +24,10 @@ class EventName:
 class ItemName:
     QUEST_LICENSE = "Progressive Quest License"
 
-outward_items: List[ItemData] = [ItemData(BASE_ID + i, *data) for i, data in enumerate([
-    (ItemName.QUEST_LICENSE, ItemClassification.progression),
-])]
+outward_items: List[ItemData] = [ItemData(*data) for data in [
+    (1, EventName.VICTORY, ItemClassification.progression),
+    (2, ItemName.QUEST_LICENSE, ItemClassification.progression),
+]]
 
 outward_items_by_name: Dict[str, ItemData] = {item.name: item for item in outward_items}
 outward_item_name_to_id: Dict[str, int] = {item.name: item.code for item in outward_items}

@@ -1,6 +1,10 @@
-﻿using BepInEx;
+﻿using Archipelago.MultiClient.Net;
+using Archipelago.MultiClient.Net.Enums;
+using Archipelago.MultiClient.Net.Helpers;
+using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Logging;
+using Discord;
 using HarmonyLib;
 using NodeCanvas.DialogueTrees;
 using NodeCanvas.Framework;
@@ -16,8 +20,10 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 
-namespace OutwardArchipelago
+namespace OutwardModTemplate
 {
+    
+
     [BepInPlugin(GUID, NAME, VERSION)]
     public class Plugin : BaseUnityPlugin
     {
@@ -28,25 +34,39 @@ namespace OutwardArchipelago
         // Increment the VERSION when you release a new version of your mod.
         public const string VERSION = "1.0.0";
 
+        public static Plugin Instance;
+
         // For accessing your BepInEx Logger from outside of this class (eg Plugin.Log.LogMessage("");)
         internal static ManualLogSource Log;
+
+        public int QuestLicenseLevel = 0;
 
         // Awake is called when your plugin is created. Use this to set up your mod.
         internal void Awake()
         {
+            Instance = this;
             Log = this.Logger;
-            Log.LogMessage($"Hello world from {NAME} {VERSION}!");
 
-            // Harmony is for patching methods. If you're not patching anything, you can comment-out or delete this line.
+            Log.LogMessage($"Starting {NAME} {VERSION}...");
+
             new Harmony(GUID).PatchAll();
+            ConnectToArchipelago();
+
+            Log.LogMessage($"{NAME} {VERSION} started successfully");
         }
 
-        [HarmonyPatch(typeof(QuestEventManager), nameof(QuestEventManager.NotifyOnQEAddedListeners), new Type[] { typeof(QuestEventData) })]
+        private void ConnectToArchipelago()
+        {
+            ArchipelagoConnector.Create();
+            ArchipelagoConnector.Instance.Connect();
+        }
+
+        [HarmonyPatch(typeof(QuestEventManager), nameof(QuestEventManager.NotifyOnQEAddedListeners))]
         public class QuestEventManager_NotifyOnQEAddedListeners
         {
             static void Prefix(QuestEventData _eventData)
             {
-                Plugin.Log.LogMessage($"QuestEventAdded: EventUID = {_eventData.EventUID}, Name = {_eventData.Name}");
+                Plugin.Log.LogDebug($"Quest Event Added: {_eventData.EventUID}");
             }
         }
 
@@ -55,14 +75,14 @@ namespace OutwardArchipelago
         {
             static void Prefix(DialogueTree __instance)
             {
-                Plugin.Log.LogInfo($"Started Dialogue Tree: {__instance.name}");
+                Plugin.Log.LogDebug($"Started Dialogue Tree: {__instance.name}");
 
                 foreach (var node in __instance.allNodes.OfType<MultipleChoiceNodeExt>())
                 {
-                    Plugin.Log.LogInfo($"  - Node: {node.ID} - {node.tag}");
+                    Plugin.Log.LogDebug($"  - Node: {node.ID} - {node.tag}");
                     foreach (var choice in node.availableChoices)
                     {
-                        Plugin.Log.LogInfo($"    - Option: '{choice.statement.text}' ({choice.statement.meta})");
+                        Plugin.Log.LogDebug($"    - Option: '{choice.statement.text}' ({choice.statement.meta})");
                     }
                 }
 
@@ -88,7 +108,7 @@ namespace OutwardArchipelago
 
             public override bool OnCheck()
             {
-                return false;
+                return Plugin.Instance.QuestLicenseLevel >= 1;
             }
         }
     }

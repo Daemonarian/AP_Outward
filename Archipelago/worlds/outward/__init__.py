@@ -20,9 +20,6 @@ class OutwardWorld(World):
     def create_item(self, name: str) -> OutwardGameItem:
         return OutwardGameItem(name, self, self.player)
 
-    def create_event(self, name: str) -> Item:
-        return Item(name, ItemClassification.progression, None, self.player)
-
     def create_region(self, name: str) -> Region:
         region = Region(name, self.player, self.multiworld)
         self.multiworld.regions.append(region)
@@ -50,7 +47,7 @@ class OutwardWorld(World):
         for location_name in outward_location_name_to_id.keys():
             location = self.create_location(location_name, game_area)
             if location_name == LocationName.QUEST_6:
-                location.place_locked_item(self.create_event(EventName.VICTORY))
+                location.place_locked_item(self.create_item(EventName.VICTORY))
 
         self.create_connection("Enter Game", menu, game_area)
 
