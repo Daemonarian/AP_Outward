@@ -1,0 +1,59 @@
+set shell := ["pwsh", "-Command"]
+set dotenv-load := true
+
+python_cmd := "python3.12"
+archipelago_home := env_var_or_default("ARCHIPELAGO_HOME", "")
+
+build_dir := "build"
+staging_dir := build_dir + "/staging"
+release_dir := "release"
+
+archipelago_repo := "ArchipelagoMW/Archipelago"
+archipelago_version := "0.6.5"
+archipelago_archive_format := ".zip"
+archipelago_archive_url := "https://github.com/" + archipelago_repo + "/archive/refs/tags/" + archipelago_version + archipelago_archive_format
+archipelago_archive_file := build_dir + "/Archipelago-" + archipelago_version + archipelago_archive_format
+archipelago_dir := build_dir + "/Archipelago"
+venv_dir := archipelago_dir + "/.venv"
+
+default:
+    @just --list
+
+clean:
+    if (Test-Path -Path "{{release_dir}}" -PathType Container) { Remove-Item -Path "{{release_dir}}" -Recurse -Force }
+    if (Test-Path -Path "{{build_dir}}" -PathType Container) { Remove-Item -Path "{{build_dir}}" -Recurse -Force }
+
+setup:
+    New-Item -Path "{{build_dir}}" -ItemType Directory -Force | Out-Null
+    if (-not (Test-Path -Path "{{archipelago_archive_file}}")) { Invoke-WebRequest -Uri "{{archipelago_archive_url}}" -OutFile "{{archipelago_archive_file}}" }
+    if (-not (Test-Path -Path "{{archipelago_dir}}")) { Expand-Archive -Path "{{archipelago_archive_file}}" -DestinationPath "{{build_dir}}" ; Move-Item -Path "{{build_dir}}\Archipelago-{{archipelago_version}}" -Destination "{{archipelago_dir}}" }
+    if (-not (Test-Path -Path "{{archipelago_dir}}\worlds\outward")) { New-Item -Path "{{archipelago_dir}}\worlds\outward" -ItemType Junction -Target (Resolve-Path -Path "outward").Path -Force | Out-Null }
+    if (-not (Test-Path -Path "{{venv_dir}}")) { & "{{python_cmd}}" -m venv "{{venv_dir}}" }
+    & "{{venv_dir}}\Scripts\python" -m pip install --upgrade pip
+    & "{{venv_dir}}\Scripts\pip" install -r "{{archipelago_dir}}\requirements.txt" -r "{{archipelago_dir}}\ci-requirements.txt" -r "{{archipelago_dir}}\WebHostLib\requirements.txt"
+
+build:
+    Write-Output "Nothing to build."
+
+build-full:
+    @just setup
+    $venv_dir = (Resolve-Path -Path "{{venv_dir}}").Path; Set-Location -Path "{{archipelago_dir}}" ; & "${venv_dir}\Scripts\python" setup.py build --yes
+
+test:
+    @just build-full
+    $venv_dir = (Resolve-Path -Path "{{venv_dir}}").Path; Set-Location -Path "{{archipelago_dir}}" ; & "${venv_dir}\Scripts\pytest"
+
+stage:
+    @just build
+    New-Item -Path "{{staging_dir}}" -ItemType Directory -Force | Out-Null
+    Copy-Item -Path "outward" -Destination "{{staging_dir}}" -Recurse -Force
+
+release:
+    @just stage
+    New-Item -Path "{{release_dir}}" -ItemType Directory -Force | Out-Null
+    Compress-Archive -Path "{{staging_dir}}\outward" -DestinationPath "{{release_dir}}\outward.apworld" -Force
+
+install:
+    if ([string]::IsNullOrEmpty("{{archipelago_home}}")) { Write-Error -Message "The 'ARCHIPELAGO_HOME' environment variable is not properly set. Use a '.env' file to set one." }
+    @just release
+    Copy-Item -Path "{{release_dir}}\outward.apworld" -Destination "{{archipelago_home}}\custom_worlds\outward.apworld" -Force

@@ -1,0 +1,57 @@
+set shell := ["pwsh", "-Command"]
+set dotenv-load := true
+
+dotnet_cmd := "dotnet"
+outward_home := env_var_or_default("OUTWARD_HOME", "")
+
+mod_name := "daemonarian-OutwardArchipelago"
+mod_version := "0.0.1"
+
+src_dir := "src"
+assets_dir := "assets"
+
+build_dir := "build"
+staging_dir := build_dir + "/staging"
+release_dir := "release"
+
+staging_plugins_dir := staging_dir + "/plugins"
+package_file := release_dir + "/{{mod_name}}-{{mod_version}}.zip"
+
+default:
+    @just --list
+
+clean:
+    if (Test-Path -Path "{{release_dir}}" -PathType Container) { Remove-Item -Path "{{release_dir}}" -Recurse -Force }
+    if (Test-Path -Path "{{staging_dir}}" -PathType Container) { Remove-Item -Path "{{staging_dir}}" -Recurse -Force }
+    if (Test-Path -Path "{{build_dir}}" -PathType Container) { Remove-Item -Path "{{build_dir}}" -Recurse -Force }
+
+build:
+    Set-Location -Path "{{src_dir}}" ; & "{{dotnet_cmd}}" build
+
+build-release:
+    Set-Location -Path "{{src_dir}}" ; & "{{dotnet_cmd}}" build --configuration Release
+
+test:
+    Set-Location -Path "{{src_dir}}" ; & "{{dotnet_cmd}}" test
+
+stage:
+    @just build-release
+    if (-not (Test-Path -Path "{{staging_dir}}")) { New-Item -Path "{{staging_dir}}" -ItemType Directory -Force | Out-Null }
+    Copy-Item -Path "{{assets_dir}}/*" -Destination "{{staging_dir}}" -Recurse -Force
+    Copy-Item -Path "{{build_dir}}/Newtonsoft.Json.dll" -Destination "{{staging_plugins_dir}}" -Recurse -Force
+    Copy-Item -Path "{{build_dir}}/Archipelago.MultiClient.Net.dll" -Destination "{{staging_plugins_dir}}" -Recurse -Force
+    Copy-Item -Path "{{build_dir}}/OutwardModTemplate.dll" -Destination "{{staging_plugins_dir}}" -Recurse -Force
+
+release:
+    @just stage
+    if (-not (Test-Path -Path "{{release_dir}}")) { New-Item -Path "{{release_dir}}" -ItemType Directory -Force | Out-Null }
+    Compress-Archive -Path "{{staging_dir}}\*" -DestinationPath "{{package_file}}"
+
+install:
+    if ([string]::IsNullOrEmpty("{outward_dir}")) { Write-Error -Message "The 'OUTWARD_HOME' environment variable is not properly set. Use a '.env' file to set one." }
+    @just release
+    if (Test-Path -Path "{{build_dir}}\tmp" -PathType Container) { Remove-Item -Path "{{build_dir}}\tmp" -Recurse -Force }
+    Expand-Archive -Path "{{package_file}}" -DestinationPath "{{build_dir}}\tmp" -Force
+    if (Test-Path -Path "{{outward_home}}\BepInEx\plugins\{{mod_name}}" -PathType Container) { Remove-Item -Path "{{outward_home}}\BepInEx\plugins\{{mod_name}}" -Recurse -Force }
+    New-Item -Path "{{outward_home}}\BepInEx\plugins\{{mod_name}}" -ItemType Directory -Force | Out-Null
+    Copy-Item -Path "{{build_dir}}\tmp\plugins\*" -Destination "{{outward_home}}\BepInEx\plugins\{{mod_name}}" -Recurse -Force
