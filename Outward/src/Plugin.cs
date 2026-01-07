@@ -24,7 +24,7 @@ namespace OutwardModTemplate
 {
     
 
-    [BepInPlugin(GUID, NAME, VERSION)]
+    [BepInPlugin(GUID, NAME, BuildInfo.ModVersion)]
     public class Plugin : BaseUnityPlugin
     {
         // Choose a GUID for your project. Change "myname" and "mymod".

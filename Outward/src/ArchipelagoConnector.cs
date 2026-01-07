@@ -14,8 +14,8 @@ namespace OutwardModTemplate
 {
     public class ArchipelagoConnector : MonoBehaviour
     {
-        public static readonly string ArchipelagoGame = "Outward: Definitive Edition";
-        public static readonly Version ArchipelagoVersion = new(0, 6, 5);
+        public const string ArchipelagoGame = "Outward: Definitive Edition";
+        public const string ArchipelagoVersion = BuildInfo.ArchipelagoVersion;
 
         public static ArchipelagoConnector Instance { get; private set; }
 
@@ -105,7 +105,7 @@ namespace OutwardModTemplate
                             ArchipelagoGame,
                             SlotName,
                             ItemsHandlingFlags.AllItems,
-                            version: ArchipelagoVersion,
+                            version: new Version(ArchipelagoVersion),
                             password: Password,
                             requestSlotData: true
                         );

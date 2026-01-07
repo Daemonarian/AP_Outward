@@ -5,7 +5,7 @@ dotnet_cmd := "dotnet"
 outward_home := env_var_or_default("OUTWARD_HOME", "")
 
 mod_name := "daemonarian-OutwardArchipelago"
-mod_version := "0.0.1"
+mod_version := trim(read("../VERSION"))
 
 src_dir := "src"
 assets_dir := "assets"

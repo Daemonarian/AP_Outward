@@ -17,4 +17,26 @@
         <PackageReference Include="Outward.GameLibs" Version="2022.5.18-r.0" />
 		<PackageReference Include="UnityEngine.Modules" Version="6000.3.2" />
     </ItemGroup>
+	<Target Name="GenerateBuildInfo" BeforeTargets="CoreCompile">
+		<ReadLinesFromFile File="../../VERSION">
+			<Output TaskParameter="Lines" PropertyName="Version"/>
+		</ReadLinesFromFile>
+		<ReadLinesFromFile File="../../ARCHIPELAGO_VERSION">
+			<Output TaskParameter="Lines" PropertyName="ArchipelagoVersion"/>
+		</ReadLinesFromFile>
+		<PropertyGroup>
+			<GeneratedCode>
+namespace OutwardModTemplate %7B
+	public static class BuildInfo %7B
+		public const string ModVersion = "$(Version)"%3B
+		public const string ArchipelagoVersion = "$(ArchipelagoVersion)"%3B
+	%7D
+%7D
+			</GeneratedCode>
+		</PropertyGroup>
+		<WriteLinesToFile File="$(IntermediateOutputPath)BuildInfo.cs" Lines="$(GeneratedCode)" Overwrite="true" />
+		<ItemGroup>
+			<Compile Include="$(IntermediateOutputPath)BuildInfo.cs" />
+		</ItemGroup>
+	</Target>
 </Project>

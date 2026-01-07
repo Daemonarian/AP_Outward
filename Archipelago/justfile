@@ -9,7 +9,7 @@ staging_dir := build_dir + "/staging"
 release_dir := "release"
 
 archipelago_repo := "ArchipelagoMW/Archipelago"
-archipelago_version := "0.6.5"
+archipelago_version := trim(read("../VERSION"))
 archipelago_archive_format := ".zip"
 archipelago_archive_url := "https://github.com/" + archipelago_repo + "/archive/refs/tags/" + archipelago_version + archipelago_archive_format
 archipelago_archive_file := build_dir + "/Archipelago-" + archipelago_version + archipelago_archive_format
