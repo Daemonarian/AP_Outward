@@ -44,7 +44,7 @@ stage:
 release:
     @just stage
     if (-not (Test-Path -Path "{{release_dir}}")) { New-Item -Path "{{release_dir}}" -ItemType Directory -Force | Out-Null }
-    Compress-Archive -Path "{{staging_dir}}\*" -DestinationPath "{{package_file}}"
+    Compress-Archive -Path "{{staging_dir}}\*" -DestinationPath "{{package_file}}" -Force
 
 install:
     if ([string]::IsNullOrEmpty("{outward_dir}")) { Write-Error -Message "The 'OUTWARD_HOME' environment variable is not properly set. Use a '.env' file to set one." }

@@ -19,15 +19,16 @@ namespace OutwardModTemplate
 
         public static ArchipelagoConnector Instance { get; private set; }
 
-        // Configuration
-        public string Host = "localhost";
-        public int Port = 38281;
-        public string SlotName = "Player1";
-        public string Password = "password";
-
         // State
         private ArchipelagoSession ArchipelagoSession;
         private bool IsReconnecting = false;
+
+        // Connection details
+        public string Host { get; private set; }
+        public int Port { get; private set; }
+        public string Password { get; private set; }
+        public string SlotName { get; private set; }
+
 
         // Thread Safety: Queue actions here to run them on the main Unity thread
         private readonly ConcurrentQueue<Action> MainThreadQueue = new();
@@ -52,6 +53,11 @@ namespace OutwardModTemplate
 
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
+
+            Host = Plugin.ArchipelagoHost.Value;
+            Port = Plugin.ArchipelagoPort.Value;
+            Password = Plugin.ArchipelagoPassword.Value;
+            SlotName = Plugin.ArchipelagoSlotName.Value;
         }
 
         void Update()
