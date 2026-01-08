@@ -33,16 +33,9 @@ namespace OutwardArchipelago
         public string Password { get; private set; }
         public string SlotName { get; private set; }
 
-        // Connection status icon
-        private GameObject ConnectionStatusIconObject;
-        private Image ConnectionStatusIconImage;
-        private Texture2D ConnectionStatusIconConnectedTexture;
-        private Texture2D ConnectionStatusIconDisconnectedTexture;
-        private Sprite ConnectedSprite;
-        private Sprite DisconnectedSprite;
-        private bool ConnectionStatusIconIsConnected;
+        public bool IsConnected { get; private set; } = false;
 
-        public static bool IsConnected { get; private set; } = false;
+        public ArchipelagoConnectionStatus ConnectionStatus { get; private set; }
 
         // Thread Safety: Queue actions here to run them on the main Unity thread
         private readonly ConcurrentQueue<Action> MainThreadQueue = new();
@@ -73,13 +66,13 @@ namespace OutwardArchipelago
             Password = Plugin.ArchipelagoPassword.Value;
             SlotName = Plugin.ArchipelagoSlotName.Value;
 
-            AwakeStatusUI();
+            var connectionStatusObj = new GameObject(nameof(ArchipelagoConnectionStatus));
+            DontDestroyOnLoad(connectionStatusObj);
+            ConnectionStatus = connectionStatusObj.AddComponent<ArchipelagoConnectionStatus>();
         }
 
         void Update()
         {
-            UpdateStatusUI();
-
             while (MainThreadQueue.TryDequeue(out var action))
             {
                 action();
@@ -249,86 +242,6 @@ namespace OutwardArchipelago
                 // Push message to your in-game chat box
                 Plugin.Log.LogMessage($"[AP Chat] {message}");
             });
-        }
-
-        private void AwakeStatusUI()
-        {
-            ConnectionStatusIconConnectedTexture = LoadTexture("archipelago_connected.png");
-            ConnectionStatusIconDisconnectedTexture = LoadTexture("archipelago_disconnected.png");
-        }
-
-        private void CreateStatusUI()
-        {
-            ConnectedSprite = CreateSprite(ConnectionStatusIconConnectedTexture);
-            DisconnectedSprite = CreateSprite(ConnectionStatusIconDisconnectedTexture);
-
-            // 1. Create a "Canvas" object to hold our UI
-            var canvasObj = new GameObject("ModStatusCanvas");
-            DontDestroyOnLoad(canvasObj); // Keep it between loading screens
-
-            var canvas = canvasObj.AddComponent<Canvas>();
-            canvas.renderMode = RenderMode.ScreenSpaceOverlay; // Draw on top of everything
-            canvas.sortingOrder = 999; // Ensure it's on top of Outward's UI
-
-            // Add a scaler so it doesn't look tiny on 4K screens
-            var scaler = canvasObj.AddComponent<CanvasScaler>();
-            scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
-            scaler.referenceResolution = new Vector2(1920, 1080);
-
-            // 2. Create the Icon Object
-            ConnectionStatusIconObject = new GameObject("ConnectionIcon");
-            ConnectionStatusIconObject.transform.SetParent(canvasObj.transform, false);
-
-            // 3. Add the Image Component
-            ConnectionStatusIconImage = ConnectionStatusIconObject.AddComponent<Image>();
-            ConnectionStatusIconImage.sprite = DisconnectedSprite;
-            ConnectionStatusIconIsConnected = false;
-
-            // 4. Position it (Bottom Left corner example)
-            var rect = ConnectionStatusIconImage.rectTransform;
-            rect.anchorMin = new Vector2(0, 0); // Bottom Left
-            rect.anchorMax = new Vector2(0, 0); // Bottom Left
-            rect.pivot = new Vector2(0, 0);     // Pivot at bottom left
-            rect.anchoredPosition = new Vector2(20, 20); // 20px padding
-            rect.sizeDelta = new Vector2(64, 64); // Size in pixels
-        }
-
-        private void UpdateStatusUI()
-        {
-            if (ConnectionStatusIconObject == null)
-            {
-                CreateStatusUI();
-            }
-
-            if (ConnectionStatusIconImage != null && IsConnected != ConnectionStatusIconIsConnected)
-            {
-                ConnectionStatusIconImage.sprite = IsConnected ? ConnectedSprite : DisconnectedSprite;
-                ConnectionStatusIconIsConnected = IsConnected;
-            }
-        }
-        
-        // Helper to load texture from plugin folder
-        private Texture2D LoadTexture(string fileName)
-        {
-            Texture2D tex = Texture2D.whiteTexture;
-
-            var assetData = Plugin.Instance.LoadAsset(fileName);
-            if (assetData != null)
-            {
-                tex = new Texture2D(2, 2);
-                tex.LoadImage(assetData);
-            }
-
-            return tex;
-        }
-
-        private Sprite CreateSprite(Texture2D tex)
-        {
-            return Sprite.Create(
-                tex,
-                new Rect(0, 0, tex.width, tex.height),
-                new Vector2(0.5f, 0.5f)
-            );
         }
     }
 }
