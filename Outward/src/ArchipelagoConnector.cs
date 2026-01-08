@@ -1,14 +1,17 @@
 ﻿using Archipelago.MultiClient.Net;
 using Archipelago.MultiClient.Net.Enums;
 using Archipelago.MultiClient.Net.Helpers;
+using BepInEx;
 using System;
 using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace OutwardModTemplate
 {
@@ -29,6 +32,16 @@ namespace OutwardModTemplate
         public string Password { get; private set; }
         public string SlotName { get; private set; }
 
+        // Connection status icon
+        private GameObject ConnectionStatusIconObject;
+        private Image ConnectionStatusIconImage;
+        private Texture2D ConnectionStatusIconConnectedTexture;
+        private Texture2D ConnectionStatusIconDisconnectedTexture;
+        private Sprite ConnectedSprite;
+        private Sprite DisconnectedSprite;
+        private bool ConnectionStatusIconIsConnected;
+
+        public static bool IsConnected { get; private set; } = false;
 
         // Thread Safety: Queue actions here to run them on the main Unity thread
         private readonly ConcurrentQueue<Action> MainThreadQueue = new();
@@ -58,10 +71,14 @@ namespace OutwardModTemplate
             Port = Plugin.ArchipelagoPort.Value;
             Password = Plugin.ArchipelagoPassword.Value;
             SlotName = Plugin.ArchipelagoSlotName.Value;
+
+            AwakeStatusUI();
         }
 
         void Update()
         {
+            UpdateStatusUI();
+
             while (MainThreadQueue.TryDequeue(out var action))
             {
                 action();
@@ -129,6 +146,7 @@ namespace OutwardModTemplate
                 if (loginResult != null && loginResult.Successful)
                 {
                     Plugin.Log.LogMessage($"[Archipelago] Connected to '{Host}:{Port}' as '{SlotName}'.");
+                    IsConnected = true;
                     IsReconnecting = false;
                     break;
                 }
@@ -190,6 +208,7 @@ namespace OutwardModTemplate
             // IMPORTANT: Queue this back to main thread to restart the coroutine
             MainThreadQueue.Enqueue(() =>
             {
+                IsConnected = false;
                 Plugin.Log.LogWarning($"[Archipelago] Disconnected: {reason}. Attempting reconnect...");
                 Connect();
             });
@@ -229,6 +248,91 @@ namespace OutwardModTemplate
                 // Push message to your in-game chat box
                 Plugin.Log.LogMessage($"[AP Chat] {message}");
             });
+        }
+
+        private void AwakeStatusUI()
+        {
+            ConnectionStatusIconConnectedTexture = LoadTexture("archipelago_connected.png");
+            ConnectionStatusIconDisconnectedTexture = LoadTexture("archipelago_disconnected.png");
+        }
+
+        private void CreateStatusUI()
+        {
+            ConnectedSprite = CreateSprite(ConnectionStatusIconConnectedTexture);
+            DisconnectedSprite = CreateSprite(ConnectionStatusIconDisconnectedTexture);
+
+            // 1. Create a "Canvas" object to hold our UI
+            var canvasObj = new GameObject("ModStatusCanvas");
+            DontDestroyOnLoad(canvasObj); // Keep it between loading screens
+
+            var canvas = canvasObj.AddComponent<Canvas>();
+            canvas.renderMode = RenderMode.ScreenSpaceOverlay; // Draw on top of everything
+            canvas.sortingOrder = 999; // Ensure it's on top of Outward's UI
+
+            // Add a scaler so it doesn't look tiny on 4K screens
+            var scaler = canvasObj.AddComponent<CanvasScaler>();
+            scaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
+            scaler.referenceResolution = new Vector2(1920, 1080);
+
+            // 2. Create the Icon Object
+            ConnectionStatusIconObject = new GameObject("ConnectionIcon");
+            ConnectionStatusIconObject.transform.SetParent(canvasObj.transform, false);
+
+            // 3. Add the Image Component
+            ConnectionStatusIconImage = ConnectionStatusIconObject.AddComponent<Image>();
+            ConnectionStatusIconImage.sprite = DisconnectedSprite;
+            ConnectionStatusIconIsConnected = false;
+
+            // 4. Position it (Bottom Left corner example)
+            var rect = ConnectionStatusIconImage.rectTransform;
+            rect.anchorMin = new Vector2(0, 0); // Bottom Left
+            rect.anchorMax = new Vector2(0, 0); // Bottom Left
+            rect.pivot = new Vector2(0, 0);     // Pivot at bottom left
+            rect.anchoredPosition = new Vector2(20, 20); // 20px padding
+            rect.sizeDelta = new Vector2(64, 64); // Size in pixels
+        }
+
+        private void UpdateStatusUI()
+        {
+            if (ConnectionStatusIconObject == null)
+            {
+                CreateStatusUI();
+            }
+
+            if (ConnectionStatusIconImage != null && IsConnected != ConnectionStatusIconIsConnected)
+            {
+                ConnectionStatusIconImage.sprite = IsConnected ? ConnectedSprite : DisconnectedSprite;
+                ConnectionStatusIconIsConnected = IsConnected;
+            }
+        }
+        
+        // Helper to load texture from plugin folder
+        private Texture2D LoadTexture(string fileName)
+        {
+            var path = Path.Combine(Paths.PluginPath, "daemonarian-OutwardArchipelago", "assets", fileName);
+
+            Texture2D tex = Texture2D.whiteTexture;
+            if (File.Exists(path))
+            {
+                byte[] fileData = File.ReadAllBytes(path);
+                tex = new Texture2D(2, 2);
+                tex.LoadImage(fileData);
+            }
+            else
+            {
+                Plugin.Log.LogError($"Could not find icon at: {path}");
+            }
+
+            return tex;
+        }
+
+        private Sprite CreateSprite(Texture2D tex)
+        {
+            return Sprite.Create(
+                tex,
+                new Rect(0, 0, tex.width, tex.height),
+                new Vector2(0.5f, 0.5f)
+            );
         }
     }
 }
