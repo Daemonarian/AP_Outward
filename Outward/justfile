@@ -14,7 +14,7 @@ staging_dir := build_dir + "/staging"
 release_dir := "release"
 
 staging_plugins_dir := staging_dir + "/plugins"
-package_file := release_dir + "/{{mod_name}}-{{mod_version}}.zip"
+package_file := release_dir + "/" + mod_name + "-" + mod_version + ".zip"
 
 default:
     @just --list

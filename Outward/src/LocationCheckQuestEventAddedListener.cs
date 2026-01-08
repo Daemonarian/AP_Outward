@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace OutwardModTemplate
+namespace OutwardArchipelago
 {
     public class LocationCheckQuestEventAddedListener : IQuestEventAddedListener
     {

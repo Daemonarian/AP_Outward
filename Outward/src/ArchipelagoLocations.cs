@@ -1,4 +1,4 @@
-﻿namespace OutwardModTemplate
+﻿namespace OutwardArchipelago
 {
     public static class ArchipelagoLocations
     {

@@ -20,7 +20,7 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 
-namespace OutwardModTemplate
+namespace OutwardArchipelago
 {
     
 

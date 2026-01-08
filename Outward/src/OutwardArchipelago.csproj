@@ -26,12 +26,12 @@
 		</ReadLinesFromFile>
 		<PropertyGroup>
 			<GeneratedCode>
-namespace OutwardModTemplate %7B
-	public static class BuildInfo %7B
-		public const string ModVersion = "$(Version)"%3B
-		public const string ArchipelagoVersion = "$(ArchipelagoVersion)"%3B
-	%7D
-%7D
+				namespace OutwardArchipelago %7B
+					public static class BuildInfo %7B
+						public const string ModVersion = "$(Version)"%3B
+						public const string ArchipelagoVersion = "$(ArchipelagoVersion)"%3B
+					%7D
+				%7D
 			</GeneratedCode>
 		</PropertyGroup>
 		<WriteLinesToFile File="$(IntermediateOutputPath)BuildInfo.cs" Lines="$(GeneratedCode)" Overwrite="true" />

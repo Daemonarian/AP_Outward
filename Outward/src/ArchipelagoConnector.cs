@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace OutwardModTemplate
+namespace OutwardArchipelago
 {
     public class ArchipelagoConnector : MonoBehaviour
     {

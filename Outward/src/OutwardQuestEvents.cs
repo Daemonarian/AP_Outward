@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using UnityEngine.UIElements;
 using static OTWStoreAPI;
 
-namespace OutwardModTemplate
+namespace OutwardArchipelago
 {
     public static class OutwardQuestEvents
     {
