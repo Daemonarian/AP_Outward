@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
 namespace OutwardArchipelago
@@ -309,18 +310,13 @@ namespace OutwardArchipelago
         // Helper to load texture from plugin folder
         private Texture2D LoadTexture(string fileName)
         {
-            var path = Path.Combine(Paths.PluginPath, "daemonarian-OutwardArchipelago", "assets", fileName);
-
             Texture2D tex = Texture2D.whiteTexture;
-            if (File.Exists(path))
+
+            var assetData = Plugin.Instance.LoadAsset(fileName);
+            if (assetData != null)
             {
-                byte[] fileData = File.ReadAllBytes(path);
                 tex = new Texture2D(2, 2);
-                tex.LoadImage(fileData);
-            }
-            else
-            {
-                Plugin.Log.LogError($"Could not find icon at: {path}");
+                tex.LoadImage(assetData);
             }
 
             return tex;

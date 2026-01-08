@@ -11,6 +11,7 @@ using NodeCanvas.Framework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Management.Instrumentation;
 using System.Text;
@@ -102,6 +103,18 @@ namespace OutwardArchipelago
         {
             ArchipelagoConnector.Create();
             ArchipelagoConnector.Instance.Connect();
+        }
+
+        public byte[] LoadAsset(string fileName)
+        {
+            var path = Path.Combine(Path.GetDirectoryName(Info.Location), "assets", fileName);
+            if (File.Exists(path))
+            {
+                return File.ReadAllBytes(path);
+            }
+
+            Log.LogError($"Could not find asset at: {path}");
+            return null;
         }
 
         [HarmonyPatch(typeof(QuestEventManager), nameof(QuestEventManager.NotifyOnQEAddedListeners))]
