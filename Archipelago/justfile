@@ -1,11 +1,15 @@
 set shell := ["pwsh", "-Command"]
-set dotenv-load := true
 
 python_cmd := "python3.12"
 archipelago_home := env_var_or_default("ARCHIPELAGO_HOME", "")
+archipelago_host := env_var_or_default("ARCHIPELAGO_HOST", "localhost")
+archipelago_port := env_var_or_default("ARCHIPELAGO_PORT", "38281")
+archipelago_password := env_var_or_default("ARCHIPELAGO_PASSWORD", "password")
+archipelago_loglevel := env_var_or_default("ARCHIPELAGO_LOGLEVEL", "info")
 
 build_dir := "build"
 staging_dir := build_dir + "/staging"
+deploy_dir := build_dir + "/deploy"
 release_dir := "release"
 
 archipelago_repo := "ArchipelagoMW/Archipelago"
@@ -15,6 +19,8 @@ archipelago_archive_url := "https://github.com/" + archipelago_repo + "/archive/
 archipelago_archive_file := build_dir + "/Archipelago-" + archipelago_version + archipelago_archive_format
 archipelago_dir := build_dir + "/Archipelago"
 venv_dir := archipelago_dir + "/.venv"
+
+options_yaml := "outward/Outward Definitive Edition.yaml"
 
 default:
     @just --list
@@ -29,8 +35,8 @@ setup:
     if (-not (Test-Path -Path "{{archipelago_dir}}")) { Expand-Archive -Path "{{archipelago_archive_file}}" -DestinationPath "{{build_dir}}" ; Move-Item -Path "{{build_dir}}\Archipelago-{{archipelago_version}}" -Destination "{{archipelago_dir}}" }
     if (-not (Test-Path -Path "{{archipelago_dir}}\worlds\outward")) { New-Item -Path "{{archipelago_dir}}\worlds\outward" -ItemType Junction -Target (Resolve-Path -Path "outward").Path -Force | Out-Null }
     if (-not (Test-Path -Path "{{venv_dir}}")) { & "{{python_cmd}}" -m venv "{{venv_dir}}" }
-    & "{{venv_dir}}\Scripts\python" -m pip install --upgrade pip
-    & "{{venv_dir}}\Scripts\pip" install -r "{{archipelago_dir}}\requirements.txt" -r "{{archipelago_dir}}\ci-requirements.txt" -r "{{archipelago_dir}}\WebHostLib\requirements.txt"
+    Start-Process -FilePath "{{venv_dir}}\Scripts\python.exe" -ArgumentList @("-m", "pip", "install", "--upgrade", "pip") -NoNewWindow -Wait
+    Start-Process -FilePath "{{venv_dir}}\Scripts\pip.exe" -ArgumentList @("install", "-r", "{{archipelago_dir}}\requirements.txt", "-r", "{{archipelago_dir}}\ci-requirements.txt", "-r", "{{archipelago_dir}}\WebHostLib\requirements.txt") -NoNewWindow -Wait
 
 build:
     Write-Output "Nothing to build."
@@ -57,3 +63,13 @@ install:
     if ([string]::IsNullOrEmpty("{{archipelago_home}}")) { Write-Error -Message "The 'ARCHIPELAGO_HOME' environment variable is not properly set. Use a '.env' file to set one." }
     @just release
     Copy-Item -Path "{{release_dir}}\outward.apworld" -Destination "{{archipelago_home}}\custom_worlds\outward.apworld" -Force
+
+deploy:
+    @just install
+    if (Test-Path -Path "{{deploy_dir}}" -PathType Container) { Remove-Item -Path "{{deploy_dir}}" -Recurse -Force }
+    New-Item -Path "{{deploy_dir}}\players" -ItemType Directory -Force | Out-Null
+    Copy-Item -Path "{{options_yaml}}" -Destination "{{deploy_dir}}\players\Player1.yaml" -Force
+    Start-Process -FilePath "{{archipelago_home}}\ArchipelagoGenerate.exe" -ArgumentList @("--player_files_path", "players", "--outputpath", "output") -WorkingDirectory "{{deploy_dir}}" -NoNewWindow -Wait
+    Get-ChildItem -Path "{{deploy_dir}}\output" -Filter "*.zip" -Recurse | Expand-Archive -DestinationPath "{{deploy_dir}}\output" -Force
+    Get-ChildItem -Path "{{deploy_dir}}\output" -Filter "*.archipelago" -Recurse | Copy-Item -Destination "{{deploy_dir}}\test.archipelago" -Force
+    Start-Process -FilePath "pwsh" -ArgumentList @("-Command", "Start-Process -FilePath '{{archipelago_home}}\ArchipelagoServer.exe' -ArgumentList @('--host', '{{archipelago_host}}', '--port', '{{archipelago_port}}', '--server_password', '{{archipelago_password}}', '--loglevel', '{{archipelago_loglevel}}', '--logtime', 'test.archipelago') -NoNewWindow -Wait ; Write-Host -NoNewLine 'Press any key to continue...' ; `$null = `$Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown')") -WorkingDirectory "{{deploy_dir}}"

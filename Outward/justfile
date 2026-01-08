@@ -1,5 +1,4 @@
 set shell := ["pwsh", "-Command"]
-set dotenv-load := true
 
 dotnet_cmd := "dotnet"
 outward_home := env_var_or_default("OUTWARD_HOME", "")

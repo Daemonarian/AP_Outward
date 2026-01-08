@@ -41,3 +41,6 @@ release:
 install:
     @just archipelago::install
     @just outward::install
+
+deploy:
+    @just archipelago::deploy
