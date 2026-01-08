@@ -47,10 +47,14 @@ release:
     Compress-Archive -Path "{{staging_dir}}\*" -DestinationPath "{{package_file}}" -Force
 
 install:
-    if ([string]::IsNullOrEmpty("{outward_dir}")) { Write-Error -Message "The 'OUTWARD_HOME' environment variable is not properly set. Use a '.env' file to set one." }
+    if ([string]::IsNullOrEmpty("{{outward_home}}")) { Write-Error -Message "The 'OUTWARD_HOME' environment variable is not set. Use a '.env' file to set one." }
     @just release
     if (Test-Path -Path "{{build_dir}}\tmp" -PathType Container) { Remove-Item -Path "{{build_dir}}\tmp" -Recurse -Force }
     Expand-Archive -Path "{{package_file}}" -DestinationPath "{{build_dir}}\tmp" -Force
     if (Test-Path -Path "{{outward_home}}\BepInEx\plugins\{{mod_name}}" -PathType Container) { Remove-Item -Path "{{outward_home}}\BepInEx\plugins\{{mod_name}}" -Recurse -Force }
     New-Item -Path "{{outward_home}}\BepInEx\plugins\{{mod_name}}" -ItemType Directory -Force | Out-Null
     Copy-Item -Path "{{build_dir}}\tmp\plugins\*" -Destination "{{outward_home}}\BepInEx\plugins\{{mod_name}}" -Recurse -Force
+
+watch-log:
+    if ([string]::IsNullOrEmpty("{{outward_home}}")) { Write-Error -Message "The 'OUTWARD_HOME' environment variable is not set. Use a '.env' file to set one." }
+    Start-Process -FilePath "pwsh" -ArgumentList @("-Command", 'Get-Content -Path "LogOutput.log" -Wait') -WorkingDirectory "{{outward_home}}\BepInEx"
