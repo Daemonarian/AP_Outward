@@ -1,18 +1,11 @@
 ﻿using Archipelago.MultiClient.Net;
 using Archipelago.MultiClient.Net.Enums;
 using Archipelago.MultiClient.Net.Helpers;
-using BepInEx;
 using System;
-using System.Collections;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.Tilemaps;
-using UnityEngine.UI;
 
 namespace OutwardArchipelago
 {
@@ -24,21 +17,22 @@ namespace OutwardArchipelago
         public static ArchipelagoConnector Instance { get; private set; }
 
         // State
-        private ArchipelagoSession ArchipelagoSession;
-        private bool IsReconnecting = false;
+        private readonly SemaphoreSlim _archipelagoSessionSemaphore = new(1, 1);
+        private ArchipelagoSession _archipelagoSession;
 
         // Connection details
         public string Host { get; private set; }
         public int Port { get; private set; }
         public string Password { get; private set; }
         public string SlotName { get; private set; }
+        public int ReconnectInterval { get; private set; } = 10000;
 
-        public bool IsConnected { get; private set; } = false;
+        public bool IsConnected { get; private set; }
 
         public ArchipelagoConnectionStatus ConnectionStatus { get; private set; }
 
         // Thread Safety: Queue actions here to run them on the main Unity thread
-        private readonly ConcurrentQueue<Action> MainThreadQueue = new();
+        private readonly ConcurrentQueue<Action> _mainThreadQueue = new();
         private readonly ConcurrentQueue<long> LocationCheckQueue = new();
 
         public static void Create()
@@ -52,6 +46,7 @@ namespace OutwardArchipelago
 
         void Awake()
         {
+            // singleton pattern
             if (Instance != null && Instance != this)
             {
                 Destroy(this.gameObject);
@@ -61,11 +56,14 @@ namespace OutwardArchipelago
             Instance = this;
             DontDestroyOnLoad(this.gameObject);
 
+            // load Archipelago connection details
             Host = Plugin.ArchipelagoHost.Value;
             Port = Plugin.ArchipelagoPort.Value;
             Password = Plugin.ArchipelagoPassword.Value;
             SlotName = Plugin.ArchipelagoSlotName.Value;
+            IsConnected = false;
 
+            // create connection status icon
             var connectionStatusObj = new GameObject(nameof(ArchipelagoConnectionStatus));
             DontDestroyOnLoad(connectionStatusObj);
             ConnectionStatus = connectionStatusObj.AddComponent<ArchipelagoConnectionStatus>();
@@ -73,139 +71,183 @@ namespace OutwardArchipelago
 
         void Update()
         {
-            while (MainThreadQueue.TryDequeue(out var action))
+            while (_mainThreadQueue.TryDequeue(out var action))
             {
                 action();
             }
         }
 
-        public void Connect()
+        private async Task SetIsConnected(bool isConnected)
         {
-            if (IsReconnecting)
+            if (IsConnected != isConnected)
             {
-                return;
-            }
-
-            StartCoroutine(ConnectRoutine());
-        }
-
-        private IEnumerator ConnectRoutine()
-        {
-            IsReconnecting = true;
-
-            while (IsReconnecting)
-            {
-                // Cleanup old session if it exists
-                if (ArchipelagoSession != null)
-                {
-                    ArchipelagoSession.Socket.SocketClosed -= OnSocketClosed;
-                    ArchipelagoSession.Items.ItemReceived -= OnItemReceived;
-                    ArchipelagoSession.MessageLog.OnMessageReceived -= OnMessageReceived;
-                    ArchipelagoSession = null;
-                }
-
-                // Create new session
-                ArchipelagoSession = ArchipelagoSessionFactory.CreateSession(Host, Port);
-
-                // Hook up events before connecting
-                ArchipelagoSession.Socket.SocketClosed += OnSocketClosed;
-                ArchipelagoSession.Items.ItemReceived += OnItemReceived;
-                ArchipelagoSession.MessageLog.OnMessageReceived += OnMessageReceived;
-
-                // Connect and login
-                var task = Task.Run(async () =>
+                var tcs = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
+                _mainThreadQueue.Enqueue(() =>
                 {
                     try
                     {
-                        await ArchipelagoSession.ConnectAsync();
-                        return await ArchipelagoSession.LoginAsync(
-                            ArchipelagoGame,
-                            SlotName,
-                            ItemsHandlingFlags.AllItems,
-                            version: new Version(ArchipelagoVersion),
-                            password: Password,
-                            requestSlotData: true
-                        );
+                        IsConnected = isConnected;
+                        tcs.TrySetResult(true);
                     }
                     catch (Exception ex)
                     {
-                        Plugin.Log.LogError($"[Archipelago] Connection/login failed: {ex}");
-                        return null;
+                        tcs.TrySetException(ex);
                     }
                 });
-
-                yield return new WaitUntil(() => task.IsCompleted);
-                var loginResult = task.Result;
-
-                if (loginResult != null && loginResult.Successful)
-                {
-                    Plugin.Log.LogMessage($"[Archipelago] Connected to '{Host}:{Port}' as '{SlotName}'.");
-                    IsConnected = true;
-                    IsReconnecting = false;
-                    break;
-                }
-
-                Plugin.Log.LogInfo("[Archipelago] Retrying connection/login in 5s...");
-                yield return new WaitForSeconds(5f);
+                await tcs.Task;
             }
+        }
 
-            SendLocationChecks();
+        private void Connect()
+        {
+            // run in a background thread so we do not block the main thread
+            Task.Run(async () =>
+            {
+                // ensure write access to _archipelagoSession
+                await _archipelagoSessionSemaphore.WaitAsync();
+                try
+                {
+                    // short-circuit if a connected session already exists
+                    if (_archipelagoSession != null && _archipelagoSession.Socket.Connected)
+                    {
+                        return;
+                    }
+
+                    // set the value of IsConnected on the main thread, if necessary
+                    await SetIsConnected(true);
+
+                    bool first = true;
+                    while (true)
+                    {
+                        // cleanup old session if it exists
+                        bool doWaitInterval = false;
+                        if (_archipelagoSession != null)
+                        {
+                            _archipelagoSession.Socket.SocketClosed -= OnSocketClosed;
+                            _archipelagoSession.Items.ItemReceived -= OnItemReceived;
+                            _archipelagoSession.MessageLog.OnMessageReceived -= OnMessageReceived;
+                            _archipelagoSession = null;
+                            doWaitInterval = true;
+                        }
+
+                        if (doWaitInterval)
+                        {
+                            var verb = first ? "Reconnecting" : "Retrying";
+                            Plugin.Log.LogInfo($"[Archipelago] {verb} in {ReconnectInterval} ms...");
+                            await Task.Delay(ReconnectInterval);
+                        }
+                        first = false;
+
+                        Plugin.Log.LogInfo($"[Archipelago] Logging into Archipelago server at '{Host}:{Port}' with slot '{SlotName}' and game '{ArchipelagoGame}'.");
+
+                        // create new session
+                        _archipelagoSession = ArchipelagoSessionFactory.CreateSession(Host, Port);
+
+                        // hook up events before connecting
+                        _archipelagoSession.Socket.SocketClosed += OnSocketClosed;
+                        _archipelagoSession.Items.ItemReceived += OnItemReceived;
+                        _archipelagoSession.MessageLog.OnMessageReceived += OnMessageReceived;
+
+                        // connect
+                        try
+                        {
+                            await _archipelagoSession.ConnectAsync();
+                        }
+                        catch (Exception ex)
+                        {
+                            Plugin.Log.LogError($"[Archipelago] Connect failed: {ex}");
+                            continue;
+                        }
+
+                        // login
+                        LoginResult loginResult;
+                        try
+                        {
+                            loginResult = await _archipelagoSession.LoginAsync(
+                                ArchipelagoGame,
+                                SlotName,
+                                ItemsHandlingFlags.AllItems,
+                                version: new Version(ArchipelagoVersion),
+                                password: Password,
+                                requestSlotData: true
+                            );
+                        }
+                        catch (Exception ex)
+                        {
+                            Plugin.Log.LogError($"[Archipelago] Login failed: {ex}");
+                            continue;
+                        }
+
+                        if (loginResult == null)
+                        {
+                            Plugin.Log.LogError("[Archipelago] Login failed for unknown reason.");
+                            continue;
+                        }
+
+                        if (loginResult is LoginFailure loginFailure)
+                        {
+                            Plugin.Log.LogError($"[Archipelago] Login failed: {string.Join("\n", loginFailure.Errors)}");
+                            continue;
+                        }
+
+                        if (!loginResult.Successful)
+                        {
+                            Plugin.Log.LogError("[Archipelago] Login failed for unknown reason.");
+                            continue;
+                        }
+
+                        break;
+                    }
+
+                    Plugin.Log.LogInfo("[Archipelago] Login success.");
+                    await SetIsConnected(true);
+                }
+                finally
+                {
+                    _archipelagoSessionSemaphore.Release();
+                }
+            });
         }
 
         public void CompleteLocationCheck(long locationId)
         {
-            LocationCheckQueue.Enqueue(locationId);
-            SendLocationChecks();
-        }
-
-        private void SendLocationChecks()
-        {
-            StartCoroutine(SendLocationChecksRoutine());
-        }
-
-        private IEnumerator SendLocationChecksRoutine()
-        {
-            if (ArchipelagoSession == null || IsReconnecting)
+            // run in background so you do not hold up the main thread
+            Task.Run(async () =>
             {
-                yield break;
-            }
-
-            while (LocationCheckQueue.TryDequeue(out var locationId))
-            {
-                var task = Task.Run(async () =>
+                while (true)
                 {
+                    await _archipelagoSessionSemaphore.WaitAsync();
                     try
                     {
-                        Plugin.Log.LogMessage($"[Archipelago] Completing location check for Location ID: {locationId}");
-                        await ArchipelagoSession.Locations.CompleteLocationChecksAsync(locationId);
-                        return true;
+                        if (_archipelagoSession != null)
+                        {
+                            try
+                            {
+                                Plugin.Log.LogInfo($"[Archipelago] Completing location check: {locationId}");
+                                _archipelagoSession.Locations.CompleteLocationChecks(locationId);
+                                Plugin.Log.LogInfo($"[Archipelago] Completed location check: {locationId}");
+                                break;
+                            }
+                            catch (Exception ex)
+                            {
+                                Plugin.Log.LogError($"[Archipelago] Complete location check failed: {locationId}\n{ex}");
+                            }
+                        }
                     }
-                    catch (Exception ex)
+                    finally
                     {
-                        Plugin.Log.LogWarning($"[Archipelago] Failed to complete location check for Location ID {locationId}: {ex}");
+                        _archipelagoSessionSemaphore.Release();
                     }
-                    return false;
-                });
 
-                yield return new WaitUntil(() => task.IsCompleted);
-                bool success = task.Result;
-                if (!success)
-                {
-                    LocationCheckQueue.Enqueue(locationId);
-                    yield break;
+                    Plugin.Log.LogInfo($"[Archipelago] Retrying complete location check in {ReconnectInterval} ms...");
+                    await Task.Delay(ReconnectInterval);
                 }
-            }
+            });
         }
 
         private void OnSocketClosed(string reason)
         {
-            // IMPORTANT: Queue this back to main thread to restart the coroutine
-            MainThreadQueue.Enqueue(() =>
-            {
-                IsConnected = false;
-                Plugin.Log.LogWarning($"[Archipelago] Disconnected: {reason}. Attempting reconnect...");
-                Connect();
-            });
+            Connect();
         }
 
         private void OnItemReceived(ReceivedItemsHelper helper)
@@ -215,7 +257,7 @@ namespace OutwardArchipelago
             // We must ensure we don't grant the same item twice.
             // (Note: This is a simple example. For robustness, track index/ID properly)
 
-            MainThreadQueue.Enqueue(() =>
+            _mainThreadQueue.Enqueue(() =>
             {
                 while (helper.Any())
                 {
@@ -237,7 +279,7 @@ namespace OutwardArchipelago
 
         private void OnMessageReceived(Archipelago.MultiClient.Net.MessageLog.Messages.LogMessage message)
         {
-            MainThreadQueue.Enqueue(() =>
+            _mainThreadQueue.Enqueue(() =>
             {
                 // Push message to your in-game chat box
                 Plugin.Log.LogMessage($"[AP Chat] {message}");

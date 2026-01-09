@@ -94,15 +94,9 @@ namespace OutwardArchipelago
 
             BindConfig();
             new Harmony(GUID).PatchAll();
-            ConnectToArchipelago();
+            ArchipelagoConnector.Create();
 
             Log.LogMessage($"{NAME} {VERSION} started successfully");
-        }
-
-        private void ConnectToArchipelago()
-        {
-            ArchipelagoConnector.Create();
-            ArchipelagoConnector.Instance.Connect();
         }
 
         public byte[] LoadAsset(string fileName)
