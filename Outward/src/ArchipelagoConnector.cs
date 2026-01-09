@@ -89,29 +89,7 @@ namespace OutwardArchipelago
                         while (IncomingMessageQueue.TryDequeue(out var message))
                         {
                             Plugin.Log.LogInfo($"[Archipelago] Sending message as {character.Name} ({character.UID}): {message}");
-                            var chatPanel = character.CharacterUI.ChatPanel;
-                            if (chatPanel.m_messageArchive.Count < chatPanel.MaxMessageCount)
-                            {
-                                ChatEntry chatEntry = UnityEngine.Object.Instantiate<ChatEntry>(UIUtilities.ChatEntryPrefab);
-                                chatEntry.transform.SetParent(chatPanel.m_chatDisplay.content);
-                                chatEntry.transform.ResetLocal(true);
-                                chatEntry.SetCharacterUI(chatPanel.m_characterUI);
-                                chatPanel.m_messageArchive.Insert(0, chatEntry);
-                            }
-                            else
-                            {
-                                ChatEntry item = chatPanel.m_messageArchive[chatPanel.m_messageArchive.Count - 1];
-                                chatPanel.m_messageArchive.RemoveAt(chatPanel.m_messageArchive.Count - 1);
-                                chatPanel.m_messageArchive.Insert(0, item);
-                            }
-                            chatPanel.m_messageArchive[0].transform.SetAsLastSibling();
-                            chatPanel.m_messageArchive[0].SetEntry("", message, true);
-                            chatPanel.m_lastHideTime = Time.time;
-                            if (!chatPanel.IsDisplayed)
-                            {
-                                chatPanel.Show();
-                            }
-                            chatPanel.Invoke("DelayedScroll", 0.1f);
+                            SendSystemMessage(character, message);
                         }
                     }
                 }
@@ -221,6 +199,7 @@ namespace OutwardArchipelago
 
                         if (loginResult == null)
                         {
+                            // this should not happend
                             Plugin.Log.LogError("[Archipelago] Login failed for unknown reason.");
                             continue;
                         }
@@ -233,6 +212,7 @@ namespace OutwardArchipelago
 
                         if (!loginResult.Successful)
                         {
+                            // this should not happen
                             Plugin.Log.LogError("[Archipelago] Login failed for unknown reason.");
                             continue;
                         }
@@ -297,7 +277,6 @@ namespace OutwardArchipelago
             // When you reconnect, AP sends ALL items again. 
             // We must ensure we don't grant the same item twice.
             // (Note: This is a simple example. For robustness, track index/ID properly)
-
             MainThreadQueue.Enqueue(() =>
             {
                 while (helper.Any())
@@ -333,6 +312,34 @@ namespace OutwardArchipelago
             }
 
             return sb.ToString();
+        }
+
+        private static void SendSystemMessage(Character character, string message)
+        {
+            // This code mostly adapts the implementation of ChatPanel.ChatMessageReceived.
+            var chatPanel = character.CharacterUI.ChatPanel;
+            if (chatPanel.m_messageArchive.Count < chatPanel.MaxMessageCount)
+            {
+                ChatEntry chatEntry = UnityEngine.Object.Instantiate<ChatEntry>(UIUtilities.ChatEntryPrefab);
+                chatEntry.transform.SetParent(chatPanel.m_chatDisplay.content);
+                chatEntry.transform.ResetLocal(true);
+                chatEntry.SetCharacterUI(chatPanel.m_characterUI);
+                chatPanel.m_messageArchive.Insert(0, chatEntry);
+            }
+            else
+            {
+                ChatEntry item = chatPanel.m_messageArchive[chatPanel.m_messageArchive.Count - 1];
+                chatPanel.m_messageArchive.RemoveAt(chatPanel.m_messageArchive.Count - 1);
+                chatPanel.m_messageArchive.Insert(0, item);
+            }
+            chatPanel.m_messageArchive[0].transform.SetAsLastSibling();
+            chatPanel.m_messageArchive[0].SetEntry(">", message, true);
+            chatPanel.m_lastHideTime = Time.time;
+            if (!chatPanel.IsDisplayed)
+            {
+                chatPanel.Show();
+            }
+            chatPanel.Invoke("DelayedScroll", 0.1f);
         }
     }
 }
