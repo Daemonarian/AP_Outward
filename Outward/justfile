@@ -39,7 +39,7 @@ stage:
     Copy-Item -Path "{{assets_dir}}/*" -Destination "{{staging_dir}}" -Recurse -Force
     Copy-Item -Path "{{build_dir}}/Newtonsoft.Json.dll" -Destination "{{staging_plugins_dir}}" -Recurse -Force
     Copy-Item -Path "{{build_dir}}/Archipelago.MultiClient.Net.dll" -Destination "{{staging_plugins_dir}}" -Recurse -Force
-    Copy-Item -Path "{{build_dir}}/OutwardModTemplate.dll" -Destination "{{staging_plugins_dir}}" -Recurse -Force
+    Copy-Item -Path "{{build_dir}}/OutwardArchipelago.dll" -Destination "{{staging_plugins_dir}}" -Recurse -Force
 
 release:
     @just stage

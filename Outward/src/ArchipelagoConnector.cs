@@ -1,6 +1,7 @@
 ﻿using Archipelago.MultiClient.Net;
 using Archipelago.MultiClient.Net.Enums;
 using Archipelago.MultiClient.Net.Helpers;
+using Archipelago.MultiClient.Net.MessageLog.Messages;
 using System;
 using System.Collections.Concurrent;
 using System.Threading;
@@ -32,8 +33,8 @@ namespace OutwardArchipelago
         public ArchipelagoConnectionStatus ConnectionStatus { get; private set; }
 
         // Thread Safety: Queue actions here to run them on the main Unity thread
-        private readonly ConcurrentQueue<Action> _mainThreadQueue = new();
-        private readonly ConcurrentQueue<long> LocationCheckQueue = new();
+        private readonly ConcurrentQueue<Action> MainThreadQueue = new();
+        private readonly ConcurrentQueue<string> IncomingMessageQueue = new();
 
         public static void Create()
         {
@@ -67,13 +68,53 @@ namespace OutwardArchipelago
             var connectionStatusObj = new GameObject(nameof(ArchipelagoConnectionStatus));
             DontDestroyOnLoad(connectionStatusObj);
             ConnectionStatus = connectionStatusObj.AddComponent<ArchipelagoConnectionStatus>();
+
+            Connect();
         }
 
         void Update()
         {
-            while (_mainThreadQueue.TryDequeue(out var action))
+            while (MainThreadQueue.TryDequeue(out var action))
             {
                 action();
+            }
+
+            if (PhotonNetwork.isMasterClient && Global.Lobby.PlayersInLobbyCount > 0 && NetworkLevelLoader.Instance.IsOverallLoadingDone)
+            {
+                if (!IncomingMessageQueue.IsEmpty)
+                {
+                    var character = CharacterManager.Instance.GetFirstLocalCharacter();
+                    if (character != null && character.CharacterUI != null && character.CharacterUI.ChatPanel != null)
+                    {
+                        while (IncomingMessageQueue.TryDequeue(out var message))
+                        {
+                            Plugin.Log.LogInfo($"[Archipelago] Sending message as {character.Name} ({character.UID}): {message}");
+                            var chatPanel = character.CharacterUI.ChatPanel;
+                            if (chatPanel.m_messageArchive.Count < chatPanel.MaxMessageCount)
+                            {
+                                ChatEntry chatEntry = UnityEngine.Object.Instantiate<ChatEntry>(UIUtilities.ChatEntryPrefab);
+                                chatEntry.transform.SetParent(chatPanel.m_chatDisplay.content);
+                                chatEntry.transform.ResetLocal(true);
+                                chatEntry.SetCharacterUI(chatPanel.m_characterUI);
+                                chatPanel.m_messageArchive.Insert(0, chatEntry);
+                            }
+                            else
+                            {
+                                ChatEntry item = chatPanel.m_messageArchive[chatPanel.m_messageArchive.Count - 1];
+                                chatPanel.m_messageArchive.RemoveAt(chatPanel.m_messageArchive.Count - 1);
+                                chatPanel.m_messageArchive.Insert(0, item);
+                            }
+                            chatPanel.m_messageArchive[0].transform.SetAsLastSibling();
+                            chatPanel.m_messageArchive[0].SetEntry("", message, true);
+                            chatPanel.m_lastHideTime = Time.time;
+                            if (!chatPanel.IsDisplayed)
+                            {
+                                chatPanel.Show();
+                            }
+                            chatPanel.Invoke("DelayedScroll", 0.1f);
+                        }
+                    }
+                }
             }
         }
 
@@ -82,7 +123,7 @@ namespace OutwardArchipelago
             if (IsConnected != isConnected)
             {
                 var tcs = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
-                _mainThreadQueue.Enqueue(() =>
+                MainThreadQueue.Enqueue(() =>
                 {
                     try
                     {
@@ -257,7 +298,7 @@ namespace OutwardArchipelago
             // We must ensure we don't grant the same item twice.
             // (Note: This is a simple example. For robustness, track index/ID properly)
 
-            _mainThreadQueue.Enqueue(() =>
+            MainThreadQueue.Enqueue(() =>
             {
                 while (helper.Any())
                 {
@@ -279,11 +320,19 @@ namespace OutwardArchipelago
 
         private void OnMessageReceived(Archipelago.MultiClient.Net.MessageLog.Messages.LogMessage message)
         {
-            _mainThreadQueue.Enqueue(() =>
+            Plugin.Log.LogMessage($"[Archipelago::Chat] {message}");
+            IncomingMessageQueue.Enqueue(FormatArchipelagoMessage(message));
+        }
+
+        private static string FormatArchipelagoMessage(LogMessage message)
+        {
+            var sb = new System.Text.StringBuilder();
+            foreach (var part in message.Parts)
             {
-                // Push message to your in-game chat box
-                Plugin.Log.LogMessage($"[AP Chat] {message}");
-            });
+                sb.Append($"<color=#{part.Color.R:X2}{part.Color.G:X2}{part.Color.B:X2}>{part.Text}</color>");
+            }
+
+            return sb.ToString();
         }
     }
 }
