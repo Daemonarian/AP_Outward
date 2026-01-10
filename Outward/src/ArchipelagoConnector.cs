@@ -38,7 +38,7 @@ namespace OutwardArchipelago
         private readonly ConcurrentQueue<string> IncomingMessageQueue = new();
         private readonly ConcurrentQueue<long> IncomingItemQueue = new();
 
-        private Dictionary<long, long> ItemCounts = new();
+        private Dictionary<long, int> ItemCounts = new();
 
         public static void Create()
         {
@@ -299,7 +299,7 @@ namespace OutwardArchipelago
             IncomingMessageQueue.Enqueue(FormatArchipelagoMessage(message));
         }
 
-        private void GiveItemToPlayer(long itemId, long count)
+        private void GiveItemToPlayer(long itemId, int count)
         {
             Plugin.Log.LogInfo($"[Archipelago] Giving item to player: {itemId} x{count}");
             var character = CharacterManager.Instance.GetFirstLocalCharacter();
@@ -311,23 +311,7 @@ namespace OutwardArchipelago
             switch (itemId)
             {
                 case ArchipelagoItems.QUEST_LICENSE:
-                    int skillId = 8861501;
-                    var itemPrefab = ResourcesPrefabManager.Instance.GetItemPrefab(skillId);
-                    if (itemPrefab == null)
-                    {
-                        Plugin.Log.LogError($"[Archipelago] Skill ID {skillId} does not exist.");
-                        break;
-                    }
-
-                    if (character.Inventory.SkillKnowledge.IsItemLearned(skillId))
-                    {
-                        Plugin.Log.LogMessage($"Player already knows skill {itemPrefab.Name} ({skillId})");
-                        break;
-                    }
-
-                    // Using ReceiveItemReward triggers the UI notification ("Skill Learned: Spark")
-                    character.Inventory.ReceiveSkillReward(skillId);
-
+                    QuestLicenseManager.SetQuestLicenseLevel(count);
                     break;
                 default:
                     Plugin.Log.LogError($"[Archipelago] Unknown item ID ({itemId})");
