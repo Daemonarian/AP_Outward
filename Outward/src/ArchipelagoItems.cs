@@ -8,6 +8,6 @@ namespace OutwardArchipelago
 {
     public static class ArchipelagoItems
     {
-        public static int QUEST_LICENSE = 2;
+        public const long QUEST_LICENSE = 2;
     }
 }

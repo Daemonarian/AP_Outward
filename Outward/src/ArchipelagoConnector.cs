@@ -4,6 +4,7 @@ using Archipelago.MultiClient.Net.Helpers;
 using Archipelago.MultiClient.Net.MessageLog.Messages;
 using System;
 using System.Collections.Concurrent;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -35,6 +36,9 @@ namespace OutwardArchipelago
         // Thread Safety: Queue actions here to run them on the main Unity thread
         private readonly ConcurrentQueue<Action> MainThreadQueue = new();
         private readonly ConcurrentQueue<string> IncomingMessageQueue = new();
+        private readonly ConcurrentQueue<long> IncomingItemQueue = new();
+
+        private Dictionary<long, long> ItemCounts = new();
 
         public static void Create()
         {
@@ -93,27 +97,23 @@ namespace OutwardArchipelago
                         }
                     }
                 }
-            }
-        }
 
-        private async Task SetIsConnected(bool isConnected)
-        {
-            if (IsConnected != isConnected)
-            {
-                var tcs = new TaskCompletionSource<bool>(TaskCreationOptions.RunContinuationsAsynchronously);
-                MainThreadQueue.Enqueue(() =>
+                if (!IncomingItemQueue.IsEmpty)
                 {
-                    try
+                    while (IncomingItemQueue.TryDequeue(out var itemId))
                     {
-                        IsConnected = isConnected;
-                        tcs.TrySetResult(true);
+                        if (!ItemCounts.ContainsKey(itemId))
+                        {
+                            ItemCounts[itemId] = 0;
+                        }
+
+                        ItemCounts[itemId] += 1;
+
+                        var count = ItemCounts[itemId];
+
+                        GiveItemToPlayer(itemId, count);
                     }
-                    catch (Exception ex)
-                    {
-                        tcs.TrySetException(ex);
-                    }
-                });
-                await tcs.Task;
+                }
             }
         }
 
@@ -133,7 +133,10 @@ namespace OutwardArchipelago
                     }
 
                     // set the value of IsConnected on the main thread, if necessary
-                    await SetIsConnected(true);
+                    if (IsConnected)
+                    {
+                        await RunOnMainThread(() => IsConnected = false);
+                    }
 
                     bool first = true;
                     while (true)
@@ -148,6 +151,10 @@ namespace OutwardArchipelago
                             _archipelagoSession = null;
                             doWaitInterval = true;
                         }
+
+                        // clear the incoming item queue
+                        while (IncomingItemQueue.TryDequeue(out _)) { }
+                        await RunOnMainThread(() => ItemCounts.Clear());
 
                         if (doWaitInterval)
                         {
@@ -221,7 +228,7 @@ namespace OutwardArchipelago
                     }
 
                     Plugin.Log.LogInfo("[Archipelago] Login success.");
-                    await SetIsConnected(true);
+                    await RunOnMainThread(() => IsConnected = true);
                 }
                 finally
                 {
@@ -232,75 +239,127 @@ namespace OutwardArchipelago
 
         public void CompleteLocationCheck(long locationId)
         {
-            // run in background so you do not hold up the main thread
-            Task.Run(async () =>
+            if (PhotonNetwork.isMasterClient)
             {
-                while (true)
+                // run in background so you do not hold up the main thread
+                Task.Run(async () =>
                 {
-                    await _archipelagoSessionSemaphore.WaitAsync();
-                    try
+                    while (true)
                     {
-                        if (_archipelagoSession != null)
+                        await _archipelagoSessionSemaphore.WaitAsync();
+                        try
                         {
-                            try
+                            if (_archipelagoSession != null)
                             {
-                                Plugin.Log.LogInfo($"[Archipelago] Completing location check: {locationId}");
-                                _archipelagoSession.Locations.CompleteLocationChecks(locationId);
-                                Plugin.Log.LogInfo($"[Archipelago] Completed location check: {locationId}");
-                                break;
-                            }
-                            catch (Exception ex)
-                            {
-                                Plugin.Log.LogError($"[Archipelago] Complete location check failed: {locationId}\n{ex}");
+                                try
+                                {
+                                    Plugin.Log.LogInfo($"[Archipelago] Completing location check: {locationId}");
+                                    _archipelagoSession.Locations.CompleteLocationChecks(locationId);
+                                    Plugin.Log.LogInfo($"[Archipelago] Completed location check: {locationId}");
+                                    break;
+                                }
+                                catch (Exception ex)
+                                {
+                                    Plugin.Log.LogError($"[Archipelago] Complete location check failed: {locationId}\n{ex}");
+                                }
                             }
                         }
-                    }
-                    finally
-                    {
-                        _archipelagoSessionSemaphore.Release();
-                    }
+                        finally
+                        {
+                            _archipelagoSessionSemaphore.Release();
+                        }
 
-                    Plugin.Log.LogInfo($"[Archipelago] Retrying complete location check in {ReconnectInterval} ms...");
-                    await Task.Delay(ReconnectInterval);
-                }
-            });
+                        Plugin.Log.LogInfo($"[Archipelago] Retrying complete location check in {ReconnectInterval} ms...");
+                        await Task.Delay(ReconnectInterval);
+                    }
+                });
+            }
         }
 
         private void OnSocketClosed(string reason)
         {
+            Plugin.Log.LogWarning($"[Archipelago] Lost connection: {reason}");
             Connect();
         }
 
         private void OnItemReceived(ReceivedItemsHelper helper)
         {
-            // IDEMPOTENCY CHECK:
-            // When you reconnect, AP sends ALL items again. 
-            // We must ensure we don't grant the same item twice.
-            // (Note: This is a simple example. For robustness, track index/ID properly)
-            MainThreadQueue.Enqueue(() =>
+            Plugin.Log.LogInfo($"[Archipelago] Received {helper.Index} items...");
+            while (helper.Any())
             {
-                while (helper.Any())
-                {
-                    var item = helper.DequeueItem();
-
-                    // Verify we haven't processed this exact instance before
-                    // You might need a more robust index tracking depending on your game
-                    Plugin.Log.LogMessage($"[Archipelago] Received Item: {item.ItemName}");
-
-                    if (item.ItemId == ArchipelagoItems.QUEST_LICENSE)
-                    {
-                        Plugin.Instance.QuestLicenseLevel += 1;
-                        Plugin.Log.LogMessage($"Granting Quest License lvl {Plugin.Instance.QuestLicenseLevel}!");
-                        SplitScreenManager.Instance.NotifyAllLocalPlayers($"Received Quest License Lv {Plugin.Instance.QuestLicenseLevel}!");
-                    }
-                }
-            });
+                var item = helper.DequeueItem();
+                Plugin.Log.LogInfo($"[Archipelago] Received item {item.ItemName} ({item.ItemId}).");
+                IncomingItemQueue.Enqueue(item.ItemId);
+            }
         }
 
         private void OnMessageReceived(Archipelago.MultiClient.Net.MessageLog.Messages.LogMessage message)
         {
             Plugin.Log.LogMessage($"[Archipelago::Chat] {message}");
             IncomingMessageQueue.Enqueue(FormatArchipelagoMessage(message));
+        }
+
+        private void GiveItemToPlayer(long itemId, long count)
+        {
+            Plugin.Log.LogInfo($"[Archipelago] Giving item to player: {itemId} x{count}");
+            var character = CharacterManager.Instance.GetFirstLocalCharacter();
+            if (character == null)
+            {
+                Plugin.Log.LogError($"[Archipelago] Could not find local player to give item.");
+            }
+
+            switch (itemId)
+            {
+                case ArchipelagoItems.QUEST_LICENSE:
+                    int skillId = 8200140;
+                    var itemPrefab = ResourcesPrefabManager.Instance.GetItemPrefab(skillId);
+                    if (itemPrefab == null)
+                    {
+                        Plugin.Log.LogError($"[Archipelago] Skill ID {skillId} does not exist.");
+                        break;
+                    }
+
+                    if (character.Inventory.SkillKnowledge.IsItemLearned(skillId))
+                    {
+                        Plugin.Log.LogMessage($"Player already knows skill {itemPrefab.Name} ({skillId})");
+                        break;
+                    }
+
+                    // Using ReceiveItemReward triggers the UI notification ("Skill Learned: Spark")
+                    character.Inventory.ReceiveItemReward(itemPrefab.ItemID, 1, false);
+
+                    break;
+                default:
+                    Plugin.Log.LogError($"[Archipelago] Unknown item ID ({itemId})");
+                    break;
+            }
+        }
+
+        private async Task<T> RunOnMainThread<T>(Func<T> action)
+        {
+            var tcs = new TaskCompletionSource<T>(TaskCreationOptions.RunContinuationsAsynchronously);
+            MainThreadQueue.Enqueue(() =>
+            {
+                try
+                {
+                    var result = action();
+                    tcs.TrySetResult(result);
+                }
+                catch (Exception ex)
+                {
+                    tcs.TrySetException(ex);
+                }
+            });
+            return await tcs.Task;
+        }
+
+        private async Task RunOnMainThread(Action action)
+        {
+            await RunOnMainThread(() =>
+            {
+                action();
+                return true;
+            });
         }
 
         private static string FormatArchipelagoMessage(LogMessage message)
