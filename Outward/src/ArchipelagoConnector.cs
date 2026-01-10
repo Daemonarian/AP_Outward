@@ -311,7 +311,7 @@ namespace OutwardArchipelago
             switch (itemId)
             {
                 case ArchipelagoItems.QUEST_LICENSE:
-                    int skillId = 8200140;
+                    int skillId = 8861501;
                     var itemPrefab = ResourcesPrefabManager.Instance.GetItemPrefab(skillId);
                     if (itemPrefab == null)
                     {
@@ -326,7 +326,7 @@ namespace OutwardArchipelago
                     }
 
                     // Using ReceiveItemReward triggers the UI notification ("Skill Learned: Spark")
-                    character.Inventory.ReceiveItemReward(itemPrefab.ItemID, 1, false);
+                    character.Inventory.ReceiveSkillReward(skillId);
 
                     break;
                 default:
