@@ -35,7 +35,8 @@ test:
 
 stage:
     @just build-release
-    if (-not (Test-Path -Path "{{staging_dir}}")) { New-Item -Path "{{staging_dir}}" -ItemType Directory -Force | Out-Null }
+    if (Test-Path -Path "{{staging_dir}}" -PathType Container) { Remove-Item -Path "{{staging_dir}}" -Recurse -Force }
+    New-Item -Path "{{staging_dir}}" -ItemType Directory -Force | Out-Null
     Copy-Item -Path "{{assets_dir}}/*" -Destination "{{staging_dir}}" -Recurse -Force
     Copy-Item -Path "{{build_dir}}/Newtonsoft.Json.dll" -Destination "{{staging_plugins_dir}}" -Recurse -Force
     Copy-Item -Path "{{build_dir}}/Archipelago.MultiClient.Net.dll" -Destination "{{staging_plugins_dir}}" -Recurse -Force
@@ -43,7 +44,8 @@ stage:
 
 release:
     @just stage
-    if (-not (Test-Path -Path "{{release_dir}}")) { New-Item -Path "{{release_dir}}" -ItemType Directory -Force | Out-Null }
+    if (Test-Path "{{release_dir}}" -PathType Container) { Remove-Item -Path "{{release_dir}}" -Recurse -Force }
+    New-Item -Path "{{release_dir}}" -ItemType Directory -Force | Out-Null
     Compress-Archive -Path "{{staging_dir}}\*" -DestinationPath "{{package_file}}" -Force
 
 install:
