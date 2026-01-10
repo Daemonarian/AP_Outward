@@ -45,4 +45,3 @@ install:
 deploy:
     @just archipelago::deploy
     @just outward::install
-    @just outward::watch-log
