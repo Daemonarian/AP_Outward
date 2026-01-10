@@ -38,8 +38,6 @@ namespace OutwardArchipelago
         // For accessing your BepInEx Logger from outside of this class (eg Plugin.Log.LogMessage("");)
         internal static ManualLogSource Log;
 
-        public int QuestLicenseLevel = 0;
-
         // Config settings
         public static ConfigEntry<string> ArchipelagoHost;
         public static ConfigEntry<int> ArchipelagoPort;
@@ -111,54 +109,30 @@ namespace OutwardArchipelago
             return null;
         }
 
-        [HarmonyPatch(typeof(QuestEventManager), nameof(QuestEventManager.NotifyOnQEAddedListeners))]
-        public class QuestEventManager_NotifyOnQEAddedListeners
-        {
-            static void Prefix(QuestEventData _eventData)
-            {
-                Plugin.Log.LogDebug($"Quest Event Added: {_eventData.EventUID}");
-            }
-        }
-
         [HarmonyPatch(typeof(DialogueTree), nameof(DialogueTree.OnGraphStarted))]
         public class DialogueTree_OnGraphStarted
         {
             static void Prefix(DialogueTree __instance)
             {
-                Plugin.Log.LogDebug($"Started Dialogue Tree: {__instance.name}");
-
-                foreach (var node in __instance.allNodes.OfType<MultipleChoiceNodeExt>())
-                {
-                    Plugin.Log.LogDebug($"  - Node: {node.ID} - {node.tag}");
-                    foreach (var choice in node.availableChoices)
-                    {
-                        Plugin.Log.LogDebug($"    - Option: '{choice.statement.text}' ({choice.statement.meta})");
-                    }
-                }
-
                 if (__instance.name == "Dialogue_RissaAberdeen_Neut_Prequest")
                 {
-                    var node = __instance.GetNodeWithID(55) as MultipleChoiceNodeExt;
-                    if (node != null)
+                    if (__instance.primeNode as ConditionNode == null || (__instance.primeNode as ConditionNode).condition as QuestLicenseConditionTask == null)
                     {
-                        var choice = node.availableChoices[0];
-                        if (choice.condition as Condition_CheckLicense != null)
-                        {
-                            var licenseCondition = new Condition_CheckLicense();
-                            choice.condition = licenseCondition;
-                        }
+                        var originalStartNode = __instance.primeNode;
+
+                        var gateNode = __instance.AddNode<ConditionNode>();
+                        gateNode.condition = new QuestLicenseConditionTask(1);
+
+                        var rejectNode = __instance.AddNode<StatementNodeExt>();
+                        rejectNode.actorName = __instance.actorParameters.FirstOrDefault()?.name ?? "Speaker";
+                        rejectNode.statement = new Statement("Come back to me when you have Quest License 1.");
+
+                        Connection.Create(gateNode, originalStartNode);
+                        Connection.Create(gateNode, rejectNode);
+
+                        __instance.primeNode = gateNode;
                     }
                 }
-            }
-        }
-
-        public class Condition_CheckLicense : ConditionTask
-        {
-            public override string info => $"Requires Quest License Lv 1";
-
-            public override bool OnCheck()
-            {
-                return Plugin.Instance.QuestLicenseLevel >= 1;
             }
         }
     }
