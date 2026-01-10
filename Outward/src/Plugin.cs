@@ -116,12 +116,12 @@ namespace OutwardArchipelago
             {
                 if (__instance.name == "Dialogue_RissaAberdeen_Neut_Prequest")
                 {
-                    if (__instance.primeNode as ConditionNode == null || (__instance.primeNode as ConditionNode).condition as QuestLicenseConditionTask == null)
+                    if (__instance.primeNode as ConditionNode == null || (__instance.primeNode as ConditionNode).condition as Condition_QuestLicense == null)
                     {
                         var originalStartNode = __instance.primeNode;
 
                         var gateNode = __instance.AddNode<ConditionNode>();
-                        gateNode.condition = new QuestLicenseConditionTask(1);
+                        gateNode.condition = new Condition_QuestLicense(1);
 
                         var rejectNode = __instance.AddNode<StatementNodeExt>();
                         rejectNode.actorName = __instance.actorParameters.FirstOrDefault()?.name ?? "Speaker";

@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace OutwardArchipelago
 {
-    public class QuestLicenseConditionTask : ConditionTask
+    public class Condition_QuestLicense : ConditionTask
     {
         public int MinimumQuestLevel { get; private set; }
         public bool IsInverted { get; private set; }
 
-        public QuestLicenseConditionTask(int minimumQuestLevel, bool isInverted = false) : base()
+        public Condition_QuestLicense(int minimumQuestLevel, bool isInverted = false) : base()
         {
             MinimumQuestLevel = minimumQuestLevel;
             IsInverted = isInverted;
