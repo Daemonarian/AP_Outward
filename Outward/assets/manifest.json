@@ -1,0 +1,11 @@
+﻿{
+  "name": "OutwardArchipelago",
+  "version_number": "{{MOD_VERSION}}",
+  "website_url": "https://github.com/Daemonarian/AP_Outward",
+  "description": "Adds Archipelago support to Outward.",
+  "dependencies": [
+    "BepInEx-BepInExPack_Outward-5.4.19",
+    "sinai-dev-SideLoader-3.8.4",
+    "Faeryn-LocalizationExtension-1.1.3"
+  ]
+}

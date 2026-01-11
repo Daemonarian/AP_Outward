@@ -3,7 +3,8 @@ set shell := ["pwsh", "-Command"]
 dotnet_cmd := "dotnet"
 outward_home := env_var_or_default("OUTWARD_HOME", "")
 
-mod_name := "daemonarian-OutwardArchipelago"
+mod_author := "daemonarian"
+mod_name := "OutwardArchipelago"
 mod_version := trim(read("../VERSION"))
 
 src_dir := "src"
@@ -14,7 +15,7 @@ staging_dir := build_dir + "/staging"
 release_dir := "release"
 
 staging_plugins_dir := staging_dir + "/plugins"
-package_file := release_dir + "/" + mod_name + "-" + mod_version + ".zip"
+package_file := release_dir + "/" + mod_author + "-" + mod_name + "-" + mod_version + ".zip"
 
 default:
     @just --list
@@ -41,6 +42,7 @@ stage:
     Copy-Item -Path "{{build_dir}}/Newtonsoft.Json.dll" -Destination "{{staging_plugins_dir}}" -Recurse -Force
     Copy-Item -Path "{{build_dir}}/Archipelago.MultiClient.Net.dll" -Destination "{{staging_plugins_dir}}" -Recurse -Force
     Copy-Item -Path "{{build_dir}}/OutwardArchipelago.dll" -Destination "{{staging_plugins_dir}}" -Recurse -Force
+    Get-ChildItem -Path "{{staging_dir}}" -Include "*.md", "*.json" -Recurse | % { (Get-Content -Path $_.FullName) -replace "{{{{MOD_VERSION}}", "{{mod_version}}" | Set-Content -Path $_.FullName }
 
 release:
     @just stage
@@ -53,9 +55,9 @@ install:
     @just release
     if (Test-Path -Path "{{build_dir}}\tmp" -PathType Container) { Remove-Item -Path "{{build_dir}}\tmp" -Recurse -Force }
     Expand-Archive -Path "{{package_file}}" -DestinationPath "{{build_dir}}\tmp" -Force
-    if (Test-Path -Path "{{outward_home}}\BepInEx\plugins\{{mod_name}}" -PathType Container) { Remove-Item -Path "{{outward_home}}\BepInEx\plugins\{{mod_name}}" -Recurse -Force }
-    New-Item -Path "{{outward_home}}\BepInEx\plugins\{{mod_name}}" -ItemType Directory -Force | Out-Null
-    Copy-Item -Path "{{build_dir}}\tmp\plugins\*" -Destination "{{outward_home}}\BepInEx\plugins\{{mod_name}}" -Recurse -Force
+    if (Test-Path -Path "{{outward_home}}\BepInEx\plugins\{{mod_author}}-{{mod_name}}" -PathType Container) { Remove-Item -Path "{{outward_home}}\BepInEx\plugins\{{mod_author}}-{{mod_name}}" -Recurse -Force }
+    New-Item -Path "{{outward_home}}\BepInEx\plugins\{{mod_author}}-{{mod_name}}" -ItemType Directory -Force | Out-Null
+    Copy-Item -Path "{{build_dir}}\tmp\plugins\*" -Destination "{{outward_home}}\BepInEx\plugins\{{mod_author}}-{{mod_name}}" -Recurse -Force
 
 watch-log:
     if ([string]::IsNullOrEmpty("{{outward_home}}")) { Write-Error -Message "The 'OUTWARD_HOME' environment variable is not set. Use a '.env' file to set one." }
