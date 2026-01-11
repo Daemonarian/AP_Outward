@@ -67,12 +67,12 @@ namespace OutwardArchipelago
         {
             if (EditsByTreeName.TryGetValue(tree.name, out var edits))
             {
-                Plugin.Log.LogDebug($"Attempting to patch dialogue tree '{tree.name}' with Quest License gatekeepers...");
+                OutwardArchipelagoMod.Log.LogDebug($"Attempting to patch dialogue tree '{tree.name}' with Quest License gatekeepers...");
 
                 // check if this dialogue tree has already been patched
                 if (tree.allNodes.Any((node) => node is ConditionNode && (node as ConditionNode).condition is Condition_QuestLicense))
                 {
-                    Plugin.Log.LogDebug($"Dialogue tree {tree.name} has already been patched.");
+                    OutwardArchipelagoMod.Log.LogDebug($"Dialogue tree {tree.name} has already been patched.");
                     return;
                 }
 
@@ -89,19 +89,19 @@ namespace OutwardArchipelago
 
                 foreach (var edit in edits)
                 {
-                    Plugin.Log.LogDebug($"Applying quest license gatekeeper to node {edit.NodeID} in dialogue tree '{tree.name}'.");
+                    OutwardArchipelagoMod.Log.LogDebug($"Applying quest license gatekeeper to node {edit.NodeID} in dialogue tree '{tree.name}'.");
 
                     var gatekeptNode = gatekeptNodesByOriginalID[edit.NodeID];
                     if (gatekeptNode == null)
                     {
-                        Plugin.Log.LogError($"Failed to patch dialogue tree: could not find node {edit.NodeID} in dialgoue tree {edit.TreeName}");
+                        OutwardArchipelagoMod.Log.LogError($"Failed to patch dialogue tree: could not find node {edit.NodeID} in dialgoue tree {edit.TreeName}");
                         continue;
                     }
 
-                    var fullMessageKey = $"{Plugin.GUID}.{edit.MessageKey}";
+                    var fullMessageKey = $"{OutwardArchipelagoMod.GUID}.{edit.MessageKey}";
                     if (!LocalizationManager.Instance.TryGetLoc(fullMessageKey, out var text))
                     {
-                        Plugin.Log.LogError($"Could not find localization for message {fullMessageKey}");
+                        OutwardArchipelagoMod.Log.LogError($"Could not find localization for message {fullMessageKey}");
                         text = $"[LOC] {fullMessageKey}";
                     }
 

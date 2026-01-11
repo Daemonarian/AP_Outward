@@ -80,7 +80,7 @@ namespace OutwardArchipelago
         {
             Texture2D tex = Texture2D.whiteTexture;
 
-            var assetData = Plugin.Instance.LoadAsset(fileName);
+            var assetData = OutwardArchipelagoMod.Instance.LoadAsset(fileName);
             if (assetData != null)
             {
                 tex = new Texture2D(2, 2);

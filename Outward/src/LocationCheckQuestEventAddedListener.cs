@@ -20,17 +20,17 @@ namespace OutwardArchipelago
 
         public void OnQuestEventAdded(QuestEventData _eventData)
         {
-            Plugin.Log.LogInfo($"LocationCheckQuestEventAddedListener received OnQuestEventAdded for EventUID = {_eventData.EventUID}.");
+            OutwardArchipelagoMod.Log.LogInfo($"LocationCheckQuestEventAddedListener received OnQuestEventAdded for EventUID = {_eventData.EventUID}.");
             if (string.Equals(_eventData.EventUID, OutwardEventId, StringComparison.Ordinal))
             {
-                Plugin.Log.LogInfo($"LocationCheckQuestEventAddedListener triggered for EventUID = {OutwardEventId}.");
+                OutwardArchipelagoMod.Log.LogInfo($"LocationCheckQuestEventAddedListener triggered for EventUID = {OutwardEventId}.");
                 ArchipelagoConnector.Instance.CompleteLocationCheck(ArchipelagoLocationId);
             }
         }
 
         public void Register()
         {
-            Plugin.Log.LogInfo($"Registering LocationCheckQuestEventAddedListener for OutwardEventId = {OutwardEventId}.");
+            OutwardArchipelagoMod.Log.LogInfo($"Registering LocationCheckQuestEventAddedListener for OutwardEventId = {OutwardEventId}.");
             QuestEventManager.Instance.RegisterOnQEAddedListener(OutwardEventId, this);
         }
 
@@ -41,7 +41,7 @@ namespace OutwardArchipelago
                 return;
             }
 
-            Plugin.Log.LogInfo("Registering all LocationCheckQuestEventAddedListeners.");
+            OutwardArchipelagoMod.Log.LogInfo("Registering all LocationCheckQuestEventAddedListeners.");
 
             var listeners = new List<LocationCheckQuestEventAddedListener>
             {
@@ -69,7 +69,7 @@ namespace OutwardArchipelago
         {   
             static void Postfix(QuestEventManager __instance)
             {
-                Plugin.Log.LogDebug("QuestEventManager Awake postfix called.");
+                OutwardArchipelagoMod.Log.LogDebug("QuestEventManager Awake postfix called.");
                 RegisterAll();
             }
         }

@@ -7,14 +7,14 @@ using System.IO;
 namespace OutwardArchipelago
 {
     [BepInPlugin(GUID, NAME, VERSION)]
-    public class Plugin : BaseUnityPlugin
+    public class OutwardArchipelagoMod : BaseUnityPlugin
     {
         public const string GUID = "com.daemonarium.apoutward";
         public const string NAME = "Outward Archipelago";
         public const string VERSION = BuildInfo.ModVersion;
 
         // The singleton instance of this plugin.
-        public static Plugin Instance;
+        public static OutwardArchipelagoMod Instance;
 
         // For accessing your BepInEx Logger from outside of this class (eg Plugin.Log.LogMessage("");)
         internal static ManualLogSource Log;

@@ -62,10 +62,10 @@ namespace OutwardArchipelago
             DontDestroyOnLoad(this.gameObject);
 
             // load Archipelago connection details
-            Host = Plugin.ArchipelagoHost.Value;
-            Port = Plugin.ArchipelagoPort.Value;
-            Password = Plugin.ArchipelagoPassword.Value;
-            SlotName = Plugin.ArchipelagoSlotName.Value;
+            Host = OutwardArchipelagoMod.ArchipelagoHost.Value;
+            Port = OutwardArchipelagoMod.ArchipelagoPort.Value;
+            Password = OutwardArchipelagoMod.ArchipelagoPassword.Value;
+            SlotName = OutwardArchipelagoMod.ArchipelagoSlotName.Value;
             IsConnected = false;
 
             // create connection status icon
@@ -92,7 +92,7 @@ namespace OutwardArchipelago
                     {
                         while (IncomingMessageQueue.TryDequeue(out var message))
                         {
-                            Plugin.Log.LogInfo($"[Archipelago] Sending message as {character.Name} ({character.UID}): {message}");
+                            OutwardArchipelagoMod.Log.LogInfo($"[Archipelago] Sending message as {character.Name} ({character.UID}): {message}");
                             SendSystemMessage(character, message);
                         }
                     }
@@ -159,12 +159,12 @@ namespace OutwardArchipelago
                         if (doWaitInterval)
                         {
                             var verb = first ? "Reconnecting" : "Retrying";
-                            Plugin.Log.LogInfo($"[Archipelago] {verb} in {ReconnectInterval} ms...");
+                            OutwardArchipelagoMod.Log.LogInfo($"[Archipelago] {verb} in {ReconnectInterval} ms...");
                             await Task.Delay(ReconnectInterval);
                         }
                         first = false;
 
-                        Plugin.Log.LogInfo($"[Archipelago] Logging into Archipelago server at '{Host}:{Port}' with slot '{SlotName}' and game '{ArchipelagoGame}'.");
+                        OutwardArchipelagoMod.Log.LogInfo($"[Archipelago] Logging into Archipelago server at '{Host}:{Port}' with slot '{SlotName}' and game '{ArchipelagoGame}'.");
 
                         // create new session
                         _archipelagoSession = ArchipelagoSessionFactory.CreateSession(Host, Port);
@@ -181,7 +181,7 @@ namespace OutwardArchipelago
                         }
                         catch (Exception ex)
                         {
-                            Plugin.Log.LogError($"[Archipelago] Connect failed: {ex}");
+                            OutwardArchipelagoMod.Log.LogError($"[Archipelago] Connect failed: {ex}");
                             continue;
                         }
 
@@ -200,34 +200,34 @@ namespace OutwardArchipelago
                         }
                         catch (Exception ex)
                         {
-                            Plugin.Log.LogError($"[Archipelago] Login failed: {ex}");
+                            OutwardArchipelagoMod.Log.LogError($"[Archipelago] Login failed: {ex}");
                             continue;
                         }
 
                         if (loginResult == null)
                         {
                             // this should not happend
-                            Plugin.Log.LogError("[Archipelago] Login failed for unknown reason.");
+                            OutwardArchipelagoMod.Log.LogError("[Archipelago] Login failed for unknown reason.");
                             continue;
                         }
 
                         if (loginResult is LoginFailure loginFailure)
                         {
-                            Plugin.Log.LogError($"[Archipelago] Login failed: {string.Join("\n", loginFailure.Errors)}");
+                            OutwardArchipelagoMod.Log.LogError($"[Archipelago] Login failed: {string.Join("\n", loginFailure.Errors)}");
                             continue;
                         }
 
                         if (!loginResult.Successful)
                         {
                             // this should not happen
-                            Plugin.Log.LogError("[Archipelago] Login failed for unknown reason.");
+                            OutwardArchipelagoMod.Log.LogError("[Archipelago] Login failed for unknown reason.");
                             continue;
                         }
 
                         break;
                     }
 
-                    Plugin.Log.LogInfo("[Archipelago] Login success.");
+                    OutwardArchipelagoMod.Log.LogInfo("[Archipelago] Login success.");
                     await RunOnMainThread(() => IsConnected = true);
                 }
                 finally
@@ -253,14 +253,14 @@ namespace OutwardArchipelago
                             {
                                 try
                                 {
-                                    Plugin.Log.LogInfo($"[Archipelago] Completing location check: {locationId}");
+                                    OutwardArchipelagoMod.Log.LogInfo($"[Archipelago] Completing location check: {locationId}");
                                     _archipelagoSession.Locations.CompleteLocationChecks(locationId);
-                                    Plugin.Log.LogInfo($"[Archipelago] Completed location check: {locationId}");
+                                    OutwardArchipelagoMod.Log.LogInfo($"[Archipelago] Completed location check: {locationId}");
                                     break;
                                 }
                                 catch (Exception ex)
                                 {
-                                    Plugin.Log.LogError($"[Archipelago] Complete location check failed: {locationId}\n{ex}");
+                                    OutwardArchipelagoMod.Log.LogError($"[Archipelago] Complete location check failed: {locationId}\n{ex}");
                                 }
                             }
                         }
@@ -269,7 +269,7 @@ namespace OutwardArchipelago
                             _archipelagoSessionSemaphore.Release();
                         }
 
-                        Plugin.Log.LogInfo($"[Archipelago] Retrying complete location check in {ReconnectInterval} ms...");
+                        OutwardArchipelagoMod.Log.LogInfo($"[Archipelago] Retrying complete location check in {ReconnectInterval} ms...");
                         await Task.Delay(ReconnectInterval);
                     }
                 });
@@ -278,34 +278,34 @@ namespace OutwardArchipelago
 
         private void OnSocketClosed(string reason)
         {
-            Plugin.Log.LogWarning($"[Archipelago] Lost connection: {reason}");
+            OutwardArchipelagoMod.Log.LogWarning($"[Archipelago] Lost connection: {reason}");
             Connect();
         }
 
         private void OnItemReceived(ReceivedItemsHelper helper)
         {
-            Plugin.Log.LogInfo($"[Archipelago] Received {helper.Index} items...");
+            OutwardArchipelagoMod.Log.LogInfo($"[Archipelago] Received {helper.Index} items...");
             while (helper.Any())
             {
                 var item = helper.DequeueItem();
-                Plugin.Log.LogInfo($"[Archipelago] Received item {item.ItemName} ({item.ItemId}).");
+                OutwardArchipelagoMod.Log.LogInfo($"[Archipelago] Received item {item.ItemName} ({item.ItemId}).");
                 IncomingItemQueue.Enqueue(item.ItemId);
             }
         }
 
         private void OnMessageReceived(Archipelago.MultiClient.Net.MessageLog.Messages.LogMessage message)
         {
-            Plugin.Log.LogMessage($"[Archipelago::Chat] {message}");
+            OutwardArchipelagoMod.Log.LogMessage($"[Archipelago::Chat] {message}");
             IncomingMessageQueue.Enqueue(FormatArchipelagoMessage(message));
         }
 
         private void GiveItemToPlayer(long itemId, int count)
         {
-            Plugin.Log.LogInfo($"[Archipelago] Giving item to player: {itemId} x{count}");
+            OutwardArchipelagoMod.Log.LogInfo($"[Archipelago] Giving item to player: {itemId} x{count}");
             var character = CharacterManager.Instance.GetFirstLocalCharacter();
             if (character == null)
             {
-                Plugin.Log.LogError($"[Archipelago] Could not find local player to give item.");
+                OutwardArchipelagoMod.Log.LogError($"[Archipelago] Could not find local player to give item.");
             }
 
             switch (itemId)
@@ -314,7 +314,7 @@ namespace OutwardArchipelago
                     QuestLicenseManager.SetQuestLicenseLevel(count);
                     break;
                 default:
-                    Plugin.Log.LogError($"[Archipelago] Unknown item ID ({itemId})");
+                    OutwardArchipelagoMod.Log.LogError($"[Archipelago] Unknown item ID ({itemId})");
                     break;
             }
         }

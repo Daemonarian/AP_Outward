@@ -37,7 +37,7 @@ namespace OutwardArchipelago
 
         public static void SetQuestLicenseLevel(int level)
         {
-            Plugin.Log.LogInfo($"Setting Quest License level to {level}");
+            OutwardArchipelagoMod.Log.LogInfo($"Setting Quest License level to {level}");
 
             if (!PhotonNetwork.isMasterClient)
             {
@@ -58,7 +58,7 @@ namespace OutwardArchipelago
                 {
                     if (!known)
                     {
-                        Plugin.Log.LogDebug($"Giving Quest License {i + 1} skill: {skillId}");
+                        OutwardArchipelagoMod.Log.LogDebug($"Giving Quest License {i + 1} skill: {skillId}");
                         character.Inventory.ReceiveSkillReward(QuestLicenseSkillIDs[i]);
                     }
                 }
@@ -66,7 +66,7 @@ namespace OutwardArchipelago
                 {
                     if (known)
                     {
-                        Plugin.Log.LogDebug($"Removing Quest License {i + 1} skill: {skillId}");
+                        OutwardArchipelagoMod.Log.LogDebug($"Removing Quest License {i + 1} skill: {skillId}");
                         character.Inventory.SkillKnowledge.RemoveItem(skillId);
                     }
                 }

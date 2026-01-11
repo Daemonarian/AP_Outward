@@ -31,7 +31,7 @@ namespace OutwardArchipelago
                 check = !check;
             }
 
-            Plugin.Log.LogDebug($"Condition_CheckLicense::OnCheck MinimumQuestLevel={MinimumQuestLevel} IsInverted={IsInverted} currentQuestLicenseLevel={currentQuestLicenseLevel} return {check}");
+            OutwardArchipelagoMod.Log.LogDebug($"Condition_CheckLicense::OnCheck MinimumQuestLevel={MinimumQuestLevel} IsInverted={IsInverted} currentQuestLicenseLevel={currentQuestLicenseLevel} return {check}");
             return check;
         }
     }
