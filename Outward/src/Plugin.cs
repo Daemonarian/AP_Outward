@@ -1,30 +1,11 @@
-﻿using Archipelago.MultiClient.Net;
-using Archipelago.MultiClient.Net.Enums;
-using Archipelago.MultiClient.Net.Helpers;
-using BepInEx;
+﻿using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Logging;
-using Discord;
 using HarmonyLib;
-using NodeCanvas.DialogueTrees;
-using NodeCanvas.Framework;
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Management.Instrumentation;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.SceneManagement;
-
 
 namespace OutwardArchipelago
 {
-    
-
     [BepInPlugin(GUID, NAME, VERSION)]
     public class Plugin : BaseUnityPlugin
     {
@@ -93,6 +74,7 @@ namespace OutwardArchipelago
             BindConfig();
             new Harmony(GUID).PatchAll();
             ArchipelagoConnector.Create();
+            DialoguePatcher.Instance.Awake();
 
             Log.LogMessage($"{NAME} {VERSION} started successfully");
         }
