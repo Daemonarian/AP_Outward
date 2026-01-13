@@ -355,3 +355,5 @@ MigrationBackup/
 
 # justfile local environment file
 .env
+
+Archipelago/Archipelago
