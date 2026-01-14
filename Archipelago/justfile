@@ -13,12 +13,14 @@ deploy_dir := build_dir + "/deploy"
 release_dir := "release"
 
 archipelago_repo := "ArchipelagoMW/Archipelago"
-archipelago_version := trim(read("../VERSION"))
+archipelago_version := trim(read("../ARCHIPELAGO_VERSION"))
 archipelago_archive_format := ".zip"
 archipelago_archive_url := "https://github.com/" + archipelago_repo + "/archive/refs/tags/" + archipelago_version + archipelago_archive_format
 archipelago_archive_file := build_dir + "/Archipelago-" + archipelago_version + archipelago_archive_format
-archipelago_dir := build_dir + "/Archipelago"
+archipelago_archive_temp_dir := build_dir + "/Archipelago-tmp"
+archipelago_dir := "./Archipelago"
 venv_dir := archipelago_dir + "/.venv"
+venv_python := venv_dir + "/Scripts/python.exe"
 
 options_yaml := "src/outward/Outward Definitive Edition.yaml"
 
@@ -32,11 +34,10 @@ clean:
 setup:
     New-Item -Path "{{build_dir}}" -ItemType Directory -Force | Out-Null
     if (-not (Test-Path -Path "{{archipelago_archive_file}}")) { Invoke-WebRequest -Uri "{{archipelago_archive_url}}" -OutFile "{{archipelago_archive_file}}" }
-    if (-not (Test-Path -Path "{{archipelago_dir}}")) { Expand-Archive -Path "{{archipelago_archive_file}}" -DestinationPath "{{build_dir}}" ; Move-Item -Path "{{build_dir}}\Archipelago-{{archipelago_version}}" -Destination "{{archipelago_dir}}" }
+    if (-not (Test-Path -Path "{{archipelago_dir}}")) { if (Test-Path -Path "{{archipelago_archive_temp_dir}}") { Remove-Item -Path "{{archipelago_archive_temp_dir}}" -Recurse } ; New-Item -Path "{{archipelago_archive_temp_dir}}" -ItemType Directory -Force | Out-Null ; Expand-Archive -Path "{{archipelago_archive_file}}" -DestinationPath "{{archipelago_archive_temp_dir}}" ; $extracted_dirs = @(Get-ChildItem -Path "{{archipelago_archive_temp_dir}}") ; if ($extracted_dirs.Count -ne 1 -or -not $extracted_dirs[0].PSIsContainer) { Write-Error -Message "Could identify extracted Archipelago source directory" -ErrorAction Stop } ; Move-Item -Path $extracted_dirs[0].FullName -Destination "{{archipelago_dir}}" ; Remove-Item -Path "{{archipelago_archive_temp_dir}}" -Recurse }
     if (-not (Test-Path -Path "{{archipelago_dir}}\worlds\outward")) { New-Item -Path "{{archipelago_dir}}\worlds\outward" -ItemType Junction -Target (Resolve-Path -Path "src\outward").Path -Force | Out-Null }
-    if (-not (Test-Path -Path "{{venv_dir}}")) { & "{{python_cmd}}" -m venv "{{venv_dir}}" }
-    Start-Process -FilePath "{{venv_dir}}\Scripts\python.exe" -ArgumentList @("-m", "pip", "install", "--upgrade", "pip") -NoNewWindow -Wait
-    Start-Process -FilePath "{{venv_dir}}\Scripts\pip.exe" -ArgumentList @("install", "-r", "{{archipelago_dir}}\requirements.txt", "-r", "{{archipelago_dir}}\ci-requirements.txt", "-r", "{{archipelago_dir}}\WebHostLib\requirements.txt") -NoNewWindow -Wait
+    & "{{python_cmd}}" -m venv --upgrade-deps "{{venv_dir}}"
+    Get-ChildItem -Path "{{archipelago_dir}}" -Recurse -Exclude "build" -Include @("requirements.txt", "ci-requirements.txt") | % { & "{{venv_python}}" -m pip install -r $_.FullName }
 
 build:
     Write-Output "Nothing to build."
