@@ -3,6 +3,8 @@ using NodeCanvas.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Emit;
+using System.Text;
 
 namespace OutwardArchipelago
 {
@@ -131,6 +133,101 @@ namespace OutwardArchipelago
             }
         }
 
+        private static string EscapeLabelString(string label)
+        {
+            return label.Replace("\\", "\\\\").Replace("\"", "\\\"").Replace("\r", "").Replace("\n", "\\n");
+        }
+
+        private HashSet<string> seenDialogueTrees = new();
+
+        public void DumpDialogueTree(DialogueTreeExt tree)
+        {
+            if (tree.name != "DialogueTree DialogueTreeExt" && !seenDialogueTrees.Add(tree.name))
+            {
+                return;
+            }
+
+            var sb = new StringBuilder();
+            sb.Append($"digraph {tree.name} {{ ");
+
+            sb.Append("Start [shape=doublecircle, label=\"Start\"]; ");
+            foreach (var node in tree.allNodes)
+            {
+                var lsb = new StringBuilder();
+                lsb.AppendLine($"ID={node.ID}");
+                lsb.AppendLine($"Type={node.GetType().Name}");
+                if (node is StatementNodeExt statementNode)
+                {
+                    lsb.AppendLine($"Actor={statementNode.actorName}");
+                    lsb.AppendLine($"Statement={statementNode.statement?.text}");
+                }
+                else if (node is ConditionNode conditionNode)
+                {
+                    lsb.AppendLine($"ConditionType={conditionNode.condition?.GetType()?.Name}");
+                    lsb.AppendLine($"ConditionInfo={conditionNode.condition?.info}");
+                }
+                else if (node is ActionNode actionNode)
+                {
+                    lsb.AppendLine($"ActionType={actionNode.action?.GetType()?.Name}");
+                    lsb.AppendLine($"ActionInfo={actionNode.action?.info}");
+                }
+
+                sb.Append($"Node{node.ID} [label=\"{EscapeLabelString(lsb.ToString().Trim())}\"]; ");
+            }
+
+            if (tree.primeNode != null)
+            {
+                sb.Append($"Start -> Node{tree.primeNode.ID}; ");
+            }
+
+            foreach (var node in tree.allNodes)
+            {
+                if (node.outConnections != null)
+                {
+                    for (int i = 0; i < node.outConnections.Count; i++)
+                    {
+                        var outNode = node.outConnections[i]?.targetNode;
+                        if (outNode != null)
+                        {
+                            var lsb = new StringBuilder();
+                            if (node is ConditionNode)
+                            {
+                                if (i == 0)
+                                {
+                                    lsb.AppendLine("Yes");
+                                }
+                                else if (i == 1)
+                                {
+                                    lsb.AppendLine("No");
+                                }
+                                else
+                                {
+                                    lsb.AppendLine("??");
+                                }
+                            }
+                            else if (node is MultipleChoiceNodeExt mcNode)
+                            {
+                                if (mcNode.availableChoices != null && i < mcNode.availableChoices.Count)
+                                {
+                                    lsb.AppendLine($"{i}: {mcNode.availableChoices[i]?.statement?.text}");
+                                }
+                                else
+                                {
+                                    lsb.AppendLine($"{i}: ??");
+                                }
+                            }
+
+                             sb.Append($"Node{node.ID} -> Node{outNode.ID} [label=\"{EscapeLabelString(lsb.ToString().Trim())}\"]; ");
+                        }
+                    }
+                }
+            }
+
+            sb.Append("}");
+
+            OutwardArchipelagoMod.Log.LogDebug($"DialogueTreeExt deserialized: {sb}");
+        }
+
         public void OnGraphDeserialized(Graph graph)
         {
             // only patch dialogue trees when we are hosting
@@ -139,6 +236,7 @@ namespace OutwardArchipelago
                 // check if the graph is a dialogue tree
                 if (graph is DialogueTreeExt tree)
                 {
+                    DumpDialogueTree(tree);
                     PatchDialogueTree(tree);
                 }
             }
