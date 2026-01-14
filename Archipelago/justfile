@@ -20,7 +20,7 @@ archipelago_archive_file := build_dir + "/Archipelago-" + archipelago_version + 
 archipelago_dir := build_dir + "/Archipelago"
 venv_dir := archipelago_dir + "/.venv"
 
-options_yaml := "outward/Outward Definitive Edition.yaml"
+options_yaml := "src/outward/Outward Definitive Edition.yaml"
 
 default:
     @just --list
