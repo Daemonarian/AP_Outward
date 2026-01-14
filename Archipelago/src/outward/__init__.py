@@ -1,8 +1,8 @@
-from BaseClasses import Item, ItemClassification, Region, Entrance
+from BaseClasses import Region, Entrance
 from worlds.AutoWorld import World
 from worlds.generic.Rules import add_rule
 from .common import OUTWARD
-from .items import EventName, ItemName, OutwardGameItem, outward_item_name_to_id
+from .items import ItemName, OutwardGameItem, outward_item_name_to_id
 from .locations import LocationName, OutwardLocation, outward_location_name_to_id
 from .options import OutwardOptions
 
@@ -37,8 +37,12 @@ class OutwardWorld(World):
         return connection
 
     def create_items(self):
-        for _ in range(5):
+        for _ in range(10):
             self.multiworld.itempool.append(self.create_item(ItemName.QUEST_LICENSE))
+        # Fillers
+        filler_count = len(self.multiworld.get_locations(self.player)) - len(self.multiworld.itempool)
+        for _ in range(filler_count):
+            self.multiworld.itempool.append(self.create_item(ItemName.SILVER_CURRENCY))
 
     def create_regions(self):
         menu = self.create_region("Menu")
@@ -46,21 +50,27 @@ class OutwardWorld(World):
 
         for location_name in outward_location_name_to_id.keys():
             location = self.create_location(location_name, game_area)
-            if location_name == LocationName.QUEST_6:
-                location.place_locked_item(self.create_item(EventName.VICTORY))
+            if location_name == LocationName.EVENT_VICTORY:
+                location.place_locked_item(self.create_item(ItemName.EVENT_VICTORY))
 
         self.create_connection("Enter Game", menu, game_area)
 
     def set_rules(self):
         access_rules = {
-            LocationName.QUEST_2: lambda state: state.has(ItemName.QUEST_LICENSE, self.player, 1),
-            LocationName.QUEST_3: lambda state: state.has(ItemName.QUEST_LICENSE, self.player, 2),
-            LocationName.QUEST_4: lambda state: state.has(ItemName.QUEST_LICENSE, self.player, 3),
-            LocationName.QUEST_5: lambda state: state.has(ItemName.QUEST_LICENSE, self.player, 4),
-            LocationName.QUEST_6: lambda state: state.has(ItemName.QUEST_LICENSE, self.player, 5),
+            LocationName.EVENT_VICTORY: lambda state: state.has(ItemName.QUEST_LICENSE, self.player, 5),
+            LocationName.QUEST_MAIN_2: lambda state: state.has(ItemName.QUEST_LICENSE, self.player, 1),
+            LocationName.QUEST_MAIN_3: lambda state: state.has(ItemName.QUEST_LICENSE, self.player, 2),
+            LocationName.QUEST_MAIN_4: lambda state: state.has(ItemName.QUEST_LICENSE, self.player, 3),
+            LocationName.QUEST_MAIN_5: lambda state: state.has(ItemName.QUEST_LICENSE, self.player, 4),
+            LocationName.QUEST_MAIN_6: lambda state: state.has(ItemName.QUEST_LICENSE, self.player, 5),
+            LocationName.QUEST_MAIN_7: lambda state: state.has(ItemName.QUEST_LICENSE, self.player, 6),
+            LocationName.QUEST_MAIN_8: lambda state: state.has(ItemName.QUEST_LICENSE, self.player, 7),
+            LocationName.QUEST_MAIN_9: lambda state: state.has(ItemName.QUEST_LICENSE, self.player, 8),
+            LocationName.QUEST_MAIN_10: lambda state: state.has(ItemName.QUEST_LICENSE, self.player, 9),
+            LocationName.QUEST_MAIN_11: lambda state: state.has(ItemName.QUEST_LICENSE, self.player, 10),
         }
         for loc in self.multiworld.get_locations(self.player):
             if loc.name in access_rules:
                 add_rule(loc, access_rules[loc.name])
 
-        self.multiworld.completion_condition[self.player] = lambda state: state.has(EventName.VICTORY, self.player)
+        self.multiworld.completion_condition[self.player] = lambda state: state.has(ItemName.EVENT_VICTORY, self.player)

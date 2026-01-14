@@ -310,8 +310,11 @@ namespace OutwardArchipelago
 
             switch (itemId)
             {
-                case ArchipelagoItems.QUEST_LICENSE:
+                case ArchipelagoItemID.QUEST_LICENSE:
                     QuestLicenseManager.SetQuestLicenseLevel(count);
+                    break;
+                case ArchipelagoItemID.SILVER_CURRENCY:
+                    character.Inventory.ReceiveMoneyReward(50);
                     break;
                 default:
                     OutwardArchipelagoMod.Log.LogError($"[Archipelago] Unknown item ID ({itemId})");

@@ -1,7 +1,7 @@
 from typing import Dict, List, NamedTuple
 from BaseClasses import Item, ItemClassification
 from worlds.AutoWorld import World
-from .common import OUTWARD, BASE_ID
+from .common import OUTWARD
 
 class OutwardGameItem(Item):
     game = OUTWARD
@@ -18,15 +18,15 @@ class ItemData(NamedTuple):
     name: str
     classification: ItemClassification
 
-class EventName:
-    VICTORY = "Victory"
-
 class ItemName:
+    EVENT_VICTORY = "Victory"
     QUEST_LICENSE = "Progressive Quest License"
+    SILVER_CURRENCY = "Silver"
 
 outward_items: List[ItemData] = [ItemData(*data) for data in [
-    (1, EventName.VICTORY, ItemClassification.progression),
+    (1, ItemName.EVENT_VICTORY, ItemClassification.progression),
     (2, ItemName.QUEST_LICENSE, ItemClassification.progression),
+    (3, ItemName.SILVER_CURRENCY, ItemClassification.filler),
 ]]
 
 outward_items_by_name: Dict[str, ItemData] = {item.name: item for item in outward_items}

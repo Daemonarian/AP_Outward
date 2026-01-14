@@ -1,6 +1,6 @@
 from typing import Dict, List, NamedTuple
 from BaseClasses import Location, Region
-from .common import BASE_ID, OUTWARD
+from .common import OUTWARD
 
 class OutwardLocation(Location):
     game = OUTWARD
@@ -14,30 +14,33 @@ class LocationData(NamedTuple):
     name: str
 
 class LocationName:
-    QUEST_1 =  "Main Quest 1: Call to Adventure"
-    QUEST_2 =  "Main Quest 2: Join Faction Quest"
-    QUEST_3 =  "Main Quest 3: Faction Quest 1"
-    QUEST_4 =  "Main Quest 4: Faction Quest 2"
-    QUEST_5 =  "Main Quest 5: Faction Quest 3"
-    QUEST_6 =  "Main Quest 6: Faction Quest 4"
-    QUEST_7 =  "Main Quest 7: A Fallen City"
-    QUEST_8 =  "Main Quest 8: Up The Ladder"
-    QUEST_9 =  "Main Quest 9: Stealing Fire"
-    QUEST_10 = "Main Quest 10: Liberate the Sun"
-    QUEST_11 = "Main Quest 11: Vengeful Ouroboros"
+    EVENT_VICTORY = "Victory"
+    QUEST_MAIN_1 = "Main Quest 1: Call to Adventure"
+    QUEST_MAIN_2 = "Main Quest 2: Join Faction Quest"
+    QUEST_MAIN_3 = "Main Quest 3: Faction Quest 1"
+    QUEST_MAIN_4 = "Main Quest 4: Faction Quest 2"
+    QUEST_MAIN_5 = "Main Quest 5: Faction Quest 3"
+    QUEST_MAIN_6 = "Main Quest 6: Faction Quest 4"
+    QUEST_MAIN_7 = "Main Quest 7: A Fallen City"
+    QUEST_MAIN_8 = "Main Quest 8: Up The Ladder"
+    QUEST_MAIN_9 = "Main Quest 9: Stealing Fire"
+    QUEST_MAIN_10 = "Main Quest 10: Liberate the Sun"
+    QUEST_MAIN_11 = "Main Quest 11: Vengeful Ouroboros"
+    QUEST_SIDE_ALCHEMY_COLD_STONE = "Quest: Alchemy: Cold Stone"
 
 outward_locations: List[LocationData] = [LocationData(*data) for data in [
-    (1, LocationName.QUEST_1),
-    (2, LocationName.QUEST_2),
-    (3, LocationName.QUEST_3),
-    (4, LocationName.QUEST_4),
-    (5, LocationName.QUEST_5),
-    (6, LocationName.QUEST_6),
-    #(7, LocationName.QUEST_7),
-    #(8, LocationName.QUEST_8),
-    #(9, LocationName.QUEST_9),
-    #(10, LocationName.QUEST_10),
-    #(11, LocationName.QUEST_11),
+    (1, LocationName.EVENT_VICTORY),
+    (2, LocationName.QUEST_MAIN_1),
+    (3, LocationName.QUEST_MAIN_2),
+    (4, LocationName.QUEST_MAIN_3),
+    (5, LocationName.QUEST_MAIN_4),
+    (6, LocationName.QUEST_MAIN_5),
+    (7, LocationName.QUEST_MAIN_6),
+    (8, LocationName.QUEST_MAIN_7),
+    (9, LocationName.QUEST_MAIN_8),
+    (10, LocationName.QUEST_MAIN_9),
+    (11, LocationName.QUEST_MAIN_10),
+    (12, LocationName.QUEST_MAIN_11),
 ]]
 
 outward_locations_by_name: Dict[str, LocationData] = {location.name: location for location in outward_locations}
