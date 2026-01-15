@@ -1,13 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
-using UnityEngine.UIElements;
-using static OTWStoreAPI;
-
-namespace OutwardArchipelago
+﻿namespace OutwardArchipelago
 {
     public static class OutwardQuestEvents
     {

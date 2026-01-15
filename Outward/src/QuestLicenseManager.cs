@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 
 namespace OutwardArchipelago
 {
     public static class QuestLicenseManager
     {
-        public static readonly IReadOnlyList<int> QuestLicenseSkillIDs = new List<int> {8861501, 8861502, 8861503, 8861504, 8861505, 8861506, 8861507, 8861508, 8861509, 8861510};
+        public static readonly IReadOnlyList<int> QuestLicenseSkillIDs = new List<int> { 8861501, 8861502, 8861503, 8861504, 8861505, 8861506, 8861507, 8861508, 8861509, 8861510 };
 
         public static int GetQuestLicenseLevel()
         {

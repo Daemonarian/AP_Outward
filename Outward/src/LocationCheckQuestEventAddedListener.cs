@@ -1,9 +1,6 @@
 ﻿using HarmonyLib;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace OutwardArchipelago
 {
@@ -66,7 +63,7 @@ namespace OutwardArchipelago
 
         [HarmonyPatch(typeof(QuestEventManager), nameof(QuestEventManager.Awake))]
         public static class QuestEventManager_Awake
-        {   
+        {
             static void Postfix(QuestEventManager __instance)
             {
                 OutwardArchipelagoMod.Log.LogDebug("QuestEventManager Awake postfix called.");

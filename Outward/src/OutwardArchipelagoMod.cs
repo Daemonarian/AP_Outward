@@ -2,6 +2,7 @@
 using BepInEx.Configuration;
 using BepInEx.Logging;
 using HarmonyLib;
+using OutwardArchipelago.Dialogue;
 using System.IO;
 
 namespace OutwardArchipelago
@@ -89,6 +90,28 @@ namespace OutwardArchipelago
 
             Log.LogError($"Could not find asset at: {path}");
             return null;
+        }
+
+        /// <summary>
+        /// Retrieves the localized string associated with the specified key for the current mod.
+        /// </summary>
+        /// <remarks>If the specified key does not exist in the localization resources, an error is logged
+        /// and a placeholder string is returned instead of throwing an exception. This allows the application to
+        /// continue running even if some localization entries are missing.</remarks>
+        /// <param name="key">The key identifying the localized string to retrieve. This key is combined with the mod's GUID to form the
+        /// full localization key.</param>
+        /// <returns>The localized string corresponding to the specified key. If the key is not found, a placeholder string
+        /// containing the full key is returned.</returns>
+        public string GetLocalizedModString(string key)
+        {
+            var fullMessageKey = $"{GUID}.{key}";
+            if (!LocalizationManager.Instance.TryGetLoc(fullMessageKey, out var text))
+            {
+                Log.LogError($"Failed to find localized string: {fullMessageKey}");
+                text = $"[LOC] {fullMessageKey}";
+            }
+
+            return text;
         }
     }
 }
