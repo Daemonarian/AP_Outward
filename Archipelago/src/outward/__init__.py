@@ -18,6 +18,11 @@ class OutwardWorld(World):
     options: OutwardOptions
 
     def create_item(self, name: str) -> OutwardGameItem:
+        item = OutwardGameItem(name, self, self.player)
+        self.multiworld.itempool.append(item)
+        return item
+
+    def create_event(self, name: str) -> OutwardGameItem:
         return OutwardGameItem(name, self, self.player)
 
     def create_region(self, name: str) -> Region:
@@ -38,11 +43,13 @@ class OutwardWorld(World):
 
     def create_items(self):
         for _ in range(10):
-            self.multiworld.itempool.append(self.create_item(ItemName.QUEST_LICENSE))
+            self.create_item(ItemName.QUEST_LICENSE)
+        self.create_item(ItemName.REWARD_QUEST_SIDE_ALCHEMY_COLD_STONE)
+
         # Fillers
-        filler_count = len(self.multiworld.get_locations(self.player)) - len(self.multiworld.itempool)
-        for _ in range(filler_count):
-            self.multiworld.itempool.append(self.create_item(ItemName.SILVER_CURRENCY))
+        location_count = len(self.multiworld.get_locations(self.player))
+        while len(self.multiworld.itempool) < location_count:
+            self.create_item(ItemName.SILVER_CURRENCY)
 
     def create_regions(self):
         menu = self.create_region("Menu")
@@ -51,7 +58,7 @@ class OutwardWorld(World):
         for location_name in outward_location_name_to_id.keys():
             location = self.create_location(location_name, game_area)
             if location_name == LocationName.EVENT_VICTORY:
-                location.place_locked_item(self.create_item(ItemName.EVENT_VICTORY))
+                location.place_locked_item(self.create_event(ItemName.EVENT_VICTORY))
 
         self.create_connection("Enter Game", menu, game_area)
 

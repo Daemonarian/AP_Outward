@@ -41,6 +41,7 @@ outward_locations: List[LocationData] = [LocationData(*data) for data in [
     (10, LocationName.QUEST_MAIN_9),
     (11, LocationName.QUEST_MAIN_10),
     (12, LocationName.QUEST_MAIN_11),
+    (13, LocationName.QUEST_SIDE_ALCHEMY_COLD_STONE),
 ]]
 
 outward_locations_by_name: Dict[str, LocationData] = {location.name: location for location in outward_locations}

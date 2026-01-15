@@ -48,6 +48,10 @@ namespace OutwardArchipelago.Dialogue
             Patches.Register(new GatekeepDialoguePatch(DialogueTreeID.Caldera_Josef_BaseBuilding, 40, new Condition_QuestLicense(8), "dialogue.josef.quest_license_8_required"));
             Patches.Register(new GatekeepDialoguePatch(DialogueTreeID.Caldera_Evangeline_BaseBuilding, 65, new Condition_QuestLicense(9), "dialogue.evangeline.quest_license_9_required"));
             Patches.Register(new GatekeepDialoguePatch(DialogueTreeID.Caldera_Evangeline_BaseBuilding, 72, new Condition_QuestLicense(10), "dialogue.evangeline.quest_license_10_required"));
+
+            // Replace quest rewards
+
+            Patches.Register(new ReplaceActionDialoguePatch(DialogueTreeID.Merchant_CierzoAlchemist, 7, new Action_CompleteLocationCheck(ArchipelagoLocationID.QUEST_SIDE_ALCHEMY_COLD_STONE)));
         }
 
         public void PatchDialogueTree(DialogueTreeExt tree)
@@ -62,6 +66,11 @@ namespace OutwardArchipelago.Dialogue
                 }
 
                 patch.ApplyPatch(context);
+            }
+
+            if (context != null)
+            {
+                OutwardArchipelagoMod.Log.LogDebug($"Post patch tree {context.TreeID}: {DialogueTreeAsViz(tree)}");
             }
         }
 

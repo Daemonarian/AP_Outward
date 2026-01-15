@@ -42,17 +42,17 @@ namespace OutwardArchipelago
 
             var listeners = new List<LocationCheckQuestEventAddedListener>
             {
-                new(OutwardQuestEvents.Neutral_CallToAdventure.CallToAdventure_Completed,   ArchipelagoLocations.MAIN_QUEST_1),
-                new(OutwardQuestEvents.Neutral_General.General_DoneQuest0,                  ArchipelagoLocations.MAIN_QUEST_2),
-                new(OutwardQuestEvents.Neutral_General.General_DoneQuest1,                  ArchipelagoLocations.MAIN_QUEST_3),
-                new(OutwardQuestEvents.Neutral_General.General_DoneQuest2,                  ArchipelagoLocations.MAIN_QUEST_4),
-                new(OutwardQuestEvents.Neutral_General.General_DoneQuest3,                  ArchipelagoLocations.MAIN_QUEST_5),
-                new(OutwardQuestEvents.Neutral_General.General_DoneQuest4,                  ArchipelagoLocations.MAIN_QUEST_6),
-                new(OutwardQuestEvents.DLC2_Caldera_Questline.DLC2Questline_DoneQ0,         ArchipelagoLocations.MAIN_QUEST_7),
-                new(OutwardQuestEvents.DLC2_Caldera_Questline.DLC2Questline_DoneQ1,         ArchipelagoLocations.MAIN_QUEST_8),
-                new(OutwardQuestEvents.DLC2_Caldera_Questline.DLC2Questline_DoneQ2,         ArchipelagoLocations.MAIN_QUEST_9),
-                new(OutwardQuestEvents.DLC2_Caldera_Questline.DLC2Questline_DoneQ3,         ArchipelagoLocations.MAIN_QUEST_10),
-                new(OutwardQuestEvents.DLC2_Caldera_Questline.DLC2Questline_DoneQ4,         ArchipelagoLocations.MAIN_QUEST_11),
+                new(OutwardQuestEvents.Neutral_CallToAdventure.CallToAdventure_Completed,   ArchipelagoLocationID.MAIN_QUEST_1),
+                new(OutwardQuestEvents.Neutral_General.General_DoneQuest0,                  ArchipelagoLocationID.MAIN_QUEST_2),
+                new(OutwardQuestEvents.Neutral_General.General_DoneQuest1,                  ArchipelagoLocationID.MAIN_QUEST_3),
+                new(OutwardQuestEvents.Neutral_General.General_DoneQuest2,                  ArchipelagoLocationID.MAIN_QUEST_4),
+                new(OutwardQuestEvents.Neutral_General.General_DoneQuest3,                  ArchipelagoLocationID.MAIN_QUEST_5),
+                new(OutwardQuestEvents.Neutral_General.General_DoneQuest4,                  ArchipelagoLocationID.MAIN_QUEST_6),
+                new(OutwardQuestEvents.DLC2_Caldera_Questline.DLC2Questline_DoneQ0,         ArchipelagoLocationID.MAIN_QUEST_7),
+                new(OutwardQuestEvents.DLC2_Caldera_Questline.DLC2Questline_DoneQ1,         ArchipelagoLocationID.MAIN_QUEST_8),
+                new(OutwardQuestEvents.DLC2_Caldera_Questline.DLC2Questline_DoneQ2,         ArchipelagoLocationID.MAIN_QUEST_9),
+                new(OutwardQuestEvents.DLC2_Caldera_Questline.DLC2Questline_DoneQ3,         ArchipelagoLocationID.MAIN_QUEST_10),
+                new(OutwardQuestEvents.DLC2_Caldera_Questline.DLC2Questline_DoneQ4,         ArchipelagoLocationID.MAIN_QUEST_11),
             };
 
             foreach (var listener in listeners)

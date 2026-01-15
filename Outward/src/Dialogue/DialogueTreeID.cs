@@ -17,6 +17,7 @@ namespace OutwardArchipelago.Dialogue
         public static readonly DialogueTreeID Ellinara_HM_Doubts = FromName("Dialogue_Ellinara_HM_Doubts");
         public static readonly DialogueTreeID Ellinara_HM_Questions = FromName("Dialogue_Ellinara_HM_Questions");
         public static readonly DialogueTreeID Ellinara_HM_Truth = FromName("Dialogue_Ellinara_HM_Truth");
+        public static readonly DialogueTreeID Merchant_CierzoAlchemist = FromName("Dialogue_Merchant_CierzoAlchemist");
         public static readonly DialogueTreeID RissaAberdeen_BC_AncestralPeacemaker = FromName("Dialogue_RissaAberdeen_BC_AncestralPeacemaker");
         public static readonly DialogueTreeID RissaAberdeen_BC_AshGiant = FromName("Dialogue_RissaAberdeen_BC_AshGiant");
         public static readonly DialogueTreeID RissaAberdeen_BC_MixedLegacies = FromName("Dialogue_RissaAberdeen_BC_MixedLegacies");

@@ -22,11 +22,13 @@ class ItemName:
     EVENT_VICTORY = "Victory"
     QUEST_LICENSE = "Progressive Quest License"
     SILVER_CURRENCY = "Silver"
+    REWARD_QUEST_SIDE_ALCHEMY_COLD_STONE = "Reward: Alchemy: Cold Stone"
 
 outward_items: List[ItemData] = [ItemData(*data) for data in [
     (1, ItemName.EVENT_VICTORY, ItemClassification.progression),
     (2, ItemName.QUEST_LICENSE, ItemClassification.progression),
     (3, ItemName.SILVER_CURRENCY, ItemClassification.filler),
+    (4, ItemName.REWARD_QUEST_SIDE_ALCHEMY_COLD_STONE, ItemClassification.useful),
 ]]
 
 outward_items_by_name: Dict[str, ItemData] = {item.name: item for item in outward_items}

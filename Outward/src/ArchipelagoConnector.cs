@@ -316,6 +316,12 @@ namespace OutwardArchipelago
                 case ArchipelagoItemID.SILVER_CURRENCY:
                     character.Inventory.ReceiveMoneyReward(50);
                     break;
+                case ArchipelagoItemID.REWARD_QUEST_SIDE_ALCHEMY_COLD_STONE:
+                    character.Inventory.ReceiveMoneyReward(15);
+                    character.Inventory.ReceiveItemReward(4300110, 1, true);
+                    character.Inventory.ReceiveItemReward(4300190, 1, true);
+                    character.Inventory.ReceiveItemReward(4300070, 1, true);
+                    break;
                 default:
                     OutwardArchipelagoMod.Log.LogError($"[Archipelago] Unknown item ID ({itemId})");
                     break;
