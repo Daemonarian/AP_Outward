@@ -89,6 +89,7 @@ namespace OutwardArchipelago.Dialogue
             {
                 var lsb = new StringBuilder();
                 lsb.AppendLine($"ID={node.ID}");
+                lsb.AppendLine($"UID={node.UID}");
                 lsb.AppendLine($"Type={node.GetType().Name}");
                 if (node is StatementNodeExt statementNode)
                 {
@@ -104,6 +105,18 @@ namespace OutwardArchipelago.Dialogue
                 {
                     lsb.AppendLine($"ActionType={actionNode.action?.GetType()?.Name}");
                     lsb.AppendLine($"ActionInfo={actionNode.action?.info}");
+                }
+                else if (node is Jumper jumperNode)
+                {
+                    lsb.AppendLine($"TargetNodeID={jumperNode.sourceNode.ID}");
+                    lsb.AppendLine($"TargetNodeUID={jumperNode.sourceNodeUID}");
+                }
+#pragma warning disable CS0618 // Type or member is obsolete
+                else if (node is GoToNode goToNode)
+#pragma warning restore CS0618 // Type or member is obsolete
+                {
+                    lsb.AppendLine($"TargetNodeID={goToNode._targetNode.ID}");
+                    lsb.AppendLine($"TargetNodeUID={goToNode._targetNode.UID}");
                 }
 
                 sb.Append($"Node{node.ID} [label=\"{EscapeLabelString(lsb.ToString().Trim())}\"]; ");
