@@ -1,4 +1,5 @@
-﻿using NodeCanvas.DialogueTrees;
+using NodeCanvas.DialogueTrees;
+using OutwardArchipelago.Dialogue.Patches;
 using System.Collections.Generic;
 
 namespace OutwardArchipelago.Dialogue
@@ -14,13 +15,10 @@ namespace OutwardArchipelago.Dialogue
     internal interface IReadOnlyDialoguePatchCollection
     {
         /// <summary>
-        /// Retrieves all dialogue patches associated with the specified dialogue tree.
+        /// Enumerates the patches that have been registered for the given dialogue tree.
         /// </summary>
-        /// <param name="tree">The dialogue tree for which to obtain patches.</param>
-        /// <returns>
-        /// A sequence of <see cref="IDialoguePatch"/> instances that apply to <paramref name="tree"/>.
-        /// If no patches apply, an empty sequence should be returned.
-        /// </returns>
+        /// <param name="tree">The dialogue tree to patch.</param>
+        /// <returns>An enumerable over the patches.</returns>
         public abstract IEnumerable<IDialoguePatch> PatchesByDialogueTree(DialogueTreeExt tree);
     }
 }

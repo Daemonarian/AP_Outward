@@ -1,4 +1,5 @@
-﻿using NodeCanvas.DialogueTrees;
+using NodeCanvas.DialogueTrees;
+using OutwardArchipelago.Dialogue.Patches;
 using System.Collections.Generic;
 
 namespace OutwardArchipelago.Dialogue
@@ -93,17 +94,15 @@ namespace OutwardArchipelago.Dialogue
 
         /// <summary>
         /// Register a patch in the collection.
-        /// The patch is stored in the most specific index that its <see cref="IDialoguePatch.TreeID"/> supports:
+        /// The patch is stored in the most specific index that its <see cref="IDialoguePatch"/> supports:
         /// - name + hash -> <see cref="ByNameAndHash"/>
         /// - name only -> <see cref="ByName"/>
         /// - hash only -> <see cref="ByHash"/>
         /// - neither -> <see cref="OtherPatches"/>
         /// </summary>
         /// <param name="patch">The patch to register.</param>
-        public void Register(IDialoguePatch patch)
+        public void Register(DialogueTreeID id, IDialoguePatch patch)
         {
-            var id = patch.TreeID;
-
             if (id.Name != null && id.Hash.HasValue)
             {
                 if (!ByNameAndHash.TryGetValue(id.Name, out var byHash))

@@ -1,4 +1,4 @@
-﻿using NodeCanvas.DialogueTrees;
+using NodeCanvas.DialogueTrees;
 using System.Text;
 
 namespace OutwardArchipelago.Dialogue
@@ -30,6 +30,21 @@ namespace OutwardArchipelago.Dialogue
         public static readonly DialogueTreeID Soroborean_MilitaryDean_Q2 = FromName("Dialogue_Soroborean_MilitaryDean_Q2");
         public static readonly DialogueTreeID Soroborean_MilitaryRecruiter_StartPQ1 = FromName("Dialogue_Soroborean_MilitaryRecruiter_StartPQ1");
         public static readonly DialogueTreeID Soroborean_NaturalistDean_Q1 = FromName("Dialogue_Soroborean_NaturalistDean_Q1");
+        public static readonly DialogueTreeID Soroborean_LichDying = FromName("Dialogue_Soroborean_LichDying");
+        public static readonly DialogueTreeID Merchant_BergAlchemist = FromName("Dialogue_Merchant_BergAlchemist");
+        public static readonly DialogueTreeID Abrassar_BarrelMan_Real = FromName("Dialogue_Abrassar_BarrelMan_Real");
+        public static readonly DialogueTreeID GoldLich_Neut_Initial = FromName("Dialogue_GoldLich_Neut_Initial");
+        public static readonly DialogueTreeID JadeLich_Neut_Initial = FromName("Dialogue_JadeLich_Neut_Initial");
+        public static readonly DialogueTreeID Merchant_CierzoBlacksmith = FromName("Dialogue_Merchant_CierzoBlacksmith");
+        public static readonly DialogueTreeID Merchant_BergBlacksmith = FromName("Dialogue_Merchant_BergBlacksmith");
+        public static readonly DialogueTreeID Merchant_MonsoonBlacksmith = FromName("Dialogue_Merchant_MonsoonBlacksmith");
+        public static readonly DialogueTreeID Merchant_LevantBlacksmith = FromName("Dialogue_Merchant_LevantBlacksmith");
+        public static readonly DialogueTreeID Merchant_HarmattanBlacksmith = FromName("Dialogue_Merchant_HarmattanBlacksmith");
+        public static readonly DialogueTreeID Cierzo_HelenTurnbull_Real = FromName("Dialogue_Cierzo_HelenTurnbull_Real");
+        public static readonly DialogueTreeID Merchant_BergGeneralStore = FromName("Dialogue_Merchant_BergGeneralStore");
+        public static readonly DialogueTreeID Merchant_MonsoonGeneralStore = FromName("Dialogue_Merchant_MonsoonGeneralStore");
+        public static readonly DialogueTreeID Merchant_LevantGeneralStore = FromName("Dialogue_Merchant_LevantGeneralStore");
+        public static readonly DialogueTreeID Merchant_CierzoGeneralStore = FromName("Dialogue_Merchant_CierzoGeneralStore");
 
         /// <summary>
         /// The name of the dialogue tree.

@@ -27,15 +27,23 @@ locations:
   quest_parallel_blood_under_the_sun: Parallel Quest - Blood Under the Sun
   quest_parallel_purifier: Parallel Quest - Purifier
   quest_parallel_vendavel_quest: Parallel Quest - Vendavel Quest
-  quest_parallel_rust_and_vengeance: Parallel Quest - Rust and Vengeance
+  quest_parallel_rust_and_vengeance_1: Parallel Quest - Rust and Vengeance - Rust Lich Armor
+  quest_parallel_rust_and_vengeance_2: Parallel Quest - Rust and Vengeance - Rust Lich Boots
+  quest_parallel_rust_and_vengeance_3: Parallel Quest - Rust and Vengeance - Rust Lich Helmet
   quest_minor_myriad_of_bones: Minor Quest - A Myriad of Bones
   quest_minor_alchemy_cold_stone: "Minor Quest - Alchemy: Cold Stone"
   quest_minor_alchemy_crystal_powder: "Minor Quest - Alchemy: Crystal Powder"
   quest_minor_acquire_mana: Minor Quest - Acquire Mana
   quest_minor_arcane_machine: Minor Quest - Arcane Machine
   quest_minor_barrel_man: Minor Quest - Barrel Man
-  quest_minor_beware_the_gold_lich: Minor Quest - Beware the Gold Lich
-  quest_minor_beware_the_jade_lich: Minor Quest - Beware the Jade Lich
+  quest_minor_beware_the_gold_lich_1: Minor Quest - Beware the Gold Lich - Gold-Lich Spear
+  quest_minor_beware_the_gold_lich_2: Minor Quest - Beware the Gold Lich - Gold-Lich Mask
+  quest_minor_beware_the_gold_lich_3: Minor Quest - Beware the Gold Lich - Gold-Lich Boots
+  quest_minor_beware_the_gold_lich_4: Minor Quest - Beware the Gold Lich - Gold-Lich Armor
+  quest_minor_beware_the_jade_lich_1: Minor Quest - Beware the Jade Lich - Jade-Lich Staff
+  quest_minor_beware_the_jade_lich_2: Minor Quest - Beware the Jade Lich - Jade-Lich Boots
+  quest_minor_beware_the_jade_lich_3: Minor Quest - Beware the Jade Lich - Jade-Lich Mask
+  quest_minor_beware_the_jade_lich_4: Minor Quest - Beware the Jade Lich - Jade-Lich Robes
   quest_minor_craft_blue_sand_armor: "Minor Quest - Craft: Blue Sand Armor"
   quest_minor_craft_copal_and_petrified_armor: "Minor Quest - Craft: Copal & Petrified Armor"
   quest_minor_craft_palladium_armor: "Minor Quest - Craft: Palladium Armor"
@@ -65,6 +73,27 @@ locations:
   quest_minor_need_manaheart_bass: "Minor Quest - Need: Manaheart Bass"
   quest_minor_need_tourmaline: "Minor Quest - Need: Tourmaline"
   quest_minor_need_shield_golem_scrap: "Minor Quest - Need: Shield Golem Scrap"
+  commission_blue_sand_helm: Commission - Blue Sand Helm
+  commission_blue_sand_armor: Commission - Blue Sand Armor
+  commission_blue_sand_boots: Commission - Blue Sand Boots
+  commission_petrified_wood_helm: Commission - Petrified Wood Helm
+  commission_petrified_wood_armor: Commission - Petrified Wood Armor
+  commission_petrified_wood_boots: Commission - Petrified Wood Boots
+  commission_copal_helm: Commission - Copal Helm
+  commission_copal_armor: Commission - Copal Armor
+  commission_copal_boots: Commission - Copal Boots
+  commission_palladium_helm: Commission - Palladium Helm
+  commission_palladium_armor: Commission - Palladium Armor
+  commission_palladium_boots: Commission - Palladium Boots
+  commission_tenebrous_helm: Commission - Tenebrous Helm
+  commission_tenebrous_armor: Commission - Tenebrous Armor
+  commission_tenebrous_boots: Commission - Tenebrous Boots
+  commission_tsar_helm: Commission - Tsar Helm
+  commission_tsar_armor: Commission - Tsar Armor
+  commission_tsar_boots: Commission - Tsar Boots
+  commission_antique_plate_sallet: Commission - Antique Plate Sallet
+  commission_antique_plate_garb: Commission - Antique Plate Garb
+  commission_antique_plate_boots: Commission - Antique Plate Boots
 items:
   quest_license:
     name: Progressive Quest License

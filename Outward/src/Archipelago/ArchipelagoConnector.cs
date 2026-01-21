@@ -391,5 +391,19 @@ namespace OutwardArchipelago.Archipelago
             }
             chatPanel.Invoke("DelayedScroll", 0.1f);
         }
+
+        public bool IsLocationCheckCompleted(ArchipelagoLocationData location)
+        {
+            try
+            {
+                return _archipelagoSession.Locations.AllLocationsChecked.Contains(location.ID);
+            }
+            catch (Exception ex)
+            {
+                OutwardArchipelagoMod.Log.LogError($"[Archipelago] Failed to test if location check {location} is completed: {ex}");
+            }
+
+            return false;
+        }
     }
 }

@@ -1,10 +1,11 @@
-﻿using NodeCanvas.Framework;
+using NodeCanvas.Framework;
 
-namespace OutwardArchipelago
+namespace OutwardArchipelago.Dialogue.Conditions
 {
     public class Condition_QuestLicense : ConditionTask
     {
         public int MinimumQuestLevel { get; private set; }
+
         public bool IsInverted { get; private set; }
 
         public Condition_QuestLicense(int minimumQuestLevel, bool isInverted = false) : base()

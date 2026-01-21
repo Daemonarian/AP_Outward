@@ -105,7 +105,9 @@ class OutwardWorld(World):
             LocationName.QUEST_PARALLEL_BLOOD_UNDER_THE_SUN: lambda state: state.has(EventName.MAIN_QUEST_04_COMPLETE, self.player),
             LocationName.QUEST_PARALLEL_PURIFIER: lambda state: state.has(EventName.MAIN_QUEST_02_COMPLETE, self.player),
             LocationName.QUEST_PARALLEL_VENDAVEL_QUEST: lambda state: state.has(EventName.MAIN_QUEST_02_COMPLETE, self.player),
-            LocationName.QUEST_PARALLEL_RUST_AND_VENGEANCE: lambda state: state.has(EventName.MAIN_QUEST_04_COMPLETE, self.player),
+            LocationName.QUEST_PARALLEL_RUST_AND_VENGEANCE_1: lambda state: state.has(EventName.MAIN_QUEST_04_COMPLETE, self.player),
+            LocationName.QUEST_PARALLEL_RUST_AND_VENGEANCE_2: lambda state: state.has(EventName.MAIN_QUEST_04_COMPLETE, self.player),
+            LocationName.QUEST_PARALLEL_RUST_AND_VENGEANCE_3: lambda state: state.has(EventName.MAIN_QUEST_04_COMPLETE, self.player),
         }
         for loc in self.multiworld.get_locations(self.player):
             if loc.name in access_rules:

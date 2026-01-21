@@ -1,9 +1,11 @@
 using NodeCanvas.DialogueTrees;
 using NodeCanvas.Framework;
 using OutwardArchipelago.Archipelago.Data;
+using OutwardArchipelago.Dialogue.Patches;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using UnityEngine.Networking.Types;
 
 namespace OutwardArchipelago.Dialogue
 {
@@ -20,41 +22,6 @@ namespace OutwardArchipelago.Dialogue
             Graph.onGraphDeserialized += OnGraphDeserialized;
         }
 
-        private void RegisterAllPatches()
-        {
-            // Quest License checks
-
-            Patches.Register(new GatekeepDialoguePatch(DialogueTreeID.RissaAberdeen_Neut_Prequest, 54, new Condition_QuestLicense(1), "dialogue.rissa.quest_license_1_required"));
-            Patches.Register(new GatekeepDialoguePatch(DialogueTreeID.Soroborean_MilitaryRecruiter_StartPQ1, 2, new Condition_QuestLicense(1), "dialogue.recruiter.quest_license_1_required"));
-            Patches.Register(new GatekeepDialoguePatch(DialogueTreeID.RissaAberdeen_BC_MixedLegacies, 3, new Condition_QuestLicense(2), "dialogue.rissa.quest_license_2_required"));
-            Patches.Register(new GatekeepDialoguePatch(DialogueTreeID.Cyrene_HK_TendTheFlame, 3, new Condition_QuestLicense(2), "dialogue.cyrene.quest_license_2_required"));
-            Patches.Register(new GatekeepDialoguePatch(DialogueTreeID.Ellinara_HM_Questions, 3, new Condition_QuestLicense(2), "dialogue.ellinara.quest_license_2_required"));
-            Patches.Register(new GatekeepDialoguePatch(DialogueTreeID.Soroborean_ArcaneDean_Q1, 2, new Condition_QuestLicense(2), "dialogue.arcane_dean.quest_license_2_required"));
-            Patches.Register(new GatekeepDialoguePatch(DialogueTreeID.Soroborean_EngineeringDean_Q1, 8, new Condition_QuestLicense(2), "dialogue.engineering_dean.quest_license_2_required"));
-            Patches.Register(new GatekeepDialoguePatch(DialogueTreeID.Soroborean_NaturalistDean_Q1, 8, new Condition_QuestLicense(2), "dialogue.naturalist_dean.quest_license_2_required"));
-            Patches.Register(new GatekeepDialoguePatch(DialogueTreeID.RissaAberdeen_BC_AshGiant, 3, new Condition_QuestLicense(3), "dialogue.rissa.quest_license_3_required"));
-            Patches.Register(new GatekeepDialoguePatch(DialogueTreeID.Cyrene_HK_SandCorsairs, 3, new Condition_QuestLicense(3), "dialogue.cyrene.quest_license_3_required"));
-            Patches.Register(new GatekeepDialoguePatch(DialogueTreeID.Ellinara_HM_Doubts, 3, new Condition_QuestLicense(3), "dialogue.ellinara.quest_license_3_required"));
-            Patches.Register(new GatekeepDialoguePatch(DialogueTreeID.Soroborean_MilitaryDean_Q2, 3, new Condition_QuestLicense(3), "dialogue.military_dean.quest_license_3_required"));
-            Patches.Register(new GatekeepDialoguePatch(DialogueTreeID.RissaAberdeen_BC_WhisperingBones, 3, new Condition_QuestLicense(4), "dialogue.rissa.quest_license_4_required"));
-            Patches.Register(new GatekeepDialoguePatch(DialogueTreeID.Calixa_HK_MouthToFeed, 4, new Condition_QuestLicense(4), "dialogue.calixa.quest_license_4_required"));
-            Patches.Register(new GatekeepDialoguePatch(DialogueTreeID.Ellinara_HM_Truth, 4, new Condition_QuestLicense(4), "dialogue.ellinara.quest_license_4_required"));
-            Patches.Register(new GatekeepDialoguePatch(DialogueTreeID.Soroborean_ArcaneDean_Q3, 1, new Condition_QuestLicense(4), "dialogue.arcane_dean.quest_license_4_required"));
-            Patches.Register(new GatekeepDialoguePatch(DialogueTreeID.RissaAberdeen_BC_AncestralPeacemaker, 4, new Condition_QuestLicense(5), "dialogue.rissa.quest_license_5_required"));
-            Patches.Register(new GatekeepDialoguePatch(DialogueTreeID.Calixa_HK_HeroPeacemaker, 4, new Condition_QuestLicense(5), "dialogue.calixa.quest_license_5_required"));
-            Patches.Register(new GatekeepDialoguePatch(DialogueTreeID.CardinalBourlamaque_HM_HallowPeacemaker, 4, new Condition_QuestLicense(5), "dialogue.cardinal_bourlamaque.quest_license_5_required"));
-            Patches.Register(new GatekeepDialoguePatch(DialogueTreeID.Soroborean_ArcaneDean_Q4, 1, new Condition_QuestLicense(5), "dialogue.arcane_dean.quest_license_5_required"));
-            Patches.Register(new GatekeepDialoguePatch(DialogueTreeID.Caldera_MessengerInn_Q0, 1, new Condition_QuestLicense(6), "dialogue.messenger_inn.quest_license_6_required"));
-            Patches.Register(new GatekeepDialoguePatch(DialogueTreeID.Caldera_Josef_BaseBuilding, 2, new Condition_QuestLicense(7), "dialogue.josef.quest_license_7_required"));
-            Patches.Register(new GatekeepDialoguePatch(DialogueTreeID.Caldera_Josef_BaseBuilding, 40, new Condition_QuestLicense(8), "dialogue.josef.quest_license_8_required"));
-            Patches.Register(new GatekeepDialoguePatch(DialogueTreeID.Caldera_Evangeline_BaseBuilding, 65, new Condition_QuestLicense(9), "dialogue.evangeline.quest_license_9_required"));
-            Patches.Register(new GatekeepDialoguePatch(DialogueTreeID.Caldera_Evangeline_BaseBuilding, 72, new Condition_QuestLicense(10), "dialogue.evangeline.quest_license_10_required"));
-
-            // Replace quest rewards
-
-            Patches.Register(new ReplaceActionDialoguePatch(DialogueTreeID.Merchant_CierzoAlchemist, 7, new Action_CompleteLocationCheck(ArchipelagoLocationData.QuestMinorAlchemyColdStone)));
-        }
-
         public void PatchDialogueTree(DialogueTreeExt tree)
         {
             IDialoguePatchContext context = null;
@@ -66,13 +33,386 @@ namespace OutwardArchipelago.Dialogue
                     OutwardArchipelagoMod.Log.LogDebug($"Patching dialogue tree {context.TreeID}");
                 }
 
-                patch.ApplyPatch(context);
+                try
+                {
+                    patch.ApplyPatch(context);
+                }
+                catch (Exception ex)
+                {
+                    OutwardArchipelagoMod.Log.LogError($"Failed to apply patch to dialogue tree: {ex}");
+                }
+            }
+        }
+
+        public static IDialoguePatch QuestLicenseGatekeep(int replaceNodeID, int minimumQuestLevel, string messageKey, string actorName = null, bool isInverted = false)
+        {
+            return new DialoguePatch(
+                replaceNodeID,
+                new DialoguePatchConditionNodeFactory(
+                    new DialoguePatchQuestLicenseConditionFactory(minimumQuestLevel, isInverted),
+                    new DialoguePatchOriginalNodeFactory(replaceNodeID),
+                    new DialoguePatchStatementNodeFactory(
+                        messageKey,
+                        new DialoguePatchFinishNodeFactory(),
+                        actorName)));
+        }
+
+        public static IDialoguePatch InsertLocationCheck(int replaceNodeID, IReadOnlyList<ArchipelagoLocationData> locations, IDialoguePatchNodeFactory afterNodeFactory)
+        {
+            return new DialoguePatch(
+                replaceNodeID,
+                new DialoguePatchActionNodeFactory(
+                    new DialoguePatchLocationCheckActionFactory(locations),
+                    afterNodeFactory));
+        }
+
+        public static IDialoguePatch InsertLocationCheck(int replaceNodeID, int toNodeID, IReadOnlyList<ArchipelagoLocationData> locations)
+        {
+            return InsertLocationCheck(replaceNodeID, locations, new DialoguePatchOriginalNodeFactory(toNodeID));
+        }
+
+        public static IDialoguePatch InsertLocationCheckAndRemoveQuestEvents(int replaceNodeID, IReadOnlyList<ArchipelagoLocationData> locations, IReadOnlyList<string> questEventUIDsToRemove, IDialoguePatchNodeFactory afterNodeFactory)
+        {
+            foreach(var questEventUID in questEventUIDsToRemove)
+            {
+                afterNodeFactory = new DialoguePatchActionNodeFactory(
+                    new DialoguePatchRemoveQuestEventActionFactory(questEventUID),
+                    afterNodeFactory);
             }
 
-            if (context != null)
-            {
-                OutwardArchipelagoMod.Log.LogDebug($"Post patch tree {context.TreeID}: {DialogueTreeAsViz(tree)}");
-            }
+            return InsertLocationCheck(replaceNodeID, locations, afterNodeFactory);
+        }
+
+        public static IDialoguePatch InsertLocationCheckAndRemoveQuestEvents(int replaceNodeID, int toNodeID, IReadOnlyList<ArchipelagoLocationData> locations, IReadOnlyList<string> questEventUIDsToRemove)
+        {
+            return InsertLocationCheckAndRemoveQuestEvents(replaceNodeID, locations, questEventUIDsToRemove, new DialoguePatchOriginalNodeFactory(toNodeID));
+        }
+
+        public static IDialoguePatch InsertLocationCheckFirstTimeOnly(int replaceNodeID, ArchipelagoLocationData location, IDialoguePatchNodeFactory afterNodeFactory)
+        {
+            return new DialoguePatch(replaceNodeID, new DialoguePatchConditionNodeFactory(
+                new DialoguePatchLocationCheckConditionFactory(location),
+                new DialoguePatchOriginalNodeFactory(replaceNodeID),
+                new DialoguePatchActionNodeFactory(
+                    new DialoguePatchLocationCheckActionFactory(location),
+                    afterNodeFactory)));
+        }
+
+        public static IDialoguePatch InsertLocationCheckFirstTimeOnly(int replaceNodeID, int toNodeID, ArchipelagoLocationData location)
+        {
+            return InsertLocationCheckFirstTimeOnly(replaceNodeID, location, new DialoguePatchOriginalNodeFactory(toNodeID));
+        }
+
+        private void RegisterAllPatches()
+        {
+            // Quest License checks
+
+            Patches.Register(
+                DialogueTreeID.RissaAberdeen_Neut_Prequest,
+                QuestLicenseGatekeep(54, 1, "dialogue.rissa.quest_license_1_required"));
+            Patches.Register(
+                DialogueTreeID.Soroborean_MilitaryRecruiter_StartPQ1,
+                QuestLicenseGatekeep(2, 1, "dialogue.recruiter.quest_license_1_required"));
+            Patches.Register(
+                DialogueTreeID.RissaAberdeen_BC_MixedLegacies,
+                QuestLicenseGatekeep(3, 2, "dialogue.rissa.quest_license_2_required"));
+            Patches.Register(
+                DialogueTreeID.Cyrene_HK_TendTheFlame,
+                QuestLicenseGatekeep(3, 2, "dialogue.cyrene.quest_license_2_required"));
+            Patches.Register(
+                DialogueTreeID.Ellinara_HM_Questions,
+                QuestLicenseGatekeep(3, 2, "dialogue.ellinara.quest_license_2_required"));
+            Patches.Register(
+                DialogueTreeID.Soroborean_ArcaneDean_Q1,
+                QuestLicenseGatekeep(2, 2, "dialogue.arcane_dean.quest_license_2_required"));
+            Patches.Register(
+                DialogueTreeID.Soroborean_EngineeringDean_Q1,
+                QuestLicenseGatekeep(8, 2, "dialogue.engineering_dean.quest_license_2_required"));
+            Patches.Register(
+                DialogueTreeID.Soroborean_NaturalistDean_Q1,
+                QuestLicenseGatekeep(8, 2, "dialogue.naturalist_dean.quest_license_2_required"));
+            Patches.Register(
+                DialogueTreeID.RissaAberdeen_BC_AshGiant,
+                QuestLicenseGatekeep(3, 3, "dialogue.rissa.quest_license_3_required"));
+            Patches.Register(
+                DialogueTreeID.Cyrene_HK_SandCorsairs,
+                QuestLicenseGatekeep(3, 3, "dialogue.cyrene.quest_license_3_required"));
+            Patches.Register(
+                DialogueTreeID.Ellinara_HM_Doubts,
+                QuestLicenseGatekeep(3, 3, "dialogue.ellinara.quest_license_3_required"));
+            Patches.Register(
+                DialogueTreeID.Soroborean_MilitaryDean_Q2,
+                QuestLicenseGatekeep(3, 3, "dialogue.military_dean.quest_license_3_required"));
+            Patches.Register(
+                DialogueTreeID.RissaAberdeen_BC_WhisperingBones,
+                QuestLicenseGatekeep(3, 4, "dialogue.rissa.quest_license_4_required"));
+            Patches.Register(
+                DialogueTreeID.Calixa_HK_MouthToFeed,
+                QuestLicenseGatekeep(4, 4, "dialogue.calixa.quest_license_4_required"));
+            Patches.Register(
+                DialogueTreeID.Ellinara_HM_Truth,
+                QuestLicenseGatekeep(4, 4, "dialogue.ellinara.quest_license_4_required"));
+            Patches.Register(
+                DialogueTreeID.Soroborean_ArcaneDean_Q3,
+                QuestLicenseGatekeep(1, 4, "dialogue.arcane_dean.quest_license_4_required"));
+            Patches.Register(
+                DialogueTreeID.RissaAberdeen_BC_AncestralPeacemaker,
+                QuestLicenseGatekeep(4, 5, "dialogue.rissa.quest_license_5_required"));
+            Patches.Register(
+                DialogueTreeID.Calixa_HK_HeroPeacemaker,
+                QuestLicenseGatekeep(4, 5, "dialogue.calixa.quest_license_5_required"));
+            Patches.Register(
+                DialogueTreeID.CardinalBourlamaque_HM_HallowPeacemaker,
+                QuestLicenseGatekeep(4, 5, "dialogue.cardinal_bourlamaque.quest_license_5_required"));
+            Patches.Register(
+                DialogueTreeID.Soroborean_ArcaneDean_Q4,
+                QuestLicenseGatekeep(1, 5, "dialogue.arcane_dean.quest_license_5_required"));
+            Patches.Register(
+                DialogueTreeID.Caldera_MessengerInn_Q0,
+                QuestLicenseGatekeep(1, 6, "dialogue.messenger_inn.quest_license_6_required"));
+            Patches.Register(
+                DialogueTreeID.Caldera_Josef_BaseBuilding,
+                QuestLicenseGatekeep(2, 7, "dialogue.josef.quest_license_7_required"));
+            Patches.Register(
+                DialogueTreeID.Caldera_Josef_BaseBuilding,
+                QuestLicenseGatekeep(40, 8, "dialogue.josef.quest_license_8_required"));
+            Patches.Register(
+                DialogueTreeID.Caldera_Evangeline_BaseBuilding,
+                QuestLicenseGatekeep(65, 9, "dialogue.evangeline.quest_license_9_required"));
+            Patches.Register(
+                DialogueTreeID.Caldera_Evangeline_BaseBuilding,
+                QuestLicenseGatekeep(72, 10, "dialogue.evangeline.quest_license_10_required"));
+
+            // Parallel Quests
+
+            Patches.Register(
+                DialogueTreeID.Soroborean_LichDying,
+                InsertLocationCheck(11, 13, new[] {
+                    ArchipelagoLocationData.QuestParallelRustAndVengeance1,
+                    ArchipelagoLocationData.QuestParallelRustAndVengeance2,
+                    ArchipelagoLocationData.QuestParallelRustAndVengeance3, }));
+
+            // Minor Quests
+
+            Patches.Register(
+                DialogueTreeID.Merchant_BergAlchemist,
+                InsertLocationCheckFirstTimeOnly(7, ArchipelagoLocationData.QuestMinorAlchemyColdStone,
+                    new DialoguePatchActionNodeFactory(
+                        new DialoguePatchRemoveQuestEventActionFactory(OutwardQuestEvents.SideQuests_AlchemistBerg),
+                        new DialoguePatchOriginalNodeFactory(8))));
+
+            Patches.Register(
+                DialogueTreeID.Merchant_CierzoAlchemist,
+                InsertLocationCheckFirstTimeOnly(7, 8, ArchipelagoLocationData.QuestMinorAlchemyCrystalPowder));
+
+            Patches.Register(
+                DialogueTreeID.Abrassar_BarrelMan_Real,
+                InsertLocationCheck(23, 24, new[] { ArchipelagoLocationData.QuestMinorBarrelMan }));
+
+            Patches.Register(
+                DialogueTreeID.GoldLich_Neut_Initial,
+                InsertLocationCheck(30, 31, new[] {
+                    ArchipelagoLocationData.QuestMinorBewareTheGoldLich1,
+                    ArchipelagoLocationData.QuestMinorBewareTheGoldLich2,
+                    ArchipelagoLocationData.QuestMinorBewareTheGoldLich3,
+                    ArchipelagoLocationData.QuestMinorBewareTheGoldLich4 }));
+
+            Patches.Register(
+                DialogueTreeID.JadeLich_Neut_Initial,
+                InsertLocationCheck(22, 23, new[] {
+                    ArchipelagoLocationData.QuestMinorBewareTheJadeLich1,
+                    ArchipelagoLocationData.QuestMinorBewareTheJadeLich2,
+                    ArchipelagoLocationData.QuestMinorBewareTheJadeLich3,
+                    ArchipelagoLocationData.QuestMinorBewareTheJadeLich4 }));
+
+            Patches.Register(
+                DialogueTreeID.Cierzo_HelenTurnbull_Real,
+                InsertLocationCheck(77, new[] { ArchipelagoLocationData.QuestMinorHelensFungus },
+                    new DialoguePatchActionNodeFactory(
+                        new DialoguePatchRemoveItemActionFactory(2300150),
+                        new DialoguePatchOriginalNodeFactory(78))));
+
+            Patches.Register(
+                DialogueTreeID.Merchant_BergGeneralStore,
+                InsertLocationCheckFirstTimeOnly(5, ArchipelagoLocationData.QuestMinorLedgerToBerg,
+                    new DialoguePatchActionNodeFactory(
+                        new DialoguePatchSendQuestEventActionFactory(OutwardQuestEvents.PromptsComplete_CierzoGeneral),
+                        new DialoguePatchOriginalNodeFactory(6))));
+
+            Patches.Register(
+                DialogueTreeID.Merchant_CierzoGeneralStore,
+                InsertLocationCheckFirstTimeOnly(4, ArchipelagoLocationData.QuestMinorLedgerToCierzo,
+                    new DialoguePatchActionNodeFactory(
+                        new DialoguePatchSendQuestEventActionFactory(OutwardQuestEvents.PromptsComplete_LevantGeneral),
+                        new DialoguePatchOriginalNodeFactory(5))));
+
+            Patches.Register(
+                DialogueTreeID.Merchant_LevantGeneralStore,
+                InsertLocationCheckFirstTimeOnly(6, ArchipelagoLocationData.QuestMinorLedgerToLevant,
+                    new DialoguePatchActionNodeFactory(
+                        new DialoguePatchSendQuestEventActionFactory(OutwardQuestEvents.PromptsComplete_MonsoonGeneral),
+                        new DialoguePatchOriginalNodeFactory(7))));
+
+            Patches.Register(
+                DialogueTreeID.Merchant_MonsoonGeneralStore,
+                InsertLocationCheckFirstTimeOnly(5, ArchipelagoLocationData.QuestMinorLedgerToMonsoon,
+                    new DialoguePatchActionNodeFactory(
+                        new DialoguePatchSendQuestEventActionFactory(OutwardQuestEvents.PromptsComplete_BergGeneral),
+                        new DialoguePatchOriginalNodeFactory(6))));
+
+            // Commissions
+
+            Patches.Register(
+                DialogueTreeID.Merchant_CierzoBlacksmith,
+                InsertLocationCheckAndRemoveQuestEvents(59, 60,
+                    new[] { ArchipelagoLocationData.CommissionBlueSandHelm },
+                    new[] {
+                        OutwardQuestEvents.Crafting_CierzoBlacksmithTimer,
+                        OutwardQuestEvents.Crafting_CierzoBlacksmithItemA }));
+            Patches.Register(
+                DialogueTreeID.Merchant_CierzoBlacksmith,
+                InsertLocationCheckAndRemoveQuestEvents(64, 60,
+                    new[] { ArchipelagoLocationData.CommissionBlueSandArmor },
+                    new[] {
+                        OutwardQuestEvents.Crafting_CierzoBlacksmithTimer,
+                        OutwardQuestEvents.Crafting_CierzoBlacksmithItemB }));
+            Patches.Register(
+                DialogueTreeID.Merchant_CierzoBlacksmith,
+                InsertLocationCheckAndRemoveQuestEvents(66, 60,
+                    new[] { ArchipelagoLocationData.CommissionBlueSandBoots },
+                    new[] {
+                        OutwardQuestEvents.Crafting_CierzoBlacksmithTimer,
+                        OutwardQuestEvents.Crafting_CierzoBlacksmithItemC }));
+
+            Patches.Register(
+                DialogueTreeID.Merchant_BergBlacksmith,
+                InsertLocationCheckAndRemoveQuestEvents(84, 85,
+                    new[] { ArchipelagoLocationData.CommissionCopalHelm },
+                    new[] {
+                        OutwardQuestEvents.Crafting_BergBlacksmithTimer,
+                        OutwardQuestEvents.Crafting_BergBlacksmithItemA }));
+            Patches.Register(
+                DialogueTreeID.Merchant_BergBlacksmith,
+                InsertLocationCheckAndRemoveQuestEvents(89, 85,
+                    new[] { ArchipelagoLocationData.CommissionCopalArmor },
+                    new[] {
+                        OutwardQuestEvents.Crafting_BergBlacksmithTimer,
+                        OutwardQuestEvents.Crafting_BergBlacksmithItemB }));
+            Patches.Register(
+                DialogueTreeID.Merchant_BergBlacksmith,
+                InsertLocationCheckAndRemoveQuestEvents(92, 85,
+                    new[] { ArchipelagoLocationData.CommissionCopalBoots },
+                    new[] {
+                        OutwardQuestEvents.Crafting_BergBlacksmithTimer,
+                        OutwardQuestEvents.Crafting_BergBlacksmithItemC }));
+            Patches.Register(
+                DialogueTreeID.Merchant_BergBlacksmith,
+                InsertLocationCheckAndRemoveQuestEvents(95, 96,
+                    new[] { ArchipelagoLocationData.CommissionPetrifiedWoodHelm },
+                    new[] {
+                        OutwardQuestEvents.Crafting_BergBlacksmithTimer,
+                        OutwardQuestEvents.Crafting_BergBlacksmithItemD }));
+            Patches.Register(
+                DialogueTreeID.Merchant_BergBlacksmith,
+                InsertLocationCheckAndRemoveQuestEvents(100, 96,
+                    new[] { ArchipelagoLocationData.CommissionPetrifiedWoodArmor },
+                    new[] {
+                        OutwardQuestEvents.Crafting_BergBlacksmithTimer,
+                        OutwardQuestEvents.Crafting_BergBlacksmithItemE }));
+            Patches.Register(
+                DialogueTreeID.Merchant_BergBlacksmith,
+                InsertLocationCheckAndRemoveQuestEvents(102, 96,
+                    new[] { ArchipelagoLocationData.CommissionPetrifiedWoodBoots },
+                    new[] {
+                        OutwardQuestEvents.Crafting_BergBlacksmithTimer,
+                        OutwardQuestEvents.Crafting_BergBlacksmithItemF }));
+
+            Patches.Register(
+                DialogueTreeID.Merchant_MonsoonBlacksmith,
+                InsertLocationCheckAndRemoveQuestEvents(55, 56,
+                    new[] { ArchipelagoLocationData.CommissionPalladiumHelm },
+                    new[] {
+                        OutwardQuestEvents.Crafting_MonsoonBlacksmithTimer,
+                        OutwardQuestEvents.Crafting_MonsoonBlacksmithItemA }));
+            Patches.Register(
+                DialogueTreeID.Merchant_MonsoonBlacksmith,
+                InsertLocationCheckAndRemoveQuestEvents(60, 56,
+                    new[] { ArchipelagoLocationData.CommissionPalladiumArmor },
+                    new[] {
+                        OutwardQuestEvents.Crafting_MonsoonBlacksmithTimer,
+                        OutwardQuestEvents.Crafting_MonsoonBlacksmithItemB }));
+            Patches.Register(
+                DialogueTreeID.Merchant_MonsoonBlacksmith,
+                InsertLocationCheckAndRemoveQuestEvents(62, 56,
+                    new[] { ArchipelagoLocationData.CommissionPalladiumBoots },
+                    new[] {
+                        OutwardQuestEvents.Crafting_MonsoonBlacksmithTimer,
+                        OutwardQuestEvents.Crafting_MonsoonBlacksmithItemC }));
+
+            Patches.Register(
+                DialogueTreeID.Merchant_LevantBlacksmith,
+                InsertLocationCheckAndRemoveQuestEvents(87, 88,
+                    new[] { ArchipelagoLocationData.CommissionTenebrousHelm },
+                    new[] {
+                        OutwardQuestEvents.Crafting_LevantBlacksmithTimer,
+                        OutwardQuestEvents.Crafting_LevantBlacksmithItemA }));
+            Patches.Register(
+                DialogueTreeID.Merchant_LevantBlacksmith,
+                InsertLocationCheckAndRemoveQuestEvents(92, 88,
+                    new[] { ArchipelagoLocationData.CommissionTenebrousArmor },
+                    new[] {
+                        OutwardQuestEvents.Crafting_LevantBlacksmithTimer,
+                        OutwardQuestEvents.Crafting_LevantBlacksmithItemB }));
+            Patches.Register(
+                DialogueTreeID.Merchant_LevantBlacksmith,
+                InsertLocationCheckAndRemoveQuestEvents(95, 88,
+                    new[] { ArchipelagoLocationData.CommissionTenebrousBoots },
+                    new[] {
+                        OutwardQuestEvents.Crafting_LevantBlacksmithTimer,
+                        OutwardQuestEvents.Crafting_LevantBlacksmithItemC }));
+            Patches.Register(
+                DialogueTreeID.Merchant_LevantBlacksmith,
+                InsertLocationCheckAndRemoveQuestEvents(98, 99,
+                    new[] { ArchipelagoLocationData.CommissionTsarHelm },
+                    new[] {
+                        OutwardQuestEvents.Crafting_LevantBlacksmithTimer,
+                        OutwardQuestEvents.Crafting_LevantBlacksmithItemD }));
+            Patches.Register(
+                DialogueTreeID.Merchant_LevantBlacksmith,
+                InsertLocationCheckAndRemoveQuestEvents(103, 99,
+                    new[] { ArchipelagoLocationData.CommissionTsarArmor },
+                    new[] {
+                        OutwardQuestEvents.Crafting_LevantBlacksmithTimer,
+                        OutwardQuestEvents.Crafting_LevantBlacksmithItemE }));
+            Patches.Register(
+                DialogueTreeID.Merchant_LevantBlacksmith,
+                InsertLocationCheckAndRemoveQuestEvents(105, 99,
+                    new[] { ArchipelagoLocationData.CommissionTsarBoots },
+                    new[] {
+                        OutwardQuestEvents.Crafting_LevantBlacksmithTimer,
+                        OutwardQuestEvents.Crafting_LevantBlacksmithItemF }));
+
+            Patches.Register(
+                DialogueTreeID.Merchant_HarmattanBlacksmith,
+                InsertLocationCheckAndRemoveQuestEvents(58, 59,
+                    new[] { ArchipelagoLocationData.CommissionAntiquePlateSallet },
+                    new[] {
+                        OutwardQuestEvents.Crafting_HarmattanBlacksmithTimer,
+                        OutwardQuestEvents.Crafting_HarmattanBlacksmithItemA }));
+            Patches.Register(
+                DialogueTreeID.Merchant_HarmattanBlacksmith,
+                InsertLocationCheckAndRemoveQuestEvents(63, 59,
+                    new[] { ArchipelagoLocationData.CommissionAntiquePlateGarb },
+                    new[] {
+                        OutwardQuestEvents.Crafting_HarmattanBlacksmithTimer,
+                        OutwardQuestEvents.Crafting_HarmattanBlacksmithItemB }));
+            Patches.Register(
+                DialogueTreeID.Merchant_HarmattanBlacksmith,
+                InsertLocationCheckAndRemoveQuestEvents(65, 59,
+                    new[] { ArchipelagoLocationData.CommissionAntiquePlateBoots },
+                    new[] {
+                        OutwardQuestEvents.Crafting_HarmattanBlacksmithTimer,
+                        OutwardQuestEvents.Crafting_HarmattanBlacksmithItemC }));
         }
 
         private static string EscapeLabelString(string label)
@@ -80,7 +420,7 @@ namespace OutwardArchipelago.Dialogue
             return label.Replace("\\", "\\\\").Replace("\"", "\\\"").Replace("\r", "").Replace("\n", "\\n");
         }
 
-        public string DialogueTreeAsViz(DialogueTreeExt tree)
+        public static string DialogueTreeAsViz(DialogueTreeExt tree)
         {
             var sb = new StringBuilder();
             sb.Append($"digraph DialogueTree {{ ");
