@@ -1,7 +1,8 @@
-﻿using Archipelago.MultiClient.Net;
+using Archipelago.MultiClient.Net;
 using Archipelago.MultiClient.Net.Enums;
 using Archipelago.MultiClient.Net.Helpers;
 using Archipelago.MultiClient.Net.MessageLog.Messages;
+using OutwardArchipelago.Archipelago.Data;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -9,9 +10,9 @@ using System.Threading;
 using System.Threading.Tasks;
 using UnityEngine;
 
-namespace OutwardArchipelago
+namespace OutwardArchipelago.Archipelago
 {
-    public class ArchipelagoConnector : MonoBehaviour
+    internal class ArchipelagoConnector : MonoBehaviour
     {
         public const string ArchipelagoGame = "Outward: Definitive Edition";
         public const string ArchipelagoVersion = BuildInfo.ArchipelagoVersion;
@@ -237,7 +238,7 @@ namespace OutwardArchipelago
             });
         }
 
-        public void CompleteLocationCheck(long locationId)
+        public void CompleteLocationCheck(ArchipelagoLocationData location)
         {
             if (PhotonNetwork.isMasterClient)
             {
@@ -253,14 +254,14 @@ namespace OutwardArchipelago
                             {
                                 try
                                 {
-                                    OutwardArchipelagoMod.Log.LogInfo($"[Archipelago] Completing location check: {locationId}");
-                                    _archipelagoSession.Locations.CompleteLocationChecks(locationId);
-                                    OutwardArchipelagoMod.Log.LogInfo($"[Archipelago] Completed location check: {locationId}");
+                                    OutwardArchipelagoMod.Log.LogInfo($"[Archipelago] Completing location check: {location}");
+                                    _archipelagoSession.Locations.CompleteLocationChecks(location.ID);
+                                    OutwardArchipelagoMod.Log.LogInfo($"[Archipelago] Completed location check: {location}");
                                     break;
                                 }
                                 catch (Exception ex)
                                 {
-                                    OutwardArchipelagoMod.Log.LogError($"[Archipelago] Complete location check failed: {locationId}\n{ex}");
+                                    OutwardArchipelagoMod.Log.LogError($"[Archipelago] Complete location check failed: {location}\n{ex}");
                                 }
                             }
                         }
@@ -293,7 +294,7 @@ namespace OutwardArchipelago
             }
         }
 
-        private void OnMessageReceived(Archipelago.MultiClient.Net.MessageLog.Messages.LogMessage message)
+        private void OnMessageReceived(global::Archipelago.MultiClient.Net.MessageLog.Messages.LogMessage message)
         {
             OutwardArchipelagoMod.Log.LogMessage($"[Archipelago::Chat] {message}");
             IncomingMessageQueue.Enqueue(FormatArchipelagoMessage(message));
@@ -306,25 +307,22 @@ namespace OutwardArchipelago
             if (character == null)
             {
                 OutwardArchipelagoMod.Log.LogError($"[Archipelago] Could not find local player to give item.");
+                return;
             }
 
-            switch (itemId)
+            if (!ArchipelagoItemData.ByID.TryGetValue(itemId, out var itemData))
             {
-                case ArchipelagoItemID.QUEST_LICENSE:
-                    QuestLicenseManager.SetQuestLicenseLevel(count);
-                    break;
-                case ArchipelagoItemID.SILVER_CURRENCY:
-                    character.Inventory.ReceiveMoneyReward(50);
-                    break;
-                case ArchipelagoItemID.REWARD_QUEST_SIDE_ALCHEMY_COLD_STONE:
-                    character.Inventory.ReceiveMoneyReward(15);
-                    character.Inventory.ReceiveItemReward(4300110, 1, true);
-                    character.Inventory.ReceiveItemReward(4300190, 1, true);
-                    character.Inventory.ReceiveItemReward(4300070, 1, true);
-                    break;
-                default:
-                    OutwardArchipelagoMod.Log.LogError($"[Archipelago] Unknown item ID ({itemId})");
-                    break;
+                OutwardArchipelagoMod.Log.LogError($"[Archipelago] Unknown item ID ({itemId})");
+                return;
+            }
+
+            try
+            {
+                itemData.Giver.GiveToPlayer(character);
+            }
+            catch (Exception ex)
+            {
+                OutwardArchipelagoMod.Log.LogError($"[Archipelago] Failed to give item {itemData} to player: {ex}");
             }
         }
 

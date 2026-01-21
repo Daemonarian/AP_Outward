@@ -1,35 +1,59 @@
-from typing import Dict, List, NamedTuple
+from typing import Dict, List, Self, TypeVar
+
 from BaseClasses import Item, ItemClassification
 from worlds.AutoWorld import World
-from .common import OUTWARD
 
-class OutwardGameItem(Item):
+from .common import OUTWARD
+from .event_data import EventData, all_event_data
+from .item_data import ItemData, all_item_data
+
+OutwardItemData = EventData | ItemData
+
+all_outward_items: List[OutwardItemData] = list(all_event_data) + list(all_item_data)
+outward_items_by_name: Dict[str, OutwardItemData] = {item.name: item for item in all_outward_items}
+outward_item_name_to_id: Dict[str, int] = {item.name: item.code for item in all_outward_items}
+
+T = TypeVar('T', bound=OutwardItemData)
+class OutwardItem[T](Item):
     game = OUTWARD
 
-    def __init__(self, name: str, world: World, player: int):
-        item_data = outward_items_by_name[name]
-        classification = item_data.classification
+    @classmethod
+    def from_name(cls, name: str, world: World, player: int) -> Self:
+        outward_item_data = outward_items_by_name[name]
+
+        factory: Self
+        if isinstance(outward_item_data, EventData):
+            factory = OutwardEventItem
+        elif isinstance(outward_item_data, ItemData):
+            factory = OutwardGameItem
+        else:
+            raise TypeError(f"`data` should be an instance of `OutwardItemData`, not `{outward_item_data.__class__.__name__}`")
+
+        return factory(outward_item_data, world, player)
+
+    def __init__(self, data: T, classification: ItemClassification, world: World, player: int):
         if callable(classification):
             classification = classification(world, player)
-        super().__init__(item_data.name, classification, item_data.code, player)
+        super().__init__(data.name, classification, data.code, player)
 
-class ItemData(NamedTuple):
-    code: int
-    name: str
-    classification: ItemClassification
+class OutwardEventItem(OutwardItem[EventData]):
+    @classmethod
+    def from_name(cls, name: str, world: World, player: int) -> Self:
+        event_data = outward_items_by_name[name]
+        if not isinstance(event_data, EventData):
+            raise ValueError("`name` should be the name of an event, not an item")
+        return cls(event_data, world, player)
 
-class ItemName:
-    EVENT_VICTORY = "Victory"
-    QUEST_LICENSE = "Progressive Quest License"
-    SILVER_CURRENCY = "Silver"
-    REWARD_QUEST_SIDE_ALCHEMY_COLD_STONE = "Reward: Alchemy: Cold Stone"
+    def __init__(self, event_data: EventData, world: World, player: int):
+        super().__init__(event_data, ItemClassification.progression, world, player)
 
-outward_items: List[ItemData] = [ItemData(*data) for data in [
-    (1, ItemName.EVENT_VICTORY, ItemClassification.progression),
-    (2, ItemName.QUEST_LICENSE, ItemClassification.progression),
-    (3, ItemName.SILVER_CURRENCY, ItemClassification.filler),
-    (4, ItemName.REWARD_QUEST_SIDE_ALCHEMY_COLD_STONE, ItemClassification.useful),
-]]
+class OutwardGameItem(OutwardItem[ItemData]):
+    @classmethod
+    def from_name(cls, name: str, world: World, player: int) -> Self:
+        item_data = outward_items_by_name[name]
+        if not isinstance(item_data, ItemData):
+            raise ValueError("`name` should be the name of an item, not an event")
+        return cls(item_data, world, player)
 
-outward_items_by_name: Dict[str, ItemData] = {item.name: item for item in outward_items}
-outward_item_name_to_id: Dict[str, int] = {item.name: item.code for item in outward_items}
+    def __init__(self, item_data: ItemData, world: World, player: int):
+        super().__init__(item_data, item_data.classification, world, player)

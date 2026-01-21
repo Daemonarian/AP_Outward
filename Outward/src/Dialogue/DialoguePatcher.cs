@@ -1,5 +1,6 @@
-﻿using NodeCanvas.DialogueTrees;
+using NodeCanvas.DialogueTrees;
 using NodeCanvas.Framework;
+using OutwardArchipelago.Archipelago.Data;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -51,7 +52,7 @@ namespace OutwardArchipelago.Dialogue
 
             // Replace quest rewards
 
-            Patches.Register(new ReplaceActionDialoguePatch(DialogueTreeID.Merchant_CierzoAlchemist, 7, new Action_CompleteLocationCheck(ArchipelagoLocationID.QUEST_SIDE_ALCHEMY_COLD_STONE)));
+            Patches.Register(new ReplaceActionDialoguePatch(DialogueTreeID.Merchant_CierzoAlchemist, 7, new Action_CompleteLocationCheck(ArchipelagoLocationData.QuestMinorAlchemyColdStone)));
         }
 
         public void PatchDialogueTree(DialogueTreeExt tree)

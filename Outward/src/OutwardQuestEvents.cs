@@ -1,7 +1,12 @@
-﻿namespace OutwardArchipelago
+namespace OutwardArchipelago
 {
-    public static class OutwardQuestEvents
+    internal static class OutwardQuestEvents
     {
+        public static class Neutral_Tutorial
+        {
+            public static string Tutorial_IntroFinished = "HteYicnCK0atCgd4j5TV1Q"; // Castaways quest completion event
+        }
+
         public static class Neutral_CallToAdventure
         {
             public static string CallToAdventure_Completed = "ZYzrMi1skUiJ4BgXXQ3sfw"; // Call to Adventure quest completion event

@@ -1,0 +1,29 @@
+set shell := ["pwsh", "-Command"]
+
+python_cmd := "python3.12"
+
+venv_dir := ".venv"
+venv_python := venv_dir + "/Scripts/python.exe"
+
+default:
+    @just --list
+
+clean:
+    Write-Host -Message "nothing to clean"
+
+clean-setup:
+    @just clean
+    Remove-Item -Path "{{venv_dir}}" -Recurse -Force
+
+setup:
+    if (-not (Test-Path -Path "{{venv_dir}}")) { & "{{python_cmd}}" -m venv --upgrade-deps "{{venv_dir}}" }
+    & "{{venv_python}}" -m pip install --upgrade pip
+    & "{{venv_python}}" -m pip install -r requirements.txt
+
+build:
+    @just setup
+    & "{{venv_python}}" "src/generate_archipelago_files.py"
+    & "{{venv_python}}" "src/generate_outward_files.py"
+
+test:
+    Write-Host -Message "nothing to test"

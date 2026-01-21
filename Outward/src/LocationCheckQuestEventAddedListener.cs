@@ -1,18 +1,20 @@
-﻿using HarmonyLib;
+using HarmonyLib;
+using OutwardArchipelago.Archipelago;
+using OutwardArchipelago.Archipelago.Data;
 using System;
 using System.Collections.Generic;
 
 namespace OutwardArchipelago
 {
-    public class LocationCheckQuestEventAddedListener : IQuestEventAddedListener
+    internal class LocationCheckQuestEventAddedListener : IQuestEventAddedListener
     {
         public string OutwardEventId { get; }
-        public long ArchipelagoLocationId { get; }
+        public ArchipelagoLocationData Location { get; }
 
-        public LocationCheckQuestEventAddedListener(string outwardEventId, long archipelagoLocationId)
+        public LocationCheckQuestEventAddedListener(string outwardEventId, ArchipelagoLocationData location)
         {
             OutwardEventId = outwardEventId;
-            ArchipelagoLocationId = archipelagoLocationId;
+            Location = location;
         }
 
         public void OnQuestEventAdded(QuestEventData _eventData)
@@ -21,7 +23,7 @@ namespace OutwardArchipelago
             if (string.Equals(_eventData.EventUID, OutwardEventId, StringComparison.Ordinal))
             {
                 OutwardArchipelagoMod.Log.LogInfo($"LocationCheckQuestEventAddedListener triggered for EventUID = {OutwardEventId}.");
-                ArchipelagoConnector.Instance.CompleteLocationCheck(ArchipelagoLocationId);
+                ArchipelagoConnector.Instance.CompleteLocationCheck(Location);
             }
         }
 
@@ -42,17 +44,18 @@ namespace OutwardArchipelago
 
             var listeners = new List<LocationCheckQuestEventAddedListener>
             {
-                new(OutwardQuestEvents.Neutral_CallToAdventure.CallToAdventure_Completed,   ArchipelagoLocationID.MAIN_QUEST_1),
-                new(OutwardQuestEvents.Neutral_General.General_DoneQuest0,                  ArchipelagoLocationID.MAIN_QUEST_2),
-                new(OutwardQuestEvents.Neutral_General.General_DoneQuest1,                  ArchipelagoLocationID.MAIN_QUEST_3),
-                new(OutwardQuestEvents.Neutral_General.General_DoneQuest2,                  ArchipelagoLocationID.MAIN_QUEST_4),
-                new(OutwardQuestEvents.Neutral_General.General_DoneQuest3,                  ArchipelagoLocationID.MAIN_QUEST_5),
-                new(OutwardQuestEvents.Neutral_General.General_DoneQuest4,                  ArchipelagoLocationID.MAIN_QUEST_6),
-                new(OutwardQuestEvents.DLC2_Caldera_Questline.DLC2Questline_DoneQ0,         ArchipelagoLocationID.MAIN_QUEST_7),
-                new(OutwardQuestEvents.DLC2_Caldera_Questline.DLC2Questline_DoneQ1,         ArchipelagoLocationID.MAIN_QUEST_8),
-                new(OutwardQuestEvents.DLC2_Caldera_Questline.DLC2Questline_DoneQ2,         ArchipelagoLocationID.MAIN_QUEST_9),
-                new(OutwardQuestEvents.DLC2_Caldera_Questline.DLC2Questline_DoneQ3,         ArchipelagoLocationID.MAIN_QUEST_10),
-                new(OutwardQuestEvents.DLC2_Caldera_Questline.DLC2Questline_DoneQ4,         ArchipelagoLocationID.MAIN_QUEST_11),
+                new(OutwardQuestEvents.Neutral_Tutorial.Tutorial_IntroFinished,             ArchipelagoLocationData.QuestMain01),
+                new(OutwardQuestEvents.Neutral_CallToAdventure.CallToAdventure_Completed,   ArchipelagoLocationData.QuestMain02),
+                new(OutwardQuestEvents.Neutral_General.General_DoneQuest0,                  ArchipelagoLocationData.QuestMain03),
+                new(OutwardQuestEvents.Neutral_General.General_DoneQuest1,                  ArchipelagoLocationData.QuestMain04),
+                new(OutwardQuestEvents.Neutral_General.General_DoneQuest2,                  ArchipelagoLocationData.QuestMain05),
+                new(OutwardQuestEvents.Neutral_General.General_DoneQuest3,                  ArchipelagoLocationData.QuestMain06),
+                new(OutwardQuestEvents.Neutral_General.General_DoneQuest4,                  ArchipelagoLocationData.QuestMain07),
+                new(OutwardQuestEvents.DLC2_Caldera_Questline.DLC2Questline_DoneQ0,         ArchipelagoLocationData.QuestMain08),
+                new(OutwardQuestEvents.DLC2_Caldera_Questline.DLC2Questline_DoneQ1,         ArchipelagoLocationData.QuestMain09),
+                new(OutwardQuestEvents.DLC2_Caldera_Questline.DLC2Questline_DoneQ2,         ArchipelagoLocationData.QuestMain10),
+                new(OutwardQuestEvents.DLC2_Caldera_Questline.DLC2Questline_DoneQ3,         ArchipelagoLocationData.QuestMain11),
+                new(OutwardQuestEvents.DLC2_Caldera_Questline.DLC2Questline_DoneQ4,         ArchipelagoLocationData.QuestMain12),
             };
 
             foreach (var listener in listeners)

@@ -1,7 +1,7 @@
-﻿using UnityEngine;
+using UnityEngine;
 using UnityEngine.UI;
 
-namespace OutwardArchipelago
+namespace OutwardArchipelago.Archipelago
 {
     public class ArchipelagoConnectionStatus : MonoBehaviour
     {

@@ -1,7 +1,8 @@
-﻿using BepInEx;
+using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Logging;
 using HarmonyLib;
+using OutwardArchipelago.Archipelago;
 using OutwardArchipelago.Dialogue;
 using System.IO;
 

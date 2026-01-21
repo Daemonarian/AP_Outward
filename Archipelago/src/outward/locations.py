@@ -1,48 +1,61 @@
-from typing import Dict, List, NamedTuple
-from BaseClasses import Location, Region
-from .common import OUTWARD
+from typing import Dict, List, Self, TypeVar
 
-class OutwardLocation(Location):
+from BaseClasses import Location, Region
+
+from .common import OUTWARD
+from .event_data import EventData, all_event_data
+from .location_data import LocationData, all_location_data
+
+OutwardLocationData = EventData | LocationData
+
+all_outward_locations: List[OutwardLocationData] = list(all_event_data) + list(all_location_data)
+outward_locations_by_name: Dict[str, OutwardLocationData] = {location.name: location for location in all_outward_locations}
+outward_location_name_to_id: Dict[str, int] = {location.name: location.code for location in all_outward_locations}
+
+T = TypeVar('T', bound=OutwardLocationData)
+class OutwardLocation[T](Location):
     game = OUTWARD
 
-    def __init__(self, name: str, parent: Region, player: int):
-        location_data = outward_locations_by_name[name]
+    @classmethod
+    def from_name(cls, name: str, parent: Region, player: int) -> Self:
+        location = outward_locations_by_name[name]
+
+        factory: type[OutwardLocation]
+        if isinstance(location, EventData):
+            factory = OutwardEventLocation
+        elif isinstance(location, LocationData):
+            factory = OutwardGameLocation
+        else:
+            raise TypeError(f"`data` should be an instance of `OutwardLocationData`, not `{location.__class__.__name__}`")
+
+        return factory(location, parent, player)
+
+    def __init__(self, location_data: T, parent: Region, player: int):
+        self._location_data = location_data
         super().__init__(player, location_data.name, location_data.code, parent)
 
-class LocationData(NamedTuple):
-    code: int
-    name: str
+    @property
+    def location_data(self) -> T:
+        return self._location_data
 
-class LocationName:
-    EVENT_VICTORY = "Victory"
-    QUEST_MAIN_1 = "Main Quest 1: Call to Adventure"
-    QUEST_MAIN_2 = "Main Quest 2: Join Faction Quest"
-    QUEST_MAIN_3 = "Main Quest 3: Faction Quest 1"
-    QUEST_MAIN_4 = "Main Quest 4: Faction Quest 2"
-    QUEST_MAIN_5 = "Main Quest 5: Faction Quest 3"
-    QUEST_MAIN_6 = "Main Quest 6: Faction Quest 4"
-    QUEST_MAIN_7 = "Main Quest 7: A Fallen City"
-    QUEST_MAIN_8 = "Main Quest 8: Up The Ladder"
-    QUEST_MAIN_9 = "Main Quest 9: Stealing Fire"
-    QUEST_MAIN_10 = "Main Quest 10: Liberate the Sun"
-    QUEST_MAIN_11 = "Main Quest 11: Vengeful Ouroboros"
-    QUEST_SIDE_ALCHEMY_COLD_STONE = "Quest: Alchemy: Cold Stone"
+class OutwardEventLocation(OutwardLocation[EventData]):
+    @classmethod
+    def from_name(cls, name: str, parent: Region, player: int) -> Self:
+        event_data = outward_locations_by_name[name]
+        if not isinstance(event_data, EventData):
+            raise ValueError("`name` should be the name of an event, not a location")
+        return cls(event_data, parent, player)
 
-outward_locations: List[LocationData] = [LocationData(*data) for data in [
-    (1, LocationName.EVENT_VICTORY),
-    (2, LocationName.QUEST_MAIN_1),
-    (3, LocationName.QUEST_MAIN_2),
-    (4, LocationName.QUEST_MAIN_3),
-    (5, LocationName.QUEST_MAIN_4),
-    (6, LocationName.QUEST_MAIN_5),
-    (7, LocationName.QUEST_MAIN_6),
-    (8, LocationName.QUEST_MAIN_7),
-    (9, LocationName.QUEST_MAIN_8),
-    (10, LocationName.QUEST_MAIN_9),
-    (11, LocationName.QUEST_MAIN_10),
-    (12, LocationName.QUEST_MAIN_11),
-    (13, LocationName.QUEST_SIDE_ALCHEMY_COLD_STONE),
-]]
+    def __init__(self, event_data: EventData, parent: Region, player: int):
+        super().__init__(event_data, parent, player)
 
-outward_locations_by_name: Dict[str, LocationData] = {location.name: location for location in outward_locations}
-outward_location_name_to_id: Dict[str, int] = {location.name: location.code for location in outward_locations}
+class OutwardGameLocation(OutwardLocation[LocationData]):
+    @classmethod
+    def from_name(cls, name: str, parent: Region, player: int) -> Self:
+        location_data = outward_locations_by_name[name]
+        if not isinstance(location_data, LocationData):
+            raise ValueError("`name` should be the name of a location, not an event")
+        return cls(location_data, parent, player)
+
+    def __init__(self, location_data: LocationData, parent: Region, player: int):
+        super().__init__(location_data, parent, player)
