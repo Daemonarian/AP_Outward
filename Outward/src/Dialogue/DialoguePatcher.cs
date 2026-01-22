@@ -215,7 +215,7 @@ namespace OutwardArchipelago.Dialogue
                     ArchipelagoLocationData.QuestMinorBewareTheGoldLich1,
                     ArchipelagoLocationData.QuestMinorBewareTheGoldLich2,
                     ArchipelagoLocationData.QuestMinorBewareTheGoldLich3,
-                    ArchipelagoLocationData.QuestMinorBewareTheGoldLich4 }));
+                    ArchipelagoLocationData.QuestMinorBewareTheGoldLich4, }));
 
             Patches.Register(
                 DialogueTreeID.JadeLich_Neut_Initial,
@@ -223,7 +223,7 @@ namespace OutwardArchipelago.Dialogue
                     ArchipelagoLocationData.QuestMinorBewareTheJadeLich1,
                     ArchipelagoLocationData.QuestMinorBewareTheJadeLich2,
                     ArchipelagoLocationData.QuestMinorBewareTheJadeLich3,
-                    ArchipelagoLocationData.QuestMinorBewareTheJadeLich4 }));
+                    ArchipelagoLocationData.QuestMinorBewareTheJadeLich4, }));
 
             Patches.Register(
                 DialogueTreeID.Cierzo_HelenTurnbull_Real,
@@ -231,6 +231,74 @@ namespace OutwardArchipelago.Dialogue
                     new DialoguePatchActionNodeFactory(
                         new DialoguePatchRemoveItemActionFactory(2300150),
                         new DialoguePatchOriginalNodeFactory(78))));
+
+            Patches.Register(
+                DialogueTreeID.Merchant_BergKaziteAssassin,
+                InsertLocationCheckFirstTimeOnly(7, 8, ArchipelagoLocationData.QuestMinorNeedBeastGolemScraps));
+
+            Patches.Register(
+                DialogueTreeID.Emercar_UntertakerNecropolis_Real,
+                InsertLocationCheck(10, new[] { ArchipelagoLocationData.QuestMinorSkullsForCremeuh },
+                    new DialoguePatchActionNodeFactory(
+                        new DialoguePatchSendQuestEventActionFactory(OutwardQuestEvents.SideQuests_NecropolisEnd),
+                        new DialoguePatchActionNodeFactory(
+                            new DialoguePatchRemoveItemActionFactory(6200160),
+                            new DialoguePatchOriginalNodeFactory(11)))));
+
+            Patches.Register(
+                DialogueTreeID.StrangeApparitionFinal1,
+                InsertLocationCheck(3, new[] { ArchipelagoLocationData.QuestMinorStrangeApparitions },
+                    new DialoguePatchActionNodeFactory(
+                        new DialoguePatchSendQuestEventActionFactory(OutwardQuestEvents.Artifacts_StatueReward),
+                        new DialoguePatchOriginalNodeFactory(1))));
+            Patches.Register(
+                DialogueTreeID.StrangeApparitionFinal2,
+                InsertLocationCheck(3, new[] { ArchipelagoLocationData.QuestMinorStrangeApparitions },
+                    new DialoguePatchActionNodeFactory(
+                        new DialoguePatchSendQuestEventActionFactory(OutwardQuestEvents.Artifacts_StatueReward),
+                        new DialoguePatchOriginalNodeFactory(1))));
+            Patches.Register(
+                DialogueTreeID.StrangeApparitionFinal3,
+                InsertLocationCheck(3, new[] { ArchipelagoLocationData.QuestMinorStrangeApparitions },
+                    new DialoguePatchActionNodeFactory(
+                        new DialoguePatchSendQuestEventActionFactory(OutwardQuestEvents.Artifacts_StatueReward),
+                        new DialoguePatchOriginalNodeFactory(1))));
+            Patches.Register(
+                DialogueTreeID.StrangeApparitionFinal4,
+                InsertLocationCheck(3, new[] { ArchipelagoLocationData.QuestMinorStrangeApparitions },
+                    new DialoguePatchActionNodeFactory(
+                        new DialoguePatchSendQuestEventActionFactory(OutwardQuestEvents.Artifacts_StatueReward),
+                        new DialoguePatchOriginalNodeFactory(1))));
+
+            Patches.Register(
+                DialogueTreeID.TreasureHuntFinal,
+                InsertLocationCheck(2, new[] { ArchipelagoLocationData.QuestMinorTreasureHunt },
+                    new DialoguePatchActionNodeFactory(
+                        new DialoguePatchSendQuestEventActionFactory(OutwardQuestEvents.General_TsarAbraDock),
+                        new DialoguePatchActionNodeFactory(
+                            new DialoguePatchSendQuestEventActionFactory(OutwardQuestEvents.PromptsComplete_TreasureHunt),
+                            new DialoguePatchOriginalNodeFactory(1)))));
+
+            Patches.Register(
+                DialogueTreeID.DefEd_WillOWisp_Altar,
+                InsertLocationCheck(3, new[] { ArchipelagoLocationData.QuestMinorWilliamOfTheWisp },
+                new DialoguePatchFinishNodeFactory()));
+
+            Patches.Register(
+                DialogueTreeID.Purifier_MercantileProvost,
+                InsertLocationCheck(9, 9, new[] { ArchipelagoLocationData.QuestMinorScholarsRansom }));
+            Patches.Register(
+                DialogueTreeID.Purifier_MercantileProvost,
+                InsertLocationCheck(17, 17, new[] { ArchipelagoLocationData.QuestMinorScholarsRansom }));
+
+            Patches.Register(
+                DialogueTreeID.Soroborean_BloodMageTrigger,
+                InsertLocationCheck(6, new[] { ArchipelagoLocationData.QuestMinorBloodyBusiness },
+                    new DialoguePatchActionNodeFactory(
+                        new DialoguePatchSendQuestEventActionFactory(OutwardQuestEvents.SA_BloodMageQuestEnds),
+                        new DialoguePatchFinishNodeFactory())));
+
+            // repeatable "Ledger" quests
 
             Patches.Register(
                 DialogueTreeID.Merchant_BergGeneralStore,
@@ -260,7 +328,44 @@ namespace OutwardArchipelago.Dialogue
                         new DialoguePatchSendQuestEventActionFactory(OutwardQuestEvents.PromptsComplete_BergGeneral),
                         new DialoguePatchOriginalNodeFactory(6))));
 
-            // Commissions
+            // repeatable "Need" quests
+
+            Patches.Register(
+                DialogueTreeID.Merchant_CierzoFishmongerA,
+                InsertLocationCheckFirstTimeOnly(7, ArchipelagoLocationData.QuestMinorNeedCierzoCeviche,
+                    new DialoguePatchActionNodeFactory(
+                        new DialoguePatchSendQuestEventActionFactory(OutwardQuestEvents.SideQuests_CompleteCook),
+                        new DialoguePatchOriginalNodeFactory(8))));
+
+            Patches.Register(
+                DialogueTreeID.Merchant_BergFoodStore,
+                InsertLocationCheckFirstTimeOnly(7, 8, ArchipelagoLocationData.QuestMinorNeedManticoreTail));
+
+            Patches.Register(
+                DialogueTreeID.Merchant_LevantFoodStore,
+                InsertLocationCheckFirstTimeOnly(8, 9, ArchipelagoLocationData.QuestMinorNeedSharkCartilage));
+
+            Patches.Register(
+                DialogueTreeID.Merchant_HarmattanCamp,
+                InsertLocationCheckFirstTimeOnly(19, 20, ArchipelagoLocationData.QuestMinorNeedAngelFoodCake));
+
+            Patches.Register(
+                DialogueTreeID.Merchant_HarmattanArmor,
+                InsertLocationCheckFirstTimeOnly(19, 20, ArchipelagoLocationData.QuestMinorNeedFireElementalParticles));
+
+            Patches.Register(
+                DialogueTreeID.Merchant_HarmattanFood,
+                InsertLocationCheckFirstTimeOnly(19, 20, ArchipelagoLocationData.QuestMinorNeedFireElementalParticles));
+
+            Patches.Register(
+                DialogueTreeID.Merchant_HarmattanGeneral,
+                InsertLocationCheckFirstTimeOnly(19, 20, ArchipelagoLocationData.QuestMinorNeedTourmaline));
+
+            Patches.Register(
+                DialogueTreeID.Merchant_HarmattanWeapons,
+                InsertLocationCheckFirstTimeOnly(19, 20, ArchipelagoLocationData.QuestMinorNeedShieldGolemScrap));
+
+            // individual commissions
 
             Patches.Register(
                 DialogueTreeID.Merchant_CierzoBlacksmith,

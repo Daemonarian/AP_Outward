@@ -1,6 +1,6 @@
-﻿using HarmonyLib;
+using HarmonyLib;
 
-namespace OutwardArchipelago
+namespace OutwardArchipelago.Patches
 {
     [HarmonyPatch(typeof(QuestEventManager), nameof(QuestEventManager.NotifyOnQEAddedListeners))]
     internal class Patch_QuestEventManager_NotifyOnQEAddedListeners

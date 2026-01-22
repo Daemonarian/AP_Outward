@@ -45,6 +45,24 @@ namespace OutwardArchipelago.Dialogue
         public static readonly DialogueTreeID Merchant_MonsoonGeneralStore = FromName("Dialogue_Merchant_MonsoonGeneralStore");
         public static readonly DialogueTreeID Merchant_LevantGeneralStore = FromName("Dialogue_Merchant_LevantGeneralStore");
         public static readonly DialogueTreeID Merchant_CierzoGeneralStore = FromName("Dialogue_Merchant_CierzoGeneralStore");
+        public static readonly DialogueTreeID Merchant_BergKaziteAssassin = FromName("Dialogue_Merchant_BergKaziteAssassin");
+        public static readonly DialogueTreeID Merchant_CierzoFishmongerA = FromName("Dialogue_Merchant_CierzoFishmongerA");
+        public static readonly DialogueTreeID Merchant_BergFoodStore = FromName("Dialogue_Merchant_BergFoodStore");
+        public static readonly DialogueTreeID Merchant_LevantFoodStore = FromName("Dialogue_Merchant_LevantFoodStore");
+        public static readonly DialogueTreeID Emercar_UntertakerNecropolis_Real = FromName("Dialogue_Emercar_UntertakerNecropolis_Real");
+        public static readonly DialogueTreeID StrangeApparitionFinal1 = FromHash(0x5FE055C44EDE8A08);
+        public static readonly DialogueTreeID StrangeApparitionFinal2 = FromHash(0xC0C7FD0C7AF24256);
+        public static readonly DialogueTreeID StrangeApparitionFinal3 = FromHash(0x9CB689F5016ABAF4);
+        public static readonly DialogueTreeID StrangeApparitionFinal4 = FromHash(0xE4C6D7F859E7F331);
+        public static readonly DialogueTreeID TreasureHuntFinal = FromHash(0x89E1CBE457EF4320);
+        public static readonly DialogueTreeID DefEd_WillOWisp_Altar = FromName("Dialogue_DefEd_WillOWisp-Altar");
+        public static readonly DialogueTreeID Purifier_MercantileProvost = FromName("Dialogue_Purifier_MercantileProvost");
+        public static readonly DialogueTreeID Soroborean_BloodMageTrigger = FromName("Dialogue_Soroborean_BloodMageTrigger");
+        public static readonly DialogueTreeID Merchant_HarmattanCamp = FromName("Dialogue_Merchant_HarmattanCamp");
+        public static readonly DialogueTreeID Merchant_HarmattanArmor = FromName("Dialogue_Merchant_HarmattanArmor");
+        public static readonly DialogueTreeID Merchant_HarmattanFood = FromName("Dialogue_Merchant_HarmattanFood");
+        public static readonly DialogueTreeID Merchant_HarmattanGeneral = FromName("Dialogue_Merchant_HarmattanGeneral");
+        public static readonly DialogueTreeID Merchant_HarmattanWeapons = FromName("Dialogue_Merchant_HarmattanWeapons");
 
         /// <summary>
         /// The name of the dialogue tree.

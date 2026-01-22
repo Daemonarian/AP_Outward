@@ -8,19 +8,23 @@ namespace OutwardArchipelago
 {
     internal class LocationCheckQuestEventAddedListener : IQuestEventAddedListener
     {
-        public string OutwardEventId { get; }
-        public ArchipelagoLocationData Location { get; }
+        public string OutwardEventId { get; private set; }
 
-        public LocationCheckQuestEventAddedListener(string outwardEventId, ArchipelagoLocationData location)
+        public ArchipelagoLocationData Location { get; private set; }
+
+        public int StackCount { get; private set; }
+
+        public LocationCheckQuestEventAddedListener(string outwardEventId, ArchipelagoLocationData location, int stackCount = 1)
         {
             OutwardEventId = outwardEventId;
             Location = location;
+            StackCount = stackCount;
         }
 
         public void OnQuestEventAdded(QuestEventData _eventData)
         {
             OutwardArchipelagoMod.Log.LogInfo($"LocationCheckQuestEventAddedListener received OnQuestEventAdded for EventUID = {_eventData.EventUID}.");
-            if (string.Equals(_eventData.EventUID, OutwardEventId, StringComparison.Ordinal))
+            if (string.Equals(_eventData.EventUID, OutwardEventId, StringComparison.Ordinal) && _eventData.StackCount >= StackCount)
             {
                 OutwardArchipelagoMod.Log.LogInfo($"LocationCheckQuestEventAddedListener triggered for EventUID = {OutwardEventId}.");
                 ArchipelagoConnector.Instance.CompleteLocationCheck(Location);
@@ -67,6 +71,10 @@ namespace OutwardArchipelago
                 new(OutwardQuestEvents.PromptsComplete_MonsoonBlacksmith, ArchipelagoLocationData.QuestMinorCraftPalladiumArmor),
                 new(OutwardQuestEvents.PromptsComplete_LevantBlacksmith, ArchipelagoLocationData.QuestMinorCraftTsarAndTenebrousArmor),
                 new(OutwardQuestEvents.PromptsComplete_HarmattanBlacksmith, ArchipelagoLocationData.QuestMinorCraftAntiquePlateGarbArmor),
+                new(OutwardQuestEvents.SideQuests_SmugglerTimerWait, ArchipelagoLocationData.QuestMinorLostMerchant),
+                new(OutwardQuestEvents.PromptsComplete_Water, ArchipelagoLocationData.QuestMinorPurifyTheWater),
+                new(OutwardQuestEvents.SideQuests_DoneRedIdol, ArchipelagoLocationData.QuestMinorRedIdol),
+                new(OutwardQuestEvents.Fraticide_SlumsGaveMoney, ArchipelagoLocationData.QuestMinorSilverForTheSlums, 5),
             };
 
             foreach (var listener in listeners)
