@@ -73,7 +73,7 @@ namespace OutwardArchipelago.Archipelago
         // Helper to load texture from plugin folder
         private Texture2D LoadTexture(string fileName)
         {
-            Texture2D tex = Texture2D.whiteTexture;
+            var tex = Texture2D.whiteTexture;
 
             var assetData = OutwardArchipelagoMod.Instance.LoadAsset(fileName);
             if (assetData != null)

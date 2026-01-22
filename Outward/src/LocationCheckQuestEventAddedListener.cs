@@ -1,8 +1,8 @@
+using System;
+using System.Collections.Generic;
 using HarmonyLib;
 using OutwardArchipelago.Archipelago;
 using OutwardArchipelago.Archipelago.Data;
-using System;
-using System.Collections.Generic;
 
 namespace OutwardArchipelago
 {
@@ -86,7 +86,7 @@ namespace OutwardArchipelago
         [HarmonyPatch(typeof(QuestEventManager), nameof(QuestEventManager.Awake))]
         public static class QuestEventManager_Awake
         {
-            static void Postfix(QuestEventManager __instance)
+            private static void Postfix(QuestEventManager __instance)
             {
                 OutwardArchipelagoMod.Log.LogDebug("QuestEventManager Awake postfix called.");
                 RegisterAll();

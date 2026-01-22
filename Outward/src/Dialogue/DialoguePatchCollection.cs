@@ -1,6 +1,6 @@
+using System.Collections.Generic;
 using NodeCanvas.DialogueTrees;
 using OutwardArchipelago.Dialogue.Patches;
-using System.Collections.Generic;
 
 namespace OutwardArchipelago.Dialogue
 {
@@ -22,24 +22,24 @@ namespace OutwardArchipelago.Dialogue
         /// Index of patches keyed first by tree name, then by tree hash.
         /// Used for patches that specify both a Name and a Hash.
         /// </summary>
-        private Dictionary<string, Dictionary<ulong, List<IDialoguePatch>>> ByNameAndHash = new();
+        private readonly Dictionary<string, Dictionary<ulong, List<IDialoguePatch>>> ByNameAndHash = new();
 
         /// <summary>
         /// Index of patches keyed by tree name only.
         /// Used for patches that specify a Name but no Hash.
         /// </summary>
-        private Dictionary<string, List<IDialoguePatch>> ByName = new();
+        private readonly Dictionary<string, List<IDialoguePatch>> ByName = new();
 
         /// <summary>
         /// Index of patches keyed by tree hash only.
         /// Used for patches that specify a Hash but no Name.
         /// </summary>
-        private Dictionary<ulong, List<IDialoguePatch>> ByHash = new();
+        private readonly Dictionary<ulong, List<IDialoguePatch>> ByHash = new();
 
         /// <summary>
         /// Patches that do not specify a Name or Hash and therefore apply generically.
         /// </summary>
-        private List<IDialoguePatch> OtherPatches = new();
+        private readonly List<IDialoguePatch> OtherPatches = new();
 
         /// <summary>
         /// Enumerates patches applicable to the provided dialogue <paramref name="tree"/>.

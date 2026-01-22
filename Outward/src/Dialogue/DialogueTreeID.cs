@@ -1,5 +1,5 @@
-using NodeCanvas.DialogueTrees;
 using System.Text;
+using NodeCanvas.DialogueTrees;
 
 namespace OutwardArchipelago.Dialogue
 {
@@ -110,14 +110,14 @@ namespace OutwardArchipelago.Dialogue
         public static ulong HashTree(DialogueTreeExt tree)
         {
             var str = $"{tree.name}: {tree._serializedGraph}";
-            byte[] bytes = Encoding.UTF8.GetBytes(str);
+            var bytes = Encoding.UTF8.GetBytes(str);
 
-            ulong hash = 0xcbf29ce484222325;
+            var hash = 0xcbf29ce484222325;
             ulong prime = 0x100000001b3;
 
             unchecked
             {
-                foreach (byte b in bytes)
+                foreach (var b in bytes)
                 {
                     hash ^= b;
                     hash *= prime;

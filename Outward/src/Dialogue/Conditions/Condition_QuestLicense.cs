@@ -18,7 +18,7 @@ namespace OutwardArchipelago.Dialogue.Conditions
         {
             get
             {
-                string taskInfo = IsInverted ? $"Requires Quest License < {MinimumQuestLevel}" : $"Requires Quest License >= {MinimumQuestLevel}";
+                var taskInfo = IsInverted ? $"Requires Quest License < {MinimumQuestLevel}" : $"Requires Quest License >= {MinimumQuestLevel}";
                 return $"{base.info}\n{taskInfo}";
             }
         }
@@ -26,7 +26,7 @@ namespace OutwardArchipelago.Dialogue.Conditions
         public override bool OnCheck()
         {
             var currentQuestLicenseLevel = QuestLicenseManager.GetQuestLicenseLevel();
-            bool check = currentQuestLicenseLevel >= MinimumQuestLevel;
+            var check = currentQuestLicenseLevel >= MinimumQuestLevel;
             if (IsInverted)
             {
                 check = !check;

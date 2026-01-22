@@ -6,15 +6,12 @@ namespace OutwardArchipelago.Archipelago
     {
         public IReadOnlyList<int> SkillIDs { get; private set; }
 
-        public ProgressiveSkillGiver(IReadOnlyList<int> skillIDs)
-        {
-            SkillIDs = skillIDs;
-        }
+        public ProgressiveSkillGiver(IReadOnlyList<int> skillIDs) => SkillIDs = skillIDs;
 
         void IOutwardGiver.GiveToPlayer(Character character)
         {
-            int level = 0;
-            for (int i = 0; i < SkillIDs.Count; i++)
+            var level = 0;
+            for (var i = 0; i < SkillIDs.Count; i++)
             {
                 if (character.Inventory.SkillKnowledge.IsItemLearned(SkillIDs[i]))
                 {
@@ -29,7 +26,7 @@ namespace OutwardArchipelago.Archipelago
                 return;
             }
 
-            for (int i = 0; i < SkillIDs.Count; i++)
+            for (var i = 0; i < SkillIDs.Count; i++)
             {
                 if (i != level && character.Inventory.SkillKnowledge.IsItemLearned(SkillIDs[i]))
                 {

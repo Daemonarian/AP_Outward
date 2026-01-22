@@ -31,6 +31,6 @@ namespace OutwardArchipelago.Dialogue.Patches
         /// - Implementations may throw other exceptions to indicate unrecoverable errors; the caller is responsible
         ///   for handling them according to the patching workflow.
         /// </remarks>
-        public abstract void ApplyPatch(IDialoguePatchContext context);
+        abstract void ApplyPatch(IDialoguePatchContext context);
     }
 }

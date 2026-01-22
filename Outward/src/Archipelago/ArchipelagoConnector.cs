@@ -1,13 +1,13 @@
-using Archipelago.MultiClient.Net;
-using Archipelago.MultiClient.Net.Enums;
-using Archipelago.MultiClient.Net.Helpers;
-using Archipelago.MultiClient.Net.MessageLog.Messages;
-using OutwardArchipelago.Archipelago.Data;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
+using Archipelago.MultiClient.Net;
+using Archipelago.MultiClient.Net.Enums;
+using Archipelago.MultiClient.Net.Helpers;
+using Archipelago.MultiClient.Net.MessageLog.Messages;
+using OutwardArchipelago.Archipelago.Data;
 using UnityEngine;
 
 namespace OutwardArchipelago.Archipelago
@@ -39,7 +39,7 @@ namespace OutwardArchipelago.Archipelago
         private readonly ConcurrentQueue<string> IncomingMessageQueue = new();
         private readonly ConcurrentQueue<long> IncomingItemQueue = new();
 
-        private Dictionary<long, int> ItemCounts = new();
+        private readonly Dictionary<long, int> ItemCounts = new();
 
         public static void Create()
         {
@@ -50,7 +50,7 @@ namespace OutwardArchipelago.Archipelago
             }
         }
 
-        void Awake()
+        private void Awake()
         {
             // singleton pattern
             if (Instance != null && Instance != this)
@@ -77,7 +77,7 @@ namespace OutwardArchipelago.Archipelago
             Connect();
         }
 
-        void Update()
+        private void Update()
         {
             while (MainThreadQueue.TryDequeue(out var action))
             {
@@ -139,11 +139,11 @@ namespace OutwardArchipelago.Archipelago
                         await RunOnMainThread(() => IsConnected = false);
                     }
 
-                    bool first = true;
+                    var first = true;
                     while (true)
                     {
                         // cleanup old session if it exists
-                        bool doWaitInterval = false;
+                        var doWaitInterval = false;
                         if (_archipelagoSession != null)
                         {
                             _archipelagoSession.Socket.SocketClosed -= OnSocketClosed;
@@ -370,7 +370,7 @@ namespace OutwardArchipelago.Archipelago
             var chatPanel = character.CharacterUI.ChatPanel;
             if (chatPanel.m_messageArchive.Count < chatPanel.MaxMessageCount)
             {
-                ChatEntry chatEntry = UnityEngine.Object.Instantiate<ChatEntry>(UIUtilities.ChatEntryPrefab);
+                var chatEntry = UnityEngine.Object.Instantiate<ChatEntry>(UIUtilities.ChatEntryPrefab);
                 chatEntry.transform.SetParent(chatPanel.m_chatDisplay.content);
                 chatEntry.transform.ResetLocal(true);
                 chatEntry.SetCharacterUI(chatPanel.m_characterUI);
@@ -378,7 +378,7 @@ namespace OutwardArchipelago.Archipelago
             }
             else
             {
-                ChatEntry item = chatPanel.m_messageArchive[chatPanel.m_messageArchive.Count - 1];
+                var item = chatPanel.m_messageArchive[chatPanel.m_messageArchive.Count - 1];
                 chatPanel.m_messageArchive.RemoveAt(chatPanel.m_messageArchive.Count - 1);
                 chatPanel.m_messageArchive.Insert(0, item);
             }

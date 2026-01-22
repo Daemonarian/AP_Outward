@@ -1,6 +1,6 @@
+using System.Collections.Generic;
 using NodeCanvas.DialogueTrees;
 using OutwardArchipelago.Dialogue.Patches;
-using System.Collections.Generic;
 
 namespace OutwardArchipelago.Dialogue
 {
@@ -19,6 +19,6 @@ namespace OutwardArchipelago.Dialogue
         /// </summary>
         /// <param name="tree">The dialogue tree to patch.</param>
         /// <returns>An enumerable over the patches.</returns>
-        public abstract IEnumerable<IDialoguePatch> PatchesByDialogueTree(DialogueTreeExt tree);
+        abstract IEnumerable<IDialoguePatch> PatchesByDialogueTree(DialogueTreeExt tree);
     }
 }

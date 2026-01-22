@@ -1,6 +1,6 @@
-﻿using NodeCanvas.DialogueTrees;
-using NodeCanvas.Framework;
 using System.Collections.Generic;
+using NodeCanvas.DialogueTrees;
+using NodeCanvas.Framework;
 
 namespace OutwardArchipelago.Dialogue
 {
@@ -13,16 +13,16 @@ namespace OutwardArchipelago.Dialogue
         /// <summary>
         /// The unique ID of the dialogue tree being patched.
         /// </summary>
-        public abstract DialogueTreeID TreeID { get; }
+        abstract DialogueTreeID TreeID { get; }
 
         /// <summary>
         /// The dialogue tree being patched.
         /// </summary>
-        public abstract DialogueTreeExt Tree { get; }
+        abstract DialogueTreeExt Tree { get; }
 
         /// <summary>
         /// All the original nodes in the dialogue tree by their original ID.
         /// </summary>
-        public abstract IReadOnlyDictionary<int, Node> NodesByID { get; }
+        abstract IReadOnlyDictionary<int, Node> NodesByID { get; }
     }
 }

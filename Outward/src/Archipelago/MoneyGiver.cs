@@ -4,14 +4,8 @@ namespace OutwardArchipelago.Archipelago
     {
         public int Amount { get; private set; }
 
-        public MoneyGiver(int amount)
-        {
-            Amount = amount;
-        }
+        public MoneyGiver(int amount) => Amount = amount;
 
-        void IOutwardGiver.GiveToPlayer(Character character)
-        {
-            character.Inventory.ReceiveMoneyReward(Amount);
-        }
+        void IOutwardGiver.GiveToPlayer(Character character) => character.Inventory.ReceiveMoneyReward(Amount);
     }
 }

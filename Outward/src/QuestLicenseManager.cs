@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 namespace OutwardArchipelago
 {
@@ -19,8 +19,8 @@ namespace OutwardArchipelago
                 return 0;
             }
 
-            int level = 0;
-            for (int i = 0; i < QuestLicenseSkillIDs.Count; i++)
+            var level = 0;
+            for (var i = 0; i < QuestLicenseSkillIDs.Count; i++)
             {
                 if (character.Inventory.SkillKnowledge.IsItemLearned(QuestLicenseSkillIDs[i]))
                 {
@@ -46,7 +46,7 @@ namespace OutwardArchipelago
                 return;
             }
 
-            for (int i = 0; i < QuestLicenseSkillIDs.Count; i++)
+            for (var i = 0; i < QuestLicenseSkillIDs.Count; i++)
             {
                 var skillId = QuestLicenseSkillIDs[i];
                 var known = character.Inventory.SkillKnowledge.IsItemLearned(skillId);
