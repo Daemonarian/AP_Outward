@@ -102,6 +102,7 @@ locations:
   spawn_fossilized_greataxe: Steam Bath Tunnels - Calygrey Hero - Fossilized Greataxe
   spawn_mertons_firepoker: "Spawn - Merton's Firepoker"
   spawn_ceremonial_bow: Spawn - Ceremonial Bow
+  spawn_pillar_greathammer: Spawn - Pillar Greathammer
 items:
   quest_license:
     name: Progressive Quest License
@@ -395,6 +396,12 @@ items:
     outward:
       type: item
       item_id: 2200190
+  pillar_greathammer:
+    name: Pillar Greathammer
+    classification: useful
+    outward:
+      type: item
+      item_id: 2120070
   silver_currency:
     name: 50x Silver
     classification: filler

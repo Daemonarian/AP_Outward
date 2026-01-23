@@ -834,6 +834,13 @@ namespace OutwardArchipelago.Dialogue
                 Location = ArchipelagoLocationData.SpawnCeremonialBow,
                 OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.DLC2Artifacts_Murmure },
             });
+
+            Patches.Register(DialogueTreeID.PillarGreathammer, new InsertLocationCheckPatch
+            {
+                ReplaceNodeID = 2,
+                Location = ArchipelagoLocationData.SpawnPillarGreathammer,
+                OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.Artifacts_PillarHammer },
+            });
         }
 
         private readonly HashSet<ulong> seenDialogueTrees = new();
