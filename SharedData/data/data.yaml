@@ -97,6 +97,7 @@ locations:
   spawn_strange_rusted_sword: Spawn - Strange Rusted Sword
   spawn_dreamer_halberd: Friendly Immaculate Gift - Dreamer Halberd
   spawn_ruined_halberd: Spawn - Ruined Halberd
+  spawn_mysterious_long_blade: Spawn - Mysterious Long Blade
 items:
   quest_license:
     name: Progressive Quest License
@@ -360,6 +361,12 @@ items:
     outward:
       type: item
       item_id: 2150170
+  mysterious_long_blad:
+    name: Mysterious Long Blade
+    classification: useful
+    outward:
+      type: item
+      item_id: 2100300
   silver_currency:
     name: 50x Silver
     classification: filler

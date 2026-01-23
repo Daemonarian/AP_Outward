@@ -776,14 +776,12 @@ namespace OutwardArchipelago.Dialogue
 
             // unique items
 
-            Patches.Register(
-                DialogueTreeID.StrangeRustedSword,
-                new InsertLocationCheckPatch
-                {
-                    ReplaceNodeID = 2,
-                    Location = ArchipelagoLocationData.SpawnStrangeRustedSword,
-                    OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.Artifacts_Brand },
-                });
+            Patches.Register(DialogueTreeID.StrangeRustedSword, new InsertLocationCheckPatch
+            {
+                ReplaceNodeID = 2,
+                Location = ArchipelagoLocationData.SpawnStrangeRustedSword,
+                OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.Artifacts_Brand },
+            });
 
             var dreamerHalberdPatch = new InsertLocationCheckPatch
             {
@@ -795,13 +793,19 @@ namespace OutwardArchipelago.Dialogue
             Patches.Register(DialogueTreeID.Abrassar_Immaculate_Real, dreamerHalberdPatch);
             Patches.Register(DialogueTreeID.Emercar_Immaculate_Real, dreamerHalberdPatch);
 
-            Patches.Register(
-                DialogueTreeID.RuinedHalberd,
-                new InsertLocationCheckPatch
-                {
-                    ReplaceNodeID = 2,
-                    Location = ArchipelagoLocationData.SpawnRuinedHalberd,
-                });
+            Patches.Register(DialogueTreeID.RuinedHalberd, new InsertLocationCheckPatch
+            {
+                ReplaceNodeID = 2,
+                Location = ArchipelagoLocationData.SpawnRuinedHalberd,
+                OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.DLC2Artifacts_Duty },
+            });
+
+            Patches.Register(DialogueTreeID.MysteriousLongBlade, new InsertLocationCheckPatch
+            {
+                ReplaceNodeID = 2,
+                Location = ArchipelagoLocationData.SpawnMysteriousLongBlade,
+                OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.DLC2Artifacts_GepBlade },
+            });
         }
 
         private readonly HashSet<ulong> seenDialogueTrees = new();

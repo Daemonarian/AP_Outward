@@ -69,6 +69,7 @@ namespace OutwardArchipelago.Dialogue
         public static readonly DialogueTreeID StrangeApparitionFinal4 = FromHash(0xE4C6D7F859E7F331);
         public static readonly DialogueTreeID StrangeRustedSword = FromHash(0x0DDC15356CF61885);
         public static readonly DialogueTreeID TreasureHuntFinal = FromHash(0x89E1CBE457EF4320);
+        public static readonly DialogueTreeID MysteriousLongBlade = FromHash(0x4AF5E61942784188);
 
         /// <summary>
         /// The name of the dialogue tree.
