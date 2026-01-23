@@ -841,6 +841,13 @@ namespace OutwardArchipelago.Dialogue
                 Location = ArchipelagoLocationData.SpawnPillarGreathammer,
                 OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.Artifacts_PillarHammer },
             });
+
+            Patches.Register(DialogueTreeID.Soroborean_BossesGiantScourgeOnDeath_ParallelQuest, new InsertLocationCheckPatch
+            {
+                ReplaceNodeID = 25,
+                Location = ArchipelagoLocationData.SpawnPorcelainFists,
+                OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.Harmadung_GiantReward },
+            });
         }
 
         private readonly HashSet<ulong> seenDialogueTrees = new();

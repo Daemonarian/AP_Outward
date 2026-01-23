@@ -64,6 +64,7 @@ namespace OutwardArchipelago.Dialogue
         public static readonly DialogueTreeID Soroborean_ArcaneDean_Q3 = FromName("Dialogue_Soroborean_ArcaneDean_Q3");
         public static readonly DialogueTreeID Soroborean_ArcaneDean_Q4 = FromName("Dialogue_Soroborean_ArcaneDean_Q4");
         public static readonly DialogueTreeID Soroborean_BloodMageTrigger = FromName("Dialogue_Soroborean_BloodMageTrigger");
+        public static readonly DialogueTreeID Soroborean_BossesGiantScourgeOnDeath_ParallelQuest = FromName("Dialogue_Soroborean_BossesGiantScourgeOnDeath_ParallelQuest");
         public static readonly DialogueTreeID Soroborean_EngineeringDean_Q1 = FromName("Dialogue_Soroborean_EngineeringDean_Q1");
         public static readonly DialogueTreeID Soroborean_LichDying = FromName("Dialogue_Soroborean_LichDying");
         public static readonly DialogueTreeID Soroborean_MilitaryDean_Q2 = FromName("Dialogue_Soroborean_MilitaryDean_Q2");

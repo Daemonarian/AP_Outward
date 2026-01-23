@@ -103,6 +103,7 @@ locations:
   spawn_mertons_firepoker: "Spawn - Merton's Firepoker"
   spawn_ceremonial_bow: Spawn - Ceremonial Bow
   spawn_pillar_greathammer: Spawn - Pillar Greathammer
+  spawn_porcelain_fists: Crumbling Loading Docks - Giant Horror - Porcelain Fists
 items:
   quest_license:
     name: Progressive Quest License
@@ -402,6 +403,12 @@ items:
     outward:
       type: item
       item_id: 2120070
+  porcelain_fists:
+    name: Porcelain Fists
+    classification: useful
+    outward:
+      type: item
+      item_id: 2160090
   silver_currency:
     name: 50x Silver
     classification: filler
