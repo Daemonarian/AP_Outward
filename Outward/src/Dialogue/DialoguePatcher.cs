@@ -889,6 +889,13 @@ namespace OutwardArchipelago.Dialogue
                 Location = ArchipelagoLocationData.SpawnUnusualKnuckles,
                 OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.DLC2Artifacts_Tokebakicit },
             });
+
+            Patches.Register(DialogueTreeID.TsarFists, new InsertLocationCheckPatch
+            {
+                ReplaceNodeID = 2,
+                Location = ArchipelagoLocationData.SpawnTsarFists,
+                OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.Harmadung_D2_K_RLReward },
+            });
         }
 
         private readonly HashSet<ulong> seenDialogueTrees = new();
