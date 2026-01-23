@@ -868,6 +868,13 @@ namespace OutwardArchipelago.Dialogue
                 Location = ArchipelagoLocationData.SpawnRustedSpear,
                 OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.DLC2Artifacts_Shriek },
             });
+
+            Patches.Register(DialogueTreeID.SunfallAxe, new InsertLocationCheckPatch
+            {
+                ReplaceNodeID = 2,
+                Location = ArchipelagoLocationData.SpawnSunfallAxe,
+                OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.Artifacts_Sunfall },
+            });
         }
 
         private readonly HashSet<ulong> seenDialogueTrees = new();

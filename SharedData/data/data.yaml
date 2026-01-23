@@ -107,6 +107,7 @@ locations:
   spawn_warm_axe: Spawn - Warm Axe
   spawn_sealed_mace: Old Sirocco - Smelly Sealed Box interaction with forge
   spawn_rusted_spear: Spawn - Rusted Spear
+  spawn_sunfall_axe: Spawn - Sunfall Axe
 items:
   quest_license:
     name: Progressive Quest License
@@ -430,6 +431,12 @@ items:
     outward:
       type: item
       item_id: 2130310
+  sunfall_axe:
+    name: Sunfall Axe
+    classification: useful
+    outward:
+      type: item
+      item_id: 2010070
   silver_currency:
     name: 50x Silver
     classification: filler
