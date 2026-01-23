@@ -98,6 +98,7 @@ locations:
   spawn_dreamer_halberd: Friendly Immaculate Gift - Dreamer Halberd
   spawn_ruined_halberd: Spawn - Ruined Halberd
   spawn_mysterious_long_blade: Spawn - Mysterious Long Blade
+  spawn_depowered_bludgeon: Spawn - De-powered Bludgeon
 items:
   quest_license:
     name: Progressive Quest License
@@ -361,12 +362,18 @@ items:
     outward:
       type: item
       item_id: 2150170
-  mysterious_long_blad:
+  mysterious_long_blade:
     name: Mysterious Long Blade
     classification: useful
     outward:
       type: item
       item_id: 2100300
+  depowered_bludgeon:
+    name: De-powered Bludgeon
+    classification: useful
+    outward:
+      type: item
+      item_id: 2120270
   silver_currency:
     name: 50x Silver
     classification: filler

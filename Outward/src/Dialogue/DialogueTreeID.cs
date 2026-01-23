@@ -19,6 +19,7 @@ namespace OutwardArchipelago.Dialogue
         public static readonly DialogueTreeID Cyrene_HK_SandCorsairs = FromName("Dialogue_Cyrene_HK_SandCorsairs");
         public static readonly DialogueTreeID Cyrene_HK_TendTheFlame = FromName("Dialogue_Cyrene_HK_TendTheFlame");
         public static readonly DialogueTreeID DefEd_WillOWisp_Altar = FromName("Dialogue_DefEd_WillOWisp-Altar");
+        public static readonly DialogueTreeID DepoweredBludgeon = FromHash(0x309038E806EFFD3A);
         public static readonly DialogueTreeID Ellinara_HM_Doubts = FromName("Dialogue_Ellinara_HM_Doubts");
         public static readonly DialogueTreeID Ellinara_HM_Questions = FromName("Dialogue_Ellinara_HM_Questions");
         public static readonly DialogueTreeID Ellinara_HM_Truth = FromName("Dialogue_Ellinara_HM_Truth");
@@ -47,6 +48,7 @@ namespace OutwardArchipelago.Dialogue
         public static readonly DialogueTreeID Merchant_LevantGeneralStore = FromName("Dialogue_Merchant_LevantGeneralStore");
         public static readonly DialogueTreeID Merchant_MonsoonBlacksmith = FromName("Dialogue_Merchant_MonsoonBlacksmith");
         public static readonly DialogueTreeID Merchant_MonsoonGeneralStore = FromName("Dialogue_Merchant_MonsoonGeneralStore");
+        public static readonly DialogueTreeID MysteriousLongBlade = FromHash(0x4AF5E61942784188);
         public static readonly DialogueTreeID Purifier_MercantileProvost = FromName("Dialogue_Purifier_MercantileProvost");
         public static readonly DialogueTreeID RissaAberdeen_BC_AncestralPeacemaker = FromName("Dialogue_RissaAberdeen_BC_AncestralPeacemaker");
         public static readonly DialogueTreeID RissaAberdeen_BC_AshGiant = FromName("Dialogue_RissaAberdeen_BC_AshGiant");
@@ -69,7 +71,6 @@ namespace OutwardArchipelago.Dialogue
         public static readonly DialogueTreeID StrangeApparitionFinal4 = FromHash(0xE4C6D7F859E7F331);
         public static readonly DialogueTreeID StrangeRustedSword = FromHash(0x0DDC15356CF61885);
         public static readonly DialogueTreeID TreasureHuntFinal = FromHash(0x89E1CBE457EF4320);
-        public static readonly DialogueTreeID MysteriousLongBlade = FromHash(0x4AF5E61942784188);
 
         /// <summary>
         /// The name of the dialogue tree.

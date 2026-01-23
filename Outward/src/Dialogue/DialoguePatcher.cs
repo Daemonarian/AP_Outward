@@ -806,6 +806,13 @@ namespace OutwardArchipelago.Dialogue
                 Location = ArchipelagoLocationData.SpawnMysteriousLongBlade,
                 OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.DLC2Artifacts_GepBlade },
             });
+
+            Patches.Register(DialogueTreeID.DepoweredBludgeon, new InsertLocationCheckPatch
+            {
+                ReplaceNodeID = 2,
+                Location = ArchipelagoLocationData.SpawnDepoweredBludgeon,
+                OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.DLC2Artifacts_GhostParallel },
+            });
         }
 
         private readonly HashSet<ulong> seenDialogueTrees = new();
