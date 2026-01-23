@@ -773,6 +773,17 @@ namespace OutwardArchipelago.Dialogue
                         new RemoveQuestEventActionBuilder { EventUID = OutwardQuestEvents.Crafting_HarmattanBlacksmithItemC },
                     }
                 });
+
+            // unique items
+
+            Patches.Register(
+                DialogueTreeID.StrangeRustedSword,
+                new InsertLocationCheckPatch
+                {
+                    ReplaceNodeID = 2,
+                    Location = ArchipelagoLocationData.SpawnStrangeRustedSword,
+                    OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.Artifacts_Brand },
+                });
         }
 
         private readonly HashSet<ulong> seenDialogueTrees = new();

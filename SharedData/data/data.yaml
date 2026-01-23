@@ -94,6 +94,7 @@ locations:
   commission_antique_plate_sallet: Commission - Antique Plate Sallet
   commission_antique_plate_garb: Commission - Antique Plate Garb
   commission_antique_plate_boots: Commission - Antique Plate Boots
+  spawn_strange_rusted_sword: Spawn - Strange Rusted Sword
 items:
   quest_license:
     name: Progressive Quest License
@@ -339,6 +340,12 @@ items:
     outward:
       type: item
       item_id: 8200190
+  strange_rusted_sword:
+    name: Strange Rusted Sword
+    classification: useful
+    outward:
+      type: item
+      item_id: 2000151
   silver_currency:
     name: 50x Silver
     classification: filler
