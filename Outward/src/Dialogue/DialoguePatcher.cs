@@ -784,6 +784,16 @@ namespace OutwardArchipelago.Dialogue
                     Location = ArchipelagoLocationData.SpawnStrangeRustedSword,
                     OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.Artifacts_Brand },
                 });
+
+            var dreamerHalberdPatch = new InsertLocationCheckPatch
+            {
+                ReplaceNodeID = 6,
+                Location = ArchipelagoLocationData.SpawnDreamerHalberd,
+            };
+            Patches.Register(DialogueTreeID.Chersonese_Immaculate_Real, dreamerHalberdPatch);
+            Patches.Register(DialogueTreeID.HallowedMarsh_Immaculate_Real, dreamerHalberdPatch);
+            Patches.Register(DialogueTreeID.Abrassar_Immaculate_Real, dreamerHalberdPatch);
+            Patches.Register(DialogueTreeID.Emercar_Immaculate_Real, dreamerHalberdPatch);
         }
 
         private readonly HashSet<ulong> seenDialogueTrees = new();

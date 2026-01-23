@@ -7,12 +7,14 @@ namespace OutwardArchipelago.Dialogue
     {
         // common dialogue trees in Outward
         public static readonly DialogueTreeID Abrassar_BarrelMan_Real = FromName("Dialogue_Abrassar_BarrelMan_Real");
+        public static readonly DialogueTreeID Abrassar_Immaculate_Real = FromName("Dialogue_Abrassar_Immaculate_Real");
         public static readonly DialogueTreeID Caldera_Evangeline_BaseBuilding = FromName("Dialogue_Caldera_Evangeline_BaseBuilding");
         public static readonly DialogueTreeID Caldera_Josef_BaseBuilding = FromName("Dialogue_Caldera_Josef_BaseBuilding");
         public static readonly DialogueTreeID Caldera_MessengerInn_Q0 = FromName("Dialogue_Caldera_MessengerInn_Q0");
         public static readonly DialogueTreeID Calixa_HK_HeroPeacemaker = FromName("Dialogue_Calixa_HK_HeroPeacemaker");
         public static readonly DialogueTreeID Calixa_HK_MouthToFeed = FromName("Dialogue_Calixa_HK_MouthToFeed");
         public static readonly DialogueTreeID CardinalBourlamaque_HM_HallowPeacemaker = FromName("Dialogue_CardinalBourlamaque_HM_HallowPeacemaker");
+        public static readonly DialogueTreeID Chersonese_Immaculate_Real = FromName("Dialogue_Chersonese_Immaculate_Real");
         public static readonly DialogueTreeID Cierzo_HelenTurnbull_Real = FromName("Dialogue_Cierzo_HelenTurnbull_Real");
         public static readonly DialogueTreeID Cyrene_HK_SandCorsairs = FromName("Dialogue_Cyrene_HK_SandCorsairs");
         public static readonly DialogueTreeID Cyrene_HK_TendTheFlame = FromName("Dialogue_Cyrene_HK_TendTheFlame");
@@ -20,8 +22,10 @@ namespace OutwardArchipelago.Dialogue
         public static readonly DialogueTreeID Ellinara_HM_Doubts = FromName("Dialogue_Ellinara_HM_Doubts");
         public static readonly DialogueTreeID Ellinara_HM_Questions = FromName("Dialogue_Ellinara_HM_Questions");
         public static readonly DialogueTreeID Ellinara_HM_Truth = FromName("Dialogue_Ellinara_HM_Truth");
+        public static readonly DialogueTreeID Emercar_Immaculate_Real = FromName("Dialogue_Emercar_Immaculate_Real");
         public static readonly DialogueTreeID Emercar_UntertakerNecropolis_Real = FromName("Dialogue_Emercar_UntertakerNecropolis_Real");
         public static readonly DialogueTreeID GoldLich_Neut_Initial = FromName("Dialogue_GoldLich_Neut_Initial");
+        public static readonly DialogueTreeID HallowedMarsh_Immaculate_Real = FromName("Dialogue_HallowedMarsh_Immaculate_Real");
         public static readonly DialogueTreeID JadeLich_Neut_Initial = FromName("Dialogue_JadeLich_Neut_Initial");
         public static readonly DialogueTreeID Merchant_BergAlchemist = FromName("Dialogue_Merchant_BergAlchemist");
         public static readonly DialogueTreeID Merchant_BergBlacksmith = FromName("Dialogue_Merchant_BergBlacksmith");
