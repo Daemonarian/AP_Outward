@@ -109,6 +109,7 @@ locations:
   spawn_rusted_spear: Spawn - Rusted Spear
   spawn_sunfall_axe: Spawn - Sunfall Axe
   spawn_thrice_wrought_halberd: Spawn - Thrice-Wrought Halberd
+  spawn_unusual_knuckles: Spawn - Unusual Knuckles
 items:
   quest_license:
     name: Progressive Quest License
@@ -444,6 +445,12 @@ items:
     outward:
       type: item
       item_id: 2140060
+  unusual_knuckles:
+    name: Unusual Knuckles
+    classification: useful
+    outward:
+      type: item
+      item_id: 2160230
   silver_currency:
     name: 50x Silver
     classification: filler

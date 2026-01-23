@@ -882,6 +882,13 @@ namespace OutwardArchipelago.Dialogue
                 Location = ArchipelagoLocationData.SpawnThriceWroughtHalberd,
                 OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.Artifacts_WroughtHalbert },
             });
+
+            Patches.Register(DialogueTreeID.UnusualKnuckles, new InsertLocationCheckPatch
+            {
+                ReplaceNodeID = 1,
+                Location = ArchipelagoLocationData.SpawnUnusualKnuckles,
+                OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.DLC2Artifacts_Tokebakicit },
+            });
         }
 
         private readonly HashSet<ulong> seenDialogueTrees = new();
