@@ -848,6 +848,13 @@ namespace OutwardArchipelago.Dialogue
                 Location = ArchipelagoLocationData.SpawnPorcelainFists,
                 OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.Harmadung_GiantReward },
             });
+
+            Patches.Register(DialogueTreeID.WarmAxe, new InsertLocationCheckPatch
+            {
+                ReplaceNodeID = 2,
+                Location = ArchipelagoLocationData.SpawnWarmAxe,
+                OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.DLC2Artifacts_Sandrose },
+            });
         }
 
         private readonly HashSet<ulong> seenDialogueTrees = new();

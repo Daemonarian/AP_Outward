@@ -114,6 +114,7 @@ class OutwardWorld(World):
             LocationName.SPAWN_DEPOWERED_BLUDGEON: lambda state: state.has(EventName.MAIN_QUEST_07_COMPLETE, self.player),
             LocationName.SPAWN_FOSSILIZED_GREATAXE: lambda state: state.has(EventName.MAIN_QUEST_07_COMPLETE, self.player),
             LocationName.SPAWN_CEREMONIAL_BOW: lambda state: state.has(EventName.MAIN_QUEST_07_COMPLETE, self.player),
+            LocationName.SPAWN_WARM_AXE: lambda state: state.has(EventName.MAIN_QUEST_07_COMPLETE, self.player),
         }
         for loc in self.multiworld.get_locations(self.player):
             if loc.name in access_rules:
