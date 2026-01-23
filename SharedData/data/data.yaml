@@ -100,6 +100,7 @@ locations:
   spawn_mysterious_long_blade: Spawn - Mysterious Long Blade
   spawn_depowered_bludgeon: Spawn - De-powered Bludgeon
   spawn_fossilized_greataxe: Steam Bath Tunnels - Calygrey Hero - Fossilized Greataxe
+  spawn_mertons_firepoker: "Spawn - Merton's Firepoker"
 items:
   quest_license:
     name: Progressive Quest License
@@ -381,6 +382,12 @@ items:
     outward:
       type: item
       item_id: 2110260
+  mertons_firepoker:
+    name: "Merton's Firepoker"
+    classification: useful
+    outward:
+      type: item
+      item_id: 2020070
   silver_currency:
     name: 50x Silver
     classification: filler

@@ -49,6 +49,7 @@ namespace OutwardArchipelago.Dialogue
         public static readonly DialogueTreeID Merchant_LevantGeneralStore = FromName("Dialogue_Merchant_LevantGeneralStore");
         public static readonly DialogueTreeID Merchant_MonsoonBlacksmith = FromName("Dialogue_Merchant_MonsoonBlacksmith");
         public static readonly DialogueTreeID Merchant_MonsoonGeneralStore = FromName("Dialogue_Merchant_MonsoonGeneralStore");
+        public static readonly DialogueTreeID MertonsFirepoker = FromHash(0x751BA202A2DB553A);
         public static readonly DialogueTreeID MysteriousLongBlade = FromHash(0x4AF5E61942784188);
         public static readonly DialogueTreeID Purifier_MercantileProvost = FromName("Dialogue_Purifier_MercantileProvost");
         public static readonly DialogueTreeID RissaAberdeen_BC_AncestralPeacemaker = FromName("Dialogue_RissaAberdeen_BC_AncestralPeacemaker");
