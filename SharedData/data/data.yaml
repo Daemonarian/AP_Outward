@@ -105,7 +105,8 @@ locations:
   spawn_pillar_greathammer: Spawn - Pillar Greathammer
   spawn_porcelain_fists: Crumbling Loading Docks - Giant Horror - Porcelain Fists
   spawn_warm_axe: Spawn - Warm Axe
-  spawn_sealed_mace: Old SIrocco - Smelly Sealed Box interaction with forge
+  spawn_sealed_mace: Old Sirocco - Smelly Sealed Box interaction with forge
+  spawn_rusted_spear: Spawn - Rusted Spear
 items:
   quest_license:
     name: Progressive Quest License
@@ -423,6 +424,12 @@ items:
     outward:
       type: item
       item_id: 2020330
+  rusted_spear:
+    name: Rusted Spear
+    classification: useful
+    outward:
+      type: item
+      item_id: 2130310
   silver_currency:
     name: 50x Silver
     classification: filler

@@ -861,6 +861,13 @@ namespace OutwardArchipelago.Dialogue
                 ReplaceNodeID = 2,
                 Location = ArchipelagoLocationData.SpawnSealedMace,
             });
+
+            Patches.Register(DialogueTreeID.RustedSpear, new InsertLocationCheckPatch
+            {
+                ReplaceNodeID = 2,
+                Location = ArchipelagoLocationData.SpawnRustedSpear,
+                OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.DLC2Artifacts_Shriek },
+            });
         }
 
         private readonly HashSet<ulong> seenDialogueTrees = new();
