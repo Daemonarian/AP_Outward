@@ -108,6 +108,7 @@ locations:
   spawn_sealed_mace: Old Sirocco - Smelly Sealed Box interaction with forge
   spawn_rusted_spear: Spawn - Rusted Spear
   spawn_sunfall_axe: Spawn - Sunfall Axe
+  spawn_thrice_wrought_halberd: Spawn - Thrice-Wrought Halberd
 items:
   quest_license:
     name: Progressive Quest License
@@ -437,6 +438,12 @@ items:
     outward:
       type: item
       item_id: 2010070
+  thrice_wrought_halberd:
+    name: Thrice-Wrought Halberd
+    classification: useful
+    outward:
+      type: item
+      item_id: 2140060
   silver_currency:
     name: 50x Silver
     classification: filler

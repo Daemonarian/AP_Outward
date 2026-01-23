@@ -875,6 +875,13 @@ namespace OutwardArchipelago.Dialogue
                 Location = ArchipelagoLocationData.SpawnSunfallAxe,
                 OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.Artifacts_Sunfall },
             });
+
+            Patches.Register(DialogueTreeID.ThriceWroughtHalberd, new InsertLocationCheckPatch
+            {
+                ReplaceNodeID = 2,
+                Location = ArchipelagoLocationData.SpawnThriceWroughtHalberd,
+                OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.Artifacts_WroughtHalbert },
+            });
         }
 
         private readonly HashSet<ulong> seenDialogueTrees = new();
