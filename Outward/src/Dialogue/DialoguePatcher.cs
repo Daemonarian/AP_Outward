@@ -827,6 +827,13 @@ namespace OutwardArchipelago.Dialogue
                 Location = ArchipelagoLocationData.SpawnMertonsFirepoker,
                 OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.Artifacts_Murton },
             });
+
+            Patches.Register(DialogueTreeID.CeremonialBow, new InsertLocationCheckPatch
+            {
+                ReplaceNodeID = 2,
+                Location = ArchipelagoLocationData.SpawnCeremonialBow,
+                OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.DLC2Artifacts_Murmure },
+            });
         }
 
         private readonly HashSet<ulong> seenDialogueTrees = new();

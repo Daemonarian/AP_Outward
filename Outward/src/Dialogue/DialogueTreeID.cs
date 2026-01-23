@@ -14,6 +14,7 @@ namespace OutwardArchipelago.Dialogue
         public static readonly DialogueTreeID Calixa_HK_HeroPeacemaker = FromName("Dialogue_Calixa_HK_HeroPeacemaker");
         public static readonly DialogueTreeID Calixa_HK_MouthToFeed = FromName("Dialogue_Calixa_HK_MouthToFeed");
         public static readonly DialogueTreeID CardinalBourlamaque_HM_HallowPeacemaker = FromName("Dialogue_CardinalBourlamaque_HM_HallowPeacemaker");
+        public static readonly DialogueTreeID CeremonialBow = FromHash(0x1DEDCA1028559484);
         public static readonly DialogueTreeID Chersonese_Immaculate_Real = FromName("Dialogue_Chersonese_Immaculate_Real");
         public static readonly DialogueTreeID Cierzo_HelenTurnbull_Real = FromName("Dialogue_Cierzo_HelenTurnbull_Real");
         public static readonly DialogueTreeID Cyrene_HK_SandCorsairs = FromName("Dialogue_Cyrene_HK_SandCorsairs");

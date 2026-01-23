@@ -101,6 +101,7 @@ locations:
   spawn_depowered_bludgeon: Spawn - De-powered Bludgeon
   spawn_fossilized_greataxe: Steam Bath Tunnels - Calygrey Hero - Fossilized Greataxe
   spawn_mertons_firepoker: "Spawn - Merton's Firepoker"
+  spawn_ceremonial_bow: Spawn - Ceremonial Bow
 items:
   quest_license:
     name: Progressive Quest License
@@ -388,6 +389,12 @@ items:
     outward:
       type: item
       item_id: 2020070
+  ceremonial_bow:
+    name: Ceremonial Bow
+    classification: useful
+    outward:
+      type: item
+      item_id: 2200190
   silver_currency:
     name: 50x Silver
     classification: filler
