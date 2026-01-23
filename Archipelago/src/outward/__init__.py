@@ -108,6 +108,8 @@ class OutwardWorld(World):
             LocationName.QUEST_PARALLEL_RUST_AND_VENGEANCE_1: lambda state: state.has(EventName.MAIN_QUEST_04_COMPLETE, self.player),
             LocationName.QUEST_PARALLEL_RUST_AND_VENGEANCE_2: lambda state: state.has(EventName.MAIN_QUEST_04_COMPLETE, self.player),
             LocationName.QUEST_PARALLEL_RUST_AND_VENGEANCE_3: lambda state: state.has(EventName.MAIN_QUEST_04_COMPLETE, self.player),
+
+            LocationName.SPAWN_RUINED_HALBERD: lambda state: state.has(EventName.MAIN_QUEST_07_COMPLETE, self.player),
         }
         for loc in self.multiworld.get_locations(self.player):
             if loc.name in access_rules:
