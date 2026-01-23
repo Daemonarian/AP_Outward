@@ -25,6 +25,7 @@ namespace OutwardArchipelago.Dialogue
         public static readonly DialogueTreeID Ellinara_HM_Truth = FromName("Dialogue_Ellinara_HM_Truth");
         public static readonly DialogueTreeID Emercar_Immaculate_Real = FromName("Dialogue_Emercar_Immaculate_Real");
         public static readonly DialogueTreeID Emercar_UntertakerNecropolis_Real = FromName("Dialogue_Emercar_UntertakerNecropolis_Real");
+        public static readonly DialogueTreeID FossilizedGreataxe = FromHash(0x9764048B623361AC);
         public static readonly DialogueTreeID GoldLich_Neut_Initial = FromName("Dialogue_GoldLich_Neut_Initial");
         public static readonly DialogueTreeID HallowedMarsh_Immaculate_Real = FromName("Dialogue_HallowedMarsh_Immaculate_Real");
         public static readonly DialogueTreeID JadeLich_Neut_Initial = FromName("Dialogue_JadeLich_Neut_Initial");

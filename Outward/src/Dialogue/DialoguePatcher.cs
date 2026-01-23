@@ -813,6 +813,13 @@ namespace OutwardArchipelago.Dialogue
                 Location = ArchipelagoLocationData.SpawnDepoweredBludgeon,
                 OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.DLC2Artifacts_GhostParallel },
             });
+
+            Patches.Register(DialogueTreeID.FossilizedGreataxe, new InsertLocationCheckPatch
+            {
+                ReplaceNodeID = 2,
+                Location = ArchipelagoLocationData.SpawnFossilizedGreataxe,
+                OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.DLC2Artifacts_Grind },
+            });
         }
 
         private readonly HashSet<ulong> seenDialogueTrees = new();

@@ -99,6 +99,7 @@ locations:
   spawn_ruined_halberd: Spawn - Ruined Halberd
   spawn_mysterious_long_blade: Spawn - Mysterious Long Blade
   spawn_depowered_bludgeon: Spawn - De-powered Bludgeon
+  spawn_fossilized_greataxe: Steam Bath Tunnels - Calygrey Hero - Fossilized Greataxe
 items:
   quest_license:
     name: Progressive Quest License
@@ -374,6 +375,12 @@ items:
     outward:
       type: item
       item_id: 2120270
+  fossilized_greataxe:
+    name: Fossilized Greataxe
+    classification: useful
+    outward:
+      type: item
+      item_id: 2110260
   silver_currency:
     name: 50x Silver
     classification: filler

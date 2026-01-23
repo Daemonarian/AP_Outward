@@ -112,6 +112,7 @@ class OutwardWorld(World):
             LocationName.SPAWN_RUINED_HALBERD: lambda state: state.has(EventName.MAIN_QUEST_07_COMPLETE, self.player),
             LocationName.SPAWN_MYSTERIOUS_LONG_BLADE: lambda state: state.has(EventName.MAIN_QUEST_07_COMPLETE, self.player),
             LocationName.SPAWN_DEPOWERED_BLUDGEON: lambda state: state.has(EventName.MAIN_QUEST_07_COMPLETE, self.player),
+            LocationName.SPAWN_FOSSILIZED_GREATAXE: lambda state: state.has(EventName.MAIN_QUEST_07_COMPLETE, self.player),
         }
         for loc in self.multiworld.get_locations(self.player):
             if loc.name in access_rules:
