@@ -855,6 +855,12 @@ namespace OutwardArchipelago.Dialogue
                 Location = ArchipelagoLocationData.SpawnWarmAxe,
                 OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.DLC2Artifacts_Sandrose },
             });
+
+            Patches.Register(DialogueTreeID.Caldera_OpenSealedMaceBox, new InsertLocationCheckPatch
+            {
+                ReplaceNodeID = 2,
+                Location = ArchipelagoLocationData.SpawnSealedMace,
+            });
         }
 
         private readonly HashSet<ulong> seenDialogueTrees = new();
