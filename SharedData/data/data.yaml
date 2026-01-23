@@ -96,6 +96,7 @@ locations:
   commission_antique_plate_boots: Commission - Antique Plate Boots
   spawn_strange_rusted_sword: Spawn - Strange Rusted Sword
   spawn_dreamer_halberd: Friendly Immaculate Gift - Dreamer Halberd
+  spawn_ruined_halberd: Spawn - Ruined Halberd
 items:
   quest_license:
     name: Progressive Quest License
@@ -353,6 +354,12 @@ items:
     outward:
       type: item
       item_id: 2140120
+  ruined_halberd:
+    name: Ruined Halberd
+    classification: useful
+    outward:
+      type: item
+      item_id: 2150170
   silver_currency:
     name: 50x Silver
     classification: filler

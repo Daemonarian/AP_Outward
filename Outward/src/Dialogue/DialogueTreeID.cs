@@ -53,6 +53,7 @@ namespace OutwardArchipelago.Dialogue
         public static readonly DialogueTreeID RissaAberdeen_BC_MixedLegacies = FromName("Dialogue_RissaAberdeen_BC_MixedLegacies");
         public static readonly DialogueTreeID RissaAberdeen_BC_WhisperingBones = FromName("Dialogue_RissaAberdeen_BC_WhisperingBones");
         public static readonly DialogueTreeID RissaAberdeen_Neut_Prequest = FromName("Dialogue_RissaAberdeen_Neut_Prequest");
+        public static readonly DialogueTreeID RuinedHalberd = FromHash(0x7D368EF212BEB962);
         public static readonly DialogueTreeID Soroborean_ArcaneDean_Q1 = FromName("Dialogue_Soroborean_ArcaneDean_Q1");
         public static readonly DialogueTreeID Soroborean_ArcaneDean_Q3 = FromName("Dialogue_Soroborean_ArcaneDean_Q3");
         public static readonly DialogueTreeID Soroborean_ArcaneDean_Q4 = FromName("Dialogue_Soroborean_ArcaneDean_Q4");

@@ -794,6 +794,14 @@ namespace OutwardArchipelago.Dialogue
             Patches.Register(DialogueTreeID.HallowedMarsh_Immaculate_Real, dreamerHalberdPatch);
             Patches.Register(DialogueTreeID.Abrassar_Immaculate_Real, dreamerHalberdPatch);
             Patches.Register(DialogueTreeID.Emercar_Immaculate_Real, dreamerHalberdPatch);
+
+            Patches.Register(
+                DialogueTreeID.RuinedHalberd,
+                new InsertLocationCheckPatch
+                {
+                    ReplaceNodeID = 2,
+                    Location = ArchipelagoLocationData.SpawnRuinedHalberd,
+                });
         }
 
         private readonly HashSet<ulong> seenDialogueTrees = new();
