@@ -5,13 +5,18 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{6eb220a9-214d-4f4b-9943-358d490bf7ea}</ProjectGuid>
     <ProjectHome />
-    <StartupFile>setup.py</StartupFile>
-    <SearchPath />
-    <WorkingDirectory>.</WorkingDirectory>
+    <StartupFile>..\External\Archipelago\Generate.py</StartupFile>
+    <SearchPath>..\External\Archipelago</SearchPath>
+    <WorkingDirectory>..\External\Archipelago</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
     <LaunchProvider>Standard Python launcher</LaunchProvider>
     <InterpreterId>MSBuild|.venv|$(MSBuildProjectFullPath)</InterpreterId>
+    <IsWindowsApplication>False</IsWindowsApplication>
+    <EnableNativeCodeDebugging>False</EnableNativeCodeDebugging>
+    <TestFramework>pytest</TestFramework>
+    <UnitTestPattern>test*.py</UnitTestPattern>
+    <UnitTestRootDirectory>.</UnitTestRootDirectory>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)' == 'Debug'" />
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
@@ -44,5 +49,24 @@
       <Architecture>X64</Architecture>
     </Interpreter>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="src\outward\Outward Definitive Edition.yaml" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+  <Target Name="CoreCompile" />
+  <Target Name="CustomDevEnvironmentSetup" BeforeTargets="CoreCompile">
+    <Message Text="Setting up custom python environment..." Importance="high" />
+    <RunPythonCommand Target="$(ProjectDir)$(WorkingDirectory)ModuleUpdate.py" TargetType="script" Arguments="--yes" WorkingDirectory="$(WorkingDirectory)" ExecuteIn="none" />
+  </Target>
+  <Target Name="CustomRunEnvironmentSetup" AfterTargets="CoreCompile">
+    <Message Text="Setting up custom run environment..." Importance="high" />
+    <PropertyGroup>
+      <MyGameName>outward</MyGameName>
+      <LinkName>$(ProjectDir)$(WorkingDirectory)\worlds\$(MyGameName)</LinkName>
+      <LinkTarget>$(ProjectDir)src\$(MyGameName)</LinkTarget>
+    </PropertyGroup>
+    <Exec Command="cmd.exe /c mklink /J &quot;$(LinkName)&quot; &quot;$(LinkTarget)&quot;" Condition="!Exists('$(LinkName)')" />
+    <MakeDir Directories="$(WorkingDirectory)/Players" />
+    <Copy SourceFiles="src\outward\Outward Definitive Edition.yaml" DestinationFolder="$(WorkingDirectory)/Players" />
+  </Target>
 </Project>
