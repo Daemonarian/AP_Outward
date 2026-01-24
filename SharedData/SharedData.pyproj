@@ -18,6 +18,10 @@
   <PropertyGroup>
     <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
   </PropertyGroup>
+  <PropertyGroup>
+    <PythonVersion>3.12</PythonVersion>
+    <PythonCommand>py -$(PythonVersion)</PythonCommand>
+  </PropertyGroup>
   <ItemGroup>
     <Content Include="data\data.yaml" />
     <Content Include="requirements.txt" />
@@ -44,4 +48,11 @@
     </Interpreter>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
+  <Target Name="CoreCompile" />
+  <Target Name="CreateVenv" BeforeTargets="CoreCompile">
+    <Exec Command="$(PythonCommand) -m venv --upgrade-deps @(Interpreter, ' ')" Condition="!Exists('@(Interpreter)')" />
+  </Target>
+  <Target Name="SetupVenv" AfterTargets="CreateVenv" BeforeTargets="CoreCompile">
+    <RunPythonCommand Target="pip" TargetType="module" Arguments="install -r requirements.txt" ExecuteIn="none" />
+  </Target>
 </Project>

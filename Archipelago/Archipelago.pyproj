@@ -6,7 +6,8 @@
     <ProjectGuid>{6eb220a9-214d-4f4b-9943-358d490bf7ea}</ProjectGuid>
     <ProjectHome />
     <StartupFile>..\External\Archipelago\Generate.py</StartupFile>
-    <SearchPath>..\External\Archipelago</SearchPath>
+    <SearchPath>
+    </SearchPath>
     <WorkingDirectory>..\External\Archipelago</WorkingDirectory>
     <OutputPath>.</OutputPath>
     <ProjectTypeGuids>{888888a0-9f3d-457c-b088-3a5042f75d52}</ProjectTypeGuids>
@@ -22,6 +23,11 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Release'" />
   <PropertyGroup>
     <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PythonVersion>3.12</PythonVersion>
+    <PythonCommand>py -$(PythonVersion)</PythonCommand>
+    <CodeGenProjectDir>..\SharedData</CodeGenProjectDir>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="setup.py" />
@@ -52,13 +58,26 @@
   <ItemGroup>
     <Content Include="src\outward\Outward Definitive Edition.yaml" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SharedData\SharedData.pyproj">
+      <Name>SharedData</Name>
+      <Project>{a53e8a7a-8da2-46b0-ad6d-0a08ef0f364b}</Project>
+      <Private>True</Private>
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <Target Name="CoreCompile" />
-  <Target Name="CustomDevEnvironmentSetup" BeforeTargets="CoreCompile">
-    <Message Text="Setting up custom python environment..." Importance="high" />
-    <RunPythonCommand Target="$(ProjectDir)$(WorkingDirectory)ModuleUpdate.py" TargetType="script" Arguments="--yes" WorkingDirectory="$(WorkingDirectory)" ExecuteIn="none" />
+  <Target Name="CreateVenv" BeforeTargets="CoreCompile">
+    <Exec Command="$(PythonCommand) -m venv --upgrade-deps @(Interpreter, ' ')" Condition="!Exists('@(Interpreter)')" />
   </Target>
-  <Target Name="CustomRunEnvironmentSetup" AfterTargets="CoreCompile">
+  <Target Name="SetupVenv" AfterTargets="CreateVenv" BeforeTargets="CoreCompile">
+    <RunPythonCommand Target="$(ProjectDir)$(WorkingDirectory)\ModuleUpdate.py" TargetType="script" Arguments="--yes" WorkingDirectory="$(WorkingDirectory)" ExecuteIn="none" />
+  </Target>
+  <Target Name="GenerateCode" BeforeTargets="CoreCompile">
+    <Exec Command="&quot;$(CodeGenProjectDir)\.venv\Scripts\python.exe&quot; &quot;$(CodeGenProjectDir)\src\generate_archipelago_files.py&quot;" />
+  </Target>
+  <Target Name="SetupDebugEnvironment" AfterTargets="CoreCompile">
     <Message Text="Setting up custom run environment..." Importance="high" />
     <PropertyGroup>
       <MyGameName>outward</MyGameName>
