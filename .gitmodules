@@ -1,0 +1,3 @@
+[submodule "External/Archipelago"]
+	path = External/Archipelago
+	url = https://github.com/ArchipelagoMW/Archipelago.git
