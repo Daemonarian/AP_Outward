@@ -18,10 +18,10 @@
         <PackageReference Include="UnityEngine.Modules" Version="2020.3.26" />
     </ItemGroup>
 	<Target Name="GenerateBuildInfo" BeforeTargets="CoreCompile">
-		<ReadLinesFromFile File="../../VERSION">
+		<ReadLinesFromFile File="../VERSION">
 			<Output TaskParameter="Lines" PropertyName="Version" />
 		</ReadLinesFromFile>
-		<ReadLinesFromFile File="../../ARCHIPELAGO_VERSION">
+		<ReadLinesFromFile File="../ARCHIPELAGO_VERSION">
 			<Output TaskParameter="Lines" PropertyName="ArchipelagoVersion" />
 		</ReadLinesFromFile>
 		<PropertyGroup>
