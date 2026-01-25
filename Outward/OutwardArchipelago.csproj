@@ -20,11 +20,6 @@
         <PackageReference Include="Outward.GameLibs" Version="2022.5.18-r.0" />
         <PackageReference Include="UnityEngine.Modules" Version="2020.3.26" />
     </ItemGroup>
-    <ItemGroup>
-		<ProjectReference Include="..\SharedData\SharedData.pyproj">
-			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-		</ProjectReference>
-    </ItemGroup>
 	<Target Name="GenerateBuildInfo" BeforeTargets="CoreCompile">
 		<ReadLinesFromFile File="../VERSION">
 			<Output TaskParameter="Lines" PropertyName="Version" />
@@ -48,6 +43,12 @@
 		</ItemGroup>
 	</Target>
 	<Target Name="GenerateAPWorldBindings" BeforeTargets="CoreCompile">
-		<Exec Command="&quot;$(CodeGenProjectDir)\.venv\Scripts\python.exe&quot; &quot;$(CodeGenProjectDir)\src\generate_outward_files.py&quot;" />
+		<PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">
+			<CodeGenVenvPython>$(CodeGenProjectDir)\.venv\Scripts\python.exe</CodeGenVenvPython>
+		</PropertyGroup>
+		<PropertyGroup Condition="!$([MSBuild]::IsOSPlatform('Windows'))">
+			<CodeGenVenvPython>$(CodeGenProjectDir)/.venv/bin/python</CodeGenVenvPython>
+		</PropertyGroup>
+		<Exec Command="&quot;$(CodeGenVenvPython)&quot; &quot;$(CodeGenProjectDir)/src/generate_outward_files.py&quot;" />
 	</Target>
 </Project>
