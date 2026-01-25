@@ -1,7 +1,5 @@
 set shell := ["pwsh", "-Command"]
 
-python_cmd := "python3.12"
-
 venv_dir := ".venv"
 venv_python := venv_dir + "/Scripts/python.exe"
 
@@ -13,12 +11,10 @@ clean:
 
 clean-setup:
     @just clean
-    Remove-Item -Path "{{venv_dir}}" -Recurse -Force
+    if (Test-Path -Path "{{venv_dir}}" -PathType Container) { Remove-Item -Path "{{venv_dir}}" -Recurse -Force }
 
 setup:
-    if (-not (Test-Path -Path "{{venv_dir}}")) { & "{{python_cmd}}" -m venv --upgrade-deps "{{venv_dir}}" }
-    & "{{venv_python}}" -m pip install --upgrade pip
-    & "{{venv_python}}" -m pip install -r requirements.txt
+    & "py" "setup.py"
 
 build:
     @just setup

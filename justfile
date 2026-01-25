@@ -1,9 +1,9 @@
 set shell := ["pwsh", "-Command"]
 set dotenv-load := true
 
-mod shared "SharedData/justfile"
-mod archipelago "Archipelago/justfile"
-mod outward "Outward/justfile"
+mod codegen "SharedData/justfile"
+mod apworld "Archipelago/justfile"
+mod mod "Outward/justfile"
 
 build_dir := "build"
 release_dir := "release"
@@ -17,40 +17,40 @@ nuke:
 clean:
     if (Test-Path -Path "{{build_dir}}" -PathType Container) { Remove-Item -Path "{{release_dir}}" -Recurse -Force }
     if (Test-Path -Path "{{build_dir}}" -PathType Container) { Remove-Item -Path "{{build_dir}}" -Recurse -Force }
-    @just outward::clean
-    @just archipelago::clean
-    @just shared::clean
+    @just mod::clean
+    @just apworld::clean
+    @just codegen::clean
 
 setup:
-    @just shared::build
-    @just archipelago::setup
+    @just codegen::build
+    @just apworld::setup
 
 build:
-    @just shared::build
-    @just archipelago::build
-    @just outward::build
+    @just codegen::build
+    @just apworld::build
+    @just mod::build
 
 test:
-    @just shared::test
-    @just archipelago::test
-    @just outward::test
+    @just codegen::test
+    @just apworld::test
+    @just mod::test
 
 stage:
-    @just shared::build
-    @just archipelago::stage
-    @just outward::stage
+    @just codegen::build
+    @just apworld::stage
+    @just mod::stage
 
 release:
-    @just shared::build
-    @just archipelago::release
-    @just outward::release
+    @just codegen::build
+    @just apworld::release
+    @just mod::release
 
 install:
-    @just shared::build
-    @just archipelago::install
-    @just outward::install
+    @just codegen::build
+    @just apworld::install
+    @just mod::install
 
 deploy:
-    @just shared::build
-    @just archipelago::deploy
-    @just outward::install
+    @just codegen::build
+    @just apworld::deploy
+    @just mod::install

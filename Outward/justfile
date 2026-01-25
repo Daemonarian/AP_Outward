@@ -26,13 +26,13 @@ clean:
     if (Test-Path -Path "{{build_dir}}" -PathType Container) { Remove-Item -Path "{{build_dir}}" -Recurse -Force }
 
 build:
-    Set-Location -Path "{{src_dir}}" ; & "{{dotnet_cmd}}" build
+    & "{{dotnet_cmd}}" build
 
 build-release:
-    Set-Location -Path "{{src_dir}}" ; & "{{dotnet_cmd}}" build --configuration Release
+    & "{{dotnet_cmd}}" build --configuration Release
 
 test:
-    Set-Location -Path "{{src_dir}}" ; & "{{dotnet_cmd}}" test
+    & "{{dotnet_cmd}}" test
 
 stage:
     @just build-release

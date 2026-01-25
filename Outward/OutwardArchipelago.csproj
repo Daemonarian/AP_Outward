@@ -8,7 +8,7 @@
         <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
         <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
         <DebugType>None</DebugType>
-        <OutputPath>..\build\</OutputPath>
+        <OutputPath>build\</OutputPath>
     </PropertyGroup>
 	<PropertyGroup>
 		<CodeGenProjectDir>..\SharedData</CodeGenProjectDir>
