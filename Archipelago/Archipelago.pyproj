@@ -68,24 +68,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <Target Name="CoreCompile" />
-  <Target Name="CreateVenv" BeforeTargets="CoreCompile">
-    <Exec Command="$(PythonCommand) -m venv --upgrade-deps @(Interpreter, ' ')" Condition="!Exists('@(Interpreter)')" />
-  </Target>
-  <Target Name="SetupVenv" AfterTargets="CreateVenv" BeforeTargets="CoreCompile">
-    <RunPythonCommand Target="$(ProjectDir)$(WorkingDirectory)\ModuleUpdate.py" TargetType="script" Arguments="--yes" WorkingDirectory="$(WorkingDirectory)" ExecuteIn="none" />
-  </Target>
-  <Target Name="GenerateCode" BeforeTargets="CoreCompile">
-    <Exec Command="&quot;$(CodeGenProjectDir)\.venv\Scripts\python.exe&quot; &quot;$(CodeGenProjectDir)\src\generate_archipelago_files.py&quot;" />
-  </Target>
-  <Target Name="SetupDebugEnvironment" AfterTargets="CoreCompile">
-    <Message Text="Setting up custom run environment..." Importance="high" />
-    <PropertyGroup>
-      <MyGameName>outward</MyGameName>
-      <LinkName>$(ProjectDir)$(WorkingDirectory)\worlds\$(MyGameName)</LinkName>
-      <LinkTarget>$(ProjectDir)src\$(MyGameName)</LinkTarget>
-    </PropertyGroup>
-    <Exec Command="cmd.exe /c mklink /J &quot;$(LinkName)&quot; &quot;$(LinkTarget)&quot;" Condition="!Exists('$(LinkName)')" />
-    <MakeDir Directories="$(WorkingDirectory)/Players" />
-    <Copy SourceFiles="src\outward\Outward Definitive Edition.yaml" DestinationFolder="$(WorkingDirectory)/Players" />
+  <Target Name="SetupEnvironment" BeforeTargets="CoreCompile">
+    <RunPythonCommand Target="setup.py" TargetType="script" ExecuteIn="none" />
   </Target>
 </Project>

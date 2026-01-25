@@ -27,6 +27,7 @@
     <Content Include="requirements.txt" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="setup.py" />
     <Compile Include="src\common.py" />
     <Compile Include="src\generate_archipelago_files.py" />
     <Compile Include="src\generate_outward_files.py" />
@@ -39,8 +40,8 @@
   <ItemGroup>
     <Interpreter Include=".venv\">
       <Id>.venv</Id>
-      <Version>3.12</Version>
-      <Description>.venv (Python 3.12.10)</Description>
+      <Version>3.13</Version>
+      <Description>.venv (Python 3.13.11)</Description>
       <InterpreterPath>Scripts\python.exe</InterpreterPath>
       <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
       <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
@@ -49,10 +50,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <Target Name="CoreCompile" />
-  <Target Name="CreateVenv" BeforeTargets="CoreCompile">
-    <Exec Command="$(PythonCommand) -m venv --upgrade-deps @(Interpreter, ' ')" Condition="!Exists('@(Interpreter)')" />
-  </Target>
-  <Target Name="SetupVenv" AfterTargets="CreateVenv" BeforeTargets="CoreCompile">
-    <RunPythonCommand Target="pip" TargetType="module" Arguments="install -r requirements.txt" ExecuteIn="none" />
+  <Target Name="SetupEnvironment" BeforeTargets="CoreCompile">
+    <RunPythonCommand Target="setup.py" TargetType="script" ExecuteIn="none" />
   </Target>
 </Project>
