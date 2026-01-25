@@ -12,8 +12,8 @@
         <StagingDir>$(Project)bin\staging</StagingDir>
         <OutputDir>build</OutputDir>
     </PropertyGroup>
-    <Target Name="PackagePythonFiles" AfterTargets="Build">
-        <Message Text="Packaging Python files..." Importance="high" />
+    <Target Name="BuildPackage" AfterTargets="Build">
+        <Message Text="Building $(OutputZipName)..." Importance="high" />
         <RemoveDir Directories="$(StagingDir)" />
         <MakeDir Directories="$(StagingDir)\$(APWorldName)" />
         <ItemGroup>
@@ -29,12 +29,11 @@
         <ZipDirectory
             SourceDirectory="$(StagingDir)" 
             DestinationFile="$(OutputDir)\$(OutputZipName)" />
-        <Message Text="SUCCESS: Created $(OutputZipName)" Importance="High" />
     </Target>
     <Target Name="ExportApworldIds" AfterTargets="Build">
-        <Message Text="Exporting APWorld IDs" Importance="high" />
+        <Message Text="Exporting $(OutputZipName) IDs..." Importance="high" />
         <PropertyGroup>
-            <APWorldPython Condition="$([MSBuild]::IsOSPlatform('Windows'))">$(APWorldProjectDir)\.venv\Scripts\python.exe</APWorldPython>
+            <APWorldPython>$(APWorldProjectDir)\.venv\Scripts\python.exe</APWorldPython>
             <APWorldPython Condition="!$([MSBuild]::IsOSPlatform('Windows'))">$(APWorldProjectDir)/.venv/bin/python</APWorldPython>
         </PropertyGroup>
         <Exec Command="&quot;$(APWorldPython)&quot; &quot;$(APWorldProjectDir)/src/export_ids.py&quot; --output &quot;$(OutputDir)/apworld_ids.json&quot;" />
