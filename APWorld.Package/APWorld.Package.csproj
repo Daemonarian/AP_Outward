@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <ProjectGuid>{C30EAD44-EAAB-4EBB-8F56-EB594AC5E42A}</ProjectGuid>
+    <TargetFramework>net8.0</TargetFramework>
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <CopyBuildOutputToOutputDirectory>false</CopyBuildOutputToOutputDirectory>
+    <PythonSourceDir>..\Archipelago\src\outward</PythonSourceDir>
+    <APWorldName>outward</APWorldName>
+    <OutputZipName>$(APWorldName).apworld</OutputZipName>
+    <StagingDir>$(Project)bin\staging</StagingDir>
+    <OutputDirectory>build</OutputDirectory>
+  </PropertyGroup>
+  <Target Name="PackagePythonFiles" AfterTargets="Build">
+    <Message Text="Packaging Python files..." Importance="High" />
+    <RemoveDir Directories="$(StagingDir)" />
+    <MakeDir Directories="$(StagingDir)\$(APWorldName)" />
+    <ItemGroup>
+      <PythonFiles
+        Include="$(PythonSourceDir)\**\*.*" 
+        Exclude="$(PythonSourceDir)\**\__pycache__\**;$(PythonSourceDir)\**\.venv\**;$(PythonSourceDir)\**\test\**" />
+    </ItemGroup>
+    <Copy
+      SourceFiles="@(PythonFiles)" 
+      DestinationFiles="@(PythonFiles->'$(StagingDir)\$(APWorldName)\%(RecursiveDir)%(Filename)%(Extension)')" />
+    <Delete Files="$(OutputDirectory)\$(OutputZipName)" />
+    <MakeDir Directories="$(OutputDirectory)" />
+    <ZipDirectory
+      SourceDirectory="$(StagingDir)" 
+      DestinationFile="$(OutputDirectory)\$(OutputZipName)" />
+    <Message Text="SUCCESS: Created $(OutputZipName)" Importance="High" />
+  </Target>
+</Project>

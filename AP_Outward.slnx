@@ -1,4 +1,5 @@
 <Solution>
+  <Project Path="APWorld.Package/APWorld.Package.csproj" Id="c30ead44-eaab-4ebb-8f56-eb594ac5e42a" />
   <Project Path="Archipelago/Archipelago.pyproj" Type="888888a0-9f3d-457c-b088-3a5042f75d52" Id="6eb220a9-214d-4f4b-9943-358d490bf7ea">
     <Build Project="false" />
   </Project>
