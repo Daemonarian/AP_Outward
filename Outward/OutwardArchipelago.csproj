@@ -9,9 +9,8 @@
         <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
         <DebugType>None</DebugType>
         <OutputPath>build\</OutputPath>
-    </PropertyGroup>
-	<PropertyGroup>
 		<CodeGenProjectDir>..\SharedData</CodeGenProjectDir>
+		<NewCodeGenProjectDir>..\OutwardArchipelago.CodeGen</NewCodeGenProjectDir>
 	</PropertyGroup>
     <ItemGroup>
         <PackageReference Include="Archipelago.MultiClient.Net" Version="6.7.0" />
@@ -19,6 +18,12 @@
         <PackageReference Include="HarmonyX" Version="2.5.7" />
         <PackageReference Include="Outward.GameLibs" Version="2022.5.18-r.0" />
         <PackageReference Include="UnityEngine.Modules" Version="2020.3.26" />
+    </ItemGroup>
+    <ItemGroup>
+		<ProjectReference Include="$(NewCodeGenProjectDir)\OutwardArchipelago.CodeGen.csproj">
+			<ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+			<SkipGetTargetFrameworkProperties>true</SkipGetTargetFrameworkProperties>
+		</ProjectReference>
     </ItemGroup>
 	<Target Name="GenerateBuildInfo" BeforeTargets="CoreCompile">
 		<ReadLinesFromFile File="../VERSION">
@@ -41,6 +46,14 @@
 		<ItemGroup>
 			<Compile Include="$(IntermediateOutputPath)BuildInfo.cs" />
 		</ItemGroup>
+	</Target>
+	<Target Name="GenerateAPWorldIDs" BeforeTargets="CoreCompile">
+		<PropertyGroup>
+			<CodeGenExe>$(NewCodeGenProjectDir)\bin\$(Configuration)\net10.0\OutwardArchipelago.CodeGen.exe</CodeGenExe>
+			<CodeGenOutput>src\Archipelago\Data\APWorld.gen.cs</CodeGenOutput>
+		</PropertyGroup>
+		<Message Text="Generating &quot;$(CodeGenOutput)&quot;" Importance="high" />
+		<Exec Command="&quot;$(CodeGenExe)&quot; --output &quot;$(CodeGenOutput)&quot; --namespace &quot;OutwardArchipelago.Archipelago.Data&quot; --item-class &quot;APWorldItem&quot; --location-class &quot;APWorldLocation&quot;" />
 	</Target>
 	<Target Name="GenerateAPWorldBindings" BeforeTargets="CoreCompile">
 		<PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">

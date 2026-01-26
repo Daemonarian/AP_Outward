@@ -37,6 +37,9 @@ namespace OutwardArchipelago.CodeGen
 
             var sb = new StringBuilder();
 
+            sb.AppendLine("using System.Collections.Generic;");
+            sb.AppendLine("");
+
             if (!string.IsNullOrEmpty(opts.Namespace))
             {
                 sb.AppendLine($"namespace {opts.Namespace}");
@@ -52,7 +55,7 @@ namespace OutwardArchipelago.CodeGen
             }
 
             sb.AppendLine("");
-            sb.AppendLine($"        {opts.AccessModifier} static readonly IReadOnlyCollection<long> All = new[]");
+            sb.AppendLine($"        {opts.AccessModifier} static readonly IReadOnlyList<long> All = new[]");
             sb.AppendLine("        {");
 
             foreach (var key in apworldIds.Items.Keys)
@@ -72,7 +75,7 @@ namespace OutwardArchipelago.CodeGen
             }
 
             sb.AppendLine("");
-            sb.AppendLine($"        {opts.AccessModifier} static readonly IReadOnlyCollection<long> All = new[]");
+            sb.AppendLine($"        {opts.AccessModifier} static readonly IReadOnlyList<long> All = new[]");
             sb.AppendLine("        {");
 
             foreach (var key in apworldIds.Locations.Keys)
