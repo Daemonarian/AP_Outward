@@ -4,17 +4,17 @@
         <TargetFramework>net10.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <APWorldPackageProjectDir>..\APWorld.Package</APWorldPackageProjectDir>
+		<APWorldProjectDir>..\Archipelago</APWorldProjectDir>
     </PropertyGroup>
     <ItemGroup>
       <PackageReference Include="CommandLineParser" Version="2.9.1" />
     </ItemGroup>
-    <ItemGroup>
-        <ProjectReference Include="$(APWorldPackageProjectDir)\APWorld.Package.csproj">
-            <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-        </ProjectReference>
-    </ItemGroup>
-    <Target Name="CopySpecialFile" AfterTargets="Build">
-        <Copy SourceFiles="$(APWorldPackageProjectDir)\build\apworld_ids.json" DestinationFolder="$(OutputPath)" />
-    </Target>
+	<Target Name="ExportApworldIds" AfterTargets="Build">
+		<Message Text="Exporting outward APWorld IDs..." Importance="high" />
+		<PropertyGroup>
+			<APWorldPython>$(APWorldProjectDir)\.venv\Scripts\python.exe</APWorldPython>
+			<APWorldPython Condition="!$([MSBuild]::IsOSPlatform('Windows'))">$(APWorldProjectDir)/.venv/bin/python</APWorldPython>
+		</PropertyGroup>
+		<Exec Command="&quot;$(APWorldPython)&quot; &quot;$(APWorldProjectDir)/export_ids.py&quot; --output &quot;$(OutputPath)/apworld_ids.json&quot;" />
+	</Target>
 </Project>

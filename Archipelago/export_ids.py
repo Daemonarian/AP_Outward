@@ -1,29 +1,29 @@
 """
 Exports all the public ids for items in locations used in the apworld along with
-the code identifiers used.
+the code identifiers (variable names).
 """
 
 import json
-import sys
-from pathlib import Path
+from typing import TextIO
 
-archipelago_path = str(Path(__file__).parent / ".." / ".." / "External" / "Archipelago")
-if archipelago_path not in sys.path:
-    sys.path.insert(0, archipelago_path)
+from custom_worlds.outward import OutwardWorld
+from custom_worlds.outward.item_data import ItemName
+from custom_worlds.outward.location_data import LocationName
 
-from outward import OutwardWorld
-from outward.item_data import ItemName
-from outward.location_data import LocationName
+def export_ids(fp: TextIO) -> None:
+    """
+    Exports all the public ids for items and locations used in the APWorld along
+    with the code identifiers (variable names).
+    """
 
-def export_ids(output_path):
-    item_ids = dict()
+    item_ids: dict[str, int] = dict()
     for key, name in vars(ItemName).items():
         if key.startswith("_") or not isinstance(name, str) or name not in OutwardWorld.item_name_to_id:
             continue
         code = OutwardWorld.item_name_to_id[name]
         item_ids[key] = code
     
-    location_ids = dict()
+    location_ids: dict[str, int] = dict()
     for key, name in vars(LocationName).items():
         if key.startswith("_") or not isinstance(name, str) or name not in OutwardWorld.location_name_to_id:
             continue
@@ -32,15 +32,16 @@ def export_ids(output_path):
 
     all_ids = {"items": item_ids, "locations": location_ids}
 
-    with open(output_path, "w") as f:
-        json.dump(all_ids, f)
+    return json.dump(all_ids, fp)
 
 if __name__ == "__main__":
     import argparse
+    from utils_export import _open
 
     parser = argparse.ArgumentParser(description="Export the public IDs in this APWorld along with the internal code identifiers used for them.")
-    parser.add_argument("-o", "--output", type=Path, required=True, help="The path to the file to write the json output")
+    parser.add_argument("-o", "--output", type=str, required=False, default="-", help="The path to the file to write the json output")
     
     args = parser.parse_args()
 
-    export_ids(args.output)
+    with _open(args.output) as fp:
+        export_ids(fp)

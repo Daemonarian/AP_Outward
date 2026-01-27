@@ -30,12 +30,4 @@
             SourceDirectory="$(StagingDir)" 
             DestinationFile="$(OutputDir)\$(OutputZipName)" />
     </Target>
-    <Target Name="ExportApworldIds" AfterTargets="Build">
-        <Message Text="Exporting $(OutputZipName) IDs..." Importance="high" />
-        <PropertyGroup>
-            <APWorldPython>$(APWorldProjectDir)\.venv\Scripts\python.exe</APWorldPython>
-            <APWorldPython Condition="!$([MSBuild]::IsOSPlatform('Windows'))">$(APWorldProjectDir)/.venv/bin/python</APWorldPython>
-        </PropertyGroup>
-        <Exec Command="&quot;$(APWorldPython)&quot; &quot;$(APWorldProjectDir)/src/export_ids.py&quot; --output &quot;$(OutputDir)/apworld_ids.json&quot;" />
-    </Target>
 </Project>

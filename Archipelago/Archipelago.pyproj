@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{6eb220a9-214d-4f4b-9943-358d490bf7ea}</ProjectGuid>
     <ProjectHome />
-    <StartupFile>..\External\Archipelago\Generate.py</StartupFile>
+    <StartupFile>export_archipelago_version.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>..\External\Archipelago</WorkingDirectory>
@@ -30,20 +30,22 @@
     <CodeGenProjectDir>..\SharedData</CodeGenProjectDir>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="export_archipelago_version.py" />
     <Compile Include="setup.py" />
-    <Compile Include="src\export_ids.py" />
-    <Compile Include="src\outward\common.py" />
-    <Compile Include="src\outward\items.py" />
-    <Compile Include="src\outward\locations.py" />
-    <Compile Include="src\outward\options.py" />
-    <Compile Include="src\outward\test\test_basic.py" />
-    <Compile Include="src\outward\test\__init__.py" />
-    <Compile Include="src\outward\__init__.py" />
+    <Compile Include="export_ids.py" />
+    <Compile Include="custom_worlds\outward\common.py" />
+    <Compile Include="custom_worlds\outward\items.py" />
+    <Compile Include="custom_worlds\outward\locations.py" />
+    <Compile Include="custom_worlds\outward\options.py" />
+    <Compile Include="custom_worlds\outward\test\test_basic.py" />
+    <Compile Include="custom_worlds\outward\test\__init__.py" />
+    <Compile Include="custom_worlds\outward\__init__.py" />
+    <Compile Include="utils_export.py" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="src\" />
-    <Folder Include="src\outward" />
-    <Folder Include="src\outward\test" />
+    <Folder Include="custom_worlds\" />
+    <Folder Include="custom_worlds\outward\" />
+    <Folder Include="custom_worlds\outward\test\" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include=".venv\">
@@ -57,7 +59,7 @@
     </Interpreter>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="src\outward\Outward Definitive Edition.yaml" />
+    <Content Include="custom_worlds\outward\Outward Definitive Edition.yaml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SharedData\SharedData.pyproj">
