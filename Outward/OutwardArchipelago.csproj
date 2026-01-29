@@ -29,15 +29,11 @@
 		<ReadLinesFromFile File="../VERSION">
 			<Output TaskParameter="Lines" PropertyName="Version" />
 		</ReadLinesFromFile>
-		<ReadLinesFromFile File="../ARCHIPELAGO_VERSION">
-			<Output TaskParameter="Lines" PropertyName="ArchipelagoVersion" />
-		</ReadLinesFromFile>
 		<PropertyGroup>
 			<GeneratedCode>
 				namespace OutwardArchipelago %7B
 					public static class BuildInfo %7B
 						public const string ModVersion = "$(Version)"%3B
-						public const string ArchipelagoVersion = "$(ArchipelagoVersion)"%3B
 					%7D
 				%7D
 			</GeneratedCode>
@@ -50,7 +46,7 @@
 	<Target Name="GenerateAPWorldIDs" BeforeTargets="CoreCompile">
 		<PropertyGroup>
 			<CodeGenExe>$(NewCodeGenProjectDir)\bin\$(Configuration)\net10.0\OutwardArchipelago.CodeGen.exe</CodeGenExe>
-			<CodeGenOutput>src\Archipelago\Data\APWorld.gen.cs</CodeGenOutput>
+			<CodeGenOutput>src\Archipelago\APWorld.gen.cs</CodeGenOutput>
 		</PropertyGroup>
 		<Message Text="Generating &quot;$(CodeGenOutput)&quot;" Importance="high" />
 		<Exec Command="&quot;$(CodeGenExe)&quot; --output &quot;$(CodeGenOutput)&quot; --namespace &quot;OutwardArchipelago.Archipelago.Data&quot; --info-class &quot;APWorldInfo&quot; --item-class &quot;APWorldItem&quot; --location-class &quot;APWorldLocation&quot;" />

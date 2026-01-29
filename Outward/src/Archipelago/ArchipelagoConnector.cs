@@ -15,7 +15,7 @@ namespace OutwardArchipelago.Archipelago
     internal class ArchipelagoConnector : MonoBehaviour
     {
         public const string ArchipelagoGame = "Outward: Definitive Edition";
-        public const string ArchipelagoVersion = BuildInfo.ArchipelagoVersion;
+        public const string ArchipelagoVersion = APWorldInfo.ArchipelagoVersion;
 
         public static ArchipelagoConnector Instance { get; private set; }
 
