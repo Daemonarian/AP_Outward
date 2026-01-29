@@ -9,11 +9,15 @@
         <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
         <DebugType>None</DebugType>
         <CodeGenProjectDir>..\OutwardArchipelago.CodeGen</CodeGenProjectDir>
+		<PackageStagingDir>bin\staging</PackageStagingDir>
+		<PackageOutputDir>build</PackageOutputDir>
+		<PackageName>OutwardArchipelago</PackageName>
+		<PackageAssetsDir>assets</PackageAssetsDir>
     </PropertyGroup>
     <PropertyGroup>
         <OutwardHomeDir>C:\Program Files (x86)\Steam\steamapps\common\Outward\Outward_Defed</OutwardHomeDir>
         <R2ModManProfileDir>C:\Users\User\AppData\Roaming\r2modmanPlus-local\OutwardDe\profiles\AP_Outward</R2ModManProfileDir>
-        <ModAssetsDir>assets\plugins</ModAssetsDir>
+        <ModAssetsDir>$(PackageAssetsDir)\plugins</ModAssetsDir>
         <ModFolderName>daemonarian-OutwardArchipelago</ModFolderName>
         <CopyModOnBuild>false</CopyModOnBuild>
     </PropertyGroup>
@@ -57,6 +61,33 @@
         <Message Text="Generating &quot;$(CodeGenOutput)&quot;" Importance="high" />
         <Exec Command="&quot;$(CodeGenExe)&quot; --output &quot;$(CodeGenOutput)&quot; --namespace &quot;OutwardArchipelago.Archipelago.Data&quot; --info-class &quot;APWorldInfo&quot; --item-class &quot;APWorldItem&quot; --location-class &quot;APWorldLocation&quot;" />
     </Target>
+	<Target Name="BuildPackage" AfterTargets="Build">
+		<ReadLinesFromFile File="../VERSION">
+			<Output TaskParameter="Lines" PropertyName="Version" />
+		</ReadLinesFromFile>
+		<PropertyGroup>
+			<PackageFileName>$(PackageName).zip</PackageFileName>
+			<PackageFilePath>$(PackageOutputDir)\$(PackageFileName)</PackageFilePath>
+			<PackageManifestFile>$(PackageAssetsDir)\manifest.json</PackageManifestFile>
+		</PropertyGroup>
+		<ItemGroup>
+			<PackageAssetFiles Include="$(PackageAssetsDir)\**\*.*" Exclude="$(PackageManifestFile)" />
+			<PackageDllFiles Include="$(OutputPath)OutwardArchipelago.dll" />
+			<PackageDllFiles Include="$(OutputPath)Archipelago.MultiClient.Net.dll" />
+			<PackageDllFiles Include="$(OutputPath)Newtonsoft.Json.dll" />
+		</ItemGroup>
+		<RemoveDir Directories="$(PackageStagingDir)" />
+		<MakeDir Directories="$(PackageStagingDir)" />
+		<Copy SourceFiles="@(PackageAssetFiles)" DestinationFiles="@(PackageAssetFiles->'$(PackageStagingDir)\%(RecursiveDir)%(Filename)%(Extension)')" />
+		<Copy SourceFiles="@(PackageDllFiles)" DestinationFolder="$(PackageStagingDir)\plugins" />
+		<PropertyGroup>
+			<PackageManifestContent>$([System.IO.File]::ReadAllText('$(PackageManifestFile)'))</PackageManifestContent>
+			<NewPackageManifestContent>$(PackageManifestContent.Replace('{{MOD_VERSION}}', '$(Version)'))</NewPackageManifestContent>
+		</PropertyGroup>
+		<WriteLinesToFile File="$(PackageStagingDir)\manifest.json" Lines="$(NewPackageManifestContent)" Overwrite="true" />
+		<Delete Files="$(PackageFilePath)" />
+		<ZipDirectory SourceDirectory="$(PackageStagingDir)" DestinationFile="$(PackageFilePath)" />
+	</Target>
     <Target Name="InstallModLocally" AfterTargets="Build" Condition="$(CopyModOnBuild)">
         <PropertyGroup>
             <ModDir>$(R2ModManProfileDir)\BepInEx\plugins\$(ModFolderName)</ModDir>
