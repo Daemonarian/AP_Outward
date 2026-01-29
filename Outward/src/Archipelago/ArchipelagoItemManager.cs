@@ -1,9 +1,7 @@
 using System;
 using System.Collections.Generic;
-using OutwardArchipelago.Archipelago;
-using OutwardArchipelago.Archipelago.Data;
 
-namespace OutwardArchipelago.src.Archipelago
+namespace OutwardArchipelago.Archipelago
 {
     internal class ArchipelagoItemManager
     {

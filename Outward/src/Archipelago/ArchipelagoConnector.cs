@@ -7,8 +7,6 @@ using Archipelago.MultiClient.Net;
 using Archipelago.MultiClient.Net.Enums;
 using Archipelago.MultiClient.Net.Helpers;
 using Archipelago.MultiClient.Net.MessageLog.Messages;
-using OutwardArchipelago.Archipelago.Data;
-using OutwardArchipelago.src.Archipelago;
 using UnityEngine;
 
 namespace OutwardArchipelago.Archipelago

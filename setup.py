@@ -11,5 +11,4 @@ import subprocess
 
 here = Path(__file__).parent
 
-subprocess.run([sys.executable, here / "SharedData" / "setup.py"])
-subprocess.run([sys.executable, here / "Archipelago" / "setup.py"])
+subprocess.run([sys.executable, here / "APWorld" / "setup.py"])

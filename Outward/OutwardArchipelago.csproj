@@ -59,7 +59,7 @@
             <CodeGenOutput>src\Archipelago\APWorld.gen.cs</CodeGenOutput>
         </PropertyGroup>
         <Message Text="Generating &quot;$(CodeGenOutput)&quot;" Importance="high" />
-        <Exec Command="&quot;$(CodeGenExe)&quot; --output &quot;$(CodeGenOutput)&quot; --namespace &quot;OutwardArchipelago.Archipelago.Data&quot; --info-class &quot;APWorldInfo&quot; --item-class &quot;APWorldItem&quot; --location-class &quot;APWorldLocation&quot;" />
+        <Exec Command="&quot;$(CodeGenExe)&quot; --output &quot;$(CodeGenOutput)&quot; --namespace &quot;OutwardArchipelago.Archipelago&quot; --info-class &quot;APWorldInfo&quot; --item-class &quot;APWorldItem&quot; --location-class &quot;APWorldLocation&quot;" />
     </Target>
 	<Target Name="BuildPackage" AfterTargets="Build">
 		<ReadLinesFromFile File="../VERSION">
@@ -86,6 +86,7 @@
 		</PropertyGroup>
 		<WriteLinesToFile File="$(PackageStagingDir)\manifest.json" Lines="$(NewPackageManifestContent)" Overwrite="true" />
 		<Delete Files="$(PackageFilePath)" />
+		<MakeDir Directories="$(PackageOutputDir)" />
 		<ZipDirectory SourceDirectory="$(PackageStagingDir)" DestinationFile="$(PackageFilePath)" />
 	</Target>
     <Target Name="InstallModLocally" AfterTargets="Build" Condition="$(CopyModOnBuild)">

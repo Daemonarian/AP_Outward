@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using NodeCanvas.DialogueTrees;
 using NodeCanvas.Framework;
-using OutwardArchipelago.Archipelago.Data;
+using OutwardArchipelago.Archipelago;
 using OutwardArchipelago.Dialogue.Builders.Actions;
 using OutwardArchipelago.Dialogue.Builders.Nodes;
 using OutwardArchipelago.Dialogue.Patches;

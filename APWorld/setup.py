@@ -30,30 +30,15 @@ archipelago_game_short_name = "outward"
 project_dir = Path(__file__).parent
 solution_dir = project_dir / ".."
 
-apworld_codegen_project_dir = solution_dir / "SharedData"
-apworld_codegen_project_setup_file = apworld_codegen_project_dir / "setup.py"
-apworld_codegen_generate_file = apworld_codegen_project_dir / "src" / "generate_archipelago_files.py"
-
 external_archipelago_project_dir = solution_dir / "External" / "Archipelago"
 archipelago_module_update_file = external_archipelago_project_dir / "ModuleUpdate.py"
 archipelago_game_world_dir = external_archipelago_project_dir / "worlds" / archipelago_game_short_name
 
 source_game_world_dir = project_dir / "src" / "outward"
 
-def get_venv_python(venv_dir):
-    """
-    Gets the path the venv's python appropriate for the current platform.
-    """
-    return venv_dir / "Scripts" / "python.exe" if sys.platform == "win32" else venv_dir / "bin" / "python"
-
 venv_dir = project_dir / ".venv"
-venv_python = get_venv_python(venv_dir)
+venv_python = venv_dir / "Scripts" / "python.exe" if sys.platform == "win32" else venv_dir / "bin" / "python"
 my_path_configuration_file = venv_dir / "lib" / "site-packages" / "archipelago.pth"
-
-apworld_codegen_venv_dir = apworld_codegen_project_dir / ".venv"
-apworld_codegen_venv_python = get_venv_python(apworld_codegen_venv_dir)
-
-subprocess.run([sys.executable, apworld_codegen_project_setup_file], check=True)
 
 if not venv_dir.exists():
     subprocess.run([sys.executable, "-m", "venv", "--upgrade-deps", venv_dir], check=True)
@@ -63,5 +48,3 @@ subprocess.run([venv_python, archipelago_module_update_file, "--yes"], check=Tru
 search_paths = [external_archipelago_project_dir]
 my_path_configuration_file_text = "\n".join(f"{p.resolve()}" for p in search_paths)
 my_path_configuration_file.write_text(my_path_configuration_file_text)
-
-subprocess.run([apworld_codegen_venv_python, apworld_codegen_generate_file])

@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using HarmonyLib;
 using OutwardArchipelago.Archipelago;
-using OutwardArchipelago.Archipelago.Data;
 
 namespace OutwardArchipelago
 {
