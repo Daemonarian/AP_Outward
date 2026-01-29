@@ -5,7 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{6eb220a9-214d-4f4b-9943-358d490bf7ea}</ProjectGuid>
     <ProjectHome />
-    <StartupFile>export_archipelago_version.py</StartupFile>
+    <StartupFile>scripts\export\archipelago_version.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>..\External\Archipelago</WorkingDirectory>
@@ -30,22 +30,25 @@
     <CodeGenProjectDir>..\SharedData</CodeGenProjectDir>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="export_archipelago_version.py" />
+    <Compile Include="outward\templates.py" />
+    <Compile Include="scripts\export\archipelago_version.py" />
+    <Compile Include="outward\events.py" />
     <Compile Include="setup.py" />
-    <Compile Include="export_ids.py" />
-    <Compile Include="custom_worlds\outward\common.py" />
-    <Compile Include="custom_worlds\outward\items.py" />
-    <Compile Include="custom_worlds\outward\locations.py" />
-    <Compile Include="custom_worlds\outward\options.py" />
-    <Compile Include="custom_worlds\outward\test\test_basic.py" />
-    <Compile Include="custom_worlds\outward\test\__init__.py" />
-    <Compile Include="custom_worlds\outward\__init__.py" />
-    <Compile Include="utils_export.py" />
+    <Compile Include="scripts\export\ids.py" />
+    <Compile Include="outward\common.py" />
+    <Compile Include="outward\items.py" />
+    <Compile Include="outward\locations.py" />
+    <Compile Include="outward\options.py" />
+    <Compile Include="outward\test\test_basic.py" />
+    <Compile Include="outward\test\__init__.py" />
+    <Compile Include="outward\__init__.py" />
+    <Compile Include="scripts\export\utils.py" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="custom_worlds\" />
-    <Folder Include="custom_worlds\outward\" />
-    <Folder Include="custom_worlds\outward\test\" />
+    <Folder Include="scripts\export\" />
+    <Folder Include="scripts\" />
+    <Folder Include="outward\" />
+    <Folder Include="outward\test\" />
   </ItemGroup>
   <ItemGroup>
     <Interpreter Include=".venv\">
@@ -59,7 +62,8 @@
     </Interpreter>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="custom_worlds\outward\Outward Definitive Edition.yaml" />
+    <Content Include="outward\Outward Definitive Edition.yaml" />
+    <Content Include="outward\regions.py" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SharedData\SharedData.pyproj">

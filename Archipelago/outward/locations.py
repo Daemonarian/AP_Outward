@@ -1,0 +1,162 @@
+from __future__ import annotations
+from typing import TYPE_CHECKING
+
+from BaseClasses import Location
+from worlds.generic.Rules import add_rule
+
+from .common import OUTWARD
+from .templates import OutwardGameObjectNamespace, OutwardGameObjectTemplate
+from .regions import OutwardRegionName
+
+if TYPE_CHECKING:
+    from worlds.generic.Rules import CollectionRule
+
+    from . import OutwardWorld
+
+# classes for generating items in the multi-world
+
+class OutwardLocation(Location):
+    game = OUTWARD
+
+    def add_rule(self, rule: CollectionRule, combine: str = "and") -> None:
+        add_rule(self, rule, combine)
+
+class OutwardGameLocation(OutwardLocation):
+    def __init__(self, world: OutwardWorld, name: str):
+        template = OutwardGameLocationTemplate.get_template(name)
+        parent = world.get_region(template.region)
+        super().__init__(world.player, template.name, template.archipelago_id, parent)
+        parent.locations.append(self)
+        
+# classes for defining the basic properties of game locations
+
+class OutwardGameLocationTemplate(OutwardGameObjectTemplate):
+    _region: str
+    def __init__(self, name: str, region: str, archipelago_id: int = -1):
+        super().__init__(name, archipelago_id)
+        self._region = region
+    @property
+    def region(self) -> str:
+        return self._region
+
+# define the names of Outward locations
+
+location = OutwardGameLocationTemplate.register_template
+class OutwardLocationName(OutwardGameObjectNamespace):
+    template = OutwardGameLocationTemplate
+
+    # quest completion checks
+
+    QUEST_MAIN_01 = location("Main Quest 1 - Castaways", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MAIN_02 = location("Main Quest 2 - Call to Adventure", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MAIN_03 = location("Main Quest 3 - Join Faction Quest", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MAIN_04 = location("Main Quest 4 - Faction Quest 1", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MAIN_05 = location("Main Quest 5 - Faction Quest 2", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MAIN_06 = location("Main Quest 6 - Faction Quest 3", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MAIN_07 = location("Main Quest 7 - Faction Quest 4", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MAIN_08 = location("Main Quest 8 - A Fallen City", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MAIN_09 = location("Main Quest 9 - Up The Ladder", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MAIN_10 = location("Main Quest 10 - Stealing Fire", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MAIN_11 = location("Main Quest 11 - Liberate the Sun", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MAIN_12 = location("Main Quest 12 - Vengeful Ouroboros", OutwardRegionName.MAIN_GAME_AREA)
+    
+    QUEST_PARALLEL_BLOOD_UNDER_THE_SUN = location("Parallel Quest - Blood Under the Sun", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_PARALLEL_PURIFIER = location("Parallel Quest - Purifier", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_PARALLEL_RUST_AND_VENGEANCE_1 = location("Parallel Quest - Rust and Vengeance - Rust Lich Armor", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_PARALLEL_RUST_AND_VENGEANCE_2 = location("Parallel Quest - Rust and Vengeance - Rust Lich Boots", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_PARALLEL_RUST_AND_VENGEANCE_3 = location("Parallel Quest - Rust and Vengeance - Rust Lich Helmet", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_PARALLEL_VENDAVEL_QUEST = location("Parallel Quest - Vendavel Quest", OutwardRegionName.MAIN_GAME_AREA)
+
+    QUEST_MINOR_ACQUIRE_MANA = location("Minor Quest - Acquire Mana", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MINOR_ALCHEMY_COLD_STONE = location("Minor Quest - Alchemy: Cold Stone", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MINOR_ALCHEMY_CRYSTAL_POWDER = location("Minor Quest - Alchemy: Crystal Powder", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MINOR_ARCANE_MACHINE = location("Minor Quest - Arcane Machine", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MINOR_BARREL_MAN = location("Minor Quest - Barrel Man", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MINOR_BEWARE_THE_GOLD_LICH_1 = location("Minor Quest - Beware the Gold Lich - Gold-Lich Spear", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MINOR_BEWARE_THE_GOLD_LICH_2 = location("Minor Quest - Beware the Gold Lich - Gold-Lich Mask", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MINOR_BEWARE_THE_GOLD_LICH_3 = location("Minor Quest - Beware the Gold Lich - Gold-Lich Boots", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MINOR_BEWARE_THE_GOLD_LICH_4 = location("Minor Quest - Beware the Gold Lich - Gold-Lich Armor", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MINOR_BEWARE_THE_JADE_LICH_1 = location("Minor Quest - Beware the Jade Lich - Jade-Lich Staff", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MINOR_BEWARE_THE_JADE_LICH_2 = location("Minor Quest - Beware the Jade Lich - Jade-Lich Boots", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MINOR_BEWARE_THE_JADE_LICH_3 = location("Minor Quest - Beware the Jade Lich - Jade-Lich Mask", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MINOR_BEWARE_THE_JADE_LICH_4 = location("Minor Quest - Beware the Jade Lich - Jade-Lich Robes", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MINOR_BLOODY_BUSINESS = location("Minor Quest - Bloody Business", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MINOR_CRAFT_ANTIQUE_PLATE_GARB_ARMOR = location("Minor Quest - Craft: Antique Plate Garb Armor", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MINOR_CRAFT_BLUE_SAND_ARMOR = location("Minor Quest - Craft: Blue Sand Armor", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MINOR_CRAFT_COPAL_AND_PETRIFIED_ARMOR = location("Minor Quest - Craft: Copal & Petrified Armor", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MINOR_CRAFT_PALLADIUM_ARMOR = location("Minor Quest - Craft: Palladium Armor", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MINOR_CRAFT_TSAR_AND_TENEBROUS_ARMOR = location("Minor Quest - Craft: Tsar & Tenebrous Armor", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MINOR_HELENS_FUNGUS = location("Minor Quest - Helen's Fungus", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MINOR_LEDGER_TO_BERG = location("Minor Quest - Ledger to Berg", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MINOR_LEDGER_TO_CIERZO = location("Minor Quest - Ledger to Cierzo", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MINOR_LEDGER_TO_LEVANT = location("Minor Quest - Ledger to Levant", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MINOR_LEDGER_TO_MONSOON = location("Minor Quest - Ledger to Monsoon", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MINOR_LOST_MERCHANT = location("Minor Quest - Lost Merchant", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MINOR_MYRIAD_OF_BONES = location("Minor Quest - A Myriad of Bones", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MINOR_NEED_ANGEL_FOOD_CAKE = location("Minor Quest - Need: Angel Food Cake", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MINOR_NEED_BEAST_GOLEM_SCRAPS = location("Minor Quest - Need: Beast Golem Scraps", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MINOR_NEED_CIERZO_CEVICHE = location("Minor Quest - Need: Cierzo Ceviche", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MINOR_NEED_FIRE_ELEMENTAL_PARTICLES = location("Minor Quest - Need: Fire Elemental Particles", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MINOR_NEED_MANAHEART_BASS = location("Minor Quest - Need: Manaheart Bass", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MINOR_NEED_MANTICORE_TAIL = location("Minor Quest - Need: Manticore Tail", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MINOR_NEED_SHARK_CARTILAGE = location("Minor Quest - Need: Shark Cartilage", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MINOR_NEED_SHIELD_GOLEM_SCRAP = location("Minor Quest - Need: Shield Golem Scrap", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MINOR_NEED_TOURMALINE = location("Minor Quest - Need: Tourmaline", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MINOR_PURIFY_THE_WATER = location("Minor Quest - Purify the Water", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MINOR_RED_IDOL = location("Minor Quest - Red Idol", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MINOR_SCHOLARS_RANSOM = location("Minor Quest - A Scholar's Ransom", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MINOR_SILVER_FOR_THE_SLUMS = location("Minor Quest - Silver for the Slums", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MINOR_SKULLS_FOR_CREMEUH = location("Minor Quest - Skulls for Cremeuh", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MINOR_STRANGE_APPARITIONS = location("Minor Quest - Strange Apparitions", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MINOR_TREASURE_HUNT = location("Minor Quest - Treasure Hunt", OutwardRegionName.MAIN_GAME_AREA)
+    QUEST_MINOR_WILLIAM_OF_THE_WISP = location("Minor Quest - William of the Wisp", OutwardRegionName.MAIN_GAME_AREA)
+
+    # comissions
+
+    COMMISSION_ANTIQUE_PLATE_BOOTS = location("Commission - Antique Plate Boots", OutwardRegionName.MAIN_GAME_AREA)
+    COMMISSION_ANTIQUE_PLATE_GARB = location("Commission - Antique Plate Garb", OutwardRegionName.MAIN_GAME_AREA)
+    COMMISSION_ANTIQUE_PLATE_SALLET = location("Commission - Antique Plate Sallet", OutwardRegionName.MAIN_GAME_AREA)
+
+    COMMISSION_BLUE_SAND_ARMOR = location("Commission - Blue Sand Armor", OutwardRegionName.MAIN_GAME_AREA)
+    COMMISSION_BLUE_SAND_BOOTS = location("Commission - Blue Sand Boots", OutwardRegionName.MAIN_GAME_AREA)
+    COMMISSION_BLUE_SAND_HELM = location("Commission - Blue Sand Helm", OutwardRegionName.MAIN_GAME_AREA)
+
+    COMMISSION_COPAL_ARMOR = location("Commission - Copal Armor", OutwardRegionName.MAIN_GAME_AREA)
+    COMMISSION_COPAL_BOOTS = location("Commission - Copal Boots", OutwardRegionName.MAIN_GAME_AREA)
+    COMMISSION_COPAL_HELM = location("Commission - Copal Helm", OutwardRegionName.MAIN_GAME_AREA)
+
+    COMMISSION_PALLADIUM_ARMOR = location("Commission - Palladium Armor", OutwardRegionName.MAIN_GAME_AREA)
+    COMMISSION_PALLADIUM_BOOTS = location("Commission - Palladium Boots", OutwardRegionName.MAIN_GAME_AREA)
+    COMMISSION_PALLADIUM_HELM = location("Commission - Palladium Helm", OutwardRegionName.MAIN_GAME_AREA)
+
+    COMMISSION_PETRIFIED_WOOD_ARMOR = location("Commission - Petrified Wood Armor", OutwardRegionName.MAIN_GAME_AREA)
+    COMMISSION_PETRIFIED_WOOD_BOOTS = location("Commission - Petrified Wood Boots", OutwardRegionName.MAIN_GAME_AREA)
+    COMMISSION_PETRIFIED_WOOD_HELM = location("Commission - Petrified Wood Helm", OutwardRegionName.MAIN_GAME_AREA)
+
+    COMMISSION_TENEBROUS_ARMOR = location("Commission - Tenebrous Armor", OutwardRegionName.MAIN_GAME_AREA)
+    COMMISSION_TENEBROUS_BOOTS = location("Commission - Tenebrous Boots", OutwardRegionName.MAIN_GAME_AREA)
+    COMMISSION_TENEBROUS_HELM = location("Commission - Tenebrous Helm", OutwardRegionName.MAIN_GAME_AREA)
+
+    COMMISSION_TSAR_ARMOR = location("Commission - Tsar Armor", OutwardRegionName.MAIN_GAME_AREA)
+    COMMISSION_TSAR_BOOTS = location("Commission - Tsar Boots", OutwardRegionName.MAIN_GAME_AREA)
+    COMMISSION_TSAR_HELM = location("Commission - Tsar Helm", OutwardRegionName.MAIN_GAME_AREA)
+
+    # unique items
+
+    SPAWN_CEREMONIAL_BOW = location("Spawn - Ceremonial Bow", OutwardRegionName.MAIN_GAME_AREA)
+    SPAWN_DEPOWERED_BLUDGEON = location("Spawn - De-powered Bludgeon", OutwardRegionName.MAIN_GAME_AREA)
+    SPAWN_DREAMER_HALBERD = location("Friendly Immaculate Gift - Dreamer Halberd", OutwardRegionName.MAIN_GAME_AREA)
+    SPAWN_FOSSILIZED_GREATAXE = location("Steam Bath Tunnels - Calygrey Hero - Fossilized Greataxe", OutwardRegionName.MAIN_GAME_AREA)
+    SPAWN_MERTONS_FIREPOKER = location("Spawn - Merton's Firepoker", OutwardRegionName.MAIN_GAME_AREA)
+    SPAWN_MYSTERIOUS_LONG_BLADE = location("Spawn - Mysterious Long Blade", OutwardRegionName.MAIN_GAME_AREA)
+    SPAWN_PILLAR_GREATHAMMER = location("Spawn - Pillar Greathammer", OutwardRegionName.MAIN_GAME_AREA)
+    SPAWN_PORCELAIN_FISTS = location("Crumbling Loading Docks - Giant Horror - Porcelain Fists", OutwardRegionName.MAIN_GAME_AREA)
+    SPAWN_RUINED_HALBERD = location("Spawn - Ruined Halberd", OutwardRegionName.MAIN_GAME_AREA)
+    SPAWN_RUSTED_SPEAR = location("Spawn - Rusted Spear", OutwardRegionName.MAIN_GAME_AREA)
+    SPAWN_SEALED_MACE = location("Old Sirocco - Smelly Sealed Box interaction with forge", OutwardRegionName.MAIN_GAME_AREA)
+    SPAWN_STRANGE_RUSTED_SWORD = location("Spawn - Strange Rusted Sword", OutwardRegionName.MAIN_GAME_AREA)
+    SPAWN_SUNFALL_AXE = location("Spawn - Sunfall Axe", OutwardRegionName.MAIN_GAME_AREA)
+    SPAWN_THRICE_WROUGHT_HALBERD = location("Spawn - Thrice-Wrought Halberd", OutwardRegionName.MAIN_GAME_AREA)
+    SPAWN_TSAR_FISTS = location("Spawn - Tsar Fists", OutwardRegionName.MAIN_GAME_AREA)
+    SPAWN_UNUSUAL_KNUCKLES = location("Spawn - Unusual Knuckles", OutwardRegionName.MAIN_GAME_AREA)
+    SPAWN_WARM_AXE = location("Spawn - Warm Axe", OutwardRegionName.MAIN_GAME_AREA)

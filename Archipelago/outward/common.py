@@ -1,2 +1,2 @@
 OUTWARD = "Outward: Definitive Edition"
-BASE_ID = 10000000
+BASE_ID = 1

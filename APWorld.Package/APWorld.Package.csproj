@@ -6,7 +6,7 @@
         <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
         <CopyBuildOutputToOutputDirectory>false</CopyBuildOutputToOutputDirectory>
         <APWorldProjectDir>..\Archipelago</APWorldProjectDir>
-        <APWorldSourceDir>$(APWorldProjectDir)\src\outward</APWorldSourceDir>
+        <APWorldSourceDir>$(APWorldProjectDir)\outward</APWorldSourceDir>
         <APWorldName>outward</APWorldName>
         <OutputZipName>$(APWorldName).apworld</OutputZipName>
         <StagingDir>$(Project)bin\staging</StagingDir>

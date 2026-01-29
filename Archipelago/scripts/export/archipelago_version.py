@@ -10,7 +10,7 @@ def export_archipelago_id(fp: TextIO):
 
 if __name__ == "__main__":
     import argparse
-    from utils_export import _open
+    from .utils import _open
 
     parser = argparse.ArgumentParser(description="Export the version of Archipelago we are building against.")
     parser.add_argument("-o", "--output", type=str, required=False, default="-", help="The path to the file to write the json output")

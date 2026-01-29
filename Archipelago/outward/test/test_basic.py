@@ -1,4 +1,3 @@
-from .. import OutwardWorld
 from ..common import OUTWARD
 from test.bases import WorldTestBase
 

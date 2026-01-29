@@ -6,9 +6,9 @@ the code identifiers (variable names).
 import json
 from typing import TextIO
 
-from custom_worlds.outward import OutwardWorld
-from custom_worlds.outward.item_data import ItemName
-from custom_worlds.outward.location_data import LocationName
+from outward import OutwardWorld
+from outward.items import OutwardItemName
+from outward.locations import OutwardLocationName
 
 def export_ids(fp: TextIO) -> None:
     """
@@ -17,14 +17,14 @@ def export_ids(fp: TextIO) -> None:
     """
 
     item_ids: dict[str, int] = dict()
-    for key, name in vars(ItemName).items():
+    for key, name in vars(OutwardItemName).items():
         if key.startswith("_") or not isinstance(name, str) or name not in OutwardWorld.item_name_to_id:
             continue
         code = OutwardWorld.item_name_to_id[name]
         item_ids[key] = code
     
     location_ids: dict[str, int] = dict()
-    for key, name in vars(LocationName).items():
+    for key, name in vars(OutwardLocationName).items():
         if key.startswith("_") or not isinstance(name, str) or name not in OutwardWorld.location_name_to_id:
             continue
         code = OutwardWorld.location_name_to_id[name]
@@ -36,7 +36,7 @@ def export_ids(fp: TextIO) -> None:
 
 if __name__ == "__main__":
     import argparse
-    from utils_export import _open
+    from .utils import _open
 
     parser = argparse.ArgumentParser(description="Export the public IDs in this APWorld along with the internal code identifiers used for them.")
     parser.add_argument("-o", "--output", type=str, required=False, default="-", help="The path to the file to write the json output")

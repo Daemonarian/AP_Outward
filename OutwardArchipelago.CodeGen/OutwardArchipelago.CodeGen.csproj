@@ -15,6 +15,6 @@
 			<APWorldPython>$(APWorldProjectDir)\.venv\Scripts\python.exe</APWorldPython>
 			<APWorldPython Condition="!$([MSBuild]::IsOSPlatform('Windows'))">$(APWorldProjectDir)/.venv/bin/python</APWorldPython>
 		</PropertyGroup>
-		<Exec Command="&quot;$(APWorldPython)&quot; &quot;$(APWorldProjectDir)/export_ids.py&quot; --output &quot;$(OutputPath)/apworld_ids.json&quot;" />
+		<Exec Command="&quot;$(APWorldPython)&quot; -m scripts.export.ids --output &quot;$(ProjectDir)$(OutputPath)/apworld_ids.json&quot;" WorkingDirectory="$(APWorldProjectDir)" />
 	</Target>
 </Project>
