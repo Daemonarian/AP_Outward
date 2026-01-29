@@ -10,14 +10,14 @@ namespace OutwardArchipelago
     {
         public string OutwardEventId { get; private set; }
 
-        public ArchipelagoLocationData Location { get; private set; }
+        public long LocationId { get; private set; }
 
         public int StackCount { get; private set; }
 
-        public LocationCheckQuestEventAddedListener(string outwardEventId, ArchipelagoLocationData location, int stackCount = 1)
+        public LocationCheckQuestEventAddedListener(string outwardEventId, long locationId, int stackCount = 1)
         {
             OutwardEventId = outwardEventId;
-            Location = location;
+            LocationId = locationId;
             StackCount = stackCount;
         }
 
@@ -27,7 +27,7 @@ namespace OutwardArchipelago
             if (string.Equals(_eventData.EventUID, OutwardEventId, StringComparison.Ordinal) && _eventData.StackCount >= StackCount)
             {
                 OutwardArchipelagoMod.Log.LogInfo($"LocationCheckQuestEventAddedListener triggered for EventUID = {OutwardEventId}.");
-                ArchipelagoConnector.Instance.CompleteLocationCheck(Location);
+                ArchipelagoConnector.Instance.CompleteLocationCheck(LocationId);
             }
         }
 
@@ -48,33 +48,33 @@ namespace OutwardArchipelago
 
             var listeners = new List<LocationCheckQuestEventAddedListener>
             {
-                new(OutwardQuestEvents.Tutorial_IntroFinished, ArchipelagoLocationData.QuestMain01),
-                new(OutwardQuestEvents.CallToAdventure_Completed, ArchipelagoLocationData.QuestMain02),
-                new(OutwardQuestEvents.General_DoneQuest0, ArchipelagoLocationData.QuestMain03),
-                new(OutwardQuestEvents.General_DoneQuest1, ArchipelagoLocationData.QuestMain04),
-                new(OutwardQuestEvents.General_DoneQuest2, ArchipelagoLocationData.QuestMain05),
-                new(OutwardQuestEvents.General_DoneQuest3, ArchipelagoLocationData.QuestMain06),
-                new(OutwardQuestEvents.General_DoneQuest4, ArchipelagoLocationData.QuestMain07),
-                new(OutwardQuestEvents.DLC2Questline_DoneQ0, ArchipelagoLocationData.QuestMain08),
-                new(OutwardQuestEvents.DLC2Questline_DoneQ1, ArchipelagoLocationData.QuestMain09),
-                new(OutwardQuestEvents.DLC2Questline_DoneQ2, ArchipelagoLocationData.QuestMain10),
-                new(OutwardQuestEvents.DLC2Questline_DoneQ3, ArchipelagoLocationData.QuestMain11),
-                new(OutwardQuestEvents.DLC2Questline_DoneQ4, ArchipelagoLocationData.QuestMain12),
-                new(OutwardQuestEvents.Fraticide_EndReward, ArchipelagoLocationData.QuestParallelBloodUnderTheSun),
-                new(OutwardQuestEvents.Purifier_QuestComplete, ArchipelagoLocationData.QuestParallelPurifier),
-                new(OutwardQuestEvents.Vendavel_Succeeded, ArchipelagoLocationData.QuestParallelPurifier),
-                new(OutwardQuestEvents.Vendavel_Failure, ArchipelagoLocationData.QuestParallelPurifier),
-                new(OutwardQuestEvents.PromptsComplete_Mana, ArchipelagoLocationData.QuestMinorAcquireMana),
-                new(OutwardQuestEvents.General_TsarElectricLab, ArchipelagoLocationData.QuestMinorArcaneMachine),
-                new(OutwardQuestEvents.PromptsComplete_CierzoBlacksmith, ArchipelagoLocationData.QuestMinorCraftBlueSandArmor),
-                new(OutwardQuestEvents.PromptsComplete_BergBlacksmith, ArchipelagoLocationData.QuestMinorCraftCopalAndPetrifiedArmor),
-                new(OutwardQuestEvents.PromptsComplete_MonsoonBlacksmith, ArchipelagoLocationData.QuestMinorCraftPalladiumArmor),
-                new(OutwardQuestEvents.PromptsComplete_LevantBlacksmith, ArchipelagoLocationData.QuestMinorCraftTsarAndTenebrousArmor),
-                new(OutwardQuestEvents.PromptsComplete_HarmattanBlacksmith, ArchipelagoLocationData.QuestMinorCraftAntiquePlateGarbArmor),
-                new(OutwardQuestEvents.SideQuests_SmugglerTimerWait, ArchipelagoLocationData.QuestMinorLostMerchant),
-                new(OutwardQuestEvents.PromptsComplete_Water, ArchipelagoLocationData.QuestMinorPurifyTheWater),
-                new(OutwardQuestEvents.SideQuests_DoneRedIdol, ArchipelagoLocationData.QuestMinorRedIdol),
-                new(OutwardQuestEvents.Fraticide_SlumsGaveMoney, ArchipelagoLocationData.QuestMinorSilverForTheSlums, 5),
+                new(OutwardQuestEvents.Tutorial_IntroFinished, APWorldLocation.QuestMain01),
+                new(OutwardQuestEvents.CallToAdventure_Completed, APWorldLocation.QuestMain02),
+                new(OutwardQuestEvents.General_DoneQuest0, APWorldLocation.QuestMain03),
+                new(OutwardQuestEvents.General_DoneQuest1, APWorldLocation.QuestMain04),
+                new(OutwardQuestEvents.General_DoneQuest2, APWorldLocation.QuestMain05),
+                new(OutwardQuestEvents.General_DoneQuest3, APWorldLocation.QuestMain06),
+                new(OutwardQuestEvents.General_DoneQuest4, APWorldLocation.QuestMain07),
+                new(OutwardQuestEvents.DLC2Questline_DoneQ0, APWorldLocation.QuestMain08),
+                new(OutwardQuestEvents.DLC2Questline_DoneQ1, APWorldLocation.QuestMain09),
+                new(OutwardQuestEvents.DLC2Questline_DoneQ2, APWorldLocation.QuestMain10),
+                new(OutwardQuestEvents.DLC2Questline_DoneQ3, APWorldLocation.QuestMain11),
+                new(OutwardQuestEvents.DLC2Questline_DoneQ4, APWorldLocation.QuestMain12),
+                new(OutwardQuestEvents.Fraticide_EndReward, APWorldLocation.QuestParallelBloodUnderTheSun),
+                new(OutwardQuestEvents.Purifier_QuestComplete, APWorldLocation.QuestParallelPurifier),
+                new(OutwardQuestEvents.Vendavel_Succeeded, APWorldLocation.QuestParallelPurifier),
+                new(OutwardQuestEvents.Vendavel_Failure, APWorldLocation.QuestParallelPurifier),
+                new(OutwardQuestEvents.PromptsComplete_Mana, APWorldLocation.QuestMinorAcquireMana),
+                new(OutwardQuestEvents.General_TsarElectricLab, APWorldLocation.QuestMinorArcaneMachine),
+                new(OutwardQuestEvents.PromptsComplete_CierzoBlacksmith, APWorldLocation.QuestMinorCraftBlueSandArmor),
+                new(OutwardQuestEvents.PromptsComplete_BergBlacksmith, APWorldLocation.QuestMinorCraftCopalAndPetrifiedArmor),
+                new(OutwardQuestEvents.PromptsComplete_MonsoonBlacksmith, APWorldLocation.QuestMinorCraftPalladiumArmor),
+                new(OutwardQuestEvents.PromptsComplete_LevantBlacksmith, APWorldLocation.QuestMinorCraftTsarAndTenebrousArmor),
+                new(OutwardQuestEvents.PromptsComplete_HarmattanBlacksmith, APWorldLocation.QuestMinorCraftAntiquePlateGarbArmor),
+                new(OutwardQuestEvents.SideQuests_SmugglerTimerWait, APWorldLocation.QuestMinorLostMerchant),
+                new(OutwardQuestEvents.PromptsComplete_Water, APWorldLocation.QuestMinorPurifyTheWater),
+                new(OutwardQuestEvents.SideQuests_DoneRedIdol, APWorldLocation.QuestMinorRedIdol),
+                new(OutwardQuestEvents.Fraticide_SlumsGaveMoney, APWorldLocation.QuestMinorSilverForTheSlums, 5),
             };
 
             foreach (var listener in listeners)

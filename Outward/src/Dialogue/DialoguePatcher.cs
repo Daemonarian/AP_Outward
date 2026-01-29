@@ -258,11 +258,11 @@ namespace OutwardArchipelago.Dialogue
                 new InsertLocationCheckPatch
                 {
                     ReplaceNodeID = 11,
-                    Locations = new[]
+                    LocationIds = new[]
                     {
-                        ArchipelagoLocationData.QuestParallelRustAndVengeance1,
-                        ArchipelagoLocationData.QuestParallelRustAndVengeance2,
-                        ArchipelagoLocationData.QuestParallelRustAndVengeance3,
+                        APWorldLocation.QuestParallelRustAndVengeance1,
+                        APWorldLocation.QuestParallelRustAndVengeance2,
+                        APWorldLocation.QuestParallelRustAndVengeance3,
                     },
                     NextNode = new OriginalNodeBuilder { NodeID = 13 }
                 });
@@ -274,7 +274,7 @@ namespace OutwardArchipelago.Dialogue
                 new InsertOneTimeLocationCheckPatch
                 {
                     ReplaceNodeID = 7,
-                    Location = ArchipelagoLocationData.QuestMinorAlchemyColdStone,
+                    LocationId = APWorldLocation.QuestMinorAlchemyColdStone,
                     OtherAction = new RemoveQuestEventActionBuilder { EventUID = OutwardQuestEvents.SideQuests_AlchemistBerg },
                 });
 
@@ -283,7 +283,7 @@ namespace OutwardArchipelago.Dialogue
                 new InsertOneTimeLocationCheckPatch
                 {
                     ReplaceNodeID = 7,
-                    Location = ArchipelagoLocationData.QuestMinorAlchemyCrystalPowder,
+                    LocationId = APWorldLocation.QuestMinorAlchemyCrystalPowder,
                 });
 
             Patches.Register(
@@ -291,7 +291,7 @@ namespace OutwardArchipelago.Dialogue
                 new InsertLocationCheckPatch
                 {
                     ReplaceNodeID = 23,
-                    Location = ArchipelagoLocationData.QuestMinorBarrelMan,
+                    LocationId = APWorldLocation.QuestMinorBarrelMan,
                 });
 
             Patches.Register(
@@ -299,12 +299,12 @@ namespace OutwardArchipelago.Dialogue
                 new InsertLocationCheckPatch
                 {
                     ReplaceNodeID = 30,
-                    Locations = new[]
+                    LocationIds = new[]
                     {
-                        ArchipelagoLocationData.QuestMinorBewareTheGoldLich1,
-                        ArchipelagoLocationData.QuestMinorBewareTheGoldLich2,
-                        ArchipelagoLocationData.QuestMinorBewareTheGoldLich3,
-                        ArchipelagoLocationData.QuestMinorBewareTheGoldLich4,
+                        APWorldLocation.QuestMinorBewareTheGoldLich1,
+                        APWorldLocation.QuestMinorBewareTheGoldLich2,
+                        APWorldLocation.QuestMinorBewareTheGoldLich3,
+                        APWorldLocation.QuestMinorBewareTheGoldLich4,
                     },
                 });
 
@@ -313,12 +313,12 @@ namespace OutwardArchipelago.Dialogue
                 new InsertLocationCheckPatch
                 {
                     ReplaceNodeID = 22,
-                    Locations = new[]
+                    LocationIds = new[]
                     {
-                        ArchipelagoLocationData.QuestMinorBewareTheJadeLich1,
-                        ArchipelagoLocationData.QuestMinorBewareTheJadeLich2,
-                        ArchipelagoLocationData.QuestMinorBewareTheJadeLich3,
-                        ArchipelagoLocationData.QuestMinorBewareTheJadeLich4,
+                        APWorldLocation.QuestMinorBewareTheJadeLich1,
+                        APWorldLocation.QuestMinorBewareTheJadeLich2,
+                        APWorldLocation.QuestMinorBewareTheJadeLich3,
+                        APWorldLocation.QuestMinorBewareTheJadeLich4,
                     },
                 });
 
@@ -327,7 +327,7 @@ namespace OutwardArchipelago.Dialogue
                 new InsertOneTimeLocationCheckPatch
                 {
                     ReplaceNodeID = 77,
-                    Location = ArchipelagoLocationData.QuestMinorHelensFungus,
+                    LocationId = APWorldLocation.QuestMinorHelensFungus,
                     OtherAction = new RemoveItemActionBuilder { ItemID = MushroomShield },
                 });
 
@@ -336,7 +336,7 @@ namespace OutwardArchipelago.Dialogue
                 new InsertLocationCheckPatch
                 {
                     ReplaceNodeID = 10,
-                    Location = ArchipelagoLocationData.QuestMinorSkullsForCremeuh,
+                    LocationId = APWorldLocation.QuestMinorSkullsForCremeuh,
                     OtherAction = new RemoveItemActionBuilder
                     {
                         ItemID = BlueSkullEffigy,
@@ -347,7 +347,7 @@ namespace OutwardArchipelago.Dialogue
             var strangeApparitionsLocationCheckPatch = new InsertLocationCheckPatch
             {
                 ReplaceNodeID = 3,
-                Location = ArchipelagoLocationData.QuestMinorStrangeApparitions,
+                LocationId = APWorldLocation.QuestMinorStrangeApparitions,
                 OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.Artifacts_StatueReward },
             };
             Patches.Register(DialogueTreeID.StrangeApparitionFinal1, strangeApparitionsLocationCheckPatch);
@@ -360,7 +360,7 @@ namespace OutwardArchipelago.Dialogue
                 new InsertLocationCheckPatch
                 {
                     ReplaceNodeID = 2,
-                    Location = ArchipelagoLocationData.QuestMinorTreasureHunt,
+                    LocationId = APWorldLocation.QuestMinorTreasureHunt,
                     OtherActions = new[]
                     {
                         new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.General_TsarAbraDock },
@@ -373,7 +373,7 @@ namespace OutwardArchipelago.Dialogue
                 new InsertLocationCheckPatch
                 {
                     ReplaceNodeID = 3,
-                    Location = ArchipelagoLocationData.QuestMinorWilliamOfTheWisp,
+                    LocationId = APWorldLocation.QuestMinorWilliamOfTheWisp,
                 });
 
             Patches.Register(
@@ -381,7 +381,7 @@ namespace OutwardArchipelago.Dialogue
                 new InsertLocationCheckPatch
                 {
                     ReplaceNodeID = 9,
-                    Location = ArchipelagoLocationData.QuestMinorScholarsRansom,
+                    LocationId = APWorldLocation.QuestMinorScholarsRansom,
                     NextNode = new OriginalNodeBuilder { NodeID = 9 },
                 });
             Patches.Register(
@@ -389,7 +389,7 @@ namespace OutwardArchipelago.Dialogue
                 new InsertLocationCheckPatch
                 {
                     ReplaceNodeID = 17,
-                    Location = ArchipelagoLocationData.QuestMinorScholarsRansom,
+                    LocationId = APWorldLocation.QuestMinorScholarsRansom,
                     NextNode = new OriginalNodeBuilder { NodeID = 17 },
                 });
 
@@ -398,7 +398,7 @@ namespace OutwardArchipelago.Dialogue
                 new InsertLocationCheckPatch
                 {
                     ReplaceNodeID = 6,
-                    Location = ArchipelagoLocationData.QuestMinorBloodyBusiness,
+                    LocationId = APWorldLocation.QuestMinorBloodyBusiness,
                     OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.SA_BloodMageQuestEnds },
                 });
 
@@ -409,7 +409,7 @@ namespace OutwardArchipelago.Dialogue
                 new InsertLocationCheckPatch
                 {
                     ReplaceNodeID = 5,
-                    Location = ArchipelagoLocationData.QuestMinorLedgerToBerg,
+                    LocationId = APWorldLocation.QuestMinorLedgerToBerg,
                     OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.PromptsComplete_CierzoGeneral },
                 });
 
@@ -418,7 +418,7 @@ namespace OutwardArchipelago.Dialogue
                 new InsertLocationCheckPatch
                 {
                     ReplaceNodeID = 4,
-                    Location = ArchipelagoLocationData.QuestMinorLedgerToCierzo,
+                    LocationId = APWorldLocation.QuestMinorLedgerToCierzo,
                     OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.PromptsComplete_LevantGeneral },
                 });
 
@@ -427,7 +427,7 @@ namespace OutwardArchipelago.Dialogue
                 new InsertLocationCheckPatch
                 {
                     ReplaceNodeID = 6,
-                    Location = ArchipelagoLocationData.QuestMinorLedgerToLevant,
+                    LocationId = APWorldLocation.QuestMinorLedgerToLevant,
                     OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.PromptsComplete_MonsoonGeneral },
                 });
 
@@ -436,7 +436,7 @@ namespace OutwardArchipelago.Dialogue
                 new InsertLocationCheckPatch
                 {
                     ReplaceNodeID = 5,
-                    Location = ArchipelagoLocationData.QuestMinorLedgerToMonsoon,
+                    LocationId = APWorldLocation.QuestMinorLedgerToMonsoon,
                     OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.PromptsComplete_BergGeneral },
                 });
 
@@ -447,7 +447,7 @@ namespace OutwardArchipelago.Dialogue
                 new InsertOneTimeLocationCheckPatch
                 {
                     ReplaceNodeID = 7,
-                    Location = ArchipelagoLocationData.QuestMinorNeedBeastGolemScraps,
+                    LocationId = APWorldLocation.QuestMinorNeedBeastGolemScraps,
                 });
 
             Patches.Register(
@@ -455,7 +455,7 @@ namespace OutwardArchipelago.Dialogue
                 new InsertOneTimeLocationCheckPatch
                 {
                     ReplaceNodeID = 7,
-                    Location = ArchipelagoLocationData.QuestMinorNeedCierzoCeviche,
+                    LocationId = APWorldLocation.QuestMinorNeedCierzoCeviche,
                     OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.SideQuests_CompleteCook },
                 });
 
@@ -464,7 +464,7 @@ namespace OutwardArchipelago.Dialogue
                 new InsertOneTimeLocationCheckPatch
                 {
                     ReplaceNodeID = 7,
-                    Location = ArchipelagoLocationData.QuestMinorNeedManticoreTail,
+                    LocationId = APWorldLocation.QuestMinorNeedManticoreTail,
                 });
 
             Patches.Register(
@@ -472,7 +472,7 @@ namespace OutwardArchipelago.Dialogue
                 new InsertOneTimeLocationCheckPatch
                 {
                     ReplaceNodeID = 8,
-                    Location = ArchipelagoLocationData.QuestMinorNeedSharkCartilage,
+                    LocationId = APWorldLocation.QuestMinorNeedSharkCartilage,
                 });
 
             Patches.Register(
@@ -480,7 +480,7 @@ namespace OutwardArchipelago.Dialogue
                 new InsertOneTimeLocationCheckPatch
                 {
                     ReplaceNodeID = 19,
-                    Location = ArchipelagoLocationData.QuestMinorNeedAngelFoodCake,
+                    LocationId = APWorldLocation.QuestMinorNeedAngelFoodCake,
                 });
 
             Patches.Register(
@@ -488,7 +488,7 @@ namespace OutwardArchipelago.Dialogue
                 new InsertOneTimeLocationCheckPatch
                 {
                     ReplaceNodeID = 19,
-                    Location = ArchipelagoLocationData.QuestMinorNeedFireElementalParticles,
+                    LocationId = APWorldLocation.QuestMinorNeedFireElementalParticles,
                 });
 
             Patches.Register(
@@ -496,7 +496,7 @@ namespace OutwardArchipelago.Dialogue
                 new InsertOneTimeLocationCheckPatch
                 {
                     ReplaceNodeID = 19,
-                    Location = ArchipelagoLocationData.QuestMinorNeedFireElementalParticles,
+                    LocationId = APWorldLocation.QuestMinorNeedFireElementalParticles,
                 });
 
             Patches.Register(
@@ -504,7 +504,7 @@ namespace OutwardArchipelago.Dialogue
                 new InsertOneTimeLocationCheckPatch
                 {
                     ReplaceNodeID = 19,
-                    Location = ArchipelagoLocationData.QuestMinorNeedTourmaline,
+                    LocationId = APWorldLocation.QuestMinorNeedTourmaline,
                 });
 
             Patches.Register(
@@ -512,7 +512,7 @@ namespace OutwardArchipelago.Dialogue
                 new InsertOneTimeLocationCheckPatch
                 {
                     ReplaceNodeID = 19,
-                    Location = ArchipelagoLocationData.QuestMinorNeedShieldGolemScrap,
+                    LocationId = APWorldLocation.QuestMinorNeedShieldGolemScrap,
                 });
 
             // individual commissions
@@ -522,7 +522,7 @@ namespace OutwardArchipelago.Dialogue
                 new InsertLocationCheckPatch
                 {
                     ReplaceNodeID = 59,
-                    Location = ArchipelagoLocationData.CommissionBlueSandHelm,
+                    LocationId = APWorldLocation.CommissionBlueSandHelm,
                     OtherActions = new[]
                     {
                         new RemoveQuestEventActionBuilder { EventUID = OutwardQuestEvents.Crafting_CierzoBlacksmithTimer },
@@ -534,7 +534,7 @@ namespace OutwardArchipelago.Dialogue
                 new InsertLocationCheckPatch
                 {
                     ReplaceNodeID = 64,
-                    Location = ArchipelagoLocationData.CommissionBlueSandArmor,
+                    LocationId = APWorldLocation.CommissionBlueSandArmor,
                     OtherActions = new[]
                     {
                         new RemoveQuestEventActionBuilder { EventUID = OutwardQuestEvents.Crafting_CierzoBlacksmithTimer },
@@ -546,7 +546,7 @@ namespace OutwardArchipelago.Dialogue
                 new InsertLocationCheckPatch
                 {
                     ReplaceNodeID = 66,
-                    Location = ArchipelagoLocationData.CommissionBlueSandBoots,
+                    LocationId = APWorldLocation.CommissionBlueSandBoots,
                     OtherActions = new[]
                     {
                         new RemoveQuestEventActionBuilder { EventUID = OutwardQuestEvents.Crafting_CierzoBlacksmithTimer },
@@ -559,7 +559,7 @@ namespace OutwardArchipelago.Dialogue
                 new InsertLocationCheckPatch
                 {
                     ReplaceNodeID = 84,
-                    Location = ArchipelagoLocationData.CommissionCopalHelm,
+                    LocationId = APWorldLocation.CommissionCopalHelm,
                     OtherActions = new[]
                     {
                         new RemoveQuestEventActionBuilder { EventUID = OutwardQuestEvents.Crafting_BergBlacksmithTimer },
@@ -571,7 +571,7 @@ namespace OutwardArchipelago.Dialogue
                 new InsertLocationCheckPatch
                 {
                     ReplaceNodeID = 89,
-                    Location = ArchipelagoLocationData.CommissionCopalArmor,
+                    LocationId = APWorldLocation.CommissionCopalArmor,
                     OtherActions = new[]
                     {
                         new RemoveQuestEventActionBuilder { EventUID = OutwardQuestEvents.Crafting_BergBlacksmithTimer },
@@ -583,7 +583,7 @@ namespace OutwardArchipelago.Dialogue
                 new InsertLocationCheckPatch
                 {
                     ReplaceNodeID = 92,
-                    Location = ArchipelagoLocationData.CommissionCopalBoots,
+                    LocationId = APWorldLocation.CommissionCopalBoots,
                     OtherActions = new[]
                     {
                         new RemoveQuestEventActionBuilder { EventUID = OutwardQuestEvents.Crafting_BergBlacksmithTimer },
@@ -595,7 +595,7 @@ namespace OutwardArchipelago.Dialogue
                 new InsertLocationCheckPatch
                 {
                     ReplaceNodeID = 95,
-                    Location = ArchipelagoLocationData.CommissionPetrifiedWoodHelm,
+                    LocationId = APWorldLocation.CommissionPetrifiedWoodHelm,
                     OtherActions = new[]
                     {
                         new RemoveQuestEventActionBuilder { EventUID = OutwardQuestEvents.Crafting_BergBlacksmithTimer },
@@ -607,7 +607,7 @@ namespace OutwardArchipelago.Dialogue
                 new InsertLocationCheckPatch
                 {
                     ReplaceNodeID = 100,
-                    Location = ArchipelagoLocationData.CommissionPetrifiedWoodArmor,
+                    LocationId = APWorldLocation.CommissionPetrifiedWoodArmor,
                     OtherActions = new[]
                     {
                         new RemoveQuestEventActionBuilder { EventUID = OutwardQuestEvents.Crafting_BergBlacksmithTimer },
@@ -619,7 +619,7 @@ namespace OutwardArchipelago.Dialogue
                 new InsertLocationCheckPatch
                 {
                     ReplaceNodeID = 102,
-                    Location = ArchipelagoLocationData.CommissionPetrifiedWoodBoots,
+                    LocationId = APWorldLocation.CommissionPetrifiedWoodBoots,
                     OtherActions = new[]
                     {
                         new RemoveQuestEventActionBuilder { EventUID = OutwardQuestEvents.Crafting_BergBlacksmithTimer },
@@ -632,7 +632,7 @@ namespace OutwardArchipelago.Dialogue
                 new InsertLocationCheckPatch
                 {
                     ReplaceNodeID = 55,
-                    Location = ArchipelagoLocationData.CommissionPalladiumHelm,
+                    LocationId = APWorldLocation.CommissionPalladiumHelm,
                     OtherActions = new[]
                     {
                         new RemoveQuestEventActionBuilder { EventUID = OutwardQuestEvents.Crafting_MonsoonBlacksmithTimer },
@@ -644,7 +644,7 @@ namespace OutwardArchipelago.Dialogue
                 new InsertLocationCheckPatch
                 {
                     ReplaceNodeID = 60,
-                    Location = ArchipelagoLocationData.CommissionPalladiumArmor,
+                    LocationId = APWorldLocation.CommissionPalladiumArmor,
                     OtherActions = new[]
                     {
                         new RemoveQuestEventActionBuilder { EventUID = OutwardQuestEvents.Crafting_MonsoonBlacksmithTimer },
@@ -656,7 +656,7 @@ namespace OutwardArchipelago.Dialogue
                 new InsertLocationCheckPatch
                 {
                     ReplaceNodeID = 62,
-                    Location = ArchipelagoLocationData.CommissionPalladiumBoots,
+                    LocationId = APWorldLocation.CommissionPalladiumBoots,
                     OtherActions = new[]
                     {
                         new RemoveQuestEventActionBuilder { EventUID = OutwardQuestEvents.Crafting_MonsoonBlacksmithTimer },
@@ -669,7 +669,7 @@ namespace OutwardArchipelago.Dialogue
                 new InsertLocationCheckPatch
                 {
                     ReplaceNodeID = 87,
-                    Location = ArchipelagoLocationData.CommissionTenebrousHelm,
+                    LocationId = APWorldLocation.CommissionTenebrousHelm,
                     OtherActions = new[]
                     {
                         new RemoveQuestEventActionBuilder { EventUID = OutwardQuestEvents.Crafting_LevantBlacksmithTimer },
@@ -681,7 +681,7 @@ namespace OutwardArchipelago.Dialogue
                 new InsertLocationCheckPatch
                 {
                     ReplaceNodeID = 92,
-                    Location = ArchipelagoLocationData.CommissionTenebrousArmor,
+                    LocationId = APWorldLocation.CommissionTenebrousArmor,
                     OtherActions = new[]
                     {
                         new RemoveQuestEventActionBuilder { EventUID = OutwardQuestEvents.Crafting_LevantBlacksmithTimer },
@@ -693,7 +693,7 @@ namespace OutwardArchipelago.Dialogue
                 new InsertLocationCheckPatch
                 {
                     ReplaceNodeID = 95,
-                    Location = ArchipelagoLocationData.CommissionTenebrousBoots,
+                    LocationId = APWorldLocation.CommissionTenebrousBoots,
                     OtherActions = new[]
                     {
                         new RemoveQuestEventActionBuilder { EventUID = OutwardQuestEvents.Crafting_LevantBlacksmithTimer },
@@ -705,7 +705,7 @@ namespace OutwardArchipelago.Dialogue
                 new InsertLocationCheckPatch
                 {
                     ReplaceNodeID = 98,
-                    Location = ArchipelagoLocationData.CommissionTsarHelm,
+                    LocationId = APWorldLocation.CommissionTsarHelm,
                     OtherActions = new[]
                     {
                         new RemoveQuestEventActionBuilder { EventUID = OutwardQuestEvents.Crafting_LevantBlacksmithTimer },
@@ -717,7 +717,7 @@ namespace OutwardArchipelago.Dialogue
                 new InsertLocationCheckPatch
                 {
                     ReplaceNodeID = 103,
-                    Location = ArchipelagoLocationData.CommissionTsarArmor,
+                    LocationId = APWorldLocation.CommissionTsarArmor,
                     OtherActions = new[]
                     {
                         new RemoveQuestEventActionBuilder { EventUID = OutwardQuestEvents.Crafting_LevantBlacksmithTimer },
@@ -729,7 +729,7 @@ namespace OutwardArchipelago.Dialogue
                 new InsertLocationCheckPatch
                 {
                     ReplaceNodeID = 105,
-                    Location = ArchipelagoLocationData.CommissionTsarBoots,
+                    LocationId = APWorldLocation.CommissionTsarBoots,
                     OtherActions = new[]
                     {
                         new RemoveQuestEventActionBuilder { EventUID = OutwardQuestEvents.Crafting_LevantBlacksmithTimer },
@@ -742,7 +742,7 @@ namespace OutwardArchipelago.Dialogue
                 new InsertLocationCheckPatch
                 {
                     ReplaceNodeID = 58,
-                    Location = ArchipelagoLocationData.CommissionAntiquePlateSallet,
+                    LocationId = APWorldLocation.CommissionAntiquePlateSallet,
                     OtherActions = new[]
                     {
                         new RemoveQuestEventActionBuilder { EventUID = OutwardQuestEvents.Crafting_HarmattanBlacksmithTimer },
@@ -754,7 +754,7 @@ namespace OutwardArchipelago.Dialogue
                 new InsertLocationCheckPatch
                 {
                     ReplaceNodeID = 63,
-                    Location = ArchipelagoLocationData.CommissionAntiquePlateGarb,
+                    LocationId = APWorldLocation.CommissionAntiquePlateGarb,
                     OtherActions = new[]
                     {
                         new RemoveQuestEventActionBuilder { EventUID = OutwardQuestEvents.Crafting_HarmattanBlacksmithTimer },
@@ -766,7 +766,7 @@ namespace OutwardArchipelago.Dialogue
                 new InsertLocationCheckPatch
                 {
                     ReplaceNodeID = 65,
-                    Location = ArchipelagoLocationData.CommissionAntiquePlateBoots,
+                    LocationId = APWorldLocation.CommissionAntiquePlateBoots,
                     OtherActions = new[]
                     {
                         new RemoveQuestEventActionBuilder { EventUID = OutwardQuestEvents.Crafting_HarmattanBlacksmithTimer },
@@ -779,14 +779,14 @@ namespace OutwardArchipelago.Dialogue
             Patches.Register(DialogueTreeID.StrangeRustedSword, new InsertLocationCheckPatch
             {
                 ReplaceNodeID = 2,
-                Location = ArchipelagoLocationData.SpawnStrangeRustedSword,
+                LocationId = APWorldLocation.SpawnStrangeRustedSword,
                 OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.Artifacts_Brand },
             });
 
             var dreamerHalberdPatch = new InsertLocationCheckPatch
             {
                 ReplaceNodeID = 6,
-                Location = ArchipelagoLocationData.SpawnDreamerHalberd,
+                LocationId = APWorldLocation.SpawnDreamerHalberd,
             };
             Patches.Register(DialogueTreeID.Chersonese_Immaculate_Real, dreamerHalberdPatch);
             Patches.Register(DialogueTreeID.HallowedMarsh_Immaculate_Real, dreamerHalberdPatch);
@@ -796,104 +796,104 @@ namespace OutwardArchipelago.Dialogue
             Patches.Register(DialogueTreeID.RuinedHalberd, new InsertLocationCheckPatch
             {
                 ReplaceNodeID = 2,
-                Location = ArchipelagoLocationData.SpawnRuinedHalberd,
+                LocationId = APWorldLocation.SpawnRuinedHalberd,
                 OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.DLC2Artifacts_Duty },
             });
 
             Patches.Register(DialogueTreeID.MysteriousLongBlade, new InsertLocationCheckPatch
             {
                 ReplaceNodeID = 2,
-                Location = ArchipelagoLocationData.SpawnMysteriousLongBlade,
+                LocationId = APWorldLocation.SpawnMysteriousLongBlade,
                 OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.DLC2Artifacts_GepBlade },
             });
 
             Patches.Register(DialogueTreeID.DepoweredBludgeon, new InsertLocationCheckPatch
             {
                 ReplaceNodeID = 2,
-                Location = ArchipelagoLocationData.SpawnDepoweredBludgeon,
+                LocationId = APWorldLocation.SpawnDepoweredBludgeon,
                 OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.DLC2Artifacts_GhostParallel },
             });
 
             Patches.Register(DialogueTreeID.FossilizedGreataxe, new InsertLocationCheckPatch
             {
                 ReplaceNodeID = 2,
-                Location = ArchipelagoLocationData.SpawnFossilizedGreataxe,
+                LocationId = APWorldLocation.SpawnFossilizedGreataxe,
                 OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.DLC2Artifacts_Grind },
             });
 
             Patches.Register(DialogueTreeID.MertonsFirepoker, new InsertLocationCheckPatch
             {
                 ReplaceNodeID = 1,
-                Location = ArchipelagoLocationData.SpawnMertonsFirepoker,
+                LocationId = APWorldLocation.SpawnMertonsFirepoker,
                 OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.Artifacts_Murton },
             });
 
             Patches.Register(DialogueTreeID.CeremonialBow, new InsertLocationCheckPatch
             {
                 ReplaceNodeID = 2,
-                Location = ArchipelagoLocationData.SpawnCeremonialBow,
+                LocationId = APWorldLocation.SpawnCeremonialBow,
                 OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.DLC2Artifacts_Murmure },
             });
 
             Patches.Register(DialogueTreeID.PillarGreathammer, new InsertLocationCheckPatch
             {
                 ReplaceNodeID = 2,
-                Location = ArchipelagoLocationData.SpawnPillarGreathammer,
+                LocationId = APWorldLocation.SpawnPillarGreathammer,
                 OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.Artifacts_PillarHammer },
             });
 
             Patches.Register(DialogueTreeID.Soroborean_BossesGiantScourgeOnDeath_ParallelQuest, new InsertLocationCheckPatch
             {
                 ReplaceNodeID = 25,
-                Location = ArchipelagoLocationData.SpawnPorcelainFists,
+                LocationId = APWorldLocation.SpawnPorcelainFists,
                 OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.Harmadung_GiantReward },
             });
 
             Patches.Register(DialogueTreeID.WarmAxe, new InsertLocationCheckPatch
             {
                 ReplaceNodeID = 2,
-                Location = ArchipelagoLocationData.SpawnWarmAxe,
+                LocationId = APWorldLocation.SpawnWarmAxe,
                 OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.DLC2Artifacts_Sandrose },
             });
 
             Patches.Register(DialogueTreeID.Caldera_OpenSealedMaceBox, new InsertLocationCheckPatch
             {
                 ReplaceNodeID = 2,
-                Location = ArchipelagoLocationData.SpawnSealedMace,
+                LocationId = APWorldLocation.SpawnSealedMace,
             });
 
             Patches.Register(DialogueTreeID.RustedSpear, new InsertLocationCheckPatch
             {
                 ReplaceNodeID = 2,
-                Location = ArchipelagoLocationData.SpawnRustedSpear,
+                LocationId = APWorldLocation.SpawnRustedSpear,
                 OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.DLC2Artifacts_Shriek },
             });
 
             Patches.Register(DialogueTreeID.SunfallAxe, new InsertLocationCheckPatch
             {
                 ReplaceNodeID = 2,
-                Location = ArchipelagoLocationData.SpawnSunfallAxe,
+                LocationId = APWorldLocation.SpawnSunfallAxe,
                 OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.Artifacts_Sunfall },
             });
 
             Patches.Register(DialogueTreeID.ThriceWroughtHalberd, new InsertLocationCheckPatch
             {
                 ReplaceNodeID = 2,
-                Location = ArchipelagoLocationData.SpawnThriceWroughtHalberd,
+                LocationId = APWorldLocation.SpawnThriceWroughtHalberd,
                 OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.Artifacts_WroughtHalbert },
             });
 
             Patches.Register(DialogueTreeID.UnusualKnuckles, new InsertLocationCheckPatch
             {
                 ReplaceNodeID = 1,
-                Location = ArchipelagoLocationData.SpawnUnusualKnuckles,
+                LocationId = APWorldLocation.SpawnUnusualKnuckles,
                 OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.DLC2Artifacts_Tokebakicit },
             });
 
             Patches.Register(DialogueTreeID.TsarFists, new InsertLocationCheckPatch
             {
                 ReplaceNodeID = 2,
-                Location = ArchipelagoLocationData.SpawnTsarFists,
+                LocationId = APWorldLocation.SpawnTsarFists,
                 OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.Harmadung_D2_K_RLReward },
             });
         }

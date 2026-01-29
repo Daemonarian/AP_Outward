@@ -43,21 +43,12 @@
 			<Compile Include="$(IntermediateOutputPath)BuildInfo.cs" />
 		</ItemGroup>
 	</Target>
-	<Target Name="GenerateAPWorldIDs" BeforeTargets="CoreCompile">
+	<Target Name="GenerateAPWorldBindings" BeforeTargets="CoreCompile">
 		<PropertyGroup>
 			<CodeGenExe>$(NewCodeGenProjectDir)\bin\$(Configuration)\net10.0\OutwardArchipelago.CodeGen.exe</CodeGenExe>
 			<CodeGenOutput>src\Archipelago\APWorld.gen.cs</CodeGenOutput>
 		</PropertyGroup>
 		<Message Text="Generating &quot;$(CodeGenOutput)&quot;" Importance="high" />
 		<Exec Command="&quot;$(CodeGenExe)&quot; --output &quot;$(CodeGenOutput)&quot; --namespace &quot;OutwardArchipelago.Archipelago.Data&quot; --info-class &quot;APWorldInfo&quot; --item-class &quot;APWorldItem&quot; --location-class &quot;APWorldLocation&quot;" />
-	</Target>
-	<Target Name="GenerateAPWorldBindings" BeforeTargets="CoreCompile">
-		<PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">
-			<CodeGenVenvPython>$(CodeGenProjectDir)\.venv\Scripts\python.exe</CodeGenVenvPython>
-		</PropertyGroup>
-		<PropertyGroup Condition="!$([MSBuild]::IsOSPlatform('Windows'))">
-			<CodeGenVenvPython>$(CodeGenProjectDir)/.venv/bin/python</CodeGenVenvPython>
-		</PropertyGroup>
-		<Exec Command="&quot;$(CodeGenVenvPython)&quot; &quot;$(CodeGenProjectDir)/src/generate_outward_files.py&quot;" />
 	</Target>
 </Project>

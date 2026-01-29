@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using System.Linq;
-using OutwardArchipelago.Archipelago.Data;
 using OutwardArchipelago.Dialogue.Builders.Actions;
 using OutwardArchipelago.Dialogue.Builders.Conditions;
 using OutwardArchipelago.Dialogue.Builders.Nodes;
@@ -11,7 +10,7 @@ namespace OutwardArchipelago.Dialogue.Patches
     {
         public int ReplaceNodeID { get; set; }
 
-        public ArchipelagoLocationData Location { get; set; }
+        public long LocationId { get; set; }
 
         public IReadOnlyList<IActionBuilder> OtherActions { get; set; } = new IActionBuilder[0];
 
@@ -26,11 +25,11 @@ namespace OutwardArchipelago.Dialogue.Patches
                 ReplaceNodeID = ReplaceNodeID,
                 Node = new ConditionNodeBuilder
                 {
-                    Condition = new LocationCheckConditionBuilder { Location = Location },
+                    Condition = new LocationCheckConditionBuilder { LocationId = LocationId },
                     OnSuccess = new OriginalNodeBuilder { NodeID = ReplaceNodeID },
                     OnFailure = new ActionNodeBuilder
                     {
-                        Actions = new IActionBuilder[] { new LocationCheckActionBuilder { Location = Location } }.Concat(OtherActions).ToList(),
+                        Actions = new IActionBuilder[] { new LocationCheckActionBuilder { LocationId = LocationId } }.Concat(OtherActions).ToList(),
                         NextNode = NextNode ?? new ChildOriginalNodeBuilder { NodeID = ReplaceNodeID },
                     },
                 },

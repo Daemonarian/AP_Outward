@@ -8,6 +8,7 @@ using Archipelago.MultiClient.Net.Enums;
 using Archipelago.MultiClient.Net.Helpers;
 using Archipelago.MultiClient.Net.MessageLog.Messages;
 using OutwardArchipelago.Archipelago.Data;
+using OutwardArchipelago.src.Archipelago;
 using UnityEngine;
 
 namespace OutwardArchipelago.Archipelago
@@ -238,7 +239,7 @@ namespace OutwardArchipelago.Archipelago
             });
         }
 
-        public void CompleteLocationCheck(ArchipelagoLocationData location)
+        public void CompleteLocationCheck(long locationId)
         {
             if (PhotonNetwork.isMasterClient)
             {
@@ -254,14 +255,14 @@ namespace OutwardArchipelago.Archipelago
                             {
                                 try
                                 {
-                                    OutwardArchipelagoMod.Log.LogInfo($"[Archipelago] Completing location check: {location}");
-                                    _archipelagoSession.Locations.CompleteLocationChecks(location.ID);
-                                    OutwardArchipelagoMod.Log.LogInfo($"[Archipelago] Completed location check: {location}");
+                                    OutwardArchipelagoMod.Log.LogInfo($"[Archipelago] Completing location check: {locationId}");
+                                    _archipelagoSession.Locations.CompleteLocationChecks(locationId);
+                                    OutwardArchipelagoMod.Log.LogInfo($"[Archipelago] Completed location check: {locationId}");
                                     break;
                                 }
                                 catch (Exception ex)
                                 {
-                                    OutwardArchipelagoMod.Log.LogError($"[Archipelago] Complete location check failed: {location}\n{ex}");
+                                    OutwardArchipelagoMod.Log.LogError($"[Archipelago] Complete location check failed: {locationId}\n{ex}");
                                 }
                             }
                         }
@@ -310,19 +311,13 @@ namespace OutwardArchipelago.Archipelago
                 return;
             }
 
-            if (!ArchipelagoItemData.ByID.TryGetValue(itemId, out var itemData))
-            {
-                OutwardArchipelagoMod.Log.LogError($"[Archipelago] Unknown item ID ({itemId})");
-                return;
-            }
-
             try
             {
-                itemData.Giver.GiveToPlayer(character);
+                ArchipelagoItemManager.Instance.GiveItemToPlayer(itemId, character);
             }
             catch (Exception ex)
             {
-                OutwardArchipelagoMod.Log.LogError($"[Archipelago] Failed to give item {itemData} to player: {ex}");
+                OutwardArchipelagoMod.Log.LogError($"[Archipelago] Failed to give item {itemId} to player: {ex}");
             }
         }
 
@@ -392,15 +387,15 @@ namespace OutwardArchipelago.Archipelago
             chatPanel.Invoke("DelayedScroll", 0.1f);
         }
 
-        public bool IsLocationCheckCompleted(ArchipelagoLocationData location)
+        public bool IsLocationCheckCompleted(long locationId)
         {
             try
             {
-                return _archipelagoSession.Locations.AllLocationsChecked.Contains(location.ID);
+                return _archipelagoSession.Locations.AllLocationsChecked.Contains(locationId);
             }
             catch (Exception ex)
             {
-                OutwardArchipelagoMod.Log.LogError($"[Archipelago] Failed to test if location check {location} is completed: {ex}");
+                OutwardArchipelagoMod.Log.LogError($"[Archipelago] Failed to test if location check {locationId} is completed: {ex}");
             }
 
             return false;

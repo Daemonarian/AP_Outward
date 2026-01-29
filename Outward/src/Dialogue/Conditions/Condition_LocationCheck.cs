@@ -1,18 +1,17 @@
 using NodeCanvas.Framework;
 using OutwardArchipelago.Archipelago;
-using OutwardArchipelago.Archipelago.Data;
 
 namespace OutwardArchipelago.Dialogue.Conditions
 {
     internal class Condition_LocationCheck : ConditionTask
     {
-        public ArchipelagoLocationData Location { get; private set; }
+        public long LocationId { get; private set; }
 
         public bool IsInverted { get; private set; }
 
-        public Condition_LocationCheck(ArchipelagoLocationData location, bool isInverted)
+        public Condition_LocationCheck(long locationId, bool isInverted)
         {
-            Location = location;
+            LocationId = locationId;
             IsInverted = isInverted;
         }
 
@@ -21,19 +20,19 @@ namespace OutwardArchipelago.Dialogue.Conditions
             get
             {
                 var invertedPart = IsInverted ? " not" : "";
-                return $"Has{invertedPart} completed location check: {Location}";
+                return $"Has{invertedPart} completed location check: {LocationId}";
             }
         }
 
         public override bool OnCheck()
         {
-            var check = ArchipelagoConnector.Instance.IsLocationCheckCompleted(Location);
+            var check = ArchipelagoConnector.Instance.IsLocationCheckCompleted(LocationId);
             if (IsInverted)
             {
                 check = !check;
             }
 
-            OutwardArchipelagoMod.Log.LogDebug($"Condition_LocationCheck::OnCheck Location={Location} IsInverted={IsInverted} return {check}");
+            OutwardArchipelagoMod.Log.LogDebug($"Condition_LocationCheck::OnCheck Location={LocationId} IsInverted={IsInverted} return {check}");
             return check;
         }
     }
