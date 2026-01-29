@@ -1,6 +1,6 @@
 namespace OutwardArchipelago.CodeGen
 {
-    public class ApworldIds
+    public class APWorldIDs
     {
         public Dictionary<string, int> Items { get; set; } = [];
 

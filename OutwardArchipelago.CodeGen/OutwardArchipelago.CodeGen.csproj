@@ -9,12 +9,13 @@
     <ItemGroup>
       <PackageReference Include="CommandLineParser" Version="2.9.1" />
     </ItemGroup>
-	<Target Name="ExportApworldIds" AfterTargets="Build">
+	<Target Name="ExportFromAPWorld" AfterTargets="Build">
 		<Message Text="Exporting outward APWorld IDs..." Importance="high" />
 		<PropertyGroup>
 			<APWorldPython>$(APWorldProjectDir)\.venv\Scripts\python.exe</APWorldPython>
 			<APWorldPython Condition="!$([MSBuild]::IsOSPlatform('Windows'))">$(APWorldProjectDir)/.venv/bin/python</APWorldPython>
 		</PropertyGroup>
 		<Exec Command="&quot;$(APWorldPython)&quot; -m scripts.export.ids --output &quot;$(ProjectDir)$(OutputPath)/apworld_ids.json&quot;" WorkingDirectory="$(APWorldProjectDir)" />
+		<Exec Command="&quot;$(APWorldPython)&quot; -m scripts.export.archipelago_version --output &quot;$(ProjectDir)$(OutputPath)/archipelago_version.txt&quot;" WorkingDirectory="$(APWorldProjectDir)" />
 	</Target>
 </Project>

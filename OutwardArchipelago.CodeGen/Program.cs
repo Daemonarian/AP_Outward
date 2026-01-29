@@ -14,7 +14,12 @@ namespace OutwardArchipelago.CodeGen
 
         static void GenerateCode(CommandLineOptions opts)
         {
-            // parse the apworld item ids
+            // parse the Archipelgo version
+
+            var archipelagoVersionFile = Path.Join(AppContext.BaseDirectory, "archipelago_version.txt");
+            var archipelagoVersion = File.ReadAllText(archipelagoVersionFile).Trim();
+
+            // parse the APWorld item ids
 
 #pragma warning disable CA1869 // Cache and reuse 'JsonSerializerOptions' instances
             var options = new JsonSerializerOptions
@@ -25,7 +30,7 @@ namespace OutwardArchipelago.CodeGen
 
             var apworldIdsJsonFile = Path.Join(AppContext.BaseDirectory, "apworld_ids.json");
             var jsonText = File.ReadAllText(apworldIdsJsonFile);
-            var apworldIds = JsonSerializer.Deserialize<ApworldIds>(jsonText, options) ?? throw new Exception("Failed to load the APWorld IDs.");
+            var apworldIds = JsonSerializer.Deserialize<APWorldIDs>(jsonText, options) ?? throw new Exception("Failed to load the APWorld IDs.");
 
             // convert keys into PascalCase for C#
 
@@ -46,6 +51,11 @@ namespace OutwardArchipelago.CodeGen
                 sb.AppendLine("{");
             }
 
+            sb.AppendLine($"    {opts.AccessModifier} class {opts.InfoClassName}");
+            sb.AppendLine("    {");
+            sb.AppendLine($"        public const string ArchipelagoVersion = \"{archipelagoVersion}\";");
+            sb.AppendLine("    }");
+            sb.AppendLine("");
             sb.AppendLine($"    {opts.AccessModifier} class {opts.ItemClassName}");
             sb.AppendLine("    {");
 
