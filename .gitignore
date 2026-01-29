@@ -359,8 +359,7 @@ MigrationBackup/
 # Generated code files
 *.gen.cs
 
-Archipelago/Archipelago
-Archipelago/src/outward/event_data.py
-Archipelago/src/outward/location_data.py
-Archipelago/src/outward/item_data.py
-Outward/src/Archipelago/Data
+# user props files
+user.props
+
+Outward/Properties/launchSettings.json

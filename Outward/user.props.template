@@ -1,0 +1,7 @@
+<Project>
+    <PropertyGroup>
+		<OutwardHomeDir>C:\Program Files (x86)\Steam\steamapps\common\Outward\Outward_Defed</OutwardHomeDir>
+        <R2ModManProfileDir>C:\Users\*User Name*\AppData\Roaming\r2modmanPlus-local\OutwardDe\profiles\AP_Outward</R2ModManProfileDir>
+        <CopyModOnBuild>true</CopyModOnBuild>
+    </PropertyGroup>
+</Project>
