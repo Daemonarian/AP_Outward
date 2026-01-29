@@ -5,7 +5,7 @@
 		<TargetFramework>net10.0</TargetFramework>
         <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
         <CopyBuildOutputToOutputDirectory>false</CopyBuildOutputToOutputDirectory>
-        <APWorldProjectDir>..\Archipelago</APWorldProjectDir>
+        <APWorldProjectDir>..\APWorld</APWorldProjectDir>
         <APWorldSourceDir>$(APWorldProjectDir)\outward</APWorldSourceDir>
         <APWorldName>outward</APWorldName>
         <OutputZipName>$(APWorldName).apworld</OutputZipName>
