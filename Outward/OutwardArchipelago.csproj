@@ -88,5 +88,6 @@
             </GeneratedLaunchSettings>
         </PropertyGroup>
         <WriteLinesToFile File="Properties\launchSettings.json" Lines="$(GeneratedLaunchSettings)" Overwrite="true" />
+		<WriteLinesToFile File="$(OutwardHomeDir)\steam_appid.txt" Lines="794260" Overwrite="true" />
     </Target>
 </Project>
