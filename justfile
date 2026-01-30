@@ -1,8 +1,7 @@
 set shell := ["pwsh", "-Command"]
 set dotenv-load := true
 
-mod codegen "SharedData/justfile"
-mod apworld "Archipelago/justfile"
+mod apworld "APWorld/justfile"
 mod mod "Outward/justfile"
 
 build_dir := "build"
@@ -22,35 +21,28 @@ clean:
     @just codegen::clean
 
 setup:
-    @just codegen::build
     @just apworld::setup
 
 build:
-    @just codegen::build
     @just apworld::build
     @just mod::build
 
 test:
-    @just codegen::test
     @just apworld::test
     @just mod::test
 
 stage:
-    @just codegen::build
     @just apworld::stage
     @just mod::stage
 
 release:
-    @just codegen::build
     @just apworld::release
     @just mod::release
 
 install:
-    @just codegen::build
     @just apworld::install
     @just mod::install
 
 deploy:
-    @just codegen::build
     @just apworld::deploy
     @just mod::install

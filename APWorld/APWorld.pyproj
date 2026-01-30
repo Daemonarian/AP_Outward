@@ -66,14 +66,6 @@
     <Content Include="outward\Outward Definitive Edition.yaml" />
     <Content Include="outward\regions.py" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SharedData\SharedData.pyproj">
-      <Name>SharedData</Name>
-      <Project>{a53e8a7a-8da2-46b0-ad6d-0a08ef0f364b}</Project>
-      <Private>True</Private>
-      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <Target Name="CoreCompile" />
   <Target Name="SetupEnvironment" BeforeTargets="CoreCompile">

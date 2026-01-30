@@ -9,8 +9,14 @@
     <ItemGroup>
       <PackageReference Include="CommandLineParser" Version="2.9.1" />
     </ItemGroup>
+	<Target Name="SetupAPWorldVenv" BeforeTargets="ExportFromAPWorld">
+		<PropertyGroup>
+			<PythonCommand>py</PythonCommand>
+			<PythonCommand Condition="!$([MSBuild]::IsOSPlatform('Windows'))">python3.13</PythonCommand>
+		</PropertyGroup>
+		<Exec Command="&quot;$(PythonCommand)&quot; $(APWorldProjectDir)\setup.py" />
+	</Target>
 	<Target Name="ExportFromAPWorld" AfterTargets="Build">
-		<Message Text="Exporting outward APWorld IDs..." Importance="high" />
 		<PropertyGroup>
 			<APWorldPython>$(APWorldProjectDir)\.venv\Scripts\python.exe</APWorldPython>
 			<APWorldPython Condition="!$([MSBuild]::IsOSPlatform('Windows'))">$(APWorldProjectDir)/.venv/bin/python</APWorldPython>

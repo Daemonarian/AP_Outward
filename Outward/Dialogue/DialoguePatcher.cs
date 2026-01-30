@@ -287,14 +287,6 @@ namespace OutwardArchipelago.Dialogue
                 });
 
             Patches.Register(
-                DialogueTreeID.Abrassar_BarrelMan_Real,
-                new InsertLocationCheckPatch
-                {
-                    ReplaceNodeID = 23,
-                    LocationId = APWorldLocation.QuestMinorBarrelMan,
-                });
-
-            Patches.Register(
                 DialogueTreeID.GoldLich_Neut_Initial,
                 new InsertLocationCheckPatch
                 {
@@ -332,30 +324,6 @@ namespace OutwardArchipelago.Dialogue
                 });
 
             Patches.Register(
-                DialogueTreeID.Emercar_UntertakerNecropolis_Real,
-                new InsertLocationCheckPatch
-                {
-                    ReplaceNodeID = 10,
-                    LocationId = APWorldLocation.QuestMinorSkullsForCremeuh,
-                    OtherAction = new RemoveItemActionBuilder
-                    {
-                        ItemID = BlueSkullEffigy,
-                        Amount = 4,
-                    },
-                });
-
-            var strangeApparitionsLocationCheckPatch = new InsertLocationCheckPatch
-            {
-                ReplaceNodeID = 3,
-                LocationId = APWorldLocation.QuestMinorStrangeApparitions,
-                OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.Artifacts_StatueReward },
-            };
-            Patches.Register(DialogueTreeID.StrangeApparitionFinal1, strangeApparitionsLocationCheckPatch);
-            Patches.Register(DialogueTreeID.StrangeApparitionFinal2, strangeApparitionsLocationCheckPatch);
-            Patches.Register(DialogueTreeID.StrangeApparitionFinal3, strangeApparitionsLocationCheckPatch);
-            Patches.Register(DialogueTreeID.StrangeApparitionFinal4, strangeApparitionsLocationCheckPatch);
-
-            Patches.Register(
                 DialogueTreeID.TreasureHuntFinal,
                 new InsertLocationCheckPatch
                 {
@@ -366,14 +334,6 @@ namespace OutwardArchipelago.Dialogue
                         new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.General_TsarAbraDock },
                         new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.PromptsComplete_TreasureHunt },
                     }
-                });
-
-            Patches.Register(
-                DialogueTreeID.DefEd_WillOWisp_Altar,
-                new InsertLocationCheckPatch
-                {
-                    ReplaceNodeID = 3,
-                    LocationId = APWorldLocation.QuestMinorWilliamOfTheWisp,
                 });
 
             Patches.Register(
@@ -776,125 +736,60 @@ namespace OutwardArchipelago.Dialogue
 
             // unique items
 
-            Patches.Register(DialogueTreeID.StrangeRustedSword, new InsertLocationCheckPatch
+            Patches.Register(DialogueTreeID.Any, new ReplaceActionPatch
             {
-                ReplaceNodeID = 2,
-                LocationId = APWorldLocation.SpawnStrangeRustedSword,
-                OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.Artifacts_Brand },
-            });
-
-            var dreamerHalberdPatch = new InsertLocationCheckPatch
-            {
-                ReplaceNodeID = 6,
-                LocationId = APWorldLocation.SpawnDreamerHalberd,
-            };
-            Patches.Register(DialogueTreeID.Chersonese_Immaculate_Real, dreamerHalberdPatch);
-            Patches.Register(DialogueTreeID.HallowedMarsh_Immaculate_Real, dreamerHalberdPatch);
-            Patches.Register(DialogueTreeID.Abrassar_Immaculate_Real, dreamerHalberdPatch);
-            Patches.Register(DialogueTreeID.Emercar_Immaculate_Real, dreamerHalberdPatch);
-
-            Patches.Register(DialogueTreeID.RuinedHalberd, new InsertLocationCheckPatch
-            {
-                ReplaceNodeID = 2,
-                LocationId = APWorldLocation.SpawnRuinedHalberd,
-                OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.DLC2Artifacts_Duty },
-            });
-
-            Patches.Register(DialogueTreeID.MysteriousLongBlade, new InsertLocationCheckPatch
-            {
-                ReplaceNodeID = 2,
-                LocationId = APWorldLocation.SpawnMysteriousLongBlade,
-                OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.DLC2Artifacts_GepBlade },
-            });
-
-            Patches.Register(DialogueTreeID.DepoweredBludgeon, new InsertLocationCheckPatch
-            {
-                ReplaceNodeID = 2,
-                LocationId = APWorldLocation.SpawnDepoweredBludgeon,
-                OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.DLC2Artifacts_GhostParallel },
-            });
-
-            Patches.Register(DialogueTreeID.FossilizedGreataxe, new InsertLocationCheckPatch
-            {
-                ReplaceNodeID = 2,
-                LocationId = APWorldLocation.SpawnFossilizedGreataxe,
-                OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.DLC2Artifacts_Grind },
-            });
-
-            Patches.Register(DialogueTreeID.MertonsFirepoker, new InsertLocationCheckPatch
-            {
-                ReplaceNodeID = 1,
-                LocationId = APWorldLocation.SpawnMertonsFirepoker,
-                OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.Artifacts_Murton },
-            });
-
-            Patches.Register(DialogueTreeID.CeremonialBow, new InsertLocationCheckPatch
-            {
-                ReplaceNodeID = 2,
-                LocationId = APWorldLocation.SpawnCeremonialBow,
-                OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.DLC2Artifacts_Murmure },
-            });
-
-            Patches.Register(DialogueTreeID.PillarGreathammer, new InsertLocationCheckPatch
-            {
-                ReplaceNodeID = 2,
-                LocationId = APWorldLocation.SpawnPillarGreathammer,
-                OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.Artifacts_PillarHammer },
-            });
-
-            Patches.Register(DialogueTreeID.Soroborean_BossesGiantScourgeOnDeath_ParallelQuest, new InsertLocationCheckPatch
-            {
-                ReplaceNodeID = 25,
-                LocationId = APWorldLocation.SpawnPorcelainFists,
-                OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.Harmadung_GiantReward },
-            });
-
-            Patches.Register(DialogueTreeID.WarmAxe, new InsertLocationCheckPatch
-            {
-                ReplaceNodeID = 2,
-                LocationId = APWorldLocation.SpawnWarmAxe,
-                OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.DLC2Artifacts_Sandrose },
-            });
-
-            Patches.Register(DialogueTreeID.Caldera_OpenSealedMaceBox, new InsertLocationCheckPatch
-            {
-                ReplaceNodeID = 2,
-                LocationId = APWorldLocation.SpawnSealedMace,
-            });
-
-            Patches.Register(DialogueTreeID.RustedSpear, new InsertLocationCheckPatch
-            {
-                ReplaceNodeID = 2,
-                LocationId = APWorldLocation.SpawnRustedSpear,
-                OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.DLC2Artifacts_Shriek },
-            });
-
-            Patches.Register(DialogueTreeID.SunfallAxe, new InsertLocationCheckPatch
-            {
-                ReplaceNodeID = 2,
-                LocationId = APWorldLocation.SpawnSunfallAxe,
-                OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.Artifacts_Sunfall },
-            });
-
-            Patches.Register(DialogueTreeID.ThriceWroughtHalberd, new InsertLocationCheckPatch
-            {
-                ReplaceNodeID = 2,
-                LocationId = APWorldLocation.SpawnThriceWroughtHalberd,
-                OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.Artifacts_WroughtHalbert },
-            });
-
-            Patches.Register(DialogueTreeID.UnusualKnuckles, new InsertLocationCheckPatch
-            {
-                ReplaceNodeID = 1,
-                LocationId = APWorldLocation.SpawnUnusualKnuckles,
-                OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.DLC2Artifacts_Tokebakicit },
-            });
-
-            Patches.Register(DialogueTreeID.TsarFists, new InsertLocationCheckPatch
-            {
-                ReplaceNodeID = 2,
-                LocationId = APWorldLocation.SpawnTsarFists,
-                OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.Harmadung_D2_K_RLReward },
+                ActionPatch = new ReplaceItemRewardWithLocationCheckActionPatch
+                {
+                    ItemToLocationMap = new Dictionary<int, long>
+                    {
+                        { OutwardItem.AnglerShield, APWorldLocation.SpawnAnglerShield },
+                        { OutwardItem.CeremonialBow, APWorldLocation.SpawnCeremonialBow },
+                        { OutwardItem.CrackedRedMoon, APWorldLocation.SpawnCrackedRedMoon },
+                        { OutwardItem.DepoweredBludgeon, APWorldLocation.SpawnDepoweredBludgeon },
+                        { OutwardItem.DistortedExperiment, APWorldLocation.SpawnDistortedExperiment },
+                        { OutwardItem.DreamerHalberd, APWorldLocation.SpawnDreamerHalberd },
+                        { OutwardItem.Duty, APWorldLocation.SpawnDuty },
+                        { OutwardItem.ExperimentalChakram, APWorldLocation.SpawnExperimentalChakram },
+                        { OutwardItem.FossilizedGreataxe, APWorldLocation.SpawnFossilizedGreataxe },
+                        { OutwardItem.Grind, APWorldLocation.SpawnGrind },
+                        { OutwardItem.LightMendersBackpack, APWorldLocation.QuestMinorStrangeApparitions },
+                        { OutwardItem.LightMendersLexicon, APWorldLocation.SpawnLightMendersLexicon },
+                        { OutwardItem.MertonsFirepoker, APWorldLocation.SpawnMertonsFirepoker },
+                        { OutwardItem.MertonsRibcage, APWorldLocation.SpawnMertonsRibcage },
+                        { OutwardItem.MertonsShinbones, APWorldLocation.SpawnMertonsShinbones },
+                        { OutwardItem.MertonsSkull, APWorldLocation.SpawnMertonsSkull },
+                        { OutwardItem.MysteriousChakram, APWorldLocation.QuestMinorBarrelMan },
+                        { OutwardItem.MysteriousLongblade, APWorldLocation.SpawnMysteriousLongBlade },
+                        { OutwardItem.OrnateBoneShield, APWorldLocation.QuestMinorSkullsForCremeuh },
+                        { OutwardItem.PillarGreathammer, APWorldLocation.SpawnPillarGreathammer },
+                        { OutwardItem.PorcelainFists, APWorldLocation.SpawnPorcelainFists },
+                        { OutwardItem.RedLadysDagger, APWorldLocation.SpawnRedLadysDagger },
+                        { OutwardItem.RotwoodStaff, APWorldLocation.SpawnRotwoodStaff },
+                        { OutwardItem.RuinedHalberd, APWorldLocation.SpawnRuinedHalberd },
+                        { OutwardItem.RustedSpear, APWorldLocation.SpawnRustedSpear },
+                        { OutwardItem.Sandrose, APWorldLocation.SpawnSandrose },
+                        { OutwardItem.ScarletBoots, APWorldLocation.SpawnScarletBoots },
+                        { OutwardItem.ScarletGem, APWorldLocation.SpawnScarletGem },
+                        { OutwardItem.ScarletLichsIdol, APWorldLocation.SpawnScarletLichsIdol },
+                        { OutwardItem.ScarletMask, APWorldLocation.SpawnScarletMask },
+                        { OutwardItem.ScarletRobes, APWorldLocation.SpawnScarletRobes },
+                        { OutwardItem.ScepterOfTheCruelPriest, APWorldLocation.SpawnScepterOfTheCruelPriest },
+                        { OutwardItem.SealedMace, APWorldLocation.SpawnSealedMace },
+                        { OutwardItem.Shriek, APWorldLocation.SpawnShriek },
+                        { OutwardItem.SlumberingShield, APWorldLocation.SpawnSlumberingShield },
+                        { OutwardItem.SmellySealedBox, APWorldLocation.SpawnSmellySealedBox },
+                        { OutwardItem.StrangeRustedSword, APWorldLocation.SpawnStrangeRustedSword },
+                        { OutwardItem.SunfallAxe, APWorldLocation.SpawnSunfallAxe },
+                        { OutwardItem.ThriceWroughtHalberd, APWorldLocation.SpawnThriceWroughtHalberd },
+                        { OutwardItem.TsarFists, APWorldLocation.SpawnTsarFists },
+                        { OutwardItem.UnusualKnuckles, APWorldLocation.SpawnUnusualKnuckles },
+                        { OutwardItem.WarmAxe, APWorldLocation.SpawnWarmAxe },
+                        { OutwardItem.WerligSpear, APWorldLocation.SpawnWerligSpear },
+                        { OutwardItem.WillOWisp, APWorldLocation.QuestMinorWilliamOfTheWisp },
+                        { OutwardItem.ZhornsDemonShield, APWorldLocation.SpawnZhornsDemonShield },
+                        { OutwardItem.ZhornsGlowstoneDagger, APWorldLocation.SpawnZhornsGlowstoneDagger },
+                    },
+                },
             });
         }
 

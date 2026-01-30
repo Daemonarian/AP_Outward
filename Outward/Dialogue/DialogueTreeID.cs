@@ -6,6 +6,7 @@ namespace OutwardArchipelago.Dialogue
     internal class DialogueTreeID
     {
         // common dialogue trees in Outward
+        public static readonly DialogueTreeID Any = new DialogueTreeID(null, null);
         public static readonly DialogueTreeID Abrassar_BarrelMan_Real = FromName("Dialogue_Abrassar_BarrelMan_Real");
         public static readonly DialogueTreeID Abrassar_Immaculate_Real = FromName("Dialogue_Abrassar_Immaculate_Real");
         public static readonly DialogueTreeID Caldera_Evangeline_BaseBuilding = FromName("Dialogue_Caldera_Evangeline_BaseBuilding");

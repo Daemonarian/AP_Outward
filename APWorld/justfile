@@ -15,7 +15,7 @@ release_dir := "release"
 
 archipelago_dir := "../External/Archipelago"
 
-options_yaml := "src/outward/Outward Definitive Edition.yaml"
+options_yaml := "outward/Outward Definitive Edition.yaml"
 
 default:
     @just --list
@@ -46,7 +46,7 @@ test:
 stage:
     @just build
     New-Item -Path "{{staging_dir}}" -ItemType Directory -Force | Out-Null
-    Copy-Item -Path "src\outward" -Destination "{{staging_dir}}" -Recurse -Force
+    Copy-Item -Path "outward" -Destination "{{staging_dir}}" -Recurse -Force
 
 release:
     @just stage
