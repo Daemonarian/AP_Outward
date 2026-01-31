@@ -33,8 +33,6 @@ namespace OutwardArchipelago.Archipelago
 
         public ArchipelagoConnectionStatus ConnectionStatus { get; private set; }
 
-        public bool IsPlayingAsHost => PhotonNetwork.isMasterClient && Global.Lobby.PlayersInLobbyCount > 0 && NetworkLevelLoader.Instance.IsOverallLoadingDone;
-
         // Thread Safety: Queue actions here to run them on the main Unity thread
         private readonly ConcurrentQueue<Action> MainThreadQueue = new();
         private readonly ConcurrentQueue<string> IncomingMessageQueue = new();
@@ -85,7 +83,7 @@ namespace OutwardArchipelago.Archipelago
                 action();
             }
 
-            if (IsPlayingAsHost)
+            if (OutwardArchipelagoMod.Instance.IsInGame)
             {
                 if (!IncomingMessageQueue.IsEmpty)
                 {
@@ -276,16 +274,6 @@ namespace OutwardArchipelago.Archipelago
                     }
                 });
             }
-        }
-
-        public bool TryCompleteLocationCheck(long location)
-        {
-            if (IsPlayingAsHost && !IsLocationCheckCompleted(location))
-            {
-                CompleteLocationCheck(location);
-            }
-
-            return false;
         }
 
         private void OnSocketClosed(string reason)

@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.IO;
 using BepInEx;
 using BepInEx.Configuration;
@@ -5,6 +6,7 @@ using BepInEx.Logging;
 using HarmonyLib;
 using OutwardArchipelago.Archipelago;
 using OutwardArchipelago.Dialogue;
+using UnityEngine.SceneManagement;
 
 namespace OutwardArchipelago
 {
@@ -26,6 +28,26 @@ namespace OutwardArchipelago
         public static ConfigEntry<int> ArchipelagoPort;
         public static ConfigEntry<string> ArchipelagoPassword;
         public static ConfigEntry<string> ArchipelagoSlotName;
+
+        /// <summary>
+        /// Whether or not Archipelago-related modifications should be applied.
+        /// </summary>
+        public bool IsArchipelagoEnabled => PhotonNetwork.isMasterClient;
+
+        /// <summary>
+        /// Whether or not the player is actually playing (not in a loading screen or paused).
+        /// </summary>
+        public bool IsInGame => Global.Lobby.PlayersInLobbyCount > 0 && NetworkLevelLoader.Instance.IsOverallLoadingDone && !NetworkLevelLoader.Instance.IsGameplayPaused;
+
+        /// <summary>
+        /// Whether or not the player is actually playing in an Archipelago-ready game.
+        /// </summary>
+        public bool IsInArchipelagoGame => IsArchipelagoEnabled && IsInGame;
+
+        /// <summary>
+        /// Whether or not the current scene has been initialized with our own mod-specific initialization.
+        /// </summary>
+        private bool hasInitializedScene = true;
 
         /// <summary>
         /// Initializes or updates the configuration settings for the current instance.
@@ -77,8 +99,22 @@ namespace OutwardArchipelago
             new Harmony(GUID).PatchAll();
             ArchipelagoConnector.Create();
             DialoguePatcher.Instance.Awake();
+            SceneManager.sceneLoaded += OnSceneLoaded;
 
             Log.LogMessage($"{NAME} {VERSION} started successfully");
+        }
+
+        internal void Update()
+        {
+            if (!hasInitializedScene && IsInGame)
+            {
+                if (IsArchipelagoEnabled && NetworkLevelLoader.Instance.LevelLoadedForFirstTime)
+                {
+                    InitScene();
+                }
+
+                hasInitializedScene = true;
+            }
         }
 
         public byte[] LoadAsset(string fileName)
@@ -113,6 +149,40 @@ namespace OutwardArchipelago
             }
 
             return text;
+        }
+
+        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+        {
+            hasInitializedScene = false;
+        }
+
+        private void InitScene()
+        {
+            var items = ItemManager.Instance.WorldItems.Values.ToArray();
+            foreach (var item in items)
+            {
+                if (item != null && item.transform?.parent?.parent?.name != "EquipmentSlots")
+                {
+                    if (APWorldData.ItemToLocation.TryGetValue(item.ItemID, out var location))
+                    {
+                        var transform = item.transform;
+                        var transforms = new List<string>();
+                        while (transform != null)
+                        {
+                            transforms.Add(transform.name);
+                            transform = transform.parent;
+                        }
+
+                        transforms.Reverse();
+
+                        Log.LogInfo($"world spawned item ({item.ItemID}) associated with location ({location}) with transform: {string.Join(" > ", transforms)}");
+                        var newItem = ItemManager.Instance.GenerateItemNetwork(OutwardItem.APItem);
+                        newItem.SetSideData("AP_Location", location);
+                        newItem.ChangeParent(item.transform.parent, item.transform.position, item.transform.rotation);
+                        ItemManager.Instance.DestroyItem(item);
+                    }
+                }
+            }
         }
     }
 }

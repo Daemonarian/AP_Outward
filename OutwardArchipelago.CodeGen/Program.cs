@@ -51,12 +51,12 @@ namespace OutwardArchipelago.CodeGen
                 sb.AppendLine("{");
             }
 
-            sb.AppendLine($"    {opts.AccessModifier} class {opts.InfoClassName}");
+            sb.AppendLine($"    {opts.AccessModifier} static class {opts.InfoClassName}");
             sb.AppendLine("    {");
             sb.AppendLine($"        public const string ArchipelagoVersion = \"{archipelagoVersion}\";");
             sb.AppendLine("    }");
             sb.AppendLine("");
-            sb.AppendLine($"    {opts.AccessModifier} class {opts.ItemClassName}");
+            sb.AppendLine($"    {opts.AccessModifier} static class {opts.ItemClassName}");
             sb.AppendLine("    {");
 
             foreach (var pair in apworldIds.Items)
@@ -76,7 +76,7 @@ namespace OutwardArchipelago.CodeGen
             sb.AppendLine("        };");
             sb.AppendLine("    }");
             sb.AppendLine("");
-            sb.AppendLine($"    {opts.AccessModifier} class {opts.LocationClassName}");
+            sb.AppendLine($"    {opts.AccessModifier} static class {opts.LocationClassName}");
             sb.AppendLine("    {");
 
             foreach (var pair in apworldIds.Locations)

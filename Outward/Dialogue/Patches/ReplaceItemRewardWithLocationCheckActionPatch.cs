@@ -7,7 +7,7 @@ namespace OutwardArchipelago.Dialogue.Patches
 {
     internal class ReplaceItemRewardWithLocationCheckActionPatch : IActionPatch
     {
-        public IReadOnlyDictionary<int, long> ItemToLocationMap { get; set; } = new Dictionary<int, long>();
+        public IReadOnlyDictionary<int, long> ItemToLocation { get; set; } = new Dictionary<int, long>();
 
         public ActionTask BuildAction(IDialoguePatchContext context, ActionTask action)
         {
@@ -19,7 +19,7 @@ namespace OutwardArchipelago.Dialogue.Patches
                     foreach (var itemReward in giveRewardAction.ItemReward)
                     {
                         var itemId = itemReward?.Item?.value?.ItemID;
-                        if (itemId.HasValue && ItemToLocationMap.TryGetValue(itemId.Value, out var locationId))
+                        if (itemId.HasValue && ItemToLocation.TryGetValue(itemId.Value, out var locationId))
                         {
                             locationIds.Add(locationId);
                         }

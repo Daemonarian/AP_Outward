@@ -6,6 +6,7 @@ namespace OutwardArchipelago
         internal const int AntiquePlateBoots = 3100252;
         internal const int AntiquePlateGarb = 3100250;
         internal const int AntiquePlateSallet = 3100251;
+        internal const int APItem = 8861511;
         internal const int BlueSandArmor = 3100080;
         internal const int BlueSandBoots = 3100082;
         internal const int BlueSandHelm = 3100081;

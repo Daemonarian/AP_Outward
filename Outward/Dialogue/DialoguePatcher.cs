@@ -18,12 +18,36 @@ namespace OutwardArchipelago.Dialogue
 
         public DialoguePatchCollection Patches = new();
 
+        private readonly HashSet<ulong> seenDialogueTrees = new();
+
         public void Awake()
         {
             RegisterAllPatches();
             Graph.onGraphDeserialized += OnGraphDeserialized;
         }
 
+        public void DumpDialogueTree(DialogueTreeExt tree)
+        {
+            var treeID = DialogueTreeID.FromTree(tree);
+            if (seenDialogueTrees.Add(treeID.Hash.Value))
+            {
+                OutwardArchipelagoMod.Log.LogDebug($"Dialogue tree deserialized {treeID}: {tree._serializedGraph}");
+            }
+        }
+
+        public void OnGraphDeserialized(Graph graph)
+        {
+            // only patch dialogue trees when archipelago is enabled
+            if (OutwardArchipelagoMod.Instance.IsArchipelagoEnabled)
+            {
+                // check if the graph is a dialogue tree
+                if (graph is DialogueTreeExt tree)
+                {
+                    // DumpDialogueTree(tree);
+                    PatchDialogueTree(tree);
+                }
+            }
+        }
         public void PatchDialogueTree(DialogueTreeExt tree)
         {
             IDialoguePatchContext context = null;
@@ -48,6 +72,16 @@ namespace OutwardArchipelago.Dialogue
 
         private void RegisterAllPatches()
         {
+            // unique items
+
+            Patches.Register(DialogueTreeID.Any, new ReplaceActionPatch
+            {
+                ActionPatch = new ReplaceItemRewardWithLocationCheckActionPatch
+                {
+                    ItemToLocation = APWorldData.ItemToLocation,
+                },
+            });
+
             // Quest License checks
 
             Patches.Register(
@@ -733,89 +767,6 @@ namespace OutwardArchipelago.Dialogue
                         new RemoveQuestEventActionBuilder { EventUID = OutwardQuestEvents.Crafting_HarmattanBlacksmithItemC },
                     }
                 });
-
-            // unique items
-
-            Patches.Register(DialogueTreeID.Any, new ReplaceActionPatch
-            {
-                ActionPatch = new ReplaceItemRewardWithLocationCheckActionPatch
-                {
-                    ItemToLocationMap = new Dictionary<int, long>
-                    {
-                        { OutwardItem.AnglerShield, APWorldLocation.SpawnAnglerShield },
-                        { OutwardItem.CeremonialBow, APWorldLocation.SpawnCeremonialBow },
-                        { OutwardItem.CrackedRedMoon, APWorldLocation.SpawnCrackedRedMoon },
-                        { OutwardItem.DepoweredBludgeon, APWorldLocation.SpawnDepoweredBludgeon },
-                        { OutwardItem.DistortedExperiment, APWorldLocation.SpawnDistortedExperiment },
-                        { OutwardItem.DreamerHalberd, APWorldLocation.SpawnDreamerHalberd },
-                        { OutwardItem.Duty, APWorldLocation.SpawnDuty },
-                        { OutwardItem.ExperimentalChakram, APWorldLocation.SpawnExperimentalChakram },
-                        { OutwardItem.FossilizedGreataxe, APWorldLocation.SpawnFossilizedGreataxe },
-                        { OutwardItem.Grind, APWorldLocation.SpawnGrind },
-                        { OutwardItem.LightMendersBackpack, APWorldLocation.QuestMinorStrangeApparitions },
-                        { OutwardItem.LightMendersLexicon, APWorldLocation.SpawnLightMendersLexicon },
-                        { OutwardItem.MertonsFirepoker, APWorldLocation.SpawnMertonsFirepoker },
-                        { OutwardItem.MertonsRibcage, APWorldLocation.SpawnMertonsRibcage },
-                        { OutwardItem.MertonsShinbones, APWorldLocation.SpawnMertonsShinbones },
-                        { OutwardItem.MertonsSkull, APWorldLocation.SpawnMertonsSkull },
-                        { OutwardItem.MysteriousChakram, APWorldLocation.QuestMinorBarrelMan },
-                        { OutwardItem.MysteriousLongblade, APWorldLocation.SpawnMysteriousLongBlade },
-                        { OutwardItem.OrnateBoneShield, APWorldLocation.QuestMinorSkullsForCremeuh },
-                        { OutwardItem.PillarGreathammer, APWorldLocation.SpawnPillarGreathammer },
-                        { OutwardItem.PorcelainFists, APWorldLocation.SpawnPorcelainFists },
-                        { OutwardItem.RedLadysDagger, APWorldLocation.SpawnRedLadysDagger },
-                        { OutwardItem.RotwoodStaff, APWorldLocation.SpawnRotwoodStaff },
-                        { OutwardItem.RuinedHalberd, APWorldLocation.SpawnRuinedHalberd },
-                        { OutwardItem.RustedSpear, APWorldLocation.SpawnRustedSpear },
-                        { OutwardItem.Sandrose, APWorldLocation.SpawnSandrose },
-                        { OutwardItem.ScarletBoots, APWorldLocation.SpawnScarletBoots },
-                        { OutwardItem.ScarletGem, APWorldLocation.SpawnScarletGem },
-                        { OutwardItem.ScarletLichsIdol, APWorldLocation.SpawnScarletLichsIdol },
-                        { OutwardItem.ScarletMask, APWorldLocation.SpawnScarletMask },
-                        { OutwardItem.ScarletRobes, APWorldLocation.SpawnScarletRobes },
-                        { OutwardItem.ScepterOfTheCruelPriest, APWorldLocation.SpawnScepterOfTheCruelPriest },
-                        { OutwardItem.SealedMace, APWorldLocation.SpawnSealedMace },
-                        { OutwardItem.Shriek, APWorldLocation.SpawnShriek },
-                        { OutwardItem.SlumberingShield, APWorldLocation.SpawnSlumberingShield },
-                        { OutwardItem.SmellySealedBox, APWorldLocation.SpawnSmellySealedBox },
-                        { OutwardItem.StrangeRustedSword, APWorldLocation.SpawnStrangeRustedSword },
-                        { OutwardItem.SunfallAxe, APWorldLocation.SpawnSunfallAxe },
-                        { OutwardItem.ThriceWroughtHalberd, APWorldLocation.SpawnThriceWroughtHalberd },
-                        { OutwardItem.TsarFists, APWorldLocation.SpawnTsarFists },
-                        { OutwardItem.UnusualKnuckles, APWorldLocation.SpawnUnusualKnuckles },
-                        { OutwardItem.WarmAxe, APWorldLocation.SpawnWarmAxe },
-                        { OutwardItem.WerligSpear, APWorldLocation.SpawnWerligSpear },
-                        { OutwardItem.WillOWisp, APWorldLocation.QuestMinorWilliamOfTheWisp },
-                        { OutwardItem.ZhornsDemonShield, APWorldLocation.SpawnZhornsDemonShield },
-                        { OutwardItem.ZhornsGlowstoneDagger, APWorldLocation.SpawnZhornsGlowstoneDagger },
-                    },
-                },
-            });
-        }
-
-        private readonly HashSet<ulong> seenDialogueTrees = new();
-
-        public void DumpDialogueTree(DialogueTreeExt tree)
-        {
-            var treeID = DialogueTreeID.FromTree(tree);
-            if (seenDialogueTrees.Add(treeID.Hash.Value))
-            {
-                OutwardArchipelagoMod.Log.LogDebug($"Dialogue tree deserialized {treeID}: {tree._serializedGraph}");
-            }
-        }
-
-        public void OnGraphDeserialized(Graph graph)
-        {
-            // only patch dialogue trees when we are hosting
-            if (PhotonNetwork.isMasterClient)
-            {
-                // check if the graph is a dialogue tree
-                if (graph is DialogueTreeExt tree)
-                {
-                    DumpDialogueTree(tree);
-                    PatchDialogueTree(tree);
-                }
-            }
         }
     }
 }
