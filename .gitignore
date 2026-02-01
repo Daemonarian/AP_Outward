@@ -362,4 +362,4 @@ MigrationBackup/
 # user props files
 user.props
 
-Outward/Properties/launchSettings.json
+Mod/Properties/launchSettings.json

@@ -6,6 +6,8 @@
     <TargetFramework>net10.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <AssemblyName>OutwardArchipelago.CodeGen</AssemblyName>
+    <RootNamespace>OutwardArchipelago.CodeGen</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="CommandLineParser" Version="2.9.1" />

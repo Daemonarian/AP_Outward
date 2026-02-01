@@ -4,7 +4,7 @@
     <ProjectGuid>{C30EAD44-EAAB-4EBB-8F56-EB594AC5E42A}</ProjectGuid>
     <TargetFramework>net10.0</TargetFramework>
   </PropertyGroup>
-  <Import Project="..\APWorld.Wrapper\Paths.props" />
+  <Import Project="..\..\APWorld.Wrapper\Paths.props" />
   <PropertyGroup>
     <APWorldSourceDir>$(APWorldProjectDir)\outward</APWorldSourceDir>
     <APWorldName>outward</APWorldName>

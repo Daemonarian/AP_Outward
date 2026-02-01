@@ -1,10 +1,9 @@
-
 <Solution>
-  <Project Path="APWorld.Package/APWorld.Package.msbuildproj" Type="13b669be-bb05-4ddf-9536-439f39a36129" Id="c30ead44-eaab-4ebb-8f56-eb594ac5e42a" />
+  <Project Path="Release/APWorld.Release/APWorld.Release.msbuildproj" Type="13b669be-bb05-4ddf-9536-439f39a36129" Id="c30ead44-eaab-4ebb-8f56-eb594ac5e42a" />
   <Project Path="APWorld.Wrapper/APWorld.Wrapper.msbuildproj" Type="13b669be-bb05-4ddf-9536-439f39a36129" Id="23cb0ceb-660b-419e-ad77-76e178cb8a97" />
   <Project Path="APWorld/APWorld.pyproj" Type="888888a0-9f3d-457c-b088-3a5042f75d52" Id="6eb220a9-214d-4f4b-9943-358d490bf7ea">
     <Build Project="false" />
   </Project>
-  <Project Path="Outward/OutwardArchipelago.csproj" Id="3d6aff82-c4e4-4757-a835-13a5bf191ade" />
-  <Project Path="OutwardArchipelago.CodeGen/OutwardArchipelago.CodeGen.csproj" Id="36424b2c-341f-423e-9ff1-dec508968691" />
+  <Project Path="Mod/Mod.csproj" Id="3d6aff82-c4e4-4757-a835-13a5bf191ade" />
+  <Project Path="Mod.CodeGen/Mod.CodeGen.csproj" Id="36424b2c-341f-423e-9ff1-dec508968691" />
 </Solution>
