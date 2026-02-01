@@ -249,8 +249,8 @@ namespace OutwardArchipelago.QuestEvents
                 return new QuestEventSignature
                 {
                     EventUID = _itemToEvent[item],
-                    EventName = $"{QUEST_EVENT_NAME_PREFIX}_APItem_{item}",
-                    Description = $"Triggers when the Archipelago item with id {item} is received.",
+                    EventName = $"{QUEST_EVENT_NAME_PREFIX}_APItem_{item.Id}",
+                    Description = $"Triggers when {item} is received.",
                     Savable = true,
                     IsStackable = true,
                     IsTimedEvent = false,
@@ -343,8 +343,8 @@ namespace OutwardArchipelago.QuestEvents
                 return new QuestEventSignature
                 {
                     EventUID = _locationToEvent[location],
-                    EventName = $"{QUEST_EVENT_NAME_PREFIX}_APLocation_{location}",
-                    Description = $"Triggers when the Archipelago location with id {location} has been checked.",
+                    EventName = $"{QUEST_EVENT_NAME_PREFIX}_APLocation_{location.Id}",
+                    Description = $"Triggers when {location} has been checked.",
                     Savable = true,
                     IsStackable = false,
                     IsTimedEvent = false,
