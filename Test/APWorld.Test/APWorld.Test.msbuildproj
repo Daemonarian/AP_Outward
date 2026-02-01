@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.Build.NoTargets/3.7.134">
+  <PropertyGroup>
+    <ProjectGuid>{06fe2947-46c1-42bf-8e21-7acab74e9a25}</ProjectGuid>
+    <TargetFramework>net10.0</TargetFramework>
+  </PropertyGroup>
+  <Import Project="..\..\APWorld.Wrapper\Paths.props" />
+  <ItemGroup>
+    <ProjectReference Include="$(APWorldWrapperProjectDir)APWorld.Wrapper.msbuildproj" />
+  </ItemGroup>
+  <Target Name="RunTests" AfterTargets="Build">
+    <Exec Command="$(PythonCommand) -m pytest" WorkingDirectory="$(APWorldProjectDir)" />
+  </Target>
+</Project>

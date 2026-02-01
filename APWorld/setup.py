@@ -43,6 +43,7 @@ my_path_configuration_file = venv_dir / "lib" / "site-packages" / "archipelago.p
 if not venv_dir.exists():
     subprocess.run([sys.executable, "-m", "venv", "--upgrade-deps", venv_dir], check=True)
 subprocess.run([venv_python, "-m", "pip", "install", "--upgrade", "pip"], check=True)
+subprocess.run([venv_python, "-m", "pip", "install", "-r", external_archipelago_project_dir / "ci-requirements.txt"], check=True)
 subprocess.run([venv_python, archipelago_module_update_file, "--yes"], check=True)
 
 search_paths = [external_archipelago_project_dir]
