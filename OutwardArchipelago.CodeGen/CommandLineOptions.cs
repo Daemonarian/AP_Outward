@@ -10,14 +10,8 @@ namespace OutwardArchipelago.CodeGen
         [Option("namespace", Required = false, Default = "OutwardArchipelago.Archipelago", HelpText = "The namespace of the generated classes.")]
         public string Namespace { get; set; } = string.Empty;
 
-        [Option("item-class", Required = false, Default = "APWorldItemID", HelpText = "The name of the generated class containing the item ids.")]
-        public string ItemClassName { get; set; } = string.Empty;
-
-        [Option("location-class", Required = false, Default = "APWorldLocationID", HelpText = "The name of the generated class containing the location ids.")]
-        public string LocationClassName { get; set; } = string.Empty;
-
-        [Option("info-class", Required = false, Default = "APWorldInfo", HelpText = "The name of the generated class containing the APWorld info.")]
-        public string InfoClassName { get; set; } = string.Empty;
+        [Option("class", Required = false, Default = "APWorld", HelpText = "The name of the generated class containing the APWorld info.")]
+        public string Class { get; set; } = string.Empty;
 
         [Option("access-modifier", Required = false, Default = "internal", HelpText = "The access modifier to use when declaring the classes and constants.")]
         public string AccessModifier { get; set; } = string.Empty;

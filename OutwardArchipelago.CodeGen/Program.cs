@@ -7,6 +7,11 @@ namespace OutwardArchipelago.CodeGen
 {
     internal class Program
     {
+        static readonly JsonSerializerOptions _jsonSerializerOptions = new()
+        {
+            PropertyNamingPolicy = JsonNamingPolicy.SnakeCaseLower,
+        };
+
         static void Main(string[] args)
         {
             Parser.Default.ParseArguments<CommandLineOptions>(args).WithParsed(GenerateCode);
@@ -14,91 +19,71 @@ namespace OutwardArchipelago.CodeGen
 
         static void GenerateCode(CommandLineOptions opts)
         {
-            // parse the Archipelgo version
-
-            var archipelagoVersionFile = Path.Join(AppContext.BaseDirectory, "archipelago_version.txt");
-            var archipelagoVersion = File.ReadAllText(archipelagoVersionFile).Trim();
+            var culture = CultureInfo.CurrentCulture;
 
             // parse the APWorld item ids
 
-#pragma warning disable CA1869 // Cache and reuse 'JsonSerializerOptions' instances
-            var options = new JsonSerializerOptions
-            {
-                PropertyNameCaseInsensitive = true
-            };
-#pragma warning restore CA1869 // Cache and reuse 'JsonSerializerOptions' instances
-
-            var apworldIdsJsonFile = Path.Join(AppContext.BaseDirectory, "apworld_ids.json");
-            var jsonText = File.ReadAllText(apworldIdsJsonFile);
-            var apworldIds = JsonSerializer.Deserialize<APWorldIDs>(jsonText, options) ?? throw new Exception("Failed to load the APWorld IDs.");
-
-            // convert keys into PascalCase for C#
-
-            CultureInfo keyCulture = CultureInfo.InvariantCulture;
-            apworldIds.Items = ConvertKeysSnakeToPascalCase(apworldIds.Items, keyCulture);
-            apworldIds.Locations = ConvertKeysSnakeToPascalCase(apworldIds.Locations, keyCulture);
+            var apworldJsonFile = Path.Join(AppContext.BaseDirectory, "apworld_info.json");
+            var apworldJsonText = File.ReadAllText(apworldJsonFile);
+            var apworld = JsonSerializer.Deserialize<APWorld>(apworldJsonText, _jsonSerializerOptions) ?? throw new Exception("Failed to load the APWorld info.");
 
             // generate code
 
             var sb = new StringBuilder();
 
-            sb.AppendLine("using System.Collections.Generic;");
-            sb.AppendLine("");
+            sb.AppendLine($"using System.Collections.Generic;");
 
             if (!string.IsNullOrEmpty(opts.Namespace))
             {
                 sb.AppendLine($"namespace {opts.Namespace}");
-                sb.AppendLine("{");
+                sb.AppendLine($"{{");
             }
 
-            sb.AppendLine($"    {opts.AccessModifier} static class {opts.InfoClassName}");
-            sb.AppendLine("    {");
-            sb.AppendLine($"        public const string ArchipelagoVersion = \"{archipelagoVersion}\";");
-            sb.AppendLine("    }");
-            sb.AppendLine("");
-            sb.AppendLine($"    {opts.AccessModifier} static class {opts.ItemClassName}");
-            sb.AppendLine("    {");
+            sb.AppendLine($"    {opts.AccessModifier} static partial class {opts.Class}");
+            sb.AppendLine($"    {{");
+            sb.AppendLine($"        public const string ArchipelagoVersion = \"{Escape(apworld.ArchipelagoVersion)}\";");
+            sb.AppendLine($"        public const string Game = \"{Escape(apworld.Game)}\";");
+            sb.AppendLine($"        public sealed partial class Item");
+            sb.AppendLine($"        {{");
 
-            foreach (var pair in apworldIds.Items)
+            foreach (var item in apworld.Items)
             {
-                sb.AppendLine($"        {opts.AccessModifier} const long {pair.Key} = 0x{pair.Value:X16};");
+                sb.AppendLine($"            public static readonly Item {SnakeToPascalCase(item.Key, culture)} = new(0x{item.Id:X16}, \"{Escape(item.Name)}\");");
             }
 
-            sb.AppendLine("");
-            sb.AppendLine($"        {opts.AccessModifier} static readonly IReadOnlyList<long> All = new[]");
-            sb.AppendLine("        {");
+            sb.AppendLine($"            public static readonly IReadOnlyDictionary<long, Item> ById = new Dictionary<long, Item>");
+            sb.AppendLine($"            {{");
 
-            foreach (var key in apworldIds.Items.Keys)
+            foreach (var item in apworld.Items)
             {
-                sb.AppendLine($"            {key},");
+                sb.AppendLine($"                {{ 0x{item.Id:X16}, {SnakeToPascalCase(item.Key, culture)} }},");
             }
 
-            sb.AppendLine("        };");
-            sb.AppendLine("    }");
-            sb.AppendLine("");
-            sb.AppendLine($"    {opts.AccessModifier} static class {opts.LocationClassName}");
-            sb.AppendLine("    {");
+            sb.AppendLine($"            }};");
+            sb.AppendLine($"        }}");
+            sb.AppendLine($"        public sealed partial class Location");
+            sb.AppendLine($"        {{");
 
-            foreach (var pair in apworldIds.Locations)
+            foreach (var location in apworld.Locations)
             {
-                sb.AppendLine($"        {opts.AccessModifier} const long {pair.Key} = 0x{pair.Value:X16};");
+                sb.AppendLine($"            public static readonly Location {SnakeToPascalCase(location.Key, culture)} = new(0x{location.Id:X16}, \"{Escape(location.Name)}\");");
             }
 
-            sb.AppendLine("");
-            sb.AppendLine($"        {opts.AccessModifier} static readonly IReadOnlyList<long> All = new[]");
-            sb.AppendLine("        {");
+            sb.AppendLine($"            public static readonly IReadOnlyDictionary<long, Location> ById = new Dictionary<long, Location>");
+            sb.AppendLine($"            {{");
 
-            foreach (var key in apworldIds.Locations.Keys)
+            foreach (var location in apworld.Locations)
             {
-                sb.AppendLine($"            {key},");
+                sb.AppendLine($"                {{ 0x{location.Id:X16}, {SnakeToPascalCase(location.Key, culture)} }},");
             }
 
-            sb.AppendLine("        };");
-            sb.AppendLine("    }");
+            sb.AppendLine($"            }};");
+            sb.AppendLine($"        }}");
+            sb.AppendLine($"    }}");
 
             if (!string.IsNullOrEmpty(opts.Namespace))
             {
-                sb.AppendLine("}");
+                sb.AppendLine($"}}");
             }
 
             // write code to file
@@ -113,9 +98,9 @@ namespace OutwardArchipelago.CodeGen
             }
         }
 
-        static Dictionary<string, T> ConvertKeysSnakeToPascalCase<T>(Dictionary<string, T> source, CultureInfo culture)
+        static string Escape(string str)
         {
-            return source.ToDictionary(pair => SnakeToPascalCase(pair.Key, culture), pair => pair.Value);
+            return str.Replace("\\", "\\\\").Replace("\"", "\\\"").Replace("\n", "\\n").Replace("\r", "\\r").Replace("\t", "\\t").Replace("\b", "\\b");
         }
 
         static string SnakeToPascalCase(string value, CultureInfo culture)

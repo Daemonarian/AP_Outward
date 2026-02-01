@@ -19,7 +19,7 @@ namespace OutwardArchipelago.Patch
                         var itemsToRemove = new List<Item>();
                         foreach (var item in items)
                         {
-                            if (APWorldData.ItemToLocation.TryGetValue(item.ItemID, out var location))
+                            if (APWorld.ItemToLocation.TryGetValue(item.ItemID, out var location))
                             {
                                 OutwardArchipelagoMod.Log.LogInfo($"NPC died with item ({item.ItemID}) associated with location ({location}) in their lootable inventory; removing item and sending location check");
                                 itemsToRemove.Add(item);

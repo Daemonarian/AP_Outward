@@ -1,27 +1,20 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-    <PropertyGroup>
-        <OutputType>Exe</OutputType>
-        <TargetFramework>net10.0</TargetFramework>
-        <ImplicitUsings>enable</ImplicitUsings>
-        <Nullable>enable</Nullable>
-		<APWorldProjectDir>..\APWorld</APWorldProjectDir>
-    </PropertyGroup>
-    <ItemGroup>
-      <PackageReference Include="CommandLineParser" Version="2.9.1" />
-    </ItemGroup>
-	<Target Name="SetupAPWorldVenv" BeforeTargets="ExportFromAPWorld">
-		<PropertyGroup>
-			<PythonCommand>py</PythonCommand>
-			<PythonCommand Condition="!$([MSBuild]::IsOSPlatform('Windows'))">python3.13</PythonCommand>
-		</PropertyGroup>
-		<Exec Command="&quot;$(PythonCommand)&quot; $(APWorldProjectDir)\setup.py" />
-	</Target>
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <ProjectGuid>{36424b2c-341f-423e-9ff1-dec508968691}</ProjectGuid>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="CommandLineParser" Version="2.9.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\APWorld.Wrapper\APWorld.Wrapper.msbuildproj" />
+  </ItemGroup>
+  <Import Project="..\APWorld.Wrapper\Paths.props" />
 	<Target Name="ExportFromAPWorld" AfterTargets="Build">
-		<PropertyGroup>
-			<APWorldPython>$(APWorldProjectDir)\.venv\Scripts\python.exe</APWorldPython>
-			<APWorldPython Condition="!$([MSBuild]::IsOSPlatform('Windows'))">$(APWorldProjectDir)/.venv/bin/python</APWorldPython>
-		</PropertyGroup>
-		<Exec Command="&quot;$(APWorldPython)&quot; -m scripts.export.ids --output &quot;$(ProjectDir)$(OutputPath)/apworld_ids.json&quot;" WorkingDirectory="$(APWorldProjectDir)" />
-		<Exec Command="&quot;$(APWorldPython)&quot; -m scripts.export.archipelago_version --output &quot;$(ProjectDir)$(OutputPath)/archipelago_version.txt&quot;" WorkingDirectory="$(APWorldProjectDir)" />
+		<Exec Command="$(PythonCommand) -m build_tools.export --output &quot;$(ProjectDir)$(OutputPath)/apworld_info.json&quot;" WorkingDirectory="$(APWorldProjectDir)" />
 	</Target>
 </Project>

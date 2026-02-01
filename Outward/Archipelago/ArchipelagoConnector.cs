@@ -1,13 +1,13 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Archipelago.MultiClient.Net;
 using Archipelago.MultiClient.Net.Enums;
 using Archipelago.MultiClient.Net.Exceptions;
 using Archipelago.MultiClient.Net.Helpers;
 using Archipelago.MultiClient.Net.MessageLog.Messages;
-using OutwardArchipelago.Archipelago.APItemGivers;
 using OutwardArchipelago.QuestEvents;
 using UnityEngine;
 
@@ -18,18 +18,6 @@ namespace OutwardArchipelago.Archipelago
     /// </summary>
     internal class ArchipelagoConnector : MonoBehaviour
     {
-        /// <summary>
-        /// The Archipelago game identifier string.
-        /// 
-        /// This must match the name from the Outward APWorld exactly.
-        /// </summary>
-        private const string ArchipelagoGame = "Outward: Definitive Edition";
-
-        /// <summary>
-        /// The version of Archipelago this connection manager supports.
-        /// </summary>
-        private const string ArchipelagoVersion = APWorldInfo.ArchipelagoVersion;
-
         /// <summary>
         /// The session with the Archipelago server.
         /// </summary>
@@ -224,7 +212,7 @@ namespace OutwardArchipelago.Archipelago
 
             await _items.ResetSession();
 
-            OutwardArchipelagoMod.Log.LogInfo($"logging into Archipelago server at \"{Host}:{Port}\" with slot \"{SlotName}\" and game \"{ArchipelagoGame}\"...");
+            OutwardArchipelagoMod.Log.LogInfo($"logging into Archipelago server at \"{Host}:{Port}\" with slot \"{SlotName}\" and game \"{APWorld.Game}\"...");
             _session = ArchipelagoSessionFactory.CreateSession(Host, Port);
 
             // register all event handlers before connecting
@@ -245,10 +233,10 @@ namespace OutwardArchipelago.Archipelago
             try
             {
                 loginResult = await _session.LoginAsync(
-                    ArchipelagoGame,
+                    APWorld.Game,
                     SlotName,
                     ItemsHandlingFlags.AllItems,
-                    version: new Version(ArchipelagoVersion),
+                    version: new Version(APWorld.ArchipelagoVersion),
                     password: Password,
                     requestSlotData: true
                 );
@@ -357,9 +345,9 @@ namespace OutwardArchipelago.Archipelago
             /// 
             /// This method should be called from the Unity main thread.
             /// </summary>
-            /// <param name="itemId">The Outward APWorld item ID.</param>
+            /// <param name="item">The Outward APWorld item.</param>
             /// <returns>The count of the specified Archipelago item.</returns>
-            public int GetCount(long itemId);
+            public int GetCount(APWorld.Item item);
         }
 
         /// <summary>
@@ -377,17 +365,17 @@ namespace OutwardArchipelago.Archipelago
             /// 
             /// This method should be called from the Unity main thread.
             /// </summary>
-            /// <param name="locationId">The Outward APWorld location ID.</param>
+            /// <param name="location">The Outward APWorld location.</param>
             /// <returns>Whether the Archipelago location check has been completed.</returns>
-            public bool IsComplete(long locationId);
+            public bool IsComplete(APWorld.Location location);
 
             /// <summary>
             /// Complete an Archipelago location check.
             /// 
             /// This method should be called from the Unity main thread.
             /// </summary>
-            /// <param name="locationId">The Outward APWorld location ID.</param>
-            public void Complete(long locationId);
+            /// <param name="location">The Outward APWorld location.</param>
+            public void Complete(APWorld.Location location);
         }
 
         /// <summary>
@@ -420,19 +408,14 @@ namespace OutwardArchipelago.Archipelago
             private readonly ArchipelagoConnector _parent;
 
             /// <summary>
-            /// The manager that knows how to actually give Archipelago items to the player.
-            /// </summary>
-            private readonly APItemGiver _itemGiver = new();
-
-            /// <summary>
             /// Received items to process.
             /// </summary>
-            private readonly ConcurrentQueue<long> _incomingItems = new();
+            private readonly ConcurrentQueue<APWorld.Item> _incomingItems = new();
 
             /// <summary>
-            /// A mapping from Outward APWorld item IDs to counts recieved in the current Archipelago session.
+            /// A mapping from Outward APWorld items to counts recieved in the current Archipelago session.
             /// </summary>
-            private readonly Dictionary<long, int> _sessionItemCounts = new();
+            private readonly Dictionary<APWorld.Item, int> _sessionItemCounts = new();
 
             public ItemManager(ArchipelagoConnector parent)
             {
@@ -441,7 +424,7 @@ namespace OutwardArchipelago.Archipelago
 
             public ArchipelagoConnector Parent => _parent;
 
-            public int GetCount(long itemId) => ModQuestEventManager.Instance.Items.GetCount(itemId);
+            public int GetCount(APWorld.Item item) => ModQuestEventManager.Instance.Items.GetCount(item);
 
             /// <summary>
             /// Register Archipelago session event handlers.
@@ -467,7 +450,7 @@ namespace OutwardArchipelago.Archipelago
             public void Update()
             {
                 // try to process an item from the queue
-                if (OutwardArchipelagoMod.Instance.IsInArchipelagoGame && _incomingItems.TryDequeue(out var itemId))
+                if (OutwardArchipelagoMod.Instance.IsInArchipelagoGame && _incomingItems.TryDequeue(out var item))
                 {
                     // Every time we connect to the Archipelago server, it resends every single item. To avoid giving
                     // the player extra copies of the items every time they reconnect, we will keep track of how many
@@ -475,17 +458,17 @@ namespace OutwardArchipelago.Archipelago
                     // session, and only give the player the item if the amount of that item recieved this session
                     // is greater than the amount already saved to the world.
 
-                    if (!_sessionItemCounts.TryGetValue(itemId, out var count))
+                    if (!_sessionItemCounts.TryGetValue(item, out var count))
                     {
                         count = 0;
                     }
 
                     count += 1;
-                    _sessionItemCounts[itemId] = count;
+                    _sessionItemCounts[item] = count;
 
-                    if (GetCount(itemId) < count)
+                    if (GetCount(item) < count)
                     {
-                        Give(itemId);
+                        Give(item);
                     }
                 }
             }
@@ -511,9 +494,16 @@ namespace OutwardArchipelago.Archipelago
             {
                 while (helper.Any())
                 {
-                    var item = helper.DequeueItem();
-                    OutwardArchipelagoMod.Log.LogInfo($"recieved item \"{item.ItemName}\" ({item.ItemId}) from the Archipelago server");
-                    _incomingItems.Enqueue(item.ItemId);
+                    var itemInfo = helper.DequeueItem();
+                    if (APWorld.Item.ById.TryGetValue(itemInfo.ItemId, out var item))
+                    {
+                        OutwardArchipelagoMod.Log.LogInfo($"recieved {item} from the Archipelago server");
+                        _incomingItems.Enqueue(item);
+                    }
+                    else
+                    {
+                        OutwardArchipelagoMod.Log.LogError($"recieved unrecognize item with ID {itemInfo.ItemId} from the Archipelago server");
+                    }
                 }
             }
 
@@ -522,11 +512,19 @@ namespace OutwardArchipelago.Archipelago
             /// 
             /// This will be called from the main thread.
             /// </summary>
-            /// <param name="itemId">The Outward APWorld item ID.</param>
-            private void Give(long itemId)
+            /// <param name="item">The Outward APWorld item.</param>
+            private void Give(APWorld.Item item)
             {
-                _itemGiver.GiveItem(itemId);
-                ModQuestEventManager.Instance.Items.Add(itemId);
+                if (!APWorld.ItemToGiver.TryGetValue(item, out var itemGiver))
+                {
+                    OutwardArchipelagoMod.Log.LogInfo($"tried to give {item} to player, but could not determine the corresponding Outward reward");
+                    return;
+                }
+
+                OutwardArchipelagoMod.Log.LogInfo($"giving Archipelago item {item} to player");
+                var character = CharacterManager.Instance.GetFirstLocalCharacter();
+                itemGiver.GiveItem(character);
+                ModQuestEventManager.Instance.Items.Add(item);
             }
         }
 
@@ -543,7 +541,7 @@ namespace OutwardArchipelago.Archipelago
             /// <summary>
             /// Locations checks to send to the Archipelago server.
             /// </summary>
-            private readonly ConcurrentQueue<long> _outgoingLocations = new();
+            private readonly ConcurrentQueue<APWorld.Location> _outgoingLocations = new();
 
             public LocationManager(ArchipelagoConnector parent)
             {
@@ -552,15 +550,15 @@ namespace OutwardArchipelago.Archipelago
 
             public ArchipelagoConnector Parent => _parent;
 
-            public bool IsComplete(long locationId) => ModQuestEventManager.Instance.Locations.Contains(locationId);
+            public bool IsComplete(APWorld.Location location) => ModQuestEventManager.Instance.Locations.Contains(location);
 
-            public void Complete(long locationId)
+            public void Complete(APWorld.Location location)
             {
                 if (OutwardArchipelagoMod.Instance.IsArchipelagoEnabled)
                 {
-                    OutwardArchipelagoMod.Log.LogDebug($"completing location check: {locationId}");
-                    ModQuestEventManager.Instance.Locations.Add(locationId);
-                    _outgoingLocations.Enqueue(locationId);
+                    OutwardArchipelagoMod.Log.LogDebug($"completing check for {location}");
+                    ModQuestEventManager.Instance.Locations.Add(location);
+                    _outgoingLocations.Enqueue(location);
                 }
             }
 
@@ -571,24 +569,24 @@ namespace OutwardArchipelago.Archipelago
             /// </summary>
             public async Task UpdateAsync()
             {
-                var locationIds = new List<long>();
-                while (_outgoingLocations.TryDequeue(out var locationId))
+                var locations = new List<APWorld.Location>();
+                while (_outgoingLocations.TryDequeue(out var location))
                 {
-                    locationIds.Add(locationId);
+                    locations.Add(location);
                 }
 
-                if (locationIds.Count > 0)
+                if (locations.Count > 0)
                 {
                     try
                     {
-                        await _parent._session.Locations.CompleteLocationChecksAsync(locationIds.ToArray());
-                        OutwardArchipelagoMod.Log.LogInfo($"completed location checks with Archipelago server: {string.Join(", ", locationIds)}");
+                        await _parent._session.Locations.CompleteLocationChecksAsync(locations.Select(loc => loc.Id).ToArray());
+                        OutwardArchipelagoMod.Log.LogInfo($"completed location checks with Archipelago server: {string.Join(", ", locations)}");
                     }
                     catch (Exception ex)
                     {
-                        foreach (var locationId in locationIds)
+                        foreach (var location in locations)
                         {
-                            _outgoingLocations.Enqueue(locationId);
+                            _outgoingLocations.Enqueue(location);
                         }
 
                         throw ex;

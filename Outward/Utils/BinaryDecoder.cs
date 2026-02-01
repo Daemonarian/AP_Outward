@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using OutwardArchipelago.Archipelago;
 
 namespace OutwardArchipelago.Utils
 {
@@ -70,6 +71,16 @@ namespace OutwardArchipelago.Utils
             if (runtimeType == typeof(double))
             {
                 return (BinaryDecoder<T>)(object)new DoubleBinaryDecoder();
+            }
+
+            if (runtimeType == typeof(APWorld.Item))
+            {
+                return (BinaryDecoder<T>)(object)new APItemBinaryDecoder();
+            }
+
+            if (runtimeType == typeof(APWorld.Location))
+            {
+                return (BinaryDecoder<T>)(object)new APLocationBinaryDecoder();
             }
 
             if (runtimeType == typeof(string))
@@ -160,6 +171,16 @@ namespace OutwardArchipelago.Utils
     internal class DoubleBinaryDecoder : BitConverterBinaryDecoder<double>
     {
         protected override double FromBytes(byte[] bytes) => BitConverter.ToDouble(bytes, 0);
+    }
+
+    internal class APItemBinaryDecoder : BinaryDecoder<APWorld.Item>
+    {
+        public override APWorld.Item Decode(byte[] bytes) => APWorld.Item.ById[BinaryDecoder<long>.Default.Decode(bytes)];
+    }
+
+    internal class APLocationBinaryDecoder : BinaryDecoder<APWorld.Location>
+    {
+        public override APWorld.Location Decode(byte[] bytes) => APWorld.Location.ById[BinaryDecoder<long>.Default.Decode(bytes)];
     }
 
     internal class StringBinaryDecoder : BinaryDecoder<string>

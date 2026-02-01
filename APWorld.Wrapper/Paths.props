@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project>
+  <PropertyGroup>
+    <APWorldProjectDir>$(ProjectDir)..\APWorld</APWorldProjectDir>
+    <APWorldVenvDir>$(APWorldProjectDir)\.venv</APWorldVenvDir>
+    <PythonCommand>&quot;$(APWorldVenvDir)\Scripts\python.exe&quot;</PythonCommand>
+    <PythonCommand Condition="'$(OS)' != 'Windows_NT'">&quot;$(APWorldVenvDir)/bin/python&quot;</PythonCommand>
+  </PropertyGroup>
+</Project>

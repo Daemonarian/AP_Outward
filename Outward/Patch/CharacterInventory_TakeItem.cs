@@ -12,7 +12,7 @@ namespace OutwardArchipelago.Patch
         /// </summary>
         private static bool Prefix(CharacterInventory __instance, Item takenItem, bool _tryToEquip)
         {
-            if (takenItem.TryGetSideData("AP_Location", out long location))
+            if (takenItem.TryGetSideData("AP_Location", out APWorld.Location location))
             {
                 if (OutwardArchipelagoMod.Instance.IsArchipelagoEnabled)
                 {

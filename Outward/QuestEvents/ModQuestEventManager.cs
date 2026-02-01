@@ -121,17 +121,17 @@ namespace OutwardArchipelago.QuestEvents
             /// <summary>
             /// Get the number of an Archipelago item that exist in the world.
             /// </summary>
-            /// <param name="itemId">The Outward APWorld item ID.</param>
+            /// <param name="item">The Outward APWorld item.</param>
             /// <returns>The count of that item.</returns>
-            public abstract int GetCount(long itemId);
+            public abstract int GetCount(APWorld.Item item);
 
             /// <summary>
             /// Add a single Archipelago item to the world.
             /// 
             /// This does not actually grant the item, it merely updates the count in the save file.
             /// </summary>
-            /// <param name="itemId">The Outward APWorld item ID.</param>
-            public abstract void Add(long itemId);
+            /// <param name="item">The Outward APWorld item.</param>
+            public abstract void Add(APWorld.Item item);
         }
 
         /// <summary>
@@ -147,17 +147,17 @@ namespace OutwardArchipelago.QuestEvents
             /// <summary>
             /// Check whether an Archipelago location has been triggered.
             /// </summary>
-            /// <param name="locationId">The Outward APWorld location ID.</param>
+            /// <param name="location">The Outward APWorld location.</param>
             /// <returns>Whether the Archipelago location has been triggered.</returns>
-            public abstract bool Contains(long locationId);
+            public abstract bool Contains(APWorld.Location location);
 
             /// <summary>
             /// Trigger an Archipelago location.
             /// 
             /// This does not contact the Archipelago server, it merely updates the save file.
             /// </summary>
-            /// <param name="locationId">The Outward APWorld location ID.</param>
-            public abstract void Add(long locationId);
+            /// <param name="location">The Outward APWorld location.</param>
+            public abstract void Add(APWorld.Location location);
         }
 
         /// <summary>
@@ -171,29 +171,29 @@ namespace OutwardArchipelago.QuestEvents
             private readonly ModQuestEventManager _parent;
 
             /// <summary>
-            /// A mapping from Outward APWorld item IDs to their corresponding event UIDs.
+            /// A mapping from Outward APWorld items to their corresponding event UIDs.
             /// </summary>
-            private readonly IReadOnlyDictionary<long, string> _itemToEvent;
+            private readonly IReadOnlyDictionary<APWorld.Item, string> _itemToEvent;
 
             public ItemManager(ModQuestEventManager parent)
             {
                 _parent = parent;
-                _itemToEvent = APWorldItem.All.ToDictionary(id => id, id => $"{QUEST_EVENT_UID_PREFIX}A{Base64SafeEncoder<long>.Default.Encode(id)}");
+                _itemToEvent = APWorld.Item.ById.Values.ToDictionary(item => item, item => $"{QUEST_EVENT_UID_PREFIX}A{Base64SafeEncoder<long>.Default.Encode(item.Id)}");
             }
 
             public ModQuestEventManager Parent => _parent;
 
-            public int GetCount(long itemId)
+            public int GetCount(APWorld.Item item)
             {
-                if (!_itemToEvent.TryGetValue(itemId, out var eventUid))
+                if (!_itemToEvent.TryGetValue(item, out var eventUid))
                 {
-                    OutwardArchipelagoMod.Log.LogError($"tried to get the quest event stack count for item {itemId}; but the corresponding event UID could not be found");
+                    OutwardArchipelagoMod.Log.LogError($"tried to get the quest event stack count for {item}; but the corresponding event UID could not be found");
                     return 0;
                 }
 
                 if (QuestEventManager.Instance is null)
                 {
-                    OutwardArchipelagoMod.Log.LogError($"tried to get the quest event stack count for item {itemId}; but the QuestEventManager was not ready");
+                    OutwardArchipelagoMod.Log.LogError($"tried to get the quest event stack count for {item}; but the QuestEventManager was not ready");
                     return 0;
                 }
 
@@ -206,23 +206,23 @@ namespace OutwardArchipelago.QuestEvents
                 return stackCount;
             }
 
-            public void Add(long itemId)
+            public void Add(APWorld.Item item)
             {
-                if (!_itemToEvent.TryGetValue(itemId, out var eventUid))
+                if (!_itemToEvent.TryGetValue(item, out var eventUid))
                 {
-                    OutwardArchipelagoMod.Log.LogError($"tried to add a quest event stack for item {itemId}; but the corresponding event UID could not be found");
+                    OutwardArchipelagoMod.Log.LogError($"tried to add a quest event stack for {item}; but the corresponding event UID could not be found");
                     return;
                 }
 
                 if (QuestEventManager.Instance is null)
                 {
-                    OutwardArchipelagoMod.Log.LogError($"tried to add a quest event stack for item {itemId}; but the QuestEventManager was not ready");
+                    OutwardArchipelagoMod.Log.LogError($"tried to add a quest event stack for {item}; but the QuestEventManager was not ready");
                     return;
                 }
 
                 if (!QuestEventManager.Instance.AddEvent(eventUid))
                 {
-                    OutwardArchipelagoMod.Log.LogError($"tried to add a quest event stack for item {itemId}; but the event '{eventUid}' could not be found");
+                    OutwardArchipelagoMod.Log.LogError($"tried to add a quest event stack for {item}; but the event '{eventUid}' could not be found");
                 }
             }
 
@@ -235,22 +235,22 @@ namespace OutwardArchipelago.QuestEvents
                 return new QuestEventFamily
                 {
                     Name = $"{QUEST_EVENT_NAME_PREFIX}_APItem",
-                    Events = APWorldItem.All.Select(CreateQuestEventSignature).ToList(),
+                    Events = APWorld.Item.ById.Values.Select(CreateQuestEventSignature).ToList(),
                 };
             }
 
             /// <summary>
             /// Create a custom quest event signature for an Archipelago item.
             /// </summary>
-            /// <param name="itemId">The Outward APWorld item ID.</param>
+            /// <param name="item">The Outward APWorld item.</param>
             /// <returns>A newly constructed quest event signature.</returns>
-            private QuestEventSignature CreateQuestEventSignature(long itemId)
+            private QuestEventSignature CreateQuestEventSignature(APWorld.Item item)
             {
                 return new QuestEventSignature
                 {
-                    EventUID = _itemToEvent[itemId],
-                    EventName = $"{QUEST_EVENT_NAME_PREFIX}_APItem_{itemId}",
-                    Description = $"Triggers when the Archipelago item with id {itemId} is received.",
+                    EventUID = _itemToEvent[item],
+                    EventName = $"{QUEST_EVENT_NAME_PREFIX}_APItem_{item}",
+                    Description = $"Triggers when the Archipelago item with id {item} is received.",
                     Savable = true,
                     IsStackable = true,
                     IsTimedEvent = false,
@@ -271,52 +271,52 @@ namespace OutwardArchipelago.QuestEvents
             private readonly ModQuestEventManager _parent;
 
             /// <summary>
-            /// A mapping from Outward APWorld location IDs to their corresponding event UIDs.
+            /// A mapping from Outward APWorld locations to their corresponding event UIDs.
             /// </summary>
-            private readonly IReadOnlyDictionary<long, string> _locationToEvent;
+            private readonly IReadOnlyDictionary<APWorld.Location, string> _locationToEvent;
 
             public LocationManager(ModQuestEventManager parent)
             {
                 _parent = parent;
-                _locationToEvent = APWorldLocation.All.ToDictionary(id => id, id => $"{QUEST_EVENT_UID_PREFIX}B{Base64SafeEncoder<long>.Default.Encode(id)}");
+                _locationToEvent = APWorld.Location.ById.Values.ToDictionary(location => location, location => $"{QUEST_EVENT_UID_PREFIX}B{Base64SafeEncoder<long>.Default.Encode(location.Id)}");
             }
 
             public ModQuestEventManager Parent => _parent;
 
-            public bool Contains(long locationId)
+            public bool Contains(APWorld.Location location)
             {
-                if (!_locationToEvent.TryGetValue(locationId, out var eventUid))
+                if (!_locationToEvent.TryGetValue(location, out var eventUid))
                 {
-                    OutwardArchipelagoMod.Log.LogError($"tried to check the quest event for location {locationId}; but the corresponding event UID could not be found");
+                    OutwardArchipelagoMod.Log.LogError($"tried to check the quest event for {location}; but the corresponding event UID could not be found");
                     return false;
                 }
 
                 if (QuestEventManager.Instance is null)
                 {
-                    OutwardArchipelagoMod.Log.LogError($"tried to check the quest event stack count for location {locationId}; but the QuestEventManager was not ready");
+                    OutwardArchipelagoMod.Log.LogError($"tried to check the quest event stack count for {location}; but the QuestEventManager was not ready");
                     return false;
                 }
 
                 return QuestEventManager.Instance.HasQuestEvent(eventUid);
             }
 
-            public void Add(long locationId)
+            public void Add(APWorld.Location location)
             {
-                if (!_locationToEvent.TryGetValue(locationId, out var eventUid))
+                if (!_locationToEvent.TryGetValue(location, out var eventUid))
                 {
-                    OutwardArchipelagoMod.Log.LogError($"tried to add quest event for location {locationId}; but the corresponding event UID could not be found");
+                    OutwardArchipelagoMod.Log.LogError($"tried to add quest event for {location}; but the corresponding event UID could not be found");
                     return;
                 }
 
                 if (QuestEventManager.Instance is null)
                 {
-                    OutwardArchipelagoMod.Log.LogError($"tried to add quest event for location {locationId}; but the QuestEventManager was not ready");
+                    OutwardArchipelagoMod.Log.LogError($"tried to add quest event for {location}; but the QuestEventManager was not ready");
                     return;
                 }
 
                 if (!QuestEventManager.Instance.AddEvent(eventUid))
                 {
-                    OutwardArchipelagoMod.Log.LogError($"tried to add quest event for location {locationId}; but the event '{eventUid}' could not be found");
+                    OutwardArchipelagoMod.Log.LogError($"tried to add quest event for {location}; but the event '{eventUid}' could not be found");
                 }
             }
 
@@ -329,22 +329,22 @@ namespace OutwardArchipelago.QuestEvents
                 return new QuestEventFamily
                 {
                     Name = $"{QUEST_EVENT_NAME_PREFIX}_APLocation",
-                    Events = APWorldLocation.All.Select(CreateQuestEventSignature).ToList(),
+                    Events = APWorld.Location.ById.Values.Select(CreateQuestEventSignature).ToList(),
                 };
             }
 
             /// <summary>
-            /// Create a custom quest event signature for an Archipelago item.
+            /// Create a custom quest event signature for an Archipelago location.
             /// </summary>
-            /// <param name="itemId">The Outward APWorld item ID.</param>
+            /// <param name="location">The Outward APWorld location.</param>
             /// <returns>A newly constructed quest event signature.</returns>
-            private QuestEventSignature CreateQuestEventSignature(long locationId)
+            private QuestEventSignature CreateQuestEventSignature(APWorld.Location location)
             {
                 return new QuestEventSignature
                 {
-                    EventUID = _locationToEvent[locationId],
-                    EventName = $"{QUEST_EVENT_NAME_PREFIX}_APLocation_{locationId}",
-                    Description = $"Triggers when the Archipelago location with id {locationId} has been checked.",
+                    EventUID = _locationToEvent[location],
+                    EventName = $"{QUEST_EVENT_NAME_PREFIX}_APLocation_{location}",
+                    Description = $"Triggers when the Archipelago location with id {location} has been checked.",
                     Savable = true,
                     IsStackable = false,
                     IsTimedEvent = false,

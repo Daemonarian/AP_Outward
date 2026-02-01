@@ -6,20 +6,20 @@ namespace OutwardArchipelago.Dialogue.Actions
 {
     internal class Action_CompleteLocationCheck : ActionTask
     {
-        private readonly IReadOnlyList<long> _locationIds;
-        public IReadOnlyList<long> LocationIds => _locationIds;
+        private readonly IReadOnlyList<APWorld.Location> _locations;
+        public IReadOnlyList<APWorld.Location> Locations => _locations;
 
-        public Action_CompleteLocationCheck(IReadOnlyList<long> locationIds) => _locationIds = locationIds;
+        public Action_CompleteLocationCheck(IReadOnlyList<APWorld.Location> locations) => _locations = locations;
 
-        public Action_CompleteLocationCheck(long locationId) : this(new[] { locationId }) { }
+        public Action_CompleteLocationCheck(APWorld.Location location) : this(new[] { location }) { }
 
-        public override string info => $"Complete Archipelago location check: {string.Join(", ", LocationIds)}";
+        public override string info => $"Complete Archipelago location checks: {string.Join(", ", Locations)}";
 
         public override void OnExecute()
         {
-            foreach (var locationId in LocationIds)
+            foreach (var location in Locations)
             {
-                ArchipelagoConnector.Instance.Locations.Complete(locationId);
+                ArchipelagoConnector.Instance.Locations.Complete(location);
             }
 
             base.EndAction();

@@ -13,7 +13,7 @@ namespace OutwardArchipelago.Patch
                 if (_container != null && _itemDrop?.DroppedItem != null && _spawnAmount > 0)
                 {
                     var itemId = _itemDrop.DroppedItem.ItemID;
-                    if (APWorldData.ItemToLocation.TryGetValue(itemId, out var locationId))
+                    if (APWorld.ItemToLocation.TryGetValue(itemId, out var locationId))
                     {
                         OutwardArchipelagoMod.Log.LogInfo($"NPC dropped item ({itemId}) associated with location ({locationId}); swallowing drop and sending location check");
                         ArchipelagoConnector.Instance.Locations.Complete(locationId);

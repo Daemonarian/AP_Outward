@@ -1,5 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
+        <ProjectGuid>{3d6aff82-c4e4-4757-a835-13a5bf191ade}</ProjectGuid>
         <TargetFramework>net472</TargetFramework>
         <OutputType>Library</OutputType>
         <LangVersion>9.0</LangVersion>
@@ -61,10 +63,10 @@
     <Target Name="GenerateAPWorldBindings" BeforeTargets="CoreCompile">
         <PropertyGroup>
             <CodeGenExe>$(CodeGenProjectDir)\bin\$(Configuration)\net10.0\OutwardArchipelago.CodeGen.exe</CodeGenExe>
-            <CodeGenOutput>$(IntermediateOutputPath)APWorldInfo.cs</CodeGenOutput>
+            <CodeGenOutput>$(IntermediateOutputPath)APWorld.gen.cs</CodeGenOutput>
         </PropertyGroup>
         <Message Text="Generating &quot;$(CodeGenOutput)&quot;" Importance="high" />
-        <Exec Command="&quot;$(CodeGenExe)&quot; --output &quot;$(CodeGenOutput)&quot; --namespace &quot;OutwardArchipelago.Archipelago&quot; --info-class &quot;APWorldInfo&quot; --item-class &quot;APWorldItem&quot; --location-class &quot;APWorldLocation&quot;" />
+        <Exec Command="&quot;$(CodeGenExe)&quot; --output &quot;$(CodeGenOutput)&quot; --namespace &quot;OutwardArchipelago.Archipelago&quot; --class &quot;APWorld&quot; --access-modifier &quot;internal&quot;" />
 		<ItemGroup>
 			<Compile Include="$(CodeGenOutput)" />
 		</ItemGroup>

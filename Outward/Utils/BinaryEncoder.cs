@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using OutwardArchipelago.Archipelago;
 
 namespace OutwardArchipelago.Utils
 {
@@ -72,6 +73,16 @@ namespace OutwardArchipelago.Utils
                 return (BinaryEncoder<T>)(object)new DoubleBinaryEncoder();
             }
 
+            if (runtimeType == typeof(APWorld.Item))
+            {
+                return (BinaryEncoder<T>)(object)new APItemBinaryEncoder();
+            }
+
+            if (runtimeType == typeof(APWorld.Location))
+            {
+                return (BinaryEncoder<T>)(object)new APLocationBinaryEncoder();
+            }
+
             if (runtimeType == typeof(string))
             {
                 return (BinaryEncoder<T>)(object)new StringBinaryEncoder();
@@ -87,7 +98,7 @@ namespace OutwardArchipelago.Utils
     {
         public override byte[] Encode(T value)
         {
-            byte[] bytes = GetBytes(value);
+            var bytes = GetBytes(value);
 
             // ensure bytes are in little-endian order
             if (!BitConverter.IsLittleEndian)
@@ -159,6 +170,16 @@ namespace OutwardArchipelago.Utils
     internal class DoubleBinaryEncoder : BitConverterBinaryEncoder<double>
     {
         protected override byte[] GetBytes(double value) => BitConverter.GetBytes(value);
+    }
+
+    internal class APItemBinaryEncoder : BinaryEncoder<APWorld.Item>
+    {
+        public override byte[] Encode(APWorld.Item value) => BinaryEncoder<long>.Default.Encode(value.Id);
+    }
+
+    internal class APLocationBinaryEncoder : BinaryEncoder<APWorld.Location>
+    {
+        public override byte[] Encode(APWorld.Location value) => BinaryEncoder<long>.Default.Encode(value.Id);
     }
 
     internal class StringBinaryEncoder : BinaryEncoder<string>

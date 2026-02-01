@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.Build.NoTargets/3.7.134">
+  <PropertyGroup>
+    <ProjectGuid>{23CB0CEB-660B-419E-AD77-76E178CB8A97}</ProjectGuid>
+    <TargetFramework>net10.0</TargetFramework>
+  </PropertyGroup>
+  <Import Project="Paths.props" />
+  <PropertyGroup>
+    <ExternalPythonCommand>py</ExternalPythonCommand>
+    <ExternalPythonCommand Condition="'$(OS)' != 'Windows_NT'">python3.13</ExternalPythonCommand>
+    <APWorldSetupScript>$(APWorldProjectDir)\setup.py</APWorldSetupScript>
+  </PropertyGroup>
+  <Target Name="SetupPythonEnv" BeforeTargets="Build">
+    <PropertyGroup>
+      <SetupPythonCommand>$(PythonCommand)</SetupPythonCommand>
+      <SetupPythonCommand Condition="!Exists('$(APWorldVenvDir)')">$(ExternalPythonCommand)</SetupPythonCommand>
+    </PropertyGroup>
+    <Exec Command="$(SetupPythonCommand) &quot;$(APWorldSetupScript)&quot;" WorkingDirectory="$(APWorldProjectDir)" />
+  </Target>
+</Project>

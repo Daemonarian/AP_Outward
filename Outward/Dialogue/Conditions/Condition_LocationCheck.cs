@@ -5,16 +5,16 @@ namespace OutwardArchipelago.Dialogue.Conditions
 {
     internal class Condition_LocationCheck : ConditionTask
     {
-        private readonly long _locationId;
-        public long LocationId => _locationId;
+        private readonly APWorld.Location _location;
+        public APWorld.Location Location => _location;
 
-        public Condition_LocationCheck(long locationId)
+        public Condition_LocationCheck(APWorld.Location location)
         {
-            _locationId = locationId;
+            _location = location;
         }
 
-        public override string info => $"Has completed location check: {LocationId}";
+        public override string info => $"Has completed location check: {Location}";
 
-        public override bool OnCheck() => ArchipelagoConnector.Instance.Locations.IsComplete(LocationId);
+        public override bool OnCheck() => ArchipelagoConnector.Instance.Locations.IsComplete(Location);
     }
 }

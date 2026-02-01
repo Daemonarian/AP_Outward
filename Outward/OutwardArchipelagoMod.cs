@@ -163,7 +163,7 @@ namespace OutwardArchipelago
             {
                 if (item != null && item.transform?.parent?.parent?.name != "EquipmentSlots")
                 {
-                    if (APWorldData.ItemToLocation.TryGetValue(item.ItemID, out var location))
+                    if (APWorld.ItemToLocation.TryGetValue(item.ItemID, out var location))
                     {
                         var transform = item.transform;
                         var transforms = new List<string>();
