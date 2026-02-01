@@ -9,7 +9,7 @@ namespace OutwardArchipelago.Patch
     {
         private static bool Prefix(LootableOnDeath __instance, bool _loadedDead)
         {
-            if (OutwardArchipelagoMod.Instance.isActiveAndEnabled)
+            if (OutwardArchipelagoMod.Instance.IsArchipelagoEnabled)
             {
                 if (__instance.Character?.Alive == false && __instance.EnabledPouch && __instance.Character.Inventory.Pouch)
                 {
@@ -23,7 +23,7 @@ namespace OutwardArchipelago.Patch
                             {
                                 OutwardArchipelagoMod.Log.LogInfo($"NPC died with item ({item.ItemID}) associated with location ({location}) in their lootable inventory; removing item and sending location check");
                                 itemsToRemove.Add(item);
-                                ArchipelagoConnector.Instance.CompleteLocationCheck(location);
+                                ArchipelagoConnector.Instance.Locations.Complete(location);
                             }
                         }
 

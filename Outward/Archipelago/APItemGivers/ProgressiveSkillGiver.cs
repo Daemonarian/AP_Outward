@@ -1,14 +1,14 @@
 using System.Collections.Generic;
 
-namespace OutwardArchipelago.Archipelago
+namespace OutwardArchipelago.Archipelago.APItemGivers
 {
-    internal class ProgressiveSkillGiver : IOutwardGiver
+    internal class ProgressiveSkillGiver : IAPItemGiver
     {
         public IReadOnlyList<int> SkillIDs { get; private set; }
 
         public ProgressiveSkillGiver(IReadOnlyList<int> skillIDs) => SkillIDs = skillIDs;
 
-        void IOutwardGiver.GiveToPlayer(Character character)
+        void IAPItemGiver.GiveItem(Character character)
         {
             var level = 0;
             for (var i = 0; i < SkillIDs.Count; i++)

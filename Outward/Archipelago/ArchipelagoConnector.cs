@@ -1,45 +1,116 @@
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
-using System.Threading;
 using System.Threading.Tasks;
 using Archipelago.MultiClient.Net;
 using Archipelago.MultiClient.Net.Enums;
+using Archipelago.MultiClient.Net.Exceptions;
 using Archipelago.MultiClient.Net.Helpers;
 using Archipelago.MultiClient.Net.MessageLog.Messages;
+using OutwardArchipelago.Archipelago.APItemGivers;
+using OutwardArchipelago.QuestEvents;
 using UnityEngine;
 
 namespace OutwardArchipelago.Archipelago
 {
+    /// <summary>
+    /// Encapsulates all the logic of communicating with the Archipelago server.
+    /// </summary>
     internal class ArchipelagoConnector : MonoBehaviour
     {
-        public const string ArchipelagoGame = "Outward: Definitive Edition";
-        public const string ArchipelagoVersion = APWorldInfo.ArchipelagoVersion;
+        /// <summary>
+        /// The Archipelago game identifier string.
+        /// 
+        /// This must match the name from the Outward APWorld exactly.
+        /// </summary>
+        private const string ArchipelagoGame = "Outward: Definitive Edition";
 
-        public static ArchipelagoConnector Instance { get; private set; }
+        /// <summary>
+        /// The version of Archipelago this connection manager supports.
+        /// </summary>
+        private const string ArchipelagoVersion = APWorldInfo.ArchipelagoVersion;
 
-        // State
-        private readonly SemaphoreSlim _archipelagoSessionSemaphore = new(1, 1);
-        private ArchipelagoSession _archipelagoSession;
+        /// <summary>
+        /// The session with the Archipelago server.
+        /// </summary>
+        private ArchipelagoSession _session = null;
+
+        /// <summary>
+        /// The sub-manager for all things related to Archipelago items.
+        /// </summary>
+        private readonly ItemManager _items;
+
+        /// <summary>
+        /// The sub-manager for all things related to Archipelago locations.
+        /// </summary>
+        private readonly LocationManager _locations;
+
+        /// <summary>
+        /// The sub-manager for all things related to Archipelago messages.
+        /// </summary>
+        private readonly MessageManager _messages;
+
+        /// <summary>
+        /// The background Archipelago session worker.
+        /// </summary>
+        private Task _sessionWorker = null;
+
+        /// <summary>
+        /// Delegates to be run on the main thread.
+        /// </summary>
+        private readonly ConcurrentQueue<Action> _mainThreadQueue = new();
+
+        public ArchipelagoConnector()
+        {
+            _items = new ItemManager(this);
+            _locations = new LocationManager(this);
+            _messages = new MessageManager(this);
+        }
+
+        /// <summary>
+        /// Singleton pattern.
+        /// </summary>
+        public static ArchipelagoConnector Instance { get; private set; } = null;
+
+        /// <summary>
+        /// The sub-manager for all things related to Archipelago items.
+        /// </summary>
+        public IItemManager Items => _items;
+
+        /// <summary>
+        /// The sub-manager for all things related to Archipelago locations.
+        /// </summary>
+        public ILocationManager Locations => _locations;
+
+        /// <summary>
+        /// The sub-manager for all things related to Archipelago messages.
+        /// </summary>
+        public IMessageManager Messages => _messages;
 
         // Connection details
-        public string Host { get; private set; }
-        public int Port { get; private set; }
-        public string Password { get; private set; }
-        public string SlotName { get; private set; }
+        public string Host { get; private set; } = null;
+
+        public int Port { get; private set; } = 0;
+
+        public string Password { get; private set; } = null;
+
+        public string SlotName { get; private set; } = null;
+
         public int ReconnectInterval { get; private set; } = 10000;
 
-        public bool IsConnected { get; private set; }
+        /// <summary>
+        /// Whether or not we have an active session with the Archipelago server.
+        /// </summary>
+        public bool IsConnected { get; private set; } = false;
 
-        public ArchipelagoConnectionStatus ConnectionStatus { get; private set; }
+        /// <summary>
+        /// An Archipelago connection status indicator game component.
+        /// </summary>
+        public ArchipelagoConnectionStatus ConnectionStatus { get; private set; } = null;
 
-        // Thread Safety: Queue actions here to run them on the main Unity thread
-        private readonly ConcurrentQueue<Action> MainThreadQueue = new();
-        private readonly ConcurrentQueue<string> IncomingMessageQueue = new();
-        private readonly ConcurrentQueue<long> IncomingItemQueue = new();
-
-        private readonly Dictionary<long, int> ItemCounts = new();
-
+        /// <summary>
+        /// Create the Singleton instance if it does not already exist.
+        /// </summary>
         public static void Create()
         {
             if (Instance == null)
@@ -49,7 +120,7 @@ namespace OutwardArchipelago.Archipelago
             }
         }
 
-        private void Awake()
+        protected void Awake()
         {
             // singleton pattern
             if (Instance != null && Instance != this)
@@ -72,257 +143,176 @@ namespace OutwardArchipelago.Archipelago
             var connectionStatusObj = new GameObject(nameof(ArchipelagoConnectionStatus));
             DontDestroyOnLoad(connectionStatusObj);
             ConnectionStatus = connectionStatusObj.AddComponent<ArchipelagoConnectionStatus>();
-
-            Connect();
         }
 
-        private void Update()
+        protected void Update()
         {
-            while (MainThreadQueue.TryDequeue(out var action))
+            if (_sessionWorker is null || _sessionWorker.IsCompleted)
+            {
+                _sessionWorker = SessionWorker();
+            }
+
+            while (_mainThreadQueue.TryDequeue(out var action))
             {
                 action();
             }
 
-            if (OutwardArchipelagoMod.Instance.IsInGame)
-            {
-                if (!IncomingMessageQueue.IsEmpty)
-                {
-                    var character = CharacterManager.Instance.GetFirstLocalCharacter();
-                    if (character != null && character.CharacterUI != null && character.CharacterUI.ChatPanel != null)
-                    {
-                        while (IncomingMessageQueue.TryDequeue(out var message))
-                        {
-                            OutwardArchipelagoMod.Log.LogInfo($"[Archipelago] Sending message as {character.Name} ({character.UID}): {message}");
-                            SendSystemMessage(character, message);
-                        }
-                    }
-                }
-
-                if (!IncomingItemQueue.IsEmpty)
-                {
-                    while (IncomingItemQueue.TryDequeue(out var itemId))
-                    {
-                        if (!ItemCounts.ContainsKey(itemId))
-                        {
-                            ItemCounts[itemId] = 0;
-                        }
-
-                        ItemCounts[itemId] += 1;
-
-                        var count = ItemCounts[itemId];
-
-                        GiveItemToPlayer(itemId, count);
-                    }
-                }
-            }
+            _items.Update();
+            _messages.Update();
         }
 
-        private void Connect()
+        /// <summary>
+        /// The main background event loop for the Archipelago session.
+        /// </summary>
+        private async Task SessionWorker()
         {
-            // run in a background thread so we do not block the main thread
-            Task.Run(async () =>
+            while (true)
             {
-                // ensure write access to _archipelagoSession
-                await _archipelagoSessionSemaphore.WaitAsync();
                 try
                 {
-                    // short-circuit if a connected session already exists
-                    if (_archipelagoSession != null && _archipelagoSession.Socket.Connected)
-                    {
-                        return;
-                    }
-
-                    // set the value of IsConnected on the main thread, if necessary
-                    if (IsConnected)
-                    {
-                        await RunOnMainThread(() => IsConnected = false);
-                    }
-
-                    var first = true;
-                    while (true)
-                    {
-                        // cleanup old session if it exists
-                        var doWaitInterval = false;
-                        if (_archipelagoSession != null)
-                        {
-                            _archipelagoSession.Socket.SocketClosed -= OnSocketClosed;
-                            _archipelagoSession.Items.ItemReceived -= OnItemReceived;
-                            _archipelagoSession.MessageLog.OnMessageReceived -= OnMessageReceived;
-                            _archipelagoSession = null;
-                            doWaitInterval = true;
-                        }
-
-                        // clear the incoming item queue
-                        while (IncomingItemQueue.TryDequeue(out _)) { }
-                        await RunOnMainThread(() => ItemCounts.Clear());
-
-                        if (doWaitInterval)
-                        {
-                            var verb = first ? "Reconnecting" : "Retrying";
-                            OutwardArchipelagoMod.Log.LogInfo($"[Archipelago] {verb} in {ReconnectInterval} ms...");
-                            await Task.Delay(ReconnectInterval);
-                        }
-                        first = false;
-
-                        OutwardArchipelagoMod.Log.LogInfo($"[Archipelago] Logging into Archipelago server at '{Host}:{Port}' with slot '{SlotName}' and game '{ArchipelagoGame}'.");
-
-                        // create new session
-                        _archipelagoSession = ArchipelagoSessionFactory.CreateSession(Host, Port);
-
-                        // hook up events before connecting
-                        _archipelagoSession.Socket.SocketClosed += OnSocketClosed;
-                        _archipelagoSession.Items.ItemReceived += OnItemReceived;
-                        _archipelagoSession.MessageLog.OnMessageReceived += OnMessageReceived;
-
-                        // connect
-                        try
-                        {
-                            await _archipelagoSession.ConnectAsync();
-                        }
-                        catch (Exception ex)
-                        {
-                            OutwardArchipelagoMod.Log.LogError($"[Archipelago] Connect failed: {ex}");
-                            continue;
-                        }
-
-                        // login
-                        LoginResult loginResult;
-                        try
-                        {
-                            loginResult = await _archipelagoSession.LoginAsync(
-                                ArchipelagoGame,
-                                SlotName,
-                                ItemsHandlingFlags.AllItems,
-                                version: new Version(ArchipelagoVersion),
-                                password: Password,
-                                requestSlotData: true
-                            );
-                        }
-                        catch (Exception ex)
-                        {
-                            OutwardArchipelagoMod.Log.LogError($"[Archipelago] Login failed: {ex}");
-                            continue;
-                        }
-
-                        if (loginResult == null)
-                        {
-                            // this should not happend
-                            OutwardArchipelagoMod.Log.LogError("[Archipelago] Login failed for unknown reason.");
-                            continue;
-                        }
-
-                        if (loginResult is LoginFailure loginFailure)
-                        {
-                            OutwardArchipelagoMod.Log.LogError($"[Archipelago] Login failed: {string.Join("\n", loginFailure.Errors)}");
-                            continue;
-                        }
-
-                        if (!loginResult.Successful)
-                        {
-                            // this should not happen
-                            OutwardArchipelagoMod.Log.LogError("[Archipelago] Login failed for unknown reason.");
-                            continue;
-                        }
-
-                        break;
-                    }
-
-                    OutwardArchipelagoMod.Log.LogInfo("[Archipelago] Login success.");
-                    await RunOnMainThread(() => IsConnected = true);
+                    await UpdateAsync();
                 }
-                finally
+                catch (ArchipelagoSocketClosedException ex)
                 {
-                    _archipelagoSessionSemaphore.Release();
+                    OutwardArchipelagoMod.Log.LogWarning($"lost connection to Archipelago server:\n{ex}");
                 }
-            });
-        }
-
-        public void CompleteLocationCheck(long locationId)
-        {
-            if (PhotonNetwork.isMasterClient)
-            {
-                // run in background so you do not hold up the main thread
-                Task.Run(async () =>
+                catch (Exception ex)
                 {
-                    while (true)
-                    {
-                        await _archipelagoSessionSemaphore.WaitAsync();
-                        try
-                        {
-                            if (_archipelagoSession != null)
-                            {
-                                try
-                                {
-                                    OutwardArchipelagoMod.Log.LogInfo($"[Archipelago] Completing location check: {locationId}");
-                                    _archipelagoSession.Locations.CompleteLocationChecks(locationId);
-                                    OutwardArchipelagoMod.Log.LogInfo($"[Archipelago] Completed location check: {locationId}");
-                                    break;
-                                }
-                                catch (Exception ex)
-                                {
-                                    OutwardArchipelagoMod.Log.LogError($"[Archipelago] Complete location check failed: {locationId}\n{ex}");
-                                }
-                            }
-                        }
-                        finally
-                        {
-                            _archipelagoSessionSemaphore.Release();
-                        }
+                    OutwardArchipelagoMod.Log.LogError($"error on Archipelago session background thread:\n{ex}");
+                }
 
-                        OutwardArchipelagoMod.Log.LogInfo($"[Archipelago] Retrying complete location check in {ReconnectInterval} ms...");
-                        await Task.Delay(ReconnectInterval);
-                    }
-                });
+                // avoid creating a busy loop
+                await Task.Delay(100);
             }
         }
 
-        private void OnSocketClosed(string reason)
+        /// <summary>
+        /// Do work on the Archipelago session background thread.
+        /// </summary>
+        private async Task UpdateAsync()
         {
-            OutwardArchipelagoMod.Log.LogWarning($"[Archipelago] Lost connection: {reason}");
-            Connect();
-        }
-
-        private void OnItemReceived(ReceivedItemsHelper helper)
-        {
-            OutwardArchipelagoMod.Log.LogInfo($"[Archipelago] Received {helper.Index} items...");
-            while (helper.Any())
+            if (_session == null || !_session.Socket.Connected)
             {
-                var item = helper.DequeueItem();
-                OutwardArchipelagoMod.Log.LogInfo($"[Archipelago] Received item {item.ItemName} ({item.ItemId}).");
-                IncomingItemQueue.Enqueue(item.ItemId);
+                if (IsConnected)
+                {
+                    await RunOnMainThread(() => IsConnected = false);
+                }
+
+                var success = await Connect();
+                if (!success)
+                {
+                    OutwardArchipelagoMod.Log.LogInfo($"waiting {ReconnectInterval} ms before retrying connection to Archipelago server...");
+                    await Task.Delay(ReconnectInterval);
+                    return;
+                }
+
+                await RunOnMainThread(() => IsConnected = true);
             }
+
+            await _locations.UpdateAsync();
+            await _messages.UpdateAsync();
         }
 
-        private void OnMessageReceived(global::Archipelago.MultiClient.Net.MessageLog.Messages.LogMessage message)
+        /// <summary>
+        /// Connect (or re-connect) to the Archipelago server.
+        /// 
+        /// This creates a brand new Archipelago session.
+        /// </summary>
+        private async Task<bool> Connect()
         {
-            OutwardArchipelagoMod.Log.LogMessage($"[Archipelago::Chat] {message}");
-            IncomingMessageQueue.Enqueue(FormatArchipelagoMessage(message));
-        }
+            await Disconnect();
 
-        private void GiveItemToPlayer(long itemId, int count)
-        {
-            OutwardArchipelagoMod.Log.LogInfo($"[Archipelago] Giving item to player: {itemId} x{count}");
-            var character = CharacterManager.Instance.GetFirstLocalCharacter();
-            if (character == null)
-            {
-                OutwardArchipelagoMod.Log.LogError($"[Archipelago] Could not find local player to give item.");
-                return;
-            }
+            await _items.ResetSession();
+
+            OutwardArchipelagoMod.Log.LogInfo($"logging into Archipelago server at \"{Host}:{Port}\" with slot \"{SlotName}\" and game \"{ArchipelagoGame}\"...");
+            _session = ArchipelagoSessionFactory.CreateSession(Host, Port);
+
+            // register all event handlers before connecting
+            _items.RegisterEventHandlers(_session);
+            _messages.RegisterEventHandlers(_session);
 
             try
             {
-                ArchipelagoItemManager.Instance.GiveItemToPlayer(itemId, character);
+                await _session.ConnectAsync();
             }
             catch (Exception ex)
             {
-                OutwardArchipelagoMod.Log.LogError($"[Archipelago] Failed to give item {itemId} to player: {ex}");
+                OutwardArchipelagoMod.Log.LogError($"failed to connect to Archipelago server:\n{ex}");
+                return false;
+            }
+
+            LoginResult loginResult;
+            try
+            {
+                loginResult = await _session.LoginAsync(
+                    ArchipelagoGame,
+                    SlotName,
+                    ItemsHandlingFlags.AllItems,
+                    version: new Version(ArchipelagoVersion),
+                    password: Password,
+                    requestSlotData: true
+                );
+            }
+            catch (Exception ex)
+            {
+                OutwardArchipelagoMod.Log.LogError($"failed to login to Archipelago server:\n{ex}");
+                return false;
+            }
+
+            if (loginResult == null)
+            {
+                // this should not happen
+                OutwardArchipelagoMod.Log.LogError("failed to login to Archipelago server for unknown reason");
+                return false;
+            }
+
+            if (loginResult is LoginFailure loginFailure)
+            {
+                OutwardArchipelagoMod.Log.LogError($"failed to login to Archipelago server:\n{string.Join("\n", loginFailure.Errors)}");
+                return false;
+            }
+
+            if (!loginResult.Successful)
+            {
+                // this should not happen
+                OutwardArchipelagoMod.Log.LogError("failed to login to Archipelago server for unknown reason");
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Disconnect from the Archipelago server if connected.
+        /// </summary>
+        private async Task Disconnect()
+        {
+            if (IsConnected)
+            {
+                await RunOnMainThread(() => IsConnected = false);
+            }
+
+            if (_session != null)
+            {
+                _items.UnregisterEventHandlers(_session);
+                _messages.UnregisterEventHandlers(_session);
+
+                _session = null;
             }
         }
 
+        /// <summary>
+        /// Queues a delegate to run on the main-thread and wait for it to complete.
+        /// 
+        /// Do not run this from the Unity main thread.
+        /// </summary>
+        /// <typeparam name="T">The return type of the delegate.</typeparam>
+        /// <param name="action">The delegate.</param>
+        /// <returns>The return of the delegate.</returns>
         private async Task<T> RunOnMainThread<T>(Func<T> action)
         {
             var tcs = new TaskCompletionSource<T>(TaskCreationOptions.RunContinuationsAsynchronously);
-            MainThreadQueue.Enqueue(() =>
+            _mainThreadQueue.Enqueue(() =>
             {
                 try
                 {
@@ -337,6 +327,12 @@ namespace OutwardArchipelago.Archipelago
             return await tcs.Task;
         }
 
+        /// <summary>
+        /// Queues a delegate to run on the main-thread and wait for it to complete.
+        /// 
+        /// Do not run this from the Unity main thread.
+        /// </summary>
+        /// <param name="action">The delegate.</param>
         private async Task RunOnMainThread(Action action)
         {
             await RunOnMainThread(() =>
@@ -346,57 +342,400 @@ namespace OutwardArchipelago.Archipelago
             });
         }
 
-        private static string FormatArchipelagoMessage(LogMessage message)
+        /// <summary>
+        /// A sub-manager for Archipelago items.
+        /// </summary>
+        public interface IItemManager
         {
-            var sb = new System.Text.StringBuilder();
-            foreach (var part in message.Parts)
-            {
-                sb.Append($"<color=#{part.Color.R:X2}{part.Color.G:X2}{part.Color.B:X2}>{part.Text}</color>");
-            }
+            /// <summary>
+            /// The main manager associated with this instance.
+            /// </summary>
+            public ArchipelagoConnector Parent { get; }
 
-            return sb.ToString();
+            /// <summary>
+            /// Get the number of an Archipelago item that already exist in the world.
+            /// 
+            /// This method should be called from the Unity main thread.
+            /// </summary>
+            /// <param name="itemId">The Outward APWorld item ID.</param>
+            /// <returns>The count of the specified Archipelago item.</returns>
+            public int GetCount(long itemId);
         }
 
-        private static void SendSystemMessage(Character character, string message)
+        /// <summary>
+        /// A sub-manager for Archipelago locations.
+        /// </summary>
+        public interface ILocationManager
         {
-            // This code mostly adapts the implementation of ChatPanel.ChatMessageReceived.
-            var chatPanel = character.CharacterUI.ChatPanel;
-            if (chatPanel.m_messageArchive.Count < chatPanel.MaxMessageCount)
-            {
-                var chatEntry = UnityEngine.Object.Instantiate<ChatEntry>(UIUtilities.ChatEntryPrefab);
-                chatEntry.transform.SetParent(chatPanel.m_chatDisplay.content);
-                chatEntry.transform.ResetLocal(true);
-                chatEntry.SetCharacterUI(chatPanel.m_characterUI);
-                chatPanel.m_messageArchive.Insert(0, chatEntry);
-            }
-            else
-            {
-                var item = chatPanel.m_messageArchive[chatPanel.m_messageArchive.Count - 1];
-                chatPanel.m_messageArchive.RemoveAt(chatPanel.m_messageArchive.Count - 1);
-                chatPanel.m_messageArchive.Insert(0, item);
-            }
-            chatPanel.m_messageArchive[0].transform.SetAsLastSibling();
-            chatPanel.m_messageArchive[0].SetEntry(">", message, true);
-            chatPanel.m_lastHideTime = Time.time;
-            if (!chatPanel.IsDisplayed)
-            {
-                chatPanel.Show();
-            }
-            chatPanel.Invoke("DelayedScroll", 0.1f);
+            /// <summary>
+            /// The main manager associated with this instance.
+            /// </summary>
+            public ArchipelagoConnector Parent { get; }
+
+            /// <summary>
+            /// Check whether an Archipelago location check has been completed.
+            /// 
+            /// This method should be called from the Unity main thread.
+            /// </summary>
+            /// <param name="locationId">The Outward APWorld location ID.</param>
+            /// <returns>Whether the Archipelago location check has been completed.</returns>
+            public bool IsComplete(long locationId);
+
+            /// <summary>
+            /// Complete an Archipelago location check.
+            /// 
+            /// This method should be called from the Unity main thread.
+            /// </summary>
+            /// <param name="locationId">The Outward APWorld location ID.</param>
+            public void Complete(long locationId);
         }
 
-        public bool IsLocationCheckCompleted(long locationId)
+        /// <summary>
+        /// A sub-manager for Archipelago messages.
+        /// </summary>
+        public interface IMessageManager
         {
-            try
+            /// <summary>
+            /// The main manager associated with this instance.
+            /// </summary>
+            public ArchipelagoConnector Parent { get; }
+
+            /// <summary>
+            /// Send a message to the Archipelago server on behalf of the player.
+            /// 
+            /// This method should be called from the Unity main thread.
+            /// </summary>
+            /// <param name="message">The message to send.</param>
+            public void SendMessage(string message);
+        }
+
+        /// <summary>
+        /// Concrete implementation of the sub-manager for Archipelago items.
+        /// </summary>
+        private class ItemManager : IItemManager
+        {
+            /// <summary>
+            /// The main manager associated with this instance.
+            /// </summary>
+            private readonly ArchipelagoConnector _parent;
+
+            /// <summary>
+            /// The manager that knows how to actually give Archipelago items to the player.
+            /// </summary>
+            private readonly APItemGiver _itemGiver = new();
+
+            /// <summary>
+            /// Received items to process.
+            /// </summary>
+            private readonly ConcurrentQueue<long> _incomingItems = new();
+
+            /// <summary>
+            /// A mapping from Outward APWorld item IDs to counts recieved in the current Archipelago session.
+            /// </summary>
+            private readonly Dictionary<long, int> _sessionItemCounts = new();
+
+            public ItemManager(ArchipelagoConnector parent)
             {
-                return _archipelagoSession.Locations.AllLocationsChecked.Contains(locationId);
-            }
-            catch (Exception ex)
-            {
-                OutwardArchipelagoMod.Log.LogError($"[Archipelago] Failed to test if location check {locationId} is completed: {ex}");
+                _parent = parent;
             }
 
-            return false;
+            public ArchipelagoConnector Parent => _parent;
+
+            public int GetCount(long itemId) => ModQuestEventManager.Instance.Items.GetCount(itemId);
+
+            /// <summary>
+            /// Register Archipelago session event handlers.
+            /// </summary>
+            /// <param name="session"></param>
+            public void RegisterEventHandlers(ArchipelagoSession session)
+            {
+                session.Items.ItemReceived += OnItemReceived;
+            }
+
+            /// <summary>
+            /// Unregister Archipelago session event handlers.
+            /// </summary>
+            /// <param name="session"></param>
+            public void UnregisterEventHandlers(ArchipelagoSession session)
+            {
+                session.Items.ItemReceived -= OnItemReceived;
+            }
+
+            /// <summary>
+            /// Called every frame while <see cref="Parent"/> is enabled.
+            /// </summary>
+            public void Update()
+            {
+                // try to process an item from the queue
+                if (OutwardArchipelagoMod.Instance.IsInArchipelagoGame && _incomingItems.TryDequeue(out var itemId))
+                {
+                    // Every time we connect to the Archipelago server, it resends every single item. To avoid giving
+                    // the player extra copies of the items every time they reconnect, we will keep track of how many
+                    // of each item were recieved in the world and how many were recieved in just this Archipelago
+                    // session, and only give the player the item if the amount of that item recieved this session
+                    // is greater than the amount already saved to the world.
+
+                    if (!_sessionItemCounts.TryGetValue(itemId, out var count))
+                    {
+                        count = 0;
+                    }
+
+                    count += 1;
+                    _sessionItemCounts[itemId] = count;
+
+                    if (GetCount(itemId) < count)
+                    {
+                        Give(itemId);
+                    }
+                }
+            }
+
+            /// <summary>
+            /// Reset state related to the current Archipelago session.
+            /// 
+            /// This will be called from the Archipelago thread.
+            /// </summary>
+            public async Task ResetSession()
+            {
+                while (_incomingItems.TryDequeue(out var _)) { }
+                await _parent.RunOnMainThread(() => _sessionItemCounts.Clear());
+            }
+
+            /// <summary>
+            /// Event delegate for when items are recieved from the Archipelago server.
+            /// 
+            /// This will be called from the Archipelago thread.
+            /// </summary>
+            /// <param name="helper"></param>
+            private void OnItemReceived(ReceivedItemsHelper helper)
+            {
+                while (helper.Any())
+                {
+                    var item = helper.DequeueItem();
+                    OutwardArchipelagoMod.Log.LogInfo($"recieved item \"{item.ItemName}\" ({item.ItemId}) from the Archipelago server");
+                    _incomingItems.Enqueue(item.ItemId);
+                }
+            }
+
+            /// <summary>
+            /// Give the Archipelago item to the player and update world state.
+            /// 
+            /// This will be called from the main thread.
+            /// </summary>
+            /// <param name="itemId">The Outward APWorld item ID.</param>
+            private void Give(long itemId)
+            {
+                _itemGiver.GiveItem(itemId);
+                ModQuestEventManager.Instance.Items.Add(itemId);
+            }
+        }
+
+        /// <summary>
+        /// Concrete implementation of the sub-manager for Archipelago locations.
+        /// </summary>
+        private class LocationManager : ILocationManager
+        {
+            /// <summary>
+            /// The main manager associated with this instance.
+            /// </summary>
+            private readonly ArchipelagoConnector _parent;
+
+            /// <summary>
+            /// Locations checks to send to the Archipelago server.
+            /// </summary>
+            private readonly ConcurrentQueue<long> _outgoingLocations = new();
+
+            public LocationManager(ArchipelagoConnector parent)
+            {
+                _parent = parent;
+            }
+
+            public ArchipelagoConnector Parent => _parent;
+
+            public bool IsComplete(long locationId) => ModQuestEventManager.Instance.Locations.Contains(locationId);
+
+            public void Complete(long locationId)
+            {
+                if (OutwardArchipelagoMod.Instance.IsArchipelagoEnabled)
+                {
+                    OutwardArchipelagoMod.Log.LogDebug($"completing location check: {locationId}");
+                    ModQuestEventManager.Instance.Locations.Add(locationId);
+                    _outgoingLocations.Enqueue(locationId);
+                }
+            }
+
+            /// <summary>
+            /// Run necessary background tasks.
+            /// 
+            /// Called from the Archipelago session thread.
+            /// </summary>
+            public async Task UpdateAsync()
+            {
+                var locationIds = new List<long>();
+                while (_outgoingLocations.TryDequeue(out var locationId))
+                {
+                    locationIds.Add(locationId);
+                }
+
+                if (locationIds.Count > 0)
+                {
+                    try
+                    {
+                        await _parent._session.Locations.CompleteLocationChecksAsync(locationIds.ToArray());
+                        OutwardArchipelagoMod.Log.LogInfo($"completed location checks with Archipelago server: {string.Join(", ", locationIds)}");
+                    }
+                    catch (Exception ex)
+                    {
+                        foreach (var locationId in locationIds)
+                        {
+                            _outgoingLocations.Enqueue(locationId);
+                        }
+
+                        throw ex;
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Concrete implementation of the sub-manager for Archipelago messages.
+        /// </summary>
+        private class MessageManager : IMessageManager
+        {
+            /// <summary>
+            /// The main manager associated with this instance.
+            /// </summary>
+            private readonly ArchipelagoConnector _parent;
+
+            /// <summary>
+            /// The incoming messages to process.
+            /// </summary>
+            private readonly ConcurrentQueue<LogMessage> _incomingMessages = new();
+
+            /// <summary>
+            /// The outgoing messages to send to the Archipelago server.
+            /// </summary>
+            private readonly ConcurrentQueue<string> _outgoingMessages = new();
+
+            public MessageManager(ArchipelagoConnector parent)
+            {
+                _parent = parent;
+            }
+
+            public ArchipelagoConnector Parent => _parent;
+
+            public void SendMessage(string message)
+            {
+                OutwardArchipelagoMod.Log.LogInfo($"sending message to the Archipelago server: {message}");
+                _outgoingMessages.Enqueue(message);
+            }
+
+            /// <summary>
+            /// Register Archipelago session event handlers.
+            /// </summary>
+            /// <param name="session"></param>
+            public void RegisterEventHandlers(ArchipelagoSession session)
+            {
+                session.MessageLog.OnMessageReceived += OnMessageReceived;
+            }
+
+            /// <summary>
+            /// Unregister Archipelago session event handlers.
+            /// </summary>
+            /// <param name="session"></param>
+            public void UnregisterEventHandlers(ArchipelagoSession session)
+            {
+                session.MessageLog.OnMessageReceived -= OnMessageReceived;
+            }
+
+            /// <summary>
+            /// Called every frame while <see cref="Parent"/> is enabled.
+            /// </summary>
+            public void Update()
+            {
+                // try to process an item from the queue
+                if (OutwardArchipelagoMod.Instance.IsInGame && _incomingMessages.TryDequeue(out var message))
+                {
+                    var formattedMessage = ArchipelagoToOutwardMessage(message);
+                    SendSystemMessage(formattedMessage);
+                }
+            }
+
+            /// <summary>
+            /// Run necessary background tasks.
+            /// 
+            /// Called from the Archipelago session thread.
+            /// </summary>
+            public async Task UpdateAsync()
+            {
+                while (_outgoingMessages.TryDequeue(out var message))
+                {
+                    _parent._session.Say(message);
+                }
+            }
+
+            /// <summary>
+            /// Event delegate for when items are recieved from the Archipelago server.
+            /// 
+            /// This will be called from the Archipelago thread.
+            /// </summary>
+            /// <param name="helper"></param>
+            private void OnMessageReceived(LogMessage message)
+            {
+                OutwardArchipelagoMod.Log.LogInfo($"recieved message from Archipelago server: {message}");
+                _incomingMessages.Enqueue(message);
+            }
+
+            /// <summary>
+            /// Translate the formatting from the Archipelago message to an Outward message.
+            /// </summary>
+            /// <param name="message">The formatted Archipelago message.</param>
+            /// <returns>A formatted Outward message.</returns>
+            private string ArchipelagoToOutwardMessage(LogMessage message)
+            {
+                var sb = new System.Text.StringBuilder();
+                foreach (var part in message.Parts)
+                {
+                    sb.Append($"<color=#{part.Color.R:X2}{part.Color.G:X2}{part.Color.B:X2}>{part.Text}</color>");
+                }
+
+                return sb.ToString();
+            }
+
+            /// <summary>
+            /// Add a message to the chat panel of the specified player from now particular
+            /// </summary>
+            /// <param name="message"></param>
+            /// <param name="character"></param>
+            private void SendSystemMessage(string message, Character character = null)
+            {
+                character ??= CharacterManager.Instance.GetFirstLocalCharacter();
+
+                // This code mostly adapts the implementation of ChatPanel.ChatMessageReceived.
+                var chatPanel = character.CharacterUI.ChatPanel;
+                if (chatPanel.m_messageArchive.Count < chatPanel.MaxMessageCount)
+                {
+                    var chatEntry = UnityEngine.Object.Instantiate<ChatEntry>(UIUtilities.ChatEntryPrefab);
+                    chatEntry.transform.SetParent(chatPanel.m_chatDisplay.content);
+                    chatEntry.transform.ResetLocal(true);
+                    chatEntry.SetCharacterUI(chatPanel.m_characterUI);
+                    chatPanel.m_messageArchive.Insert(0, chatEntry);
+                }
+                else
+                {
+                    var item = chatPanel.m_messageArchive[chatPanel.m_messageArchive.Count - 1];
+                    chatPanel.m_messageArchive.RemoveAt(chatPanel.m_messageArchive.Count - 1);
+                    chatPanel.m_messageArchive.Insert(0, item);
+                }
+                chatPanel.m_messageArchive[0].transform.SetAsLastSibling();
+                chatPanel.m_messageArchive[0].SetEntry(null, message, true);
+                chatPanel.m_lastHideTime = Time.time;
+                if (!chatPanel.IsDisplayed)
+                {
+                    chatPanel.Show();
+                }
+                chatPanel.Invoke("DelayedScroll", 0.1f);
+            }
         }
     }
 }

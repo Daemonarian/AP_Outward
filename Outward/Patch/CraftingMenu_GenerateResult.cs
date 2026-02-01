@@ -12,10 +12,10 @@ namespace OutwardArchipelago.Patch
             {
                 if (_result != null && _result.Quantity * resultMultiplier > 0)
                 {
-                    if (APWorldData.ItemToLocation.TryGetValue(_result.ItemID, out var location))
+                    if (APWorldData.ItemToLocation.TryGetValue(_result.ItemID, out var locationId))
                     {
-                        OutwardArchipelagoMod.Log.LogInfo($"player crafted item ({_result.ItemID}) which is associated with location ({location}); swallowing crafting result and sending location check");
-                        ArchipelagoConnector.Instance.CompleteLocationCheck(location);
+                        OutwardArchipelagoMod.Log.LogInfo($"player crafted item ({_result.ItemID}) which is associated with location ({locationId}); swallowing crafting result and sending location check");
+                        ArchipelagoConnector.Instance.Locations.Complete(locationId);
                         return false;
                     }
                 }

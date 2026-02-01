@@ -17,7 +17,7 @@ namespace OutwardArchipelago.Patch
                 if (OutwardArchipelagoMod.Instance.IsArchipelagoEnabled)
                 {
                     OutwardArchipelagoMod.Log.LogInfo($"player picked up an item tagged with location ({location}); sending location check");
-                    ArchipelagoConnector.Instance.CompleteLocationCheck(location);
+                    ArchipelagoConnector.Instance.Locations.Complete(location);
                 }
                 else
                 {

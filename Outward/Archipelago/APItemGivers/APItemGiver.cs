@@ -1,12 +1,16 @@
 using System.Collections.Generic;
 
-namespace OutwardArchipelago.Archipelago
+namespace OutwardArchipelago.Archipelago.APItemGivers
 {
-    internal class ArchipelagoItemManager
+    /// <summary>
+    /// Encapsulates the logic of giving Archipelgo items to the Outward player.
+    /// </summary>
+    internal class APItemGiver
     {
-        internal static ArchipelagoItemManager Instance { get; private set; } = new();
-
-        private readonly IReadOnlyDictionary<long, IOutwardGiver> Givers = new Dictionary<long, IOutwardGiver>
+        /// <summary>
+        /// A mapping from Outward APWorld item IDs to APWorld item givers.
+        /// </summary>
+        private readonly IReadOnlyDictionary<long, IAPItemGiver> _itemToGiver = new Dictionary<long, IAPItemGiver>
         {
             { APWorldItem.AnglerShield, new ItemGiver(OutwardItem.AnglerShield) },
             { APWorldItem.AntiquePlateBoots, new ItemGiver(OutwardItem.AntiquePlateBoots) },
@@ -113,9 +117,33 @@ namespace OutwardArchipelago.Archipelago
             { APWorldItem.SilverCurrency, new MoneyGiver(50) },
         };
 
-        public void GiveItemToPlayer(long archipelagoItemID, Character character)
+        /// <summary>
+        /// Give an Archipelago item to the player.
+        /// 
+        /// If the character is not specified, will give the item to the first local player.
+        /// </summary>
+        /// <param name="itemId">The Outward APWorld item ID.</param>
+        /// <param name="character">The character to which to give the item.</param>
+        public void GiveItem(long itemId, Character character = null)
         {
-            Givers[archipelagoItemID].GiveToPlayer(character);
+            if (!_itemToGiver.TryGetValue(itemId, out var itemGiver))
+            {
+                OutwardArchipelagoMod.Log.LogInfo($"tried to give Archipelago item {itemId} to player, but could not determine the corresponding Outward reward");
+                return;
+            }
+
+            if (character == null)
+            {
+                character = CharacterManager.Instance.GetFirstLocalCharacter();
+                if (character == null)
+                {
+                    OutwardArchipelagoMod.Log.LogError($"tried to give Archipelago item {itemId} to player, but could not find their Outward character");
+                    return;
+                }
+            }
+
+            OutwardArchipelagoMod.Log.LogInfo($"giving Archipelago item {itemId} to player");
+            itemGiver.GiveItem(character);
         }
     }
 }

@@ -26,7 +26,7 @@ namespace OutwardArchipelago
             if (string.Equals(_eventData.EventUID, OutwardEventId, StringComparison.Ordinal) && _eventData.StackCount >= StackCount)
             {
                 OutwardArchipelagoMod.Log.LogInfo($"LocationCheckQuestEventAddedListener triggered for EventUID = {OutwardEventId}.");
-                ArchipelagoConnector.Instance.CompleteLocationCheck(LocationId);
+                ArchipelagoConnector.Instance.Locations.Complete(LocationId);
             }
         }
 

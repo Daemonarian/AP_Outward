@@ -8,7 +8,7 @@ namespace OutwardArchipelago.Patch
     {
         /// <summary>
         /// This patch attempts to preserve the "side-data" we have inserted into these Items using
-        /// <see cref="ItemSideData"/> when saving or syncing the data. This also ensures that this
+        /// <see cref="OutwardItemSideData"/> when saving or syncing the data. This also ensures that this
         /// side data gets saved and synced.
         /// </summary>
         private static bool Prefix(ref string __result, Item __instance, Item.SyncType _syncType)
@@ -16,7 +16,7 @@ namespace OutwardArchipelago.Patch
             var sideData = new Dictionary<string, string>();
             foreach (var pair in __instance.m_tempExtraData)
             {
-                if (pair.Key.StartsWith(ItemSideData.KEY_PREFIX))
+                if (pair.Key.StartsWith(OutwardItemSideData.KEY_PREFIX))
                 {
                     sideData.Add(pair.Key, pair.Value);
                 }

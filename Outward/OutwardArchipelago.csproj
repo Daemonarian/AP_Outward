@@ -23,6 +23,11 @@
     </PropertyGroup>
     <Import Project="user.props" Condition="Exists('user.props')" />
     <ItemGroup>
+      <Compile Remove="build\**" />
+      <EmbeddedResource Remove="build\**" />
+      <None Remove="build\**" />
+    </ItemGroup>
+    <ItemGroup>
         <PackageReference Include="Archipelago.MultiClient.Net" Version="6.7.0" />
         <PackageReference Include="BepInEx.BaseLib" Version="5.4.19" />
         <PackageReference Include="HarmonyX" Version="2.5.7" />
@@ -56,7 +61,7 @@
     <Target Name="GenerateAPWorldBindings" BeforeTargets="CoreCompile">
         <PropertyGroup>
             <CodeGenExe>$(CodeGenProjectDir)\bin\$(Configuration)\net10.0\OutwardArchipelago.CodeGen.exe</CodeGenExe>
-            <CodeGenOutput>Archipelago\APWorld.gen.cs</CodeGenOutput>
+            <CodeGenOutput>$(IntermediateOutputPath)APWorldInfo.cs</CodeGenOutput>
         </PropertyGroup>
         <Message Text="Generating &quot;$(CodeGenOutput)&quot;" Importance="high" />
         <Exec Command="&quot;$(CodeGenExe)&quot; --output &quot;$(CodeGenOutput)&quot; --namespace &quot;OutwardArchipelago.Archipelago&quot; --info-class &quot;APWorldInfo&quot; --item-class &quot;APWorldItem&quot; --location-class &quot;APWorldLocation&quot;" />

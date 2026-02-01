@@ -9,6 +9,6 @@ namespace OutwardArchipelago.Dialogue.Builders.Conditions
 
         public bool IsInverted { get; set; } = false;
 
-        public ConditionTask BuildCondition(IDialoguePatchContext context) => new Condition_LocationCheck(LocationId, IsInverted);
+        public ConditionTask BuildCondition(IDialoguePatchContext context) => new Condition_LocationCheck(LocationId) { invert = IsInverted };
     }
 }
