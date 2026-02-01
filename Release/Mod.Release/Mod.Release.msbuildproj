@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project Sdk="Microsoft.Build.NoTargets/3.7.134">
+  <PropertyGroup>
+    <ProjectGuid>{934a648b-b732-4649-aba2-c3e5c1b5b1c9}</ProjectGuid>
+    <TargetFramework>net10.0</TargetFramework>
+    <StagingDir>bin\staging</StagingDir>
+    <OutputDir>build</OutputDir>
+    <PackageOutputDir>build</PackageOutputDir>
+    <PackageName>OutwardArchipelago</PackageName>
+    <ModProjectDir>..\..\Mod</ModProjectDir>
+    <PackageAssetsDir>$(ModProjectDir)\assets</PackageAssetsDir>
+  </PropertyGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Mod\Mod.csproj">
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <SkipGetTargetFrameworkProperties>true</SkipGetTargetFrameworkProperties>
+    </ProjectReference>
+  </ItemGroup>
+  <Target Name="BuildThunderstorePackage" AfterTargets="Build">
+    <MSBuild Projects="$(ModProjectDir)\Mod.csproj" Targets="GetTargetPath" BuildInParallel="true">
+      <Output TaskParameter="TargetOutputs" ItemName="ModArtifacts" />
+    </MSBuild>
+    <PropertyGroup>
+      <ModOutputDir>$([System.IO.Path]::GetDirectoryName('%(ModArtifacts.Identity)'))</ModOutputDir>
+      <PackageFileName>$(PackageName).zip</PackageFileName>
+      <PackageFilePath>$(PackageOutputDir)\$(PackageFileName)</PackageFilePath>
+      <PackageManifestFile>$(PackageAssetsDir)\manifest.json</PackageManifestFile>
+    </PropertyGroup>
+    <ItemGroup>
+      <PackageAssetFiles Include="$(PackageAssetsDir)\**\*.*" Exclude="$(PackageManifestFile)" />
+      <PackageDllFiles Include="$(ModOutputDir)\OutwardArchipelago.dll" />
+      <PackageDllFiles Include="$(ModOutputDir)\Archipelago.MultiClient.Net.dll" />
+      <PackageDllFiles Include="$(ModOutputDir)\Newtonsoft.Json.dll" />
+    </ItemGroup>
+    <RemoveDir Directories="$(StagingDir)" />
+    <MakeDir Directories="$(StagingDir)" />
+    <Copy SourceFiles="@(PackageAssetFiles)" DestinationFiles="@(PackageAssetFiles->'$(StagingDir)\%(RecursiveDir)%(Filename)%(Extension)')" />
+    <Copy SourceFiles="@(PackageDllFiles)" DestinationFolder="$(StagingDir)\plugins" />
+    <ReadLinesFromFile File="..\..\VERSION">
+      <Output TaskParameter="Lines" PropertyName="Version" />
+    </ReadLinesFromFile>
+    <PropertyGroup>
+      <PackageManifestContent>$([System.IO.File]::ReadAllText('$(PackageManifestFile)'))</PackageManifestContent>
+      <NewPackageManifestContent>$(PackageManifestContent.Replace('{{MOD_VERSION}}', '$(Version)'))</NewPackageManifestContent>
+    </PropertyGroup>
+    <WriteLinesToFile File="$(StagingDir)\manifest.json" Lines="$(NewPackageManifestContent)" Overwrite="true" />
+    <Delete Files="$(PackageFilePath)" />
+    <MakeDir Directories="$(PackageOutputDir)" />
+    <ZipDirectory SourceDirectory="$(StagingDir)" DestinationFile="$(PackageFilePath)" />
+  </Target>
+</Project>

@@ -11,8 +11,6 @@
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <DebugType>None</DebugType>
     <CodeGenProjectDir>..\Mod.CodeGen</CodeGenProjectDir>
-    <PackageStagingDir>bin\staging</PackageStagingDir>
-    <PackageOutputDir>build</PackageOutputDir>
     <PackageName>OutwardArchipelago</PackageName>
     <PackageAssetsDir>assets</PackageAssetsDir>
   </PropertyGroup>
@@ -72,34 +70,6 @@
     <ItemGroup>
       <Compile Include="$(CodeGenOutput)" />
     </ItemGroup>
-  </Target>
-  <Target Name="BuildPackage" AfterTargets="Build">
-    <ReadLinesFromFile File="../VERSION">
-      <Output TaskParameter="Lines" PropertyName="Version" />
-    </ReadLinesFromFile>
-    <PropertyGroup>
-      <PackageFileName>$(PackageName).zip</PackageFileName>
-      <PackageFilePath>$(PackageOutputDir)\$(PackageFileName)</PackageFilePath>
-      <PackageManifestFile>$(PackageAssetsDir)\manifest.json</PackageManifestFile>
-    </PropertyGroup>
-    <ItemGroup>
-      <PackageAssetFiles Include="$(PackageAssetsDir)\**\*.*" Exclude="$(PackageManifestFile)" />
-      <PackageDllFiles Include="$(OutputPath)OutwardArchipelago.dll" />
-      <PackageDllFiles Include="$(OutputPath)Archipelago.MultiClient.Net.dll" />
-      <PackageDllFiles Include="$(OutputPath)Newtonsoft.Json.dll" />
-    </ItemGroup>
-    <RemoveDir Directories="$(PackageStagingDir)" />
-    <MakeDir Directories="$(PackageStagingDir)" />
-    <Copy SourceFiles="@(PackageAssetFiles)" DestinationFiles="@(PackageAssetFiles->'$(PackageStagingDir)\%(RecursiveDir)%(Filename)%(Extension)')" />
-    <Copy SourceFiles="@(PackageDllFiles)" DestinationFolder="$(PackageStagingDir)\plugins" />
-    <PropertyGroup>
-      <PackageManifestContent>$([System.IO.File]::ReadAllText('$(PackageManifestFile)'))</PackageManifestContent>
-      <NewPackageManifestContent>$(PackageManifestContent.Replace('{{MOD_VERSION}}', '$(Version)'))</NewPackageManifestContent>
-    </PropertyGroup>
-    <WriteLinesToFile File="$(PackageStagingDir)\manifest.json" Lines="$(NewPackageManifestContent)" Overwrite="true" />
-    <Delete Files="$(PackageFilePath)" />
-    <MakeDir Directories="$(PackageOutputDir)" />
-    <ZipDirectory SourceDirectory="$(PackageStagingDir)" DestinationFile="$(PackageFilePath)" />
   </Target>
   <Target Name="InstallModLocally" AfterTargets="Build" Condition="$(CopyModOnBuild)">
     <PropertyGroup>
