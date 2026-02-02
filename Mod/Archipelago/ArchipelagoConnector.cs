@@ -471,6 +471,22 @@ namespace OutwardArchipelago.Archipelago
                         Give(item);
                     }
                 }
+                else if (OutwardArchipelagoMod.Instance.IsInMainMenu && _sessionItemCounts.Count > 0)
+                {
+                    // This mostly affects if the player switches save files mid-session.
+                    // If we throw all the previously seen items back into the queue, we can re-attempt
+                    // the logic of giving them to the player one-by-one when they enter a save again.
+
+                    foreach (var pair in _sessionItemCounts)
+                    {
+                        for (var i = 0; i < pair.Value; i++)
+                        {
+                            _incomingItems.Enqueue(pair.Key);
+                        }
+                    }
+
+                    _sessionItemCounts.Clear();
+                }
             }
 
             /// <summary>

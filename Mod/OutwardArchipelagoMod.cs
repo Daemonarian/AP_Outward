@@ -30,6 +30,11 @@ namespace OutwardArchipelago
         public static ConfigEntry<string> ArchipelagoSlotName;
 
         /// <summary>
+        /// Whether or not the game is in the main menu.
+        /// </summary>
+        public bool IsInMainMenu => Global.Lobby.PlayersInLobbyCount == 0;
+
+        /// <summary>
         /// Whether or not Archipelago-related modifications should be applied.
         /// </summary>
         public bool IsArchipelagoEnabled => PhotonNetwork.isMasterClient;
@@ -37,7 +42,7 @@ namespace OutwardArchipelago
         /// <summary>
         /// Whether or not the player is actually playing (not in a loading screen or paused).
         /// </summary>
-        public bool IsInGame => Global.Lobby.PlayersInLobbyCount > 0 && NetworkLevelLoader.Instance.IsOverallLoadingDone && !NetworkLevelLoader.Instance.IsGameplayPaused;
+        public bool IsInGame => !IsInMainMenu && NetworkLevelLoader.Instance.IsOverallLoadingDone && !NetworkLevelLoader.Instance.IsGameplayPaused;
 
         /// <summary>
         /// Whether or not the player is actually playing in an Archipelago-ready game.
