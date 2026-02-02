@@ -61,6 +61,7 @@
     </Interpreter>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="outward\archipelago.json" />
     <Content Include="outward\Outward Definitive Edition.yaml" />
     <Content Include="outward\regions.py" />
   </ItemGroup>

@@ -1,4 +1,4 @@
-﻿# Q. What is this file?
+# Q. What is this file?
 # A. This file contains options which allow you to configure your multiworld experience while allowing
 #    others to play how they want as well.
 #
@@ -88,11 +88,24 @@ requires:
 
   exclude_locations:
     # Prevent these locations from having an important item.
-    []
+    - "Spawn - Merton's Ribcage"
+    - "Spawn - Merton's Shinbones"
+    - "Spawn - Merton's Skull"
 
   priority_locations:
     # Prevent these locations from having an unimportant item.
-    []
+    - "Main Quest 1 - Castaways"
+    - "Main Quest 2 - Call to Adventure"
+    - "Main Quest 3 - Join Faction Quest"
+    - "Main Quest 4 - Faction Quest 1"
+    - "Main Quest 5 - Faction Quest 2"
+    - "Main Quest 6 - Faction Quest 3"
+    - "Main Quest 7 - Faction Quest 4"
+    - "Main Quest 8 - A Fallen City"
+    - "Main Quest 9 - Up The Ladder"
+    - "Main Quest 10 - Stealing Fire"
+    - "Main Quest 11 - Liberate the Sun"
+    - "Main Quest 12 - Vengeful Ouroboros"
 
   item_links:
     # Share part of your item pool with other players.
