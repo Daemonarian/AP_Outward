@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<SL_Material xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <ShaderName>Custom/Distort/DistortTextureSpec</ShaderName>
+  <Keywords>
+    <string>_ALPHATEST_ON</string>
+    <string>_NORMALMAP</string>
+  </Keywords>
+  <Properties>
+    <ShaderProperty xsi:type="ColorProp">
+      <Name>_Color</Name>
+      <Value>
+        <r>2.5</r>
+        <g>1.5</g>
+        <b>2.5</b>
+        <a>1</a>
+      </Value>
+    </ShaderProperty>
+    <ShaderProperty xsi:type="ColorProp">
+      <Name>_SpecColor</Name>
+      <Value>
+        <r>1</r>
+        <g>1</g>
+        <b>1</b>
+        <a>0.947</a>
+      </Value>
+    </ShaderProperty>
+    <ShaderProperty xsi:type="FloatProp">
+      <Name>_NormalStrength</Name>
+      <Value>1</Value>
+    </ShaderProperty>
+    <ShaderProperty xsi:type="FloatProp">
+      <Name>_Speed</Name>
+      <Value>1</Value>
+    </ShaderProperty>
+    <ShaderProperty xsi:type="FloatProp">
+      <Name>_Scale</Name>
+      <Value>3</Value>
+    </ShaderProperty>
+    <ShaderProperty xsi:type="FloatProp">
+      <Name>_MaskPow</Name>
+      <Value>0</Value>
+    </ShaderProperty>
+  </Properties>
+  <TextureConfigs>
+    <TextureConfig>
+      <TextureName>_MainTex</TextureName>
+      <UseMipMap>true</UseMipMap>
+      <MipMapBias>0</MipMapBias>
+    </TextureConfig>
+    <TextureConfig>
+      <TextureName>_DistortMap</TextureName>
+      <UseMipMap>true</UseMipMap>
+      <MipMapBias>0</MipMapBias>
+    </TextureConfig>
+  </TextureConfigs>
+</SL_Material>
