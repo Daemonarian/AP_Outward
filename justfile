@@ -2,7 +2,7 @@ set shell := ["pwsh", "-Command"]
 set dotenv-load := true
 
 mod apworld "APWorld/justfile"
-mod mod "Outward/justfile"
+mod mod "Mod/justfile"
 
 build_dir := "build"
 release_dir := "release"

@@ -655,7 +655,7 @@ namespace OutwardArchipelago.Archipelago
                 if (OutwardArchipelagoMod.Instance.IsInGame && _incomingMessages.TryDequeue(out var message))
                 {
                     var formattedMessage = ArchipelagoToOutwardMessage(message);
-                    SendSystemMessage(formattedMessage);
+                    ChatPanelManager.Instance.SendSystemMessage(formattedMessage);
                 }
             }
 
@@ -698,41 +698,6 @@ namespace OutwardArchipelago.Archipelago
                 }
 
                 return sb.ToString();
-            }
-
-            /// <summary>
-            /// Add a message to the chat panel of the specified player from now particular
-            /// </summary>
-            /// <param name="message"></param>
-            /// <param name="character"></param>
-            private void SendSystemMessage(string message, Character character = null)
-            {
-                character ??= CharacterManager.Instance.GetFirstLocalCharacter();
-
-                // This code mostly adapts the implementation of ChatPanel.ChatMessageReceived.
-                var chatPanel = character.CharacterUI.ChatPanel;
-                if (chatPanel.m_messageArchive.Count < chatPanel.MaxMessageCount)
-                {
-                    var chatEntry = UnityEngine.Object.Instantiate<ChatEntry>(UIUtilities.ChatEntryPrefab);
-                    chatEntry.transform.SetParent(chatPanel.m_chatDisplay.content);
-                    chatEntry.transform.ResetLocal(true);
-                    chatEntry.SetCharacterUI(chatPanel.m_characterUI);
-                    chatPanel.m_messageArchive.Insert(0, chatEntry);
-                }
-                else
-                {
-                    var item = chatPanel.m_messageArchive[chatPanel.m_messageArchive.Count - 1];
-                    chatPanel.m_messageArchive.RemoveAt(chatPanel.m_messageArchive.Count - 1);
-                    chatPanel.m_messageArchive.Insert(0, item);
-                }
-                chatPanel.m_messageArchive[0].transform.SetAsLastSibling();
-                chatPanel.m_messageArchive[0].SetEntry(null, message, true);
-                chatPanel.m_lastHideTime = Time.time;
-                if (!chatPanel.IsDisplayed)
-                {
-                    chatPanel.Show();
-                }
-                chatPanel.Invoke("DelayedScroll", 0.1f);
             }
         }
     }
