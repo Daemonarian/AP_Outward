@@ -4,10 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Archipelago.MultiClient.Net;
+using Archipelago.MultiClient.Net.BounceFeatures.DeathLink;
 using Archipelago.MultiClient.Net.Enums;
 using Archipelago.MultiClient.Net.Exceptions;
 using Archipelago.MultiClient.Net.Helpers;
 using Archipelago.MultiClient.Net.MessageLog.Messages;
+using HarmonyLib;
 using OutwardArchipelago.QuestEvents;
 using UnityEngine;
 
@@ -39,6 +41,11 @@ namespace OutwardArchipelago.Archipelago
         private readonly MessageManager _messages;
 
         /// <summary>
+        /// The sub-manager for all things related to Archipelago death links.
+        /// </summary>
+        private readonly DeathLinkManager _deathLink;
+
+        /// <summary>
         /// The background Archipelago session worker.
         /// </summary>
         private Task _sessionWorker = null;
@@ -53,6 +60,7 @@ namespace OutwardArchipelago.Archipelago
             _items = new ItemManager(this);
             _locations = new LocationManager(this);
             _messages = new MessageManager(this);
+            _deathLink = new DeathLinkManager(this);
         }
 
         /// <summary>
@@ -74,6 +82,11 @@ namespace OutwardArchipelago.Archipelago
         /// The sub-manager for all things related to Archipelago messages.
         /// </summary>
         public IMessageManager Messages => _messages;
+
+        /// <summary>
+        /// The sub-manager for all things related to Archipelago death links.
+        /// </summary>
+        public IDeathLinkManager DeathLink => _deathLink;
 
         // Connection details
         public string Host { get; private set; } = null;
@@ -147,6 +160,7 @@ namespace OutwardArchipelago.Archipelago
 
             _items.Update();
             _messages.Update();
+            _deathLink.Update();
         }
 
         /// <summary>
@@ -199,6 +213,7 @@ namespace OutwardArchipelago.Archipelago
 
             await _locations.UpdateAsync();
             await _messages.UpdateAsync();
+            await _deathLink.UpdateAsync();
         }
 
         /// <summary>
@@ -267,6 +282,15 @@ namespace OutwardArchipelago.Archipelago
                 return false;
             }
 
+            if (loginResult is not LoginSuccessful loginSuccessful)
+            {
+                // this should not happen
+                OutwardArchipelagoMod.Log.LogError("failed to login to Archipelago server for unknown reason");
+                return false;
+            }
+
+            _deathLink.OnLoginSuccess(_session, loginSuccessful);
+
             return true;
         }
 
@@ -282,8 +306,9 @@ namespace OutwardArchipelago.Archipelago
 
             if (_session != null)
             {
-                _items.UnregisterEventHandlers(_session);
-                _messages.UnregisterEventHandlers(_session);
+                _items.OnSessionDestroyed(_session);
+                _messages.OnSessionDestroyed(_session);
+                _deathLink.OnSessionDestroyed(_session);
 
                 _session = null;
             }
@@ -398,6 +423,14 @@ namespace OutwardArchipelago.Archipelago
         }
 
         /// <summary>
+        /// A sub-manager for Archipelago deathlink.
+        /// </summary>
+        public interface IDeathLinkManager
+        {
+            public ArchipelagoConnector Parent { get; }
+        }
+
+        /// <summary>
         /// Concrete implementation of the sub-manager for Archipelago items.
         /// </summary>
         private class ItemManager : IItemManager
@@ -439,7 +472,7 @@ namespace OutwardArchipelago.Archipelago
             /// Unregister Archipelago session event handlers.
             /// </summary>
             /// <param name="session"></param>
-            public void UnregisterEventHandlers(ArchipelagoSession session)
+            public void OnSessionDestroyed(ArchipelagoSession session)
             {
                 session.Items.ItemReceived -= OnItemReceived;
             }
@@ -657,7 +690,7 @@ namespace OutwardArchipelago.Archipelago
             /// Unregister Archipelago session event handlers.
             /// </summary>
             /// <param name="session"></param>
-            public void UnregisterEventHandlers(ArchipelagoSession session)
+            public void OnSessionDestroyed(ArchipelagoSession session)
             {
                 session.MessageLog.OnMessageReceived -= OnMessageReceived;
             }
@@ -714,6 +747,174 @@ namespace OutwardArchipelago.Archipelago
                 }
 
                 return sb.ToString();
+            }
+        }
+
+        /// <summary>
+        /// Concrete implementation of the sub-manager for Archipelago messages.
+        /// </summary>
+        private class DeathLinkManager : IDeathLinkManager
+        {
+            /// <summary>
+            /// The main manager associated with this instance.
+            /// </summary>
+            private readonly ArchipelagoConnector _parent;
+
+            /// <summary>
+            /// Queue for messages created on the Archieplago thread to be sent to system chat.
+            /// </summary>
+            private readonly ConcurrentQueue<string> _incomingMessage = new();
+
+            /// <summary>
+            /// Queue for incoming death links to be handled by the main thread.
+            /// </summary>
+            private readonly ConcurrentQueue<DeathLink> _incomingDeathLinks = new();
+
+            /// <summary>
+            /// Queue for outgoing death links to be handled by the Archipelago thread.
+            /// </summary>
+            private readonly ConcurrentQueue<DeathLink> _outgoingDeathLinks = new();
+
+            /// <summary>
+            /// The death-link service for the current session.
+            /// </summary>
+            private DeathLinkService _deathLinkService = null;
+
+            /// <summary>
+            /// A flag to help ensure deaths caused by death link do not initiate another death link.
+            /// </summary>
+            private bool _ignoreDeaths = false;
+
+            public DeathLinkManager(ArchipelagoConnector parent)
+            {
+                _parent = parent;
+            }
+
+            public ArchipelagoConnector Parent => _parent;
+
+            /// <summary>
+            /// Called after the Archipelago session has been created and connected.
+            /// </summary>
+            /// <param name="session">The session.</param>
+            public void OnLoginSuccess(ArchipelagoSession session, LoginSuccessful loginSuccessful)
+            {
+                if (loginSuccessful.SlotData.TryGetValue("death_link", out var deathLinkObj))
+                {
+                    OutwardArchipelagoMod.Log.LogDebug($"recieved death_link value from slot data: {deathLinkObj}");
+                    var deathLinkEnabled = Convert.ToBoolean(deathLinkObj);
+                    if (deathLinkEnabled)
+                    {
+                        OutwardArchipelagoMod.Log.LogInfo($"enabling death link...");
+                        _deathLinkService = session.CreateDeathLinkService();
+                        _deathLinkService.OnDeathLinkReceived += OnDeathLinkRecieved;
+                        _deathLinkService.EnableDeathLink();
+                        OutwardArchipelagoMod.Log.LogInfo($"death link enabled!");
+                        _incomingMessage.Enqueue("<color=#FF0000>Death-Link:</color> <color=#FFFFFF>Enabled</color>");
+                    }
+                }
+            }
+
+            /// <summary>
+            /// Called right before the Archipelago session is to be destroyed.
+            /// </summary>
+            /// <param name="session">The session.</param>
+            public void OnSessionDestroyed(ArchipelagoSession session)
+            {
+                if (_deathLinkService is not null)
+                {
+                    OutwardArchipelagoMod.Log.LogInfo($"disabling death link...");
+                    _deathLinkService.DisableDeathLink();
+                    _deathLinkService.OnDeathLinkReceived -= OnDeathLinkRecieved;
+                    _deathLinkService = null;
+                    OutwardArchipelagoMod.Log.LogInfo($"death link disabled");
+                    _incomingMessage.Enqueue("<color=#FF0000>Death-Link:</color> <color=#777777>Disabled</color>");
+                }
+            }
+
+            /// <summary>
+            /// Runs every frame.
+            /// </summary>
+            public void Update()
+            {
+                if (OutwardArchipelagoMod.Instance.IsInGame)
+                {
+                    while (_incomingMessage.TryDequeue(out var message))
+                    {
+                        ChatPanelManager.Instance.SendSystemMessage(message);
+                    }
+
+                    if (_incomingDeathLinks.TryDequeue(out var deathLink))
+                    {
+                        var message = deathLink.Cause ?? $"<color=#EE00EE>{deathLink.Source}</color> has died.";
+                        message = $"<color=#FF0000>Death Link:</color> {message}";
+                        ChatPanelManager.Instance.SendSystemMessage(message);
+
+                        OutwardArchipelagoMod.Log.LogMessage($"death link recieved: {message}");
+
+                        if (OutwardArchipelagoMod.Instance.IsInArchipelagoGame)
+                        {
+                            var character = CharacterManager.Instance.GetFirstLocalCharacter();
+                            if (character.m_characterActive && character.Alive)
+                            {
+                                _ignoreDeaths = true;
+                                try
+                                {
+                                    character.Stats.SetHealth(0f);
+                                    character.Die(Vector3.up, false);
+                                }
+                                finally
+                                {
+                                    _ignoreDeaths = false;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            /// <summary>
+            /// Called regularly from the Archipelago thread.
+            /// </summary>
+            public async Task UpdateAsync()
+            {
+                while (_outgoingDeathLinks.TryDequeue(out var deathLink))
+                {
+                    _deathLinkService?.SendDeathLink(deathLink);
+                }
+            }
+
+            /// <summary>
+            /// Event handler for when death links are recieved.
+            /// </summary>
+            /// <param name="deathLink"></param>
+            private void OnDeathLinkRecieved(DeathLink deathLink)
+            {
+                _incomingDeathLinks.Enqueue(deathLink);
+            }
+
+            /// <summary>
+            /// Called when the 
+            /// </summary>
+            private void OnDeath()
+            {
+                if (!_ignoreDeaths)
+                {
+                    OutwardArchipelagoMod.Log.LogMessage($"sending death link");
+                    var deathLink = new DeathLink(Instance.SlotName);
+                    _outgoingDeathLinks.Enqueue(deathLink);
+                }
+            }
+
+            [HarmonyPatch(typeof(Character), nameof(Character.Die), new[] { typeof(Vector3), typeof(bool) })]
+            private static class Patch_Character_Die
+            {
+                private static void Postfix(Character __instance)
+                {
+                    if (OutwardArchipelagoMod.Instance.IsArchipelagoEnabled && __instance.IsLocalPlayer && __instance.IsWorldHost)
+                    {
+                        Instance._deathLink.OnDeath();
+                    }
+                }
             }
         }
     }

@@ -1,6 +1,7 @@
 from dataclasses import dataclass
-from Options import PerGameCommonOptions
+from Options import DeathLink, PerGameCommonOptions
 
 @dataclass
 class OutwardOptions(PerGameCommonOptions):
-    pass
+    death_link: DeathLink
+
