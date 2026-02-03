@@ -11,21 +11,28 @@ from worlds.generic.Rules import add_rule
 from .templates import OutwardObjectNamespace, OutwardObjectTemplate
 
 if TYPE_CHECKING:
+    from BaseClasses import MultiWorld
     from worlds.generic.Rules import CollectionRule
 
-    from outward import OutwardWorld
+    from . import OutwardWorld
 
 class OutwardRegion(Region):
-    def __init__(self, world: OutwardWorld, name: str):
+    def __init__(self, name: str, multiworld: MultiWorld, player: int):
         template = OutwardRegionTemplate.get_template(name)
-        super().__init__(template.name, world.player, world.multiworld, template.hint)
+        super().__init__(template.name, player, multiworld, template.hint)
+
+    def add_to_world(self, world: OutwardWorld) -> None:
         world.multiworld.regions.append(self)
 
 class OutwardEntrance(Entrance):
-    def __init__(self, world: OutwardWorld, name: str):
+    def __init__(self, name: str, player: int):
         template = OutwardEntranceTemplate.get_template(name)
+        super().__init__(player, template.name)
+
+    def add_to_world(self, world: OutwardWorld):
+        template = OutwardEntranceTemplate.get_template(self.name)
         parent = world.get_region(template.from_region)
-        super().__init__(world.player, template.name, parent)
+        self.parent_region = parent
         parent.exits.append(self)
         self.connect(world.get_region(template.to_region))
         

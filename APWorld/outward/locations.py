@@ -22,10 +22,14 @@ class OutwardLocation(Location):
         add_rule(self, rule, combine)
 
 class OutwardGameLocation(OutwardLocation):
-    def __init__(self, world: OutwardWorld, name: str):
+    def __init__(self, name: str, player: int):
         template = OutwardGameLocationTemplate.get_template(name)
+        super().__init__(player, template.name, template.archipelago_id)
+
+    def add_to_world(self, world: OutwardWorld) -> None:
+        template = OutwardGameLocationTemplate.get_template(self.name)
         parent = world.get_region(template.region)
-        super().__init__(world.player, template.name, template.archipelago_id, parent)
+        self.parent_region = parent
         parent.locations.append(self)
         
 # classes for defining the basic properties of game locations
