@@ -15,9 +15,11 @@ class OutwardItem(Item):
     game = OUTWARD
 
 class OutwardGameItem(OutwardItem):
-    def __init__(self, world: OutwardWorld, name: str):
+    def __init__(self, name: str, player: int):
         template = OutwardGameItemTemplate.get_template(name)
-        super().__init__(template.name, template.classification, template.archipelago_id, world.player)
+        super().__init__(template.name, template.classification, template.archipelago_id, player)
+
+    def add_to_world(self, world: OutwardWorld) -> None:
         world.multiworld.itempool.append(self)
 
 # classes for defining the basic properties of game items

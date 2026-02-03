@@ -23,14 +23,9 @@ class OutwardEvent:
     _location: OutwardEventLocation
     _item: OutwardEventItem
 
-    def __init__(self, world: OutwardWorld, name: str):
-        template = OutwardEventTemplate.get_template(name)
-        player = world.player
-        parent = world.get_region(template.region)
-        self._location = OutwardEventLocation(player, name, parent)
+    def __init__(self, name: str, player: int):
+        self._location = OutwardEventLocation(name, player)
         self._item = OutwardEventItem(name, player)
-        self._location.place_locked_item(self._item)
-        parent.locations.append(self._location)
 
     @property
     def location(self) -> OutwardEventLocation:
@@ -40,12 +35,23 @@ class OutwardEvent:
     def item(self) -> OutwardEventItem:
         return self._item
 
+    @property
+    def name(self) -> str:
+        return self.location.name
+
+    def add_to_world(self, world: OutwardWorld) -> None:
+        template = OutwardEventTemplate.get_template(self.name)
+        parent = world.get_region(template.region)
+        self.location.parent_region = parent
+        parent.locations.append(self.location)
+        self.location.place_locked_item(self.item)
+
     def add_rule(self, rule: CollectionRule, combine: str = "and") -> None:
         self.location.add_rule(rule, combine)
 
 class OutwardEventLocation(OutwardLocation):
-    def __init__(self, player: int, name: str, parent: Region):
-        super().__init__(player, name, None, parent)
+    def __init__(self, name: str, player: int):
+        super().__init__(player, name, None, None)
 
 class OutwardEventItem(OutwardItem):
     def __init__(self, name: str, player: int):

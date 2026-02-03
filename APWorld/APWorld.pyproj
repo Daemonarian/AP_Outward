@@ -5,8 +5,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{6eb220a9-214d-4f4b-9943-358d490bf7ea}</ProjectGuid>
     <ProjectHome />
-    <StartupFile>
-    </StartupFile>
+    <StartupFile>..\External\Archipelago\Generate.py</StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>..\External\Archipelago</WorkingDirectory>
