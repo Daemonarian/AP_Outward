@@ -166,25 +166,39 @@ namespace OutwardArchipelago
             var items = ItemManager.Instance.WorldItems.Values.ToArray();
             foreach (var item in items)
             {
-                if (item != null && item.transform?.parent?.parent?.name != "EquipmentSlots")
+                if (item != null && item.transform?.parent is not null)
                 {
                     if (APWorld.ItemToLocation.TryGetValue(item.ItemID, out var location))
                     {
+                        var doReplace = true;
                         var transform = item.transform;
-                        var transforms = new List<string>();
                         while (transform != null)
                         {
-                            transforms.Add(transform.name);
+                            if (transform.name == "Content" || transform.name == "EquipmentSlots" || transform.name.StartsWith("PlayerChar "))
+                            {
+                                doReplace = false;
+                                break;
+                            }
+
                             transform = transform.parent;
                         }
 
-                        transforms.Reverse();
+                        if (doReplace)
+                        {
+                            var transforms = new List<string>();
+                            var tf = item.transform;
+                            while (tf != null)
+                            {
+                                transforms.Add(tf.name);
+                                tf = tf.parent;
+                            }
 
-                        Log.LogInfo($"world spawned item ({item.ItemID}) associated with location ({location}) with transform: {string.Join(" > ", transforms)}");
-                        var newItem = ItemManager.Instance.GenerateItemNetwork(OutwardItem.APItem);
-                        newItem.SetSideData("AP_Location", location);
-                        newItem.ChangeParent(item.transform.parent, item.transform.position, item.transform.rotation);
-                        ItemManager.Instance.DestroyItem(item);
+                            Log.LogInfo($"world spawned item ({item.ItemID}) associated with location ({location}) with transform {string.Join(" > ", transforms)}; replacing with AP Item");
+                            var newItem = ItemManager.Instance.GenerateItemNetwork(OutwardItem.APItem);
+                            newItem.SetSideData("AP_Location", location);
+                            newItem.ChangeParent(item.transform.parent, item.transform.position, item.transform.rotation);
+                            ItemManager.Instance.DestroyItem(item);
+                        }
                     }
                 }
             }
