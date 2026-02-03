@@ -6,91 +6,40 @@
 	<Description>A random item from across the multi-world!</Description>
   <LegacyItemID>-1</LegacyItemID>
   <IsPickable>true</IsPickable>
-  <IsUsable>true</IsUsable>
+  <IsUsable>false</IsUsable>
   <QtyRemovedOnUse>1</QtyRemovedOnUse>
-  <GroupItemInDisplay>true</GroupItemInDisplay>
+  <GroupItemInDisplay>false</GroupItemInDisplay>
   <HasPhysicsWhenWorld>false</HasPhysicsWhenWorld>
   <RepairedInRest>true</RepairedInRest>
   <BehaviorOnNoDurability>NotSet</BehaviorOnNoDurability>
-  <CastType>DrinkWater</CastType>
+  <CastType>Potion</CastType>
   <CastModifier>Immobilized</CastModifier>
   <CastLocomotionEnabled>false</CastLocomotionEnabled>
   <MobileCastMovementMult>-1</MobileCastMovementMult>
   <CastSheatheRequired>1</CastSheatheRequired>
-  <OverrideSellModifier>-1</OverrideSellModifier>
+  <OverrideSellModifier>1</OverrideSellModifier>
   <Tags>
-    <string>Ingredient Cook</string>
-    <string>Ingredient</string>
+    <string>Stone</string>
     <string>Item</string>
-    <string>Egg</string>
-    <string>Food</string>
-    <string>Consummable</string>
+    <string>Valuable</string>
   </Tags>
   <StatsHolder>
-    <BaseValue>6</BaseValue>
-    <RawWeight>0.3</RawWeight>
-    <MaxDurability>100</MaxDurability>
+    <BaseValue>50</BaseValue>
+    <RawWeight>0.0</RawWeight>
+    <MaxDurability>-1</MaxDurability>
   </StatsHolder>
   <ExtensionsEditBehaviour>NONE</ExtensionsEditBehaviour>
   <ItemExtensions>
-    <SL_ItemExtension xsi:type="SL_Perishable">
-      <Savable>false</Savable>
-      <BaseDepletionRate>1.04</BaseDepletionRate>
-      <DisableInInventory>false</DisableInInventory>
-      <DontPerishInWorld>false</DontPerishInWorld>
-      <DontPerishSkipTime>false</DontPerishSkipTime>
-      <OverrideUpdateRate>-1</OverrideUpdateRate>
+    <SL_ItemExtension xsi:type="SL_MultipleUsage">
+      <Savable>true</Savable>
+      <AppliedOnPrice>true</AppliedOnPrice>
+      <AppliedOnWeight>true</AppliedOnWeight>
+      <AutoStack>true</AutoStack>
+      <MaxStackAmount>1</MaxStackAmount>
     </SL_ItemExtension>
   </ItemExtensions>
   <EffectBehaviour>Destroy</EffectBehaviour>
-  <EffectTransforms>
-    <SL_EffectTransform>
-      <TransformName>Effects</TransformName>
-      <Position xsi:nil="true"/>
-      <Rotation xsi:nil="true"/>
-      <Scale xsi:nil="true"/>
-      <Effects>
-        <SL_Effect xsi:type="SL_AffectFood">
-          <Delay>0</Delay>
-          <SyncType>OwnerSync</SyncType>
-          <OverrideCategory>None</OverrideCategory>
-          <AffectQuantity>80</AffectQuantity>
-        </SL_Effect>
-        <SL_Effect xsi:type="SL_AddStatusEffect">
-          <Delay>0</Delay>
-          <SyncType>OwnerSync</SyncType>
-          <OverrideCategory>None</OverrideCategory>
-          <StatusEffect>Health Recovery Small</StatusEffect>
-          <ChanceToContract>100</ChanceToContract>
-          <AffectController>false</AffectController>
-          <AdditionalLevel>0</AdditionalLevel>
-          <NoDealer>false</NoDealer>
-        </SL_Effect>
-        <SL_Effect xsi:type="SL_AddStatusEffect">
-          <Delay>0</Delay>
-          <SyncType>OwnerSync</SyncType>
-          <OverrideCategory>None</OverrideCategory>
-          <StatusEffect>Stamina Recovery Small</StatusEffect>
-          <ChanceToContract>100</ChanceToContract>
-          <AffectController>false</AffectController>
-          <AdditionalLevel>0</AdditionalLevel>
-          <NoDealer>false</NoDealer>
-        </SL_Effect>
-        <SL_Effect xsi:type="SL_AddStatusEffect">
-          <Delay>0</Delay>
-          <SyncType>OwnerSync</SyncType>
-          <OverrideCategory>None</OverrideCategory>
-          <StatusEffect>Indigestion1</StatusEffect>
-          <ChanceToContract>50</ChanceToContract>
-          <AffectController>false</AffectController>
-          <AdditionalLevel>0</AdditionalLevel>
-          <NoDealer>false</NoDealer>
-        </SL_Effect>
-      </Effects>
-      <EffectConditions/>
-      <ChildEffects/>
-    </SL_EffectTransform>
-  </EffectTransforms>
+  <EffectTransforms/>
   <ItemVisuals>
     <ResourcesPrefabPath>Assets/_Prefabs/_ItemsAssets/4000000_Consumables/_ConsumableDLC2/4000480_TorcrabEgg_v</ResourcesPrefabPath>
     <Prefab_SLPack/>
