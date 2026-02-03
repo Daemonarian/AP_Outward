@@ -63,11 +63,11 @@ namespace OutwardArchipelago.Archipelago
 
             // 4. Position it (Bottom Left corner example)
             var rect = ConnectionStatusIconImage.rectTransform;
-            rect.anchorMin = new Vector2(0, 0); // Bottom Left
-            rect.anchorMax = new Vector2(0, 0); // Bottom Left
-            rect.pivot = new Vector2(0, 0);     // Pivot at bottom left
-            rect.anchoredPosition = new Vector2(128, 16); // 20px padding
-            rect.sizeDelta = new Vector2(64, 64); // Size in pixels
+            rect.anchorMin = new Vector2(1, 1);
+            rect.anchorMax = new Vector2(1, 1);
+            rect.pivot = new Vector2(1, 1);
+            rect.anchoredPosition = new Vector2(-16, -16);
+            rect.sizeDelta = new Vector2(64, 64);
         }
 
         // Helper to load texture from plugin folder

@@ -40,7 +40,7 @@ To install the mod, we recommend using **R2ModMan**.
 7. Enter the connection details for the **Archipelago** server and hit `Save`.
 8. Click `Start modded` again, and enjoy!
 
-If you did everything correctly, you should see a small circular icon with an image of a chain link in the lower-left corner.
+If you did everything correctly, you should see a small circular icon with an image of a chain link in the top-right corner.
 This is the **Archipelago** server connection status.
 A yellow-ish icon with a full chain link indicates that you are connected!
 You can now proceed to create a new character!
