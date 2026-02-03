@@ -10,7 +10,7 @@ namespace OutwardArchipelago.Patch
         {
             if (__instance.ItemID == OutwardItem.APItem)
             {
-                __instance.gameObject.AddComponent<RainbowGlow>();
+                __instance.gameObject.AddComponent<RgbShaderEffect>();
             }
         }
     }
