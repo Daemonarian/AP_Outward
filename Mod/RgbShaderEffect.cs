@@ -1,16 +1,16 @@
 using UnityEngine;
 
-public class RainbowGlow : MonoBehaviour
+public class RgbShaderEffect : MonoBehaviour
 {
     public float Speed = 0.5f;   // How fast the colors cycle
     public float Intensity = 2f; // How bright the glow is (HDR)
 
-    private Renderer _renderer;
+    private MeshRenderer _renderer;
     private int _emissionID;
 
     void Awake()
     {
-        _renderer = GetComponentInChildren<Renderer>();
+        _renderer = GetComponentInChildren<MeshRenderer>();
         // Cache the shader property ID for performance
         _emissionID = Shader.PropertyToID("_Color");
     }
@@ -24,7 +24,7 @@ public class RainbowGlow : MonoBehaviour
         var hue = Mathf.Repeat(Time.time * Speed, 1.0f);
 
         // 2. Convert Hue to RGB (Saturation 1, Value 1)
-        Color rainbowColor = Color.HSVToRGB(hue, 1.0f, 1.0f);
+        var rainbowColor = Color.HSVToRGB(hue, 1.0f, 1.0f);
 
         // 3. Apply to the material (Instanced)
         // Multiply by Intensity for that HDR "Bloom" look
