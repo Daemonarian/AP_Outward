@@ -12,6 +12,7 @@ from .regions import OutwardEntrance, OutwardEntranceName, OutwardRegion, Outwar
 
 if TYPE_CHECKING:
     from collections.abc import Iterable
+    from typing import Any
 
     from worlds.generic.Rules import CollectionRule
 
@@ -313,3 +314,8 @@ class OutwardWorld(World):
         self.add_location_item_requirement(OutwardLocationName.SPAWN_WARM_AXE, OutwardItemName.MYRMITAUR_HAVEN_GATE_KEY)
 
         self.multiworld.completion_condition[self.player] = lambda state: state.has(OutwardEventName.MAIN_QUEST_07_COMPLETE, self.player)
+
+    def fill_slot_data(self) -> dict[str, Any]:
+        return {
+            "death_link": bool(self.options.death_link.value != 0)
+        }
