@@ -1,6 +1,6 @@
 # Outward Archipelago
 
-A mod for **Outward: Definitive Edition* that adds support for the *[Archipelago](https://archipelago.gg)** multiworld multi-game randomizer.
+A mod for **Outward: Definitive Edition** that adds support for the *[Archipelago](https://archipelago.gg)** multiworld multi-game randomizer.
 Our philosophy thus far has been to attempt to add as many Archipelago location checks as we can without changing the base game experience too much.
 This way, an experienced Outward player should be able to figure their way through their first randomizer without needing to consult our documentation.
 We have, however, made the following changes to the base game:
