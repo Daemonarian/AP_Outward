@@ -23,6 +23,12 @@ if (sys.version_info.major, sys.version_info.minor) != python_version:
 from pathlib import Path
 import subprocess
 
+def make_dir_symlink(link: Path, target: Path) -> None:
+    if sys.platform == 'win32':
+        subprocess.run(['cmd', '/c', 'mklink', '/J', str(link.absolute()), str(target.absolute())], check=True)
+    else:
+        link.symlink_to(target, target=True)
+
 # defining relevant paths
 
 archipelago_game_short_name = "outward"
@@ -34,7 +40,7 @@ external_archipelago_project_dir = solution_dir / "External" / "Archipelago"
 archipelago_module_update_file = external_archipelago_project_dir / "ModuleUpdate.py"
 archipelago_game_world_dir = external_archipelago_project_dir / "worlds" / archipelago_game_short_name
 
-source_game_world_dir = project_dir / "src" / "outward"
+source_game_world_dir = project_dir / "outward"
 
 venv_dir = project_dir / ".venv"
 venv_python = venv_dir / "Scripts" / "python.exe" if sys.platform == "win32" else venv_dir / "bin" / "python"
@@ -43,8 +49,11 @@ my_path_configuration_file = venv_dir / "lib" / "site-packages" / "archipelago.p
 if not venv_dir.exists():
     subprocess.run([sys.executable, "-m", "venv", "--upgrade-deps", venv_dir], check=True)
 subprocess.run([venv_python, "-m", "pip", "install", "--upgrade", "pip"], check=True)
-subprocess.run([venv_python, "-m", "pip", "install", "-r", external_archipelago_project_dir / "ci-requirements.txt"], check=True)
 subprocess.run([venv_python, archipelago_module_update_file, "--yes"], check=True)
+subprocess.run([venv_python, "-m", "pip", "install", "-r", external_archipelago_project_dir / "ci-requirements.txt"], check=True)
+
+if not archipelago_game_world_dir.exists():
+    make_dir_symlink(archipelago_game_world_dir, source_game_world_dir)
 
 search_paths = [external_archipelago_project_dir]
 my_path_configuration_file_text = "\n".join(f"{p.resolve()}" for p in search_paths)

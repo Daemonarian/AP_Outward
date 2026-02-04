@@ -9,9 +9,9 @@ import json
 
 from Utils import __version__ as archipelago_version
 
-from outward import OutwardWorld
-from outward.items import OutwardItemName
-from outward.locations import OutwardLocationName
+from worlds.outward import OutwardWorld
+from worlds.outward.items import OutwardItemName
+from worlds.outward.locations import OutwardLocationName
 
 if TYPE_CHECKING:
     from typing import Any, TextIO

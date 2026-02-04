@@ -9,6 +9,6 @@
     <ProjectReference Include="$(APWorldWrapperProjectDir)APWorld.Wrapper.msbuildproj" />
   </ItemGroup>
   <Target Name="RunTests" AfterTargets="Build">
-    <Exec Command="$(PythonCommand) -m pytest" WorkingDirectory="$(APWorldProjectDir)" />
+    <Exec Command="$(PythonCommand) -m pytest worlds\outward" WorkingDirectory="..\..\External\Archipelago" />
   </Target>
 </Project>
