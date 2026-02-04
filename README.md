@@ -1,36 +1,48 @@
-# Outward Archipelago
+# [Outward Archipelago](https://github.com/Daemonarian/AP_Outward)
 
-A mod for **Outward: Definitive Edition** that adds support for the **[Archipelago](https://archipelago.gg)** multiworld multi-game randomizer.
-Our philosophy thus far has been to attempt to add as many Archipelago location checks as we can without changing the base game experience too much.
-This way, an experienced Outward player should be able to figure their way through their first randomizer without needing to consult our documentation.
+A mod for **[Outward: Definitive Edition](https://store.steampowered.com/app/794260/)** that adds support for the **[Archipelago](https://archipelago.gg)** multiworld multi-game randomizer.
+Our philosophy thus far has been to add as many **Archipelago** location checks as we can without changing the base game experience too much.
+This way, an experienced **Outward** player should be able to figure their way through their first randomizer without needing to consult our documentation.
 We have, however, made the following changes to the base game:
 - Added an **Archipelago** connection status icon overlay throughout the game, including menus.
-- Added an *AP Item* item to the Outward game to serve as a placeholder for items that have been randomized.
-- Added *Quest License* passive skills that serve as progression items.
-    - Main quest NPCs now refuse to talk to you about the main quest unless you have the corresponding *Quest License* skill.
 - **Archipelago** messages, including the chat, now appear in the in-game chat window.
     - Players may send messages to the **Archipelago** chat via the in-game chat window by prefixing their message with `/ap ` (the space is important).
     - **Archipelago** chat commands, such as `!hint`, may also be sent this way (e.g. `/ap !hint`).
+- Added an *AP Item* item to the Outward game to serve as a placeholder for items that have been randomized.
+- Added *Quest License* passive skills that serve as progression items.
+    - Main quest NPCs now refuse to talk to you about the main quest unless you have the corresponding *Quest License* skill.
+- Replaced most unique items in **Outward** with **Archipelago** location checks.
+- Added **Archipelago** location checks behind the first completion (pass or fail) of *every* quest in the game.
 - Added support for **Archipelago**'s *death-link* mode.
     - *Death-links* recieved will result in the player's death.
-    - Any player deaths, for any reason (outside of another *death-link*), will send a *death-link* to the Archipelago server.
-- Replaced most unique items in **Outward** with **Archipelago** location checks.
-- Also, added **Archipelago** location checks behind the first completion (pass or fail) of *every* quest in the game.
+    - Any player deaths, for any reason (outside of another *death-link*), will send a *death-link* to the **Archipelago** server.
 
-So far, we have only minimally tested the randomizer mod in a 2-player co-op scenario.
-While it seems to work so far, we make no guarantees.
+The intended experience for this mod is to player a single save file (perhaps with legacy chest items) from beginning to end after successfully connecting to the **Archipelago** server.
+However, we do not restrict you to only playing one save file.
+If you create a new save file, that new character should be sent all the items that you previously unlocked in that **Archipelago** multi-world.
+You can then switch back and forth between the save files and both saves will be sent any items that were obtained in the other.
+You may find this behavior useful if you somehow find yourself accidentally soft-locked.
+We do intend to remove all potential soft-locks that we find, but this will still be useful for early versions of the game.
+However, we advise caution with attempting to play this mod with old save files.
+While we do not prevent you from doing so, you may find that save file altered in a way that makes it un-playable without the mod.
+
+Regarding 2-player co-op, we have not fully tested this scenario.
+Joining a friend's game who is playing in an **Archipelago** multiworld will require installing the mod yourself, but only the host needs to connect to the **Archipelago** server.
+We make no promises, though, about what will happen to your location checks if you let the guest do the work.
 
 ## How to play
 
-There are two files that may be found in the latest [releases](https://github.com/Daemonarian/AP_Outward/releases).
+There are two important files to download from [releases](https://github.com/Daemonarian/AP_Outward/releases).
 - `outward.apworld` is the **Archipelago** APWorld (basically a mod for **Archipelago**).
 - `OutwardArchipelago.zip` is the mod package for **Outward: Definitive Edition** compatible with **R2ModMan**.
 
 The `outward.apworld` is only needed by the **Archipelago** host.
 It is not needed by the person playing the game, except to give it to whoever is hosting your **Archipelago**.
-If you change the name of `outward.apworld` to `outward.zip`, you can find a file called `Outward Definitive Edition.yaml` which contains our recommended default settings for the randomizer.
+If you change the name of `outward.apworld` to `outward.zip`, you can find a file inside called `Outward Definitive Edition.yaml` which contains our recommended default settings for the randomizer.
+We defer instructions on how to install the APWorld on the **Archipelago** server and generating a multi-world to the **Archipelago** [website](https://archipelago.gg/tutorial/Archipelago/setup_en).
 
-To install the mod, we recommend using **R2ModMan**.
+To install the mod, you can find general instructions for installing mods in **Outward** [here](https://outward.fandom.com/wiki/Installing_Mods).
+We recommend using **[R2ModMan](https://thunderstore.io/package/ebkr/r2modman/)**, and provide specific instructions below.
 1. Create a new profile for **Outward: Definitive Edition**.
 2. Under `Other` > `Settings` > `Profile`, click on `Import local mod`, and select the `OutwardArchipelago.zip` file.
 3. Under `Mods` > `Installed`, expand `OutwardArchipelago` and click `Install Dependency` until the button disappears.
@@ -40,16 +52,20 @@ To install the mod, we recommend using **R2ModMan**.
 7. Enter the connection details for the **Archipelago** server and hit `Save`.
 8. Click `Start modded` again, and enjoy!
 
-If you did everything correctly, you should see a small circular icon with an image of a chain link in the top-right corner.
-This is the **Archipelago** server connection status.
-A yellow-ish icon with a full chain link indicates that you are connected!
-You can now proceed to create a new character!
-A red icon with a broken link indicates some sort of connection problem with the server.
-When this happens, you will need to consult the mod's log file to get a more detailed message of what is going wrong.
+If everything is working as intended, you should see a connection status icon in the upper-right hand corner of the screen that looks circular with a depiction of a chain link inside.
+A full chain link means that you are connected to the **Archipelago** server and are good to start playing!
+A broken chain link means that we could not login to the **Archipelago** server.
+Actual images of the two icons are as follows:
+
+![Archipelago connection status icon for a good connection](https://github.com/Daemonarian/AP_Outward/blob/main/Mod/assets/plugins/assets/archipelago_connected.png?raw=true) = connected
+![Archipelago connection status icon for a no connection](https://github.com/Daemonarian/AP_Outward/blob/main/Mod/assets/plugins/assets/archipelago_disconnected.png?raw=true) = not connected
+
+If you have trouble connecting to the server, you will need to consult the mod's log file to get a more detailed message of what is going wrong.
+In **R2ModMan**, the log file can be found by going to `Other` > `Settings` > `Locations` > `Browse profile folder`, then navigating to `BepInEx\LogOutput.log`.
 
 ## Developer Instructions
 
-There is a Visual Studio file `AP_Outward.slnx` at the root of the repo.
+There is a Visual Studio solution file `AP_Outward.slnx` at the root of the repo.
 As long as you have the pre-requisites installed, you should be able to open that file, and build in Visual Studio.
 Alternatively, the projects and solutions are SDK-style projects, and can be built from the command line using `dotnet` .NET Core.
 

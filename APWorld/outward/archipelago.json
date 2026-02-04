@@ -2,6 +2,6 @@
   "game": "Outward: Definitive Edition",
   "world_version": "0.1.0",
   "compatible_version": 7,
-  "minimum_ap_version": "0.6.5",
-  "maximum_ap_version": "0.7.0"
+  "minimum_ap_version": "0.6.6",
+  "maximum_ap_version": "0.6.6"
 }
