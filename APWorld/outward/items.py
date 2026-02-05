@@ -67,7 +67,7 @@ class OutwardItemName(OutwardGameObjectNamespace):
     ASSASSIN_SWORD = item("Assassin Sword", ItemClassification.useful, 2000130) # 2000130_AssassinSword
     PALLADIUM_SWORD = item("Palladium Sword", ItemClassification.useful, 2000140) # 2000140_PalladiumSword
     BRAND = item("Brand", ItemClassification.useful, 2000150) # 2000150_CrystalSwordBrand
-    STRANGE_RUSTED_SWORD = item("Strange Rusted Sword", ItemClassification.useful, 2000151) # 2000151_CrystalSwordBrandBroken
+    STRANGE_RUSTED_SWORD = item("Strange Rusted Sword", ItemClassification.progression, 2000151) # 2000151_CrystalSwordBrandBroken
     TSAR_SWORD = item("Tsar Sword", ItemClassification.useful, 2000160) # 2000160_TsarSword
     MAELSTROM_BLADE = item("Maelstrom Blade", ItemClassification.useful, 2000170) # 2000170_BossReward_MaelstromBlade
     HORROR_SWORD = item("Horror Sword", ItemClassification.useful, 2000180) # 2000180_HorrorSword
@@ -119,7 +119,7 @@ class OutwardItemName(OutwardGameObjectNamespace):
     SMOKE_AXE = item("Smoke Axe", ItemClassification.useful, 2010260) # 2010260_IndustrialAxe
     MILITIA_AXE = item("Militia Axe", ItemClassification.useful, 2010270) # 2010270_MilitiaAxe
     VIGILANTE_AXE = item("Vigilante Axe", ItemClassification.useful, 2010275) # 2010275_MilitiaAxe_Legacy
-    WARM_AXE = item("Warm Axe", ItemClassification.useful, 2010280) # 2010280_Arti_Axe_DLC2
+    WARM_AXE = item("Warm Axe", ItemClassification.progression, 2010280) # 2010280_Arti_Axe_DLC2
     SANDROSE = item("Sandrose", ItemClassification.useful, 2010285) # 2010285_Wake_Arti_Axe_DLC2
     IRON_MACE = item("Iron Mace", ItemClassification.useful, 2020010) # 2020010_IronMace
     BRUTAL_CLUB = item("Brutal Club", ItemClassification.useful, 2020020) # 2020020_BrutalClub
@@ -158,7 +158,7 @@ class OutwardItemName(OutwardGameObjectNamespace):
     VIGILANTE_MACE = item("Vigilante Mace", ItemClassification.useful, 2020315) # 2020315_MilitiaMace_Legacy
     CALYGREY_MACE = item("Calygrey Mace", ItemClassification.useful, 2020320) # 2020320_CalygreyMace
     ANCIENT_CALYGREY_MACE = item("Ancient Calygrey Mace", ItemClassification.useful, 2020325) # 2020325_CalygreyMace_Legacy
-    SEALED_MACE = item("Sealed Mace", ItemClassification.useful, 2020330) # 2020330_Arti_Mace_DLC2
+    SEALED_MACE = item("Sealed Mace", ItemClassification.progression, 2020330) # 2020330_Arti_Mace_DLC2
     SCEPTER_OF_THE_CRUEL_PRIEST = item("Scepter of the Cruel Priest", ItemClassification.useful, 2020335) # 2020335_Wake_Arti_Mace_DLC2
     PRAYER_CLAYMORE = item("Prayer Claymore", ItemClassification.useful, 2100000) # 2100000_PrayerClaymore
     SINNER_CLAYMORE = item("Sinner Claymore", ItemClassification.useful, 2100001) # 2100001_PrayerClaymoreLegacy
@@ -197,7 +197,7 @@ class OutwardItemName(OutwardGameObjectNamespace):
     MILITIA_CLAYMORE = item("Militia Claymore", ItemClassification.useful, 2100290) # 2100290_MilitiaClaymore
     MILITIA_CLAYMORE_DORION = item("Militia Claymore - Dorion", ItemClassification.useful, 2100291) # 2100291_MilitiaClaymoreDorion
     VIGILANTE_CLAYMORE = item("Vigilante Claymore", ItemClassification.useful, 2100295) # 2100295_MilitiaClaymore_Legacy
-    MYSTERIOUS_LONG_BLADE = item("Mysterious Long Blade", ItemClassification.useful, 2100300) # 2100300_Arti_Claymore_DLC2
+    MYSTERIOUS_LONG_BLADE = item("Mysterious Long Blade", ItemClassification.progression, 2100300) # 2100300_Arti_Claymore_DLC2
     GEPS_LONGBLADE = item("Gep’s Longblade", ItemClassification.useful, 2100305) # 2100305_Wake_Arti_Claymore_DLC2
     BRUTAL_GREATAXE = item("Brutal Greataxe", ItemClassification.useful, 2110000) # 2110000_BrutalGreataxe
     FANG_GREATAXE = item("Fang Greataxe", ItemClassification.useful, 2110010) # 2110010_FangGreataxe
@@ -230,7 +230,7 @@ class OutwardItemName(OutwardGameObjectNamespace):
     SMOKE_GREATAXE = item("Smoke Greataxe", ItemClassification.useful, 2110240) # 2110240_IndustrialGreataxe
     MILITIA_GREATAXE = item("Militia Greataxe", ItemClassification.useful, 2110250) # 2110250_MilitiaGreataxe
     VIGILANTE_GREATAXE = item("Vigilante Greataxe", ItemClassification.useful, 2110255) # 2110255_MilitiaGreataxe_Legacy
-    FOSSILIZED_GREATAXE = item("Fossilized Greataxe", ItemClassification.useful, 2110260) # 2110260_Arti_Greataxe_DLC2
+    FOSSILIZED_GREATAXE = item("Fossilized Greataxe", ItemClassification.progression, 2110260) # 2110260_Arti_Greataxe_DLC2
     GRIND = item("Grind", ItemClassification.useful, 2110265) # 2110265_Wake_Arti_Greataxe_DLC2
     BRUTAL_GREATMACE = item("Brutal Greatmace", ItemClassification.useful, 2120000) # 2120000_BrutalGreatmace
     WOLF_GREATHAMMER = item("Wolf Greathammer", ItemClassification.useful, 2120010) # 2120010_WolfGreathammer
@@ -263,7 +263,7 @@ class OutwardItemName(OutwardGameObjectNamespace):
     SMOKE_HAMMER = item("Smoke Hammer", ItemClassification.useful, 2120250) # 2120250_IndustrialGreatmace
     MILITIA_HAMMER = item("Militia Hammer", ItemClassification.useful, 2120260) # 2120260_MilitiaGreatmace
     VIGILANTE_HAMMER = item("Vigilante Hammer", ItemClassification.useful, 2120265) # 2120265_MilitiaGreatmace_Legacy
-    DEPOWERED_BLUDGEON = item("De-powered Bludgeon", ItemClassification.useful, 2120270) # 2120270_Arti_Greatmace_DLC2
+    DEPOWERED_BLUDGEON = item("De-powered Bludgeon", ItemClassification.progression, 2120270) # 2120270_Arti_Greatmace_DLC2
     GHOST_PARALLEL = item("Ghost Parallel", ItemClassification.useful, 2120275) # 2120275_Wake_Arti_Greatmace_DLC2
     BRUTAL_SPEAR = item("Brutal Spear", ItemClassification.useful, 2130000) # 2130000_BrutalSpear
     WORN_GUISARME = item("Worn Guisarme", ItemClassification.useful, 2130010) # 2130010_OldGuisarme
@@ -308,7 +308,7 @@ class OutwardItemName(OutwardGameObjectNamespace):
     SMOKE_SPEAR = item("Smoke Spear", ItemClassification.useful, 2130290) # 2130290_IndustrialSpear
     MILITIA_SPEAR = item("Militia Spear", ItemClassification.useful, 2130300) # 2130300_MilitiaSpear
     VIGILANTE_SPEAR = item("Vigilante Spear", ItemClassification.useful, 2130305) # 2130305_MilitiaSpear_Legacy
-    RUSTED_SPEAR = item("Rusted Spear", ItemClassification.useful, 2130310) # 2130310_Arti_Spear_DLC2
+    RUSTED_SPEAR = item("Rusted Spear", ItemClassification.progression, 2130310) # 2130310_Arti_Spear_DLC2
     SHRIEK = item("Shriek", ItemClassification.useful, 2130315) # 2130315_Wake_Arti_Spear_DLC2
     IRON_HALBERD = item("Iron Halberd", ItemClassification.useful, 2140000) # 2140000_IronHalberd
     CLEAVER_HALBERD = item("Cleaver Halberd", ItemClassification.useful, 2140010) # 2140010_BrutalCleaverPolearm
@@ -335,7 +335,7 @@ class OutwardItemName(OutwardGameObjectNamespace):
     SCHOLARS_STAFF = item("Scholar’s Staff", ItemClassification.useful, 2150000) # 2150000_StaffGreen
     MAGES_POKING_STICK = item("Mage’s Poking Stick", ItemClassification.useful, 2150001) # 2150001_StaffWizardQuest
     JADE_LICH_STAFF = item("Jade-Lich Staff", ItemClassification.useful, 2150010) # 2150010_StaffJadeLich
-    COMPASSWOOD_STAFF = item("Compasswood Staff", ItemClassification.useful, 2150030) # 2150030_StaffCompassTree
+    COMPASSWOOD_STAFF = item("Compasswood Staff", ItemClassification.progression, 2150030) # 2150030_StaffCompassTree
     ROTWOOD_STAFF = item("Rotwood Staff", ItemClassification.useful, 2150031) # 2150031_StaffCompassTreeDark
     TROGLODYTE_STAFF = item("Troglodyte Staff", ItemClassification.useful, 2150040) # 2150040_TrogStaffMana
     CRYSTAL_STAFF = item("Crystal Staff", ItemClassification.useful, 2150041) # 2150041_TrogStaffManaLegacy
@@ -357,9 +357,9 @@ class OutwardItemName(OutwardGameObjectNamespace):
     FROSTBURN_STAFF = item("Frostburn Staff", ItemClassification.useful, 2150150) # 2150150_IceFireStaff
     CALYGREY_STAFF = item("Calygrey Staff", ItemClassification.useful, 2150160) # 2150160_CalygreyStaff
     ANCIENT_CALYGREY_STAFF = item("Ancient Calygrey Staff", ItemClassification.useful, 2150165) # 2150165_CalygreyStaff_Legacy
-    RUINED_HALBERD = item("Ruined Halberd", ItemClassification.useful, 2150170) # 2150170_Arti_Halberd_DLC2
+    RUINED_HALBERD = item("Ruined Halberd", ItemClassification.progression, 2150170) # 2150170_Arti_Halberd_DLC2
     DUTY = item("Duty", ItemClassification.useful, 2150175) # 2150175_Wake_Arti_Halberd_DLC2
-    CRACKED_RED_MOON = item("Cracked Red Moon", ItemClassification.useful, 2150180) # 2150180_Arti_Staff_DLC2
+    CRACKED_RED_MOON = item("Cracked Red Moon", ItemClassification.progression, 2150180) # 2150180_Arti_Staff_DLC2
     REVENANT_MOON = item("Revenant Moon", ItemClassification.useful, 2150185) # 2150185_Wake_Arti_Staff_DLC2
     IRON_KNUCKLES = item("Iron Knuckles", ItemClassification.useful, 2160000) # 2160000_IronFists
     BRUTAL_KNUCKLES = item("Brutal Knuckles", ItemClassification.useful, 2160010) # 2160010_BrutalKnuckles
@@ -389,7 +389,7 @@ class OutwardItemName(OutwardGameObjectNamespace):
     SMOKE_KNUCKLES = item("Smoke Knuckles", ItemClassification.useful, 2160210) # 2160210_IndustrialFists
     MILITIA_KNUCKLES = item("Militia Knuckles", ItemClassification.useful, 2160220) # 2160220_MilitiaFists
     VIGILANTE_KNUCKLES = item("Vigilante Knuckles", ItemClassification.useful, 2160225) # 2160225_MilitiaFists_Legacy
-    UNUSUAL_KNUCKLES = item("Unusual Knuckles", ItemClassification.useful, 2160230) # 2160230_Arti_fists_DLC2
+    UNUSUAL_KNUCKLES = item("Unusual Knuckles", ItemClassification.progression, 2160230) # 2160230_Arti_fists_DLC2
     TOKEBAKICIT = item("Tokebakicit", ItemClassification.useful, 2160235) # 2160235_Wake_Arti_fists_DLC2
     SIMPLE_BOW = item("Simple Bow", ItemClassification.useful, 2200000) # 2200000_Bow
     GOLD_BOW = item("Gold Bow", ItemClassification.useful, 2200001) # 2200001_BowLegacy
@@ -414,7 +414,7 @@ class OutwardItemName(OutwardGameObjectNamespace):
     CHALCEDONY_BOW = item("Chalcedony Bow", ItemClassification.useful, 2200170) # 2200170_ChalcedonyBow
     OBSIDIAN_BOW = item("Obsidian Bow", ItemClassification.useful, 2200180) # 2200180_ObsidianBow
     METEORIC_BOW = item("Meteoric Bow", ItemClassification.useful, 2200185) # 2200185_ObsidianBow_Legacy
-    CEREMONIAL_BOW = item("Ceremonial Bow", ItemClassification.useful, 2200190) # 2200190_MurmureBow
+    CEREMONIAL_BOW = item("Ceremonial Bow", ItemClassification.progression, 2200190) # 2200190_MurmureBow
     MURMURE = item("Murmure", ItemClassification.useful, 2200191) # 2200191_MurmureAwakenBow
     ROUND_SHIELD = item("Round Shield", ItemClassification.useful, 2300000) # 2300000_ShieldRound
     ZHORNS_DEMON_SHIELD = item("Zhorn’s Demon Shield", ItemClassification.useful, 2300030) # 2300030_ShieldDemon
@@ -448,7 +448,7 @@ class OutwardItemName(OutwardGameObjectNamespace):
     SMOKE_SHIELD = item("Smoke Shield", ItemClassification.useful, 2300340) # 2300340_IndustrialShield
     MILITIA_SHIELD = item("Militia Shield", ItemClassification.useful, 2300350) # 2300350_MilitiaShield
     VIGILANTE_SHIELD = item("Vigilante Shield", ItemClassification.useful, 2300355) # 2300355_MilitiaShield_Legacy
-    SLUMBERING_SHIELD = item("Slumbering Shield", ItemClassification.useful, 2300360) # 2300360_Arti_Shield_DLC2
+    SLUMBERING_SHIELD = item("Slumbering Shield", ItemClassification.progression, 2300360) # 2300360_Arti_Shield_DLC2
     ANGLER_SHIELD = item("Angler Shield", ItemClassification.useful, 2300365) # 2300365_Wake_Arti_Shield_DLC2
     THE_WILL_O_WISP = item("The Will O Wisp", ItemClassification.useful, 2300600) # 2300600_ShieldWillOWisp
     KRYPTEIA_GIANTKIND_HALBERD = item("Krypteia Giantkind Halberd", ItemClassification.useful, 2400530) # 2400530_KrypteiaGiantkindHalberd
@@ -944,7 +944,7 @@ class OutwardItemName(OutwardGameObjectNamespace):
     BULLET = item("Bullet", ItemClassification.useful, 4400080) # 4400080_Bullet
     BOMB_KIT = item("Bomb Kit", ItemClassification.useful, 4400090) # 4400090_GrenadeKit
     ARROWHEAD_KIT = item("Arrowhead Kit", ItemClassification.useful, 4400100) # 4400100_ArrowheadKit
-    SCARLET_GEM = item("Scarlet Gem", ItemClassification.useful, 4400110) # 4400110_RedMoonRepairCrystal
+    SCARLET_GEM = item("Scarlet Gem", ItemClassification.progression, 4400110) # 4400110_RedMoonRepairCrystal
     GRENADE = item("Grenade", ItemClassification.useful, 4600000) # 4600000_Grenade
     OIL_BOMB = item("Oil Bomb", ItemClassification.useful, 4600010) # 4600010_IncendiaryGrenade
     FRAGMENT_BOMB = item("Fragment Bomb", ItemClassification.useful, 4600020) # 4600020_ShrapnelGrenade
@@ -993,7 +993,7 @@ class OutwardItemName(OutwardGameObjectNamespace):
     LIGHT_MENDERS_LEXICON = item("Light Mender’s Lexicon", ItemClassification.useful, 5100510) # 5100510_BookLexiconGlowstone
     RONDEL_DAGGER = item("Rondel Dagger", ItemClassification.useful, 5110000) # 5110000_RondelDagger
     BROAD_DAGGER = item("Broad Dagger", ItemClassification.useful, 5110001) # 5110001_DaggerWide
-    RED_LADYS_DAGGER = item("Red Lady's Dagger", ItemClassification.useful, 5110002) # 5110002_DaggerRedLady
+    RED_LADYS_DAGGER = item("Red Lady's Dagger", ItemClassification.progression, 5110002) # 5110002_DaggerRedLady
     SHIV_DAGGER = item("Shiv Dagger", ItemClassification.useful, 5110003) # 5110003_DaggerShiv
     MANTICORE_DAGGER = item("Manticore Dagger", ItemClassification.useful, 5110004) # 5110004_DaggerManticore
     ZHORNS_GLOWSTONE_DAGGER = item("Zhorn’s Glowstone Dagger", ItemClassification.useful, 5110005) # 5110005_DaggerGlowstone
@@ -1030,7 +1030,7 @@ class OutwardItemName(OutwardGameObjectNamespace):
     METEORIC_CHAKRAM = item("Meteoric Chakram", ItemClassification.useful, 5110108) # 5110108_ObsidianChakram_Legacy
     CANNON_PISTOL = item("Cannon Pistol", ItemClassification.useful, 5110110) # 5110110_PistolHandCannon
     DISTORTED_EXPERIMENT = item("Distorted Experiment", ItemClassification.useful, 5110111) # 5110111_Wake_Arti_Chakram_DLC2
-    EXPERIMENTAL_CHAKRAM = item("Experimental Chakram", ItemClassification.useful, 5110112) # 5110112_Arti_Chakram_DLC2
+    EXPERIMENTAL_CHAKRAM = item("Experimental Chakram", ItemClassification.progression, 5110112) # 5110112_Arti_Chakram_DLC2
     ORNATE_PISTOL = item("Ornate Pistol", ItemClassification.useful, 5110120) # 5110120_PistolOrnate
     CHIMERA_PISTOL = item("Chimera Pistol", ItemClassification.useful, 5110130) # 5110130_PistolManticore
     BONE_PISTOL = item("Bone Pistol", ItemClassification.useful, 5110140) # 5110140_PistolBone
@@ -1049,7 +1049,7 @@ class OutwardItemName(OutwardGameObjectNamespace):
     MILITIA_PISTOL = item("Militia Pistol", ItemClassification.useful, 5110290) # 5110290_MilitiaPistol
     VIGILANTE_PISTOL = item("Vigilante Pistol", ItemClassification.useful, 5110300) # 5110300_MilitiaPistol_Legacy
     METEORIC_PISTOL = item("Meteoric Pistol", ItemClassification.useful, 5110310) # 5110310_ObsidianPistol_Legacy
-    SCARRED_DAGGER = item("Scarred Dagger", ItemClassification.useful, 5110340) # 5110340_Arti_Dagger_DLC2
+    SCARRED_DAGGER = item("Scarred Dagger", ItemClassification.progression, 5110340) # 5110340_Arti_Dagger_DLC2
     GILDED_SHIVER_OF_TRAMONTANE = item("Gilded Shiver of Tramontane", ItemClassification.useful, 5110345) # 5110345_Wake_Arti_Dagger_DLC2
     ARROW = item("Arrow", ItemClassification.useful, 5200001) # 5200001_IronArrow
     FLAMING_ARROW = item("Flaming Arrow", ItemClassification.useful, 5200002) # 5200002_FlamingArrow
@@ -1102,9 +1102,9 @@ class OutwardItemName(OutwardGameObjectNamespace):
     VENDAVEL_KEY = item("Vendavel Key", ItemClassification.useful, 5600027) # 5600027_VendavelKey
     VENDAVEL_PRISON_KEY = item("Vendavel Prison Key", ItemClassification.useful, 5600028) # 5600028_VendavelPrisonKey
     CIERZO_TOWN_KEY = item("Cierzo Town Key", ItemClassification.useful, 5600029) # 5600029_CierzoTownKey
-    SCARLET_LICHS_IDOL = item("Scarlet Lich's Idol", ItemClassification.useful, 5600030) # 5600030_LichRedIdol
+    SCARLET_LICHS_IDOL = item("Scarlet Lich's Idol", ItemClassification.progression, 5600030) # 5600030_LichRedIdol
     PALACE_PASSAGE_KEY = item("Palace Passage Key", ItemClassification.useful, 5600031) # 5600031_PalaceSecretPassageKey
-    KRYPTEIA_TOMB_KEY = item("Krypteia Tomb Key", ItemClassification.useful, 5600032) # 5600032_KrypteiaTombKey
+    KRYPTEIA_TOMB_KEY = item("Krypteia Tomb Key", ItemClassification.progression, 5600032) # 5600032_KrypteiaTombKey
     SKILL_STORAGE_TABLET = item("Skill Storage Tablet", ItemClassification.useful, 5600040) # 5600040_SkillStorageTablet
     WRIT_OF_TRIBAL_FAVOR = item("Writ of Tribal Favor", ItemClassification.useful, 5600050) # 5600050_TribalFavor
     MONTCALM_KEY = item("Montcalm Key", ItemClassification.useful, 5600060) # 5600060_MontcalmKey
@@ -1130,8 +1130,8 @@ class OutwardItemName(OutwardGameObjectNamespace):
     BANDIT_CAGE_KEY = item("Bandit Cage key", ItemClassification.useful, 5600171) # 5600171_TrogPrisonKeyB
     REFINERY_KEY_DEPTHS = item("Refinery Key: Depths", ItemClassification.useful, 5600172) # 5600172_OilKeyA
     REFINERY_KEY_UPPER = item("Refinery Key: Upper", ItemClassification.useful, 5600173) # 5600173_OilKeyB
-    SMELLY_SEALED_BOX = item("Smelly Sealed Box", ItemClassification.useful, 5600174) # 5600174_SealedMaceBox
-    MYRMITAUR_HAVEN_GATE_KEY = item("Myrmitaur Haven Gate Key", ItemClassification.useful, 5600175) # 5600175_MyrmitaurKey
+    SMELLY_SEALED_BOX = item("Smelly Sealed Box", ItemClassification.progression, 5600174) # 5600174_SealedMaceBox
+    MYRMITAUR_HAVEN_GATE_KEY = item("Myrmitaur Haven Gate Key", ItemClassification.progression, 5600175) # 5600175_MyrmitaurKey
     CONQUERORS_MEDAL = item("Conqueror’s Medal", ItemClassification.useful, 5600176) # 5600176_ArenaMedal
     GEPS_NOTE = item("Gep's Note", ItemClassification.useful, 5601001) # 5601001_GepsNote
     WATCHERS_NOTE = item("Watchers' Note", ItemClassification.useful, 5601003) # 5601003_WatchersNote

@@ -239,8 +239,6 @@ class OutwardWorld(World):
             self.add_location(location_name)
 
     def set_rules(self):
-        self.add_entrance_item_requirement(OutwardEntranceName.TRAVEL_ROUTE_ENMERKAR_TO_CALDERA, OutwardEventName.MAIN_QUEST_07_COMPLETE)
-
         # main quest events
         self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_02_COMPLETE, OutwardEventName.MAIN_QUEST_01_COMPLETE)
         self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_03_COMPLETE, OutwardEventName.MAIN_QUEST_02_COMPLETE)

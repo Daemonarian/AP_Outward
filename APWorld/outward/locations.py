@@ -147,7 +147,7 @@ class OutwardLocationName(OutwardGameObjectNamespace):
 
     # unique items
 
-    SPAWN_ANGLER_SHIELD = location("Item Upgrade - Caldera - Slumbering Shield ", OutwardRegionName.MAIN_GAME_AREA)
+    SPAWN_ANGLER_SHIELD = location("Item Upgrade - Caldera - Slumbering Shield", OutwardRegionName.MAIN_GAME_AREA)
     SPAWN_BRAND = location("Item Upgrade - Strange Rusted Sword", OutwardRegionName.MAIN_GAME_AREA)
     SPAWN_BRASS_WOLF_BACKPACK = location("Spawn - Brass-Wolf Backpack", OutwardRegionName.MAIN_GAME_AREA)
     SPAWN_CEREMONIAL_BOW = location("Spawn - Ceremonial Bow", OutwardRegionName.CALDERA)
