@@ -32,6 +32,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="build_tools\export.py" />
+    <Compile Include="build_tools\apply_template.py" />
     <Compile Include="outward\templates.py" />
     <Compile Include="outward\events.py" />
     <Compile Include="setup.py" />
@@ -60,6 +61,7 @@
     </Interpreter>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="build_tools\utils.py" />
     <Content Include="outward\archipelago.json" />
     <Content Include="outward\Outward Definitive Edition.yaml" />
     <Content Include="outward\regions.py" />

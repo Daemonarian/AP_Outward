@@ -16,13 +16,15 @@
     <RemoveDir Directories="$(StagingDir)" />
     <MakeDir Directories="$(StagingDir)\$(APWorldName)" />
     <ItemGroup>
+      <TemplateFiles Include="$(APWorldSourceDir)\archipelago.json" />
       <PythonFiles
         Include="$(APWorldSourceDir)\**\*.*" 
-        Exclude="$(APWorldSourceDir)\**\__pycache__\**;$(APWorldSourceDir)\**\.venv\**;$(APWorldSourceDir)\**\test\**" />
+        Exclude="@(TemplateFiles);$(APWorldSourceDir)\**\__pycache__\**;$(APWorldSourceDir)\**\.venv\**;$(APWorldSourceDir)\**\test\**" />
     </ItemGroup>
     <Copy
       SourceFiles="@(PythonFiles)" 
       DestinationFiles="@(PythonFiles->'$(StagingDir)\$(APWorldName)\%(RecursiveDir)%(Filename)%(Extension)')" />
+    <Exec Command="$(PythonCommand) -m build_tools.apply_template --input &quot;%(TemplateFiles.Identity)&quot; --output &quot;$(ProjectDir)$(StagingDir)\$(APWorldName)\%(RecursiveDir)%(Filename)%(Extension)&quot;" WorkingDirectory="$(APWorldProjectDir)" />
     <Delete Files="$(OutputDir)\$(OutputZipName)" />
     <MakeDir Directories="$(OutputDir)" />
     <ZipDirectory
