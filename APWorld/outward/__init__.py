@@ -220,7 +220,7 @@ class OutwardWorld(World):
         # useful skills
 
         self.add_item(OutwardItemName.CURSE_HEX)
-        self.add_item(OutwardItemName.POSSESSED_SKILL)
+        self.add_item(OutwardItemName.POSSESSED)
 
         # filler
 
