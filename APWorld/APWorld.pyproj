@@ -26,7 +26,7 @@
     <VisualStudioVersion Condition=" '$(VisualStudioVersion)' == '' ">10.0</VisualStudioVersion>
   </PropertyGroup>
   <PropertyGroup>
-    <PythonVersion>3.12</PythonVersion>
+    <PythonVersion>3.13</PythonVersion>
     <PythonCommand>py -$(PythonVersion)</PythonCommand>
     <CodeGenProjectDir>..\SharedData</CodeGenProjectDir>
   </PropertyGroup>
@@ -43,6 +43,7 @@
     <Compile Include="outward\test\test_basic.py" />
     <Compile Include="outward\test\__init__.py" />
     <Compile Include="outward\__init__.py" />
+    <Compile Include="start_test_server.py" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="build_tools\" />
@@ -52,8 +53,8 @@
   <ItemGroup>
     <Interpreter Include=".venv\">
       <Id>.venv</Id>
-      <Version>3.12</Version>
-      <Description>.venv (Python 3.12.10)</Description>
+      <Version>3.13</Version>
+      <Description>.venv</Description>
       <InterpreterPath>Scripts\python.exe</InterpreterPath>
       <WindowsInterpreterPath>Scripts\pythonw.exe</WindowsInterpreterPath>
       <PathEnvironmentVariable>PYTHONPATH</PathEnvironmentVariable>
