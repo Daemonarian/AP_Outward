@@ -126,9 +126,9 @@ class OutwardWorld(World):
         self.add_item(OutwardItemName.RED_LADYS_DAGGER)
         self.add_item(OutwardItemName.RUINED_HALBERD)
         self.add_item(OutwardItemName.RUSTED_SPEAR)
-        self.add_item(OutwardItemName.SCARLET_DAGGER)
         self.add_item(OutwardItemName.SCARLET_GEM)
         self.add_item(OutwardItemName.SCARLET_LICHS_IDOL)
+        self.add_item(OutwardItemName.SCARRED_DAGGER)
         self.add_item(OutwardItemName.SCARRED_DAGGER)
         self.add_item(OutwardItemName.SEALED_MACE)
         self.add_item(OutwardItemName.SLUMBERING_SHIELD)
@@ -203,6 +203,7 @@ class OutwardWorld(World):
         self.add_item(OutwardItemName.TENEBROUS_ARMOR)
         self.add_item(OutwardItemName.TENEBROUS_BOOTS)
         self.add_item(OutwardItemName.TENEBROUS_HELM)
+        self.add_item(OutwardItemName.THE_WILL_O_WISP)
         self.add_item(OutwardItemName.THRICE_WROUGHT_HALBERD)
         self.add_item(OutwardItemName.THRICE_WROUGHT_HALBERD)
         self.add_item(OutwardItemName.TOKEBAKICIT)
@@ -211,7 +212,6 @@ class OutwardWorld(World):
         self.add_item(OutwardItemName.TSAR_FISTS)
         self.add_item(OutwardItemName.TSAR_HELM)
         self.add_item(OutwardItemName.WERLIG_SPEAR)
-        self.add_item(OutwardItemName.WILL_O_WISP)
         self.add_item(OutwardItemName.WORLDEDGE_GREATAXE)
         self.add_item(OutwardItemName.ZHORNS_DEMON_SHIELD)
         self.add_item(OutwardItemName.ZHORNS_GLOWSTONE_DAGGER)
@@ -220,7 +220,7 @@ class OutwardWorld(World):
         # useful skills
 
         self.add_item(OutwardItemName.CURSE_HEX)
-        self.add_item(OutwardItemName.POSSESSED_SKILL)
+        self.add_item(OutwardItemName.POSSESSED)
 
         # filler
 
@@ -239,8 +239,6 @@ class OutwardWorld(World):
             self.add_location(location_name)
 
     def set_rules(self):
-        self.add_entrance_item_requirement(OutwardEntranceName.TRAVEL_ROUTE_ENMERKAR_TO_CALDERA, OutwardEventName.MAIN_QUEST_07_COMPLETE)
-
         # main quest events
         self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_02_COMPLETE, OutwardEventName.MAIN_QUEST_01_COMPLETE)
         self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_03_COMPLETE, OutwardEventName.MAIN_QUEST_02_COMPLETE)
