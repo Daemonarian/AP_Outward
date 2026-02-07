@@ -11,6 +11,7 @@ using Archipelago.MultiClient.Net.Helpers;
 using Archipelago.MultiClient.Net.MessageLog.Messages;
 using HarmonyLib;
 using OutwardArchipelago.QuestEvents;
+using OutwardArchipelago.Utils;
 using UnityEngine;
 
 namespace OutwardArchipelago.Archipelago
@@ -46,14 +47,19 @@ namespace OutwardArchipelago.Archipelago
         private readonly DeathLinkManager _deathLink;
 
         /// <summary>
+        /// All of the sub-managers in an iterable form to more easily manage collectively.
+        /// </summary>
+        private readonly IReadOnlyList<ManagerBase> _allManagers;
+
+        /// <summary>
         /// The background Archipelago session worker.
         /// </summary>
         private Task _sessionWorker = null;
 
         /// <summary>
-        /// Delegates to be run on the main thread.
+        /// The last recieved slot data.
         /// </summary>
-        private readonly ConcurrentQueue<Action> _mainThreadQueue = new();
+        private APSlotData _slotData = new();
 
         public ArchipelagoConnector()
         {
@@ -61,12 +67,18 @@ namespace OutwardArchipelago.Archipelago
             _locations = new LocationManager(this);
             _messages = new MessageManager(this);
             _deathLink = new DeathLinkManager(this);
+            _allManagers = new ManagerBase[] { _items, _locations, _messages, _deathLink };
         }
 
         /// <summary>
         /// Singleton pattern.
         /// </summary>
         public static ArchipelagoConnector Instance { get; private set; } = null;
+
+        /// <summary>
+        /// The last recieved slot data.
+        /// </summary>
+        public APSlotData SlotData => _slotData;
 
         /// <summary>
         /// The sub-manager for all things related to Archipelago items.
@@ -153,14 +165,10 @@ namespace OutwardArchipelago.Archipelago
                 _sessionWorker = SessionWorker();
             }
 
-            while (_mainThreadQueue.TryDequeue(out var action))
+            foreach (var manager in _allManagers)
             {
-                action();
+                manager.Update();
             }
-
-            _items.Update();
-            _messages.Update();
-            _deathLink.Update();
         }
 
         /// <summary>
@@ -172,7 +180,7 @@ namespace OutwardArchipelago.Archipelago
             {
                 try
                 {
-                    await UpdateAsync();
+                    await UpdateSession();
                 }
                 catch (ArchipelagoSocketClosedException ex)
                 {
@@ -191,13 +199,13 @@ namespace OutwardArchipelago.Archipelago
         /// <summary>
         /// Do work on the Archipelago session background thread.
         /// </summary>
-        private async Task UpdateAsync()
+        private async Task UpdateSession()
         {
             if (_session == null || !_session.Socket.Connected)
             {
                 if (IsConnected)
                 {
-                    await RunOnMainThread(() => IsConnected = false);
+                    await UnityMainThreadDispatcher.Run(() => IsConnected = false);
                 }
 
                 var success = await Connect();
@@ -208,12 +216,13 @@ namespace OutwardArchipelago.Archipelago
                     return;
                 }
 
-                await RunOnMainThread(() => IsConnected = true);
+                await UnityMainThreadDispatcher.Run(() => IsConnected = true);
             }
 
-            await _locations.UpdateAsync();
-            await _messages.UpdateAsync();
-            await _deathLink.UpdateAsync();
+            foreach (var manager in _allManagers)
+            {
+                await manager.UpdateSession(_session);
+            }
         }
 
         /// <summary>
@@ -225,14 +234,14 @@ namespace OutwardArchipelago.Archipelago
         {
             await Disconnect();
 
-            await _items.ResetSession();
-
             OutwardArchipelagoMod.Log.LogInfo($"logging into Archipelago server at \"{Host}:{Port}\" with slot \"{SlotName}\" and game \"{APWorld.Game}\"...");
             _session = ArchipelagoSessionFactory.CreateSession(Host, Port);
 
             // register all event handlers before connecting
-            _items.RegisterEventHandlers(_session);
-            _messages.RegisterEventHandlers(_session);
+            foreach (var manager in _allManagers)
+            {
+                await manager.OnSessionInit(_session);
+            }
 
             try
             {
@@ -289,7 +298,12 @@ namespace OutwardArchipelago.Archipelago
                 return false;
             }
 
-            _deathLink.OnLoginSuccess(_session, loginSuccessful);
+            _slotData = new APSlotData(loginSuccessful.SlotData);
+
+            foreach (var manager in _allManagers)
+            {
+                await manager.OnSessionLoginSuccess(_session, loginSuccessful);
+            }
 
             return true;
         }
@@ -301,58 +315,18 @@ namespace OutwardArchipelago.Archipelago
         {
             if (IsConnected)
             {
-                await RunOnMainThread(() => IsConnected = false);
+                await UnityMainThreadDispatcher.Run(() => IsConnected = false);
             }
 
             if (_session != null)
             {
-                _items.OnSessionDestroyed(_session);
-                _messages.OnSessionDestroyed(_session);
-                _deathLink.OnSessionDestroyed(_session);
+                foreach (var manager in _allManagers)
+                {
+                    await manager.OnSessionDispose(_session);
+                }
 
                 _session = null;
             }
-        }
-
-        /// <summary>
-        /// Queues a delegate to run on the main-thread and wait for it to complete.
-        /// 
-        /// Do not run this from the Unity main thread.
-        /// </summary>
-        /// <typeparam name="T">The return type of the delegate.</typeparam>
-        /// <param name="action">The delegate.</param>
-        /// <returns>The return of the delegate.</returns>
-        private async Task<T> RunOnMainThread<T>(Func<T> action)
-        {
-            var tcs = new TaskCompletionSource<T>(TaskCreationOptions.RunContinuationsAsynchronously);
-            _mainThreadQueue.Enqueue(() =>
-            {
-                try
-                {
-                    var result = action();
-                    tcs.TrySetResult(result);
-                }
-                catch (Exception ex)
-                {
-                    tcs.TrySetException(ex);
-                }
-            });
-            return await tcs.Task;
-        }
-
-        /// <summary>
-        /// Queues a delegate to run on the main-thread and wait for it to complete.
-        /// 
-        /// Do not run this from the Unity main thread.
-        /// </summary>
-        /// <param name="action">The delegate.</param>
-        private async Task RunOnMainThread(Action action)
-        {
-            await RunOnMainThread(() =>
-            {
-                action();
-                return true;
-            });
         }
 
         /// <summary>
@@ -431,9 +405,43 @@ namespace OutwardArchipelago.Archipelago
         }
 
         /// <summary>
+        /// A common base class for all the sub-managers to make managing them easier.
+        /// </summary>
+        private abstract class ManagerBase
+        {
+            /// <summary>
+            /// Called every frame from the main thread.
+            /// </summary>
+            public virtual void Update() { }
+
+            /// <summary>
+            /// Call every cycle from the Archipelago session thread.
+            /// </summary>
+            public virtual async Task UpdateSession(ArchipelagoSession session) { }
+
+            /// <summary>
+            /// Called when an Archipelago session is initialized.
+            /// </summary>
+            /// <param name="session">The Archipelago session.</param>
+            public virtual async Task OnSessionInit(ArchipelagoSession session) { }
+
+            /// <summary>
+            /// Called when an Archipelago session successfully logs into the server.
+            /// </summary>
+            /// <param name="session">The Archipelago session.</param>
+            public virtual async Task OnSessionLoginSuccess(ArchipelagoSession session, LoginSuccessful loginSuccesful) { }
+
+            /// <summary>
+            /// Called right before an Archipelago session is disposed.
+            /// </summary>
+            /// <param name="session">The Archipelago session.</param>
+            public virtual async Task OnSessionDispose(ArchipelagoSession session) { }
+        }
+
+        /// <summary>
         /// Concrete implementation of the sub-manager for Archipelago items.
         /// </summary>
-        private class ItemManager : IItemManager
+        private class ItemManager : ManagerBase, IItemManager
         {
             /// <summary>
             /// The main manager associated with this instance.
@@ -459,28 +467,7 @@ namespace OutwardArchipelago.Archipelago
 
             public int GetCount(APWorld.Item item) => ModQuestEventManager.Instance.Items.GetCount(item);
 
-            /// <summary>
-            /// Register Archipelago session event handlers.
-            /// </summary>
-            /// <param name="session"></param>
-            public void RegisterEventHandlers(ArchipelagoSession session)
-            {
-                session.Items.ItemReceived += OnItemReceived;
-            }
-
-            /// <summary>
-            /// Unregister Archipelago session event handlers.
-            /// </summary>
-            /// <param name="session"></param>
-            public void OnSessionDestroyed(ArchipelagoSession session)
-            {
-                session.Items.ItemReceived -= OnItemReceived;
-            }
-
-            /// <summary>
-            /// Called every frame while <see cref="Parent"/> is enabled.
-            /// </summary>
-            public void Update()
+            public override void Update()
             {
                 // try to process an item from the queue
                 if (OutwardArchipelagoMod.Instance.IsInArchipelagoGame && _incomingItems.TryDequeue(out var item))
@@ -522,15 +509,17 @@ namespace OutwardArchipelago.Archipelago
                 }
             }
 
-            /// <summary>
-            /// Reset state related to the current Archipelago session.
-            /// 
-            /// This will be called from the Archipelago thread.
-            /// </summary>
-            public async Task ResetSession()
+            public override async Task OnSessionInit(ArchipelagoSession session)
             {
+                session.Items.ItemReceived += OnItemReceived;
+            }
+
+            public override async Task OnSessionDispose(ArchipelagoSession session)
+            {
+                session.Items.ItemReceived -= OnItemReceived;
+
                 while (_incomingItems.TryDequeue(out var _)) { }
-                await _parent.RunOnMainThread(() => _sessionItemCounts.Clear());
+                await UnityMainThreadDispatcher.Run(() => _sessionItemCounts.Clear());
             }
 
             /// <summary>
@@ -580,7 +569,7 @@ namespace OutwardArchipelago.Archipelago
         /// <summary>
         /// Concrete implementation of the sub-manager for Archipelago locations.
         /// </summary>
-        private class LocationManager : ILocationManager
+        private class LocationManager : ManagerBase, ILocationManager
         {
             /// <summary>
             /// The main manager associated with this instance.
@@ -595,28 +584,21 @@ namespace OutwardArchipelago.Archipelago
             public LocationManager(ArchipelagoConnector parent)
             {
                 _parent = parent;
+
+                ModSceneManager.Instance.OnEnterArchipelagoGame += SendAllLocalLocationChecks;
             }
 
             public ArchipelagoConnector Parent => _parent;
 
-            public bool IsComplete(APWorld.Location location) => ModQuestEventManager.Instance.Locations.Contains(location);
-
-            public void Complete(APWorld.Location location)
+            public override async Task OnSessionLoginSuccess(ArchipelagoSession session, LoginSuccessful loginSuccessful)
             {
-                if (OutwardArchipelagoMod.Instance.IsArchipelagoEnabled)
+                if (OutwardArchipelagoMod.Instance.IsInArchipelagoGame)
                 {
-                    OutwardArchipelagoMod.Log.LogDebug($"completing check for {location}");
-                    ModQuestEventManager.Instance.Locations.Add(location);
-                    _outgoingLocations.Enqueue(location);
+                    SendAllLocalLocationChecks();
                 }
             }
 
-            /// <summary>
-            /// Run necessary background tasks.
-            /// 
-            /// Called from the Archipelago session thread.
-            /// </summary>
-            public async Task UpdateAsync()
+            public override async Task UpdateSession(ArchipelagoSession session)
             {
                 var locations = new List<APWorld.Location>();
                 while (_outgoingLocations.TryDequeue(out var location))
@@ -628,7 +610,7 @@ namespace OutwardArchipelago.Archipelago
                 {
                     try
                     {
-                        await _parent._session.Locations.CompleteLocationChecksAsync(locations.Select(loc => loc.Id).ToArray());
+                        await session.Locations.CompleteLocationChecksAsync(locations.Select(loc => loc.Id).ToArray());
                         OutwardArchipelagoMod.Log.LogInfo($"completed location checks with Archipelago server: {string.Join(", ", locations)}");
                     }
                     catch (Exception ex)
@@ -642,12 +624,39 @@ namespace OutwardArchipelago.Archipelago
                     }
                 }
             }
+
+            public bool IsComplete(APWorld.Location location) => ModQuestEventManager.Instance.Locations.Contains(location);
+
+            public void Complete(APWorld.Location location)
+            {
+                if (OutwardArchipelagoMod.Instance.IsArchipelagoEnabled)
+                {
+                    OutwardArchipelagoMod.Log.LogDebug($"completing check for {location}");
+                    ModQuestEventManager.Instance.Locations.Add(location);
+                    _outgoingLocations.Enqueue(location);
+                }
+            }
+
+            private void SendAllLocalLocationChecks()
+            {
+                if (OutwardArchipelagoMod.Instance.IsArchipelagoEnabled)
+                {
+                    foreach (var location in APWorld.Location.ById.Values)
+                    {
+                        if (ModQuestEventManager.Instance.Locations.Contains(location))
+                        {
+                            OutwardArchipelagoMod.Log.LogInfo($"resending {location} found in the local save");
+                            _outgoingLocations.Enqueue(location);
+                        }
+                    }
+                }
+            }
         }
 
         /// <summary>
         /// Concrete implementation of the sub-manager for Archipelago messages.
         /// </summary>
-        private class MessageManager : IMessageManager
+        private class MessageManager : ManagerBase, IMessageManager
         {
             /// <summary>
             /// The main manager associated with this instance.
@@ -677,28 +686,17 @@ namespace OutwardArchipelago.Archipelago
                 _outgoingMessages.Enqueue(message);
             }
 
-            /// <summary>
-            /// Register Archipelago session event handlers.
-            /// </summary>
-            /// <param name="session"></param>
-            public void RegisterEventHandlers(ArchipelagoSession session)
+            public override async Task OnSessionInit(ArchipelagoSession session)
             {
                 session.MessageLog.OnMessageReceived += OnMessageReceived;
             }
 
-            /// <summary>
-            /// Unregister Archipelago session event handlers.
-            /// </summary>
-            /// <param name="session"></param>
-            public void OnSessionDestroyed(ArchipelagoSession session)
+            public override async Task OnSessionDispose(ArchipelagoSession session)
             {
                 session.MessageLog.OnMessageReceived -= OnMessageReceived;
             }
 
-            /// <summary>
-            /// Called every frame while <see cref="Parent"/> is enabled.
-            /// </summary>
-            public void Update()
+            public override void Update()
             {
                 // try to process an item from the queue
                 if (OutwardArchipelagoMod.Instance.IsInGame && _incomingMessages.TryDequeue(out var message))
@@ -708,16 +706,11 @@ namespace OutwardArchipelago.Archipelago
                 }
             }
 
-            /// <summary>
-            /// Run necessary background tasks.
-            /// 
-            /// Called from the Archipelago session thread.
-            /// </summary>
-            public async Task UpdateAsync()
+            public override async Task UpdateSession(ArchipelagoSession session)
             {
                 while (_outgoingMessages.TryDequeue(out var message))
                 {
-                    _parent._session.Say(message);
+                    session.Say(message);
                 }
             }
 
@@ -753,7 +746,7 @@ namespace OutwardArchipelago.Archipelago
         /// <summary>
         /// Concrete implementation of the sub-manager for Archipelago messages.
         /// </summary>
-        private class DeathLinkManager : IDeathLinkManager
+        private class DeathLinkManager : ManagerBase, IDeathLinkManager
         {
             /// <summary>
             /// The main manager associated with this instance.
@@ -792,33 +785,20 @@ namespace OutwardArchipelago.Archipelago
 
             public ArchipelagoConnector Parent => _parent;
 
-            /// <summary>
-            /// Called after the Archipelago session has been created and connected.
-            /// </summary>
-            /// <param name="session">The session.</param>
-            public void OnLoginSuccess(ArchipelagoSession session, LoginSuccessful loginSuccessful)
+            public override async Task OnSessionLoginSuccess(ArchipelagoSession session, LoginSuccessful loginSuccessful)
             {
-                if (loginSuccessful.SlotData.TryGetValue("death_link", out var deathLinkObj))
+                if (_parent.SlotData.IsDeathLinkEnabled)
                 {
-                    OutwardArchipelagoMod.Log.LogDebug($"recieved death_link value from slot data: {deathLinkObj}");
-                    var deathLinkEnabled = Convert.ToBoolean(deathLinkObj);
-                    if (deathLinkEnabled)
-                    {
-                        OutwardArchipelagoMod.Log.LogInfo($"enabling death link...");
-                        _deathLinkService = session.CreateDeathLinkService();
-                        _deathLinkService.OnDeathLinkReceived += OnDeathLinkRecieved;
-                        _deathLinkService.EnableDeathLink();
-                        OutwardArchipelagoMod.Log.LogInfo($"death link enabled!");
-                        _incomingMessage.Enqueue("<color=#FF0000>Death-Link:</color> <color=#FFFFFF>Enabled</color>");
-                    }
+                    OutwardArchipelagoMod.Log.LogInfo($"enabling death link...");
+                    _deathLinkService = session.CreateDeathLinkService();
+                    _deathLinkService.OnDeathLinkReceived += OnDeathLinkRecieved;
+                    _deathLinkService.EnableDeathLink();
+                    OutwardArchipelagoMod.Log.LogInfo($"death link enabled!");
+                    _incomingMessage.Enqueue("<color=#FF0000>Death-Link:</color> <color=#FFFFFF>Enabled</color>");
                 }
             }
 
-            /// <summary>
-            /// Called right before the Archipelago session is to be destroyed.
-            /// </summary>
-            /// <param name="session">The session.</param>
-            public void OnSessionDestroyed(ArchipelagoSession session)
+            public override async Task OnSessionDispose(ArchipelagoSession session)
             {
                 if (_deathLinkService is not null)
                 {
@@ -831,10 +811,7 @@ namespace OutwardArchipelago.Archipelago
                 }
             }
 
-            /// <summary>
-            /// Runs every frame.
-            /// </summary>
-            public void Update()
+            public override void Update()
             {
                 if (OutwardArchipelagoMod.Instance.IsInGame)
                 {
@@ -872,10 +849,7 @@ namespace OutwardArchipelago.Archipelago
                 }
             }
 
-            /// <summary>
-            /// Called regularly from the Archipelago thread.
-            /// </summary>
-            public async Task UpdateAsync()
+            public override async Task UpdateSession(ArchipelagoSession session)
             {
                 while (_outgoingDeathLinks.TryDequeue(out var deathLink))
                 {
@@ -893,7 +867,7 @@ namespace OutwardArchipelago.Archipelago
             }
 
             /// <summary>
-            /// Called when the 
+            /// Called when the Archipelago player has died.
             /// </summary>
             private void OnDeath()
             {
@@ -905,15 +879,27 @@ namespace OutwardArchipelago.Archipelago
                 }
             }
 
+            /// <summary>
+            /// Called when any character has died.
+            /// </summary>
+            /// <param name="character"></param>
+            private void OnCharacterDie(Character character)
+            {
+                if (OutwardArchipelagoMod.Instance.IsArchipelagoEnabled && character.IsLocalPlayer && character.IsWorldHost)
+                {
+                    OnDeath();
+                }
+            }
+
+            /// <summary>
+            /// Patch to tell when the player has died.
+            /// </summary>
             [HarmonyPatch(typeof(Character), nameof(Character.Die), new[] { typeof(Vector3), typeof(bool) })]
             private static class Patch_Character_Die
             {
                 private static void Postfix(Character __instance)
                 {
-                    if (OutwardArchipelagoMod.Instance.IsArchipelagoEnabled && __instance.IsLocalPlayer && __instance.IsWorldHost)
-                    {
-                        Instance._deathLink.OnDeath();
-                    }
+                    Instance?._deathLink?.OnCharacterDie(__instance);
                 }
             }
         }
