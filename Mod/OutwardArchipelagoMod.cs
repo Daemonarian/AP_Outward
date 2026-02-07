@@ -6,7 +6,6 @@ using BepInEx.Logging;
 using HarmonyLib;
 using OutwardArchipelago.Archipelago;
 using OutwardArchipelago.Dialogue;
-using UnityEngine.SceneManagement;
 
 namespace OutwardArchipelago
 {
@@ -48,11 +47,6 @@ namespace OutwardArchipelago
         /// Whether or not the player is actually playing in an Archipelago-ready game.
         /// </summary>
         public bool IsInArchipelagoGame => IsArchipelagoEnabled && IsInGame;
-
-        /// <summary>
-        /// Whether or not the current scene has been initialized with our own mod-specific initialization.
-        /// </summary>
-        private bool hasInitializedScene = true;
 
         /// <summary>
         /// Initializes or updates the configuration settings for the current instance.
@@ -101,25 +95,12 @@ namespace OutwardArchipelago
             Log.LogMessage($"Starting {NAME} {VERSION}...");
 
             BindConfig();
-            new Harmony(GUID).PatchAll();
             ArchipelagoConnector.Create();
             DialoguePatcher.Instance.Awake();
-            SceneManager.sceneLoaded += OnSceneLoaded;
+            ModSceneManager.Instance.OnArchipelagoSceneReadyFirstTime += InitScene;
+            new Harmony(GUID).PatchAll();
 
             Log.LogMessage($"{NAME} {VERSION} started successfully");
-        }
-
-        internal void Update()
-        {
-            if (!hasInitializedScene && IsInGame)
-            {
-                if (IsArchipelagoEnabled && NetworkLevelLoader.Instance.LevelLoadedForFirstTime)
-                {
-                    InitScene();
-                }
-
-                hasInitializedScene = true;
-            }
         }
 
         public byte[] LoadAsset(string fileName)
@@ -154,11 +135,6 @@ namespace OutwardArchipelago
             }
 
             return text;
-        }
-
-        private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
-        {
-            hasInitializedScene = false;
         }
 
         private void InitScene()
