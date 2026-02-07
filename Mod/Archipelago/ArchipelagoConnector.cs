@@ -11,6 +11,7 @@ using Archipelago.MultiClient.Net.Helpers;
 using Archipelago.MultiClient.Net.MessageLog.Messages;
 using HarmonyLib;
 using OutwardArchipelago.QuestEvents;
+using OutwardArchipelago.Utils;
 using UnityEngine;
 
 namespace OutwardArchipelago.Archipelago
@@ -49,11 +50,6 @@ namespace OutwardArchipelago.Archipelago
         /// The background Archipelago session worker.
         /// </summary>
         private Task _sessionWorker = null;
-
-        /// <summary>
-        /// Delegates to be run on the main thread.
-        /// </summary>
-        private readonly ConcurrentQueue<Action> _mainThreadQueue = new();
 
         public ArchipelagoConnector()
         {
@@ -153,11 +149,6 @@ namespace OutwardArchipelago.Archipelago
                 _sessionWorker = SessionWorker();
             }
 
-            while (_mainThreadQueue.TryDequeue(out var action))
-            {
-                action();
-            }
-
             _items.Update();
             _messages.Update();
             _deathLink.Update();
@@ -197,7 +188,7 @@ namespace OutwardArchipelago.Archipelago
             {
                 if (IsConnected)
                 {
-                    await RunOnMainThread(() => IsConnected = false);
+                    await UnityMainThreadDispatcher.Run(() => IsConnected = false);
                 }
 
                 var success = await Connect();
@@ -208,7 +199,7 @@ namespace OutwardArchipelago.Archipelago
                     return;
                 }
 
-                await RunOnMainThread(() => IsConnected = true);
+                await UnityMainThreadDispatcher.Run(() => IsConnected = true);
             }
 
             await _locations.UpdateAsync();
@@ -301,7 +292,7 @@ namespace OutwardArchipelago.Archipelago
         {
             if (IsConnected)
             {
-                await RunOnMainThread(() => IsConnected = false);
+                await UnityMainThreadDispatcher.Run(() => IsConnected = false);
             }
 
             if (_session != null)
@@ -312,47 +303,6 @@ namespace OutwardArchipelago.Archipelago
 
                 _session = null;
             }
-        }
-
-        /// <summary>
-        /// Queues a delegate to run on the main-thread and wait for it to complete.
-        /// 
-        /// Do not run this from the Unity main thread.
-        /// </summary>
-        /// <typeparam name="T">The return type of the delegate.</typeparam>
-        /// <param name="action">The delegate.</param>
-        /// <returns>The return of the delegate.</returns>
-        private async Task<T> RunOnMainThread<T>(Func<T> action)
-        {
-            var tcs = new TaskCompletionSource<T>(TaskCreationOptions.RunContinuationsAsynchronously);
-            _mainThreadQueue.Enqueue(() =>
-            {
-                try
-                {
-                    var result = action();
-                    tcs.TrySetResult(result);
-                }
-                catch (Exception ex)
-                {
-                    tcs.TrySetException(ex);
-                }
-            });
-            return await tcs.Task;
-        }
-
-        /// <summary>
-        /// Queues a delegate to run on the main-thread and wait for it to complete.
-        /// 
-        /// Do not run this from the Unity main thread.
-        /// </summary>
-        /// <param name="action">The delegate.</param>
-        private async Task RunOnMainThread(Action action)
-        {
-            await RunOnMainThread(() =>
-            {
-                action();
-                return true;
-            });
         }
 
         /// <summary>
@@ -530,7 +480,7 @@ namespace OutwardArchipelago.Archipelago
             public async Task ResetSession()
             {
                 while (_incomingItems.TryDequeue(out var _)) { }
-                await _parent.RunOnMainThread(() => _sessionItemCounts.Clear());
+                await UnityMainThreadDispatcher.Run(() => _sessionItemCounts.Clear());
             }
 
             /// <summary>
