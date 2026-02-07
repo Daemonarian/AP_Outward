@@ -584,9 +584,19 @@ namespace OutwardArchipelago.Archipelago
             public LocationManager(ArchipelagoConnector parent)
             {
                 _parent = parent;
+
+                ModSceneManager.Instance.OnEnterArchipelagoGame += SendAllLocalLocationChecks;
             }
 
             public ArchipelagoConnector Parent => _parent;
+
+            public override async Task OnSessionLoginSuccess(ArchipelagoSession session, LoginSuccessful loginSuccessful)
+            {
+                if (OutwardArchipelagoMod.Instance.IsInArchipelagoGame)
+                {
+                    SendAllLocalLocationChecks();
+                }
+            }
 
             public override async Task UpdateSession(ArchipelagoSession session)
             {
@@ -624,6 +634,21 @@ namespace OutwardArchipelago.Archipelago
                     OutwardArchipelagoMod.Log.LogDebug($"completing check for {location}");
                     ModQuestEventManager.Instance.Locations.Add(location);
                     _outgoingLocations.Enqueue(location);
+                }
+            }
+
+            private void SendAllLocalLocationChecks()
+            {
+                if (OutwardArchipelagoMod.Instance.IsArchipelagoEnabled)
+                {
+                    foreach (var location in APWorld.Location.ById.Values)
+                    {
+                        if (ModQuestEventManager.Instance.Locations.Contains(location))
+                        {
+                            OutwardArchipelagoMod.Log.LogInfo($"resending {location} found in the local save");
+                            _outgoingLocations.Enqueue(location);
+                        }
+                    }
                 }
             }
         }

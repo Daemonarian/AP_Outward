@@ -99,11 +99,11 @@ namespace OutwardArchipelago
 
                 if (NetworkLevelLoader.Instance?.LevelLoadedForFirstTime == true)
                 {
-                    OutwardArchipelagoMod.Log.LogDebug($"{nameof(ModSceneManager)}.{nameof(OnArchipelagoSceneReadyFirstTime)} | {SceneManagerHelper.ActiveSceneName}");
+                    OutwardArchipelagoMod.Log.LogDebug($"{nameof(ModSceneManager)}.{nameof(OnArchipelagoSceneReadyFirstTime)} {SceneManagerHelper.ActiveSceneName}");
                     OnArchipelagoSceneReadyFirstTime?.Invoke();
                 }
 
-                OutwardArchipelagoMod.Log.LogDebug($"{nameof(ModSceneManager)}.{nameof(OnArchipelagoSceneReady)} | {SceneManagerHelper.ActiveSceneName}");
+                OutwardArchipelagoMod.Log.LogDebug($"{nameof(ModSceneManager)}.{nameof(OnArchipelagoSceneReady)} {SceneManagerHelper.ActiveSceneName}");
                 OnArchipelagoSceneReady?.Invoke();
             }
         }
