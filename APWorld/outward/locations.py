@@ -2,14 +2,14 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from BaseClasses import Location
-from worlds.generic.Rules import add_rule
+from worlds.generic.Rules import add_item_rule, add_rule
 
 from .common import OUTWARD
 from .templates import OutwardGameObjectNamespace, OutwardGameObjectTemplate
 from .regions import OutwardRegionName
 
 if TYPE_CHECKING:
-    from worlds.generic.Rules import CollectionRule
+    from worlds.generic.Rules import CollectionRule, ItemRule
 
     from . import OutwardWorld
 
@@ -20,6 +20,9 @@ class OutwardLocation(Location):
 
     def add_rule(self, rule: CollectionRule, combine: str = "and") -> None:
         add_rule(self, rule, combine)
+
+    def add_item_rule(self, rule: ItemRule, combine: str = "and") -> None:
+        add_item_rule(self, rule, combine)
 
 class OutwardGameLocation(OutwardLocation):
     def __init__(self, name: str, player: int):
@@ -208,3 +211,34 @@ class OutwardLocationName(OutwardGameObjectNamespace):
     SPAWN_ZHORNS_GLOWSTONE_DAGGER = location("Spawn - Zhorn's Glowstone Dagger", OutwardRegionName.UNPLACED)
     SPAWN_ZHORNS_HUNTING_BACKPACK = location("Spawn - Zhorn's Hunting Backpack", OutwardRegionName.UNPLACED)
     SPAWN_MYRMITAUR_HAVEN_GATE_KEY = location("Myrmitaur Haven - Matriarch Myrmitaur - Myrmitaur Haven Gate Key", OutwardRegionName.CALDERA)
+
+    # individual skills learned
+
+    BURAC_FREE_SKILL = location("Burac - Free Skill", OutwardRegionName.CIERZO)
+    WATCHER_FREE_SKILL = location("Watcher - Free Skill", OutwardRegionName.LEYLINE_ANY)
+    TRAIN_VENDAVEL_PRISONER = location("Train - Vendavel Prisoner", OutwardRegionName.VENDAVEL_FORTRESS)
+    TRAIN_FIRST_WATCHER = location("Train - First Watcher", OutwardRegionName.CONFLUX_CHAMBERS)
+    TRAIN_TALERON = location("Train - Taleron", OutwardRegionName.BERG)
+    TRAIN_MARKUS = location("Train - Markus", OutwardRegionName.LEVANT_SLUMS)
+    TRAIN_SAGARD_BATTLEBORN = location("Train - Sagard Battleborn", OutwardRegionName.BERG)
+    TRAIN_SOERAN = location("Train - Soeran", OutwardRegionName.MONSOON)
+    TRAIN_WANDERING_MERCENARY = location("Train - Wandering Mercenary", OutwardRegionName.MONSOON)
+    TRAIN_KING_SIMEON = location("Train - King Simeon", OutwardRegionName.LEVANT)
+    TRAIN_BURAC = location("Train - Burac", OutwardRegionName.CIERZO)
+    TRAIN_ODA = location("Train - Oda", OutwardRegionName.CIERZO)
+    TRAIN_SAMANTHA_TURNBULL = location("Train - Samantha Turnbull", OutwardRegionName.NEW_SIROCCO)
+    TRAIN_ANTHONY_BERTHELOT = location("Train - Anthony Berthelot", OutwardRegionName.NEW_SIROCCO)
+    TRAIN_SMOOTH = location("Train - Smooth", OutwardRegionName.LEVANT_SLUMS)
+    TRAIN_SECOND_WATCHER = location("Train - Second Watcher", OutwardRegionName.CONFLUX_CHAMBERS)
+    TRAIN_CYRIL_TURNBULL = location("Train - Cyril Turnbull", OutwardRegionName.BERG)
+    TRAIN_MOFAT = location("Train - Mofat", OutwardRegionName.MONSOON)
+    TRAIN_NINTH_WATCHER = location("Train - The 9th Watcher", OutwardRegionName.HARMATTAN)
+    TRAIN_SKELETON = location("Train - Skeleton", OutwardRegionName.WENDIGO_LAIR)
+    TRAIN_RAUL_SALABERRY = location("Train - Headmaster Raul Salaberry", OutwardRegionName.HARMATTAN)
+    TRAIN_ROBYN_GARNET = location("Train - Robyn Garnet, Alchemist", OutwardRegionName.HARMATTAN)
+    TRAIN_MAVITH = location("Train - Mavith", OutwardRegionName.HARMATTAN)
+    TRAIN_PAUL = location("Train - Paul, Disciple", OutwardRegionName.NEW_SIROCCO)
+    TRAIN_YAN = location("Train - Yan, Levantine Alchemist", OutwardRegionName.NEW_SIROCCO)
+    REPAIR_HORSE_STATUE = location("Repair Horse Statue", OutwardRegionName.NEW_SIROCCO)
+    SKILL_BLADE_PUPPY = location("Drop - Plague Doctor - Blade Puppy", OutwardRegionName.DARK_ZIGGURAT)
+    SKILL_GOLDEN_WATCHER = location("Drop - Light Mender - Golden Watcher", OutwardRegionName.SPIRE_OF_LIGHT)

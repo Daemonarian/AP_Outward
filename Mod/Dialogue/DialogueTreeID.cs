@@ -6,9 +6,11 @@ namespace OutwardArchipelago.Dialogue
     internal class DialogueTreeID
     {
         // common dialogue trees in Outward
-        public static readonly DialogueTreeID Any = new DialogueTreeID(null, null);
+        public static readonly DialogueTreeID Any = new(null, null);
         public static readonly DialogueTreeID Abrassar_BarrelMan_Real = FromName("Dialogue_Abrassar_BarrelMan_Real");
         public static readonly DialogueTreeID Abrassar_Immaculate_Real = FromName("Dialogue_Abrassar_Immaculate_Real");
+        public static readonly DialogueTreeID AcquireManaConflux = FromHash(0x2896DD34A20E9E90);
+        public static readonly DialogueTreeID AcquireManaSorobor = FromHash(0x35A108122E861572);
         public static readonly DialogueTreeID Caldera_Evangeline_BaseBuilding = FromName("Dialogue_Caldera_Evangeline_BaseBuilding");
         public static readonly DialogueTreeID Caldera_Josef_BaseBuilding = FromName("Dialogue_Caldera_Josef_BaseBuilding");
         public static readonly DialogueTreeID Caldera_MessengerInn_Q0 = FromName("Dialogue_Caldera_MessengerInn_Q0");
@@ -17,6 +19,7 @@ namespace OutwardArchipelago.Dialogue
         public static readonly DialogueTreeID Calixa_HK_MouthToFeed = FromName("Dialogue_Calixa_HK_MouthToFeed");
         public static readonly DialogueTreeID CardinalBourlamaque_HM_HallowPeacemaker = FromName("Dialogue_CardinalBourlamaque_HM_HallowPeacemaker");
         public static readonly DialogueTreeID CeremonialBow = FromHash(0x1DEDCA1028559484);
+        public static readonly DialogueTreeID Chersonese_Cierzo_BuracCarillon_Real = FromName("Dialogue_Chersonese_Cierzo_BuracCarillon_Real");
         public static readonly DialogueTreeID Chersonese_Immaculate_Real = FromName("Dialogue_Chersonese_Immaculate_Real");
         public static readonly DialogueTreeID Cierzo_HelenTurnbull_Real = FromName("Dialogue_Cierzo_HelenTurnbull_Real");
         public static readonly DialogueTreeID Cyrene_HK_SandCorsairs = FromName("Dialogue_Cyrene_HK_SandCorsairs");
@@ -84,6 +87,7 @@ namespace OutwardArchipelago.Dialogue
         public static readonly DialogueTreeID TsarFists = FromHash(0x61535AB7AE69441E);
         public static readonly DialogueTreeID UnusualKnuckles = FromHash(0x63120269953B31BF);
         public static readonly DialogueTreeID WarmAxe = FromHash(0x098B48B8FC3C7C23);
+        public static readonly DialogueTreeID PrisonerD_Neut_Vendavel = FromName("Dialogue_PrisonerD_Neut_Vendavel");
 
         /// <summary>
         /// The name of the dialogue tree.

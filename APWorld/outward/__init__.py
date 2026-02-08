@@ -4,7 +4,7 @@ from typing import TYPE_CHECKING
 from worlds.AutoWorld import World
 
 from .common import OUTWARD
-from .events import OutwardEvent, OutwardEventName
+from .events import ItemClassification, OutwardEvent, OutwardEventName
 from .items import OutwardGameItem, OutwardItemName
 from .locations import OutwardGameLocation, OutwardLocation, OutwardLocationName
 from .options import OutwardOptions
@@ -14,7 +14,7 @@ if TYPE_CHECKING:
     from collections.abc import Iterable
     from typing import Any
 
-    from worlds.generic.Rules import CollectionRule
+    from worlds.generic.Rules import CollectionRule, ItemRule
 
 class OutwardWorld(World):
     game = OUTWARD
@@ -99,6 +99,9 @@ class OutwardWorld(World):
 
     def add_location_access_rule(self, name: str, rule: CollectionRule, combine: str = "and") -> None:
         self.get_location(name).add_rule(rule, combine)
+
+    def add_location_item_rule(self, name: str, rule: ItemRule, combine: str = "and") -> None:
+        self.get_location(name).add_item_rule(rule, combine)
 
     def add_entrance_item_requirement(self, entrance_name: str, item_name: str, count: int = 1, combine: str = "and") -> None:
         self.add_entrance_access_rule(entrance_name, lambda state: state.has(item_name, self.player, count), combine)
@@ -219,12 +222,37 @@ class OutwardWorld(World):
 
         # useful skills
 
+        self.add_item(OutwardItemName.BLADE_PUPPY)
+        self.add_item(OutwardItemName.BLESSED)
+        self.add_item(OutwardItemName.CHILL_HEX)
+        self.add_item(OutwardItemName.COOL)
         self.add_item(OutwardItemName.CURSE_HEX)
+        self.add_item(OutwardItemName.DOOM_HEX)
+        self.add_item(OutwardItemName.ELATTS_INTERVENTION)
+        self.add_item(OutwardItemName.EXECUTION)
+        self.add_item(OutwardItemName.FLAMETHROWER)
+        self.add_item(OutwardItemName.GOLDEN_WATCHER)
+        self.add_item(OutwardItemName.HAUNT_HEX)
+        self.add_item(OutwardItemName.INFUSE_BLOOD)
+        self.add_item(OutwardItemName.INFUSE_MANA)
+        self.add_item(OutwardItemName.JUGGERNAUT)
+        self.add_item(OutwardItemName.KIROUACS_BREAKTHROUGH)
+        self.add_item(OutwardItemName.MACE_INFUSION)
+        self.add_item(OutwardItemName.MIST)
+        self.add_item(OutwardItemName.MOON_SWIPE)
+        self.add_item(OutwardItemName.POMMEL_COUNTER)
         self.add_item(OutwardItemName.POSSESSED)
+        self.add_item(OutwardItemName.PRISMATIC_FLURRY)
+        self.add_item(OutwardItemName.PUNCTURE)
+        self.add_item(OutwardItemName.SCORCH_HEX)
+        self.add_item(OutwardItemName.SEVERED_OBSIDIAN)
+        self.add_item(OutwardItemName.SIMEONS_GAMBIT)
+        self.add_item(OutwardItemName.TALUS_CLEAVER)
+        self.add_item(OutwardItemName.WARM)
 
         # filler
 
-        filler_count = 30
+        filler_count = 33
         for _ in range(filler_count):
             self.add_item(OutwardItemName.SILVER_CURRENCY)
 
@@ -310,6 +338,17 @@ class OutwardWorld(World):
         self.add_location_item_requirement(OutwardLocationName.SPAWN_SHRIEK, OutwardItemName.RUSTED_SPEAR)
         self.add_location_item_requirement(OutwardLocationName.SPAWN_TOKEBAKICIT, OutwardItemName.UNUSUAL_KNUCKLES)
         self.add_location_item_requirement(OutwardLocationName.SPAWN_WARM_AXE, OutwardItemName.MYRMITAUR_HAVEN_GATE_KEY)
+
+        # missable locations
+        missable_locations = [
+            OutwardLocationName.BURAC_FREE_SKILL,
+            OutwardLocationName.TRAIN_SAMANTHA_TURNBULL,
+            OutwardLocationName.TRAIN_ANTHONY_BERTHELOT,
+            OutwardLocationName.TRAIN_PAUL,
+            OutwardLocationName.TRAIN_YAN,
+        ]
+        for loc in missable_locations:
+            self.add_location_item_rule(loc, lambda item: (item.player == self.player and ItemClassification.progression not in item.classification) or ItemClassification.filler in item.classification)
 
         self.multiworld.completion_condition[self.player] = lambda state: state.has(OutwardEventName.MAIN_QUEST_07_COMPLETE, self.player)
 
