@@ -1821,7 +1821,7 @@ namespace OutwardArchipelago.Archipelago
             { Item.WarriorsVein, new SkillGiver(OutwardSkill.WarriorsVein) },
             { Item.Dispersion, new SkillGiver(OutwardSkill.Dispersion) },
             { Item.MomentOfTruth, new SkillGiver(OutwardSkill.MomentOfTruth) },
-            { Item.TheTechnique, new SkillGiver(OutwardSkill.TheTechnique) },
+            { Item.Technique, new SkillGiver(OutwardSkill.Technique) },
             { Item.ScalpCollector, new SkillGiver(OutwardSkill.ScalpCollector) },
             { Item.Crescendo, new SkillGiver(OutwardSkill.Crescendo) },
             { Item.ViciousCycle, new SkillGiver(OutwardSkill.ViciousCycle) },

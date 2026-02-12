@@ -5,7 +5,7 @@ from worlds.AutoWorld import World
 
 from .common import OUTWARD
 from .events import ItemClassification, OutwardEvent, OutwardEventName
-from .items import OutwardGameItem, OutwardItemName
+from .items import OutwardGameItem, OutwardItem, OutwardItemName
 from .locations import OutwardGameLocation, OutwardLocation, OutwardLocationName
 from .options import OutwardOptions
 from .regions import OutwardEntrance, OutwardEntranceName, OutwardRegion, OutwardRegionName
@@ -26,6 +26,136 @@ class OutwardWorld(World):
     # options
     options_dataclass = OutwardOptions
     options: OutwardOptions
+
+    # skill sanity information
+    skill_sanity_location_info = {
+        OutwardLocationName.SKILL_TRAINER_ADALBERT_CALL_TO_ELEMENTS: (OutwardItemName.CALL_TO_ELEMENTS, 1),
+        OutwardLocationName.SKILL_TRAINER_ADALBERT_MANA_PUSH: (OutwardItemName.MANA_PUSH, 1),
+        OutwardLocationName.SKILL_TRAINER_ADALBERT_REVEAL_SOUL: (OutwardItemName.REVEAL_SOUL, 1),
+        OutwardLocationName.SKILL_TRAINER_ADALBERT_WEATHER_TOLERANCE: (OutwardItemName.WEATHER_TOLERANCE, 1),
+        OutwardLocationName.SKILL_TRAINER_ADALBERT_SHAMANIC_RESONANCE: (OutwardItemName.SHAMANIC_RESONANCE, 2),
+        OutwardLocationName.SKILL_TRAINER_ADALBERT_SIGIL_OF_WIND: (OutwardItemName.SIGIL_OF_WIND, 3),
+        OutwardLocationName.SKILL_TRAINER_ADALBERT_INFUSE_WIND: (OutwardItemName.INFUSE_WIND, 3),
+        OutwardLocationName.SKILL_TRAINER_ADALBERT_CONJURE: (OutwardItemName.CONJURE, 3),
+
+        OutwardLocationName.SKILL_TRAINER_ALEMMON_CHAKRAM_ARC: (OutwardItemName.CHAKRAM_ARC, 1),
+        OutwardLocationName.SKILL_TRAINER_ALEMMON_CHAKRAM_PIERCE: (OutwardItemName.CHAKRAM_PIERCE, 1),
+        OutwardLocationName.SKILL_TRAINER_ALEMMON_MANA_WARD: (OutwardItemName.MANA_WARD, 1),
+        OutwardLocationName.SKILL_TRAINER_ALEMMON_SIGIL_OF_FIRE: (OutwardItemName.SIGIL_OF_FIRE, 1),
+        OutwardLocationName.SKILL_TRAINER_ALEMMON_LEYLINE_CONNECTION: (OutwardItemName.LEYLINE_CONNECTION, 2),
+        OutwardLocationName.SKILL_TRAINER_ALEMMON_CHAKRAM_DANCE: (OutwardItemName.CHAKRAM_DANCE, 3),
+        OutwardLocationName.SKILL_TRAINER_ALEMMON_SIGIL_OF_ICE: (OutwardItemName.SIGIL_OF_ICE, 3),
+        OutwardLocationName.SKILL_TRAINER_ALEMMON_FIRE_AFFINITY: (OutwardItemName.FIRE_AFFINITY, 3),
+
+        OutwardLocationName.SKILL_TRAINER_BEA_WARRIORS_VEIN: (OutwardItemName.WARRIORS_VEIN, 1),
+        OutwardLocationName.SKILL_TRAINER_BEA_DISPERSION: (OutwardItemName.DISPERSION, 1),
+        OutwardLocationName.SKILL_TRAINER_BEA_MOMENT_OF_TRUTH: (OutwardItemName.MOMENT_OF_TRUTH, 1),
+        OutwardLocationName.SKILL_TRAINER_BEA_TECHNIQUE: (OutwardItemName.TECHNIQUE, 1),
+        OutwardLocationName.SKILL_TRAINER_BEA_SCALP_COLLECTOR: (OutwardItemName.SCALP_COLLECTOR, 1),
+        OutwardLocationName.SKILL_TRAINER_BEA_CRESCENDO: (OutwardItemName.CRESCENDO, 1),
+        OutwardLocationName.SKILL_TRAINER_BEA_VICIOUS_CYCLE: (OutwardItemName.VICIOUS_CYCLE, 1),
+        OutwardLocationName.SKILL_TRAINER_BEA_SPLITTER: (OutwardItemName.SPLITTER, 1),
+        OutwardLocationName.SKILL_TRAINER_BEA_VITAL_CRASH: (OutwardItemName.VITAL_CRASH, 1),
+        OutwardLocationName.SKILL_TRAINER_BEA_STRAFING_RUN: (OutwardItemName.STRAFING_RUN, 1),
+
+        OutwardLocationName.SKILL_TRAINER_ELLA_JINX: (OutwardItemName.JINX, 1),
+        OutwardLocationName.SKILL_TRAINER_ELLA_NIGHTMARES: (OutwardItemName.NIGHTMARES, 1),
+        OutwardLocationName.SKILL_TRAINER_ELLA_TORMENT: (OutwardItemName.TORMENT, 1),
+        OutwardLocationName.SKILL_TRAINER_ELLA_BLOODLUST: (OutwardItemName.BLOODLUST, 2),
+        OutwardLocationName.SKILL_TRAINER_ELLA_BLOOD_SIGIL: (OutwardItemName.BLOOD_SIGIL, 3),
+        OutwardLocationName.SKILL_TRAINER_ELLA_RUPTURE: (OutwardItemName.RUPTURE, 3),
+        OutwardLocationName.SKILL_TRAINER_ELLA_CLEANSE: (OutwardItemName.CLEANSE, 3),
+        OutwardLocationName.SKILL_TRAINER_ELLA_LOCKWELLS_REVELATION: (OutwardItemName.LOCKWELLS_REVELATION, 3),
+
+        OutwardLocationName.SKILL_TRAINER_ETO_FITNESS: (OutwardItemName.FITNESS, 1),
+        OutwardLocationName.SKILL_TRAINER_ETO_SHIELD_CHARGE: (OutwardItemName.SHIELD_CHARGE, 1),
+        OutwardLocationName.SKILL_TRAINER_ETO_STEADY_ARM: (OutwardItemName.STEADY_ARM, 1),
+        OutwardLocationName.SKILL_TRAINER_ETO_SPELLBLADES_AWAKENING: (OutwardItemName.SPELLBLADES_AWAKENING, 2),
+        OutwardLocationName.SKILL_TRAINER_ETO_INFUSE_FIRE: (OutwardItemName.INFUSE_FIRE, 3),
+        OutwardLocationName.SKILL_TRAINER_ETO_INFUSE_FROST: (OutwardItemName.INFUSE_FROST, 3),
+        OutwardLocationName.SKILL_TRAINER_ETO_GONG_STRIKE: (OutwardItemName.GONG_STRIKE, 3),
+        OutwardLocationName.SKILL_TRAINER_ETO_ELEMENTAL_DISCHARGE: (OutwardItemName.ELEMENTAL_DISCHARGE, 3),
+
+        OutwardLocationName.SKILL_TRAINER_FLASE_RUNE_DEZ: (OutwardItemName.RUNE_DEZ, 1),
+        OutwardLocationName.SKILL_TRAINER_FLASE_RUNE_EGOTH: (OutwardItemName.RUNE_EGOTH, 1),
+        OutwardLocationName.SKILL_TRAINER_FLASE_RUNE_FAL: (OutwardItemName.RUNE_FAL, 1),
+        OutwardLocationName.SKILL_TRAINER_FLASE_RUNE_SHIM: (OutwardItemName.RUNE_SHIM, 1),
+        OutwardLocationName.SKILL_TRAINER_FLASE_WELL_OF_MANA: (OutwardItemName.WELL_OF_MANA, 2),
+        OutwardLocationName.SKILL_TRAINER_FLASE_ARCANE_SYNTAX: (OutwardItemName.ARCANE_SYNTAX, 3),
+        OutwardLocationName.SKILL_TRAINER_FLASE_INTERNALIZED_LEXICON: (OutwardItemName.INTERNALIZED_LEXICON, 3),
+        OutwardLocationName.SKILL_TRAINER_FLASE_RUNIC_PREFIX: (OutwardItemName.RUNIC_PREFIX, 3),
+
+        OutwardLocationName.SKILL_TRAINER_GALIRA_BRACE: (OutwardItemName.BRACE, 1),
+        OutwardLocationName.SKILL_TRAINER_GALIRA_FOCUS: (OutwardItemName.FOCUS, 1),
+        OutwardLocationName.SKILL_TRAINER_GALIRA_SLOW_METABOLISM: (OutwardItemName.SLOW_METABOLISM, 1),
+        OutwardLocationName.SKILL_TRAINER_GALIRA_STEADFAST_ASCETIC: (OutwardItemName.STEADFAST_ASCETIC, 2),
+        OutwardLocationName.SKILL_TRAINER_GALIRA_PERFECT_STRIKE: (OutwardItemName.PERFECT_STRIKE, 3),
+        OutwardLocationName.SKILL_TRAINER_GALIRA_MASTER_OF_MOTION: (OutwardItemName.MASTER_OF_MOTION, 3),
+        OutwardLocationName.SKILL_TRAINER_GALIRA_FLASH_ONSLAUGHT: (OutwardItemName.FLASH_ONSLAUGHT, 3),
+        OutwardLocationName.SKILL_TRAINER_GALIRA_COUNTERSTRIKE: (OutwardItemName.COUNTERSTRIKE, 3),
+
+        OutwardLocationName.SKILL_TRAINER_JAIMON_ARMOR_TRAINING: (OutwardItemName.ARMOR_TRAINING, 1),
+        OutwardLocationName.SKILL_TRAINER_JAIMON_FAST_MAINTENANCE: (OutwardItemName.FAST_MAINTENANCE, 1),
+        OutwardLocationName.SKILL_TRAINER_JAIMON_FROST_BULLET: (OutwardItemName.FROST_BULLET, 1),
+        OutwardLocationName.SKILL_TRAINER_JAIMON_SHATTER_BULLET: (OutwardItemName.SHATTER_BULLET, 1),
+        OutwardLocationName.SKILL_TRAINER_JAIMON_SWIFT_FOOT: (OutwardItemName.SWIFT_FOOT, 2),
+        OutwardLocationName.SKILL_TRAINER_JAIMON_MARATHONER: (OutwardItemName.MARATHONER, 3),
+        OutwardLocationName.SKILL_TRAINER_JAIMON_SHIELD_INFUSION: (OutwardItemName.SHIELD_INFUSION, 3),
+        OutwardLocationName.SKILL_TRAINER_JAIMON_BLOOD_BULLET: (OutwardItemName.BLOOD_BULLET, 3),
+
+        OutwardLocationName.SKILL_TRAINER_JUSTIN_ACROBATICS: (OutwardItemName.ACROBATICS, 1),
+        OutwardLocationName.SKILL_TRAINER_JUSTIN_BRAINS: (OutwardItemName.BRAINS, 1),
+        OutwardLocationName.SKILL_TRAINER_JUSTIN_BRAWNS: (OutwardItemName.BRAWNS, 1),
+        OutwardLocationName.SKILL_TRAINER_JUSTIN_CRUELTY: (OutwardItemName.CRUELTY, 1),
+        OutwardLocationName.SKILL_TRAINER_JUSTIN_PATIENCE: (OutwardItemName.PATIENCE, 1),
+        OutwardLocationName.SKILL_TRAINER_JUSTIN_UNSEALED: (OutwardItemName.UNSEALED, 1),
+
+        OutwardLocationName.SKILL_TRAINER_SERGE_EFFICIENCY: (OutwardItemName.EFFICIENCY, 1),
+        OutwardLocationName.SKILL_TRAINER_SERGE_METABOLIC_PURGE: (OutwardItemName.METABOLIC_PURGE, 1),
+        OutwardLocationName.SKILL_TRAINER_SERGE_PROBE: (OutwardItemName.PROBE, 1),
+        OutwardLocationName.SKILL_TRAINER_SERGE_DAREDEVIL: (OutwardItemName.DAREDEVIL, 2),
+        OutwardLocationName.SKILL_TRAINER_SERGE_PRIME: (OutwardItemName.PRIME, 3),
+        OutwardLocationName.SKILL_TRAINER_SERGE_UNERRING_READ: (OutwardItemName.UNERRING_READ, 3),
+        OutwardLocationName.SKILL_TRAINER_SERGE_BLITZ: (OutwardItemName.BLITZ, 3),
+        OutwardLocationName.SKILL_TRAINER_SERGE_ANTICIPATION: (OutwardItemName.ANTICIPATION, 3),
+
+        OutwardLocationName.SKILL_TRAINER_SINAI_HAUNTING_BEAT: (OutwardItemName.HAUNTING_BEAT, 1),
+        OutwardLocationName.SKILL_TRAINER_SINAI_MIASMIC_TOLERANCE: (OutwardItemName.MIASMIC_TOLERANCE, 1),
+        OutwardLocationName.SKILL_TRAINER_SINAI_WELKIN_RING: (OutwardItemName.WELKIN_RING, 1),
+        OutwardLocationName.SKILL_TRAINER_SINAI_SACRED_FUMES: (OutwardItemName.SACRED_FUMES, 2),
+        OutwardLocationName.SKILL_TRAINER_SINAI_NURTURING_ECHO: (OutwardItemName.NURTURING_ECHO, 3),
+        OutwardLocationName.SKILL_TRAINER_SINAI_REVERBERATION: (OutwardItemName.REVERBERATION, 3),
+        OutwardLocationName.SKILL_TRAINER_SINAI_HARMONY_AND_MELODY: (OutwardItemName.HARMONY_AND_MELODY, 3),
+        OutwardLocationName.SKILL_TRAINER_SINAI_BATTLE_RYTHYM: (OutwardItemName.BATTLE_RHYTHM, 3),
+
+        OutwardLocationName.SKILL_TRAINER_STYX_BACKSTAB: (OutwardItemName.BACKSTAB, 1),
+        OutwardLocationName.SKILL_TRAINER_STYX_OPPORTUNIST_STAB: (OutwardItemName.OPPORTUNIST_STAB, 1),
+        OutwardLocationName.SKILL_TRAINER_STYX_PRESSURE_PLATE_TRAINING: (OutwardItemName.PRESSURE_PLATE_TRAINING, 1),
+        OutwardLocationName.SKILL_TRAINER_STYX_SWEEP_KICK: (OutwardItemName.SWEEP_KICK, 1),
+        OutwardLocationName.SKILL_TRAINER_STYX_FEATHER_DODGE: (OutwardItemName.FEATHER_DODGE, 2),
+        OutwardLocationName.SKILL_TRAINER_STYX_SERPENTS_PARRY: (OutwardItemName.SERPENTS_PARRY, 3),
+        OutwardLocationName.SKILL_TRAINER_STYX_STEALTH_TRAINING: (OutwardItemName.STEALTH_TRAINING, 3),
+        OutwardLocationName.SKILL_TRAINER_STYX_PRESSURE_PLATE_EXPERTISE: (OutwardItemName.PRESSURE_PLATE_EXPERTISE, 3),
+
+        OutwardLocationName.SKILL_TRAINER_TURE_ENRAGE: (OutwardItemName.ENRAGE, 1),
+        OutwardLocationName.SKILL_TRAINER_TURE_EVASION_SHOT: (OutwardItemName.EVASION_SHOT, 1),
+        OutwardLocationName.SKILL_TRAINER_TURE_HUNTERS_EYE: (OutwardItemName.HUNTERS_EYE, 1),
+        OutwardLocationName.SKILL_TRAINER_TURE_SNIPER_SHOT: (OutwardItemName.SNIPER_SHOT, 1),
+        OutwardLocationName.SKILL_TRAINER_TURE_SURVIVORS_RESILIENCE: (OutwardItemName.SURVIVORS_RESILIENCE, 2),
+        OutwardLocationName.SKILL_TRAINER_TURE_PREDATOR_LEAP: (OutwardItemName.PREDATOR_LEAP, 3),
+        OutwardLocationName.SKILL_TRAINER_TURE_PIERCING_SHOT: (OutwardItemName.PIERCING_SHOT, 3),
+        OutwardLocationName.SKILL_TRAINER_TURE_FERAL_STRIKES: (OutwardItemName.FERAL_STRIKES, 3),
+    }
+
+    def get_item(self, item_name) -> OutwardItem:
+        for item in self.multiworld.itempool:
+            if item is not None and item.player == self.player and isinstance(item, OutwardItem) and item.name == item_name:
+                return item
+        for location in self.get_locations():
+            item = location.item
+            if item is not None and item.player == self.player and isinstance(item, OutwardItem) and item.name == item_name:
+                return item
+        raise ValueError(f"cannot find the item '{item_name}'")
 
     def get_region(self, region_name) -> OutwardRegion:
         region = super().get_region(region_name)
@@ -250,6 +380,11 @@ class OutwardWorld(World):
         self.add_item(OutwardItemName.TALUS_CLEAVER)
         self.add_item(OutwardItemName.WARM)
 
+        # skill trainer skills
+
+        for item, _ in self.skill_sanity_location_info.values():
+            self.add_item(item)
+
         # filler
 
         filler_count = 33
@@ -340,6 +475,7 @@ class OutwardWorld(World):
         self.add_location_item_requirement(OutwardLocationName.SPAWN_WARM_AXE, OutwardItemName.MYRMITAUR_HAVEN_GATE_KEY)
 
         # missable locations
+
         missable_locations = [
             OutwardLocationName.BURAC_FREE_SKILL,
             OutwardLocationName.TRAIN_SAMANTHA_TURNBULL,
@@ -347,12 +483,26 @@ class OutwardWorld(World):
             OutwardLocationName.TRAIN_PAUL,
             OutwardLocationName.TRAIN_YAN,
         ]
+
+        for location_name, (_, tier) in self.skill_sanity_location_info.items():
+            if tier > 1:
+                missable_locations.append(location_name)
+
         for loc in missable_locations:
             self.add_location_item_rule(loc, lambda item: (item.player == self.player and ItemClassification.progression not in item.classification) or ItemClassification.filler in item.classification)
 
         self.multiworld.completion_condition[self.player] = lambda state: state.has(OutwardEventName.MAIN_QUEST_07_COMPLETE, self.player)
 
+    def pre_fill(self):
+        for location_name, (item_name, tier) in self.skill_sanity_location_info.items():
+            if self.options.skill_sanity.value == self.options.skill_sanity.option_vanilla or (self.options.skill_sanity.value == self.options.skill_sanity.option_tier_one_only and tier > 1):
+                location = self.get_location(location_name)
+                item = self.get_item(item_name)
+                self.multiworld.itempool.remove(item)
+                location.place_locked_item(item)
+
     def fill_slot_data(self) -> dict[str, Any]:
         return {
-            "death_link": bool(self.options.death_link.value != 0)
+            "death_link": bool(self.options.death_link.value != 0),
+            "skill_sanity": int(self.options.skill_sanity.value),
         }

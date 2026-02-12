@@ -47,6 +47,11 @@ namespace OutwardArchipelago.Archipelago
         private readonly DeathLinkManager _deathLink;
 
         /// <summary>
+        /// The sub-manager for all things related to Archipelago hints.
+        /// </summary>
+        private readonly HintManager _hints;
+
+        /// <summary>
         /// All of the sub-managers in an iterable form to more easily manage collectively.
         /// </summary>
         private readonly IReadOnlyList<ManagerBase> _allManagers;
@@ -67,7 +72,8 @@ namespace OutwardArchipelago.Archipelago
             _locations = new LocationManager(this);
             _messages = new MessageManager(this);
             _deathLink = new DeathLinkManager(this);
-            _allManagers = new ManagerBase[] { _items, _locations, _messages, _deathLink };
+            _hints = new HintManager(this);
+            _allManagers = new ManagerBase[] { _items, _locations, _messages, _deathLink, _hints };
         }
 
         /// <summary>
@@ -99,6 +105,11 @@ namespace OutwardArchipelago.Archipelago
         /// The sub-manager for all things related to Archipelago death links.
         /// </summary>
         public IDeathLinkManager DeathLink => _deathLink;
+
+        /// <summary>
+        /// The sub-manager for all things related to Archipelago hints.
+        /// </summary>
+        public IHintManager Hints => _hints;
 
         // Connection details
         public string Host { get; private set; } = null;
@@ -402,6 +413,71 @@ namespace OutwardArchipelago.Archipelago
         public interface IDeathLinkManager
         {
             public ArchipelagoConnector Parent { get; }
+        }
+
+        /// <summary>
+        /// An Archipelago hint, with all the data needed by the UI.
+        /// </summary>
+        public interface IHint
+        {
+            /// <summary>
+            /// Whether hinted item belongs to the active player.
+            /// </summary>
+            public bool IsOwnItem { get; }
+
+            /// <summary>
+            /// The name of the Player to which the item belongs.
+            /// </summary>
+            public string PlayerName { get; }
+
+            /// <summary>
+            /// The flags representing the type of the item.
+            /// </summary>
+            public ItemFlags ItemFlags { get; }
+
+            /// <summary>
+            /// Get a human-readable representation of the item flags.
+            /// </summary>
+            public string ItemFlagsString { get; }
+
+            /// <summary>
+            /// The hinted item, if it belongs to the active player. Otherwise null.
+            /// </summary>
+            public APWorld.Item OwnItem { get; }
+
+            /// <summary>
+            /// The name of the hinted item.
+            /// </summary>
+            public string ItemName { get; }
+        }
+
+        /// <summary>
+        /// A sub-manager for Archipelago hints.
+        /// </summary>
+        public interface IHintManager
+        {
+            /// <summary>
+            /// The main manager associated with this instance.
+            /// </summary>
+            public ArchipelagoConnector Parent { get; }
+
+            /// <summary>
+            /// Get a hint for a specified location.
+            /// 
+            /// The callback will be called exactly once and from the main thread.
+            /// </summary>
+            /// <param name="location">The AP location.</param>
+            /// <param name="callback">A callback handler for the hint.</param>
+            public void GetHint(APWorld.Location location, Action<IHint> callback);
+
+            /// <summary>
+            /// Attempts to retrieve a hint associated with the specified location.
+            /// </summary>
+            /// <param name="location">The location for which to obtain the hint. Cannot be null.</param>
+            /// <param name="hint">When this method returns, contains the hint for the specified location if one exists; otherwise,
+            /// contains null. This parameter is passed uninitialized.</param>
+            /// <returns>true if a hint was found for the specified location; otherwise, false.</returns>
+            bool TryGetHint(APWorld.Location location, out IHint hint);
         }
 
         /// <summary>
@@ -901,6 +977,252 @@ namespace OutwardArchipelago.Archipelago
                 {
                     Instance?._deathLink?.OnCharacterDie(__instance);
                 }
+            }
+        }
+
+        private class Hint : IHint
+        {
+            private readonly string _playerName;
+            private readonly string _itemName;
+            private readonly ItemFlags _itemFlags;
+            private readonly APWorld.Item _ownItem;
+
+            public Hint(string playerName, string itemName, ItemFlags itemFlags, APWorld.Item ownItem)
+            {
+                _playerName = playerName;
+                _itemName = itemName;
+                _itemFlags = itemFlags;
+                _ownItem = ownItem;
+            }
+
+            public string PlayerName => _playerName;
+
+            public string ItemName => _itemName;
+
+            public ItemFlags ItemFlags => _itemFlags;
+
+            public string ItemFlagsString
+            {
+                get
+                {
+                    if (ItemFlags.HasFlag(ItemFlags.Advancement))
+                    {
+                        return "progression";
+                    }
+                    else if (ItemFlags.HasFlag(ItemFlags.NeverExclude))
+                    {
+                        return "useful";
+                    }
+                    else if (ItemFlags.HasFlag(ItemFlags.Trap))
+                    {
+                        return "trap";
+                    }
+
+                    return "filler";
+                }
+            }
+
+            public bool IsOwnItem => _ownItem is not null;
+
+            public APWorld.Item OwnItem => _ownItem;
+
+            public override string ToString() => $"{PlayerName}'s {ItemName} ({ItemFlagsString})";
+        }
+
+        /// <summary>
+        /// Concrete implementation of the sub-manager for Archipelago hints.
+        /// </summary>
+        private class HintManager : ManagerBase, IHintManager
+        {
+            /// <summary>
+            /// The main manager associated with this instance.
+            /// </summary>
+            private readonly ArchipelagoConnector _parent;
+
+            /// <summary>
+            /// A thread-safe queue of hints that have been requested.
+            /// </summary>
+            private readonly ConcurrentQueue<APWorld.Location> _requestedHintQueue = new();
+
+            /// <summary>
+            /// A lock-object for accessing <see cref="_locationToHint"/> and <see cref="_locationToCallbacks"/>.
+            /// </summary>
+            private readonly object _locationLock = new();
+
+            /// <summary>
+            /// A mapping from locations to hints already known.
+            /// </summary>
+            private readonly Dictionary<APWorld.Location, Hint> _locationToHint = new();
+
+            /// <summary>
+            /// A mapping from locations to callbacks requested for each location.
+            /// </summary>
+            private readonly Dictionary<APWorld.Location, HashSet<Action<IHint>>> _locationToCallbacks = new();
+
+            /// <summary>
+            /// Initializes a new instance of the HintManager class using the specified ArchipelagoConnector.
+            /// </summary>
+            /// <param name="parent">The ArchipelagoConnector instance to associate with this HintManager. Cannot be null.</param>
+            public HintManager(ArchipelagoConnector parent)
+            {
+                _parent = parent;
+            }
+
+            public ArchipelagoConnector Parent => _parent;
+
+            public virtual async Task OnSessionLoginSuccessful(ArchipelagoSession session)
+            {
+                session.Hints.TrackHints(OnHintsUpdated);
+                var hints = await session.Hints.GetHintsAsync();
+                OnHintsUpdated(hints);
+            }
+
+            public override async Task UpdateSession(ArchipelagoSession session)
+            {
+                var locations = new List<APWorld.Location>();
+                while (_requestedHintQueue.TryDequeue(out var location))
+                {
+                    locations.Add(location);
+                }
+
+                if (locations.Count > 0)
+                {
+                    try
+                    {
+                        session.Hints.CreateHints(HintStatus.Unspecified, locations.Select(x => x.Id).ToArray());
+                    }
+                    catch (Exception)
+                    {
+                        foreach (var location in locations)
+                        {
+                            _requestedHintQueue.Enqueue(location);
+                        }
+
+                        throw;
+                    }
+
+                    var hints = await session.Hints.GetHintsAsync();
+                    OnHintsUpdated(hints);
+                }
+            }
+
+            /// <summary>
+            /// Attempts to retrieve the hint associated with the specified location.
+            /// </summary>
+            /// <remarks>This method is thread-safe.</remarks>
+            /// <param name="location">The location for which to retrieve the associated hint.</param>
+            /// <param name="hint">When this method returns, contains the hint associated with the specified location, if found; otherwise,
+            /// the default value for <see cref="Hint"/>.</param>
+            /// <returns>true if a hint is found for the specified location; otherwise, false.</returns>
+            public bool TryGetHint(APWorld.Location location, out IHint hint)
+            {
+                lock (_locationLock)
+                {
+                    if (_locationToHint.TryGetValue(location, out var realHint))
+                    {
+                        hint = realHint;
+                        return true;
+                    }
+                    else
+                    {
+                        hint = null;
+                        return false;
+                    }
+                }
+            }
+
+            /// <summary>
+            /// Retrieves the hint associated with the specified location and invokes the provided callback when the
+            /// hint is available.
+            /// </summary>
+            /// <param name="location">The location for which to retrieve the hint.</param>
+            /// <param name="callback">The callback to invoke with the retrieved hint..</param>
+            public void GetHint(APWorld.Location location, Action<IHint> callback)
+            {
+                lock (_locationLock)
+                {
+                    if (_locationToHint.TryGetValue(location, out var hint))
+                    {
+                        callback(hint);
+                        return;
+                    }
+
+                    if (!_locationToCallbacks.TryGetValue(location, out var callbacks))
+                    {
+                        callbacks = new();
+                        _locationToCallbacks[location] = callbacks;
+                    }
+
+                    callbacks.Add(callback);
+                }
+
+                _requestedHintQueue.Enqueue(location);
+            }
+
+            /// <summary>
+            /// Processes updated hint information and notifies registered callbacks for relevant locations.
+            /// </summary>
+            /// <remarks>Only hints associated with the active player are processed. Registered
+            /// callbacks for affected locations are invoked on the main thread when their corresponding hints are
+            /// updated.</remarks>
+            /// <param name="hintInfos">An array of updated hints to process. Each hint represents information associated with a specific
+            /// location and player.</param>
+            private void OnHintsUpdated(global::Archipelago.MultiClient.Net.Models.Hint[] hintInfos)
+            {
+                foreach (var hintInfo in hintInfos)
+                {
+                    OutwardArchipelagoMod.Log.LogDebug($"received hint for player {hintInfo.FindingPlayer} and location {hintInfo.LocationId}");
+                    if (hintInfo.FindingPlayer == _parent._session.Players.ActivePlayer.Slot && APWorld.Location.ById.TryGetValue(hintInfo.LocationId, out var location))
+                    {
+                        var hint = CreateHint(_parent._session, hintInfo);
+                        OutwardArchipelagoMod.Log.LogInfo($"received hint for {hint.PlayerName}'s {hint.ItemName} ({hint.ItemFlagsString}) in {location.Name}");
+
+                        HashSet<Action<IHint>> callbacks;
+                        lock (_locationLock)
+                        {
+                            _locationToHint[location] = hint;
+                            if (_locationToCallbacks.TryGetValue(location, out callbacks))
+                            {
+                                _locationToCallbacks.Remove(location);
+                            }
+                            else
+                            {
+                                callbacks = null;
+                            }
+                        }
+
+                        if (callbacks is not null)
+                        {
+                            foreach (var callback in callbacks)
+                            {
+                                UnityMainThreadDispatcher.Run(() => callback(hint));
+                            }
+                        }
+                    }
+                }
+            }
+
+            /// <summary>
+            /// Creates a new Hint instance based on the specified session and hint information.
+            /// </summary>
+            /// <param name="session">The current Archipelago session used to resolve player and item details.</param>
+            /// <param name="hintInfo">The hint information containing the receiving player and item identifiers.</param>
+            /// <returns>A Hint object representing the resolved hint for the specified player and item.</returns>
+            private Hint CreateHint(ArchipelagoSession session, global::Archipelago.MultiClient.Net.Models.Hint hintInfo)
+            {
+                var receivingPlayerInfo = session.Players.GetPlayerInfo(hintInfo.ReceivingPlayer);
+                var itemName = session.Items.GetItemName(hintInfo.ItemId, receivingPlayerInfo.Game);
+
+                APWorld.Item ownItem = null;
+                if (receivingPlayerInfo.Slot == session.Players.ActivePlayer.Slot)
+                {
+                    if (!APWorld.Item.ById.TryGetValue(hintInfo.ItemId, out ownItem))
+                    {
+                        ownItem = null;
+                    }
+                }
+
+                return new Hint(receivingPlayerInfo.Name, itemName, hintInfo.ItemFlags, ownItem);
             }
         }
     }

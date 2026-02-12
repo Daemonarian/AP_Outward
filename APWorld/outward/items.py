@@ -1721,7 +1721,7 @@ class OutwardItemName(OutwardGameObjectNamespace):
     WARRIORS_VEIN = item("Warrior's Vein", ItemClassification.useful, 8100500) # 8100500_WarriorVeinIdle
     DISPERSION = item("Dispersion", ItemClassification.useful, 8100510) # 8100510_Dispersion
     MOMENT_OF_TRUTH = item("Moment of Truth", ItemClassification.useful, 8100520) # 8100520_MomentOfTruth
-    THE_TECHNIQUE = item("The Technique", ItemClassification.useful, 8100530) # 8100530_TheTechnique
+    TECHNIQUE = item("The Technique", ItemClassification.useful, 8100530) # 8100530_TheTechnique
     SCALP_COLLECTOR = item("Scalp Collector", ItemClassification.useful, 8100540) # 8100540_ScalpCollector
     CRESCENDO = item("Crescendo", ItemClassification.useful, 8100550) # 8100550_Crescendo
     VICIOUS_CYCLE = item("Vicious Cycle", ItemClassification.useful, 8100560) # 8100560_VisciousCycle
