@@ -182,7 +182,7 @@ namespace OutwardArchipelago.SkillTrainer
                 {
                     foreach (var skillSlot in __result.GetComponentsInChildren<SkillSlot>())
                     {
-                        if (skillSlot.m_skill && TryGetLocationBySkill(skillSlot.m_skill.ItemID, out var location))
+                        if (skillSlot.m_skill && skillSlot.m_skill is not APSkill && TryGetLocationBySkill(skillSlot.m_skill.ItemID, out var location))
                         {
                             skillSlot.m_skill = APSkill.GetPrefab(location);
                         }

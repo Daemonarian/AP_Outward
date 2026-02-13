@@ -137,7 +137,7 @@ namespace OutwardArchipelago.Archipelago
         /// <summary>
         /// A mapping from Outward APWorld item IDs to APWorld item givers.
         /// </summary>
-        public static readonly IReadOnlyDictionary<APWorld.Item, IAPItemGiver> ItemToGiver = new Dictionary<APWorld.Item, IAPItemGiver>
+        public static readonly IReadOnlyDictionary<Item, IAPItemGiver> ItemToGiver = new Dictionary<Item, IAPItemGiver>
         {
             // custom items
 

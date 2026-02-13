@@ -64,7 +64,6 @@ namespace OutwardArchipelago.Utils
         {
             while (_mainThreadQueue.TryDequeue(out var action))
             {
-                OutwardArchipelagoMod.Log.LogDebug($"Running action on main thread: {action}");
                 action();
             }
         }

@@ -9,7 +9,7 @@ namespace OutwardArchipelago.SkillTrainer
     internal class APSkill : Skill
     {
         private static readonly Lazy<Skill> _apItemPrefab = new(GetAPItemPrefab);
-        public static Skill APItemPrefab => _apItemPrefab.Value;
+        public static Skill APSkillPrefab => _apItemPrefab.Value;
 
         private static Skill GetAPItemPrefab()
         {
@@ -44,11 +44,6 @@ namespace OutwardArchipelago.SkillTrainer
             var skill = obj.AddComponent<APSkill>();
             skill.Init(location);
 
-            if (APItemPrefab.gameObject.activeSelf)
-            {
-                obj.SetActive(true);
-            }
-
             return skill;
         }
 
@@ -60,7 +55,7 @@ namespace OutwardArchipelago.SkillTrainer
 
         private void Init(APWorld.Location location)
         {
-            CloneUtils.DeepCopy(APItemPrefab, this);
+            CloneUtils.DeepCopy(APSkillPrefab, this);
 
             Location = location;
 
@@ -73,9 +68,38 @@ namespace OutwardArchipelago.SkillTrainer
 
         private void OnHint(ArchipelagoConnector.IHint hint)
         {
-            OutwardArchipelagoMod.Log.LogDebug($"APSkill.OnHint {hint.PlayerName}'s {hint.ItemName} ({hint.ItemFlagsString})");
-            HintedItemName = $"{hint.PlayerName}'s {hint.ItemName}";
-            HintedItemDescription = $"{hint.PlayerName}'s {hint.ItemName} ({hint.ItemFlagsString})";
+            var isOwnItem = false;
+            if (hint.IsOwnItem && APWorld.ItemToGiver.TryGetValue(hint.OwnItem, out var giver))
+            {
+                var itemPrefab = giver.GetItemPrefab();
+                if (itemPrefab)
+                {
+                    isOwnItem = true;
+
+                    _ = itemPrefab.ItemIcon; // trigger SideLoader to apply all the item visuals
+
+                    CloneUtils.DeepCopy(itemPrefab, this);
+
+                    m_localizedName = null;
+                    m_localizedDescription = null;
+
+                    if (!SkillTreeIcon)
+                    {
+                        SkillTreeIcon = APSkillPrefab.SkillTreeIcon;
+                    }
+
+                    HintedItemName = null;
+                    HintedItemDescription = null;
+                }
+            }
+
+            if (!isOwnItem)
+            {
+                HintedItemName = $"{hint.PlayerName}'s {hint.ItemName}";
+                HintedItemDescription = $"{hint.PlayerName}'s {hint.ItemName} ({hint.ItemFlagsString})";
+            }
+
+            CharacterManager.Instance?.GetFirstLocalCharacter()?.CharacterUI?.TrainerPanel?.RefreshSkills();
         }
     }
 }
