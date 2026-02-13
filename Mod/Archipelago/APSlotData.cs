@@ -10,6 +10,9 @@ namespace OutwardArchipelago.Archipelago
         private readonly SkillSanityMode _skillSanity = SkillSanityMode.Vanilla;
         public SkillSanityMode SkillSanity => _skillSanity;
 
+        private readonly bool _areWindAltarChecksEnabled = true;
+        public bool AreWindAltarChecksEnabled => _areWindAltarChecksEnabled;
+
         /// <summary>
         /// Construct a slot data object with default values.
         /// </summary>
@@ -23,6 +26,7 @@ namespace OutwardArchipelago.Archipelago
         {
             _isDeathLinkEnabled = slotData.TryGetValue("slot_data", out var isDeathLinkEnabled) ? (bool)isDeathLinkEnabled : false;
             _skillSanity = slotData.TryGetValue("skill_sanity", out var skillSanity) ? (SkillSanityMode)(long)skillSanity : SkillSanityMode.Vanilla;
+            _areWindAltarChecksEnabled = slotData.TryGetValue("wind_altar_checks", out var areWindAltarChecksEnabled) ? (bool)areWindAltarChecksEnabled : true;
         }
 
         public enum SkillSanityMode

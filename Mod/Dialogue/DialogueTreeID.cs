@@ -9,18 +9,21 @@ namespace OutwardArchipelago.Dialogue
         public static readonly DialogueTreeID Any = new(null, null);
         public static readonly DialogueTreeID Abrassar_BarrelMan_Real = FromName("Dialogue_Abrassar_BarrelMan_Real");
         public static readonly DialogueTreeID Abrassar_Immaculate_Real = FromName("Dialogue_Abrassar_Immaculate_Real");
+        public static readonly DialogueTreeID AbrassPillar_Neut_COW = FromName("Dialogue_AbrassPillar_Neut_COW");
         public static readonly DialogueTreeID AcquireManaConflux = FromHash(0x2896DD34A20E9E90);
         public static readonly DialogueTreeID AcquireManaSorobor = FromHash(0x35A108122E861572);
         public static readonly DialogueTreeID Caldera_Evangeline_BaseBuilding = FromName("Dialogue_Caldera_Evangeline_BaseBuilding");
         public static readonly DialogueTreeID Caldera_Josef_BaseBuilding = FromName("Dialogue_Caldera_Josef_BaseBuilding");
         public static readonly DialogueTreeID Caldera_MessengerInn_Q0 = FromName("Dialogue_Caldera_MessengerInn_Q0");
         public static readonly DialogueTreeID Caldera_OpenSealedMaceBox = FromName("Dialogue_Caldera_OpenSealedMaceBox");
+        public static readonly DialogueTreeID CalderaPillar_Neut_COW = FromName("Dialogue_CalderaPillar_Neut_COW");
         public static readonly DialogueTreeID Calixa_HK_HeroPeacemaker = FromName("Dialogue_Calixa_HK_HeroPeacemaker");
         public static readonly DialogueTreeID Calixa_HK_MouthToFeed = FromName("Dialogue_Calixa_HK_MouthToFeed");
         public static readonly DialogueTreeID CardinalBourlamaque_HM_HallowPeacemaker = FromName("Dialogue_CardinalBourlamaque_HM_HallowPeacemaker");
         public static readonly DialogueTreeID CeremonialBow = FromHash(0x1DEDCA1028559484);
         public static readonly DialogueTreeID Chersonese_Cierzo_BuracCarillon_Real = FromName("Dialogue_Chersonese_Cierzo_BuracCarillon_Real");
         public static readonly DialogueTreeID Chersonese_Immaculate_Real = FromName("Dialogue_Chersonese_Immaculate_Real");
+        public static readonly DialogueTreeID ChersPillar_Neut_COW = FromName("Dialogue_ChersPillar_Neut_COW");
         public static readonly DialogueTreeID Cierzo_HelenTurnbull_Real = FromName("Dialogue_Cierzo_HelenTurnbull_Real");
         public static readonly DialogueTreeID Cyrene_HK_SandCorsairs = FromName("Dialogue_Cyrene_HK_SandCorsairs");
         public static readonly DialogueTreeID Cyrene_HK_TendTheFlame = FromName("Dialogue_Cyrene_HK_TendTheFlame");
@@ -31,10 +34,13 @@ namespace OutwardArchipelago.Dialogue
         public static readonly DialogueTreeID Ellinara_HM_Truth = FromName("Dialogue_Ellinara_HM_Truth");
         public static readonly DialogueTreeID Emercar_Immaculate_Real = FromName("Dialogue_Emercar_Immaculate_Real");
         public static readonly DialogueTreeID Emercar_UntertakerNecropolis_Real = FromName("Dialogue_Emercar_UntertakerNecropolis_Real");
+        public static readonly DialogueTreeID EnmerkarPillar_Neut_COW = FromName("Dialogue_EnmerkarPillar_Neut_COW");
         public static readonly DialogueTreeID FossilizedGreataxe = FromHash(0x9764048B623361AC);
         public static readonly DialogueTreeID GoldLich_Neut_Initial = FromName("Dialogue_GoldLich_Neut_Initial");
         public static readonly DialogueTreeID HallowedMarsh_Immaculate_Real = FromName("Dialogue_HallowedMarsh_Immaculate_Real");
+        public static readonly DialogueTreeID HarmattanPillar_Neut_COW = FromName("Dialogue_HarmattanPillar_Neut_COW");
         public static readonly DialogueTreeID JadeLich_Neut_Initial = FromName("Dialogue_JadeLich_Neut_Initial");
+        public static readonly DialogueTreeID MarshPillar_Neut_COW = FromName("Dialogue_MarshPillar_Neut_COW");
         public static readonly DialogueTreeID Merchant_BergAlchemist = FromName("Dialogue_Merchant_BergAlchemist");
         public static readonly DialogueTreeID Merchant_BergBlacksmith = FromName("Dialogue_Merchant_BergBlacksmith");
         public static readonly DialogueTreeID Merchant_BergFoodStore = FromName("Dialogue_Merchant_BergFoodStore");
@@ -58,6 +64,7 @@ namespace OutwardArchipelago.Dialogue
         public static readonly DialogueTreeID MertonsFirepoker = FromHash(0x751BA202A2DB553A);
         public static readonly DialogueTreeID MysteriousLongBlade = FromHash(0x4AF5E61942784188);
         public static readonly DialogueTreeID PillarGreathammer = FromHash(0x31A3B7B7CAC46CEE);
+        public static readonly DialogueTreeID PrisonerD_Neut_Vendavel = FromName("Dialogue_PrisonerD_Neut_Vendavel");
         public static readonly DialogueTreeID Purifier_MercantileProvost = FromName("Dialogue_Purifier_MercantileProvost");
         public static readonly DialogueTreeID RissaAberdeen_BC_AncestralPeacemaker = FromName("Dialogue_RissaAberdeen_BC_AncestralPeacemaker");
         public static readonly DialogueTreeID RissaAberdeen_BC_AshGiant = FromName("Dialogue_RissaAberdeen_BC_AshGiant");
@@ -87,7 +94,6 @@ namespace OutwardArchipelago.Dialogue
         public static readonly DialogueTreeID TsarFists = FromHash(0x61535AB7AE69441E);
         public static readonly DialogueTreeID UnusualKnuckles = FromHash(0x63120269953B31BF);
         public static readonly DialogueTreeID WarmAxe = FromHash(0x098B48B8FC3C7C23);
-        public static readonly DialogueTreeID PrisonerD_Neut_Vendavel = FromName("Dialogue_PrisonerD_Neut_Vendavel");
 
         /// <summary>
         /// The name of the dialogue tree.

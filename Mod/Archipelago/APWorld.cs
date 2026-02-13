@@ -147,6 +147,15 @@ namespace OutwardArchipelago.Archipelago
 
             { Item.QuestLicense, new ProgressiveSkillGiver(OutwardSkill.QuestLicense) },
 
+            // wind altars
+
+            { Item.WindAltarBoonChersonese, new QuestEventGiver(OutwardQuestEvents.Cierzo_WindAltar_Activated) },
+            { Item.WindAltarBoonEnmerkarForest, new QuestEventGiver(OutwardQuestEvents.Enmerkar_WindAltar_Activated) },
+            { Item.WindAltarBoonAbrassar, new QuestEventGiver(OutwardQuestEvents.Levant_WindAltar_Activated) },
+            { Item.WindAltarBoonHallowedMarsh, new QuestEventGiver(OutwardQuestEvents.Monsoon_WindAltar_Activated) },
+            { Item.WindAltarBoonAntiquePlateau, new QuestEventGiver(OutwardQuestEvents.Harmattan_WindAltar_Activated) },
+            { Item.WindAltarBoonCaldera, new QuestEventGiver(OutwardQuestEvents.Caldera_WindAltar_Activated) },
+
             // vanilla items
 
             { Item.TestWeaponOfDooooom, new ItemGiver(OutwardItem.TestWeaponOfDooooom) },

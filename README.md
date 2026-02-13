@@ -1,4 +1,4 @@
-# [Outward Archipelago](https://github.com/Daemonarian/AP_Outward)
+# Outward Archipelago
 
 A mod for **[Outward: Definitive Edition](https://store.steampowered.com/app/794260/)** that adds support for the **[Archipelago](https://archipelago.gg)** multiworld multi-game randomizer.
 Our philosophy thus far has been to add as many **Archipelago** location checks as we can without changing the base game experience too much.
@@ -11,8 +11,10 @@ We have, however, made the following changes to the base game:
 - Added an *AP Item* item to the Outward game to serve as a placeholder for items that have been randomized.
 - Added *Quest License* passive skills that serve as progression items.
     - Main quest NPCs now refuse to talk to you about the main quest unless you have the corresponding *Quest License* skill.
-- Replaced most unique items in **Outward** with **Archipelago** location checks.
+- Replaced most skills and unique items in **Outward** with **Archipelago** location checks.
 - Added **Archipelago** location checks behind the first completion (pass or fail) of *every* quest in the game.
+- Added a Skillsanity mode where skills offered by skill trainers are now randomized.
+- Optionally added location checks for activating the Cabal of Wind altars in each region, and added their boons to the item pool.
 - Added support for **Archipelago**'s *death-link* mode.
     - *Death-links* recieved will result in the player's death.
     - Any player deaths, for any reason (outside of another *death-link*), will send a *death-link* to the **Archipelago** server.

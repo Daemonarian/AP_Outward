@@ -239,6 +239,12 @@ class OutwardWorld(World):
     def add_location_item_requirement(self, location_name: str, item_name: str, count: int = 1, combine: str = "and") -> None:
         self.add_location_access_rule(location_name, lambda state: state.has(item_name, self.player, count), combine)
 
+    def lock_location_item(self, location_name: str, item_name: str):
+        location = self.get_location(location_name)
+        item = self.get_item(item_name)
+        self.multiworld.itempool.remove(item)
+        location.place_locked_item(item)
+
     def create_items(self):
         # key items
 
@@ -385,6 +391,15 @@ class OutwardWorld(World):
         for item, _ in self.skill_sanity_location_info.values():
             self.add_item(item)
 
+        # wind altars
+
+        self.add_item(OutwardItemName.WIND_ALTAR_BOON_CHERSONESE)
+        self.add_item(OutwardItemName.WIND_ALTAR_BOON_ENMERKAR_FOREST)
+        self.add_item(OutwardItemName.WIND_ALTAR_BOON_ABRASSAR)
+        self.add_item(OutwardItemName.WIND_ALTAR_BOON_HALLOWED_MARSH)
+        self.add_item(OutwardItemName.WIND_ALTAR_BOON_ANTIQUE_PLATEAU)
+        self.add_item(OutwardItemName.WIND_ALTAR_BOON_CALDERA)
+
         # filler
 
         filler_count = 33
@@ -496,13 +511,19 @@ class OutwardWorld(World):
     def pre_fill(self):
         for location_name, (item_name, tier) in self.skill_sanity_location_info.items():
             if self.options.skill_sanity.value == self.options.skill_sanity.option_vanilla or (self.options.skill_sanity.value == self.options.skill_sanity.option_tier_one_only and tier > 1):
-                location = self.get_location(location_name)
-                item = self.get_item(item_name)
-                self.multiworld.itempool.remove(item)
-                location.place_locked_item(item)
+                self.lock_location_item(location_name, item_name)
+
+        if self.options.wind_altar_checks.value == 0:
+            self.lock_location_item(OutwardLocationName.WIND_ALTAR_CHERSONESE, OutwardItemName.WIND_ALTAR_BOON_CHERSONESE)
+            self.lock_location_item(OutwardLocationName.WIND_ALTAR_ENMERKAR_FOREST, OutwardItemName.WIND_ALTAR_BOON_ENMERKAR_FOREST)
+            self.lock_location_item(OutwardLocationName.WIND_ALTAR_ABRASSAR, OutwardItemName.WIND_ALTAR_BOON_ABRASSAR)
+            self.lock_location_item(OutwardLocationName.WIND_ALTAR_HALLOWED_MARSH, OutwardItemName.WIND_ALTAR_BOON_HALLOWED_MARSH)
+            self.lock_location_item(OutwardLocationName.WIND_ALTAR_ANTIQUE_PLATEAU, OutwardItemName.WIND_ALTAR_BOON_ANTIQUE_PLATEAU)
+            self.lock_location_item(OutwardLocationName.WIND_ALTAR_CALDERA, OutwardItemName.WIND_ALTAR_BOON_CALDERA)
 
     def fill_slot_data(self) -> dict[str, Any]:
         return {
             "death_link": bool(self.options.death_link.value != 0),
             "skill_sanity": int(self.options.skill_sanity.value),
+            "wind_altar_checks": bool(self.options.wind_altar_checks.value != 0)
         }
