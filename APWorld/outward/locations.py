@@ -2,14 +2,14 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from BaseClasses import Location
-from worlds.generic.Rules import add_rule
+from worlds.generic.Rules import add_item_rule, add_rule
 
 from .common import OUTWARD
 from .templates import OutwardGameObjectNamespace, OutwardGameObjectTemplate
 from .regions import OutwardRegionName
 
 if TYPE_CHECKING:
-    from worlds.generic.Rules import CollectionRule
+    from worlds.generic.Rules import CollectionRule, ItemRule
 
     from . import OutwardWorld
 
@@ -20,6 +20,9 @@ class OutwardLocation(Location):
 
     def add_rule(self, rule: CollectionRule, combine: str = "and") -> None:
         add_rule(self, rule, combine)
+
+    def add_item_rule(self, rule: ItemRule, combine: str = "and") -> None:
+        add_item_rule(self, rule, combine)
 
 class OutwardGameLocation(OutwardLocation):
     def __init__(self, name: str, player: int):
@@ -208,3 +211,153 @@ class OutwardLocationName(OutwardGameObjectNamespace):
     SPAWN_ZHORNS_GLOWSTONE_DAGGER = location("Spawn - Zhorn's Glowstone Dagger", OutwardRegionName.UNPLACED)
     SPAWN_ZHORNS_HUNTING_BACKPACK = location("Spawn - Zhorn's Hunting Backpack", OutwardRegionName.UNPLACED)
     SPAWN_MYRMITAUR_HAVEN_GATE_KEY = location("Myrmitaur Haven - Matriarch Myrmitaur - Myrmitaur Haven Gate Key", OutwardRegionName.CALDERA)
+
+    # individual skills learned
+
+    BURAC_FREE_SKILL = location("Burac - Free Skill", OutwardRegionName.CIERZO)
+    WATCHER_FREE_SKILL = location("Watcher - Free Skill", OutwardRegionName.LEYLINE_ANY)
+    TRAIN_VENDAVEL_PRISONER = location("Train - Vendavel Prisoner", OutwardRegionName.VENDAVEL_FORTRESS)
+    TRAIN_FIRST_WATCHER = location("Train - First Watcher", OutwardRegionName.CONFLUX_CHAMBERS)
+    TRAIN_TALERON = location("Train - Taleron", OutwardRegionName.BERG)
+    TRAIN_MARKUS = location("Train - Markus", OutwardRegionName.LEVANT_SLUMS)
+    TRAIN_SAGARD_BATTLEBORN = location("Train - Sagard Battleborn", OutwardRegionName.BERG)
+    TRAIN_SOERAN = location("Train - Soeran", OutwardRegionName.MONSOON)
+    TRAIN_WANDERING_MERCENARY = location("Train - Wandering Mercenary", OutwardRegionName.MONSOON)
+    TRAIN_KING_SIMEON = location("Train - King Simeon", OutwardRegionName.LEVANT)
+    TRAIN_BURAC = location("Train - Burac", OutwardRegionName.CIERZO)
+    TRAIN_ODA = location("Train - Oda", OutwardRegionName.CIERZO)
+    TRAIN_SAMANTHA_TURNBULL = location("Train - Samantha Turnbull", OutwardRegionName.NEW_SIROCCO)
+    TRAIN_ANTHONY_BERTHELOT = location("Train - Anthony Berthelot", OutwardRegionName.NEW_SIROCCO)
+    TRAIN_SMOOTH = location("Train - Smooth", OutwardRegionName.LEVANT_SLUMS)
+    TRAIN_SECOND_WATCHER = location("Train - Second Watcher", OutwardRegionName.CONFLUX_CHAMBERS)
+    TRAIN_CYRIL_TURNBULL = location("Train - Cyril Turnbull", OutwardRegionName.BERG)
+    TRAIN_MOFAT = location("Train - Mofat", OutwardRegionName.MONSOON)
+    TRAIN_NINTH_WATCHER = location("Train - The 9th Watcher", OutwardRegionName.HARMATTAN)
+    TRAIN_SKELETON = location("Train - Skeleton", OutwardRegionName.WENDIGO_LAIR)
+    TRAIN_RAUL_SALABERRY = location("Train - Headmaster Raul Salaberry", OutwardRegionName.HARMATTAN)
+    TRAIN_ROBYN_GARNET = location("Train - Robyn Garnet, Alchemist", OutwardRegionName.HARMATTAN)
+    TRAIN_MAVITH = location("Train - Mavith", OutwardRegionName.HARMATTAN)
+    TRAIN_PAUL = location("Train - Paul, Disciple", OutwardRegionName.NEW_SIROCCO)
+    TRAIN_YAN = location("Train - Yan, Levantine Alchemist", OutwardRegionName.NEW_SIROCCO)
+    REPAIR_HORSE_STATUE = location("Repair Horse Statue", OutwardRegionName.NEW_SIROCCO)
+    SKILL_BLADE_PUPPY = location("Drop - Plague Doctor - Blade Puppy", OutwardRegionName.DARK_ZIGGURAT)
+    SKILL_GOLDEN_WATCHER = location("Drop - Light Mender - Golden Watcher", OutwardRegionName.SPIRE_OF_LIGHT)
+
+    # skill trainer
+
+    SKILL_TRAINER_ADALBERT_CALL_TO_ELEMENTS = location("Skill Trainer - Adalbert the Hermit - Call to Elements", OutwardRegionName.HERMITS_HOUSE)
+    SKILL_TRAINER_ADALBERT_MANA_PUSH = location("Skill Trainer - Adalbert the Hermit - Mana Push", OutwardRegionName.HERMITS_HOUSE)
+    SKILL_TRAINER_ADALBERT_REVEAL_SOUL = location("Skill Trainer - Adalbert the Hermit - Reveal Soul", OutwardRegionName.HERMITS_HOUSE)
+    SKILL_TRAINER_ADALBERT_WEATHER_TOLERANCE = location("Skill Trainer - Adalbert the Hermit - Weather Tolerance", OutwardRegionName.HERMITS_HOUSE)
+    SKILL_TRAINER_ADALBERT_SHAMANIC_RESONANCE = location("Skill Trainer - Adalbert the Hermit - Shamanic Resonance", OutwardRegionName.HERMITS_HOUSE)
+    SKILL_TRAINER_ADALBERT_SIGIL_OF_WIND = location("Skill Trainer - Adalbert the Hermit - Sigil of Wind", OutwardRegionName.HERMITS_HOUSE)
+    SKILL_TRAINER_ADALBERT_INFUSE_WIND = location("Skill Trainer - Adalbert the Hermit - Infuse Wind", OutwardRegionName.HERMITS_HOUSE)
+    SKILL_TRAINER_ADALBERT_CONJURE = location("Skill Trainer - Adalbert the Hermit - Conjure", OutwardRegionName.HERMITS_HOUSE)
+
+    SKILL_TRAINER_ALEMMON_CHAKRAM_ARC = location("Skill Trainer - Alemmon - Chakram Arc", OutwardRegionName.MONSOON)
+    SKILL_TRAINER_ALEMMON_CHAKRAM_PIERCE = location("Skill Trainer - Alemmon - Chakram Pierce", OutwardRegionName.MONSOON)
+    SKILL_TRAINER_ALEMMON_MANA_WARD = location("Skill Trainer - Alemmon - Mana Ward", OutwardRegionName.MONSOON)
+    SKILL_TRAINER_ALEMMON_SIGIL_OF_FIRE = location("Skill Trainer - Alemmon - Sigil of Fire", OutwardRegionName.MONSOON)
+    SKILL_TRAINER_ALEMMON_LEYLINE_CONNECTION = location("Skill Trainer - Alemmon - Leyline Connection", OutwardRegionName.MONSOON)
+    SKILL_TRAINER_ALEMMON_CHAKRAM_DANCE = location("Skill Trainer - Alemmon - Chakram Dance", OutwardRegionName.MONSOON)
+    SKILL_TRAINER_ALEMMON_SIGIL_OF_ICE = location("Skill Trainer - Alemmon - Sigil of Ice", OutwardRegionName.MONSOON)
+    SKILL_TRAINER_ALEMMON_FIRE_AFFINITY = location("Skill Trainer - Alemmon - Fire Affinity", OutwardRegionName.MONSOON)
+
+    SKILL_TRAINER_BEA_WARRIORS_VEIN = location("Skill Trainer - Bea Battleborn - Warrior's Vein", OutwardRegionName.NEW_SIROCCO)
+    SKILL_TRAINER_BEA_DISPERSION = location("Skill Trainer - Bea Battleborn - Dispersion", OutwardRegionName.NEW_SIROCCO)
+    SKILL_TRAINER_BEA_MOMENT_OF_TRUTH = location("Skill Trainer - Bea Battleborn - Moment of Truth", OutwardRegionName.NEW_SIROCCO)
+    SKILL_TRAINER_BEA_TECHNIQUE = location("Skill Trainer - Bea Battleborn - The Technique", OutwardRegionName.NEW_SIROCCO)
+    SKILL_TRAINER_BEA_SCALP_COLLECTOR = location("Skill Trainer - Bea Battleborn - Scalp Collector", OutwardRegionName.NEW_SIROCCO)
+    SKILL_TRAINER_BEA_CRESCENDO = location("Skill Trainer - Bea Battleborn - Crescendo", OutwardRegionName.NEW_SIROCCO)
+    SKILL_TRAINER_BEA_VICIOUS_CYCLE = location("Skill Trainer - Bea Battleborn - Vicious Cycle", OutwardRegionName.NEW_SIROCCO)
+    SKILL_TRAINER_BEA_SPLITTER = location("Skill Trainer - Bea Battleborn - Splitter", OutwardRegionName.NEW_SIROCCO)
+    SKILL_TRAINER_BEA_VITAL_CRASH = location("Skill Trainer - Bea Battleborn - Vital Crash", OutwardRegionName.NEW_SIROCCO)
+    SKILL_TRAINER_BEA_STRAFING_RUN = location("Skill Trainer - Bea Battleborn - Strafing Run", OutwardRegionName.NEW_SIROCCO)
+
+    SKILL_TRAINER_ELLA_JINX = location("Skill Trainer - Ella Lockwell - Jinx", OutwardRegionName.HARMATTAN)
+    SKILL_TRAINER_ELLA_NIGHTMARES = location("Skill Trainer - Ella Lockwell - Nightmares", OutwardRegionName.HARMATTAN)
+    SKILL_TRAINER_ELLA_TORMENT = location("Skill Trainer - Ella Lockwell - Torment", OutwardRegionName.HARMATTAN)
+    SKILL_TRAINER_ELLA_BLOODLUST = location("Skill Trainer - Ella Lockwell - Bloodlust", OutwardRegionName.HARMATTAN)
+    SKILL_TRAINER_ELLA_BLOOD_SIGIL = location("Skill Trainer - Ella Lockwell - Blood Sigil", OutwardRegionName.HARMATTAN)
+    SKILL_TRAINER_ELLA_RUPTURE = location("Skill Trainer - Ella Lockwell - Rupture", OutwardRegionName.HARMATTAN)
+    SKILL_TRAINER_ELLA_CLEANSE = location("Skill Trainer - Ella Lockwell - Cleanse", OutwardRegionName.HARMATTAN)
+    SKILL_TRAINER_ELLA_LOCKWELLS_REVELATION = location("Skill Trainer - Ella Lockwell - Lockwell's Revelation", OutwardRegionName.HARMATTAN)
+
+    SKILL_TRAINER_ETO_FITNESS = location("Skill Trainer - Eto - Fitness", OutwardRegionName.CIERZO)
+    SKILL_TRAINER_ETO_SHIELD_CHARGE = location("Skill Trainer - Eto - Shield Charge", OutwardRegionName.CIERZO)
+    SKILL_TRAINER_ETO_STEADY_ARM = location("Skill Trainer - Eto - Steady Arm", OutwardRegionName.CIERZO)
+    SKILL_TRAINER_ETO_SPELLBLADES_AWAKENING = location("Skill Trainer - Eto - Spellblade's Awakening", OutwardRegionName.CIERZO)
+    SKILL_TRAINER_ETO_INFUSE_FIRE = location("Skill Trainer - Eto - Infuse Fire", OutwardRegionName.CIERZO)
+    SKILL_TRAINER_ETO_INFUSE_FROST = location("Skill Trainer - Eto - Infuse Frost", OutwardRegionName.CIERZO)
+    SKILL_TRAINER_ETO_GONG_STRIKE = location("Skill Trainer - Eto - Gong Strike", OutwardRegionName.CIERZO)
+    SKILL_TRAINER_ETO_ELEMENTAL_DISCHARGE = location("Skill Trainer - Eto - Elemental Discharge", OutwardRegionName.CIERZO)
+
+    SKILL_TRAINER_FLASE_RUNE_DEZ = location("Skill Trainer - Flase, Sage Trainer - Rune: Dez", OutwardRegionName.BERG)
+    SKILL_TRAINER_FLASE_RUNE_EGOTH = location("Skill Trainer - Flase, Sage Trainer - Rune: Egoth", OutwardRegionName.BERG)
+    SKILL_TRAINER_FLASE_RUNE_FAL = location("Skill Trainer - Flase, Sage Trainer - Rune: Fal", OutwardRegionName.BERG)
+    SKILL_TRAINER_FLASE_RUNE_SHIM = location("Skill Trainer - Flase, Sage Trainer - Rune: Shim", OutwardRegionName.BERG)
+    SKILL_TRAINER_FLASE_WELL_OF_MANA = location("Skill Trainer - Flase, Sage Trainer - Well of Mana", OutwardRegionName.BERG)
+    SKILL_TRAINER_FLASE_ARCANE_SYNTAX = location("Skill Trainer - Flase, Sage Trainer - Arcane Syntax", OutwardRegionName.BERG)
+    SKILL_TRAINER_FLASE_INTERNALIZED_LEXICON = location("Skill Trainer - Flase, Sage Trainer - Internalized Lexicon", OutwardRegionName.BERG)
+    SKILL_TRAINER_FLASE_RUNIC_PREFIX = location("Skill Trainer - Flase, Sage Trainer - Runic Prefix", OutwardRegionName.BERG)
+
+    SKILL_TRAINER_GALIRA_BRACE = location("Skill Trainer - Galira - Brace", OutwardRegionName.MONSOON)
+    SKILL_TRAINER_GALIRA_FOCUS = location("Skill Trainer - Galira - Focus", OutwardRegionName.MONSOON)
+    SKILL_TRAINER_GALIRA_SLOW_METABOLISM = location("Skill Trainer - Galira - Slow Metabolism", OutwardRegionName.MONSOON)
+    SKILL_TRAINER_GALIRA_STEADFAST_ASCETIC = location("Skill Trainer - Galira - Steadfast Ascetic", OutwardRegionName.MONSOON)
+    SKILL_TRAINER_GALIRA_PERFECT_STRIKE = location("Skill Trainer - Galira - Perfect Strike", OutwardRegionName.MONSOON)
+    SKILL_TRAINER_GALIRA_MASTER_OF_MOTION = location("Skill Trainer - Galira - Master of Motion", OutwardRegionName.MONSOON)
+    SKILL_TRAINER_GALIRA_FLASH_ONSLAUGHT = location("Skill Trainer - Galira - Flash Onslaught", OutwardRegionName.MONSOON)
+    SKILL_TRAINER_GALIRA_COUNTERSTRIKE = location("Skill Trainer - Galira - Counterstrike", OutwardRegionName.MONSOON)
+
+    SKILL_TRAINER_JAIMON_ARMOR_TRAINING = location("Skill Trainer - Jaimon - Armor Training", OutwardRegionName.LEVANT)
+    SKILL_TRAINER_JAIMON_FAST_MAINTENANCE = location("Skill Trainer - Jaimon - Fast Maintenance", OutwardRegionName.LEVANT)
+    SKILL_TRAINER_JAIMON_FROST_BULLET = location("Skill Trainer - Jaimon - Frost Bullet", OutwardRegionName.LEVANT)
+    SKILL_TRAINER_JAIMON_SHATTER_BULLET = location("Skill Trainer - Jaimon - Shatter Bullet", OutwardRegionName.LEVANT)
+    SKILL_TRAINER_JAIMON_SWIFT_FOOT = location("Skill Trainer - Jaimon - Swift Foot", OutwardRegionName.LEVANT)
+    SKILL_TRAINER_JAIMON_MARATHONER = location("Skill Trainer - Jaimon - Marathoner", OutwardRegionName.LEVANT)
+    SKILL_TRAINER_JAIMON_SHIELD_INFUSION = location("Skill Trainer - Jaimon - Shield Infusion", OutwardRegionName.LEVANT)
+    SKILL_TRAINER_JAIMON_BLOOD_BULLET = location("Skill Trainer - Jaimon - Blood Bullet", OutwardRegionName.LEVANT)
+
+    SKILL_TRAINER_JUSTIN_ACROBATICS = location("Skill Trainer - Justin Garnet - Acrobatics", OutwardRegionName.NEW_SIROCCO)
+    SKILL_TRAINER_JUSTIN_BRAINS = location("Skill Trainer - Justin Garnet - Brains", OutwardRegionName.NEW_SIROCCO)
+    SKILL_TRAINER_JUSTIN_BRAWNS = location("Skill Trainer - Justin Garnet - Brawns", OutwardRegionName.NEW_SIROCCO)
+    SKILL_TRAINER_JUSTIN_CRUELTY = location("Skill Trainer - Justin Garnet - Cruelty", OutwardRegionName.NEW_SIROCCO)
+    SKILL_TRAINER_JUSTIN_PATIENCE = location("Skill Trainer - Justin Garnet - Patience", OutwardRegionName.NEW_SIROCCO)
+    SKILL_TRAINER_JUSTIN_UNSEALED = location("Skill Trainer - Justin Garnet - Unsealed", OutwardRegionName.NEW_SIROCCO)
+
+    SKILL_TRAINER_SERGE_EFFICIENCY = location("Skill Trainer - Serge Battleborn - Efficiency", OutwardRegionName.HARMATTAN)
+    SKILL_TRAINER_SERGE_METABOLIC_PURGE = location("Skill Trainer - Serge Battleborn - Metabolic Purge", OutwardRegionName.HARMATTAN)
+    SKILL_TRAINER_SERGE_PROBE = location("Skill Trainer - Serge Battleborn - Probe", OutwardRegionName.HARMATTAN)
+    SKILL_TRAINER_SERGE_DAREDEVIL = location("Skill Trainer - Serge Battleborn - Daredevil", OutwardRegionName.HARMATTAN)
+    SKILL_TRAINER_SERGE_PRIME = location("Skill Trainer - Serge Battleborn - Prime", OutwardRegionName.HARMATTAN)
+    SKILL_TRAINER_SERGE_UNERRING_READ = location("Skill Trainer - Serge Battleborn - Unerring Read", OutwardRegionName.HARMATTAN)
+    SKILL_TRAINER_SERGE_BLITZ = location("Skill Trainer - Serge Battleborn - Blitz", OutwardRegionName.HARMATTAN)
+    SKILL_TRAINER_SERGE_ANTICIPATION = location("Skill Trainer - Serge Battleborn - Anticipation", OutwardRegionName.HARMATTAN)
+
+    SKILL_TRAINER_SINAI_HAUNTING_BEAT = location("Skill Trainer - Sinai, the Primal Ritualist - Haunting Beat", OutwardRegionName.RITUALISTS_HUT)
+    SKILL_TRAINER_SINAI_MIASMIC_TOLERANCE = location("Skill Trainer - Sinai, the Primal Ritualist - Miasmic Tolerance", OutwardRegionName.RITUALISTS_HUT)
+    SKILL_TRAINER_SINAI_WELKIN_RING = location("Skill Trainer - Sinai, the Primal Ritualist - Welkin Ring", OutwardRegionName.RITUALISTS_HUT)
+    SKILL_TRAINER_SINAI_SACRED_FUMES = location("Skill Trainer - Sinai, the Primal Ritualist - Sacred Fumes", OutwardRegionName.RITUALISTS_HUT)
+    SKILL_TRAINER_SINAI_NURTURING_ECHO = location("Skill Trainer - Sinai, the Primal Ritualist - Nurturing Echo", OutwardRegionName.RITUALISTS_HUT)
+    SKILL_TRAINER_SINAI_REVERBERATION = location("Skill Trainer - Sinai, the Primal Ritualist - Reverberation", OutwardRegionName.RITUALISTS_HUT)
+    SKILL_TRAINER_SINAI_HARMONY_AND_MELODY = location("Skill Trainer - Sinai, the Primal Ritualist - Harmony and Melody", OutwardRegionName.RITUALISTS_HUT)
+    SKILL_TRAINER_SINAI_BATTLE_RYTHYM = location("Skill Trainer - Sinai, the Primal Ritualist - Battle Rhythym", OutwardRegionName.RITUALISTS_HUT)
+
+    SKILL_TRAINER_STYX_BACKSTAB = location("Skill Trainer - Styx - Backstab", OutwardRegionName.LEVANT_SLUMS)
+    SKILL_TRAINER_STYX_OPPORTUNIST_STAB = location("Skill Trainer - Styx - Opportunist Stab", OutwardRegionName.LEVANT_SLUMS)
+    SKILL_TRAINER_STYX_PRESSURE_PLATE_TRAINING = location("Skill Trainer - Styx - Pressure Plate Training", OutwardRegionName.LEVANT_SLUMS)
+    SKILL_TRAINER_STYX_SWEEP_KICK = location("Skill Trainer - Styx - Sweep Kick", OutwardRegionName.LEVANT_SLUMS)
+    SKILL_TRAINER_STYX_FEATHER_DODGE = location("Skill Trainer - Styx - Feather Dodge", OutwardRegionName.LEVANT_SLUMS)
+    SKILL_TRAINER_STYX_SERPENTS_PARRY = location("Skill Trainer - Styx - Serpent's Parry", OutwardRegionName.LEVANT_SLUMS)
+    SKILL_TRAINER_STYX_STEALTH_TRAINING = location("Skill Trainer - Styx - Stealth Training", OutwardRegionName.LEVANT_SLUMS)
+    SKILL_TRAINER_STYX_PRESSURE_PLATE_EXPERTISE = location("Skill Trainer - Styx - Pressure Plate Expertise", OutwardRegionName.LEVANT_SLUMS)
+
+    SKILL_TRAINER_TURE_ENRAGE = location("Skill Trainer - Ture - Enrage", OutwardRegionName.BERG)
+    SKILL_TRAINER_TURE_EVASION_SHOT = location("Skill Trainer - Ture - Evasion Shot", OutwardRegionName.BERG)
+    SKILL_TRAINER_TURE_HUNTERS_EYE = location("Skill Trainer - Ture - Hunter's Eye", OutwardRegionName.BERG)
+    SKILL_TRAINER_TURE_SNIPER_SHOT = location("Skill Trainer - Ture - Sniper Shot", OutwardRegionName.BERG)
+    SKILL_TRAINER_TURE_SURVIVORS_RESILIENCE = location("Skill Trainer - Ture - Survivor's Resilience", OutwardRegionName.BERG)
+    SKILL_TRAINER_TURE_PREDATOR_LEAP = location("Skill Trainer - Ture - Predator Leap", OutwardRegionName.BERG)
+    SKILL_TRAINER_TURE_PIERCING_SHOT = location("Skill Trainer - Ture - Piercing Shot", OutwardRegionName.BERG)
+    SKILL_TRAINER_TURE_FERAL_STRIKES = location("Skill Trainer - Ture - Feral Strikes", OutwardRegionName.BERG)

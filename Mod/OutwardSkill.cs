@@ -6,6 +6,7 @@ namespace OutwardArchipelago
     {
         // custom skills
 
+        internal const int APItem = 8861512;
         internal static readonly IReadOnlyList<int> QuestLicense = new int[] { 8861501, 8861502, 8861503, 8861504, 8861505, 8861506, 8861507, 8861508, 8861509, 8861510 };
 
         // vanilla skills
@@ -51,7 +52,7 @@ namespace OutwardArchipelago
         internal const int WarriorsVein = 8100500; // 8100500_WarriorVeinIdle
         internal const int Dispersion = 8100510; // 8100510_Dispersion
         internal const int MomentOfTruth = 8100520; // 8100520_MomentOfTruth
-        internal const int TheTechnique = 8100530; // 8100530_TheTechnique
+        internal const int Technique = 8100530; // 8100530_TheTechnique
         internal const int ScalpCollector = 8100540; // 8100540_ScalpCollector
         internal const int Crescendo = 8100550; // 8100550_Crescendo
         internal const int ViciousCycle = 8100560; // 8100560_VisciousCycle

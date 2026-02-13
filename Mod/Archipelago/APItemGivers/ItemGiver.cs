@@ -1,11 +1,13 @@
 namespace OutwardArchipelago.Archipelago.APItemGivers
 {
-    internal class ItemGiver : IAPItemGiver
+    internal class ItemGiver : BaseAPItemGiver
     {
         public int ItemID { get; private set; }
 
         public ItemGiver(int itemID) => ItemID = itemID;
 
-        void IAPItemGiver.GiveItem(Character character) => character.Inventory.ReceiveItemReward(ItemID, 1, true);
+        public override int? OutwardItemID => ItemID;
+
+        public override void GiveItemToCharacter(Character character) => character.Inventory.ReceiveItemReward(ItemID, 1, true);
     }
 }

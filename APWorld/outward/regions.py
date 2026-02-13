@@ -235,6 +235,10 @@ class OutwardRegionName(OutwardObjectNamespace):
     RIVER_OF_RED = region("The River of Red")
     TOWER_OF_REGRETS = region("The Tower of Regrets")
     UNDERSIDE_LOADING_DOCK = region("Underside Loading Dock")
+
+    # other
+
+    LEYLINE_ANY = region("Leyline - Either")
     
 entrance = OutwardEntranceTemplate.register_template
 class OutwardEntranceName(OutwardObjectNamespace):
@@ -671,3 +675,8 @@ class OutwardEntranceName(OutwardObjectNamespace):
     RIVER_OF_RED_FRONT_DOOR_EXIT = entrance("The River of Red - Front Door - Exit", OutwardRegionName.RIVER_OF_RED, OutwardRegionName.CALDERA)
     TOWER_OF_REGRETS_FRONT_DOOR_EXIT = entrance("The Tower of Regrets - Front Door - Exit", OutwardRegionName.TOWER_OF_REGRETS, OutwardRegionName.CALDERA)
     UNDERSIDE_LOADING_DOCK_FRONT_DOOR_EXIT = entrance("Underside Loading Dock - Front Door - Exit", OutwardRegionName.UNDERSIDE_LOADING_DOCK, OutwardRegionName.CALDERA)
+
+    # other
+
+    LEYLINE_ANY_CONFLUX_CHAMBERS_DOOR_ENTER = entrance("Leyline - Conflux Chambers - Enter", OutwardRegionName.CONFLUX_CHAMBERS, OutwardRegionName.LEYLINE_ANY)
+    LEYLINE_ANY_HARMATTAN_DOOR_ENTER = entrance("Leyline - Sorobor Academy - Enter", OutwardRegionName.HARMATTAN, OutwardRegionName.LEYLINE_ANY)

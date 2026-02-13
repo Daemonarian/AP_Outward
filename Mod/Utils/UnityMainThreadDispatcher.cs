@@ -7,11 +7,13 @@ namespace OutwardArchipelago.Utils
 {
     internal class UnityMainThreadDispatcher : MonoBehaviour
     {
-        private static readonly UnityMainThreadDispatcher _instance = CreateInstance();
+        private static readonly Lazy<UnityMainThreadDispatcher> _instance = new(() => CreateInstance());
+        public static UnityMainThreadDispatcher Instance => _instance.Value;
 
         private static UnityMainThreadDispatcher CreateInstance()
         {
             var obj = new GameObject(typeof(UnityMainThreadDispatcher).FullName);
+            DontDestroyOnLoad(obj);
             return obj.AddComponent<UnityMainThreadDispatcher>();
         }
 
@@ -26,7 +28,7 @@ namespace OutwardArchipelago.Utils
         public static Task<T> Run<T>(Func<T> action)
         {
             var tcs = new TaskCompletionSource<T>(TaskCreationOptions.RunContinuationsAsynchronously);
-            _instance._mainThreadQueue.Enqueue(() =>
+            Instance._mainThreadQueue.Enqueue(() =>
             {
                 try
                 {

@@ -106,12 +106,38 @@ namespace OutwardArchipelago.Archipelago
             { OutwardItem.ZhornsDemonShield, Location.SpawnZhornsDemonShield },
             { OutwardItem.ZhornsGlowstoneDagger, Location.SpawnZhornsGlowstoneDagger },
             { OutwardItem.ZhornsHuntingBackpack, Location.SpawnZhornsHuntingBackpack },
+
+            { OutwardSkill.BladePuppy, Location.SkillBladePuppy },
+            { OutwardSkill.Blessed, Location.TrainMofat },
+            { OutwardSkill.ChillHex, Location.TrainSkeleton },
+            { OutwardSkill.Cool, Location.TrainSecondWatcher },
+            { OutwardSkill.DoomHex, Location.TrainRaulSalaberry },
+            { OutwardSkill.ElattsIntervention, Location.TrainPaul },
+            { OutwardSkill.Execution, Location.TrainSagardBattleborn },
+            { OutwardSkill.Flamethrower, Location.TrainFirstWatcher },
+            { OutwardSkill.GoldenWatcher, Location.SkillGoldenWatcher },
+            { OutwardSkill.HauntHex, Location.TrainRobynGarnet },
+            { OutwardSkill.InfuseBlood, Location.TrainAnthonyBerthelot },
+            { OutwardSkill.InfuseMana, Location.TrainSamanthaTurnbull },
+            { OutwardSkill.Juggernaut, Location.TrainSoeran },
+            { OutwardSkill.KirouacsBreakthrough, Location.TrainYan },
+            { OutwardSkill.MaceInfusion, Location.TrainTaleron },
+            { OutwardSkill.Mist, Location.TrainCyrilTurnbull },
+            { OutwardSkill.MoonSwipe, Location.TrainWanderingMercenary },
+            { OutwardSkill.PommelCounter, Location.TrainBurac },
+            { OutwardSkill.PrismaticFlurry, Location.TrainMavith },
+            { OutwardSkill.Puncture, Location.TrainMarkus },
+            { OutwardSkill.ScorchHex, Location.TrainNinthWatcher },
+            { OutwardSkill.SeveredObsidian, Location.RepairHorseStatue },
+            { OutwardSkill.SimeonsGambit, Location.TrainKingSimeon },
+            { OutwardSkill.TalusCleaver, Location.TrainOda },
+            { OutwardSkill.Warm, Location.TrainSmooth },
         };
 
         /// <summary>
         /// A mapping from Outward APWorld item IDs to APWorld item givers.
         /// </summary>
-        public static readonly IReadOnlyDictionary<APWorld.Item, IAPItemGiver> ItemToGiver = new Dictionary<APWorld.Item, IAPItemGiver>
+        public static readonly IReadOnlyDictionary<Item, IAPItemGiver> ItemToGiver = new Dictionary<Item, IAPItemGiver>
         {
             // custom items
 
@@ -1795,7 +1821,7 @@ namespace OutwardArchipelago.Archipelago
             { Item.WarriorsVein, new SkillGiver(OutwardSkill.WarriorsVein) },
             { Item.Dispersion, new SkillGiver(OutwardSkill.Dispersion) },
             { Item.MomentOfTruth, new SkillGiver(OutwardSkill.MomentOfTruth) },
-            { Item.TheTechnique, new SkillGiver(OutwardSkill.TheTechnique) },
+            { Item.Technique, new SkillGiver(OutwardSkill.Technique) },
             { Item.ScalpCollector, new SkillGiver(OutwardSkill.ScalpCollector) },
             { Item.Crescendo, new SkillGiver(OutwardSkill.Crescendo) },
             { Item.ViciousCycle, new SkillGiver(OutwardSkill.ViciousCycle) },

@@ -767,6 +767,46 @@ namespace OutwardArchipelago.Dialogue
                         new RemoveQuestEventActionBuilder { EventUID = OutwardQuestEvents.Crafting_HarmattanBlacksmithItemC },
                     }
                 });
+
+            // burac free skill
+            Patches.Register(
+                DialogueTreeID.Chersonese_Cierzo_BuracCarillon_Real,
+                new InsertLocationCheckPatch
+                {
+                    ReplaceNodeID = 71,
+                    Location = APWorld.Location.BuracFreeSkill,
+                    OtherActions = new[]
+                    {
+                        new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.General_BuracGaveSkill },
+                        new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.General_ReadyToBeTrained },
+                    },
+                    NextNode = new OriginalNodeBuilder { NodeID = 74 },
+                });
+
+            // acquire mana free skill
+            var acquireManaFreeSkillPatch = new InsertLocationCheckPatch
+            {
+                ReplaceNodeID = 5,
+                Location = APWorld.Location.WatcherFreeSkill,
+                OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.General_ConfluxChoice },
+                NextNode = new OriginalNodeBuilder { NodeID = 7 },
+            };
+            Patches.Register(DialogueTreeID.AcquireManaConflux, acquireManaFreeSkillPatch);
+            Patches.Register(DialogueTreeID.AcquireManaSorobor, acquireManaFreeSkillPatch);
+
+            // vendavel prisoner backstab
+            Patches.Register(
+                DialogueTreeID.PrisonerD_Neut_Vendavel,
+                new InsertLocationCheckPatch
+                {
+                    ReplaceNodeID = 12,
+                    Location = APWorld.Location.TrainVendavelPrisoner,
+                    OtherActions = new IActionBuilder[]
+                    {
+                        new RemoveItemActionBuilder { ItemID = OutwardItem.ShivDagger },
+                        new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.Vendavel_GaveShivToPrisoner },
+                    }
+                });
         }
     }
 }

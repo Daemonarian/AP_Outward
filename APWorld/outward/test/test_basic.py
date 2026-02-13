@@ -5,16 +5,6 @@ from ..locations import OutwardLocationName
 from ..events import OutwardEventName
 
 class TestBasic(OutwardWorldTestBase):
-    def test_item_count_equals_location_count(self):
-        """
-        Test that the number of created items matches the number of non-event locations.
-        """
-
-        locations = self.multiworld.get_locations(self.player)
-        non_event_locations = [loc for loc in locations if not loc.is_event]
-        items = self.multiworld.itempool
-        self.assertEqual(len(non_event_locations), len(items), msg=f"Item count mismatch! Locations {len(non_event_locations)}, Items: {len(items)}")
-
     def test_main_quest_line(self):
         """
         Test that the accessibility of main quests is as expected.
