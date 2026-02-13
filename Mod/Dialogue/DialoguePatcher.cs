@@ -4,6 +4,7 @@ using NodeCanvas.DialogueTrees;
 using NodeCanvas.Framework;
 using OutwardArchipelago.Archipelago;
 using OutwardArchipelago.Dialogue.Builders.Actions;
+using OutwardArchipelago.Dialogue.Builders.Conditions;
 using OutwardArchipelago.Dialogue.Builders.Nodes;
 using OutwardArchipelago.Dialogue.Patches;
 
@@ -806,6 +807,105 @@ namespace OutwardArchipelago.Dialogue
                         new RemoveItemActionBuilder { ItemID = OutwardItem.ShivDagger },
                         new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.Vendavel_GaveShivToPrisoner },
                     }
+                });
+
+            // wind altar location checks
+
+            Patches.Register(
+                DialogueTreeID.ChersPillar_Neut_COW,
+                new InsertNodePatch
+                {
+                    ReplaceNodeID = 0,
+                    Node = new ConditionNodeBuilder
+                    {
+                        Condition = new LocationCheckConditionBuilder { Location = APWorld.Location.WindAltarChersonese },
+                        OnSuccess = new OriginalNodeBuilder { NodeID = 1 },
+                        OnFailure = new ActionNodeBuilder
+                        {
+                            Action = new LocationCheckActionBuilder { Location = APWorld.Location.WindAltarChersonese },
+                            NextNode = new OriginalNodeBuilder { NodeID = 4 },
+                        },
+                    },
+                });
+            Patches.Register(
+                DialogueTreeID.EnmerkarPillar_Neut_COW,
+                new InsertNodePatch
+                {
+                    ReplaceNodeID = 0,
+                    Node = new ConditionNodeBuilder
+                    {
+                        Condition = new LocationCheckConditionBuilder { Location = APWorld.Location.WindAltarEnmerkarForest },
+                        OnSuccess = new OriginalNodeBuilder { NodeID = 1 },
+                        OnFailure = new ActionNodeBuilder
+                        {
+                            Action = new LocationCheckActionBuilder { Location = APWorld.Location.WindAltarEnmerkarForest },
+                            NextNode = new OriginalNodeBuilder { NodeID = 4 },
+                        },
+                    },
+                });
+            Patches.Register(
+                DialogueTreeID.AbrassPillar_Neut_COW,
+                new InsertNodePatch
+                {
+                    ReplaceNodeID = 0,
+                    Node = new ConditionNodeBuilder
+                    {
+                        Condition = new LocationCheckConditionBuilder { Location = APWorld.Location.WindAltarAbrassar },
+                        OnSuccess = new OriginalNodeBuilder { NodeID = 1 },
+                        OnFailure = new ActionNodeBuilder
+                        {
+                            Action = new LocationCheckActionBuilder { Location = APWorld.Location.WindAltarAbrassar },
+                            NextNode = new OriginalNodeBuilder { NodeID = 4 },
+                        },
+                    },
+                });
+            Patches.Register(
+                DialogueTreeID.MarshPillar_Neut_COW,
+                new InsertNodePatch
+                {
+                    ReplaceNodeID = 0,
+                    Node = new ConditionNodeBuilder
+                    {
+                        Condition = new LocationCheckConditionBuilder { Location = APWorld.Location.WindAltarHallowedMarsh },
+                        OnSuccess = new OriginalNodeBuilder { NodeID = 1 },
+                        OnFailure = new ActionNodeBuilder
+                        {
+                            Action = new LocationCheckActionBuilder { Location = APWorld.Location.WindAltarHallowedMarsh },
+                            NextNode = new OriginalNodeBuilder { NodeID = 4 },
+                        },
+                    },
+                });
+            Patches.Register(
+                DialogueTreeID.HarmattanPillar_Neut_COW,
+                new InsertNodePatch
+                {
+                    ReplaceNodeID = 0,
+                    Node = new ConditionNodeBuilder
+                    {
+                        Condition = new LocationCheckConditionBuilder { Location = APWorld.Location.WindAltarAntiquePlateau },
+                        OnSuccess = new OriginalNodeBuilder { NodeID = 1 },
+                        OnFailure = new ActionNodeBuilder
+                        {
+                            Action = new LocationCheckActionBuilder { Location = APWorld.Location.WindAltarAntiquePlateau },
+                            NextNode = new OriginalNodeBuilder { NodeID = 4 },
+                        },
+                    },
+                });
+            Patches.Register(
+                DialogueTreeID.CalderaPillar_Neut_COW,
+                new InsertNodePatch
+                {
+                    ReplaceNodeID = 0,
+                    Node = new ConditionNodeBuilder
+                    {
+                        Condition = new LocationCheckConditionBuilder { Location = APWorld.Location.WindAltarCaldera },
+                        OnSuccess = new OriginalNodeBuilder { NodeID = 5 },
+                        OnFailure = new ActionNodeBuilder
+                        {
+                            Action = new LocationCheckActionBuilder { Location = APWorld.Location.WindAltarCaldera },
+                            NextNode = new OriginalNodeBuilder { NodeID = 3 },
+                        },
+                    },
                 });
         }
     }

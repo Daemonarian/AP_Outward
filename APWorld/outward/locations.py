@@ -361,3 +361,12 @@ class OutwardLocationName(OutwardGameObjectNamespace):
     SKILL_TRAINER_TURE_PREDATOR_LEAP = location("Skill Trainer - Ture - Predator Leap", OutwardRegionName.BERG)
     SKILL_TRAINER_TURE_PIERCING_SHOT = location("Skill Trainer - Ture - Piercing Shot", OutwardRegionName.BERG)
     SKILL_TRAINER_TURE_FERAL_STRIKES = location("Skill Trainer - Ture - Feral Strikes", OutwardRegionName.BERG)
+
+    # wind altars
+
+    WIND_ALTAR_CHERSONESE = location("Wind Altar - Chersonese", OutwardRegionName.CHERSONESE_NE)
+    WIND_ALTAR_ENMERKAR_FOREST = location("Wind Altar - Enmerkar Forest", OutwardRegionName.BERG)
+    WIND_ALTAR_ABRASSAR = location("Wind Altar - Abrassar", OutwardRegionName.ABRASSAR)
+    WIND_ALTAR_HALLOWED_MARSH = location("Wind Altar - Hallowed Marsh", OutwardRegionName.HALLOWED_MARSH)
+    WIND_ALTAR_ANTIQUE_PLATEAU = location("Wind Altar - Antique Plateau", OutwardRegionName.ANTIQUE_PLATEAU)
+    WIND_ALTAR_CALDERA = location("Wind Altar - Caldera", OutwardRegionName.CALDERA)

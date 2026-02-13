@@ -47,6 +47,15 @@ class OutwardItemName(OutwardGameObjectNamespace):
 
     SILVER_CURRENCY = item("50x Silver", ItemClassification.filler)
 
+    # wind altar
+
+    WIND_ALTAR_BOON_CHERSONESE = item("Wind Altar Boon - Chersonese", ItemClassification.useful)
+    WIND_ALTAR_BOON_ENMERKAR_FOREST = item("Wind Altar Boon - Enmerkar Forest", ItemClassification.useful)
+    WIND_ALTAR_BOON_ABRASSAR = item("Wind Altar Boon - Abrassar", ItemClassification.useful)
+    WIND_ALTAR_BOON_HALLOWED_MARSH = item("Wind Altar Boon - Hallowed Marsh", ItemClassification.useful)
+    WIND_ALTAR_BOON_ANTIQUE_PLATEAU = item("Wind Altar Boon - Antique Plateau", ItemClassification.useful)
+    WIND_ALTAR_BOON_CALDERA = item("Wind Altar Boon - Caldera", ItemClassification.useful)
+
     # vanilla items
     
     TEST_WEAPON_OF_DOOOOOM = item("Test weapon of Dooooom", ItemClassification.useful, 504) # 504_TestWeaponOfDoom

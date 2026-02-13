@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from Options import Choice, DeathLink, Option, PerGameCommonOptions
+from Options import Choice, DeathLink, DefaultOnToggle, Option, PerGameCommonOptions
 
 class SkillSanityChoice(Choice):
     """
@@ -17,7 +17,16 @@ class SkillSanityChoice(Choice):
 
     default = 2
 
+class WindAltarChecksOption(DefaultOnToggle):
+    """
+    Make the Cabal of Wind Altars for each region location checks, and add their
+    corresponding boons to the item pool.
+    """
+
+    display_name = "Wind Alter checks"
+
 @dataclass
 class OutwardOptions(PerGameCommonOptions):
     death_link: DeathLink
     skill_sanity: SkillSanityChoice
+    wind_altar_checks: WindAltarChecksOption
