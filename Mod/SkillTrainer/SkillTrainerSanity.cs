@@ -173,19 +173,37 @@ namespace OutwardArchipelago.SkillTrainer
             public int Tier => _tier;
         }
 
+        [HarmonyPatch(typeof(SkillTreeHolder), nameof(SkillTreeHolder.GetSkillTreeFromUID), new Type[] { typeof(UID) })]
+        private static class Patch_SkillTreeHolder_GetSkillTreeFromUID
+        {
+            private static void Postfix(ref SkillSchool __result)
+            {
+                if (__result && IsEnabled)
+                {
+                    foreach (var skillSlot in __result.GetComponentsInChildren<SkillSlot>())
+                    {
+                        if (skillSlot.m_skill && TryGetLocationBySkill(skillSlot.m_skill.ItemID, out var location))
+                        {
+                            skillSlot.m_skill = APSkill.GetPrefab(location);
+                        }
+                    }
+                }
+            }
+        }
+
         [HarmonyPatch(typeof(SkillSlot), nameof(SkillSlot.UnlockSkill), new Type[] { typeof(Character) })]
         private static class Patch_SkillSlot_UnlockSkill
         {
             private static bool Prefix(SkillSlot __instance, Character _character)
             {
-                if (__instance.m_skill is not null && _character is not null && TryGetLocationBySkill(__instance.m_skill.ItemID, out var location))
+                if (__instance.m_skill && __instance.m_skill is APSkill skill)
                 {
                     if (_character.IsLocalPlayer)
                     {
                         SoundOnEventTrigger.TryPlaySound(_character.OwnerPlayerSys.PlayerID, GlobalAudioManager.Sounds.UI_TRAINER_UnlockSkill, false);
                     }
 
-                    ArchipelagoConnector.Instance.Locations.Complete(location);
+                    ArchipelagoConnector.Instance.Locations.Complete(skill.Location);
 
                     if (__instance.IsBreakthrough && _character.IsLocalPlayer)
                     {
@@ -204,145 +222,13 @@ namespace OutwardArchipelago.SkillTrainer
         {
             private static bool Prefix(ref bool __result, SkillSlot __instance, Character _character)
             {
-                if (__instance?.m_skill?.ItemID is not null && _character is not null && TryGetLocationBySkill(__instance.m_skill.ItemID, out var location))
+                if (__instance.m_skill && __instance.m_skill is APSkill skill)
                 {
-                    __result = ArchipelagoConnector.Instance.Locations.IsComplete(location);
+                    __result = ArchipelagoConnector.Instance.Locations.IsComplete(skill.Location);
                     return false;
                 }
 
                 __result = default;
-                return true;
-            }
-        }
-
-        [HarmonyPatch(typeof(SkillSlotDisplay), nameof(SkillSlotDisplay.SetReferencedSkill), new Type[] { typeof(SkillSlot) })]
-        private static class Patch_SkillSlotDisplay_SetReferencedSkill
-        {
-            private static bool Prefix(SkillSlotDisplay __instance, SkillSlot _slot)
-            {
-                if (_slot is not null && _slot.Skill is not null && TryGetLocationBySkill(_slot.Skill.ItemID, out var location))
-                {
-                    __instance.Show();
-                    var apSkill = (Skill)ResourcesPrefabManager.Instance.GetItemPrefab(OutwardSkill.APItem);
-                    __instance.m_refSkill = _slot.Skill; // _slot.Skill;
-
-                    if (__instance.m_imgBackground)
-                    {
-                        __instance.m_imgBackground.sprite = _slot.IsBreakthrough ? __instance.BreakthroughInactive : __instance.PassiveSkillInactive;
-                    }
-
-                    if (__instance.m_imgSkillIcon)
-                    {
-                        __instance.m_imgSkillIcon.sprite = _slot.IsBlocked(__instance.LocalCharacter, false) ? __instance.BlockedSkill : apSkill.SkillTreeIcon;
-                        OutwardArchipelagoMod.Log.LogDebug($"setting image skill icon {apSkill.SkillTreeIcon.name}");
-                    }
-
-                    if (__instance.m_imgUnlocked)
-                    {
-                        var alpha = _slot.HasSkill(__instance.LocalCharacter) ? 1.0f : 0.0f;
-                        __instance.m_imgUnlocked.SetAlpha(alpha);
-                    }
-
-                    return false;
-                }
-
-                return true;
-            }
-        }
-
-        [HarmonyPatch(typeof(ItemDetailsDisplay), nameof(ItemDetailsDisplay.Refresh), new Type[] { })]
-        private static class Patch_ItemDetailsDisplay_Refresh
-        {
-            private static void Postfix(ItemDetailsDisplay __instance)
-            {
-                if (__instance.m_lastItem is not null && TryGetLocationBySkill(__instance.m_lastItem.ItemID, out var location))
-                {
-                    var apSkillItem = ResourcesPrefabManager.Instance.GetItemPrefab(OutwardSkill.APItem);
-
-                    __instance.m_lblItemName.text = apSkillItem.Name;
-                    __instance.m_lblItemDesc.text = apSkillItem.Description;
-
-                    ArchipelagoConnector.Instance.Hints.GetHint(location, hint =>
-                    {
-                        __instance.m_lblItemName.text = hint.ItemName;
-                        __instance.m_lblItemDesc.text = hint.ToString();
-                    });
-                }
-            }
-        }
-
-        [HarmonyPatch(typeof(TrainerPanel), nameof(TrainerPanel.OnSkillSlotClicked), new Type[] { typeof(SkillTreeSlotDisplay) })]
-        private static class Patch_TrainerPanel_OnSkillSlotClicked
-        {
-            private static bool Prefix(TrainerPanel __instance, SkillTreeSlotDisplay _slotDisplay)
-            {
-                if (_slotDisplay?.FocusedSkillSlot?.Skill?.ItemID is not null && TryGetLocationBySkill(_slotDisplay.FocusedSkillSlot.Skill.ItemID, out var location))
-                {
-                    var focusedSkillSlot = _slotDisplay.FocusedSkillSlot;
-                    var hintString = ArchipelagoConnector.Instance.Hints.TryGetHint(location, out var hint) ? hint.ToString() : "AP Item";
-
-                    if (!focusedSkillSlot.HasSkill(__instance.LocalCharacter))
-                    {
-                        if (focusedSkillSlot.CheckCharacterRequirements(__instance.LocalCharacter, true))
-                        {
-                            var empty = string.Empty;
-                            if (__instance.CheckHasEnoughCurrency(focusedSkillSlot, out empty))
-                            {
-                                var text = LocalizationManager.Instance.GetLoc("MessageBox_Trainer_ConfirmLearnBase", new string[]
-                                {
-                                    hintString,
-                                });
-
-                                if (focusedSkillSlot.RequiredMoney > 0)
-                                {
-                                    if (!focusedSkillSlot.UseAlternateCurrency)
-                                    {
-                                        text = text + " " + LocalizationManager.Instance.GetLoc("MessageBox_Trainer_ConfirmLearnFee", new string[] { focusedSkillSlot.RequiredMoney.ToString() });
-                                    }
-                                    else
-                                    {
-                                        text = text + " " + LocalizationManager.Instance.GetLoc("MessageBox_Trainer_ConfirmLearnFeeItem", new string[]
-                                        {
-                                            focusedSkillSlot.RequiredMoney.ToString(),
-                                            LocalizationManager.Instance.GetItemName(focusedSkillSlot.AlternateCurrency),
-                                        });
-                                    }
-                                }
-
-                                if (focusedSkillSlot.SiblingSlot != null && focusedSkillSlot.SiblingSlot.Skill)
-                                {
-                                    var siblingHintString = TryGetLocationBySkill(focusedSkillSlot.SiblingSlot.Skill.ItemID, out var siblingLocation) ? (ArchipelagoConnector.Instance.Hints.TryGetHint(siblingLocation, out var siblingHint) ? siblingHint.ToString() : "AP Item") : focusedSkillSlot.SiblingSlot.Skill.DisplayName;
-
-                                    text = text + "\n" + LocalizationManager.Instance.GetLoc("MessageBox_Trainer_ConfirmLearnAlternative", new string[]
-                                    {
-                                        siblingHintString,
-                                    });
-                                }
-
-                                text = text + "\n" + LocalizationManager.Instance.GetLoc("MessageBox_Trainer_ConfirmProceed");
-                                __instance.m_characterUI.MessagePanel.Show(
-                                    text,
-                                    "",
-                                    () => __instance.OnConfirmUnlockSkill(_slotDisplay),
-                                    () => __instance.OnSkillSlotSelected(_slotDisplay));
-
-                                return false;
-                            }
-
-                            __instance.m_characterUI.ShowInfoNotification(empty);
-                        }
-                    }
-                    else
-                    {
-                        __instance.m_characterUI.ShowInfoNotificationLoc("Notification_Trainer_SkillAlreadyKnown", new string[]
-                        {
-                            hintString,
-                        });
-                    }
-
-                    return false;
-                }
-
                 return true;
             }
         }

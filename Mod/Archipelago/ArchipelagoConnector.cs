@@ -1116,18 +1116,22 @@ namespace OutwardArchipelago.Archipelago
             /// <returns>true if a hint is found for the specified location; otherwise, false.</returns>
             public bool TryGetHint(APWorld.Location location, out IHint hint)
             {
+                bool hasHint;
+                Hint realHint;
                 lock (_locationLock)
                 {
-                    if (_locationToHint.TryGetValue(location, out var realHint))
-                    {
-                        hint = realHint;
-                        return true;
-                    }
-                    else
-                    {
-                        hint = null;
-                        return false;
-                    }
+                    hasHint = _locationToHint.TryGetValue(location, out realHint);
+                }
+
+                if (hasHint)
+                {
+                    hint = realHint;
+                    return true;
+                }
+                else
+                {
+                    hint = null;
+                    return false;
                 }
             }
 
@@ -1139,24 +1143,31 @@ namespace OutwardArchipelago.Archipelago
             /// <param name="callback">The callback to invoke with the retrieved hint..</param>
             public void GetHint(APWorld.Location location, Action<IHint> callback)
             {
+                bool hasHint;
+                Hint hint;
                 lock (_locationLock)
                 {
-                    if (_locationToHint.TryGetValue(location, out var hint))
+                    hasHint = _locationToHint.TryGetValue(location, out hint);
+                    if (!hasHint)
                     {
-                        callback(hint);
-                        return;
-                    }
+                        if (!_locationToCallbacks.TryGetValue(location, out var callbacks))
+                        {
+                            callbacks = new();
+                            _locationToCallbacks[location] = callbacks;
+                        }
 
-                    if (!_locationToCallbacks.TryGetValue(location, out var callbacks))
-                    {
-                        callbacks = new();
-                        _locationToCallbacks[location] = callbacks;
+                        callbacks.Add(callback);
                     }
-
-                    callbacks.Add(callback);
                 }
 
-                _requestedHintQueue.Enqueue(location);
+                if (hasHint)
+                {
+                    callback(hint);
+                }
+                else
+                {
+                    _requestedHintQueue.Enqueue(location);
+                }
             }
 
             /// <summary>
@@ -1171,7 +1182,6 @@ namespace OutwardArchipelago.Archipelago
             {
                 foreach (var hintInfo in hintInfos)
                 {
-                    OutwardArchipelagoMod.Log.LogDebug($"received hint for player {hintInfo.FindingPlayer} and location {hintInfo.LocationId}");
                     if (hintInfo.FindingPlayer == _parent._session.Players.ActivePlayer.Slot && APWorld.Location.ById.TryGetValue(hintInfo.LocationId, out var location))
                     {
                         var hint = CreateHint(_parent._session, hintInfo);
@@ -1195,6 +1205,7 @@ namespace OutwardArchipelago.Archipelago
                         {
                             foreach (var callback in callbacks)
                             {
+                                OutwardArchipelagoMod.Log.LogInfo($"queueing hint callback for {location.Name}");
                                 UnityMainThreadDispatcher.Run(() => callback(hint));
                             }
                         }
