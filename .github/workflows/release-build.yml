@@ -12,6 +12,8 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v4
+      with:
+        submodules: true
         
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
@@ -22,7 +24,7 @@ jobs:
       uses: actions/setup-python@v5
       with:
         python-version: '3.13' 
-        cache: 'pip'
+        # cache: 'pip'
           
     - name: Setup Python Environment
       run: python APWorld/setup.py
