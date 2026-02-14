@@ -1,0 +1,43 @@
+name: Release Build
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+        
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x 
+          
+    - name: Setup Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.13' 
+        cache: 'pip'
+          
+    - name: Setup Python Environment
+      run: python APWorld/setup.py
+        
+    - name: Build
+      run: dotnet build --configuration Release
+      
+    - name: Upload APWorld
+      uses: actions/upload-artifact@v4
+      with:
+        name: APWorld
+        path: Release/APWorld.Release/build/outward.apworld
+
+    - name: Upload Thunderstore Package
+      uses: actions/upload-artifact@v4
+      with:
+        name: Thunderstore
+        path: Release/Mod.Release/build/OutwardArchipelago.zip
