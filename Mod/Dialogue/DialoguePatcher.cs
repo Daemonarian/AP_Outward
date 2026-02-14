@@ -809,6 +809,130 @@ namespace OutwardArchipelago.Dialogue
                     }
                 });
 
+            // fix one-off skill trainer checks
+
+            Patches.Register(
+                DialogueTreeID.SagardBattleborn_HM_HallowPeacemaker,
+                new ReplaceMultipleChoiceConditionPatch
+                {
+                    Node = new OriginalNodeBuilder { NodeID = 78 },
+                    ChoiceIndex = 1,
+                    Condition = new LocationCheckConditionBuilder { Location = APWorld.Location.TrainSagardBattleborn, IsInverted = true },
+                });
+            Patches.Register(
+                DialogueTreeID.SagardBattleborn_Neut_Prequest,
+                new ReplaceMultipleChoiceConditionPatch
+                {
+                    Node = new OriginalNodeBuilder { NodeID = 16 },
+                    ChoiceIndex = 1,
+                    Condition = new LocationCheckConditionBuilder { Location = APWorld.Location.TrainSagardBattleborn, IsInverted = true },
+                });
+            Patches.Register(
+                DialogueTreeID.SagardBattleborn_Neut_Purifier,
+                new ReplaceMultipleChoiceConditionPatch
+                {
+                    Node = new OriginalNodeBuilder { NodeID = 3 },
+                    ChoiceIndex = 2,
+                    Condition = new LocationCheckConditionBuilder { Location = APWorld.Location.TrainSagardBattleborn, IsInverted = true },
+                });
+            Patches.Register(
+                DialogueTreeID.SagardBattleborn_Neut_Initial,
+                new ReplaceMultipleChoiceConditionPatch
+                {
+                    Node = new OriginalNodeBuilder { NodeID = 10 },
+                    ChoiceIndex = 1,
+                    Condition = new LocationCheckConditionBuilder { Location = APWorld.Location.TrainSagardBattleborn, IsInverted = true },
+                });
+            Patches.Register(
+                DialogueTreeID.SagardBattleborn_BC_AncestralPeacemaker,
+                new ReplaceMultipleChoiceConditionPatch
+                {
+                    Node = new OriginalNodeBuilder { NodeID = 56 },
+                    ChoiceIndex = 1,
+                    Condition = new LocationCheckConditionBuilder { Location = APWorld.Location.TrainSagardBattleborn, IsInverted = true },
+                });
+            Patches.Register(
+                DialogueTreeID.SagardBattleborn_BC_MixedLegacies,
+                new ReplaceMultipleChoiceConditionPatch
+                {
+                    Node = new OriginalNodeBuilder { NodeID = 15 },
+                    ChoiceIndex = 1,
+                    Condition = new LocationCheckConditionBuilder { Location = APWorld.Location.TrainSagardBattleborn, IsInverted = true },
+                });
+            Patches.Register(
+                DialogueTreeID.SagardBattleborn_BC_WhisperingBones,
+                new ReplaceMultipleChoiceConditionPatch
+                {
+                    Node = new OriginalNodeBuilder { NodeID = 18 },
+                    ChoiceIndex = 1,
+                    Condition = new LocationCheckConditionBuilder { Location = APWorld.Location.TrainSagardBattleborn, IsInverted = true },
+                });
+
+            Patches.Register(
+                DialogueTreeID.Soeran_Neut_Initial,
+                new ReplaceConditionPatch
+                {
+                    Node = new OriginalNodeBuilder { NodeID = 3 },
+                    Condition = new LocationCheckConditionBuilder { Location = APWorld.Location.TrainSoeran },
+                });
+            Patches.Register(
+                DialogueTreeID.Soeran_Neut_Prequest,
+                new ReplaceConditionPatch
+                {
+                    Node = new OriginalNodeBuilder { NodeID = 65 },
+                    Condition = new LocationCheckConditionBuilder { Location = APWorld.Location.TrainSoeran },
+                });
+
+            Patches.Register(
+                DialogueTreeID.SimeonKing_HK_HeroPeacemaker,
+                new ReplaceConditionPatch
+                {
+                    Node = new OriginalNodeBuilder { NodeID = 54 },
+                    Condition = new LocationCheckConditionBuilder { Location = APWorld.Location.TrainKingSimeon },
+                });
+            Patches.Register(
+                DialogueTreeID.SimeonKing_HK_MouthToFeed,
+                new ReplaceConditionPatch
+                {
+                    Node = new OriginalNodeBuilder { NodeID = 13 },
+                    Condition = new LocationCheckConditionBuilder { Location = APWorld.Location.TrainKingSimeon },
+                });
+            Patches.Register(
+                DialogueTreeID.SimeonKing_HK_SandCorsair,
+                new ReplaceConditionPatch
+                {
+                    Node = new OriginalNodeBuilder { NodeID = 3 },
+                    Condition = new LocationCheckConditionBuilder { Location = APWorld.Location.TrainKingSimeon },
+                });
+            Patches.Register(
+                DialogueTreeID.SimeonKing_HK_TendFlame,
+                new ReplaceConditionPatch
+                {
+                    Node = new OriginalNodeBuilder { NodeID = 4 },
+                    Condition = new LocationCheckConditionBuilder { Location = APWorld.Location.TrainKingSimeon },
+                });
+            Patches.Register(
+                DialogueTreeID.SimeonKing_HM_HallowPeacemaker,
+                new ReplaceConditionPatch
+                {
+                    Node = new OriginalNodeBuilder { NodeID = 41 },
+                    Condition = new LocationCheckConditionBuilder { Location = APWorld.Location.TrainKingSimeon },
+                });
+            Patches.Register(
+                DialogueTreeID.SimeonKing_Neut_Initial,
+                new ReplaceConditionPatch
+                {
+                    Node = new OriginalNodeBuilder { NodeID = 13 },
+                    Condition = new LocationCheckConditionBuilder { Location = APWorld.Location.TrainKingSimeon },
+                });
+            Patches.Register(
+                DialogueTreeID.SimeonKing_Neut_Prequest,
+                new ReplaceConditionPatch
+                {
+                    Node = new OriginalNodeBuilder { NodeID = 18 },
+                    Condition = new LocationCheckConditionBuilder { Location = APWorld.Location.TrainKingSimeon },
+                });
+
             // wind altar location checks
 
             Patches.Register(
