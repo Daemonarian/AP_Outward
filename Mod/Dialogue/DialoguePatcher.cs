@@ -916,8 +916,16 @@ namespace OutwardArchipelago.Dialogue
                 {
                     ReplaceNodeID = 29,
                     Location = APWorld.Location.FriendlyImmaculateChersonese,
-                    OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.SideQuests_ImmaculateItems },
-                    NextNode = new OriginalNodeBuilder { NodeID = 32 },
+                    NextNode = new ConditionNodeBuilder
+                    {
+                        Condition = new QuestEventConditionBuilder { EventUID = OutwardQuestEvents.SideQuests_ImmaculateItems, MinStack = 2 },
+                        OnSuccess = new OriginalNodeBuilder { NodeID = 32 },
+                        OnFailure = new ActionNodeBuilder
+                        {
+                            Action = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.SideQuests_ImmaculateItems },
+                            NextNode = new OriginalNodeBuilder { NodeID = 32 },
+                        },
+                    }
                 });
             Patches.Register(
                 DialogueTreeID.Emercar_Immaculate_Real,
@@ -925,8 +933,16 @@ namespace OutwardArchipelago.Dialogue
                 {
                     ReplaceNodeID = 29,
                     Location = APWorld.Location.FriendlyImmaculateEnmerkarForest,
-                    OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.SideQuests_ImmaculateItems },
-                    NextNode = new OriginalNodeBuilder { NodeID = 32 },
+                    NextNode = new ConditionNodeBuilder
+                    {
+                        Condition = new QuestEventConditionBuilder { EventUID = OutwardQuestEvents.SideQuests_ImmaculateItems, MinStack = 2 },
+                        OnSuccess = new OriginalNodeBuilder { NodeID = 32 },
+                        OnFailure = new ActionNodeBuilder
+                        {
+                            Action = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.SideQuests_ImmaculateItems },
+                            NextNode = new OriginalNodeBuilder { NodeID = 32 },
+                        },
+                    }
                 });
             Patches.Register(
                 DialogueTreeID.Abrassar_Immaculate_Real,
@@ -934,8 +950,16 @@ namespace OutwardArchipelago.Dialogue
                 {
                     ReplaceNodeID = 29,
                     Location = APWorld.Location.FriendlyImmaculateAbrassar,
-                    OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.SideQuests_ImmaculateItems },
-                    NextNode = new OriginalNodeBuilder { NodeID = 32 },
+                    NextNode = new ConditionNodeBuilder
+                    {
+                        Condition = new QuestEventConditionBuilder { EventUID = OutwardQuestEvents.SideQuests_ImmaculateItems, MinStack = 2 },
+                        OnSuccess = new OriginalNodeBuilder { NodeID = 32 },
+                        OnFailure = new ActionNodeBuilder
+                        {
+                            Action = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.SideQuests_ImmaculateItems },
+                            NextNode = new OriginalNodeBuilder { NodeID = 32 },
+                        },
+                    }
                 });
             Patches.Register(
                 DialogueTreeID.HallowedMarsh_Immaculate_Real,
@@ -943,8 +967,16 @@ namespace OutwardArchipelago.Dialogue
                 {
                     ReplaceNodeID = 29,
                     Location = APWorld.Location.FriendlyImmaculateHallowedMarsh,
-                    OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.SideQuests_ImmaculateItems },
-                    NextNode = new OriginalNodeBuilder { NodeID = 32 },
+                    NextNode = new ConditionNodeBuilder
+                    {
+                        Condition = new QuestEventConditionBuilder { EventUID = OutwardQuestEvents.SideQuests_ImmaculateItems, MinStack = 2 },
+                        OnSuccess = new OriginalNodeBuilder { NodeID = 32 },
+                        OnFailure = new ActionNodeBuilder
+                        {
+                            Action = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.SideQuests_ImmaculateItems },
+                            NextNode = new OriginalNodeBuilder { NodeID = 32 },
+                        },
+                    }
                 });
             Patches.Register(
                 DialogueTreeID.AntiqueField_Immaculate_Real,
@@ -962,6 +994,40 @@ namespace OutwardArchipelago.Dialogue
                     Location = APWorld.Location.FriendlyImmaculateCaldera,
                     NextNode = new OriginalNodeBuilder { NodeID = 19 },
                 });
+
+            // dreamer halberd always available
+
+            var dreamerHalberdPatch = new InsertNodePatch
+            {
+                ReplaceNodeID = 0,
+                Node = new ConditionNodeBuilder
+                {
+                    Conditions = new IConditionBuilder[]
+                        {
+                            new QuestEventConditionBuilder { EventUID = OutwardQuestEvents.SideQuests_ImmaculateChersonese },
+                            new QuestEventConditionBuilder { EventUID = OutwardQuestEvents.SideQuests_ImmaculateEnmerkar },
+                            new QuestEventConditionBuilder { EventUID = OutwardQuestEvents.SideQuests_ImmaculateAbrassar },
+                            new QuestEventConditionBuilder { EventUID = OutwardQuestEvents.SideQuests_ImmaculateHallowedMarsh},
+                        },
+                    CheckMode = ConditionList.ConditionsCheckMode.AllTrueRequired,
+                    OnSuccess = new OriginalNodeBuilder { NodeID = 1 },
+                    OnFailure = new OriginalNodeBuilder { NodeID = 11 },
+                }
+            };
+            Patches.Register(DialogueTreeID.Chersonese_Immaculate_Real, dreamerHalberdPatch);
+            Patches.Register(DialogueTreeID.Emercar_Immaculate_Real, dreamerHalberdPatch);
+            Patches.Register(DialogueTreeID.Abrassar_Immaculate_Real, dreamerHalberdPatch);
+            Patches.Register(DialogueTreeID.HallowedMarsh_Immaculate_Real, dreamerHalberdPatch);
+
+            var dreamerHalberdNoKillPatch = new InsertNodePatch
+            {
+                ReplaceNodeID = 5,
+                Node = new ChildOriginalNodeBuilder { NodeID = 5 },
+            };
+            Patches.Register(DialogueTreeID.Chersonese_Immaculate_Real, dreamerHalberdNoKillPatch);
+            Patches.Register(DialogueTreeID.Emercar_Immaculate_Real, dreamerHalberdNoKillPatch);
+            Patches.Register(DialogueTreeID.Abrassar_Immaculate_Real, dreamerHalberdNoKillPatch);
+            Patches.Register(DialogueTreeID.HallowedMarsh_Immaculate_Real, dreamerHalberdNoKillPatch);
         }
     }
 }
