@@ -563,7 +563,7 @@ class OutwardWorld(World):
 
     def pre_fill(self):
         for location_name, (item_name, tier) in self.skill_sanity_location_info.items():
-            if self.options.skill_sanity.value == self.options.skill_sanity.option_vanilla or (self.options.skill_sanity.value == self.options.skill_sanity.option_tier_one_only and tier > 1):
+            if self.options.skillsanity.value == self.options.skillsanity.option_vanilla or (self.options.skillsanity.value == self.options.skillsanity.option_tier_one_only and tier > 1):
                 self.lock_location_item(location_name, item_name)
 
         if self.options.wind_altar_checks.value == 0:
@@ -577,7 +577,7 @@ class OutwardWorld(World):
     def fill_slot_data(self) -> dict[str, Any]:
         return {
             "death_link": bool(self.options.death_link.value),
-            "skill_sanity": int(self.options.skill_sanity.value),
+            "skillsanity": int(self.options.skillsanity.value),
             "wind_altar_checks": bool(self.options.wind_altar_checks.value),
             "breakthrough_point_checks": bool(self.options.breakthrough_point_checks.value),
         }

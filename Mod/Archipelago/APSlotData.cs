@@ -28,7 +28,7 @@ namespace OutwardArchipelago.Archipelago
         public APSlotData(Dictionary<string, object> slotData)
         {
             _isDeathLinkEnabled = slotData.TryGetValue("slot_data", out var isDeathLinkEnabled) ? (bool)isDeathLinkEnabled : false;
-            _skillSanity = slotData.TryGetValue("skill_sanity", out var skillSanity) ? (SkillSanityMode)(long)skillSanity : SkillSanityMode.Vanilla;
+            _skillSanity = slotData.TryGetValue("skillsanity", out var skillSanity) ? (SkillSanityMode)(long)skillSanity : SkillSanityMode.Vanilla;
             _areWindAltarChecksEnabled = slotData.TryGetValue("wind_altar_checks", out var areWindAltarChecksEnabled) ? (bool)areWindAltarChecksEnabled : true;
             _areBreakthoughPointChecksEnabled = slotData.TryGetValue("breakthrough_point_checks", out var areBreakthroughPointChecksEnabled) ? (bool)areBreakthroughPointChecksEnabled : true;
         }

@@ -9,7 +9,7 @@ class SkillSanityChoice(Choice):
     - **Full:** All skills are added to the general item pool.
     """
 
-    display_name = "Skill-Sanity"
+    display_name = "SkillSanity"
 
     option_vanilla = 0
     option_tier_one_only = 1
@@ -49,7 +49,7 @@ class BreakthroughPointChecksOption(Toggle):
 @dataclass
 class OutwardOptions(PerGameCommonOptions):
     death_link: DeathLink
-    skill_sanity: SkillSanityChoice
+    skillsanity: SkillSanityChoice
     wind_altar_checks: WindAltarChecksOption
     num_breakthough_points: NumBreakthoughPointsOption
     breakthrough_point_checks: BreakthroughPointChecksOption
