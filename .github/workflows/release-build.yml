@@ -20,6 +20,8 @@ jobs:
         skip-git-pull: true
         output-file: CHANGELOG.md
         skip-version-file: true
+    - name: Copy Changelog to Thunderstore package
+      run: Copy-Item -Path "CHANGELOG.md" -Destination "Mod\assets\CHANGELOG.md" -Force
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
