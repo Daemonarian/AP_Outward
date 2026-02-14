@@ -255,7 +255,7 @@ class OutwardWorld(World):
         location.place_locked_item(item)
 
     def item_rule_missable(self, item: Item):
-        return (item.player == self.player and ItemClassification.progression not in item.classification) or ItemClassification.filler in item.classification
+        return item.classification == ItemClassification.filler or (item.player == self.player and ItemClassification.progression not in item.classification)
 
     def generate_early(self):
         if not bool(self.options.breakthrough_point_checks.value):
@@ -556,7 +556,7 @@ class OutwardWorld(World):
         self.set_location_missable(OutwardLocationName.TRAIN_ANTHONY_BERTHELOT)
         self.set_location_missable(OutwardLocationName.TRAIN_PAUL)
         self.set_location_missable(OutwardLocationName.TRAIN_YAN)
-        
+
         # completion condition
 
         self.multiworld.completion_condition[self.player] = lambda state: state.has(OutwardEventName.MAIN_QUEST_07_COMPLETE, self.player)
