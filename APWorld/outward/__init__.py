@@ -441,6 +441,14 @@ class OutwardWorld(World):
             for _ in range(self.options.num_breakthough_points.value):
                 self.add_item(OutwardItemName.BREAKTHROUGH_POINT)
 
+        # friendly immaculate
+
+        self.add_item(OutwardItemName.CALYGREY_BONE_CAGE)
+        self.add_item(OutwardItemName.BARRIER_ARMOR)
+        self.add_item(OutwardItemName.BRIGANDS_BACKPACK)
+        self.add_item(OutwardItemName.SCOURGE_COCOON)
+        self.add_item(OutwardItemName.VAGABONDS_GELATIN)
+
         # filler items
 
         location_count = len(tuple(self.get_locations()))
@@ -533,6 +541,13 @@ class OutwardWorld(World):
                     self.set_location_missable(location_name)
                 else:
                     self.add_location_item_requirement(location_name, OutwardItemName.BREAKTHROUGH_POINT, count=len(OutwardLocationGroup.SKILL_TRAINER_INTERACT))
+
+        # dreamer halberd
+
+        self.add_location_item_requirement(OutwardLocationName.SPAWN_DREAMER_HALBERD, OutwardEventName.FRIENDLY_IMMACULATE_CHERSONESE)
+        self.add_location_item_requirement(OutwardLocationName.SPAWN_DREAMER_HALBERD, OutwardEventName.FRIENDLY_IMMACULATE_ENMERKAR_FOREST)
+        self.add_location_item_requirement(OutwardLocationName.SPAWN_DREAMER_HALBERD, OutwardEventName.FRIENDLY_IMMACULATE_ABRASSAR)
+        self.add_location_item_requirement(OutwardLocationName.SPAWN_DREAMER_HALBERD, OutwardEventName.FRIENDLY_IMMACULATE_HALLOWED_MARSH)
 
         # missable locations
 

@@ -7,12 +7,15 @@ namespace OutwardArchipelago.Dialogue
     {
         // common dialogue trees in Outward
         public static readonly DialogueTreeID Any = new(null, null);
+
         public static readonly DialogueTreeID Abrassar_BarrelMan_Real = FromName("Dialogue_Abrassar_BarrelMan_Real");
         public static readonly DialogueTreeID Abrassar_Immaculate_Real = FromName("Dialogue_Abrassar_Immaculate_Real");
         public static readonly DialogueTreeID AbrassPillar_Neut_COW = FromName("Dialogue_AbrassPillar_Neut_COW");
         public static readonly DialogueTreeID AcquireManaConflux = FromHash(0x2896DD34A20E9E90);
         public static readonly DialogueTreeID AcquireManaSorobor = FromHash(0x35A108122E861572);
+        public static readonly DialogueTreeID AntiqueField_Immaculate_Real = FromName("Dialogue_AntiqueField_Immaculate_Real");
         public static readonly DialogueTreeID Caldera_Evangeline_BaseBuilding = FromName("Dialogue_Caldera_Evangeline_BaseBuilding");
+        public static readonly DialogueTreeID Caldera_Immaculate_Real = FromName("Dialogue_Caldera_Immaculate_Real");
         public static readonly DialogueTreeID Caldera_Josef_BaseBuilding = FromName("Dialogue_Caldera_Josef_BaseBuilding");
         public static readonly DialogueTreeID Caldera_MessengerInn_Q0 = FromName("Dialogue_Caldera_MessengerInn_Q0");
         public static readonly DialogueTreeID Caldera_OpenSealedMaceBox = FromName("Dialogue_Caldera_OpenSealedMaceBox");

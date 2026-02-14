@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Required
 
 from BaseClasses import Location
 from worlds.generic.Rules import add_item_rule, add_rule
@@ -9,6 +9,8 @@ from .templates import OutwardGameObjectNamespace, OutwardGameObjectTemplate
 from .regions import OutwardRegionName
 
 if TYPE_CHECKING:
+    from typing import Iterable
+
     from worlds.generic.Rules import CollectionRule, ItemRule
 
     from . import OutwardWorld
@@ -158,7 +160,7 @@ class OutwardLocationName(OutwardGameObjectNamespace):
     SPAWN_CRACKED_RED_MOON = location("Scarlet Sanctuary - Crimson Avatar - Cracked Red Moon", OutwardRegionName.UNPLACED)
     SPAWN_DEPOWERED_BLUDGEON = location("Spawn - De-powered Bludgeon", OutwardRegionName.CALDERA)
     SPAWN_DISTORTED_EXPERIMENT = location("Item Upgrade - Caldera - Experimental Chakram", OutwardRegionName.UNPLACED)
-    SPAWN_DREAMER_HALBERD = location("Friendly Immaculate Gift - Dreamer Halberd", OutwardRegionName.UNPLACED)
+    SPAWN_DREAMER_HALBERD = location("Friendly Immaculate Gift - Dreamer Halberd", OutwardRegionName.IMMACULATE_CAMP_ANY)
     SPAWN_DUTY = location("Item Upgrade - Silkworm's Refuge - Ruined Halberd", OutwardRegionName.UNPLACED)
     SPAWN_EXPERIMENTAL_CHAKRAM = location("Spawn - Experimental Chakram", OutwardRegionName.CALDERA)
     SPAWN_FABULOUS_PALLADIUM_SHIELD = location("Spawn - Fabulous Palladium Shield", OutwardRegionName.UNPLACED)
@@ -384,6 +386,15 @@ class OutwardLocationName(OutwardGameObjectNamespace):
     SKILL_TRAINER_INTERACT_SINAI = location("Skill Trainer - Interact - Sinai, the Primal Ritualist", OutwardRegionName.RITUALISTS_HUT)
     SKILL_TRAINER_INTERACT_STYX = location("Skill Trainer - Interact - Styx", OutwardRegionName.LEVANT_SLUMS)
     SKILL_TRAINER_INTERACT_TURE = location("Skill Trainer - Interact - Ture", OutwardRegionName.BERG)
+
+    # friendly immaculate
+
+    FRIENDLY_IMMACULATE_CHERSONESE = location("Friendly Immaculate Gift - Chersonese", OutwardRegionName.IMMACULATES_CAMP_CHERSONESE)
+    FRIENDLY_IMMACULATE_ENMERKAR_FOREST = location("Friendly Immaculate Gift - Enmerkar Forest", OutwardRegionName.IMMACULATES_CAMP_ENMERKAR_FOREST)
+    FRIENDLY_IMMACULATE_ABRASSAR = location("Friendly Immaculate Gift - Abrassar", OutwardRegionName.IMMACULATES_CAMP_CHERSONESE)
+    FRIENDLY_IMMACULATE_HALLOWED_MARSH = location("Friendly Immaculate Gift - Hallowed Marsh", OutwardRegionName.IMMACULATES_CAMP_HALLOWED_MARSH)
+    FRIENDLY_IMMACULATE_ANTIQUE_PLATEAU = location("Friendly Immaculate Gift - Antique Plateau", OutwardRegionName.IMMACULATES_CAMP_ANTIQUE_PLATEAU)
+    FRIENDLY_IMMACULATE_CALDERA = location("Friendly Immaculate Gift - Caldera", OutwardRegionName.IMMACULATES_CAMP_CALDERA)
 
 class OutwardLocationGroup:
     SKILL_TRAINER_INTERACT = [

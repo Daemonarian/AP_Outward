@@ -7,8 +7,7 @@ namespace OutwardArchipelago.Patch
     {
         private static bool Prefix(QuestEventManager __instance, QuestEventData _eventData)
         {
-            OutwardArchipelagoMod.Log.LogDebug($"[QuestEventManager.NotifyOnQEAddedListeners] {_eventData.Name} ({_eventData.EventUID}) IsStackable={_eventData.IsStackable} StackCount={_eventData.StackCount}");
-
+            OutwardArchipelagoMod.Log.LogDebug($"[QuestEventManager.NotifyOnQEAddedListeners] {_eventData.Name} ({_eventData.EventUID}) IsStackable={_eventData.IsStackable} StackCount={_eventData.StackCount}:\n{System.Environment.StackTrace}");
             return true;
         }
     }
