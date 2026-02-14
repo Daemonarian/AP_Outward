@@ -370,3 +370,32 @@ class OutwardLocationName(OutwardGameObjectNamespace):
     WIND_ALTAR_HALLOWED_MARSH = location("Wind Altar - Hallowed Marsh", OutwardRegionName.HALLOWED_MARSH)
     WIND_ALTAR_ANTIQUE_PLATEAU = location("Wind Altar - Antique Plateau", OutwardRegionName.ANTIQUE_PLATEAU)
     WIND_ALTAR_CALDERA = location("Wind Altar - Caldera", OutwardRegionName.CALDERA)
+
+    # skill trainer interactions
+    
+    SKILL_TRAINER_INTERACT_ADALBERT = location("Skill Trainer - Interact - Adalbert the Hermit", OutwardRegionName.HERMITS_HOUSE)
+    SKILL_TRAINER_INTERACT_ALEMMON = location("Skill Trainer - Interact - Alemmon", OutwardRegionName.MONSOON)
+    SKILL_TRAINER_INTERACT_ELLA = location("Skill Trainer - Interact - Ella Lockwell", OutwardRegionName.HARMATTAN)
+    SKILL_TRAINER_INTERACT_ETO = location("Skill Trainer - Interact - Eto", OutwardRegionName.CIERZO)
+    SKILL_TRAINER_INTERACT_FLASE = location("Skill Trainer - Interact - Flase, Sage Trainer", OutwardRegionName.BERG)
+    SKILL_TRAINER_INTERACT_GALIRA = location("Skill Trainer - Interact - Galira", OutwardRegionName.MONSOON)
+    SKILL_TRAINER_INTERACT_JAIMON = location("Skill Trainer - Interact - Jaimon", OutwardRegionName.LEVANT)
+    SKILL_TRAINER_INTERACT_SERGE = location("Skill Trainer - Interact - Serge Battleborn", OutwardRegionName.HARMATTAN)
+    SKILL_TRAINER_INTERACT_SINAI = location("Skill Trainer - Interact - Sinai, the Primal Ritualist", OutwardRegionName.RITUALISTS_HUT)
+    SKILL_TRAINER_INTERACT_STYX = location("Skill Trainer - Interact - Styx", OutwardRegionName.LEVANT_SLUMS)
+    SKILL_TRAINER_INTERACT_TURE = location("Skill Trainer - Interact - Ture", OutwardRegionName.BERG)
+
+class OutwardLocationGroup:
+    SKILL_TRAINER_INTERACT = [
+        OutwardLocationName.SKILL_TRAINER_INTERACT_ADALBERT,
+        OutwardLocationName.SKILL_TRAINER_INTERACT_ALEMMON,
+        OutwardLocationName.SKILL_TRAINER_INTERACT_ELLA,
+        OutwardLocationName.SKILL_TRAINER_INTERACT_ETO,
+        OutwardLocationName.SKILL_TRAINER_INTERACT_FLASE,
+        OutwardLocationName.SKILL_TRAINER_INTERACT_GALIRA,
+        OutwardLocationName.SKILL_TRAINER_INTERACT_JAIMON,
+        OutwardLocationName.SKILL_TRAINER_INTERACT_SERGE,
+        OutwardLocationName.SKILL_TRAINER_INTERACT_SINAI,
+        OutwardLocationName.SKILL_TRAINER_INTERACT_STYX,
+        OutwardLocationName.SKILL_TRAINER_INTERACT_TURE,
+    ]

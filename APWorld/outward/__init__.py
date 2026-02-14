@@ -5,8 +5,8 @@ from worlds.AutoWorld import World
 
 from .common import OUTWARD
 from .events import ItemClassification, OutwardEvent, OutwardEventName
-from .items import OutwardGameItem, OutwardItem, OutwardItemName
-from .locations import OutwardGameLocation, OutwardLocation, OutwardLocationName
+from .items import OutwardGameItem, OutwardItem, OutwardItemGroup, OutwardItemName
+from .locations import OutwardGameLocation, OutwardLocation, OutwardLocationGroup, OutwardLocationName
 from .options import OutwardOptions
 from .regions import OutwardEntrance, OutwardEntranceName, OutwardRegion, OutwardRegionName
 
@@ -14,6 +14,7 @@ if TYPE_CHECKING:
     from collections.abc import Iterable
     from typing import Any
 
+    from BaseClasses import Item
     from worlds.generic.Rules import CollectionRule, ItemRule
 
 class OutwardWorld(World):
@@ -148,12 +149,8 @@ class OutwardWorld(World):
     }
 
     def get_item(self, item_name) -> OutwardItem:
-        for item in self.multiworld.itempool:
-            if item is not None and item.player == self.player and isinstance(item, OutwardItem) and item.name == item_name:
-                return item
-        for location in self.get_locations():
-            item = location.item
-            if item is not None and item.player == self.player and isinstance(item, OutwardItem) and item.name == item_name:
+        for item in self.get_items():
+            if item.name == item_name:
                 return item
         raise ValueError(f"cannot find the item '{item_name}'")
 
@@ -174,6 +171,15 @@ class OutwardWorld(World):
         if not isinstance(location, OutwardLocation):
             raise ValueError(f"the location '{location_name}' is not an Outward location")
         return location
+
+    def get_items(self) -> Iterable[OutwardItem]:
+        for item in self.multiworld.itempool:
+            if item.player == self.player and isinstance(item, OutwardItem):
+                yield item
+        for loc in self.get_locations():
+            item = loc.item
+            if item is not None and item.player == self.player and isinstance(item, OutwardItem):
+                yield item
 
     def get_regions(self) -> Iterable[OutwardRegion]:
         return [region for region in super().get_regions() if isinstance(region, OutwardRegion)]
@@ -239,12 +245,41 @@ class OutwardWorld(World):
     def add_location_item_requirement(self, location_name: str, item_name: str, count: int = 1, combine: str = "and") -> None:
         self.add_location_access_rule(location_name, lambda state: state.has(item_name, self.player, count), combine)
 
+    def set_location_missable(self, location_name: str) -> None:
+        self.add_location_item_rule(location_name, self.item_rule_missable)
+
     def lock_location_item(self, location_name: str, item_name: str):
         location = self.get_location(location_name)
         item = self.get_item(item_name)
         self.multiworld.itempool.remove(item)
         location.place_locked_item(item)
 
+    def item_rule_missable(self, item: Item):
+        return (item.player == self.player and ItemClassification.progression not in item.classification) or ItemClassification.filler in item.classification
+
+    def generate_early(self):
+        if not bool(self.options.breakthrough_point_checks.value):
+            for _ in range(self.options.num_breakthough_points.value):
+                self.push_precollected(self.create_item(OutwardItemName.BREAKTHROUGH_POINT))
+          
+    def create_regions(self):
+        for region_name in OutwardRegionName.get_names():
+            self.add_region(region_name)
+        for entrance_name in OutwardEntranceName.get_names():
+            self.add_entrance(entrance_name)
+        for event_name in OutwardEventName.get_names():
+            self.add_event(event_name)
+        for location_name in OutwardLocationName.get_names():
+            self.add_location(location_name)
+
+        if not bool(self.options.breakthrough_point_checks.value):
+            for location_name in OutwardLocationGroup.SKILL_TRAINER_INTERACT:
+                item = self.create_item(OutwardItemName.SILVER_CURRENCY)
+                self.get_location(location_name).place_locked_item(item)
+
+    def get_filler_item_name(self) -> str:
+        return self.random.choice(tuple(OutwardItemGroup.FILLER))
+      
     def create_items(self):
         # key items
 
@@ -400,21 +435,21 @@ class OutwardWorld(World):
         self.add_item(OutwardItemName.WIND_ALTAR_BOON_ANTIQUE_PLATEAU)
         self.add_item(OutwardItemName.WIND_ALTAR_BOON_CALDERA)
 
-        # filler
+        # breakthrough points
 
-        filler_count = 33
-        for _ in range(filler_count):
-            self.add_item(OutwardItemName.SILVER_CURRENCY)
+        if bool(self.options.breakthrough_point_checks.value):
+            for _ in range(self.options.num_breakthough_points.value):
+                self.add_item(OutwardItemName.BREAKTHROUGH_POINT)
 
-    def create_regions(self):
-        for region_name in OutwardRegionName.get_names():
-            self.add_region(region_name)
-        for entrance_name in OutwardEntranceName.get_names():
-            self.add_entrance(entrance_name)
-        for event_name in OutwardEventName.get_names():
-            self.add_event(event_name)
-        for location_name in OutwardLocationName.get_names():
-            self.add_location(location_name)
+        # filler items
+
+        location_count = len(tuple(self.get_locations()))
+        item_count = len(tuple(self.get_items()))
+        filler_count = location_count - item_count
+        if filler_count > 0:
+            for _ in range(filler_count):
+                item_name = self.get_filler_item_name()
+                self.add_item(item_name)
 
     def set_rules(self):
         # main quest events
@@ -464,6 +499,7 @@ class OutwardWorld(World):
         self.add_location_item_requirement(OutwardLocationName.QUEST_PARALLEL_RUST_AND_VENGEANCE_3, OutwardEventName.MAIN_QUEST_04_COMPLETE)
 
         # useful items
+
         self.add_location_item_requirement(OutwardLocationName.SPAWN_ANGLER_SHIELD, OutwardItemName.SLUMBERING_SHIELD)
         self.add_location_item_requirement(OutwardLocationName.SPAWN_BRAND, OutwardItemName.STRANGE_RUSTED_SWORD)
         self.add_location_item_requirement(OutwardLocationName.SPAWN_DISTORTED_EXPERIMENT, OutwardItemName.EXPERIMENTAL_CHAKRAM)
@@ -489,22 +525,24 @@ class OutwardWorld(World):
         self.add_location_item_requirement(OutwardLocationName.SPAWN_TOKEBAKICIT, OutwardItemName.UNUSUAL_KNUCKLES)
         self.add_location_item_requirement(OutwardLocationName.SPAWN_WARM_AXE, OutwardItemName.MYRMITAUR_HAVEN_GATE_KEY)
 
-        # missable locations
-
-        missable_locations = [
-            OutwardLocationName.BURAC_FREE_SKILL,
-            OutwardLocationName.TRAIN_SAMANTHA_TURNBULL,
-            OutwardLocationName.TRAIN_ANTHONY_BERTHELOT,
-            OutwardLocationName.TRAIN_PAUL,
-            OutwardLocationName.TRAIN_YAN,
-        ]
+        # tier 2+ skill checks
 
         for location_name, (_, tier) in self.skill_sanity_location_info.items():
             if tier > 1:
-                missable_locations.append(location_name)
+                if self.options.num_breakthough_points.value < len(OutwardLocationGroup.SKILL_TRAINER_INTERACT):
+                    self.set_location_missable(location_name)
+                else:
+                    self.add_location_item_requirement(location_name, OutwardItemName.BREAKTHROUGH_POINT, count=len(OutwardLocationGroup.SKILL_TRAINER_INTERACT))
 
-        for loc in missable_locations:
-            self.add_location_item_rule(loc, lambda item: (item.player == self.player and ItemClassification.progression not in item.classification) or ItemClassification.filler in item.classification)
+        # missable locations
+
+        self.set_location_missable(OutwardLocationName.BURAC_FREE_SKILL)
+        self.set_location_missable(OutwardLocationName.TRAIN_SAMANTHA_TURNBULL)
+        self.set_location_missable(OutwardLocationName.TRAIN_ANTHONY_BERTHELOT)
+        self.set_location_missable(OutwardLocationName.TRAIN_PAUL)
+        self.set_location_missable(OutwardLocationName.TRAIN_YAN)
+        
+        # completion condition
 
         self.multiworld.completion_condition[self.player] = lambda state: state.has(OutwardEventName.MAIN_QUEST_07_COMPLETE, self.player)
 
@@ -520,10 +558,11 @@ class OutwardWorld(World):
             self.lock_location_item(OutwardLocationName.WIND_ALTAR_HALLOWED_MARSH, OutwardItemName.WIND_ALTAR_BOON_HALLOWED_MARSH)
             self.lock_location_item(OutwardLocationName.WIND_ALTAR_ANTIQUE_PLATEAU, OutwardItemName.WIND_ALTAR_BOON_ANTIQUE_PLATEAU)
             self.lock_location_item(OutwardLocationName.WIND_ALTAR_CALDERA, OutwardItemName.WIND_ALTAR_BOON_CALDERA)
-
+            
     def fill_slot_data(self) -> dict[str, Any]:
         return {
-            "death_link": bool(self.options.death_link.value != 0),
+            "death_link": bool(self.options.death_link.value),
             "skill_sanity": int(self.options.skill_sanity.value),
-            "wind_altar_checks": bool(self.options.wind_altar_checks.value != 0)
+            "wind_altar_checks": bool(self.options.wind_altar_checks.value),
+            "breakthrough_point_checks": bool(self.options.breakthrough_point_checks.value),
         }

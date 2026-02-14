@@ -42,6 +42,7 @@ class OutwardItemName(OutwardGameObjectNamespace):
     # custom key items
 
     QUEST_LICENSE = item("Progressive Quest License", ItemClassification.progression)
+    BREAKTHROUGH_POINT = item("Breakthrough Point", ItemClassification.progression)
     
     # custom filler items
 
@@ -1853,3 +1854,13 @@ class OutwardItemName(OutwardGameObjectNamespace):
     FIREWORKS = item("Fireworks", ItemClassification.useful, 8400020) # 8400020_Fireworks
     GOLDEN_WATCHER = item("Golden Watcher", ItemClassification.useful, 8400021) # 8400021_PetSpecter
     SUMMON_WILL_O_WISP_GHOST = item("Summon Will-O-Wisp Ghost", ItemClassification.useful, 8500000) # 8500000_SummonWillOWisp
+
+class OutwardItemGroup:
+    FILLER = [
+        OutwardItemName.SILVER_CURRENCY,
+        OutwardItemName.GOLD_INGOT,
+        OutwardItemName.TINY_AQUAMARINE,
+        OutwardItemName.SMALL_SAPPHIRE,
+        OutwardItemName.MEDIUM_RUBY,
+        OutwardItemName.LARGE_EMERALD,
+    ]

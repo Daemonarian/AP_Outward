@@ -15,6 +15,7 @@ We have, however, made the following changes to the base game:
 - Added **Archipelago** location checks behind the first completion (pass or fail) of *every* quest in the game.
 - Added a Skillsanity mode where skills offered by skill trainers are now randomized.
 - Optionally added location checks for activating the Cabal of Wind altars in each region, and added their boons to the item pool.
+- Option to add *Breakthough Points* to the item pool, which also adds location checks for speaking to each of the skill trainers that teach *Breakthrough Skills*.
 - Added support for **Archipelago**'s *death-link* mode.
     - *Death-links* recieved will result in the player's death.
     - Any player deaths, for any reason (outside of another *death-link*), will send a *death-link* to the **Archipelago** server.

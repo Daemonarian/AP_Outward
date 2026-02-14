@@ -156,6 +156,10 @@ namespace OutwardArchipelago.Archipelago
             { Item.WindAltarBoonAntiquePlateau, new QuestEventGiver(OutwardQuestEvents.Harmattan_WindAltar_Activated) },
             { Item.WindAltarBoonCaldera, new QuestEventGiver(OutwardQuestEvents.Caldera_WindAltar_Activated) },
 
+            // breakthrough points
+
+            { Item.BreakthroughPoint, new NotificationItemGiver(Item.BreakthroughPoint) },
+
             // vanilla items
 
             { Item.TestWeaponOfDooooom, new ItemGiver(OutwardItem.TestWeaponOfDooooom) },
