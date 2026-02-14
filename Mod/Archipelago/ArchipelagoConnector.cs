@@ -10,6 +10,7 @@ using Archipelago.MultiClient.Net.Exceptions;
 using Archipelago.MultiClient.Net.Helpers;
 using Archipelago.MultiClient.Net.MessageLog.Messages;
 using HarmonyLib;
+using OutwardArchipelago.Archipelago.APItemGivers;
 using OutwardArchipelago.QuestEvents;
 using OutwardArchipelago.Utils;
 using UnityEngine;
@@ -632,7 +633,7 @@ namespace OutwardArchipelago.Archipelago
                 if (!APWorld.ItemToGiver.TryGetValue(item, out var itemGiver))
                 {
                     OutwardArchipelagoMod.Log.LogInfo($"tried to give {item} to player, but could not determine the corresponding Outward reward");
-                    return;
+                    itemGiver = new NotificationItemGiver(item);
                 }
 
                 OutwardArchipelagoMod.Log.LogInfo($"giving Archipelago item {item} to player");
