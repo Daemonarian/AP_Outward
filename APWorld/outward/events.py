@@ -84,3 +84,10 @@ class OutwardEventName(OutwardObjectNamespace):
     MAIN_QUEST_10_COMPLETE = event("Event - Main Quest 10 - Complete", OutwardRegionName.UNPLACED)
     MAIN_QUEST_11_COMPLETE = event("Event - Main Quest 11 - Complete", OutwardRegionName.UNPLACED)
     MAIN_QUEST_12_COMPLETE = event("Event - Main Quest 12 - Complete", OutwardRegionName.UNPLACED)
+
+    # friendly immaculate
+
+    FRIENDLY_IMMACULATE_CHERSONESE = event("Event - Immaculate Camp - Chersonese", OutwardRegionName.IMMACULATES_CAMP_CHERSONESE)
+    FRIENDLY_IMMACULATE_ENMERKAR_FOREST = event("Event - Immaculate Camp - Enmerkar Forest", OutwardRegionName.IMMACULATES_CAMP_ENMERKAR_FOREST)
+    FRIENDLY_IMMACULATE_ABRASSAR = event("Event - Immaculate Camp - Abrassar", OutwardRegionName.IMMACULATES_CAMP_ABRASSAR)
+    FRIENDLY_IMMACULATE_HALLOWED_MARSH = event("Event - Immaculate Camp - Hallowed Marsh", OutwardRegionName.IMMACULATES_CAMP_HALLOWED_MARSH)

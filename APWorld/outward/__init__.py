@@ -542,6 +542,13 @@ class OutwardWorld(World):
                 else:
                     self.add_location_item_requirement(location_name, OutwardItemName.BREAKTHROUGH_POINT, count=len(OutwardLocationGroup.SKILL_TRAINER_INTERACT))
 
+        # dreamer halberd
+
+        self.add_location_item_requirement(OutwardLocationName.SPAWN_DREAMER_HALBERD, OutwardEventName.FRIENDLY_IMMACULATE_CHERSONESE)
+        self.add_location_item_requirement(OutwardLocationName.SPAWN_DREAMER_HALBERD, OutwardEventName.FRIENDLY_IMMACULATE_ENMERKAR_FOREST)
+        self.add_location_item_requirement(OutwardLocationName.SPAWN_DREAMER_HALBERD, OutwardEventName.FRIENDLY_IMMACULATE_ABRASSAR)
+        self.add_location_item_requirement(OutwardLocationName.SPAWN_DREAMER_HALBERD, OutwardEventName.FRIENDLY_IMMACULATE_HALLOWED_MARSH)
+
         # missable locations
 
         self.set_location_missable(OutwardLocationName.BURAC_FREE_SKILL)

@@ -1,5 +1,5 @@
 from __future__ import annotations
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Required
 
 from BaseClasses import Location
 from worlds.generic.Rules import add_item_rule, add_rule
@@ -9,6 +9,8 @@ from .templates import OutwardGameObjectNamespace, OutwardGameObjectTemplate
 from .regions import OutwardRegionName
 
 if TYPE_CHECKING:
+    from typing import Iterable
+
     from worlds.generic.Rules import CollectionRule, ItemRule
 
     from . import OutwardWorld
@@ -158,7 +160,7 @@ class OutwardLocationName(OutwardGameObjectNamespace):
     SPAWN_CRACKED_RED_MOON = location("Scarlet Sanctuary - Crimson Avatar - Cracked Red Moon", OutwardRegionName.UNPLACED)
     SPAWN_DEPOWERED_BLUDGEON = location("Spawn - De-powered Bludgeon", OutwardRegionName.CALDERA)
     SPAWN_DISTORTED_EXPERIMENT = location("Item Upgrade - Caldera - Experimental Chakram", OutwardRegionName.UNPLACED)
-    SPAWN_DREAMER_HALBERD = location("Friendly Immaculate Gift - Dreamer Halberd", OutwardRegionName.UNPLACED)
+    SPAWN_DREAMER_HALBERD = location("Friendly Immaculate Gift - Dreamer Halberd", OutwardRegionName.IMMACULATE_CAMP_ANY)
     SPAWN_DUTY = location("Item Upgrade - Silkworm's Refuge - Ruined Halberd", OutwardRegionName.UNPLACED)
     SPAWN_EXPERIMENTAL_CHAKRAM = location("Spawn - Experimental Chakram", OutwardRegionName.CALDERA)
     SPAWN_FABULOUS_PALLADIUM_SHIELD = location("Spawn - Fabulous Palladium Shield", OutwardRegionName.UNPLACED)

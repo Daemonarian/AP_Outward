@@ -239,6 +239,7 @@ class OutwardRegionName(OutwardObjectNamespace):
     # other
 
     LEYLINE_ANY = region("Leyline - Either")
+    IMMACULATE_CAMP_ANY = region("Immaculate Camp - Any of the Original Four")
     
 entrance = OutwardEntranceTemplate.register_template
 class OutwardEntranceName(OutwardObjectNamespace):
@@ -680,3 +681,8 @@ class OutwardEntranceName(OutwardObjectNamespace):
 
     LEYLINE_ANY_CONFLUX_CHAMBERS_DOOR_ENTER = entrance("Leyline - Conflux Chambers - Enter", OutwardRegionName.CONFLUX_CHAMBERS, OutwardRegionName.LEYLINE_ANY)
     LEYLINE_ANY_HARMATTAN_DOOR_ENTER = entrance("Leyline - Sorobor Academy - Enter", OutwardRegionName.HARMATTAN, OutwardRegionName.LEYLINE_ANY)
+
+    IMMACULATE_CAMP_ANY_CHEROSENE_DOOR_ENTER = entrance("Immaculate Camp - Cherosene - Enter", OutwardRegionName.CHERSONESE, OutwardRegionName.IMMACULATE_CAMP_ANY)
+    IMMACULATE_CAMP_ANY_ENMERKAR_FOREST_DOOR_ENTER = entrance("Immaculate Camp - Enmerkar Forest - Enter", OutwardRegionName.ENMERKAR_FOREST, OutwardRegionName.IMMACULATE_CAMP_ANY)
+    IMMACULATE_CAMP_ANY_ABRASSAR_DOOR_ENTER = entrance("Immaculate Camp - Abrassar - Enter", OutwardRegionName.ABRASSAR, OutwardRegionName.IMMACULATE_CAMP_ANY)
+    IMMACULATE_CAMP_ANY_HALLOWED_MARSH_DOOR_ENTER = entrance("Immaculate Camp - Hallowed Marsh - Enter", OutwardRegionName.HALLOWED_MARSH, OutwardRegionName.IMMACULATE_CAMP_ANY)
