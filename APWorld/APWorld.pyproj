@@ -64,7 +64,6 @@
   <ItemGroup>
     <Content Include="build_tools\utils.py" />
     <Content Include="outward\archipelago.json" />
-    <Content Include="outward\Outward Definitive Edition.yaml" />
     <Content Include="outward\regions.py" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
