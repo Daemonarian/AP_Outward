@@ -907,6 +907,61 @@ namespace OutwardArchipelago.Dialogue
                         },
                     },
                 });
+
+            // friendly immaculate gift
+
+            Patches.Register(
+                DialogueTreeID.Chersonese_Immaculate_Real,
+                new InsertLocationCheckPatch
+                {
+                    ReplaceNodeID = 29,
+                    Location = APWorld.Location.FriendlyImmaculateChersonese,
+                    OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.SideQuests_ImmaculateItems },
+                    NextNode = new OriginalNodeBuilder { NodeID = 32 },
+                });
+            Patches.Register(
+                DialogueTreeID.Emercar_Immaculate_Real,
+                new InsertLocationCheckPatch
+                {
+                    ReplaceNodeID = 29,
+                    Location = APWorld.Location.FriendlyImmaculateEnmerkarForest,
+                    OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.SideQuests_ImmaculateItems },
+                    NextNode = new OriginalNodeBuilder { NodeID = 32 },
+                });
+            Patches.Register(
+                DialogueTreeID.Abrassar_Immaculate_Real,
+                new InsertLocationCheckPatch
+                {
+                    ReplaceNodeID = 29,
+                    Location = APWorld.Location.FriendlyImmaculateAbrassar,
+                    OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.SideQuests_ImmaculateItems },
+                    NextNode = new OriginalNodeBuilder { NodeID = 32 },
+                });
+            Patches.Register(
+                DialogueTreeID.HallowedMarsh_Immaculate_Real,
+                new InsertLocationCheckPatch
+                {
+                    ReplaceNodeID = 29,
+                    Location = APWorld.Location.FriendlyImmaculateHallowedMarsh,
+                    OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.SideQuests_ImmaculateItems },
+                    NextNode = new OriginalNodeBuilder { NodeID = 32 },
+                });
+            Patches.Register(
+                DialogueTreeID.AntiqueField_Immaculate_Real,
+                new InsertLocationCheckPatch
+                {
+                    ReplaceNodeID = 17,
+                    Location = APWorld.Location.FriendlyImmaculateAntiquePlateau,
+                    OtherAction = new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.SideQuests_ImmaculateAntiqueField },
+                });
+            Patches.Register(
+                DialogueTreeID.Caldera_Immaculate_Real,
+                new InsertLocationCheckPatch
+                {
+                    ReplaceNodeID = 17,
+                    Location = APWorld.Location.FriendlyImmaculateCaldera,
+                    NextNode = new OriginalNodeBuilder { NodeID = 19 },
+                });
         }
     }
 }

@@ -385,6 +385,15 @@ class OutwardLocationName(OutwardGameObjectNamespace):
     SKILL_TRAINER_INTERACT_STYX = location("Skill Trainer - Interact - Styx", OutwardRegionName.LEVANT_SLUMS)
     SKILL_TRAINER_INTERACT_TURE = location("Skill Trainer - Interact - Ture", OutwardRegionName.BERG)
 
+    # friendly immaculate
+
+    FRIENDLY_IMMACULATE_CHERSONESE = location("Friendly Immaculate Gift - Chersonese", OutwardRegionName.IMMACULATES_CAMP_CHERSONESE)
+    FRIENDLY_IMMACULATE_ENMERKAR_FOREST = location("Friendly Immaculate Gift - Enmerkar Forest", OutwardRegionName.IMMACULATES_CAMP_ENMERKAR_FOREST)
+    FRIENDLY_IMMACULATE_ABRASSAR = location("Friendly Immaculate Gift - Abrassar", OutwardRegionName.IMMACULATES_CAMP_CHERSONESE)
+    FRIENDLY_IMMACULATE_HALLOWED_MARSH = location("Friendly Immaculate Gift - Hallowed Marsh", OutwardRegionName.IMMACULATES_CAMP_HALLOWED_MARSH)
+    FRIENDLY_IMMACULATE_ANTIQUE_PLATEAU = location("Friendly Immaculate Gift - Antique Plateau", OutwardRegionName.IMMACULATES_CAMP_ANTIQUE_PLATEAU)
+    FRIENDLY_IMMACULATE_CALDERA = location("Friendly Immaculate Gift - Caldera", OutwardRegionName.IMMACULATES_CAMP_CALDERA)
+
 class OutwardLocationGroup:
     SKILL_TRAINER_INTERACT = [
         OutwardLocationName.SKILL_TRAINER_INTERACT_ADALBERT,

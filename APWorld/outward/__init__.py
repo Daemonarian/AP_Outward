@@ -441,6 +441,14 @@ class OutwardWorld(World):
             for _ in range(self.options.num_breakthough_points.value):
                 self.add_item(OutwardItemName.BREAKTHROUGH_POINT)
 
+        # friendly immaculate
+
+        self.add_item(OutwardItemName.CALYGREY_BONE_CAGE)
+        self.add_item(OutwardItemName.BARRIER_ARMOR)
+        self.add_item(OutwardItemName.BRIGANDS_BACKPACK)
+        self.add_item(OutwardItemName.SCOURGE_COCOON)
+        self.add_item(OutwardItemName.VAGABONDS_GELATIN)
+
         # filler items
 
         location_count = len(tuple(self.get_locations()))
