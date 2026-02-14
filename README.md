@@ -13,6 +13,7 @@ We have, however, made the following changes to the base game:
     - Main quest NPCs now refuse to talk to you about the main quest unless you have the corresponding *Quest License* skill.
 - Replaced most skills and unique items in **Outward** with **Archipelago** location checks.
 - Added **Archipelago** location checks behind the first completion (pass or fail) of *every* quest in the game.
+- Modified the friendly Immaculate side quest so that the friend immaculate never dies, can give a reward at every location, and can give an extra reward for visiting him in all four original zones.
 - Added a Skillsanity mode where skills offered by skill trainers are now randomized.
 - Optionally added location checks for activating the Cabal of Wind altars in each region, and added their boons to the item pool.
 - Option to add *Breakthough Points* to the item pool, which also adds location checks for speaking to each of the skill trainers that teach *Breakthrough Skills*.
