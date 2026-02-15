@@ -8,7 +8,7 @@
   <ItemGroup>
     <ProjectReference Include="$(APWorldWrapperProjectDir)APWorld.Wrapper.msbuildproj" />
   </ItemGroup>
-  <Target Name="RunTests" AfterTargets="Build">
+  <Target Name="RunTests" AfterTargets="VSTest">
     <Exec Command="$(PythonCommand) -m pytest worlds\outward" WorkingDirectory="..\..\External\Archipelago" />
   </Target>
 </Project>
