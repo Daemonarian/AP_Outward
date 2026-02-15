@@ -31,11 +31,14 @@
       <PackageDllFiles Include="$(ModOutputDir)\OutwardArchipelago.dll" />
       <PackageDllFiles Include="$(ModOutputDir)\Archipelago.MultiClient.Net.dll" />
       <PackageDllFiles Include="$(ModOutputDir)\Newtonsoft.Json.dll" />
+      <SharedFiles Include="..\..\README.md" />
+      <SharedFiles Include="..\..\CHANGELOG.md" />
     </ItemGroup>
     <RemoveDir Directories="$(StagingDir)" />
     <MakeDir Directories="$(StagingDir)" />
     <Copy SourceFiles="@(PackageAssetFiles)" DestinationFiles="@(PackageAssetFiles->'$(StagingDir)\%(RecursiveDir)%(Filename)%(Extension)')" />
     <Copy SourceFiles="@(PackageDllFiles)" DestinationFolder="$(StagingDir)\plugins" />
+    <Copy SourceFiles="@(SharedFiles)" DestinationFolder="$(StagingDir)" />
     <ReadLinesFromFile File="..\..\VERSION">
       <Output TaskParameter="Lines" PropertyName="Version" />
     </ReadLinesFromFile>
