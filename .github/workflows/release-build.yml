@@ -4,7 +4,7 @@ permissions:
 on:
   push:
     tags:
-      - 'v*'
+      - 'v*.*.*'
 jobs:
   build:
     runs-on: windows-latest
@@ -13,46 +13,25 @@ jobs:
       uses: actions/checkout@v4
       with:
         submodules: true
-    - name: Generate Changelog
-      uses: TriPSs/conventional-changelog-action@v5
-      with:
-        github-token: ${{ secrets.github_token }}
-        skip-git-pull: true
-        output-file: CHANGELOG.md
-        skip-version-file: true
-    - name: Copy Changelog to Thunderstore package
-      run: Copy-Item -Path "CHANGELOG.md" -Destination "Mod\assets\CHANGELOG.md" -Force
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: 8.0.x 
+        dotnet-version: '8.0.x'
     - name: Setup Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.13' 
+        python-version: '3.13'
     - name: Setup Python Environment
       run: python APWorld/setup.py
     - name: Build
       run: dotnet build --configuration Release
-    - name: Upload APWorld
-      uses: actions/upload-artifact@v4
-      with:
-        name: APWorld
-        path: Release/APWorld.Release/build/outward.apworld
-    - name: Upload Thunderstore Package
-      uses: actions/upload-artifact@v4
-      with:
-        name: Thunderstore
-        path: Release/Mod.Release/build/OutwardArchipelago.zip
     - name: Release
       uses: softprops/action-gh-release@v2
       if: github.ref_type == 'tag'
       env:
         GITHUB_TOKEN: ${{ secrets.github_token }}
       with:
-        tag_name: ${{ steps.changelog.outputs.tag }}
-        name: ${{ steps.changelog.outputs.tag }}
-        body: ${{ steps.changelog.outputs.clean_changelog }}
+        body_path: CHANGELOG.md
         files: |
           Release/APWorld.Release/build/outward.apworld
           Release/Mod.Release/build/OutwardArchipelago.zip
