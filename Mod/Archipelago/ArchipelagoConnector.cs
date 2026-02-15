@@ -23,6 +23,11 @@ namespace OutwardArchipelago.Archipelago
     internal class ArchipelagoConnector : MonoBehaviour
     {
         /// <summary>
+        /// The prefix that must be entered when using the AP chat command.
+        /// </summary>
+        private const string APChatCommandPrefix = "ap";
+
+        /// <summary>
         /// The session with the Archipelago server.
         /// </summary>
         private ArchipelagoSession _session = null;
@@ -168,6 +173,8 @@ namespace OutwardArchipelago.Archipelago
             var connectionStatusObj = new GameObject(nameof(ArchipelagoConnectionStatus));
             DontDestroyOnLoad(connectionStatusObj);
             ConnectionStatus = connectionStatusObj.AddComponent<ArchipelagoConnectionStatus>();
+
+            ChatPanelManager.Instance.RegisterChatCommand(APChatCommandPrefix, OnAPChatCommand);
         }
 
         protected void Update()
@@ -339,6 +346,17 @@ namespace OutwardArchipelago.Archipelago
 
                 _session = null;
             }
+        }
+
+        /// <summary>
+        /// AP chat command handler.
+        /// </summary>
+        /// <param name="arg">The rest of the chat command.</param>
+        /// <returns>Whether the chat command was handled.</returns>
+        private bool OnAPChatCommand(string arg)
+        {
+            Messages.SendMessage(arg);
+            return true;
         }
 
         /// <summary>
@@ -761,11 +779,6 @@ namespace OutwardArchipelago.Archipelago
             private readonly ArchipelagoConnector _parent;
 
             /// <summary>
-            /// The incoming messages to process.
-            /// </summary>
-            private readonly ConcurrentQueue<LogMessage> _incomingMessages = new();
-
-            /// <summary>
             /// The outgoing messages to send to the Archipelago server.
             /// </summary>
             private readonly ConcurrentQueue<string> _outgoingMessages = new();
@@ -793,16 +806,6 @@ namespace OutwardArchipelago.Archipelago
                 session.MessageLog.OnMessageReceived -= OnMessageReceived;
             }
 
-            public override void Update()
-            {
-                // try to process an item from the queue
-                if (OutwardArchipelagoMod.Instance.IsInGame && _incomingMessages.TryDequeue(out var message))
-                {
-                    var formattedMessage = ArchipelagoToOutwardMessage(message);
-                    ChatPanelManager.Instance.SendSystemMessage(formattedMessage);
-                }
-            }
-
             public override async Task UpdateSession(ArchipelagoSession session)
             {
                 while (_outgoingMessages.TryDequeue(out var message))
@@ -820,7 +823,8 @@ namespace OutwardArchipelago.Archipelago
             private void OnMessageReceived(LogMessage message)
             {
                 OutwardArchipelagoMod.Log.LogInfo($"recieved message from Archipelago server: {message}");
-                _incomingMessages.Enqueue(message);
+                var content = ArchipelagoToOutwardMessage(message);
+                ChatPanelManager.Instance.SendChatMessage(content);
             }
 
             /// <summary>
@@ -849,11 +853,6 @@ namespace OutwardArchipelago.Archipelago
             /// The main manager associated with this instance.
             /// </summary>
             private readonly ArchipelagoConnector _parent;
-
-            /// <summary>
-            /// Queue for messages created on the Archieplago thread to be sent to system chat.
-            /// </summary>
-            private readonly ConcurrentQueue<string> _incomingMessage = new();
 
             /// <summary>
             /// Queue for incoming death links to be handled by the main thread.
@@ -890,8 +889,9 @@ namespace OutwardArchipelago.Archipelago
                     _deathLinkService = session.CreateDeathLinkService();
                     _deathLinkService.OnDeathLinkReceived += OnDeathLinkRecieved;
                     _deathLinkService.EnableDeathLink();
+
                     OutwardArchipelagoMod.Log.LogInfo($"death link enabled!");
-                    _incomingMessage.Enqueue("<color=#FF0000>Death-Link:</color> <color=#FFFFFF>Enabled</color>");
+                    ChatPanelManager.Instance.SendChatMessage("<color=#FF0000>Death-Link:</color> <color=#FFFFFF>Enabled</color>");
                 }
             }
 
@@ -904,7 +904,7 @@ namespace OutwardArchipelago.Archipelago
                     _deathLinkService.OnDeathLinkReceived -= OnDeathLinkRecieved;
                     _deathLinkService = null;
                     OutwardArchipelagoMod.Log.LogInfo($"death link disabled");
-                    _incomingMessage.Enqueue("<color=#FF0000>Death-Link:</color> <color=#777777>Disabled</color>");
+                    ChatPanelManager.Instance.SendChatMessage("<color=#FF0000>Death-Link:</color> <color=#777777>Disabled</color>");
                 }
             }
 
@@ -912,16 +912,11 @@ namespace OutwardArchipelago.Archipelago
             {
                 if (OutwardArchipelagoMod.Instance.IsInGame)
                 {
-                    while (_incomingMessage.TryDequeue(out var message))
-                    {
-                        ChatPanelManager.Instance.SendSystemMessage(message);
-                    }
-
                     if (_incomingDeathLinks.TryDequeue(out var deathLink))
                     {
                         var message = deathLink.Cause ?? $"<color=#EE00EE>{deathLink.Source}</color> has died.";
                         message = $"<color=#FF0000>Death Link:</color> {message}";
-                        ChatPanelManager.Instance.SendSystemMessage(message);
+                        ChatPanelManager.Instance.SendChatMessage(message);
 
                         OutwardArchipelagoMod.Log.LogMessage($"death link recieved: {message}");
 
