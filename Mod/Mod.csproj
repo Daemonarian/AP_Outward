@@ -22,6 +22,7 @@
     <CopyModOnBuild>false</CopyModOnBuild>
     <AssemblyName>OutwardArchipelago</AssemblyName>
     <RootNamespace>OutwardArchipelago</RootNamespace>
+    <VersionFile>$(ProjectDir)..\version.json</VersionFile>
   </PropertyGroup>
   <Import Project="user.props" Condition="Exists('user.props')" />
   <ItemGroup>
@@ -49,9 +50,9 @@
     </ProjectReference>
   </ItemGroup>
   <Target Name="GenerateBuildInfo" BeforeTargets="CoreCompile">
-    <ReadLinesFromFile File="../VERSION">
-      <Output TaskParameter="Lines" PropertyName="Version" />
-    </ReadLinesFromFile>
+    <Exec Command="powershell -NoProfile -Command &quot;(Get-Content -Path '$(VersionFile)' | ConvertFrom-Json).version&quot;" ConsoleToMSBuild="true" StandardOutputImportance="low">
+      <Output TaskParameter="ConsoleOutput" PropertyName="Version" />
+    </Exec>
     <PropertyGroup>
       <GeneratedCode>
         namespace OutwardArchipelago %7B

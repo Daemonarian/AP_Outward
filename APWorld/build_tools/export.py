@@ -40,8 +40,10 @@ class APWorldInfo:
     locations: list[APWorldLocationInfo]
 
 def get_apworld_version() -> str:
-     version_file = Path(__file__).parent.parent.parent / 'VERSION'
-     return version_file.read_text().strip()
+     version_file = Path(__file__).parent.parent.parent / 'version.json'
+     with open(version_file, 'r') as f:
+         data = json.load(f)
+     return data['version'].strip()
 
 def get_archipelago_version() -> str:
     return str(archipelago_version).strip()
