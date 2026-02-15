@@ -8,15 +8,15 @@ We have, however, made the following changes to the base game:
 - **Archipelago** messages, including the chat, now appear in the in-game chat window.
     - Players may send messages to the **Archipelago** chat via the in-game chat window by prefixing their message with `/ap ` (the space is important).
     - **Archipelago** chat commands, such as `!hint`, may also be sent this way (e.g. `/ap !hint`).
-- Added an *AP Item* item to the Outward game to serve as a placeholder for items that have been randomized.
-- Added *Quest License* passive skills that serve as progression items.
-    - Main quest NPCs now refuse to talk to you about the main quest unless you have the corresponding *Quest License* skill.
 - Replaced most skills and unique items in **Outward** with **Archipelago** location checks.
 - Added **Archipelago** location checks behind the first completion (pass or fail) of *every* quest in the game.
 - Modified the friendly Immaculate side quest so that the friend immaculate never dies, can give a reward at every location, and can give an extra reward for visiting him in all four original zones.
 - Added a Skillsanity mode where skills offered by skill trainers are now randomized.
 - Optionally added location checks for activating the Cabal of Wind altars in each region, and added their boons to the item pool.
 - Option to add *Breakthough Points* to the item pool, which also adds location checks for speaking to each of the skill trainers that teach *Breakthrough Skills*.
+- Added an *AP Item* item to the Outward game to serve as a placeholder for items that have been randomized.
+- Added *Quest License* passive skills that serve as progression items.
+    - Main quest NPCs now refuse to talk to you about the main quest unless you have the corresponding *Quest License* skill.
 - Added support for **Archipelago**'s *death-link* mode.
     - *Death-links* recieved will result in the player's death.
     - Any player deaths, for any reason (outside of another *death-link*), will send a *death-link* to the **Archipelago** server.
@@ -38,23 +38,27 @@ We make no promises, though, about what will happen to your location checks if y
 
 There are two important files to download from [releases](https://github.com/Daemonarian/AP_Outward/releases).
 - `outward.apworld` is the **Archipelago** APWorld (basically a mod for **Archipelago**).
-- `OutwardArchipelago.zip` is the mod package for **Outward: Definitive Edition** compatible with **R2ModMan**.
+- `OutwardArchipelago.zip` is the mod package for **Outward: Definitive Edition** compatible with **R2ModMan**, and is also available through **Thunderstore**.
 
 The `outward.apworld` is only needed by the **Archipelago** host.
-It is not needed by the person playing the game, except to give it to whoever is hosting your **Archipelago**.
-If you change the name of `outward.apworld` to `outward.zip`, you can find a file inside called `Outward Definitive Edition.yaml` which contains our recommended default settings for the randomizer.
+It is not needed by the person playing the game, except to give it to whoever is hosting your **Archipelago** Multi-World.
+However, it is very important to ensure that the version of your *Outward Archipelago* mod *exactly matches* the version of the `outward.apworld` used by the **Archipelago** host.
 We defer instructions on how to install the APWorld on the **Archipelago** server and generating a multi-world to the **Archipelago** [website](https://archipelago.gg/tutorial/Archipelago/setup_en).
 
-To install the mod, you can find general instructions for installing mods in **Outward** [here](https://outward.fandom.com/wiki/Installing_Mods).
-We recommend using **[R2ModMan](https://thunderstore.io/package/ebkr/r2modman/)**, and provide specific instructions below.
-1. Create a new profile for **Outward: Definitive Edition**.
-2. Under `Other` > `Settings` > `Profile`, click on `Import local mod`, and select the `OutwardArchipelago.zip` file.
-3. Under `Mods` > `Installed`, expand `OutwardArchipelago` and click `Install Dependency` until the button disappears.
-4. Click `Start modded` in the upper left corner. (This generates the config file below.)
-5. Exit the game immediately at the main menu.
-6. In **R2ModMan** go to `Other` > `Config editor`, select `BepInEx\config\com.daemonarium.apoutward.cfg`, and choose `Edit Config`.
-7. Enter the connection details for the **Archipelago** server and hit `Save`.
-8. Click `Start modded` again, and enjoy!
+To install the mod, we recommend using **[R2ModMan](https://thunderstore.io/package/ebkr/r2modman/)**, and installing the mod from **Thunderstore**.
+Otherwise, you can find general instructions for installing mods in **Outward** [here](https://outward.fandom.com/wiki/Installing_Mods).
+To install the mod from **Thunderstore** via **R2ModMan**:
+1. Create a new profile for **Outward: Definitive Edition** specifically for *Outward Archipelago*.
+2. Under `Mods` > `Online`, search for and install `OutwardArchipelago` along with its dependencies.
+3. Click `Start modded` in the upper left corner. (This generates the config file needed below.)
+4. Exit the game immediately at the main menu.
+5. In **R2ModMan** go to `Other` > `Config editor`, select `BepInEx\config\com.daemonarium.apoutward.cfg`, and choose `Edit Config`.
+6. Enter the connection details for the **Archipelago** server and hit `Save`.
+7. Click `Start modded` again, and enjoy!
+
+If you need to install a version from our [releases](https://github.com/Daemonarian/AP_Outward/releases), then in place of step 2 above:
+a. Under `Other` > `Settings` > `Profile`, click on `Import local mod`, and select the `OutwardArchipelago.zip` file.
+b. Under `Mods` > `Installed`, expand `OutwardArchipelago` and click `Install Dependency` until the button disappears.
 
 If everything is working as intended, you should see a connection status icon in the upper-right hand corner of the screen that looks circular with a depiction of a chain link inside.
 A full chain link means that you are connected to the **Archipelago** server and are good to start playing!
@@ -66,6 +70,10 @@ Actual images of the two icons are as follows:
 
 If you have trouble connecting to the server, you will need to consult the mod's log file to get a more detailed message of what is going wrong.
 In **R2ModMan**, the log file can be found by going to `Other` > `Settings` > `Locations` > `Browse profile folder`, then navigating to `BepInEx\LogOutput.log`.
+
+## How to Reach Us
+
+If you have any questions, bugs to report, or features to suggest, feel free to reach out to us on [GitHub](https://github.com/Daemonarian/AP_Outward) or the [Archipelago Discord server](https://discord.com/channels/731205301247803413/1340029949553278996).
 
 ## Developer Instructions
 
