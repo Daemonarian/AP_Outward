@@ -688,16 +688,36 @@ namespace OutwardArchipelago.Archipelago
                     try
                     {
                         await session.Locations.CompleteLocationChecksAsync(locations.Select(loc => loc.Id).ToArray());
-                        OutwardArchipelagoMod.Log.LogInfo($"completed location checks with Archipelago server: {string.Join(", ", locations)}");
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
                         foreach (var location in locations)
                         {
                             _outgoingLocations.Enqueue(location);
                         }
 
-                        throw ex;
+                        throw;
+                    }
+
+                    OutwardArchipelagoMod.Log.LogInfo($"completed location checks with Archipelago server: {string.Join(", ", locations)}");
+
+                    foreach (var location in locations)
+                    {
+                        if (APWorld.LocationToGoalMode.TryGetValue(location, out var goal) && goal == _parent.SlotData.Goal)
+                        {
+                            try
+                            {
+                                session.SetGoalAchieved();
+                            }
+                            catch (Exception)
+                            {
+                                _outgoingLocations.Enqueue(location);
+                                throw;
+                            }
+
+                            OutwardArchipelagoMod.Log.LogInfo($"set goal achieved since location {location}, associated with goal {goal}, was completed");
+                            break;
+                        }
                     }
                 }
             }

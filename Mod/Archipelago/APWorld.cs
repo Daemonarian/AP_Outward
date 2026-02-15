@@ -1959,6 +1959,29 @@ namespace OutwardArchipelago.Archipelago
             { Item.SummonWillOWispGhost, new SkillGiver(OutwardSkill.SummonWillOWispGhost) },
         };
 
+        public static readonly IReadOnlyDictionary<Location, APSlotData.GoalMode> LocationToGoalMode = new Dictionary<Location, APSlotData.GoalMode>
+        {
+            { Location.QuestMain01, APSlotData.GoalMode.MainQuest1 },
+            { Location.QuestMain02, APSlotData.GoalMode.MainQuest2 },
+            { Location.QuestMain03, APSlotData.GoalMode.MainQuest3 },
+            { Location.QuestMain04, APSlotData.GoalMode.MainQuest4 },
+            { Location.QuestMain05, APSlotData.GoalMode.MainQuest5 },
+            { Location.QuestMain06, APSlotData.GoalMode.MainQuest6 },
+            { Location.QuestMain07, APSlotData.GoalMode.MainQuest7 },
+            { Location.QuestMain08, APSlotData.GoalMode.MainQuest8 },
+            { Location.QuestMain09, APSlotData.GoalMode.MainQuest9 },
+            { Location.QuestMain10, APSlotData.GoalMode.MainQuest10 },
+            { Location.QuestMain11, APSlotData.GoalMode.MainQuest11 },
+            { Location.QuestMain12, APSlotData.GoalMode.MainQuest12 },
+
+            { Location.QuestParallelBloodUnderTheSun, APSlotData.GoalMode.ParallelQuestBloodUnderTheSun },
+            { Location.QuestParallelPurifier, APSlotData.GoalMode.ParallelQuestPurifier },
+            { Location.QuestParallelVendavelQuest, APSlotData.GoalMode.ParallelQuestVendavelQuest },
+            { Location.QuestParallelRustAndVengeance1, APSlotData.GoalMode.ParallelQuestRustAndVengeance },
+            { Location.QuestParallelRustAndVengeance2, APSlotData.GoalMode.ParallelQuestRustAndVengeance },
+            { Location.QuestParallelRustAndVengeance3, APSlotData.GoalMode.ParallelQuestRustAndVengeance },
+        };
+
         public sealed partial class Item
         {
             private readonly long _id;

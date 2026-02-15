@@ -4,7 +4,7 @@ from typing import TYPE_CHECKING
 from worlds.AutoWorld import World
 
 from .common import OUTWARD
-from .events import ItemClassification, OutwardEvent, OutwardEventName
+from .events import ItemClassification, OutwardEvent, OutwardEventGroup, OutwardEventName
 from .items import OutwardGameItem, OutwardItem, OutwardItemGroup, OutwardItemName
 from .locations import OutwardGameLocation, OutwardLocation, OutwardLocationGroup, OutwardLocationName
 from .options import OutwardOptions
@@ -559,7 +559,8 @@ class OutwardWorld(World):
 
         # completion condition
 
-        self.multiworld.completion_condition[self.player] = lambda state: state.has(OutwardEventName.MAIN_QUEST_07_COMPLETE, self.player)
+        goal_event_name = OutwardEventGroup.GOALS[self.options.goal.value]
+        self.multiworld.completion_condition[self.player] = lambda state: state.has(goal_event_name, self.player)
 
     def pre_fill(self):
         for location_name, (item_name, tier) in self.skill_sanity_location_info.items():
@@ -576,6 +577,7 @@ class OutwardWorld(World):
             
     def fill_slot_data(self) -> dict[str, Any]:
         return {
+            "goal": int(self.options.goal.value),
             "death_link": bool(self.options.death_link.value),
             "skillsanity": int(self.options.skillsanity.value),
             "wind_altar_checks": bool(self.options.wind_altar_checks.value),

@@ -72,18 +72,23 @@ class OutwardEventName(OutwardObjectNamespace):
 
     # quest completion events
 
-    MAIN_QUEST_01_COMPLETE = event("Event - Main Quest 1 - Complete", OutwardRegionName.UNPLACED)
+    MAIN_QUEST_01_COMPLETE = event("Event - Main Quest 1 - Complete", OutwardRegionName.CIERZO)
     MAIN_QUEST_02_COMPLETE = event("Event - Main Quest 2 - Complete", OutwardRegionName.UNPLACED)
     MAIN_QUEST_03_COMPLETE = event("Event - Main Quest 3 - Complete", OutwardRegionName.UNPLACED)
     MAIN_QUEST_04_COMPLETE = event("Event - Main Quest 4 - Complete", OutwardRegionName.UNPLACED)
     MAIN_QUEST_05_COMPLETE = event("Event - Main Quest 5 - Complete", OutwardRegionName.UNPLACED)
     MAIN_QUEST_06_COMPLETE = event("Event - Main Quest 6 - Complete", OutwardRegionName.UNPLACED)
-    MAIN_QUEST_07_COMPLETE = event("Event - Main Quest 7 - Complete", OutwardRegionName.UNPLACED)
-    MAIN_QUEST_08_COMPLETE = event("Event - Main Quest 8 - Complete", OutwardRegionName.UNPLACED)
-    MAIN_QUEST_09_COMPLETE = event("Event - Main Quest 9 - Complete", OutwardRegionName.UNPLACED)
-    MAIN_QUEST_10_COMPLETE = event("Event - Main Quest 10 - Complete", OutwardRegionName.UNPLACED)
-    MAIN_QUEST_11_COMPLETE = event("Event - Main Quest 11 - Complete", OutwardRegionName.UNPLACED)
-    MAIN_QUEST_12_COMPLETE = event("Event - Main Quest 12 - Complete", OutwardRegionName.UNPLACED)
+    MAIN_QUEST_07_COMPLETE = event("Event - Main Quest 7 - Complete", OutwardRegionName.MONSOON)
+    MAIN_QUEST_08_COMPLETE = event("Event - Main Quest 8 - Complete", OutwardRegionName.NEW_SIROCCO)
+    MAIN_QUEST_09_COMPLETE = event("Event - Main Quest 9 - Complete", OutwardRegionName.NEW_SIROCCO)
+    MAIN_QUEST_10_COMPLETE = event("Event - Main Quest 10 - Complete", OutwardRegionName.NEW_SIROCCO)
+    MAIN_QUEST_11_COMPLETE = event("Event - Main Quest 11 - Complete", OutwardRegionName.NEW_SIROCCO)
+    MAIN_QUEST_12_COMPLETE = event("Event - Main Quest 12 - Complete", OutwardRegionName.NEW_SIROCCO)
+
+    PARALLEL_QUEST_BLOOD_UNDER_THE_SUN_COMPLETE = event("Event - Parallel Quest - Blood Under the Sun - Complete", OutwardRegionName.LEVANT)
+    PARALLEL_QUEST_PURIFIER_COMPLETE = event("Event - Parallel Quest - Purifier - Complete", OutwardRegionName.ENMERKAR_FOREST)
+    PARALLEL_QUEST_VENDAVEL_QUEST_COMPLETE = event("Event - Parallel Quest - Vendavel Quest - Complete", OutwardRegionName.CIERZO)
+    PARALLEL_QUEST_RUST_AND_VENGEANCE_COMPLETE = event("Event - Parallel Quest - Rust and Vengeance - Complete", OutwardRegionName.HARMATTAN)
 
     # friendly immaculate
 
@@ -91,3 +96,24 @@ class OutwardEventName(OutwardObjectNamespace):
     FRIENDLY_IMMACULATE_ENMERKAR_FOREST = event("Event - Immaculate Camp - Enmerkar Forest", OutwardRegionName.IMMACULATES_CAMP_ENMERKAR_FOREST)
     FRIENDLY_IMMACULATE_ABRASSAR = event("Event - Immaculate Camp - Abrassar", OutwardRegionName.IMMACULATES_CAMP_ABRASSAR)
     FRIENDLY_IMMACULATE_HALLOWED_MARSH = event("Event - Immaculate Camp - Hallowed Marsh", OutwardRegionName.IMMACULATES_CAMP_HALLOWED_MARSH)
+
+class OutwardEventGroup:
+    GOALS = {
+        0: OutwardEventName.MAIN_QUEST_01_COMPLETE,
+        1: OutwardEventName.MAIN_QUEST_02_COMPLETE,
+        2: OutwardEventName.MAIN_QUEST_03_COMPLETE,
+        3: OutwardEventName.MAIN_QUEST_04_COMPLETE,
+        4: OutwardEventName.MAIN_QUEST_05_COMPLETE,
+        5: OutwardEventName.MAIN_QUEST_06_COMPLETE,
+        6: OutwardEventName.MAIN_QUEST_07_COMPLETE,
+        7: OutwardEventName.MAIN_QUEST_08_COMPLETE,
+        8: OutwardEventName.MAIN_QUEST_09_COMPLETE,
+        9: OutwardEventName.MAIN_QUEST_10_COMPLETE,
+        10: OutwardEventName.MAIN_QUEST_11_COMPLETE,
+        11: OutwardEventName.MAIN_QUEST_12_COMPLETE,
+
+        12: OutwardEventName.PARALLEL_QUEST_BLOOD_UNDER_THE_SUN_COMPLETE,
+        13: OutwardEventName.PARALLEL_QUEST_PURIFIER_COMPLETE,
+        14: OutwardEventName.PARALLEL_QUEST_VENDAVEL_QUEST_COMPLETE,
+        15: OutwardEventName.PARALLEL_QUEST_RUST_AND_VENGEANCE_COMPLETE,
+    }
