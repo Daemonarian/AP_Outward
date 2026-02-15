@@ -17,8 +17,7 @@ jobs:
         github-token: ${{ secrets.github_token }}
         preset: conventionalcommits
         git-message: "chore: update changelog"
-        input-file: CHANGELOG.md
         output-file: CHANGELOG.md
-        release-count: 0
+        release-count: 1
         version-file: version.json
         version-path: version
