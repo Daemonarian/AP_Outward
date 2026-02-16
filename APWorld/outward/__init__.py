@@ -149,25 +149,25 @@ class OutwardWorld(World):
         OutwardLocationName.SKILL_TRAINER_TURE_FERAL_STRIKES: (OutwardItemName.FERAL_STRIKES, 3),
     }
 
-    def get_item(self, item_name) -> OutwardItem:
+    def get_item(self, item_name: str) -> OutwardItem:
         for item in self.get_items():
             if item.name == item_name:
                 return item
         raise ValueError(f"cannot find the item '{item_name}'")
 
-    def get_region(self, region_name) -> OutwardRegion:
+    def get_region(self, region_name: str) -> OutwardRegion:
         region = super().get_region(region_name)
         if not isinstance(region, OutwardRegion):
             raise ValueError(f"the region '{region}' is not an Outward region")
         return region
 
-    def get_entrance(self, entrance_name) -> OutwardEntrance:
+    def get_entrance(self, entrance_name: str) -> OutwardEntrance:
         entrance = super().get_entrance(entrance_name)
         if not isinstance(entrance, OutwardEntrance):
             raise ValueError(f"the entrance '{entrance_name}' is not an Outward entrance")
         return entrance
 
-    def get_location(self, location_name) -> OutwardLocation:
+    def get_location(self, location_name: str) -> OutwardLocation:
         location = super().get_location(location_name)
         if not isinstance(location, OutwardLocation):
             raise ValueError(f"the location '{location_name}' is not an Outward location")
@@ -231,23 +231,58 @@ class OutwardWorld(World):
         entrance.add_to_world(self)
         return entrance
 
-    def add_entrance_access_rule(self, name: str, rule: CollectionRule, combine: str = "and") -> None:
-        self.get_entrance(name).add_rule(rule, combine)
+    def add_entrance_access_rule(self, name: str, rule: CollectionRule, combine: str = "and", do_require_exists: bool = True) -> None:
+        try:
+            entrance = self.get_entrance(name)
+        except:
+            if do_require_exists:
+                raise
+            entrance = None
+        if entrance is not None:
+            entrance.add_rule(rule, combine)
 
-    def add_location_access_rule(self, name: str, rule: CollectionRule, combine: str = "and") -> None:
-        self.get_location(name).add_rule(rule, combine)
+    def add_location_access_rule(self, name: str, rule: CollectionRule, combine: str = "and", do_require_exists: bool = True) -> None:
+        try:
+            location = self.get_location(name)
+        except:
+            if do_require_exists:
+                raise
+            location = None
+        if location is not None:
+            location.add_rule(rule, combine)
 
-    def add_location_item_rule(self, name: str, rule: ItemRule, combine: str = "and") -> None:
-        self.get_location(name).add_item_rule(rule, combine)
+    def add_location_item_rule(self, name: str, rule: ItemRule, combine: str = "and", do_require_exists: bool = True) -> None:
+        try:
+            location = self.get_location(name)
+        except:
+            if do_require_exists:
+                raise
+            location = None
+        if location is not None:
+            location.add_item_rule(rule, combine)
 
-    def add_entrance_item_requirement(self, entrance_name: str, item_name: str, count: int = 1, combine: str = "and") -> None:
-        self.add_entrance_access_rule(entrance_name, lambda state: state.has(item_name, self.player, count), combine)
+    def add_entrance_item_requirement(self, entrance_name: str, item_name: str, count: int = 1, combine: str = "and", do_require_exists: bool = True) -> None:
+        try:
+            item = self.get_item(item_name)
+        except:
+            if do_require_exists:
+                raise
+            item = None
+        if item is not None:
+            self.add_entrance_access_rule(entrance_name, lambda state: state.has(item.name, self.player, count), combine, do_require_exists)
 
-    def add_location_item_requirement(self, location_name: str, item_name: str, count: int = 1, combine: str = "and") -> None:
-        self.add_location_access_rule(location_name, lambda state: state.has(item_name, self.player, count), combine)
+    def add_location_item_requirement(self, location_name: str, item_name: str, count: int = 1, combine: str = "and", do_require_exists: bool = True) -> None:
+        try:
+            item = self.get_item(item_name)
+        except:
+            if do_require_exists:
+                raise
+            item = None
+        if item is not None:
+            self.add_location_access_rule(location_name, lambda state: state.has(item.name, self.player, count), combine, do_require_exists)
 
-    def set_location_missable(self, location_name: str) -> None:
-        self.add_location_item_rule(location_name, self.item_rule_missable)
+    def set_location_missable(self, location_name: str, do_require_exists: bool = True) -> None:
+        self.add_location_item_rule(location_name, self.item_rule_missable, do_require_exists)
 
     def lock_location_item(self, location_name: str, item_name: str):
         location = self.get_location(location_name)
@@ -505,31 +540,60 @@ class OutwardWorld(World):
 
     def set_rules(self):
         # main quest events
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_02_COMPLETE, OutwardEventName.MAIN_QUEST_01_COMPLETE)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_03_COMPLETE, OutwardEventName.MAIN_QUEST_02_COMPLETE)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_04_COMPLETE, OutwardEventName.MAIN_QUEST_03_COMPLETE)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_05_COMPLETE, OutwardEventName.MAIN_QUEST_04_COMPLETE)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_06_COMPLETE, OutwardEventName.MAIN_QUEST_05_COMPLETE)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_07_COMPLETE, OutwardEventName.MAIN_QUEST_06_COMPLETE)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_08_COMPLETE, OutwardEventName.MAIN_QUEST_07_COMPLETE)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_09_COMPLETE, OutwardEventName.MAIN_QUEST_08_COMPLETE)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_10_COMPLETE, OutwardEventName.MAIN_QUEST_09_COMPLETE)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_11_COMPLETE, OutwardEventName.MAIN_QUEST_10_COMPLETE)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_12_COMPLETE, OutwardEventName.MAIN_QUEST_11_COMPLETE)
+        
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_01_START, OutwardEventName.MAIN_QUEST_01_PREREQ)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_02_START, OutwardEventName.MAIN_QUEST_02_PREREQ)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_03_START, OutwardEventName.MAIN_QUEST_03_PREREQ)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_04_START, OutwardEventName.MAIN_QUEST_04_PREREQ)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_05_START, OutwardEventName.MAIN_QUEST_05_PREREQ)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_06_START, OutwardEventName.MAIN_QUEST_06_PREREQ)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_07_START, OutwardEventName.MAIN_QUEST_07_PREREQ)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_08_START, OutwardEventName.MAIN_QUEST_08_PREREQ)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_09_START, OutwardEventName.MAIN_QUEST_09_PREREQ)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_10_START, OutwardEventName.MAIN_QUEST_10_PREREQ)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_11_START, OutwardEventName.MAIN_QUEST_11_PREREQ)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_12_START, OutwardEventName.MAIN_QUEST_12_PREREQ)
+        
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_01_COMPLETE, OutwardEventName.MAIN_QUEST_01_START)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_02_COMPLETE, OutwardEventName.MAIN_QUEST_02_START)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_03_COMPLETE, OutwardEventName.MAIN_QUEST_03_START)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_04_COMPLETE, OutwardEventName.MAIN_QUEST_04_START)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_05_COMPLETE, OutwardEventName.MAIN_QUEST_05_START)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_06_COMPLETE, OutwardEventName.MAIN_QUEST_06_START)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_07_COMPLETE, OutwardEventName.MAIN_QUEST_07_START)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_08_COMPLETE, OutwardEventName.MAIN_QUEST_08_START)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_09_COMPLETE, OutwardEventName.MAIN_QUEST_09_START)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_10_COMPLETE, OutwardEventName.MAIN_QUEST_10_START)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_11_COMPLETE, OutwardEventName.MAIN_QUEST_11_START)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_12_COMPLETE, OutwardEventName.MAIN_QUEST_12_START)
+        
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_02_PREREQ, OutwardEventName.MAIN_QUEST_01_COMPLETE)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_03_PREREQ, OutwardEventName.MAIN_QUEST_02_COMPLETE)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_04_PREREQ, OutwardEventName.MAIN_QUEST_03_COMPLETE)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_05_PREREQ, OutwardEventName.MAIN_QUEST_04_COMPLETE)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_06_PREREQ, OutwardEventName.MAIN_QUEST_05_COMPLETE)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_07_PREREQ, OutwardEventName.MAIN_QUEST_06_COMPLETE)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_08_PREREQ, OutwardEventName.MAIN_QUEST_07_COMPLETE)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_09_PREREQ, OutwardEventName.MAIN_QUEST_08_COMPLETE)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_10_PREREQ, OutwardEventName.MAIN_QUEST_09_COMPLETE)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_11_PREREQ, OutwardEventName.MAIN_QUEST_10_COMPLETE)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_12_PREREQ, OutwardEventName.MAIN_QUEST_11_COMPLETE)
         
         # quest licenses
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_03_COMPLETE, OutwardItemName.QUEST_LICENSE, 1)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_04_COMPLETE, OutwardItemName.QUEST_LICENSE, 2)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_05_COMPLETE, OutwardItemName.QUEST_LICENSE, 3)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_06_COMPLETE, OutwardItemName.QUEST_LICENSE, 4)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_07_COMPLETE, OutwardItemName.QUEST_LICENSE, 5)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_08_COMPLETE, OutwardItemName.QUEST_LICENSE, 6)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_09_COMPLETE, OutwardItemName.QUEST_LICENSE, 7)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_10_COMPLETE, OutwardItemName.QUEST_LICENSE, 8)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_11_COMPLETE, OutwardItemName.QUEST_LICENSE, 9)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_12_COMPLETE, OutwardItemName.QUEST_LICENSE, 10)
+
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_03_PREREQ, OutwardItemName.QUEST_LICENSE, 1)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_04_PREREQ, OutwardItemName.QUEST_LICENSE, 2)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_05_PREREQ, OutwardItemName.QUEST_LICENSE, 3)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_06_PREREQ, OutwardItemName.QUEST_LICENSE, 4)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_07_PREREQ, OutwardItemName.QUEST_LICENSE, 5)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_08_PREREQ, OutwardItemName.QUEST_LICENSE, 6)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_09_PREREQ, OutwardItemName.QUEST_LICENSE, 7)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_10_PREREQ, OutwardItemName.QUEST_LICENSE, 8)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_11_PREREQ, OutwardItemName.QUEST_LICENSE, 9)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_12_PREREQ, OutwardItemName.QUEST_LICENSE, 10)
 
         # quest completion events
+
         self.add_location_item_requirement(OutwardLocationName.QUEST_MAIN_01, OutwardEventName.MAIN_QUEST_01_COMPLETE)
         self.add_location_item_requirement(OutwardLocationName.QUEST_MAIN_02, OutwardEventName.MAIN_QUEST_02_COMPLETE)
         self.add_location_item_requirement(OutwardLocationName.QUEST_MAIN_03, OutwardEventName.MAIN_QUEST_03_COMPLETE)
@@ -549,6 +613,24 @@ class OutwardWorld(World):
         self.add_location_item_requirement(OutwardLocationName.QUEST_PARALLEL_RUST_AND_VENGEANCE_1, OutwardEventName.MAIN_QUEST_04_COMPLETE)
         self.add_location_item_requirement(OutwardLocationName.QUEST_PARALLEL_RUST_AND_VENGEANCE_2, OutwardEventName.MAIN_QUEST_04_COMPLETE)
         self.add_location_item_requirement(OutwardLocationName.QUEST_PARALLEL_RUST_AND_VENGEANCE_3, OutwardEventName.MAIN_QUEST_04_COMPLETE)
+
+        # Looking to the Future
+
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_LOOKING_TO_THE_FUTURE_START, OutwardEventName.MAIN_QUEST_03_PREREQ, do_require_exists=False)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_ENROLLMENT_START, OutwardEventName.MAIN_QUEST_03_PREREQ, do_require_exists=False)
+
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_03_START, OutwardEventName.MAIN_QUEST_LOOKING_TO_THE_FUTURE_START, do_require_exists=False)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_03_START, OutwardEventName.MAIN_QUEST_ENROLLMENT_START, do_require_exists=False)
+        
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_LOOKING_TO_THE_FUTURE_BC_COMPLETE, OutwardEventName.MAIN_QUEST_LOOKING_TO_THE_FUTURE_START, do_require_exists=False)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_LOOKING_TO_THE_FUTURE_HK_COMPLETE, OutwardEventName.MAIN_QUEST_LOOKING_TO_THE_FUTURE_START, do_require_exists=False)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_LOOKING_TO_THE_FUTURE_HM_COMPLETE, OutwardEventName.MAIN_QUEST_LOOKING_TO_THE_FUTURE_START, do_require_exists=False)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_ENROLLMENT_COMPLETE, OutwardEventName.MAIN_QUEST_LOOKING_TO_THE_FUTURE_START, do_require_exists=False)
+
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_03_COMPLETE, OutwardEventName.MAIN_QUEST_LOOKING_TO_THE_FUTURE_BC_COMPLETE, do_require_exists=False)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_03_COMPLETE, OutwardEventName.MAIN_QUEST_LOOKING_TO_THE_FUTURE_HK_COMPLETE, do_require_exists=False)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_03_COMPLETE, OutwardEventName.MAIN_QUEST_LOOKING_TO_THE_FUTURE_HM_COMPLETE, do_require_exists=False)
+        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_03_COMPLETE, OutwardEventName.MAIN_QUEST_ENROLLMENT_COMPLETE, do_require_exists=False)
 
         # useful items
 
@@ -600,6 +682,10 @@ class OutwardWorld(World):
         self.set_location_missable(OutwardLocationName.TRAIN_ANTHONY_BERTHELOT)
         self.set_location_missable(OutwardLocationName.TRAIN_PAUL)
         self.set_location_missable(OutwardLocationName.TRAIN_YAN)
+
+        for location in self.get_locations():
+            if self.get_allowed_factions() & location.faction == 0:
+                self.set_location_missable(location.name)
 
         # completion condition
 

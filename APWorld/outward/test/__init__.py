@@ -2,6 +2,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from ..common import OUTWARD
+from ..events import OutwardEventLocation
 
 from test.bases import WorldTestBase
 

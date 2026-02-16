@@ -15,4 +15,5 @@ class OutwardFaction(IntFlag):
     SoroborAcademy = 0b1000
 
     NoFaction = 0b0000
+    OriginalThree = 0b0111
     AllFactions = 0b1111

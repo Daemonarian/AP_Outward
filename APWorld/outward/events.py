@@ -118,6 +118,32 @@ class OutwardEventName(OutwardObjectNamespace):
 
     # quest completion events
 
+    MAIN_QUEST_01_PREREQ = event("Event - Main Quest 1 - Prerequisites", OutwardRegionName.UNPLACED)
+    MAIN_QUEST_02_PREREQ = event("Event - Main Quest 2 - Prerequisites", OutwardRegionName.UNPLACED)
+    MAIN_QUEST_03_PREREQ = event("Event - Main Quest 3 - Prerequisites", OutwardRegionName.UNPLACED)
+    MAIN_QUEST_04_PREREQ = event("Event - Main Quest 4 - Prerequisites", OutwardRegionName.UNPLACED)
+    MAIN_QUEST_05_PREREQ = event("Event - Main Quest 5 - Prerequisites", OutwardRegionName.UNPLACED)
+    MAIN_QUEST_06_PREREQ = event("Event - Main Quest 6 - Prerequisites", OutwardRegionName.UNPLACED)
+    MAIN_QUEST_07_PREREQ = event("Event - Main Quest 7 - Prerequisites", OutwardRegionName.UNPLACED)
+    MAIN_QUEST_08_PREREQ = event("Event - Main Quest 8 - Prerequisites", OutwardRegionName.UNPLACED)
+    MAIN_QUEST_09_PREREQ = event("Event - Main Quest 9 - Prerequisites", OutwardRegionName.UNPLACED)
+    MAIN_QUEST_10_PREREQ = event("Event - Main Quest 10 - Prerequisites", OutwardRegionName.UNPLACED)
+    MAIN_QUEST_11_PREREQ = event("Event - Main Quest 11 - Prerequisites", OutwardRegionName.UNPLACED)
+    MAIN_QUEST_12_PREREQ = event("Event - Main Quest 12 - Prerequisites", OutwardRegionName.UNPLACED)
+
+    MAIN_QUEST_01_START = event("Event - Main Quest 1 - Start", OutwardRegionName.UNPLACED)
+    MAIN_QUEST_02_START = event("Event - Main Quest 2 - Start", OutwardRegionName.UNPLACED)
+    MAIN_QUEST_03_START = event("Event - Main Quest 3 - Start", OutwardRegionName.UNPLACED)
+    MAIN_QUEST_04_START = event("Event - Main Quest 4 - Start", OutwardRegionName.UNPLACED)
+    MAIN_QUEST_05_START = event("Event - Main Quest 5 - Start", OutwardRegionName.UNPLACED)
+    MAIN_QUEST_06_START = event("Event - Main Quest 6 - Start", OutwardRegionName.UNPLACED)
+    MAIN_QUEST_07_START = event("Event - Main Quest 7 - Start", OutwardRegionName.UNPLACED)
+    MAIN_QUEST_08_START = event("Event - Main Quest 8 - Start", OutwardRegionName.UNPLACED)
+    MAIN_QUEST_09_START = event("Event - Main Quest 9 - Start", OutwardRegionName.UNPLACED)
+    MAIN_QUEST_10_START = event("Event - Main Quest 10 - Start", OutwardRegionName.UNPLACED)
+    MAIN_QUEST_11_START = event("Event - Main Quest 11 - Start", OutwardRegionName.UNPLACED)
+    MAIN_QUEST_12_START = event("Event - Main Quest 12 - Start", OutwardRegionName.UNPLACED)
+
     MAIN_QUEST_01_COMPLETE = event("Event - Main Quest 1 - Complete", OutwardRegionName.CIERZO)
     MAIN_QUEST_02_COMPLETE = event("Event - Main Quest 2 - Complete", OutwardRegionName.UNPLACED)
     MAIN_QUEST_03_COMPLETE = event("Event - Main Quest 3 - Complete", OutwardRegionName.UNPLACED)
@@ -135,6 +161,16 @@ class OutwardEventName(OutwardObjectNamespace):
     PARALLEL_QUEST_PURIFIER_COMPLETE = event("Event - Parallel Quest - Purifier - Complete", OutwardRegionName.ENMERKAR_FOREST)
     PARALLEL_QUEST_VENDAVEL_QUEST_COMPLETE = event("Event - Parallel Quest - Vendavel Quest - Complete", OutwardRegionName.CIERZO)
     PARALLEL_QUEST_RUST_AND_VENGEANCE_COMPLETE = event("Event - Parallel Quest - Rust and Vengeance - Complete", OutwardRegionName.HARMATTAN)
+
+    # Join Faction Quest
+
+    MAIN_QUEST_LOOKING_TO_THE_FUTURE_START = event("Event - Main Quest - Looking to the Future - Start", OutwardRegionName.CIERZO, faction=OutwardFaction.OriginalThree)
+    MAIN_QUEST_LOOKING_TO_THE_FUTURE_BC_COMPLETE = event("Event - Main Quest - Looking to the Future - Blue Chamber - Complete", OutwardRegionName.BERG, faction=OutwardFaction.BlueChamber)
+    MAIN_QUEST_LOOKING_TO_THE_FUTURE_HK_COMPLETE = event("Event - Main Quest - Looking to the Future - Heroic Kingdom - Complete", OutwardRegionName.LEVANT, faction=OutwardFaction.HeroicKingdom)
+    MAIN_QUEST_LOOKING_TO_THE_FUTURE_HM_COMPLETE = event("Event - Main Quest - Looking to the Future - Holy Mission - Complete", OutwardRegionName.MONSOON, faction=OutwardFaction.HolyMission)
+
+    MAIN_QUEST_ENROLLMENT_START = event("Event - Main Quest - Enrollment - Start", OutwardRegionName.HARMATTAN, faction=OutwardFaction.SoroborAcademy)
+    MAIN_QUEST_ENROLLMENT_COMPLETE = event("Event - Main Quest - Enrollment - Complete", OutwardRegionName.HARMATTAN, faction=OutwardFaction.SoroborAcademy)
 
     # friendly immaculate
 
