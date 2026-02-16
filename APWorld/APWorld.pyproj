@@ -33,6 +33,7 @@
   <ItemGroup>
     <Compile Include="build_tools\export.py" />
     <Compile Include="build_tools\apply_template.py" />
+    <Compile Include="outward\factions.py" />
     <Compile Include="outward\templates.py" />
     <Compile Include="outward\events.py" />
     <Compile Include="setup.py" />

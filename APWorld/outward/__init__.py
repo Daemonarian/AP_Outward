@@ -4,6 +4,7 @@ from typing import TYPE_CHECKING
 from worlds.AutoWorld import World
 
 from .common import OUTWARD
+from .factions import OutwardFaction
 from .events import ItemClassification, OutwardEvent, OutwardEventGroup, OutwardEventName
 from .items import OutwardGameItem, OutwardItem, OutwardItemGroup, OutwardItemName
 from .locations import OutwardGameLocation, OutwardLocation, OutwardLocationGroup, OutwardLocationName
@@ -256,17 +257,29 @@ class OutwardWorld(World):
 
     def item_rule_missable(self, item: Item) -> bool:
         return item.classification == ItemClassification.filler or (item.player == self.player and ItemClassification.progression not in item.classification)
-
-    def get_pact_item_name(self) -> str | None:
+    
+    def get_allowed_factions(self) -> OutwardFaction:
         faction = self.options.faction
         match faction.value:
             case faction.option_blue_chamber:
-                return OutwardItemName.FACTION_PACT_BLUE_CHAMBER
+                return OutwardFaction.BlueChamber
             case faction.option_heroic_kingdom:
-                return OutwardItemName.FACTION_PACT_HEROIC_KINGDOM
+                return OutwardFaction.HeroicKingdom
             case faction.option_holy_mission:
-                return OutwardItemName.FACTION_PACT_HOLY_MISSION
+                return OutwardFaction.HolyMission
             case faction.option_sorobor_academy:
+                return OutwardFaction.SoroborAcademy
+        return OutwardFaction.AllFactions
+
+    def get_pact_item_name(self) -> str | None:
+        match self.get_allowed_factions():
+            case OutwardFaction.BlueChamber:
+                return OutwardItemName.FACTION_PACT_BLUE_CHAMBER
+            case OutwardFaction.HeroicKingdom:
+                return OutwardItemName.FACTION_PACT_HEROIC_KINGDOM
+            case OutwardFaction.HolyMission:
+                return OutwardItemName.FACTION_PACT_HOLY_MISSION
+            case OutwardFaction.SoroborAcademy:
                 return OutwardItemName.FACTION_PACT_SOROBOR_ACADEMY
         return None
 

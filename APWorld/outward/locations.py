@@ -1,24 +1,36 @@
 from __future__ import annotations
-from typing import TYPE_CHECKING, Required
+from typing import TYPE_CHECKING
 
 from BaseClasses import Location
 from worlds.generic.Rules import add_item_rule, add_rule
 
 from .common import OUTWARD
 from .templates import OutwardGameObjectNamespace, OutwardGameObjectTemplate
+from .factions import OutwardFaction
 from .regions import OutwardRegionName
 
 if TYPE_CHECKING:
-    from typing import Iterable
-
+    from BaseClasses import Region
     from worlds.generic.Rules import CollectionRule, ItemRule
 
     from . import OutwardWorld
+    from .templates import OutwardObjectTemplate
 
 # classes for generating items in the multi-world
 
 class OutwardLocation(Location):
     game = OUTWARD
+
+    def __init__(self, player: int, name: str = '', address: int | None = None, parent: Region | None = None):
+        super().__init__(player, name, address, parent)
+
+    @property
+    def template(self) -> OutwardObjectTemplate:
+        raise NotImplementedError()
+
+    @property
+    def faction(self) -> OutwardFaction:
+        raise NotImplementedError()
 
     def add_rule(self, rule: CollectionRule, combine: str = "and") -> None:
         add_rule(self, rule, combine)
@@ -27,26 +39,41 @@ class OutwardLocation(Location):
         add_item_rule(self, rule, combine)
 
 class OutwardGameLocation(OutwardLocation):
-    def __init__(self, name: str, player: int):
-        template = OutwardGameLocationTemplate.get_template(name)
-        super().__init__(player, template.name, template.archipelago_id)
+    _template: OutwardGameLocationTemplate
 
-    def add_to_world(self, world: OutwardWorld) -> None:
-        template = OutwardGameLocationTemplate.get_template(self.name)
-        parent = world.get_region(template.region)
-        self.parent_region = parent
-        parent.locations.append(self)
+    def __init__(self, name: str, player: int):
+        self._template = OutwardGameLocationTemplate.get_template(name)
+        super().__init__(player, self._template.name, self._template.archipelago_id)
+
+    @property
+    def template(self) -> OutwardGameLocationTemplate:
+        return self._template
+
+    @property
+    def faction(self) -> OutwardFaction:
+        return self.template.faction
+
+    def add_to_world(self, world: OutwardWorld, *, skip_faction_check: bool = False) -> None:
+        if skip_faction_check or world.get_allowed_factions() & self.template.faction != 0:
+            parent = world.get_region(self.template.region)
+            self.parent_region = parent
+            parent.locations.append(self)
         
 # classes for defining the basic properties of game locations
 
 class OutwardGameLocationTemplate(OutwardGameObjectTemplate):
     _region: str
-    def __init__(self, name: str, region: str, archipelago_id: int = -1):
+    _faction: OutwardFaction
+    def __init__(self, name: str, region: str, *, faction: OutwardFaction = OutwardFaction.AllFactions, archipelago_id: int = -1):
         super().__init__(name, archipelago_id)
         self._region = region
+        self._faction = faction
     @property
     def region(self) -> str:
         return self._region
+    @property
+    def faction(self) -> OutwardFaction:
+        return self._faction
 
 # define the names of Outward locations
 

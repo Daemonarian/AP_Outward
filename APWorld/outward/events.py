@@ -10,6 +10,7 @@ from typing import TYPE_CHECKING
 from BaseClasses import ItemClassification
 
 from .templates import OutwardObjectNamespace, OutwardObjectTemplate
+from .factions import OutwardFaction
 from .items import OutwardItem
 from .locations import OutwardLocation, OutwardRegionName
 
@@ -20,12 +21,22 @@ if TYPE_CHECKING:
     from . import OutwardWorld
     
 class OutwardEvent:
+    _template: OutwardEventTemplate
     _location: OutwardEventLocation
     _item: OutwardEventItem
 
     def __init__(self, name: str, player: int):
-        self._location = OutwardEventLocation(name, player)
-        self._item = OutwardEventItem(name, player)
+        self._template = OutwardEventTemplate.get_template(name)
+        self._location = OutwardEventLocation(self, player)
+        self._item = OutwardEventItem(self, player)
+
+    @property
+    def template(self) -> OutwardEventTemplate:
+        return self._template
+
+    @property
+    def faction(self) -> OutwardFaction:
+        return self.template.faction
 
     @property
     def location(self) -> OutwardEventLocation:
@@ -37,34 +48,69 @@ class OutwardEvent:
 
     @property
     def name(self) -> str:
-        return self.location.name
+        return self.template.name
 
-    def add_to_world(self, world: OutwardWorld) -> None:
-        template = OutwardEventTemplate.get_template(self.name)
-        parent = world.get_region(template.region)
-        self.location.parent_region = parent
-        parent.locations.append(self.location)
-        self.location.place_locked_item(self.item)
+    def add_to_world(self, world: OutwardWorld, *, skip_faction_check: bool = False) -> None:
+        if skip_faction_check or world.get_allowed_factions() & self.faction != 0:
+            parent = world.get_region(self.template.region)
+            self.location.parent_region = parent
+            parent.locations.append(self.location)
+            self.location.place_locked_item(self.item)
 
     def add_rule(self, rule: CollectionRule, combine: str = "and") -> None:
         self.location.add_rule(rule, combine)
 
 class OutwardEventLocation(OutwardLocation):
-    def __init__(self, name: str, player: int):
-        super().__init__(player, name, None, None)
+    _event: OutwardEvent
+
+    def __init__(self, event: OutwardEvent, player: int):
+        super().__init__(player, event.name)
+        self._event = event
+
+    @property
+    def event(self) -> OutwardEvent:
+        return self._event
+
+    @property
+    def template(self) -> OutwardEventTemplate:
+        return self.event.template
+
+    @property
+    def faction(self) -> OutwardFaction:
+        return self.event.faction
 
 class OutwardEventItem(OutwardItem):
-    def __init__(self, name: str, player: int):
-        super().__init__(name, ItemClassification.progression, None, player)
+    _event: OutwardEvent
+
+    def __init__(self, event: OutwardEvent, player: int):
+        super().__init__(event.name, ItemClassification.progression, None, player)
+        self._event = event
+
+    @property
+    def event(self) -> OutwardEvent:
+        return self._event
+    
+    @property
+    def template(self) -> OutwardEventTemplate:
+        return self.event.template
+
+    @property
+    def faction(self) -> OutwardFaction:
+        return self.event.faction
 
 class OutwardEventTemplate(OutwardObjectTemplate):
     _region: str
-    def __init__(self, name: str, region: str):
+    _faction: OutwardFaction
+    def __init__(self, name: str, region: str, *, faction: OutwardFaction = OutwardFaction.AllFactions):
         super().__init__(name)
         self._region = region
+        self._faction = faction
     @property
     def region(self) -> str:
         return self._region
+    @property
+    def faction(self) -> OutwardFaction:
+        return self._faction
 
 event = OutwardEventTemplate.register_template
 class OutwardEventName(OutwardObjectNamespace):
