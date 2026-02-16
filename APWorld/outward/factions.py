@@ -17,3 +17,10 @@ class OutwardFaction(IntFlag):
     NoFaction = 0b0000
     OriginalThree = 0b0111
     AllFactions = 0b1111
+
+outward_factions = [
+    OutwardFaction.BlueChamber,
+    OutwardFaction.HeroicKingdom,
+    OutwardFaction.HolyMission,
+    OutwardFaction.SoroborAcademy,
+]

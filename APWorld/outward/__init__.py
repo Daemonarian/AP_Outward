@@ -677,14 +677,8 @@ class OutwardWorld(World):
 
         # missable locations
 
-        self.set_location_missable(OutwardLocationName.BURAC_FREE_SKILL)
-        self.set_location_missable(OutwardLocationName.TRAIN_SAMANTHA_TURNBULL)
-        self.set_location_missable(OutwardLocationName.TRAIN_ANTHONY_BERTHELOT)
-        self.set_location_missable(OutwardLocationName.TRAIN_PAUL)
-        self.set_location_missable(OutwardLocationName.TRAIN_YAN)
-
         for location in self.get_locations():
-            if self.get_allowed_factions() & location.faction == 0:
+            if location.check_missable(self):
                 self.set_location_missable(location.name)
 
         # completion condition

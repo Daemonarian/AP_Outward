@@ -2,11 +2,12 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from BaseClasses import Location
+from Utils import is_macos
 from worlds.generic.Rules import add_item_rule, add_rule
 
 from .common import OUTWARD
 from .templates import OutwardGameObjectNamespace, OutwardGameObjectTemplate
-from .factions import OutwardFaction
+from .factions import OutwardFaction, outward_factions
 from .regions import OutwardRegionName
 
 if TYPE_CHECKING:
@@ -27,10 +28,13 @@ class OutwardLocation(Location):
     @property
     def template(self) -> OutwardObjectTemplate:
         raise NotImplementedError()
-
+    
     @property
     def faction(self) -> OutwardFaction:
         raise NotImplementedError()
+
+    def check_missable(self, world: OutwardWorld) -> bool:
+        return False
 
     def add_rule(self, rule: CollectionRule, combine: str = "and") -> None:
         add_rule(self, rule, combine)
@@ -50,8 +54,17 @@ class OutwardGameLocation(OutwardLocation):
         return self._template
 
     @property
+    def missable(self) -> bool:
+        return self.template.missable
+
+    @property
     def faction(self) -> OutwardFaction:
         return self.template.faction
+
+    def check_missable(self, world: OutwardWorld) -> bool:
+        if self.missable:
+            return True
+        return world.get_allowed_factions() & ~self.faction != 0
 
     def add_to_world(self, world: OutwardWorld, *, skip_faction_check: bool = False) -> None:
         if skip_faction_check or world.get_allowed_factions() & self.template.faction != 0:
@@ -63,14 +76,19 @@ class OutwardGameLocation(OutwardLocation):
 
 class OutwardGameLocationTemplate(OutwardGameObjectTemplate):
     _region: str
+    _missable: bool
     _faction: OutwardFaction
-    def __init__(self, name: str, region: str, *, faction: OutwardFaction = OutwardFaction.AllFactions, archipelago_id: int = -1):
+    def __init__(self, name: str, region: str, *, missable: bool = False, faction: OutwardFaction = OutwardFaction.AllFactions, archipelago_id: int = -1):
         super().__init__(name, archipelago_id)
         self._region = region
+        self._missable = missable
         self._faction = faction
     @property
     def region(self) -> str:
         return self._region
+    @property
+    def missable(self) -> bool:
+        return self._missable
     @property
     def faction(self) -> OutwardFaction:
         return self._faction
@@ -243,7 +261,7 @@ class OutwardLocationName(OutwardGameObjectNamespace):
 
     # individual skills learned
 
-    BURAC_FREE_SKILL = location("Burac - Free Skill", OutwardRegionName.CIERZO)
+    BURAC_FREE_SKILL = location("Burac - Free Skill", OutwardRegionName.CIERZO, missable=True)
     WATCHER_FREE_SKILL = location("Watcher - Free Skill", OutwardRegionName.LEYLINE_ANY)
     TRAIN_VENDAVEL_PRISONER = location("Train - Vendavel Prisoner", OutwardRegionName.VENDAVEL_FORTRESS)
     TRAIN_FIRST_WATCHER = location("Train - First Watcher", OutwardRegionName.CONFLUX_CHAMBERS)
@@ -255,8 +273,8 @@ class OutwardLocationName(OutwardGameObjectNamespace):
     TRAIN_KING_SIMEON = location("Train - King Simeon", OutwardRegionName.LEVANT)
     TRAIN_BURAC = location("Train - Burac", OutwardRegionName.CIERZO)
     TRAIN_ODA = location("Train - Oda", OutwardRegionName.CIERZO)
-    TRAIN_SAMANTHA_TURNBULL = location("Train - Samantha Turnbull", OutwardRegionName.NEW_SIROCCO)
-    TRAIN_ANTHONY_BERTHELOT = location("Train - Anthony Berthelot", OutwardRegionName.NEW_SIROCCO)
+    TRAIN_SAMANTHA_TURNBULL = location("Train - Samantha Turnbull", OutwardRegionName.NEW_SIROCCO, faction=OutwardFaction.SoroborAcademy)
+    TRAIN_ANTHONY_BERTHELOT = location("Train - Anthony Berthelot", OutwardRegionName.NEW_SIROCCO, faction=OutwardFaction.BlueChamber)
     TRAIN_SMOOTH = location("Train - Smooth", OutwardRegionName.LEVANT_SLUMS)
     TRAIN_SECOND_WATCHER = location("Train - Second Watcher", OutwardRegionName.CONFLUX_CHAMBERS)
     TRAIN_CYRIL_TURNBULL = location("Train - Cyril Turnbull", OutwardRegionName.BERG)
@@ -266,8 +284,8 @@ class OutwardLocationName(OutwardGameObjectNamespace):
     TRAIN_RAUL_SALABERRY = location("Train - Headmaster Raul Salaberry", OutwardRegionName.HARMATTAN)
     TRAIN_ROBYN_GARNET = location("Train - Robyn Garnet, Alchemist", OutwardRegionName.HARMATTAN)
     TRAIN_MAVITH = location("Train - Mavith", OutwardRegionName.HARMATTAN)
-    TRAIN_PAUL = location("Train - Paul, Disciple", OutwardRegionName.NEW_SIROCCO)
-    TRAIN_YAN = location("Train - Yan, Levantine Alchemist", OutwardRegionName.NEW_SIROCCO)
+    TRAIN_PAUL = location("Train - Paul, Disciple", OutwardRegionName.NEW_SIROCCO, faction=OutwardFaction.HolyMission)
+    TRAIN_YAN = location("Train - Yan, Levantine Alchemist", OutwardRegionName.NEW_SIROCCO, faction=OutwardFaction.HeroicKingdom)
     REPAIR_HORSE_STATUE = location("Repair Horse Statue", OutwardRegionName.NEW_SIROCCO)
     SKILL_BLADE_PUPPY = location("Drop - Plague Doctor - Blade Puppy", OutwardRegionName.DARK_ZIGGURAT)
     SKILL_GOLDEN_WATCHER = location("Drop - Light Mender - Golden Watcher", OutwardRegionName.SPIRE_OF_LIGHT)
