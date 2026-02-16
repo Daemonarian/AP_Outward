@@ -73,7 +73,7 @@ In **R2ModMan**, the log file can be found by going to `Other` > `Settings` > `L
 
 ## How to Reach Us
 
-If you have any questions, bugs to report, or features to suggest, feel free to reach out to us on [GitHub](https://github.com/Daemonarian/AP_Outward) or the [Archipelago Discord server](https://discord.com/channels/731205301247803413/1340029949553278996).
+If you have any questions, bugs to report, or features to suggest, feel free to reach out to us on [GitHub](https://github.com/Daemonarian/AP_Outward) or through [this thread](https://discord.com/channels/731205301247803413/1340029949553278996) on the [Archipelago Discord server](https://discord.gg/archipelago).
 
 ## Developer Instructions
 
