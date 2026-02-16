@@ -9,7 +9,9 @@ namespace OutwardArchipelago.Dialogue.Patches
 {
     internal class InsertOneTimeLocationCheckPatch : IDialoguePatch
     {
-        public int ReplaceNodeID { get; set; }
+        public INodeBuilder ReplaceNode { get; set; }
+
+        public int ReplaceNodeID { set => new OriginalNodeBuilder { NodeID = value }; }
 
         public APWorld.Location Location { get; set; }
 
@@ -23,15 +25,15 @@ namespace OutwardArchipelago.Dialogue.Patches
         {
             new InsertNodePatch
             {
-                ReplaceNodeID = ReplaceNodeID,
-                Node = new ConditionNodeBuilder
+                ReplaceNode = ReplaceNode,
+                NewNode = new ConditionNodeBuilder
                 {
                     Condition = new LocationCheckConditionBuilder { Location = Location },
-                    OnSuccess = new OriginalNodeBuilder { NodeID = ReplaceNodeID },
+                    OnSuccess = ReplaceNode,
                     OnFailure = new ActionNodeBuilder
                     {
                         Actions = new IActionBuilder[] { new LocationCheckActionBuilder { Location = Location } }.Concat(OtherActions).ToList(),
-                        NextNode = NextNode ?? new ChildOriginalNodeBuilder { NodeID = ReplaceNodeID },
+                        NextNode = NextNode ?? new DescendantNodeBuilder { Node = ReplaceNode },
                     },
                 },
             }.ApplyPatch(context);

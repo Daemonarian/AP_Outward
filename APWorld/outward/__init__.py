@@ -254,14 +254,38 @@ class OutwardWorld(World):
         self.multiworld.itempool.remove(item)
         location.place_locked_item(item)
 
-    def item_rule_missable(self, item: Item):
+    def item_rule_missable(self, item: Item) -> bool:
         return item.classification == ItemClassification.filler or (item.player == self.player and ItemClassification.progression not in item.classification)
 
+    def get_pact_item_name(self) -> str | None:
+        faction = self.options.faction
+        match faction.value:
+            case faction.option_blue_chamber:
+                return OutwardItemName.FACTION_PACT_BLUE_CHAMBER
+            case faction.option_heroic_kingdom:
+                return OutwardItemName.FACTION_PACT_HEROIC_KINGDOM
+            case faction.option_holy_mission:
+                return OutwardItemName.FACTION_PACT_HOLY_MISSION
+            case faction.option_sorobor_academy:
+                return OutwardItemName.FACTION_PACT_SOROBOR_ACADEMY
+        return None
+
     def generate_early(self):
+        # we are using this hook in order to add items to the starting inventory
+        
+        # faction pact
+
+        if bool(self.options.start_with_faction_pact.value):
+            pact_item_name = self.get_pact_item_name()
+            if pact_item_name is not None:
+                self.push_precollected(self.create_item(pact_item_name))
+          
+        # breakthough points
+
         if not bool(self.options.breakthrough_point_checks.value):
             for _ in range(self.options.num_breakthough_points.value):
                 self.push_precollected(self.create_item(OutwardItemName.BREAKTHROUGH_POINT))
-          
+
     def create_regions(self):
         for region_name in OutwardRegionName.get_names():
             self.add_region(region_name)
@@ -281,7 +305,14 @@ class OutwardWorld(World):
         return self.random.choice(tuple(OutwardItemGroup.FILLER))
       
     def create_items(self):
-        # key items
+        # faction pact
+
+        if not bool(self.options.start_with_faction_pact.value):
+            pact_item_name = self.get_pact_item_name()
+            if pact_item_name is not None:
+                self.add_item(pact_item_name)
+
+        # quest licenses
 
         for _ in range(10):
             self.add_item(OutwardItemName.QUEST_LICENSE)
@@ -577,8 +608,9 @@ class OutwardWorld(World):
             
     def fill_slot_data(self) -> dict[str, Any]:
         return {
-            "goal": int(self.options.goal.value),
             "death_link": bool(self.options.death_link.value),
+            "goal": int(self.options.goal.value),
+            "faction_pact_enabled": bool(self.get_pact_item_name() is not None),
             "skillsanity": int(self.options.skillsanity.value),
             "wind_altar_checks": bool(self.options.wind_altar_checks.value),
             "breakthrough_point_checks": bool(self.options.breakthrough_point_checks.value),

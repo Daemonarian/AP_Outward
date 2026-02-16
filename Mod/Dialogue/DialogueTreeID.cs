@@ -22,6 +22,7 @@ namespace OutwardArchipelago.Dialogue
         public static readonly DialogueTreeID CalderaPillar_Neut_COW = FromName("Dialogue_CalderaPillar_Neut_COW");
         public static readonly DialogueTreeID Calixa_HK_HeroPeacemaker = FromName("Dialogue_Calixa_HK_HeroPeacemaker");
         public static readonly DialogueTreeID Calixa_HK_MouthToFeed = FromName("Dialogue_Calixa_HK_MouthToFeed");
+        public static readonly DialogueTreeID Calixa_Neut_Prequest = FromName("Dialogue_Calixa_Neut_Prequest");
         public static readonly DialogueTreeID CardinalBourlamaque_HM_HallowPeacemaker = FromName("Dialogue_CardinalBourlamaque_HM_HallowPeacemaker");
         public static readonly DialogueTreeID CeremonialBow = FromHash(0x1DEDCA1028559484);
         public static readonly DialogueTreeID Chersonese_Cierzo_BuracCarillon_Real = FromName("Dialogue_Chersonese_Cierzo_BuracCarillon_Real");
@@ -32,6 +33,7 @@ namespace OutwardArchipelago.Dialogue
         public static readonly DialogueTreeID Cyrene_HK_TendTheFlame = FromName("Dialogue_Cyrene_HK_TendTheFlame");
         public static readonly DialogueTreeID DefEd_WillOWisp_Altar = FromName("Dialogue_DefEd_WillOWisp-Altar");
         public static readonly DialogueTreeID DepoweredBludgeon = FromHash(0x309038E806EFFD3A);
+        public static readonly DialogueTreeID ElattAltar_Neut_Prequest = FromName("Dialogue_ElattAltar_Neut_Prequest");
         public static readonly DialogueTreeID Ellinara_HM_Doubts = FromName("Dialogue_Ellinara_HM_Doubts");
         public static readonly DialogueTreeID Ellinara_HM_Questions = FromName("Dialogue_Ellinara_HM_Questions");
         public static readonly DialogueTreeID Ellinara_HM_Truth = FromName("Dialogue_Ellinara_HM_Truth");
@@ -98,6 +100,7 @@ namespace OutwardArchipelago.Dialogue
         public static readonly DialogueTreeID Soroborean_BloodMageTrigger = FromName("Dialogue_Soroborean_BloodMageTrigger");
         public static readonly DialogueTreeID Soroborean_BossesGiantScourgeOnDeath_ParallelQuest = FromName("Dialogue_Soroborean_BossesGiantScourgeOnDeath_ParallelQuest");
         public static readonly DialogueTreeID Soroborean_EngineeringDean_Q1 = FromName("Dialogue_Soroborean_EngineeringDean_Q1");
+        public static readonly DialogueTreeID Soroborean_HeadMaster_PQ1 = FromName("Dialogue_Soroborean_HeadMaster_PQ1");
         public static readonly DialogueTreeID Soroborean_LichDying = FromName("Dialogue_Soroborean_LichDying");
         public static readonly DialogueTreeID Soroborean_MilitaryDean_Q2 = FromName("Dialogue_Soroborean_MilitaryDean_Q2");
         public static readonly DialogueTreeID Soroborean_MilitaryRecruiter_StartPQ1 = FromName("Dialogue_Soroborean_MilitaryRecruiter_StartPQ1");

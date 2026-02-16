@@ -83,6 +83,54 @@ namespace OutwardArchipelago.Dialogue
                 },
             });
 
+            // Faction Pact checks
+
+            Patches.Register(
+                DialogueTreeID.RissaAberdeen_Neut_Prequest,
+                new FactionPactGatekeepPatch
+                {
+                    ReplaceNodeID = 5,
+                    Faction = APWorld.Faction.BlueChamber,
+                    LocalizationKey = "dialogue.rissa.faction_pact_bc_required",
+                    ActorName = "name_unpc_rissaaberdeen_01",
+                });
+            Patches.Register(
+                DialogueTreeID.Calixa_Neut_Prequest,
+                new FactionPactGatekeepPatch
+                {
+                    ReplaceNodeID = 1,
+                    Faction = APWorld.Faction.HeroicKingdom,
+                    LocalizationKey = "dialogue.calixa.faction_pact_hk_required",
+                    ActorName = "name_unpc_calixa_01",
+                });
+            Patches.Register(
+                DialogueTreeID.SimeonKing_Neut_Prequest,
+                new FactionPactGatekeepPatch
+                {
+                    ReplaceNodeID = 1,
+                    Faction = APWorld.Faction.HeroicKingdom,
+                    LocalizationKey = "dialogue.calixa.faction_pact_hk_required",
+                    ActorName = "name_unpc_calixa_01",
+                });
+            Patches.Register(
+                DialogueTreeID.ElattAltar_Neut_Prequest,
+                new FactionPactGatekeepPatch
+                {
+                    ReplaceNodeID = 34,
+                    Faction = APWorld.Faction.HolyMission,
+                    LocalizationKey = "dialogue.elatt.faction_pact_hm_required",
+                    ActorName = "name_unpc_elatt_01",
+                });
+            Patches.Register(
+                DialogueTreeID.Soroborean_HeadMaster_PQ1,
+                new FactionPactGatekeepPatch
+                {
+                    ReplaceNodeID = 15,
+                    Faction = APWorld.Faction.SoroborAcademy,
+                    LocalizationKey = "dialogue.headmaster_salaberry.faction_pact_sa_required",
+                    ActorName = "name_unpc_headmasterSalaberry_01",
+                });
+
             // Quest License checks
 
             Patches.Register(
@@ -939,8 +987,8 @@ namespace OutwardArchipelago.Dialogue
                 DialogueTreeID.ChersPillar_Neut_COW,
                 new InsertNodePatch
                 {
-                    ReplaceNodeID = 0,
-                    Node = new ConditionNodeBuilder
+                    ReplaceNode = new OriginalNodeBuilder { NodeID = 0 },
+                    NewNode = new ConditionNodeBuilder
                     {
                         Condition = new LocationCheckConditionBuilder { Location = APWorld.Location.WindAltarChersonese },
                         OnSuccess = new OriginalNodeBuilder { NodeID = 1 },
@@ -955,8 +1003,8 @@ namespace OutwardArchipelago.Dialogue
                 DialogueTreeID.EnmerkarPillar_Neut_COW,
                 new InsertNodePatch
                 {
-                    ReplaceNodeID = 0,
-                    Node = new ConditionNodeBuilder
+                    ReplaceNode = new OriginalNodeBuilder { NodeID = 0 },
+                    NewNode = new ConditionNodeBuilder
                     {
                         Condition = new LocationCheckConditionBuilder { Location = APWorld.Location.WindAltarEnmerkarForest },
                         OnSuccess = new OriginalNodeBuilder { NodeID = 1 },
@@ -971,8 +1019,8 @@ namespace OutwardArchipelago.Dialogue
                 DialogueTreeID.AbrassPillar_Neut_COW,
                 new InsertNodePatch
                 {
-                    ReplaceNodeID = 0,
-                    Node = new ConditionNodeBuilder
+                    ReplaceNode = new OriginalNodeBuilder { NodeID = 0 },
+                    NewNode = new ConditionNodeBuilder
                     {
                         Condition = new LocationCheckConditionBuilder { Location = APWorld.Location.WindAltarAbrassar },
                         OnSuccess = new OriginalNodeBuilder { NodeID = 1 },
@@ -987,8 +1035,8 @@ namespace OutwardArchipelago.Dialogue
                 DialogueTreeID.MarshPillar_Neut_COW,
                 new InsertNodePatch
                 {
-                    ReplaceNodeID = 0,
-                    Node = new ConditionNodeBuilder
+                    ReplaceNode = new OriginalNodeBuilder { NodeID = 0 },
+                    NewNode = new ConditionNodeBuilder
                     {
                         Condition = new LocationCheckConditionBuilder { Location = APWorld.Location.WindAltarHallowedMarsh },
                         OnSuccess = new OriginalNodeBuilder { NodeID = 1 },
@@ -1003,8 +1051,8 @@ namespace OutwardArchipelago.Dialogue
                 DialogueTreeID.HarmattanPillar_Neut_COW,
                 new InsertNodePatch
                 {
-                    ReplaceNodeID = 0,
-                    Node = new ConditionNodeBuilder
+                    ReplaceNode = new OriginalNodeBuilder { NodeID = 0 },
+                    NewNode = new ConditionNodeBuilder
                     {
                         Condition = new LocationCheckConditionBuilder { Location = APWorld.Location.WindAltarAntiquePlateau },
                         OnSuccess = new OriginalNodeBuilder { NodeID = 1 },
@@ -1019,8 +1067,8 @@ namespace OutwardArchipelago.Dialogue
                 DialogueTreeID.CalderaPillar_Neut_COW,
                 new InsertNodePatch
                 {
-                    ReplaceNodeID = 0,
-                    Node = new ConditionNodeBuilder
+                    ReplaceNode = new OriginalNodeBuilder { NodeID = 0 },
+                    NewNode = new ConditionNodeBuilder
                     {
                         Condition = new LocationCheckConditionBuilder { Location = APWorld.Location.WindAltarCaldera },
                         OnSuccess = new OriginalNodeBuilder { NodeID = 5 },
@@ -1123,8 +1171,8 @@ namespace OutwardArchipelago.Dialogue
 
             var dreamerHalberdPatch = new InsertNodePatch
             {
-                ReplaceNodeID = 0,
-                Node = new ConditionNodeBuilder
+                ReplaceNode = new OriginalNodeBuilder { NodeID = 0 },
+                NewNode = new ConditionNodeBuilder
                 {
                     Conditions = new IConditionBuilder[]
                         {
@@ -1145,8 +1193,8 @@ namespace OutwardArchipelago.Dialogue
 
             var dreamerHalberdNoKillPatch = new InsertNodePatch
             {
-                ReplaceNodeID = 5,
-                Node = new ChildOriginalNodeBuilder { NodeID = 5 },
+                ReplaceNode = new OriginalNodeBuilder { NodeID = 5 },
+                NewNode = new DescendantNodeBuilder { NodeID = 5 },
             };
             Patches.Register(DialogueTreeID.Chersonese_Immaculate_Real, dreamerHalberdNoKillPatch);
             Patches.Register(DialogueTreeID.Emercar_Immaculate_Real, dreamerHalberdNoKillPatch);

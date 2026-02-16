@@ -8,8 +8,9 @@ namespace OutwardArchipelago.Archipelago
     /// </summary>
     internal class APSlotData
     {
-        private readonly GoalMode _goal = GoalMode.MainQuest7;
         private readonly bool _isDeathLinkEnabled = false;
+        private readonly GoalMode _goal = GoalMode.MainQuest7;
+        private readonly bool _isFactionPactEnabled = false;
         private readonly SkillSanityMode _skillSanity = SkillSanityMode.Vanilla;
         private readonly bool _areWindAltarChecksEnabled = true;
         private readonly bool _areBreakthoughPointChecksEnabled = true;
@@ -25,14 +26,19 @@ namespace OutwardArchipelago.Archipelago
         /// <param name="slotData"></param>
         public APSlotData(Dictionary<string, object> slotData)
         {
-            if (slotData.TryGetValue("goal", out var goal))
-            {
-                _goal = (GoalMode)(long)goal;
-            }
-
             if (slotData.TryGetValue("slot_data", out var isDeathLinkEnabled))
             {
                 _isDeathLinkEnabled = (bool)isDeathLinkEnabled;
+            }
+
+            if (slotData.TryGetValue("faction_pact_enabled", out var isFactionPactEnabled))
+            {
+                _isFactionPactEnabled = (bool)isFactionPactEnabled;
+            }
+
+            if (slotData.TryGetValue("goal", out var goal))
+            {
+                _goal = (GoalMode)(long)goal;
             }
 
             if (slotData.TryGetValue("skillsanity", out var skillSanity))
@@ -52,15 +58,22 @@ namespace OutwardArchipelago.Archipelago
         }
 
         /// <summary>
+        /// Whether death-link should be enabled.
+        /// </summary>
+        public bool IsDeathLinkEnabled => _isDeathLinkEnabled;
+
+        /// <summary>
         /// What counts as goaling or completing the game, aka when should we
         /// tell the AP server that the goal has been reached?
         /// </summary>
         public GoalMode Goal => _goal;
 
         /// <summary>
-        /// Whether death-link should be enabled.
+        /// Whether the faction-specific Pact item has been enabled, and thus
+        /// additional blocking checks should be added preventing the player
+        /// from joining a faction without the corresponding Pact.
         /// </summary>
-        public bool IsDeathLinkEnabled => _isDeathLinkEnabled;
+        public bool IsFactionPactEnabled => _isFactionPactEnabled;
 
         /// <summary>
         /// What skillsanity mode should be enabled.

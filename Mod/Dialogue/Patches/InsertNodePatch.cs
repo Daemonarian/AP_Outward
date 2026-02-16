@@ -6,17 +6,17 @@ namespace OutwardArchipelago.Dialogue.Patches
 {
     internal class InsertNodePatch : IDialoguePatch
     {
-        public int ReplaceNodeID { get; set; }
+        public INodeBuilder ReplaceNode { get; set; }
 
-        public INodeBuilder Node { get; set; }
+        public INodeBuilder NewNode { get; set; }
 
         public void ApplyPatch(IDialoguePatchContext context)
         {
-            var originalNode = context.NodesByID[ReplaceNodeID];
+            var originalNode = ReplaceNode.BuildNode(context);
             var connectionsToRedirect = new List<Connection>(originalNode.inConnections);
             originalNode.inConnections.Clear();
 
-            var newNode = Node.BuildNode(context);
+            var newNode = NewNode.BuildNode(context);
 
             foreach (var connection in connectionsToRedirect)
             {

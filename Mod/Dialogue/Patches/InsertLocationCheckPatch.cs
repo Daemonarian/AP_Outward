@@ -8,7 +8,9 @@ namespace OutwardArchipelago.Dialogue.Patches
 {
     internal class InsertLocationCheckPatch : IDialoguePatch
     {
-        public int ReplaceNodeID { get; set; }
+        public INodeBuilder ReplaceNode { get; set; }
+
+        public int ReplaceNodeID { set => new OriginalNodeBuilder { NodeID = value }; }
 
         public IReadOnlyList<APWorld.Location> Locations { get; set; }
 
@@ -24,11 +26,11 @@ namespace OutwardArchipelago.Dialogue.Patches
         {
             new InsertNodePatch
             {
-                ReplaceNodeID = ReplaceNodeID,
-                Node = new ActionNodeBuilder
+                ReplaceNode = ReplaceNode,
+                NewNode = new ActionNodeBuilder
                 {
                     Actions = Locations.Select(loc => new LocationCheckActionBuilder { Location = loc }).Concat(OtherActions).ToList(),
-                    NextNode = NextNode ?? new ChildOriginalNodeBuilder { NodeID = ReplaceNodeID },
+                    NextNode = NextNode ?? new DescendantNodeBuilder { Node = ReplaceNode },
                 }
             }.ApplyPatch(context);
         }

@@ -44,6 +44,49 @@ class GoalOption(Choice):
 
     default = 6
 
+class FactionOption(Choice):
+    """
+    Choose your faction!
+
+    Any choice besides **None** will add a new faction-specific *Pact*
+    progression item that will then be required in order to join the
+    corresponding faction.
+    This effectively locks in your choice of faction during generation.
+    In return, many faction-specific items and location checks will be enabled
+    giving more options for progression items and rewards.
+
+    Choosing **None** will allow you to join any faction during your
+    playthrough, but faction-specific items and locations will be disabled.
+    Some locations available to most, but not all factions will be enabled, but
+    will not be allowed to contain progression item, or useful items from other
+    worlds.
+    Due to the lack of progression items in this game mode, we recommend turning
+    on the *Quest License* progression items.
+
+    Also see the *Start with Faction Pact* option.
+    """
+
+    display_name = "Faction"
+
+    option_none = 0
+    option_blue_chamber = 1
+    option_heroic_kingdom = 2
+    option_holy_mission = 3
+    option_sorobor_academy = 4
+
+    default = 1
+
+class StartWithFactionPactOption(DefaultOnToggle):
+    """
+    When you choose a faction in the *Faction* option, add the new
+    faction-specific *Pact* item to your starting inventory instead of adding it
+    to the general item pool.
+    Then, you will have it, and know your faction right from the start of the
+    game, and you will not have to search for it.
+    """
+
+    display_name = "Start with Faction Pact"
+
 class SkillSanityChoice(Choice):
     """
     Randomize the selection provided by skill trainers.
@@ -93,6 +136,8 @@ class BreakthroughPointChecksOption(Toggle):
 class OutwardOptions(PerGameCommonOptions):
     death_link: DeathLink
     goal: GoalOption
+    faction: FactionOption
+    start_with_faction_pact: StartWithFactionPactOption
     skillsanity: SkillSanityChoice
     wind_altar_checks: WindAltarChecksOption
     num_breakthough_points: NumBreakthoughPointsOption

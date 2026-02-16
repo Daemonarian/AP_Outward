@@ -1,3 +1,4 @@
+using OutwardArchipelago.Archipelago;
 using OutwardArchipelago.Dialogue.Builders.Conditions;
 using OutwardArchipelago.Dialogue.Builders.Nodes;
 using OutwardArchipelago.Dialogue.Builders.Statements;
@@ -5,17 +6,18 @@ using OutwardArchipelago.Dialogue.Builders.Statements;
 namespace OutwardArchipelago.Dialogue.Patches
 {
     /// <summary>
-    /// Patches a dialogue tree with a gatekeeper that prevents access without the corresponding quest license.
+    /// A dialogue patch that conditionally adds a gatekeeper patch for specific faction Pact skills,
+    /// only if the faction pact feature is enabled.
     /// </summary>
-    internal class QuestLicenseGatekeepPatch : IDialoguePatch
+    internal class FactionPactGatekeepPatch : IDialoguePatch
     {
         /// <summary>
-        /// The node to gatekeep.
+        /// The node to replace.
         /// </summary>
         public INodeBuilder ReplaceNode { get; set; }
 
         /// <summary>
-        /// The ID of the node to gatekeep.
+        /// The original ID of the node to replace.
         /// </summary>
         /// <remarks>
         /// Can be used in place of <see cref="ReplaceNode"/>.
@@ -23,12 +25,13 @@ namespace OutwardArchipelago.Dialogue.Patches
         public int ReplaceNodeID { set => ReplaceNode = new OriginalNodeBuilder { NodeID = value }; }
 
         /// <summary>
-        /// The minimum quest license level required to pass the gatekeeper.
+        /// The required factions.
+        /// This patch will allow the player to pass if they have a faction pact for any of the specified factions.
         /// </summary>
-        public int MinimumQuestLevel { get; set; }
+        public APWorld.Faction Faction { get; set; } = APWorld.Faction.None;
 
         /// <summary>
-        /// The statement that should be said when the player is rejected by the gatekeeper.
+        /// The statement that should be shown if the player is rejected by the gatekeeper.
         /// </summary>
         public IStatementBuilder Statement { get; set; }
 
@@ -41,19 +44,22 @@ namespace OutwardArchipelago.Dialogue.Patches
         public string LocalizationKey { set => Statement = new StatementBuilder { LocalizationKey = value }; }
 
         /// <summary>
-        /// The name of the actor who will say the rejection message.
+        /// The name of the actor that should say the rejection stateemnt.
         /// </summary>
         public string ActorName { get; set; }
 
         public void ApplyPatch(IDialoguePatchContext context)
         {
-            new GatekeepPatch
+            if (OutwardArchipelagoMod.Instance.IsArchipelagoEnabled && ArchipelagoConnector.Instance.SlotData.IsFactionPactEnabled)
             {
-                ReplaceNode = ReplaceNode,
-                Condition = new QuestLicenseConditionBuilder { MinimumQuestLevel = MinimumQuestLevel },
-                Statement = Statement,
-                ActorName = ActorName,
-            }.ApplyPatch(context);
+                new GatekeepPatch
+                {
+                    ReplaceNode = ReplaceNode,
+                    Condition = new FactionPactConditionBuilder { Faction = Faction },
+                    Statement = Statement,
+                    ActorName = ActorName,
+                }.ApplyPatch(context);
+            }
         }
     }
 }

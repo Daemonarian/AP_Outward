@@ -42,7 +42,13 @@ class OutwardItemName(OutwardGameObjectNamespace):
     # custom key items
 
     QUEST_LICENSE = item("Progressive Quest License", ItemClassification.progression)
+
     BREAKTHROUGH_POINT = item("Breakthrough Point", ItemClassification.progression)
+
+    FACTION_PACT_BLUE_CHAMBER = item("Blue Chamber Pact", ItemClassification.progression)
+    FACTION_PACT_HEROIC_KINGDOM = item("Heroic Kingdom Pact", ItemClassification.progression)
+    FACTION_PACT_HOLY_MISSION = item("Holy Mission Pact", ItemClassification.progression)
+    FACTION_PACT_SOROBOR_ACADEMY = item("Sorobor Academy Pact", ItemClassification.progression)
     
     # custom filler items
 

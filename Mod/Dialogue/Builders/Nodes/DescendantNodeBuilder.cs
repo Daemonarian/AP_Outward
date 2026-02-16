@@ -4,9 +4,11 @@ using NodeCanvas.Framework;
 
 namespace OutwardArchipelago.Dialogue.Builders.Nodes
 {
-    internal class ChildOriginalNodeBuilder : INodeBuilder
+    internal class DescendantNodeBuilder : INodeBuilder
     {
-        public int NodeID { get; set; }
+        public INodeBuilder Node { get; set; }
+
+        public int NodeID { set => Node = new OriginalNodeBuilder { NodeID = value }; }
 
         public IReadOnlyList<int> ChildIndices { get; set; } = new int[] { 0 };
 
@@ -14,7 +16,7 @@ namespace OutwardArchipelago.Dialogue.Builders.Nodes
 
         public Node BuildNode(IDialoguePatchContext context)
         {
-            var node = context.NodesByID[NodeID];
+            var node = Node.BuildNode(context);
             foreach (var i in ChildIndices)
             {
                 if (node == null)
@@ -25,9 +27,7 @@ namespace OutwardArchipelago.Dialogue.Builders.Nodes
                 node = node.outConnections?.ElementAtOrDefault(i)?.targetNode;
             }
 
-            node ??= DefaultNode.BuildNode(context);
-
-            return node;
+            return node ?? DefaultNode.BuildNode(context);
         }
     }
 }

@@ -7,6 +7,11 @@ namespace OutwardArchipelago
         // custom skills
 
         internal const int APItem = 8861512;
+        internal const int FactionPactBlueChamber = 8861513;
+        internal const int FactionPactHeroicKingdom = 8861514;
+        internal const int FactionPactHolyMission = 8861515;
+        internal const int FactionPactSoroborAcademy = 8861516;
+
         internal static readonly IReadOnlyList<int> QuestLicense = new int[] { 8861501, 8861502, 8861503, 8861504, 8861505, 8861506, 8861507, 8861508, 8861509, 8861510 };
 
         // vanilla skills

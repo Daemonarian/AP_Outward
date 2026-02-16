@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using OutwardArchipelago.Archipelago.APItemGivers;
 
@@ -159,6 +160,13 @@ namespace OutwardArchipelago.Archipelago
             // breakthrough points
 
             { Item.BreakthroughPoint, new NotificationItemGiver(Item.BreakthroughPoint) },
+
+            // faction pacts
+
+            { Item.FactionPactBlueChamber, new SkillGiver(OutwardSkill.FactionPactBlueChamber) },
+            { Item.FactionPactHeroicKingdom, new SkillGiver(OutwardSkill.FactionPactHeroicKingdom) },
+            { Item.FactionPactHolyMission, new SkillGiver(OutwardSkill.FactionPactHolyMission) },
+            { Item.FactionPactSoroborAcademy, new SkillGiver(OutwardSkill.FactionPactSoroborAcademy) },
 
             // vanilla items
 
@@ -1981,6 +1989,41 @@ namespace OutwardArchipelago.Archipelago
             { Location.QuestParallelRustAndVengeance2, APSlotData.GoalMode.ParallelQuestRustAndVengeance },
             { Location.QuestParallelRustAndVengeance3, APSlotData.GoalMode.ParallelQuestRustAndVengeance },
         };
+
+        public static IEnumerable<int> GetOutwardFactionPactsForFaction(Faction faction)
+        {
+            if (faction.HasFlag(Faction.BlueChamber))
+            {
+                yield return OutwardSkill.FactionPactBlueChamber;
+            }
+
+            if (faction.HasFlag(Faction.HeroicKingdom))
+            {
+                yield return OutwardSkill.FactionPactHeroicKingdom;
+            }
+
+            if (faction.HasFlag(Faction.HolyMission))
+            {
+                yield return OutwardSkill.FactionPactHolyMission;
+            }
+
+            if (faction.HasFlag(Faction.SoroborAcademy))
+            {
+                yield return OutwardSkill.FactionPactSoroborAcademy;
+            }
+        }
+
+        [Flags]
+        public enum Faction
+        {
+            BlueChamber = 0b0001,
+            HeroicKingdom = 0b0010,
+            HolyMission = 0b0100,
+            SoroborAcademy = 0b1000,
+
+            None = 0b0000,
+            Any = 0b1111,
+        }
 
         public sealed partial class Item
         {
