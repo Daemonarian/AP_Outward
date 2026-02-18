@@ -441,6 +441,10 @@ class OutwardLocationName(OutwardGameObjectNamespace):
     FRIENDLY_IMMACULATE_ANTIQUE_PLATEAU = location("Friendly Immaculate Gift - Antique Plateau", OutwardRegionName.IMMACULATES_CAMP_ANTIQUE_PLATEAU)
     FRIENDLY_IMMACULATE_CALDERA = location("Friendly Immaculate Gift - Caldera", OutwardRegionName.IMMACULATES_CAMP_CALDERA)
 
+    # blue chamber
+
+    BALTHAZAR_NOTE = location("Spawn - General Balthazar's Note", OutwardRegionName.ANCESTORS_RESTING_PLACE_ENMERKAR_FOREST_SIDE)
+
 class OutwardLocationGroup:
     SKILL_TRAINER_INTERACT = [
         OutwardLocationName.SKILL_TRAINER_INTERACT_ADALBERT,

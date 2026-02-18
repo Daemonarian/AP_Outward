@@ -148,6 +148,10 @@ namespace OutwardArchipelago.Archipelago
 
             { Item.QuestLicense, new ProgressiveSkillGiver(OutwardSkill.QuestLicense) },
 
+            // notes
+
+            { Item.BalthazarNote, new QuestEventGiver(OutwardQuestEvents.MixedLegacies_LevantinNote, OutwardQuestEvents.TendFlame_KirouacMission) },
+
             // wind altars
 
             { Item.WindAltarBoonChersonese, new QuestEventGiver(OutwardQuestEvents.Cierzo_WindAltar_Activated) },

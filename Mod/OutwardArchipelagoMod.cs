@@ -6,6 +6,7 @@ using BepInEx.Logging;
 using HarmonyLib;
 using OutwardArchipelago.Archipelago;
 using OutwardArchipelago.Dialogue;
+using OutwardArchipelago.Scenes;
 
 namespace OutwardArchipelago
 {
@@ -98,6 +99,7 @@ namespace OutwardArchipelago
             ArchipelagoConnector.Create();
             DialoguePatcher.Instance.Awake();
             ModSceneManager.Instance.OnArchipelagoSceneReadyFirstTime += InitScene;
+            _ = ScenePatcher.Instance; // force the ScenePatcher to load
             new Harmony(GUID).PatchAll();
 
             Log.LogMessage($"{NAME} {VERSION} started successfully");

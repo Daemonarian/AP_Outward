@@ -3,7 +3,7 @@ using System.Collections;
 using HarmonyLib;
 using UnityEngine.SceneManagement;
 
-namespace OutwardArchipelago
+namespace OutwardArchipelago.Scenes
 {
     /// <summary>
     /// Encapsulates some mod-specific logic for managing scenes.

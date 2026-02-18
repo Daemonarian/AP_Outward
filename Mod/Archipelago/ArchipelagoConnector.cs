@@ -12,6 +12,7 @@ using Archipelago.MultiClient.Net.MessageLog.Messages;
 using HarmonyLib;
 using OutwardArchipelago.Archipelago.APItemGivers;
 using OutwardArchipelago.QuestEvents;
+using OutwardArchipelago.Scenes;
 using OutwardArchipelago.Utils;
 using UnityEngine;
 
