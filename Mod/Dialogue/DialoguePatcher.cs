@@ -1174,14 +1174,17 @@ namespace OutwardArchipelago.Dialogue
                 ReplaceNode = new OriginalNodeBuilder { NodeID = 0 },
                 NewNode = new ConditionNodeBuilder
                 {
-                    Conditions = new IConditionBuilder[]
+                    Condition = new ConditionListBuilder
+                    {
+                        CheckMode = ConditionList.ConditionsCheckMode.AllTrueRequired,
+                        Conditions = new List<IConditionBuilder>
                         {
                             new QuestEventConditionBuilder { EventUID = OutwardQuestEvents.SideQuests_ImmaculateChersonese },
                             new QuestEventConditionBuilder { EventUID = OutwardQuestEvents.SideQuests_ImmaculateEnmerkar },
                             new QuestEventConditionBuilder { EventUID = OutwardQuestEvents.SideQuests_ImmaculateAbrassar },
                             new QuestEventConditionBuilder { EventUID = OutwardQuestEvents.SideQuests_ImmaculateHallowedMarsh},
                         },
-                    CheckMode = ConditionList.ConditionsCheckMode.AllTrueRequired,
+                    },
                     OnSuccess = new OriginalNodeBuilder { NodeID = 1 },
                     OnFailure = new OriginalNodeBuilder { NodeID = 11 },
                 }

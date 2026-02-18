@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using OutwardArchipelago.Archipelago;
@@ -10,7 +11,7 @@ namespace OutwardArchipelago.Dialogue.Patches
     {
         public INodeBuilder ReplaceNode { get; set; }
 
-        public int ReplaceNodeID { set => new OriginalNodeBuilder { NodeID = value }; }
+        public int ReplaceNodeID { set => ReplaceNode = new OriginalNodeBuilder { NodeID = value }; }
 
         public IReadOnlyList<APWorld.Location> Locations { get; set; }
 
@@ -24,6 +25,21 @@ namespace OutwardArchipelago.Dialogue.Patches
 
         public void ApplyPatch(IDialoguePatchContext context)
         {
+            if (ReplaceNode is null)
+            {
+                throw new ArgumentNullException($"{nameof(InsertLocationCheckPatch)}.{nameof(ApplyPatch)}: '{nameof(ReplaceNode)}' should not be null");
+            }
+
+            if (Locations is null)
+            {
+                throw new ArgumentNullException($"{nameof(InsertLocationCheckPatch)}.{nameof(ApplyPatch)}: '{nameof(Locations)}' should not be null");
+            }
+
+            if (OtherActions is null)
+            {
+                throw new ArgumentNullException($"{nameof(InsertLocationCheckPatch)}.{nameof(ApplyPatch)}: '{nameof(OtherActions)}' should not be null");
+            }
+
             new InsertNodePatch
             {
                 ReplaceNode = ReplaceNode,

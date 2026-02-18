@@ -11,7 +11,7 @@ namespace OutwardArchipelago.Dialogue.Patches
     {
         public INodeBuilder ReplaceNode { get; set; }
 
-        public int ReplaceNodeID { set => new OriginalNodeBuilder { NodeID = value }; }
+        public int ReplaceNodeID { set => ReplaceNode = new OriginalNodeBuilder { NodeID = value }; }
 
         public APWorld.Location Location { get; set; }
 
