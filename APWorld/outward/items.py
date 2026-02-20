@@ -68,16 +68,16 @@ class OutwardItemName(OutwardGameObjectNamespace):
 
     # custom key items
 
-    QUEST_LICENSE = item("Progressive Quest License", ItemClassification.progression)
+    QUEST_LICENSE = item("Progressive Quest License", ItemClassification.progression, archipelago_id=8861501)
 
     BREAKTHROUGH_POINT = item("Breakthrough Point", ItemClassification.progression)
 
-    FACTION_PACT_BLUE_CHAMBER = item("Blue Chamber Pact", ItemClassification.progression)
-    FACTION_PACT_HEROIC_KINGDOM = item("Heroic Kingdom Pact", ItemClassification.progression)
-    FACTION_PACT_HOLY_MISSION = item("Holy Mission Pact", ItemClassification.progression)
-    FACTION_PACT_SOROBOR_ACADEMY = item("Sorobor Academy Pact", ItemClassification.progression)
+    FACTION_PACT_BLUE_CHAMBER = item("Blue Chamber Pact", ItemClassification.progression, archipelago_id=8861513)
+    FACTION_PACT_HEROIC_KINGDOM = item("Heroic Kingdom Pact", ItemClassification.progression, archipelago_id=8861514)
+    FACTION_PACT_HOLY_MISSION = item("Holy Mission Pact", ItemClassification.progression, archipelago_id=8861515)
+    FACTION_PACT_SOROBOR_ACADEMY = item("Sorobor Academy Pact", ItemClassification.progression, archipelago_id=8861516)
 
-    BALTHAZAR_NOTE = item("Balthazar's Note", ItemClassification.progression)
+    BALTHAZAR_NOTE = item("Balthazar's Note", ItemClassification.progression, archipelago_id=8861517)
     
     # custom filler items
 
