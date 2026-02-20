@@ -443,7 +443,7 @@ class OutwardLocationName(OutwardGameObjectNamespace):
 
     # blue chamber
 
-    BALTHAZAR_NOTE = location("Spawn - General Balthazar's Note", OutwardRegionName.ANCESTORS_RESTING_PLACE_ENMERKAR_FOREST_SIDE)
+    BALTHAZAR_NOTE = location("Spawn - Balthazar's Note", OutwardRegionName.ANCESTORS_RESTING_PLACE_ENMERKAR_FOREST_SIDE)
 
 class OutwardLocationGroup:
     SKILL_TRAINER_INTERACT = [

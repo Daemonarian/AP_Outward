@@ -11,6 +11,7 @@ using OutwardArchipelago.Scenes;
 namespace OutwardArchipelago
 {
     [BepInPlugin(GUID, NAME, VERSION)]
+    [BepInDependency(SideLoader.SL.GUID, BepInDependency.DependencyFlags.HardDependency)]
     public class OutwardArchipelagoMod : BaseUnityPlugin
     {
         public const string GUID = "com.daemonarium.apoutward";
@@ -99,6 +100,7 @@ namespace OutwardArchipelago
             ArchipelagoConnector.Create();
             DialoguePatcher.Instance.Awake();
             ModSceneManager.Instance.OnArchipelagoSceneReadyFirstTime += InitScene;
+            ModResourceManager.Init();
             _ = ScenePatcher.Instance; // force the ScenePatcher to load
             new Harmony(GUID).PatchAll();
 

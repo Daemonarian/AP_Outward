@@ -77,7 +77,7 @@ class OutwardItemName(OutwardGameObjectNamespace):
     FACTION_PACT_HOLY_MISSION = item("Holy Mission Pact", ItemClassification.progression)
     FACTION_PACT_SOROBOR_ACADEMY = item("Sorobor Academy Pact", ItemClassification.progression)
 
-    BALTHAZAR_NOTE = item("General Balthazar's Note", ItemClassification.progression)
+    BALTHAZAR_NOTE = item("Balthazar's Note", ItemClassification.progression)
     
     # custom filler items
 

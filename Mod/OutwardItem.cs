@@ -5,6 +5,7 @@ namespace OutwardArchipelago
         // custom items
 
         internal const int APItem = 8861511;
+        internal const int BalthyNote = 8861517;
 
         // vanilla items
 

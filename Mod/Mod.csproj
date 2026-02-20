@@ -49,6 +49,11 @@
       <SkipGetTargetFrameworkProperties>true</SkipGetTargetFrameworkProperties>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="SideLoader">
+      <HintPath>..\External\Libraries\SideLoader.dll</HintPath>
+    </Reference>
+  </ItemGroup>
   <Target Name="GenerateBuildInfo" BeforeTargets="CoreCompile">
     <Exec Command="powershell -NoProfile -Command &quot;(Get-Content -Path '$(VersionFile)' | ConvertFrom-Json).version&quot;" ConsoleToMSBuild="true" StandardOutputImportance="low">
       <Output TaskParameter="ConsoleOutput" PropertyName="Version" />

@@ -143,14 +143,11 @@ namespace OutwardArchipelago.Archipelago
             // custom items
 
             { Item.SilverCurrency, new MoneyGiver(50) },
+            { Item.BalthazarNote, new ItemGiver(OutwardItem.BalthyNote) },
 
             // custom skills
 
             { Item.QuestLicense, new ProgressiveSkillGiver(OutwardSkill.QuestLicense) },
-
-            // notes
-
-            { Item.BalthazarNote, new QuestEventGiver(OutwardQuestEvents.MixedLegacies_LevantinNote, OutwardQuestEvents.TendFlame_KirouacMission) },
 
             // wind altars
 
