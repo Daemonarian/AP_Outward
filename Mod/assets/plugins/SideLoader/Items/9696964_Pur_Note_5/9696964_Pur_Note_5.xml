@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<SL_Item xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Target_ItemID>5601001</Target_ItemID>
+  <New_ItemID>9696964</New_ItemID>
+  <Name>Purifer Note #5</Name>
+  <Description> 
+  “The human Jager Sullivan promised us he would find a way to free us from our rage towards the enemy. We must trust in him. But do not be stupid. If he does not have a solution after two full moons, leave without warning.”
+“We suspect he may have other motives in mind, and the longer we stay in this marsh, under the shadow of the enemy, the greater our chances of being discovered and killed. Take no risks, my kin. We Immaculates always stand alone in this world.”
+  </Description>
+  <LegacyItemID>-1</LegacyItemID>
+  <IsPickable>true</IsPickable>
+  <IsUsable>false</IsUsable>
+  <QtyRemovedOnUse>0</QtyRemovedOnUse>
+  <GroupItemInDisplay>false</GroupItemInDisplay>
+  <HasPhysicsWhenWorld>false</HasPhysicsWhenWorld>
+  <RepairedInRest>true</RepairedInRest>
+  <BehaviorOnNoDurability>NotSet</BehaviorOnNoDurability>
+  <CastType>NONE</CastType>
+  <CastModifier>Immobilized</CastModifier>
+  <CastLocomotionEnabled>false</CastLocomotionEnabled>
+  <MobileCastMovementMult>-1</MobileCastMovementMult>
+  <CastSheatheRequired>1</CastSheatheRequired>
+  <OverrideSellModifier>-1</OverrideSellModifier>
+  <Tags>
+    <string>Misc</string>
+    <string>Item</string>
+  </Tags>
+  <StatsHolder>
+    <BaseValue>1</BaseValue>
+    <RawWeight>0</RawWeight>
+    <MaxDurability>-1</MaxDurability>
+  </StatsHolder>
+  <ExtensionsEditBehaviour>NONE</ExtensionsEditBehaviour>
+  <ItemExtensions />
+  <EffectBehaviour>Destroy</EffectBehaviour>
+  <ItemVisuals>
+    <ResourcesPrefabPath>AISquadManagerStructure/PurifierImmaculates/Quest/HintImmaculate/mdl_env_propBookCaseBookOpenC/mdl_env_propBookCaseBookOpenC_LOD0</ResourcesPrefabPath>
+    <Prefab_SLPack />
+    <Prefab_AssetBundle />
+    <Prefab_Name />
+    <Position>
+      <x>0</x>
+      <y>0</y>
+      <z>0</z>
+    </Position>
+    <Rotation>
+      <x>-0</x>
+      <y>0</y>
+      <z>0</z>
+    </Rotation>
+    <Scale>
+      <x>0.5</x>
+      <y>0.5</y>
+      <z>0.5</z>
+    </Scale>
+    <PositionOffset xsi:nil="true" />
+    <RotationOffset xsi:nil="true" />
+  </ItemVisuals>
+</SL_Item>

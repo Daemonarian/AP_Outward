@@ -1,0 +1,56 @@
+<?xml version="1.0"?>
+<SL_Item xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Target_ItemID>5601001</Target_ItemID>
+  <New_ItemID>9696962</New_ItemID>
+  <Name>Purifer Note #3</Name>
+  <Description>“Your failure in that recent raid is unacceptable. There can’t be witnesses. Do you know what the Sorobor Academy does to loose ends who screw up? We risk being eliminated if our operation is discovered! Is that clear?”</Description>
+  <LegacyItemID>-1</LegacyItemID>
+  <IsPickable>true</IsPickable>
+  <IsUsable>false</IsUsable>
+  <QtyRemovedOnUse>0</QtyRemovedOnUse>
+  <GroupItemInDisplay>false</GroupItemInDisplay>
+  <HasPhysicsWhenWorld>false</HasPhysicsWhenWorld>
+  <RepairedInRest>true</RepairedInRest>
+  <BehaviorOnNoDurability>NotSet</BehaviorOnNoDurability>
+  <CastType>NONE</CastType>
+  <CastModifier>Immobilized</CastModifier>
+  <CastLocomotionEnabled>false</CastLocomotionEnabled>
+  <MobileCastMovementMult>-1</MobileCastMovementMult>
+  <CastSheatheRequired>1</CastSheatheRequired>
+  <OverrideSellModifier>-1</OverrideSellModifier>
+  <Tags>
+    <string>Misc</string>
+    <string>Item</string>
+  </Tags>
+  <StatsHolder>
+    <BaseValue>1</BaseValue>
+    <RawWeight>0</RawWeight>
+    <MaxDurability>-1</MaxDurability>
+  </StatsHolder>
+  <ExtensionsEditBehaviour>NONE</ExtensionsEditBehaviour>
+  <ItemExtensions />
+  <EffectBehaviour>Destroy</EffectBehaviour>
+  <ItemVisuals>
+    <ResourcesPrefabPath>AISquadManagerStructure/PurifierImmaculates/Quest/HintImmaculate/mdl_env_propBookCaseBookOpenC/mdl_env_propBookCaseBookOpenC_LOD0</ResourcesPrefabPath>
+    <Prefab_SLPack />
+    <Prefab_AssetBundle />
+    <Prefab_Name />
+    <Position>
+      <x>0</x>
+      <y>0</y>
+      <z>0</z>
+    </Position>
+    <Rotation>
+      <x>-0</x>
+      <y>0</y>
+      <z>0</z>
+    </Rotation>
+    <Scale>
+      <x>0.5</x>
+      <y>0.5</y>
+      <z>0.5</z>
+    </Scale>
+    <PositionOffset xsi:nil="true" />
+    <RotationOffset xsi:nil="true" />
+  </ItemVisuals>
+</SL_Item>
