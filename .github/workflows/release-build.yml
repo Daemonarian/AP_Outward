@@ -3,15 +3,37 @@ permissions:
   contents: write    
 on:
   push:
-    tags:
-      - 'v*'
+    branches:
+      - main
 jobs:
-  build:
+  update_changelog:
     runs-on: windows-latest
+    outputs:
+      tag_name: ${{ steps.conventional_changelog.outputs.tag_name }}
+      skipped: ${{ steps.conventional_changelog.outputs.skipped }}
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+    - name: Conventional Changelog Action
+      id: conventional_changelog
+      uses: TriPSs/conventional-changelog-action@v5
+      with:
+        github-token: ${{ secrets.github_token }}
+        preset: conventionalcommits
+        git-message: "chore: update changelog"
+        output-file: CHANGELOG.md
+        release-count: 1
+        version-file: version.json
+        version-path: version
+  build_release:
+    runs-on: windows-latest
+    needs: update_changelog
+    if: ${{ needs.update_changelog.outputs.skipped == 'false' }}
     steps:
     - name: Checkout
       uses: actions/checkout@v4
       with:
+        ref: ${{ needs.update_changelog.outputs.tag_name }}
         submodules: true
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
@@ -27,10 +49,10 @@ jobs:
       run: dotnet build --configuration Release
     - name: Release
       uses: softprops/action-gh-release@v2
-      if: github.ref_type == 'tag'
       env:
         GITHUB_TOKEN: ${{ secrets.github_token }}
       with:
+        tag_name: ${{ needs.update_changelog.outputs.tag_name }}
         body_path: CHANGELOG.md
         files: |
           Release/APWorld.Release/build/outward.apworld
