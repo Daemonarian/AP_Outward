@@ -1,16 +1,8 @@
-# v0.2.1
+## [0.2.2](https://github.com/Daemonarian/AP_Outward/compare/v0.2.1...v0.2.2) (2026-06-02)
 
-Features:
-- goal mode option
 
-# v0.2.0
+### Bug Fixes
 
-Features:
-- added all vanilla items/skills to the APWorld
-- skillsanity
-- option to add breakthrough points to item pool
-- option to add Cabel of Wind altars to item pool
-- added warning when entering game without a connection to AP server
+* [#65](https://github.com/Daemonarian/AP_Outward/issues/65) no longer specify the max ap version in the Archipelago manifest ([d7a3bbc](https://github.com/Daemonarian/AP_Outward/commit/d7a3bbcd2a322a30c18cf35fb9c483109910317c))
+* update Archipelago submodule to latest version ([dd0258b](https://github.com/Daemonarian/AP_Outward/commit/dd0258b1861aa98ed1d0b9e30a7b7ff4274f8ade))
 
-Bugfixes:
-- resend all location checks upon reconnect or entering game
