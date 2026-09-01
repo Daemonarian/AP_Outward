@@ -5,7 +5,7 @@ using BepInEx.Configuration;
 using BepInEx.Logging;
 using HarmonyLib;
 using OutwardArchipelago.Archipelago;
-using OutwardArchipelago.Dialogue;
+using OutwardArchipelago.Graphs;
 using OutwardArchipelago.Scenes;
 
 namespace OutwardArchipelago
@@ -98,7 +98,7 @@ namespace OutwardArchipelago
 
             BindConfig();
             ArchipelagoConnector.Create();
-            DialoguePatcher.Instance.Awake();
+            GraphPatcher.Instance.Awake();
             ModSceneManager.Instance.OnArchipelagoSceneReadyFirstTime += InitScene;
             ModResourceManager.Init();
             _ = ScenePatcher.Instance; // force the ScenePatcher to load
