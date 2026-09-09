@@ -528,6 +528,12 @@ class OutwardWorld(World):
         self.add_item(OutwardItemName.SCOURGE_COCOON)
         self.add_item(OutwardItemName.VAGABONDS_GELATIN)
 
+        # roland gifts
+
+        self.add_item(OutwardItemName.ROLAND_GIFT_1)
+        self.add_item(OutwardItemName.ROLAND_GIFT_2)
+        self.add_item(OutwardItemName.ROLAND_GIFT_3)
+
         # filler items
 
         location_count = len(tuple(self.get_locations()))

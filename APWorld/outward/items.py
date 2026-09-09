@@ -1890,6 +1890,12 @@ class OutwardItemName(OutwardGameObjectNamespace):
     GOLDEN_WATCHER = item("Golden Watcher", ItemClassification.filler, archipelago_id=8400021) # 8400021_PetSpecter
     SUMMON_WILL_O_WISP_GHOST = item("Summon Will-O-Wisp Ghost", ItemClassification.filler, archipelago_id=8500000) # 8500000_SummonWillOWisp
 
+    # random quest rewards
+
+    ROLAND_GIFT_1 = item("Roland Gift 1", ItemClassification.filler) # Gift given by Roland after listening to him whine in Cierzo
+    ROLAND_GIFT_2 = item("Roland Gift 2", ItemClassification.filler) # Gift given by Roland after talking to him after joining a faction
+    ROLAND_GIFT_3 = item("Roland Gift 3", ItemClassification.filler) # Gift given by Roland after talking to him after completing first faction quest
+
 class OutwardItemGroup:
     FILLER = [
         OutwardItemName.SILVER_CURRENCY,

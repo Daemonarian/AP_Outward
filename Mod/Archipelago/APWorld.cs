@@ -169,6 +169,12 @@ namespace OutwardArchipelago.Archipelago
             { Item.FactionPactHolyMission, new SkillGiver(OutwardSkill.FactionPactHolyMission) },
             { Item.FactionPactSoroborAcademy, new SkillGiver(OutwardSkill.FactionPactSoroborAcademy) },
 
+            // random quest rewards
+
+            { Item.RolandGift1, new MultiItemGiver(new int[] { OutwardItem.LifePotion, OutwardItem.LifePotion, OutwardItem.Antidote, OutwardItem.HexCleaner }) },
+            { Item.RolandGift2, new MultiItemGiver(new int[] { OutwardItem.SpikesIron, OutwardItem.SpikesIron, OutwardItem.SpikesIron, OutwardItem.TripwireTrap, OutwardItem.TripwireTrap, OutwardItem.TripwireTrap, OutwardItem.TripwireTrap, OutwardItem.TripwireTrap, OutwardItem.SpikesPalladium, OutwardItem.SpikesPalladium }) },
+            { Item.RolandGift3, new MultiItemGiver(new int[] { OutwardItem.GoldIngot, OutwardItem.CopalHelm }) },
+
             // vanilla items
 
             { Item.TestWeaponOfDooooom, new ItemGiver(OutwardItem.TestWeaponOfDooooom) },

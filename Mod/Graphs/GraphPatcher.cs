@@ -29,16 +29,19 @@ namespace OutwardArchipelago.Graphs
             RegisterAllPatches();
         }
 
-        public void DumpGraphContext(IGraphPatchContext context)
+        public void DumpGraph(GraphOwner graphOwner)
         {
+            var context = new GraphPatchContext(graphOwner);
             if (seenGraphPaths.Add(context.Path))
             {
-                OutwardArchipelagoMod.Log.LogDebug($"Graph initialized \"{context.Path}\": {context.Graph._serializedGraph}");
+                OutwardArchipelagoMod.Log.LogDebug($"Graph initialized \"{context.Path}\\{context.Name}\": {context.Graph._serializedGraph}");
             }
         }
 
         public void OnGraphOwnerInitialized(GraphOwner graphOwner)
         {
+            DumpGraph(graphOwner);
+
             // only patch graphs when archipelago is enabled
             if (OutwardArchipelagoMod.Instance.IsArchipelagoEnabled && graphOwner.graph is not null)
             {
@@ -1194,6 +1197,61 @@ namespace OutwardArchipelago.Graphs
             Patches.Register(GraphID.Emercar_Immaculate_Real, dreamerHalberdNoKillPatch);
             Patches.Register(GraphID.Abrassar_Immaculate_Real, dreamerHalberdNoKillPatch);
             Patches.Register(GraphID.HallowedMarsh_Immaculate_Real, dreamerHalberdNoKillPatch);
+
+            // Roland Gifts
+
+            Patches.Register(
+                GraphID.RolandArgenson_Neut_Prequest,
+                new InsertLocationCheckPatch
+                {
+                    ReplaceNodeID = 22,
+                    Location = APWorld.Location.RolandGift1,
+                    OtherActions = new IActionBuilder[]
+                    {
+                        new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.General_RolandGift1 },
+                        new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.WhispBones_RolandFocus },
+                    },
+                    NextNode = new OriginalNodeBuilder { NodeID = 15 },
+                });
+            Patches.Register(
+                GraphID.RolandArgenson_Neut_Initial,
+                new InsertLocationCheckPatch
+                {
+                    ReplaceNodeID = 9,
+                    Location = APWorld.Location.RolandGift2,
+                    OtherActions = new IActionBuilder[]
+                    {
+                        new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.General_RolandGift2 },
+                        new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.WhispBones_RolandFocus },
+                    },
+                    NextNode = new OriginalNodeBuilder { NodeID = 10 },
+                });
+            Patches.Register(
+                GraphID.RolandArgenson_Neut_Initial,
+                new InsertLocationCheckPatch
+                {
+                    ReplaceNodeID = 15,
+                    Location = APWorld.Location.RolandGift3,
+                    OtherActions = new IActionBuilder[]
+                    {
+                        new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.General_RolandGift3 },
+                        new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.WhispBones_RolandFocus },
+                    },
+                    NextNode = new OriginalNodeBuilder { NodeID = 16 },
+                });
+            Patches.Register(
+                GraphID.RolandArgenson_Neut_Initial,
+                new InsertLocationCheckPatch
+                {
+                    ReplaceNodeID = 20,
+                    Location = APWorld.Location.RolandGift3,
+                    OtherActions = new IActionBuilder[]
+                    {
+                        new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.General_RolandGift3 },
+                        new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.WhispBones_RolandFocus },
+                    },
+                    NextNode = new OriginalNodeBuilder { NodeID = 16 },
+                });
         }
 
         [HarmonyPatch(typeof(GraphOwner), nameof(GraphOwner.Initialize), new Type[] { })]

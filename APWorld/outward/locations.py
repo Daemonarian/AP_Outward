@@ -444,6 +444,9 @@ class OutwardLocationName(OutwardGameObjectNamespace):
     # blue chamber
 
     BALTHAZAR_NOTE = location("Spawn - Balthazar's Note", OutwardRegionName.ANCESTORS_RESTING_PLACE_ENMERKAR_FOREST_SIDE)
+    ROLAND_GIFT_1 = location("Roland Argenson - Gift 1", OutwardRegionName.CIERZO, missable=True)
+    ROLAND_GIFT_2 = location("Roland Argenson - Gift 2", OutwardRegionName.BERG, missable=True)
+    ROLAND_GIFT_3 = location("Roland Argenson - Gift 3", OutwardRegionName.BERG, missable=True)
 
 class OutwardLocationGroup:
     SKILL_TRAINER_INTERACT = [

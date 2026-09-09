@@ -1,5 +1,3 @@
-using System.Text;
-
 namespace OutwardArchipelago.Graphs
 {
     internal class GraphID
@@ -66,6 +64,8 @@ namespace OutwardArchipelago.Graphs
         public static readonly GraphID RissaAberdeen_BC_MixedLegacies = FromName("Dialogue_RissaAberdeen_BC_MixedLegacies");
         public static readonly GraphID RissaAberdeen_BC_WhisperingBones = FromName("Dialogue_RissaAberdeen_BC_WhisperingBones");
         public static readonly GraphID RissaAberdeen_Neut_Prequest = FromName("Dialogue_RissaAberdeen_Neut_Prequest");
+        public static readonly GraphID RolandArgenson_Neut_Initial = FromName("Dialogue_RolandArgenson_Neut_Initial");
+        public static readonly GraphID RolandArgenson_Neut_Prequest = FromName("Dialogue_RolandArgenson_Neut_Prequest");
         public static readonly GraphID SagardBattleborn_BC_AncestralPeacemaker = FromName("Dialogue_SagardBattleborn_BC_AncestralPeacemaker");
         public static readonly GraphID SagardBattleborn_BC_MixedLegacies = FromName("Dialogue_SagardBattleborn_BC_MixedLegacies");
         public static readonly GraphID SagardBattleborn_BC_WhisperingBones = FromName("Dialogue_SagardBattleborn_BC_WhisperingBones");
@@ -122,47 +122,11 @@ namespace OutwardArchipelago.Graphs
 
         public static GraphID FromPathAndName(string path, string name) => new(path, name);
 
-        public static GraphID FromContext(IGraphPatchContext context)
-        {
-            OutwardArchipelagoMod.Log.LogDebug($"Creating GraphID from context: Path='{context.Path}', Name='{context.Name}', Hash='{HashTree(context)}'");
-            return FromPathAndName(context.Path, context.Name);
-        }
+        public static GraphID FromContext(IGraphPatchContext context) => FromPathAndName(context.Path, context.Name);
 
         public static GraphID FromPath(string path) => FromPathAndName(path, null);
 
         public static GraphID FromName(string name) => FromPathAndName(null, name);
-
-        public static GraphID FromHash(ulong hash) => FromPathAndName(null, null); // Placeholder for hash-based lookup, as the actual mapping is not provided.
-
-        /// <summary>
-        /// Computes a deterministic hash value for the specified dialogue tree.
-        /// </summary>
-        /// <remarks>This method can be used to uniquely identify dialogue trees for caching, comparison,
-        /// or integrity checks. The hash is calculated using the FNV-1a algorithm over the UTF-8 encoding of the tree's
-        /// name and serialized graph.</remarks>
-        /// <param name="tree">The dialogue tree to hash. Must not be null.</param>
-        /// <returns>A 64-bit unsigned integer representing the hash of the dialogue tree. The value is consistent Unity deserialized
-        /// dialogue trees.</returns>
-        public static ulong HashTree(IGraphPatchContext context)
-        {
-            var graph = context.Graph;
-            var str = $"{graph.name}: {graph._serializedGraph}";
-            var bytes = Encoding.UTF8.GetBytes(str);
-
-            var hash = 0xcbf29ce484222325;
-            ulong prime = 0x100000001b3;
-
-            unchecked
-            {
-                foreach (var b in bytes)
-                {
-                    hash ^= b;
-                    hash *= prime;
-                }
-            }
-
-            return hash;
-        }
 
         /// <summary>
         /// Compares this graph ID with another with some soft-equality rules.
