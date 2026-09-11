@@ -11,6 +11,7 @@ namespace OutwardArchipelago.Graphs
         public static readonly GraphID AcquireManaConflux = FromPath("Chersonese_Dungeon4_CommonPath/Interactions/SkillProposition/DialogueTemplate/NPC/DialogueTree");
         public static readonly GraphID AcquireManaSorobor = FromPath("Harmattan/Interactions/NPCs/NPC_Minor/UNPC_DLC_LeyLine_SkillProposition/DialogueTemplate/NPC/DialogueTree");
         public static readonly GraphID AntiqueField_Immaculate_Real = FromName("Dialogue_AntiqueField_Immaculate_Real");
+        public static readonly GraphID BergUNPC = FromPath("Berg/_SNPC/Tree Behavior UNPC");
         public static readonly GraphID Caldera_Evangeline_BaseBuilding = FromName("Dialogue_Caldera_Evangeline_BaseBuilding");
         public static readonly GraphID Caldera_Immaculate_Real = FromName("Dialogue_Caldera_Immaculate_Real");
         public static readonly GraphID Caldera_Josef_BaseBuilding = FromName("Dialogue_Caldera_Josef_BaseBuilding");
@@ -24,6 +25,7 @@ namespace OutwardArchipelago.Graphs
         public static readonly GraphID Chersonese_Immaculate_Real = FromName("Dialogue_Chersonese_Immaculate_Real");
         public static readonly GraphID ChersPillar_Neut_COW = FromName("Dialogue_ChersPillar_Neut_COW");
         public static readonly GraphID Cierzo_HelenTurnbull_Real = FromName("Dialogue_Cierzo_HelenTurnbull_Real");
+        public static readonly GraphID CierzoNewTerrainUNPC = FromPath("CierzoNewTerrain/_SNPC/Tree Behavior UNPC");
         public static readonly GraphID Cyrene_HK_SandCorsairs = FromName("Dialogue_Cyrene_HK_SandCorsairs");
         public static readonly GraphID Cyrene_HK_TendTheFlame = FromName("Dialogue_Cyrene_HK_TendTheFlame");
         public static readonly GraphID ElattAltar_Neut_Prequest = FromName("Dialogue_ElattAltar_Neut_Prequest");

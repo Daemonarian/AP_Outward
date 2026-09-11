@@ -6,6 +6,7 @@ using OutwardArchipelago.Archipelago;
 using OutwardArchipelago.Graphs.Builders.Actions;
 using OutwardArchipelago.Graphs.Builders.Conditions;
 using OutwardArchipelago.Graphs.Builders.Nodes;
+using OutwardArchipelago.Graphs.Nodes;
 using OutwardArchipelago.Graphs.Patches;
 
 namespace OutwardArchipelago.Graphs
@@ -19,29 +20,13 @@ namespace OutwardArchipelago.Graphs
 
         private readonly GraphPatchCollection Patches = new();
 
-        /// <summary>
-        /// A set of graph identifiers that have already been processed, used to prevent duplicate patching of the same graph.
-        /// </summary>
-        private readonly HashSet<string> seenGraphPaths = new();
-
         public void Awake()
         {
             RegisterAllPatches();
         }
 
-        public void DumpGraph(GraphOwner graphOwner)
-        {
-            var context = new GraphPatchContext(graphOwner);
-            if (seenGraphPaths.Add(context.Path))
-            {
-                OutwardArchipelagoMod.Log.LogDebug($"Graph initialized \"{context.Path}\\{context.Name}\": {context.Graph._serializedGraph}");
-            }
-        }
-
         public void OnGraphOwnerInitialized(GraphOwner graphOwner)
         {
-            DumpGraph(graphOwner);
-
             // only patch graphs when archipelago is enabled
             if (OutwardArchipelagoMod.Instance.IsArchipelagoEnabled && graphOwner.graph is not null)
             {
@@ -51,16 +36,36 @@ namespace OutwardArchipelago.Graphs
         public void PatchGraph(GraphOwner graphOwner)
         {
             var context = new GraphPatchContext(graphOwner);
-            foreach (var patch in Patches.GetPatchesForGraphContext(context))
+
+            var patchSentinelNodeFound = false;
+            foreach (var node in context.Graph.allNodes)
             {
-                try
+                if (node is PatchSentinelNode)
                 {
-                    patch.ApplyPatch(context);
+                    patchSentinelNodeFound = true;
+                    break;
                 }
-                catch (Exception ex)
+            }
+
+            if (!patchSentinelNodeFound)
+            {
+                OutwardArchipelagoMod.Log.LogDebug($"Patching graph \"{context.Path}\\{context.Name}\": {context.Graph.Serialize(false, context.Graph._objectReferences)}");
+
+                foreach (var patch in Patches.GetPatchesForGraphContext(context))
                 {
-                    OutwardArchipelagoMod.Log.LogError($"Failed to apply patch to graph: {ex}");
+                    try
+                    {
+                        patch.ApplyPatch(context);
+                    }
+                    catch (Exception ex)
+                    {
+                        OutwardArchipelagoMod.Log.LogError($"Failed to apply patch to graph: {ex}");
+                    }
                 }
+
+                context.Graph.allNodes.Add(new PatchSentinelNode());
+
+                OutwardArchipelagoMod.Log.LogDebug($"  graph patched \"{context.Path}\\{context.Name}\": {context.Graph.Serialize(false, context.Graph._objectReferences)}");
             }
         }
 
@@ -1198,8 +1203,67 @@ namespace OutwardArchipelago.Graphs
             Patches.Register(GraphID.Abrassar_Immaculate_Real, dreamerHalberdNoKillPatch);
             Patches.Register(GraphID.HallowedMarsh_Immaculate_Real, dreamerHalberdNoKillPatch);
 
-            // Roland Gifts
+            // ensure Roland never skips giving gifts
+            Patches.Register(
+                GraphID.RolandArgenson_Neut_Initial,
+                new InsertNodePatch
+                {
+                    ReplaceNode = new OriginalNodeBuilder { NodeID = 0 },
+                    NewNode = new ConditionNodeBuilder
+                    {
+                        Condition = new ConditionListBuilder
+                        {
+                            CheckMode = ConditionList.ConditionsCheckMode.AllTrueRequired,
+                            Conditions = new IConditionBuilder[]
+                            {
+                                new QuestEventConditionBuilder { EventUID = OutwardQuestEvents.General_RolandGift1 },
+                                new QuestEventConditionBuilder { EventUID = OutwardQuestEvents.General_RolandGift2 },
+                                new QuestEventConditionBuilder { EventUID = OutwardQuestEvents.General_RolandGift3 },
+                            },
+                        },
+                        OnSuccess = new OriginalNodeBuilder { NodeID = 0 },
+                        OnFailure = new DescendantNodeBuilder
+                        {
+                            NodeID = 0,
+                            ChildIndices = new int[] { 1 },
+                        },
+                    },
+                });
+            Patches.Register(
+                GraphID.RolandArgenson_Neut_Initial,
+                new InsertNodePatch
+                {
+                    ReplaceNode = new OriginalNodeBuilder { NodeID = 3 },
+                    NewNode = new ConditionNodeBuilder
+                    {
+                        Condition = new QuestEventConditionBuilder { EventUID = OutwardQuestEvents.General_RolandGift1 },
+                        OnSuccess = new OriginalNodeBuilder { NodeID = 3 },
+                        OnFailure = new DescendantNodeBuilder
+                        {
+                            NodeID = 3,
+                            ChildIndices = new int[] { 1 },
+                        },
+                    },
+                });
+            Patches.Register(
+                GraphID.RolandArgenson_Neut_Initial,
+                new InsertNodePatch
+                {
+                    ReplaceNode = new OriginalNodeBuilder { NodeID = 4 },
+                    NewNode = new ConditionNodeBuilder
+                    {
+                        Condition = new QuestEventConditionBuilder { EventUID = OutwardQuestEvents.General_RolandGift2 },
+                        OnSuccess = new ConditionNodeBuilder
+                        {
+                            Condition = new QuestEventConditionBuilder { EventUID = OutwardQuestEvents.General_RolandGift3 },
+                            OnSuccess = new OriginalNodeBuilder { NodeID = 4 },
+                            OnFailure = new OriginalNodeBuilder { NodeID = 13 },
+                        },
+                        OnFailure = new OriginalNodeBuilder { NodeID = 8, },
+                    },
+                });
 
+            // Roland Gifts
             Patches.Register(
                 GraphID.RolandArgenson_Neut_Prequest,
                 new InsertLocationCheckPatch
@@ -1211,7 +1275,6 @@ namespace OutwardArchipelago.Graphs
                         new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.General_RolandGift1 },
                         new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.WhispBones_RolandFocus },
                     },
-                    NextNode = new OriginalNodeBuilder { NodeID = 15 },
                 });
             Patches.Register(
                 GraphID.RolandArgenson_Neut_Initial,
@@ -1224,7 +1287,6 @@ namespace OutwardArchipelago.Graphs
                         new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.General_RolandGift2 },
                         new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.WhispBones_RolandFocus },
                     },
-                    NextNode = new OriginalNodeBuilder { NodeID = 10 },
                 });
             Patches.Register(
                 GraphID.RolandArgenson_Neut_Initial,
@@ -1237,7 +1299,6 @@ namespace OutwardArchipelago.Graphs
                         new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.General_RolandGift3 },
                         new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.WhispBones_RolandFocus },
                     },
-                    NextNode = new OriginalNodeBuilder { NodeID = 16 },
                 });
             Patches.Register(
                 GraphID.RolandArgenson_Neut_Initial,
@@ -1250,22 +1311,73 @@ namespace OutwardArchipelago.Graphs
                         new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.General_RolandGift3 },
                         new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.WhispBones_RolandFocus },
                     },
-                    NextNode = new OriginalNodeBuilder { NodeID = 16 },
+                });
+
+            // keep Roland in Cierzo until the first gift is given, then allow him to leave
+            Patches.Register(
+                GraphID.CierzoNewTerrainUNPC,
+                new InsertNodePatch
+                {
+                    ReplaceNode = new OriginalNodeBuilder { NodeID = 45 },
+                    NewNode = new BinarySelectorNodeBuilder
+                    {
+                        Condition = new QuestEventConditionBuilder { EventUID = OutwardQuestEvents.General_RolandGift1 },
+                        OnSuccess = new OriginalNodeBuilder { NodeID = 45 },
+                        OnFailure = new DescendantNodeBuilder
+                        {
+                            NodeID = 45,
+                            ChildIndices = new int[] { 1 },
+                        },
+                    },
+                });
+
+            // keep Roland in Berg until the second and third gifts are given, then allow him to leave
+            Patches.Register(
+                GraphID.BergUNPC,
+                new InsertNodePatch
+                {
+                    ReplaceNode = new OriginalNodeBuilder { NodeID = 32 },
+                    NewNode = new BinarySelectorNodeBuilder
+                    {
+                        Condition = new ConditionListBuilder
+                        {
+                            CheckMode = ConditionList.ConditionsCheckMode.AllTrueRequired,
+                            Conditions = new IConditionBuilder[]
+                            {
+                                new QuestEventConditionBuilder { EventUID = OutwardQuestEvents.General_RolandGift2 },
+                                new QuestEventConditionBuilder { EventUID = OutwardQuestEvents.General_RolandGift3 },
+                            },
+                        },
+                        OnSuccess = new OriginalNodeBuilder { NodeID = 32 },
+                        OnFailure = new DescendantNodeBuilder
+                        {
+                            NodeID = 32,
+                            ChildIndices = new int[] { 0 },
+                        },
+                    },
                 });
         }
 
         [HarmonyPatch(typeof(GraphOwner), nameof(GraphOwner.Initialize), new Type[] { })]
         private static class Patch_GraphOwner_Initialize
         {
-            private static void Postfix(GraphOwner __instance)
+            private static void Prefix(GraphOwner __instance, out bool __state)
             {
-                try
+                __state = __instance.initialized;
+            }
+
+            private static void Postfix(GraphOwner __instance, bool __state)
+            {
+                if (!__state)
                 {
-                    Instance.OnGraphOwnerInitialized(__instance);
-                }
-                catch (Exception ex)
-                {
-                    OutwardArchipelagoMod.Log.LogError($"an error occurred while handling the {nameof(OnGraphOwnerInitialized)} event: {ex}");
+                    try
+                    {
+                        Instance.OnGraphOwnerInitialized(__instance);
+                    }
+                    catch (Exception ex)
+                    {
+                        OutwardArchipelagoMod.Log.LogError($"an error occurred while handling the {nameof(OnGraphOwnerInitialized)} event: {ex}");
+                    }
                 }
             }
         }
