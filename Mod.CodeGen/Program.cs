@@ -48,7 +48,7 @@ namespace OutwardArchipelago.CodeGen
 
             foreach (var item in apworld.Items)
             {
-                sb.AppendLine($"            public static readonly Item {SnakeToPascalCase(item.Key, culture)} = new(0x{item.Id:X16}, \"{Escape(item.Name)}\");");
+                sb.AppendLine($"            public static readonly Item {SnakeToPascalCase(item.Key, culture)} = new(0x{item.Id:X16}, \"{Escape(item.Key)}\", \"{Escape(item.Name)}\");");
             }
 
             sb.AppendLine($"            public static readonly IReadOnlyDictionary<long, Item> ById = new Dictionary<long, Item>");
@@ -60,13 +60,22 @@ namespace OutwardArchipelago.CodeGen
             }
 
             sb.AppendLine($"            }};");
+            sb.AppendLine($"            public static readonly IReadOnlyDictionary<string, Item> ByKey = new Dictionary<string, Item>");
+            sb.AppendLine($"            {{");
+
+            foreach (var item in apworld.Items)
+            {
+                sb.AppendLine($"                {{ \"{Escape(item.Key)}\", {SnakeToPascalCase(item.Key, culture)} }},");
+            }
+
+            sb.AppendLine($"            }};");
             sb.AppendLine($"        }}");
             sb.AppendLine($"        public sealed partial class Location");
             sb.AppendLine($"        {{");
 
             foreach (var location in apworld.Locations)
             {
-                sb.AppendLine($"            public static readonly Location {SnakeToPascalCase(location.Key, culture)} = new(0x{location.Id:X16}, \"{Escape(location.Name)}\");");
+                sb.AppendLine($"            public static readonly Location {SnakeToPascalCase(location.Key, culture)} = new(0x{location.Id:X16}, \"{Escape(location.Key)}\", \"{Escape(location.Name)}\");");
             }
 
             sb.AppendLine($"            public static readonly IReadOnlyDictionary<long, Location> ById = new Dictionary<long, Location>");
@@ -75,6 +84,15 @@ namespace OutwardArchipelago.CodeGen
             foreach (var location in apworld.Locations)
             {
                 sb.AppendLine($"                {{ 0x{location.Id:X16}, {SnakeToPascalCase(location.Key, culture)} }},");
+            }
+
+            sb.AppendLine($"            }};");
+            sb.AppendLine($"            public static readonly IReadOnlyDictionary<string, Location> ByKey = new Dictionary<string, Location>");
+            sb.AppendLine($"            {{");
+
+            foreach (var location in apworld.Locations)
+            {
+                sb.AppendLine($"                {{ \"{Escape(location.Key)}\", {SnakeToPascalCase(location.Key, culture)} }},");
             }
 
             sb.AppendLine($"            }};");

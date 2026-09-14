@@ -1,6 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
 using HarmonyLib;
+using Newtonsoft.Json;
 using NodeCanvas.Framework;
 using OutwardArchipelago.Archipelago;
 using OutwardArchipelago.Graphs.Builders.Actions;
@@ -8,6 +13,7 @@ using OutwardArchipelago.Graphs.Builders.Conditions;
 using OutwardArchipelago.Graphs.Builders.Nodes;
 using OutwardArchipelago.Graphs.Nodes;
 using OutwardArchipelago.Graphs.Patches;
+using UnityEngine;
 
 namespace OutwardArchipelago.Graphs
 {
@@ -18,11 +24,83 @@ namespace OutwardArchipelago.Graphs
         private static readonly Lazy<GraphPatcher> _instance = new(() => new GraphPatcher());
         public static GraphPatcher Instance => _instance.Value;
 
+        /// <summary>
+        /// A cache of all the serialized graph objects by their unique path in the scene hierarchy.
+        /// </summary>
+        private IReadOnlyDictionary<string, string> SerializedGraphs = null;
+
         private readonly GraphPatchCollection Patches = new();
 
         public void Awake()
         {
+            LoadCustomGraphAssets();
             RegisterAllPatches();
+        }
+
+        internal void LoadCustomGraphAssets()
+        {
+            OutwardArchipelagoMod.Log.LogInfo("Loading graph assets...");
+
+            var graphAssetDir = Path.Combine(OutwardArchipelagoMod.Instance.AssetsPath, "graphs");
+            var graphFiles = Directory.GetFiles(graphAssetDir, "*.json", SearchOption.AllDirectories);
+            var serializedGraphs = new Dictionary<string, string>();
+            foreach (var graphFile in graphFiles)
+            {
+                var graphName = OutwardArchipelagoMod.Instance.GetRelativePath(graphAssetDir, graphFile);
+                graphName = Regex.Replace(graphName, @"\.json$", "", RegexOptions.IgnoreCase);
+
+                if (string.Equals(graphName, "routing", StringComparison.OrdinalIgnoreCase))
+                {
+                    continue;
+                }
+
+                if (serializedGraphs.ContainsKey(graphName))
+                {
+                    OutwardArchipelagoMod.Log.LogWarning($"    duplicate graph asset: {graphName}");
+                    continue;
+                }
+
+                OutwardArchipelagoMod.Log.LogInfo($"  loading graph: {graphName}");
+
+                var graph = File.ReadAllText(graphFile, Encoding.UTF8);
+                serializedGraphs[graphName] = graph;
+            }
+
+            OutwardArchipelagoMod.Log.LogInfo("  loading routing info...");
+
+            var routingPath = Path.Combine(graphAssetDir, "routing.json");
+            if (File.Exists(routingPath))
+            {
+                var json = File.ReadAllText(routingPath, Encoding.UTF8);
+                var rawManifest = JsonConvert.DeserializeObject<Dictionary<string, List<string>>>(json);
+
+                foreach (var entry in rawManifest)
+                {
+                    var graphName = entry.Key;
+                    if (serializedGraphs.TryGetValue(graphName, out var graph))
+                    {
+                        foreach (var graphAltName in entry.Value)
+                        {
+                            if (!serializedGraphs.ContainsKey(graphAltName))
+                            {
+                                serializedGraphs[graphAltName] = graph;
+                            }
+                            else
+                            {
+                                OutwardArchipelagoMod.Log.LogWarning($"duplicate graph asset defined in routing: {graphAltName}");
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                OutwardArchipelagoMod.Log.LogWarning("graph routing file not found: assets/graphs/routing.json");
+            }
+
+            OutwardArchipelagoMod.Log.LogInfo("All graph assets loaded!");
+
+            SerializedGraphs = serializedGraphs;
         }
 
         public void OnGraphOwnerInitialized(GraphOwner graphOwner)
@@ -33,6 +111,53 @@ namespace OutwardArchipelago.Graphs
                 PatchGraph(graphOwner);
             }
         }
+
+        /// <summary>
+        /// Try to get the custom graph asset for the specified
+        /// graph owner.
+        /// </summary>
+        /// <param name="graphOwner">The graph owner.</param>
+        /// <param name="graph">The custom graph asset.</param>
+        /// <returns>Whether a custom graph asset was found.</returns>
+        public bool TryGetGraphForGraphOwner(GraphOwner graphOwner, out Graph graph)
+        {
+            if (SerializedGraphs is not null)
+            {
+                var graphPath = GetGraphPath(graphOwner);
+                if (SerializedGraphs.TryGetValue(graphPath, out var serializedGraph))
+                {
+                    OutwardArchipelagoMod.Log.LogDebug($"Replacing graph with custom asset: {graphPath}");
+
+                    string graphName;
+                    List<UnityEngine.Object> graphObjectReferences;
+                    if (!string.IsNullOrEmpty(graphOwner.boundGraphSerialization))
+                    {
+                        graphName = $"{graphOwner.name} {graphOwner.graphType.Name}";
+                        graphObjectReferences = graphOwner.boundGraphObjectReferences;
+                    }
+                    else if (graphOwner.graph is not null)
+                    {
+                        graphName = graphOwner.graph.name;
+                        graphObjectReferences = graphOwner.graph._objectReferences;
+                    }
+                    else
+                    {
+                        OutwardArchipelagoMod.Log.LogWarning($"GraphOwner does not have a boundGraphSerialization nor a graph: {graphPath}");
+                        graphName = $"{graphOwner.name} {graphOwner.graphType.Name}";
+                        graphObjectReferences = new();
+                    }
+
+                    graph = (Graph)ScriptableObject.CreateInstance(graphOwner.graphType);
+                    graph.name = graphName;
+                    graph.Deserialize(serializedGraph, true, graphObjectReferences);
+                    return true;
+                }
+            }
+
+            graph = null;
+            return false;
+        }
+
         public void PatchGraph(GraphOwner graphOwner)
         {
             var context = new GraphPatchContext(graphOwner);
@@ -67,6 +192,29 @@ namespace OutwardArchipelago.Graphs
 
                 OutwardArchipelagoMod.Log.LogDebug($"  graph patched \"{context.Path}\\{context.Name}\": {context.Graph.Serialize(false, context.Graph._objectReferences)}");
             }
+        }
+
+        /// <summary>
+        /// Gets the fully-qualified path to the graph owner object
+        /// in the Unity scene hierarchy. Useful for uniquely identifying
+        /// graph owners.
+        /// </summary>
+        /// <param name="graphOwner">The Unity graph owner.</param>
+        /// <returns>The path.</returns>
+        private static string GetGraphPath(GraphOwner graphOwner)
+        {
+            var names = new List<string>();
+            var obj = graphOwner.gameObject;
+            while (obj is not null)
+            {
+                names.Add(obj.name);
+                obj = obj.transform?.parent?.gameObject;
+            }
+
+            names.Add(SceneManagerHelper.ActiveSceneName);
+            names.Reverse();
+
+            return string.Join("/", names.Select(name => name.Replace("\\", "\\\\").Replace("/", "\\/")));
         }
 
         private void RegisterAllPatches()
@@ -1361,9 +1509,27 @@ namespace OutwardArchipelago.Graphs
         [HarmonyPatch(typeof(GraphOwner), nameof(GraphOwner.Initialize), new Type[] { })]
         private static class Patch_GraphOwner_Initialize
         {
-            private static void Prefix(GraphOwner __instance, out bool __state)
+            private static bool Prefix(GraphOwner __instance, out bool __state)
             {
                 __state = __instance.initialized;
+
+                try
+                {
+                    if (!__instance.initialized && Instance.TryGetGraphForGraphOwner(__instance, out var graph))
+                    {
+                        __instance.initialized = true;
+                        __instance.graph = graph;
+                        __instance.instances[__instance.graph] = __instance.graph;
+
+                        return false;
+                    }
+                }
+                catch (Exception e)
+                {
+                    OutwardArchipelagoMod.Log.LogError($"failed to load custom graph asset: {e}");
+                }
+
+                return true;
             }
 
             private static void Postfix(GraphOwner __instance, bool __state)

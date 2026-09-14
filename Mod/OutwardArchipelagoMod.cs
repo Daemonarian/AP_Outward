@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using BepInEx;
@@ -49,6 +50,16 @@ namespace OutwardArchipelago
         /// Whether or not the player is actually playing in an Archipelago-ready game.
         /// </summary>
         public bool IsInArchipelagoGame => IsArchipelagoEnabled && IsInGame;
+
+        /// <summary>
+        /// Gets the path to the mod's directory.
+        /// </summary>
+        public string ModPath => Path.GetDirectoryName(Info.Location);
+
+        /// <summary>
+        /// Gets the path to the mod's assets directory.
+        /// </summary>
+        public string AssetsPath => Path.Combine(ModPath, "assets");
 
         /// <summary>
         /// Initializes or updates the configuration settings for the current instance.
@@ -109,7 +120,7 @@ namespace OutwardArchipelago
 
         public byte[] LoadAsset(string fileName)
         {
-            var path = Path.Combine(Path.GetDirectoryName(Info.Location), "assets", fileName);
+            var path = Path.Combine(AssetsPath, fileName);
             if (File.Exists(path))
             {
                 return File.ReadAllBytes(path);
@@ -139,6 +150,41 @@ namespace OutwardArchipelago
             }
 
             return text;
+        }
+
+        public string GetRelativePath(string fromDirectory, string toPath)
+        {
+            if (string.IsNullOrEmpty(fromDirectory))
+            {
+                throw new ArgumentException("Value cannot be null or empty.", nameof(fromDirectory));
+            }
+
+            if (string.IsNullOrEmpty(toPath))
+            {
+                throw new ArgumentException("Value cannot be null or empty.", nameof(toPath));
+            }
+
+            if (!fromDirectory.EndsWith(Path.DirectorySeparatorChar.ToString()) && !fromDirectory.EndsWith(Path.AltDirectorySeparatorChar.ToString()))
+            {
+                fromDirectory += Path.DirectorySeparatorChar;
+            }
+
+            var fromUri = new Uri(fromDirectory);
+            var toUri = new Uri(toPath);
+            if (fromUri.Scheme != toUri.Scheme)
+            {
+                return toPath;
+            }
+
+            var relativeUri = fromUri.MakeRelativeUri(toUri);
+            var relativePath = Uri.UnescapeDataString(relativeUri.ToString());
+
+            if (toUri.Scheme.Equals("file", StringComparison.OrdinalIgnoreCase))
+            {
+                relativePath = relativePath.Replace(Path.AltDirectorySeparatorChar, Path.DirectorySeparatorChar);
+            }
+
+            return relativePath;
         }
 
         private void InitScene()

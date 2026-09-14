@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using OutwardArchipelago.Archipelago.APItemGivers;
+using UnityEngine;
 
 namespace OutwardArchipelago.Archipelago
 {
@@ -2036,15 +2037,20 @@ namespace OutwardArchipelago.Archipelago
         {
             private readonly long _id;
 
+            private readonly string _key;
+
             private readonly string _name;
 
-            private Item(long id, string name)
+            private Item(long id, string key, string name)
             {
                 _id = id;
+                _key = key;
                 _name = name;
             }
 
             public long Id => _id;
+
+            public string Key => _key;
 
             public string Name => _name;
 
@@ -2056,19 +2062,55 @@ namespace OutwardArchipelago.Archipelago
             public static bool operator !=(Item left, Item right) => !(left == right);
         }
 
+        public sealed class ItemRef
+        {
+            [SerializeField]
+            private string _key;
+
+            private Item _item = null;
+
+            public Item Item
+            {
+                get
+                {
+                    if (_item is null && _key is not null)
+                    {
+                        if (!APWorld.Item.ByKey.TryGetValue(_key, out _item))
+                        {
+                            OutwardArchipelagoMod.Log.LogError($"no AP Item found for key: {_key}");
+                            _item = null;
+                        }
+                    }
+
+                    return _item;
+                }
+
+                set
+                {
+                    _item = value;
+                    _key = _item?.Key;
+                }
+            }
+        }
+
         public sealed partial class Location
         {
             private readonly long _id;
 
+            private readonly string _key;
+
             private readonly string _name;
 
-            private Location(long id, string name)
+            private Location(long id, string key, string name)
             {
                 _id = id;
+                _key = key;
                 _name = name;
             }
 
             public long Id => _id;
+
+            public string Key => _key;
 
             public string Name => _name;
 
@@ -2079,5 +2121,37 @@ namespace OutwardArchipelago.Archipelago
             public static bool operator ==(Location left, Location right) => EqualityComparer<Location>.Default.Equals(left, right);
             public static bool operator !=(Location left, Location right) => !(left == right);
         }
+
+        public sealed class LocationRef
+        {
+            [SerializeField]
+            private string _key;
+
+            private Location _location = null;
+
+            public Location Location
+            {
+                get
+                {
+                    if (_location is null && _key is not null)
+                    {
+                        if (!APWorld.Location.ByKey.TryGetValue(_key, out _location))
+                        {
+                            OutwardArchipelagoMod.Log.LogError($"no AP Location found for key: {_key}");
+                            _location = null;
+                        }
+                    }
+
+                    return _location;
+                }
+
+                set
+                {
+                    _location = value;
+                    _key = _location?.Key;
+                }
+            }
+        }
+
     }
 }
