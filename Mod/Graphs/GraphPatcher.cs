@@ -1413,18 +1413,6 @@ namespace OutwardArchipelago.Graphs
 
             // Roland Gifts
             Patches.Register(
-                GraphID.RolandArgenson_Neut_Prequest,
-                new InsertLocationCheckPatch
-                {
-                    ReplaceNodeID = 22,
-                    Location = APWorld.Location.RolandGift1,
-                    OtherActions = new IActionBuilder[]
-                    {
-                        new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.General_RolandGift1 },
-                        new SendQuestEventActionBuilder { EventUID = OutwardQuestEvents.WhispBones_RolandFocus },
-                    },
-                });
-            Patches.Register(
                 GraphID.RolandArgenson_Neut_Initial,
                 new InsertLocationCheckPatch
                 {
