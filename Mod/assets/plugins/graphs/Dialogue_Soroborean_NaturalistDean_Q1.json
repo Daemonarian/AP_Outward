@@ -1,0 +1,1014 @@
+{
+  "graph": {
+    "version": 2.92,
+    "type": "NodeCanvas.DialogueTrees.DialogueTreeExt",
+    "translation": {
+      "x": -4129.0,
+      "y": -2593.0
+    },
+    "nodes": [
+      {
+        "_condition": {
+          "checkMode": "AnyTrueSuffice",
+          "conditions": [
+            {
+              "QuestEventRef": {
+                "m_eventUID": "nllwi4FnR0qN7968EsJ07A"
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "SV3XUncnQU60ozhj9xTRpg"
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "1tkTEWMPbEGKmWItwxy4kQ"
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ConditionList"
+        },
+        "_position": {
+          "x": 4966.0,
+          "y": 2655.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "2"
+      },
+      {
+        "statement": {
+          "_text": "No Loc - It’s always so upsetting when an upstart apprentice goes and runs their mouth! That potion of extreme stamina restoration would have sold like poutine on a winter’s day. So what if overuse leads to heart failure?  That’s no reason to ban it!\r",
+          "_meta": "Naturalist_SO_Up_Ladder_00 "
+        },
+        "_actorName": "name_unpc_ericakasper_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 4631.0,
+          "y": 2953.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "11"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "Og71f8G5a0eVmLxZB0yOKg"
+          },
+          "_invert": true,
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 5295.0,
+          "y": 2970.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "13"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "Wl08NWMJokemPVfTEyT3UA"
+          },
+          "_invert": true,
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 5130.0,
+          "y": 3180.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "16"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "HbTd6ustoU-VhQeidJcAEw"
+          },
+          "_invert": true,
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 5010.0,
+          "y": 3375.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "19"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "P2rqNERqN0O1RhkD1ff7_w"
+          },
+          "_invert": true,
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 4800.0,
+          "y": 3645.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "22"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - It’s always so upsetting when an upstart apprentice goes and runs their mouth! That potion of extreme stamina restoration would have sold like poutine on a winter’s day. So what if overuse leads to heart failure?  That’s no reason to ban it!\r",
+          "_meta": "Naturalist_SO_Up_Ladder_00 "
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 4530.0,
+          "y": 3930.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "25"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "6ghZqSwPzU-ewQhngVT_1Q"
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 5596.0,
+          "y": 3891.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "27"
+      },
+      {
+        "_condition": {
+          "_minimumQuestLevel": 2,
+          "$type": "OutwardArchipelago.Graphs.Conditions.Condition_QuestLicense"
+        },
+        "_position": {
+          "x": 4229.0,
+          "y": 2693.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "30"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "H_yLruNHE02EsaRn71dDbQ"
+          },
+          "_invert": true,
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 5280.0,
+          "y": 4185.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "32"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "xnacPXgWskym9ma0wVvgJw"
+          },
+          "_invert": true,
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 5130.0,
+          "y": 4500.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "35"
+      },
+      {
+        "statement": {
+          "_text": "No Loc - It’s always so upsetting when an upstart apprentice goes and runs their mouth! That potion of extreme stamina restoration would have sold like poutine on a winter’s day. So what if overuse leads to heart failure?  That’s no reason to ban it!\r",
+          "_meta": "Naturalist_SO_Up_Ladder_00 "
+        },
+        "_actorName": "name_unpc_ericakasper_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 4935.0,
+          "y": 4665.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "38"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "No Loc - I’m looking for work, is there anything I can do? ",
+              "_meta": "Player_AskHelp_SO_Up_Ladder_01"
+            },
+            "condition": {
+              "conditions": [
+                {
+                  "QuestEventRef": {
+                    "m_eventUID": "jfbuiFJoQUmQvaGJgH4HEg"
+                  },
+                  "_invert": true,
+                  "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+                },
+                {
+                  "QuestEventRef": {
+                    "m_eventUID": "kzDJ9rhsc0-qEowAOr5S2g"
+                  },
+                  "_invert": true,
+                  "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+                }
+              ],
+              "$type": "NodeCanvas.Framework.ConditionList"
+            }
+          },
+          {
+            "statement": {
+              "_text": "No loc - I’m leaving.",
+              "_meta": "Merchant_Generic_Leave_01"
+            }
+          }
+        ],
+        "_position": {
+          "x": 4919.0,
+          "y": 4770.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "40"
+      },
+      {
+        "statement": {
+          "_text": "No Loc - Ah, you’re one of our new apprentices.  Be a dear and give me a hand, will you?  <color=#00CCFF><b>Gather 2 Nightmare Mushrooms give them to my man at the low-class inn. His name’s Pete</b></color>.  I’ll pay you for your trouble.\r",
+          "_meta": "Naturalist_SO_Up_Ladder_01"
+        },
+        "_actorName": "name_unpc_ericakasper_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 4830.0,
+          "y": 4931.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "52"
+      },
+      {
+        "statement": {
+          "_text": "No Loc - Oh, and by the way, make sure to let him know his “order of spices has arrived”.  Got it?  Because that’s what this is.  A spice delivery. Got that?\r",
+          "_meta": "Naturalist_SO_Up_Ladder_02"
+        },
+        "_actorName": "name_unpc_ericakasper_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 4830.0,
+          "y": 5040.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "54"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "No Loc - Aren’t these...Poisonous? ",
+              "_meta": "Player_Naturalist_SO_Up_Ladder_02_a"
+            }
+          }
+        ],
+        "_position": {
+          "x": 4905.0,
+          "y": 5145.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "56"
+      },
+      {
+        "statement": {
+          "_text": "No Loc - That’s what some of my alchemists say, but I also hear it’s a very widely used spice in meat stews, so who’s to say, eh?\r",
+          "_meta": "Naturalist_SO_Up_Ladder_03"
+        },
+        "_actorName": "name_unpc_ericakasper_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 4875.0,
+          "y": 5295.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "60"
+      },
+      {
+        "_action": {
+          "QuestEventRef": {
+            "m_eventUID": "kzDJ9rhsc0-qEowAOr5S2g"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+        },
+        "_position": {
+          "x": 4890.0,
+          "y": 5415.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "62"
+      },
+      {
+        "_position": {
+          "x": 5310.0,
+          "y": 4980.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "65"
+      },
+      {
+        "statement": {
+          "_text": "No Loc - It’s always so upsetting when an upstart apprentice goes and runs their mouth! That potion of extreme stamina restoration would have sold like poutine on a winter’s day. So what if overuse leads to heart failure?  That’s no reason to ban it!\r",
+          "_meta": "Naturalist_SO_Up_Ladder_00 "
+        },
+        "_actorName": "name_unpc_ericakasper_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5415.0,
+          "y": 4680.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "66"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "No Loc - I’ve done what you asked! ",
+              "_meta": "TimeSink_SO_Up_Ladder_player_b"
+            }
+          },
+          {
+            "statement": {
+              "_text": "NoLoc - Farewell.",
+              "_meta": "Merchant_Generic_Farewell_01 "
+            }
+          }
+        ],
+        "_position": {
+          "x": 5640.0,
+          "y": 4815.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "68"
+      },
+      {
+        "statement": {
+          "_text": "No Loc - Thank you for handling that delivery!  Here, your cut.\r",
+          "_meta": "Naturalist_SO_Up_Ladder_04"
+        },
+        "_actorName": "name_unpc_ericakasper_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5490.0,
+          "y": 4980.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "74"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "No Loc - I get the feeling that you just had me deliver weaponizable poison to a bandit... ",
+              "_meta": "Player_Naturalist_SO_Up_Ladder_04_a"
+            }
+          },
+          {
+            "statement": {
+              "_text": "No Loc - I didn’t just participate in some kind of drug deal, did I? ",
+              "_meta": "Player_Naturalist_SO_Up_Ladder_04_b"
+            }
+          }
+        ],
+        "_position": {
+          "x": 5490.0,
+          "y": 5145.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "76"
+      },
+      {
+        "statement": {
+          "_text": "No Loc - How RUDE of you!  This is a perfectly legitimate spice trade!  It’s completely ethical and above board!\r",
+          "_meta": "Naturalist_SO_Up_Ladder_05"
+        },
+        "_actorName": "name_unpc_ericakasper_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5535.0,
+          "y": 5340.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "82"
+      },
+      {
+        "statement": {
+          "_text": "No Loc - Anyway, keep it up, Apprentice! With an attitude like that, you’ll make Initiate by the end of the year!\r",
+          "_meta": "Naturalist_SO_Up_Ladder_06"
+        },
+        "_actorName": "name_unpc_ericakasper_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5550.0,
+          "y": 5460.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "84"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "No Loc - End of the year?! There’s no quicker way? ",
+              "_meta": "Player_Naturalist_SO_Up_Ladder_06_a"
+            }
+          }
+        ],
+        "_position": {
+          "x": 5565.0,
+          "y": 5565.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "86"
+      },
+      {
+        "statement": {
+          "_text": "No Loc - Well, Victor Berthelot sometimes takes on Initiates pretty quickly.  Don’t believe any of the rumors about him, mind you.  The other Deans just want to poach his Initiates once he whips 'em into shape.\r\n",
+          "_meta": "Naturalist_SO_Up_Ladder_07"
+        },
+        "_actorName": "name_unpc_ericakasper_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5550.0,
+          "y": 5730.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "90"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "QuestEventRef": {
+                "m_eventUID": "H_yLruNHE02EsaRn71dDbQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "fRizhdUJwkShw-uscE1d-Q"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 5565.0,
+          "y": 5850.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "92"
+      },
+      {
+        "_action": {
+          "SilverAmount": {},
+          "XpAmount": {},
+          "ItemReward": [
+            {
+              "Item": {
+                "_value": {
+                  "m_itemID": 9000010
+                }
+              },
+              "Quantity": {
+                "_value": 15
+              },
+              "TryToEquip": {}
+            }
+          ],
+          "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+        },
+        "_position": {
+          "x": 5670.0,
+          "y": 5970.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "99"
+      },
+      {
+        "_position": {
+          "x": 5925.0,
+          "y": 4920.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "109"
+      },
+      {
+        "statement": {
+          "_text": "No Loc - Well, Victor Berthelot sometimes takes on Initiates pretty quickly.  Don’t believe any of the rumors about him, mind you.  The other Deans just want to poach his Initiates once he whips 'em into shape.\r\n",
+          "_meta": "Naturalist_SO_Up_Ladder_07"
+        },
+        "_actorName": "name_unpc_ericakasper_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5625.0,
+          "y": 4380.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "110"
+      },
+      {
+        "statement": {
+          "_text": "Come back when you have <color=#00CCFF><b>Quest License 2</b></color>.",
+          "_meta": "com.daemonarium.apoutward.dialogue.naturalist_dean.quest_license_2_required"
+        },
+        "_actorName": "name_unpc_ericakasper_01",
+        "_position": {
+          "x": 4229.0,
+          "y": 2693.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "112"
+      },
+      {
+        "_position": {
+          "x": 4229.0,
+          "y": 2693.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "114"
+      },
+      {
+        "statement": {
+          "_text": "No Loc - It’s always so upsetting when an upstart apprentice goes and runs their mouth! That potion of extreme stamina restoration would have sold like poutine on a winter’s day. So what if overuse leads to heart failure?  That’s no reason to ban it!\r",
+          "_meta": "Naturalist_SO_Up_Ladder_00 "
+        },
+        "_actorName": "name_unpc_ericakasper_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5761.0,
+          "y": 4230.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "115"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Would you believe one of my apprentices thinks I know nothing of Alchemy? I know how to make money off of it, isn’t that the same thing?\r",
+          "_meta": "Naturalist_SO_Knife_01"
+        },
+        "_actorName": "name_unpc_ericakasper_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5580.0,
+          "y": 3660.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "117"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - My Master of Potioncraft is demanding a raise. I hate cutting down our profits, but he IS my greatest source of them...Bah, I guess I have no choice...\r",
+          "_meta": "Naturalist_SO_Sabotage_01"
+        },
+        "_actorName": "name_unpc_ericakasper_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5565.0,
+          "y": 3420.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "119"
+      },
+      {
+        "_action": {
+          "dialogueStarter": {
+            "_name": "GlobalBlackboard_Harmattan/NaturalistDean_Q4",
+            "_targetVariableID": "e7c07985-e315-446c-b4ba-d47fffea5f2c"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.BranchDialogue"
+        },
+        "_position": {
+          "x": 5535.0,
+          "y": 3180.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "121"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "jfbuiFJoQUmQvaGJgH4HEg"
+          },
+          "_invert": true,
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 6097.0,
+          "y": 3968.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode"
+      }
+    ],
+    "connections": [
+      {
+        "_sourceNode": {
+          "$ref": "2"
+        },
+        "_targetNode": {
+          "$ref": "11"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "2"
+        },
+        "_targetNode": {
+          "$ref": "13"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "13"
+        },
+        "_targetNode": {
+          "$ref": "16"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "13"
+        },
+        "_targetNode": {
+          "$ref": "121"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "16"
+        },
+        "_targetNode": {
+          "$ref": "19"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "16"
+        },
+        "_targetNode": {
+          "$ref": "119"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "19"
+        },
+        "_targetNode": {
+          "$ref": "22"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "19"
+        },
+        "_targetNode": {
+          "$ref": "117"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "22"
+        },
+        "_targetNode": {
+          "$ref": "25"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "22"
+        },
+        "_targetNode": {
+          "$ref": "27"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "27"
+        },
+        "_targetNode": {
+          "$ref": "30"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "27"
+        },
+        "_targetNode": {
+          "$ref": "115"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "30"
+        },
+        "_targetNode": {
+          "$ref": "32"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "30"
+        },
+        "_targetNode": {
+          "$ref": "112"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "32"
+        },
+        "_targetNode": {
+          "$ref": "35"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "32"
+        },
+        "_targetNode": {
+          "$ref": "110"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "35"
+        },
+        "_targetNode": {
+          "$ref": "38"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "35"
+        },
+        "_targetNode": {
+          "$ref": "66"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "38"
+        },
+        "_targetNode": {
+          "$ref": "40"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "40"
+        },
+        "_targetNode": {
+          "$ref": "52"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "40"
+        },
+        "_targetNode": {
+          "$ref": "65"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "52"
+        },
+        "_targetNode": {
+          "$ref": "54"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "54"
+        },
+        "_targetNode": {
+          "$ref": "56"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "56"
+        },
+        "_targetNode": {
+          "$ref": "60"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "60"
+        },
+        "_targetNode": {
+          "$ref": "62"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "66"
+        },
+        "_targetNode": {
+          "$ref": "68"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "68"
+        },
+        "_targetNode": {
+          "$ref": "74"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "68"
+        },
+        "_targetNode": {
+          "$ref": "109"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "74"
+        },
+        "_targetNode": {
+          "$ref": "76"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "76"
+        },
+        "_targetNode": {
+          "$ref": "82"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "76"
+        },
+        "_targetNode": {
+          "$ref": "82"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "82"
+        },
+        "_targetNode": {
+          "$ref": "84"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "84"
+        },
+        "_targetNode": {
+          "$ref": "86"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "86"
+        },
+        "_targetNode": {
+          "$ref": "90"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "90"
+        },
+        "_targetNode": {
+          "$ref": "92"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "92"
+        },
+        "_targetNode": {
+          "$ref": "99"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "112"
+        },
+        "_targetNode": {
+          "$ref": "114"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      }
+    ],
+    "canvasGroups": [
+      {
+        "name": "During Q3",
+        "rect": {
+          "xMin": 5551.0,
+          "yMin": 3326.0,
+          "xMax": 5965.0,
+          "yMax": 3560.0
+        }
+      },
+      {
+        "name": "During Q2",
+        "rect": {
+          "xMin": 5549.0,
+          "yMin": 3582.0,
+          "xMax": 6030.0,
+          "yMax": 3780.0
+        }
+      },
+      {
+        "name": "During Q1",
+        "rect": {
+          "xMin": 4977.588,
+          "yMin": 3830.71,
+          "xMax": 6133.0,
+          "yMax": 6082.0
+        }
+      },
+      {
+        "name": "During Quest 0",
+        "rect": {
+          "xMin": 4481.483,
+          "yMin": 3829.28,
+          "xMax": 4949.381,
+          "yMax": 4053.754
+        }
+      }
+    ],
+    "localBlackboard": {
+      "_name": "Local Blackboard",
+      "_variables": {
+        "gInstigator": {
+          "_name": "gInstigator",
+          "_id": "2bf53ecc-e733-49ca-a75f-463c24c62eb6",
+          "$type": "NodeCanvas.Framework.Variable`1[[Character, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+        }
+      }
+    },
+    "derivedData": {
+      "actorParameters": [
+        {
+          "_keyName": "name_unpc_ericakasper_01",
+          "_id": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760"
+        }
+      ],
+      "$type": "NodeCanvas.DialogueTrees.DialogueTree+DerivedSerializationData"
+    }
+  },
+  "replace": [
+    "Harmattan/Interactions/NPCs/NPCs_Positions/NPCs_Position_Quest_Debate/UNPC_DLC_Erica_NaturalistDean_Debate/NaturalistDean_Dialog/NPC/Dialogue_1_Initial",
+    "Harmattan/Interactions/NPCs/NPCs_Quest_General/UNPC_DLC_Erica_NaturalistDean/NaturalistDean_Dialog/NPC/Dialogue_1_Initial"
+  ]
+}

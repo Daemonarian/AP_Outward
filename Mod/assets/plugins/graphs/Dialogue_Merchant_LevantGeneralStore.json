@@ -1,0 +1,783 @@
+{
+  "graph": {
+    "version": 2.92,
+    "type": "NodeCanvas.DialogueTrees.DialogueTreeExt",
+    "translation": {
+      "x": -4345.0,
+      "y": -5153.0
+    },
+    "zoomFactor": 0.7945362,
+    "nodes": [
+      {
+        "_condition": {
+          "conditions": [
+            {
+              "QuestEventRef": {
+                "m_eventUID": "fW6jMpdasEW1_tM0-qAGnw"
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            {
+              "questRef": {
+                "_value": {
+                  "m_itemID": 7011005
+                }
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_IsQuestCompleted"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ConditionList"
+        },
+        "_position": {
+          "x": 5895.0,
+          "y": 4935.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "2"
+      },
+      {
+        "statement": {
+          "_text": "I heard the food store stocks contraband, the scumbag! Take your time to browse, only legit goods here!",
+          "_meta": "Merchant_Levant_GeneralStore_01"
+        },
+        "_actorName": "name_merchant_levantgeneralstore_01 ",
+        "_actorParameterID": "e592641c-683d-4d8f-9c5c-768a2a7d1497",
+        "_position": {
+          "x": 5685.0,
+          "y": 5205.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "10"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "I want to buy something.",
+              "_meta": "Merchant_Generic_Shop_01"
+            }
+          },
+          {
+            "statement": {
+              "_text": "I’d like to talk.",
+              "_meta": "Merchant_Generic_Talk_01"
+            }
+          },
+          {
+            "statement": {
+              "_text": "Not now.",
+              "_meta": "Merchant_Generic_NotNow_01"
+            }
+          }
+        ],
+        "_position": {
+          "x": 5940.0,
+          "y": 5505.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "12"
+      },
+      {
+        "_action": {
+          "Merchant": {
+            "_name": "myMerchant",
+            "_targetVariableID": "4f3641a8-ecc7-4dba-bcea-5cefea3c9f46"
+          },
+          "PlayerCharacter": {
+            "_name": "gInstigator",
+            "_targetVariableID": "3a601c20-be18-4c6c-8460-357b1bcd1ab3"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.ShopDialogueAction"
+        },
+        "_position": {
+          "x": 5565.0,
+          "y": 5700.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "20"
+      },
+      {
+        "_position": {
+          "x": 5520.0,
+          "y": 5805.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "24"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "E6ojzuFHnkWVytGPbUcbYA"
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 5760.0,
+          "y": 5700.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "25"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "_location": {
+                "_key": "QUEST_MINOR_LEDGER_TO_LEVANT"
+              },
+              "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "bvVu4HNlYE2aBkZVn-jnOQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 4445.0,
+          "y": 5253.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "28"
+      },
+      {
+        "_action": {
+          "QuestEventRef": {
+            "m_eventUID": "E6ojzuFHnkWVytGPbUcbYA"
+          },
+          "RemoveAllStack": true,
+          "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+        },
+        "_position": {
+          "x": 5475.0,
+          "y": 6165.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "35"
+      },
+      {
+        "statement": {
+          "_text": "Perfect, I was waiting for this. Here, your pay for a delivery well done.",
+          "_meta": "Merchant_Cierzo_GeneralStore_02"
+        },
+        "_actorName": "name_merchant_levantgeneralstore_01 ",
+        "_actorParameterID": "e592641c-683d-4d8f-9c5c-768a2a7d1497",
+        "_position": {
+          "x": 5460.0,
+          "y": 6285.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "38"
+      },
+      {
+        "_position": {
+          "x": 5595.0,
+          "y": 6405.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "40"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "azcxaDeHu0ufAIdwg4VVmQ"
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 6030.0,
+          "y": 5925.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "41"
+      },
+      {
+        "statement": {
+          "_text": "Be sure to come back sometime, these deliveries are needed pretty regularly.",
+          "_meta": "Merchant_Cierzo_GeneralStore_03"
+        },
+        "_actorName": "name_merchant_levantgeneralstore_01 ",
+        "_actorParameterID": "e592641c-683d-4d8f-9c5c-768a2a7d1497",
+        "_position": {
+          "x": 5895.0,
+          "y": 6075.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "44"
+      },
+      {
+        "_position": {
+          "x": 6045.0,
+          "y": 6270.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "46"
+      },
+      {
+        "statement": {
+          "_text": "I need this ledger delivered to the general store in Cierzo. If you can make the journey, he’ll pay you well for it. Interested?",
+          "_meta": "Merchant_Levant_GeneralStore_02"
+        },
+        "_actorName": "name_merchant_levantgeneralstore_01 ",
+        "_actorParameterID": "e592641c-683d-4d8f-9c5c-768a2a7d1497",
+        "_position": {
+          "x": 6345.0,
+          "y": 6075.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "47"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "Yes.",
+              "_meta": "Merchant_Generic_Yes_01"
+            }
+          },
+          {
+            "statement": {
+              "_text": "No.",
+              "_meta": "Merchant_Generic_No_01"
+            }
+          }
+        ],
+        "_position": {
+          "x": 6435.0,
+          "y": 6270.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "49"
+      },
+      {
+        "_action": {
+          "QuestEventRef": {
+            "m_eventUID": "azcxaDeHu0ufAIdwg4VVmQ"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+        },
+        "_position": {
+          "x": 6240.0,
+          "y": 6405.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "55"
+      },
+      {
+        "_condition": {
+          "quest": {
+            "_value": 1
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_KnowQuest"
+        },
+        "_position": {
+          "x": 6210.0,
+          "y": 6495.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "58"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "quest": {},
+              "questRef": {
+                "_value": {
+                  "m_itemID": 7011612
+                }
+              },
+              "$type": "NodeCanvas.Tasks.Actions.RemoveQuest"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "5RL_1QU-70Wk8B5pm7lf0g"
+              },
+              "RemoveAllStack": true,
+              "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 6075.0,
+          "y": 6600.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "61"
+      },
+      {
+        "_action": {
+          "quest": {},
+          "questRef": {
+            "_value": {
+              "m_itemID": 7011612
+            }
+          },
+          "$type": "NodeCanvas.Tasks.Actions.GiveQuest"
+        },
+        "_position": {
+          "x": 6195.0,
+          "y": 6720.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "70"
+      },
+      {
+        "statement": {
+          "_text": "Excellent, thank you. The sharing of information is essential for merchants like us. You’ll get your reward once you’ve delivered the ledger.",
+          "_meta": "Merchant_Cierzo_GeneralStore_05"
+        },
+        "_actorName": "name_merchant_levantgeneralstore_01 ",
+        "_actorParameterID": "e592641c-683d-4d8f-9c5c-768a2a7d1497",
+        "_position": {
+          "x": 6165.0,
+          "y": 6840.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "75"
+      },
+      {
+        "statement": {
+          "_text": "Need something else?",
+          "_meta": "Merchant_Monsoon_Blacksmith_02"
+        },
+        "_actorName": "name_merchant_levantgeneralstore_01 ",
+        "_actorParameterID": "e592641c-683d-4d8f-9c5c-768a2a7d1497",
+        "_position": {
+          "x": 6210.0,
+          "y": 7005.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "77"
+      },
+      {
+        "_targetNode": {
+          "$ref": "12"
+        },
+        "_position": {
+          "x": 6300.0,
+          "y": 7125.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.GoToNode",
+        "$id": "79"
+      },
+      {
+        "statement": {
+          "_text": "Need something else?",
+          "_meta": "Merchant_Monsoon_Blacksmith_02"
+        },
+        "_actorName": "name_merchant_levantgeneralstore_01 ",
+        "_actorParameterID": "e592641c-683d-4d8f-9c5c-768a2a7d1497",
+        "_position": {
+          "x": 6615.0,
+          "y": 6420.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "80"
+      },
+      {
+        "_targetNode": {
+          "$ref": "12"
+        },
+        "_position": {
+          "x": 6645.0,
+          "y": 6570.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.GoToNode",
+        "$id": "82"
+      },
+      {
+        "statement": {
+          "_text": "Farewell.",
+          "_meta": "Merchant_Generic_Farewell_01"
+        },
+        "_actorName": "name_merchant_levantgeneralstore_01 ",
+        "_actorParameterID": "e592641c-683d-4d8f-9c5c-768a2a7d1497",
+        "_position": {
+          "x": 6225.0,
+          "y": 5700.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "83"
+      },
+      {
+        "_position": {
+          "x": 6300.0,
+          "y": 5820.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "85"
+      },
+      {
+        "statement": {
+          "_text": "I heard the food store stocks contraband, the scumbag! Take your time to browse, only legit goods here!",
+          "_meta": "Merchant_Levant_GeneralStore_01"
+        },
+        "_actorName": "name_merchant_levantgeneralstore_01 ",
+        "_actorParameterID": "e592641c-683d-4d8f-9c5c-768a2a7d1497",
+        "_position": {
+          "x": 6120.0,
+          "y": 5220.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "86"
+      },
+      {
+        "statement": {
+          "_text": "Don’t get your hopes up too much, there’s, ah...Pretty large taxes on my goods.",
+          "_meta": "ShopPressured_NEUT_02"
+        },
+        "_actorName": "name_merchant_levantgeneralstore_01 ",
+        "_actorParameterID": "e592641c-683d-4d8f-9c5c-768a2a7d1497",
+        "_position": {
+          "x": 6120.0,
+          "y": 5340.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "88"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "SilverAmount": {},
+              "XpAmount": {},
+              "ItemReward": [
+                {
+                  "Item": {
+                    "_value": {
+                      "m_itemID": 6200090
+                    }
+                  },
+                  "Quantity": {
+                    "_value": 1
+                  },
+                  "TryToEquip": {}
+                }
+              ],
+              "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "bvVu4HNlYE2aBkZVn-jnOQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 5490.0,
+          "y": 6030.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "90"
+      }
+    ],
+    "connections": [
+      {
+        "_sourceNode": {
+          "$ref": "2"
+        },
+        "_targetNode": {
+          "$ref": "10"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "2"
+        },
+        "_targetNode": {
+          "$ref": "86"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "10"
+        },
+        "_targetNode": {
+          "$ref": "12"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "12"
+        },
+        "_targetNode": {
+          "$ref": "20"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "12"
+        },
+        "_targetNode": {
+          "$ref": "25"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "12"
+        },
+        "_targetNode": {
+          "$ref": "83"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "20"
+        },
+        "_targetNode": {
+          "$ref": "24"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "25"
+        },
+        "_targetNode": {
+          "$ref": "28"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "25"
+        },
+        "_targetNode": {
+          "$ref": "41"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "28"
+        },
+        "_targetNode": {
+          "$ref": "35"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "35"
+        },
+        "_targetNode": {
+          "$ref": "38"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "38"
+        },
+        "_targetNode": {
+          "$ref": "40"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "41"
+        },
+        "_targetNode": {
+          "$ref": "44"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "41"
+        },
+        "_targetNode": {
+          "$ref": "47"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "44"
+        },
+        "_targetNode": {
+          "$ref": "46"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "47"
+        },
+        "_targetNode": {
+          "$ref": "49"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "49"
+        },
+        "_targetNode": {
+          "$ref": "55"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "49"
+        },
+        "_targetNode": {
+          "$ref": "80"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "55"
+        },
+        "_targetNode": {
+          "$ref": "58"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "58"
+        },
+        "_targetNode": {
+          "$ref": "61"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "58"
+        },
+        "_targetNode": {
+          "$ref": "70"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "61"
+        },
+        "_targetNode": {
+          "$ref": "70"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "70"
+        },
+        "_targetNode": {
+          "$ref": "75"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "75"
+        },
+        "_targetNode": {
+          "$ref": "77"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "77"
+        },
+        "_targetNode": {
+          "$ref": "79"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "80"
+        },
+        "_targetNode": {
+          "$ref": "82"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "83"
+        },
+        "_targetNode": {
+          "$ref": "85"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "86"
+        },
+        "_targetNode": {
+          "$ref": "88"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "88"
+        },
+        "_targetNode": {
+          "$ref": "12"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "90"
+        },
+        "_targetNode": {
+          "$ref": "35"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      }
+    ],
+    "localBlackboard": {
+      "_name": "Local Blackboard",
+      "_variables": {
+        "gInstigator": {
+          "_name": "gInstigator",
+          "_id": "3a601c20-be18-4c6c-8460-357b1bcd1ab3",
+          "$type": "NodeCanvas.Framework.Variable`1[[Character, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+        },
+        "myMerchant": {
+          "_name": "myMerchant",
+          "_id": "4f3641a8-ecc7-4dba-bcea-5cefea3c9f46",
+          "$type": "NodeCanvas.Framework.Variable`1[[Merchant, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+        }
+      }
+    },
+    "derivedData": {
+      "actorParameters": [
+        {
+          "_keyName": "name_merchant_levantgeneralstore_01 ",
+          "_id": "e592641c-683d-4d8f-9c5c-768a2a7d1497"
+        }
+      ],
+      "$type": "NodeCanvas.DialogueTrees.DialogueTree+DerivedSerializationData"
+    }
+  },
+  "replace": [
+    "Levant/_SNPC/DisablingForHMQ4/_MerchantsHighPrices/HumanSNPC_CounterGeneralStore/MerchantTemplate (1)/NPC/ShopDialogue",
+    "Levant/_SNPC/DisablingForHMQ4/_MerchantsLowPrices/HumanSNPC_CounterGeneralStore/MerchantTemplate (1)/NPC/ShopDialogue",
+    "Abrassar/Interactions/OnLockedLevant/HumanSNPC_CounterGeneralStore/MerchantTemplate (1)/NPC/ShopDialogue"
+  ]
+}

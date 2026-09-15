@@ -1,0 +1,1065 @@
+{
+  "graph": {
+    "version": 2.92,
+    "type": "NodeCanvas.DialogueTrees.DialogueTreeExt",
+    "translation": {
+      "x": -6369.0,
+      "y": -5848.0
+    },
+    "zoomFactor": 0.9997753,
+    "nodes": [
+      {
+        "statement": {
+          "_text": "Delicious fish here! Caught just moments ago! Take a look!",
+          "_meta": "Merchant_Cierzo_FishmongerA_01"
+        },
+        "_actorName": "Fishmonger",
+        "_actorParameterID": "700350c3-2b24-4884-a87f-6a3f7d1695e4",
+        "_position": {
+          "x": 5775.0,
+          "y": 5265.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "2"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "I want to buy something.",
+              "_meta": "Merchant_Generic_Shop_01"
+            }
+          },
+          {
+            "statement": {
+              "_text": "I’d like to talk.",
+              "_meta": "Merchant_Generic_Talk_01"
+            }
+          },
+          {
+            "statement": {
+              "_text": "Not now.",
+              "_meta": "Merchant_Generic_NotNow_01"
+            }
+          },
+          {
+            "statement": {
+              "_text": "Can you teach me about how to eat well, while I’m in the wild?",
+              "_meta": "Player_Cooking_tutorial_a_00"
+            }
+          }
+        ],
+        "_position": {
+          "x": 5865.0,
+          "y": 5535.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "4"
+      },
+      {
+        "_action": {
+          "Merchant": {
+            "_name": "myMerchant",
+            "_targetVariableID": "d95c1cd1-3b85-4f96-8202-c62f4ebcde31"
+          },
+          "PlayerCharacter": {
+            "_name": "gInstigator",
+            "_targetVariableID": "27500df4-c3ba-4147-9503-9f306cfdedbb"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.ShopDialogueAction"
+        },
+        "_position": {
+          "x": 5640.0,
+          "y": 5715.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "14"
+      },
+      {
+        "_position": {
+          "x": 5595.0,
+          "y": 5805.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "18"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "y0ANWdLtKEWAiEX4e7Zt5w"
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 5760.0,
+          "y": 5835.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "19"
+      },
+      {
+        "_condition": {
+          "character": {
+            "_name": "gInstigator",
+            "_targetVariableID": "27500df4-c3ba-4147-9503-9f306cfdedbb"
+          },
+          "item": {
+            "_value": {
+              "m_itemID": 4100180
+            }
+          },
+          "minAmount": {
+            "_value": 1
+          },
+          "itemMustBeEquiped": {},
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+        },
+        "_position": {
+          "x": 4980.0,
+          "y": 6315.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "22"
+      },
+      {
+        "_action": {
+          "fromCharacter": {
+            "_name": "gInstigator",
+            "_targetVariableID": "27500df4-c3ba-4147-9503-9f306cfdedbb"
+          },
+          "Items": [
+            {
+              "_value": {
+                "m_itemID": 4100180
+              }
+            }
+          ],
+          "Amount": [
+            {
+              "_value": 1
+            }
+          ],
+          "$type": "NodeCanvas.Tasks.Actions.RemoveItem"
+        },
+        "_position": {
+          "x": 4830.0,
+          "y": 6420.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "29"
+      },
+      {
+        "_condition": {
+          "_location": {
+            "_key": "QUEST_MINOR_NEED_CIERZO_CEVICHE"
+          },
+          "$type": "OutwardArchipelago.Graphs.Conditions.Condition_LocationCheck"
+        },
+        "_position": {
+          "x": 6469.0,
+          "y": 5948.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "37"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "SilverAmount": {},
+              "XpAmount": {},
+              "ItemReward": [
+                {
+                  "Item": {
+                    "_value": {
+                      "m_itemID": 4100230
+                    }
+                  },
+                  "Quantity": {
+                    "_value": 4
+                  },
+                  "TryToEquip": {}
+                }
+              ],
+              "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "canQ6S0-NkiDmNs0SGlY3A"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 4755.0,
+          "y": 6540.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "40"
+      },
+      {
+        "_action": {
+          "QuestEventRef": {
+            "m_eventUID": "y0ANWdLtKEWAiEX4e7Zt5w"
+          },
+          "RemoveAllStack": true,
+          "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+        },
+        "_position": {
+          "x": 4725.0,
+          "y": 6675.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "54"
+      },
+      {
+        "statement": {
+          "_text": "Thank you so much! Here, for your effort.",
+          "_meta": "Merchant_Cierzo_Alchemist_06"
+        },
+        "_actorName": "name_merchant_cierzofishmonger_01 ",
+        "_actorParameterID": "700350c3-2b24-4884-a87f-6a3f7d1695e4",
+        "_position": {
+          "x": 4695.0,
+          "y": 6900.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "57"
+      },
+      {
+        "_position": {
+          "x": 4800.0,
+          "y": 7035.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "59"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "_location": {
+                "_key": "QUEST_MINOR_NEED_CIERZO_CEVICHE"
+              },
+              "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "canQ6S0-NkiDmNs0SGlY3A"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 6469.0,
+          "y": 5948.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "60"
+      },
+      {
+        "statement": {
+          "_text": "You can gather all the ingredients on the beach in the Chersonese. You remember how it goes, right? A rainbow trout, sea weed and some salt in a great big pot?",
+          "_meta": "Merchant_Cierzo_FishmongerA_03"
+        },
+        "_actorName": "name_merchant_cierzofishmonger_01 ",
+        "_actorParameterID": "700350c3-2b24-4884-a87f-6a3f7d1695e4",
+        "_position": {
+          "x": 5055.0,
+          "y": 6615.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "67"
+      },
+      {
+        "_position": {
+          "x": 5190.0,
+          "y": 6825.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "69"
+      },
+      {
+        "_condition": {
+          "conditions": [
+            {
+              "QuestEventRef": {
+                "m_eventUID": "8d2Q9dyi3E-I8RbjeUEWiQ"
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "8d2Q9dyi3E-I8RbjeUEWiQ"
+              },
+              "ExpiryTime": 72,
+              "_invert": true,
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_CheckQuestEventExpiry"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ConditionList"
+        },
+        "_position": {
+          "x": 5685.0,
+          "y": 6195.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "70"
+      },
+      {
+        "statement": {
+          "_text": "Wait.",
+          "_meta": "Merchant_Generic_WaitJob"
+        },
+        "_actorName": "name_merchant_cierzofishmonger_01 ",
+        "_actorParameterID": "700350c3-2b24-4884-a87f-6a3f7d1695e4",
+        "_position": {
+          "x": 5490.0,
+          "y": 6390.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "77"
+      },
+      {
+        "_position": {
+          "x": 5505.0,
+          "y": 6600.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "79"
+      },
+      {
+        "_action": {
+          "QuestEventRef": {
+            "m_eventUID": "8d2Q9dyi3E-I8RbjeUEWiQ"
+          },
+          "RemoveAllStack": true,
+          "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+        },
+        "_position": {
+          "x": 5820.0,
+          "y": 6360.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "80"
+      },
+      {
+        "statement": {
+          "_text": "I always loved the ceviche your parents made. I was never able to achieve the same taste! Could you prepare me a Cierzo Ceviche like your parents used to? I’ll return the favor!",
+          "_meta": "Merchant_Cierzo_FishmongerA_02"
+        },
+        "_actorName": "name_merchant_cierzofishmonger_01 ",
+        "_actorParameterID": "700350c3-2b24-4884-a87f-6a3f7d1695e4",
+        "_position": {
+          "x": 5850.0,
+          "y": 6480.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "83"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "Yes.",
+              "_meta": "Merchant_Generic_Yes_01"
+            }
+          },
+          {
+            "statement": {
+              "_text": "No.",
+              "_meta": "Merchant_Generic_No_01"
+            }
+          }
+        ],
+        "_position": {
+          "x": 5760.0,
+          "y": 6645.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "85"
+      },
+      {
+        "_condition": {
+          "quest": {
+            "_value": 1
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_KnowQuest"
+        },
+        "_position": {
+          "x": 5640.0,
+          "y": 6810.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "91"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "quest": {},
+              "questRef": {
+                "_value": {
+                  "m_itemID": 7011602
+                }
+              },
+              "$type": "NodeCanvas.Tasks.Actions.RemoveQuest"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "canQ6S0-NkiDmNs0SGlY3A"
+              },
+              "RemoveAllStack": true,
+              "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 5430.0,
+          "y": 6930.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "94"
+      },
+      {
+        "_action": {
+          "quest": {},
+          "questRef": {
+            "_value": {
+              "m_itemID": 7011602
+            }
+          },
+          "$type": "NodeCanvas.Tasks.Actions.GiveQuest"
+        },
+        "_position": {
+          "x": 5550.0,
+          "y": 7065.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "103"
+      },
+      {
+        "statement": {
+          "_text": "You can gather all the ingredients on the beach in the Chersonese. You remember how it goes, right? A rainbow trout, sea weed and some salt in a great big pot?",
+          "_meta": "Merchant_Cierzo_FishmongerA_03"
+        },
+        "_actorName": "name_merchant_cierzofishmonger_01 ",
+        "_actorParameterID": "700350c3-2b24-4884-a87f-6a3f7d1695e4",
+        "_position": {
+          "x": 5400.0,
+          "y": 7215.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "108"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "QuestEventRef": {
+                "m_eventUID": "y0ANWdLtKEWAiEX4e7Zt5w"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "8d2Q9dyi3E-I8RbjeUEWiQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 5460.0,
+          "y": 7350.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "110"
+      },
+      {
+        "statement": {
+          "_text": "Need something else?",
+          "_meta": "Merchant_Monsoon_Blacksmith_02"
+        },
+        "_actorName": "name_merchant_cierzofishmonger_01 ",
+        "_actorParameterID": "700350c3-2b24-4884-a87f-6a3f7d1695e4",
+        "_position": {
+          "x": 5430.0,
+          "y": 7485.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "117"
+      },
+      {
+        "_targetNode": {
+          "$ref": "4"
+        },
+        "_position": {
+          "x": 5550.0,
+          "y": 7650.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.GoToNode",
+        "$id": "119"
+      },
+      {
+        "statement": {
+          "_text": "Need something else?",
+          "_meta": "Merchant_Monsoon_Blacksmith_02"
+        },
+        "_actorName": "Fishmonger",
+        "_actorParameterID": "700350c3-2b24-4884-a87f-6a3f7d1695e4",
+        "_position": {
+          "x": 5955.0,
+          "y": 6780.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "120"
+      },
+      {
+        "_targetNode": {
+          "$ref": "4"
+        },
+        "_position": {
+          "x": 5985.0,
+          "y": 6945.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.GoToNode",
+        "$id": "122"
+      },
+      {
+        "statement": {
+          "_text": "Farewell.",
+          "_meta": "Merchant_Generic_Farewell_01"
+        },
+        "_actorName": "name_merchant_cierzofishmonger_01 ",
+        "_actorParameterID": "700350c3-2b24-4884-a87f-6a3f7d1695e4",
+        "_position": {
+          "x": 6135.0,
+          "y": 5805.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "123"
+      },
+      {
+        "_position": {
+          "x": 6330.0,
+          "y": 5910.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "125"
+      },
+      {
+        "statement": {
+          "_text": "I’ve got you covered. What’s on your mind?",
+          "_meta": "Cooking_tutorial_01"
+        },
+        "_actorName": "name_merchant_cierzofishmonger_01 ",
+        "_actorParameterID": "700350c3-2b24-4884-a87f-6a3f7d1695e4",
+        "_position": {
+          "x": 6825.0,
+          "y": 5775.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "126"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "I’m not sure how to find food out there.",
+              "_meta": "Player_Cooking_tutorial_a_01"
+            }
+          },
+          {
+            "statement": {
+              "_text": "What’s a quick and easy way to cook?",
+              "_meta": "Player_Cooking_tutorial_a_02"
+            }
+          },
+          {
+            "statement": {
+              "_text": "I want to try my hand at more advanced dishes.",
+              "_meta": "Player_Cooking_tutorial_a_03"
+            }
+          }
+        ],
+        "_position": {
+          "x": 6930.0,
+          "y": 6000.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "128"
+      },
+      {
+        "statement": {
+          "_text": "On top of hunting, you can forage for food. Pick Gaberries from bushes or use a Fishing Harpoon at a fishing spot. Cook any meat and boil any water that isn't \"clean\" before eating. You don't want to get sick. ",
+          "_meta": "Cooking_tutorial_02"
+        },
+        "_actorName": "name_merchant_cierzofishmonger_01 ",
+        "_actorParameterID": "700350c3-2b24-4884-a87f-6a3f7d1695e4",
+        "_position": {
+          "x": 6570.0,
+          "y": 6270.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "136"
+      },
+      {
+        "_position": {
+          "x": 6780.0,
+          "y": 6420.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "138"
+      },
+      {
+        "statement": {
+          "_text": "Simple food can be cooked on a lit campfire. It will last longer before rotting and it’ll fill you up more. You can even boil Fresh Water to turn it into Clean Water that is safe to drink.",
+          "_meta": "Cooking_tutorial_03"
+        },
+        "_actorName": "name_merchant_cierzofishmonger_01 ",
+        "_actorParameterID": "700350c3-2b24-4884-a87f-6a3f7d1695e4",
+        "_position": {
+          "x": 6975.0,
+          "y": 6300.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "139"
+      },
+      {
+        "_position": {
+          "x": 7110.0,
+          "y": 6450.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "141"
+      },
+      {
+        "statement": {
+          "_text": "If you deploy a cooking pot over a campfire, or if you have a home with a proper kitchen, you’ll be able to cook recipes with more than one ingredient. They’ll be even more filling and often have special properties. A good meal before a fight will tilt the odds in your favor. ",
+          "_meta": "Cooking_tutorial_04"
+        },
+        "_actorName": "name_merchant_cierzofishmonger_01 ",
+        "_actorParameterID": "700350c3-2b24-4884-a87f-6a3f7d1695e4",
+        "_position": {
+          "x": 7380.0,
+          "y": 6360.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "142"
+      },
+      {
+        "_position": {
+          "x": 7500.0,
+          "y": 6495.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "144"
+      }
+    ],
+    "connections": [
+      {
+        "_sourceNode": {
+          "$ref": "2"
+        },
+        "_targetNode": {
+          "$ref": "4"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "4"
+        },
+        "_targetNode": {
+          "$ref": "14"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "4"
+        },
+        "_targetNode": {
+          "$ref": "19"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "4"
+        },
+        "_targetNode": {
+          "$ref": "123"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "4"
+        },
+        "_targetNode": {
+          "$ref": "126"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "14"
+        },
+        "_targetNode": {
+          "$ref": "18"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "19"
+        },
+        "_targetNode": {
+          "$ref": "22"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "19"
+        },
+        "_targetNode": {
+          "$ref": "70"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "22"
+        },
+        "_targetNode": {
+          "$ref": "29"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "22"
+        },
+        "_targetNode": {
+          "$ref": "67"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "29"
+        },
+        "_targetNode": {
+          "$ref": "37"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "37"
+        },
+        "_targetNode": {
+          "$ref": "40"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "37"
+        },
+        "_targetNode": {
+          "$ref": "60"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "40"
+        },
+        "_targetNode": {
+          "$ref": "54"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "54"
+        },
+        "_targetNode": {
+          "$ref": "57"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "57"
+        },
+        "_targetNode": {
+          "$ref": "59"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "60"
+        },
+        "_targetNode": {
+          "$ref": "54"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "67"
+        },
+        "_targetNode": {
+          "$ref": "69"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "70"
+        },
+        "_targetNode": {
+          "$ref": "77"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "70"
+        },
+        "_targetNode": {
+          "$ref": "80"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "77"
+        },
+        "_targetNode": {
+          "$ref": "79"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "80"
+        },
+        "_targetNode": {
+          "$ref": "83"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "83"
+        },
+        "_targetNode": {
+          "$ref": "85"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "85"
+        },
+        "_targetNode": {
+          "$ref": "91"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "85"
+        },
+        "_targetNode": {
+          "$ref": "120"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "91"
+        },
+        "_targetNode": {
+          "$ref": "94"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "91"
+        },
+        "_targetNode": {
+          "$ref": "103"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "94"
+        },
+        "_targetNode": {
+          "$ref": "103"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "103"
+        },
+        "_targetNode": {
+          "$ref": "108"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "108"
+        },
+        "_targetNode": {
+          "$ref": "110"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "110"
+        },
+        "_targetNode": {
+          "$ref": "117"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "117"
+        },
+        "_targetNode": {
+          "$ref": "119"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "120"
+        },
+        "_targetNode": {
+          "$ref": "122"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "123"
+        },
+        "_targetNode": {
+          "$ref": "125"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "126"
+        },
+        "_targetNode": {
+          "$ref": "128"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "128"
+        },
+        "_targetNode": {
+          "$ref": "136"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "128"
+        },
+        "_targetNode": {
+          "$ref": "139"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "128"
+        },
+        "_targetNode": {
+          "$ref": "142"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "136"
+        },
+        "_targetNode": {
+          "$ref": "138"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "139"
+        },
+        "_targetNode": {
+          "$ref": "141"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "142"
+        },
+        "_targetNode": {
+          "$ref": "144"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      }
+    ],
+    "localBlackboard": {
+      "_name": "Local Blackboard",
+      "_variables": {
+        "gInstigator": {
+          "_name": "gInstigator",
+          "_id": "27500df4-c3ba-4147-9503-9f306cfdedbb",
+          "$type": "NodeCanvas.Framework.Variable`1[[Character, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+        },
+        "myMerchant": {
+          "_name": "myMerchant",
+          "_id": "d95c1cd1-3b85-4f96-8202-c62f4ebcde31",
+          "$type": "NodeCanvas.Framework.Variable`1[[Merchant, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+        }
+      }
+    },
+    "derivedData": {
+      "actorParameters": [
+        {
+          "_keyName": "name_merchant_cierzofishmonger_01 ",
+          "_id": "700350c3-2b24-4884-a87f-6a3f7d1695e4"
+        }
+      ],
+      "$type": "NodeCanvas.DialogueTrees.DialogueTree+DerivedSerializationData"
+    }
+  },
+  "replace": [
+    "CierzoNewTerrain/_SNPC/_Merchants/HumanSNPC_Cook/MerchantTemplate/NPC/ShopDialogue"
+  ]
+}

@@ -1,0 +1,451 @@
+{
+  "graph": {
+    "version": 2.92,
+    "type": "NodeCanvas.DialogueTrees.DialogueTreeExt",
+    "translation": {
+      "x": 439.0,
+      "y": -242.0
+    },
+    "nodes": [
+      {
+        "statement": {
+          "_text": "(No Loc) Whatever ails you, I can cure it. Whatever you’re fighting, I can tell you how to poison it. Either way, you’re in good hands with me!",
+          "_meta": "MarketAlchemy_SO_Sorobor_01"
+        },
+        "_actorName": "name_merchant_sorobormarketalchemy_01",
+        "_actorParameterID": "8b9c0625-6c3d-4588-ae4e-76f04f07aeb3",
+        "_position": {
+          "x": 405.0,
+          "y": 165.0
+        },
+        "_UID": "62502155-efb4-4329-9ed8-0fe5fe84c143",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "2"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "Want to shop",
+              "_meta": "Merchant_Generic_Shop_01"
+            }
+          },
+          {
+            "statement": {
+              "_text": "Want to train",
+              "_meta": "Merchant_Generic_Train_01"
+            },
+            "condition": {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "78d35a0e-9529-4014-860f-d63311e1cef1"
+              },
+              "skill": {
+                "_value": 1
+              },
+              "_invert": true,
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_KnowSkill"
+            }
+          },
+          {
+            "statement": {
+              "_text": "Leave",
+              "_meta": "Merchant_Generic_Farewell_01"
+            }
+          }
+        ],
+        "_position": {
+          "x": 390.0,
+          "y": 300.0
+        },
+        "_UID": "bae80d0f-8b33-427c-be50-7b7d3915ddc5",
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNode",
+        "$id": "4"
+      },
+      {
+        "_action": {
+          "Merchant": {
+            "_name": "gMerchant",
+            "_targetVariableID": "6afc9bd7-0f93-4a1c-b378-8c83c9f641f8"
+          },
+          "PlayerCharacter": {
+            "_name": "gInstigator",
+            "_targetVariableID": "78d35a0e-9529-4014-860f-d63311e1cef1"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.ShopDialogueAction"
+        },
+        "_position": {
+          "x": 225.0,
+          "y": 495.0
+        },
+        "_UID": "9074af55-65f7-4b55-9e9f-b84bfec19742",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "15"
+      },
+      {
+        "_sourceNodeUID": "be006a93-ce2f-466c-95ca-14bce995e27a",
+        "_position": {
+          "x": 195.0,
+          "y": 585.0
+        },
+        "_UID": "f2194622-28c4-4745-b0bb-8a8863102694",
+        "$type": "NodeCanvas.DialogueTrees.Jumper",
+        "$id": "19"
+      },
+      {
+        "statement": {
+          "_text": "(No Loc) Yes, I could teach you the Haunt hex. I use a summoned ghost to protect me when I need to venture outside, and this hex makes my foes even more vulnerable to his ethereal attacks! I’ll teach you for 50 silver!",
+          "_meta": "HauntTrainer_01"
+        },
+        "_actorName": "name_merchant_sorobormarketalchemy_01",
+        "_actorParameterID": "8b9c0625-6c3d-4588-ae4e-76f04f07aeb3",
+        "_position": {
+          "x": 420.0,
+          "y": 615.0
+        },
+        "_UID": "3fc4eb65-982a-45f3-a871-935f53f2fd3e",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "20"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "Ready to train",
+              "_meta": "Merchant_Generic_Pay_01"
+            },
+            "condition": {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "78d35a0e-9529-4014-860f-d63311e1cef1"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 9000010
+                }
+              },
+              "minAmount": {
+                "_value": 50
+              },
+              "itemMustBeEquiped": {},
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            }
+          },
+          {
+            "statement": {
+              "_text": "Leave",
+              "_meta": "Merchant_Generic_No_02"
+            }
+          }
+        ],
+        "_position": {
+          "x": 540.0,
+          "y": 735.0
+        },
+        "_UID": "ca7f5d40-8e32-4faa-9325-7cf1d41a9324",
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNode",
+        "$id": "22"
+      },
+      {
+        "statement": {
+          "_text": "(No Loc) Deal! So, what you do is focus your Mana, and “puncture” the outside of your foe’s soul, causing it to leak a little bit, then-",
+          "_meta": "HauntTrainer_02"
+        },
+        "_actorName": "name_merchant_sorobormarketalchemy_01",
+        "_actorParameterID": "8b9c0625-6c3d-4588-ae4e-76f04f07aeb3",
+        "_position": {
+          "x": 165.0,
+          "y": 930.0
+        },
+        "_UID": "67d10151-8007-481a-b218-1da20697fb07",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "34"
+      },
+      {
+        "_action": {
+          "$type": "NodeCanvas.Tasks.Actions.FadeOut"
+        },
+        "_position": {
+          "x": 330.0,
+          "y": 1065.0
+        },
+        "_UID": "ee40f0ba-bef9-4a1a-af96-2bd9181e7ddd",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "36"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "_location": {
+                "_key": "TRAIN_ROBYN_GARNET"
+              },
+              "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+            },
+            {
+              "fromCharacter": {
+                "_name": "gInstigator",
+                "_targetVariableID": "78d35a0e-9529-4014-860f-d63311e1cef1"
+              },
+              "Items": [
+                {
+                  "_value": {
+                    "m_itemID": 9000010
+                  }
+                }
+              ],
+              "Amount": [
+                {
+                  "_value": 50
+                }
+              ],
+              "$type": "NodeCanvas.Tasks.Actions.RemoveItem"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 300.0,
+          "y": 1200.0
+        },
+        "_UID": "630a5705-0190-4468-96fb-3e4a7aec4969",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "38"
+      },
+      {
+        "_action": {
+          "$type": "NodeCanvas.Tasks.Actions.FadeIn"
+        },
+        "_position": {
+          "x": 315.0,
+          "y": 1335.0
+        },
+        "_UID": "7a655ca3-aa07-4283-b8db-c4b5b5d82e44",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "50"
+      },
+      {
+        "statement": {
+          "_text": "(No Loc) -There! Exactly right! It's also helpful when using conjured runic weapons and traps too!",
+          "_meta": "HauntTrainer_03"
+        },
+        "_actorName": "name_merchant_sorobormarketalchemy_01",
+        "_actorParameterID": "8b9c0625-6c3d-4588-ae4e-76f04f07aeb3",
+        "_position": {
+          "x": 300.0,
+          "y": 1470.0
+        },
+        "_UID": "c4360a2e-526b-47fc-8e40-626b8af74c02",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "52"
+      },
+      {
+        "_position": {
+          "x": 885.0,
+          "y": 1665.0
+        },
+        "_UID": "be006a93-ce2f-466c-95ca-14bce995e27a",
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "54"
+      },
+      {
+        "_sourceNodeUID": "be006a93-ce2f-466c-95ca-14bce995e27a",
+        "_position": {
+          "x": 735.0,
+          "y": 525.0
+        },
+        "_UID": "ac5b3a4a-a0db-4aee-9f7e-964d928fe2d1",
+        "$type": "NodeCanvas.DialogueTrees.Jumper",
+        "$id": "55"
+      },
+      {
+        "statement": {
+          "_text": "Welcome to my shop!"
+        },
+        "_position": {
+          "x": 5775.0,
+          "y": 5265.0
+        },
+        "_UID": "d58ff071-bd06-42ba-bb2d-4fe9c436cc31",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "56"
+      },
+      {
+        "_action": {
+          "Merchant": {
+            "_name": "gMerchant",
+            "_targetVariableID": "6afc9bd7-0f93-4a1c-b378-8c83c9f641f8"
+          },
+          "PlayerCharacter": {
+            "_name": "gInstigator",
+            "_targetVariableID": "78d35a0e-9529-4014-860f-d63311e1cef1"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.ShopDialogueAction"
+        },
+        "_position": {
+          "x": 5805.0,
+          "y": 5430.0
+        },
+        "_UID": "3fb3ec57-2dfb-4f7d-b887-4343d5982faf",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "58"
+      }
+    ],
+    "connections": [
+      {
+        "_sourceNode": {
+          "$ref": "2"
+        },
+        "_targetNode": {
+          "$ref": "4"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "4"
+        },
+        "_targetNode": {
+          "$ref": "15"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "4"
+        },
+        "_targetNode": {
+          "$ref": "20"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "4"
+        },
+        "_targetNode": {
+          "$ref": "55"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "15"
+        },
+        "_targetNode": {
+          "$ref": "19"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "20"
+        },
+        "_targetNode": {
+          "$ref": "22"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "22"
+        },
+        "_targetNode": {
+          "$ref": "34"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "22"
+        },
+        "_targetNode": {
+          "$ref": "54"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "34"
+        },
+        "_targetNode": {
+          "$ref": "36"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "36"
+        },
+        "_targetNode": {
+          "$ref": "38"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "38"
+        },
+        "_targetNode": {
+          "$ref": "50"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "50"
+        },
+        "_targetNode": {
+          "$ref": "52"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "52"
+        },
+        "_targetNode": {
+          "$ref": "54"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "56"
+        },
+        "_targetNode": {
+          "$ref": "58"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      }
+    ],
+    "localBlackboard": {
+      "_name": "Local Blackboard",
+      "_variables": {
+        "gInstigator": {
+          "_name": "gInstigator",
+          "_id": "78d35a0e-9529-4014-860f-d63311e1cef1",
+          "$type": "NodeCanvas.Framework.Variable`1[[Character, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+        },
+        "gMerchant": {
+          "_name": "gMerchant",
+          "_id": "6afc9bd7-0f93-4a1c-b378-8c83c9f641f8",
+          "$type": "NodeCanvas.Framework.Variable`1[[Merchant, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+        }
+      }
+    },
+    "derivedData": {
+      "actorParameters": [
+        {
+          "_keyName": "name_merchant_sorobormarketalchemy_01",
+          "_id": "8b9c0625-6c3d-4588-ae4e-76f04f07aeb3"
+        }
+      ],
+      "$type": "NodeCanvas.DialogueTrees.DialogueTree+DerivedSerializationData"
+    }
+  },
+  "replace": [
+    "Harmattan/Interactions/NPCs/NPC_Minor/MarketTradersHighPrices/UNPC_DLC_Market_Alchemy/NPC/ShopDialogue",
+    "Harmattan/Interactions/NPCs/NPC_Minor/MarketTradersLowPrices/UNPC_DLC_Market_Alchemy/NPC/ShopDialogue"
+  ]
+}

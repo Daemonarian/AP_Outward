@@ -1,0 +1,425 @@
+{
+  "graph": {
+    "version": 2.92,
+    "type": "NodeCanvas.DialogueTrees.DialogueTreeExt",
+    "translation": {
+      "x": -4329.0,
+      "y": -6010.0
+    },
+    "zoomFactor": 0.9777898,
+    "nodes": [
+      {
+        "_condition": {
+          "quest": {
+            "_value": 1
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_KnowQuest"
+        },
+        "_position": {
+          "x": 4695.0,
+          "y": 6450.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "2"
+      },
+      {
+        "_action": {
+          "dialogueStarter": {
+            "_name": "Dialogue_Soeran_BB/Prequest",
+            "_targetVariableID": "1570a5e2-e22b-4957-bc05-718860852ccc"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.BranchDialogue"
+        },
+        "_position": {
+          "x": 4485.0,
+          "y": 6795.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "5"
+      },
+      {
+        "statement": {
+          "_text": "Greetings. I hope you’re well!",
+          "_meta": "Salutation_Generic_02"
+        },
+        "_actorName": "name_unpc_soeran_01 ",
+        "_actorParameterID": "1b375fde-5a79-4f43-b8bb-a7a640f84a86",
+        "_position": {
+          "x": 4920.0,
+          "y": 6615.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "8"
+      },
+      {
+        "_condition": {
+          "_location": {
+            "_key": "TRAIN_SOERAN"
+          },
+          "$type": "OutwardArchipelago.Graphs.Conditions.Condition_LocationCheck"
+        },
+        "_position": {
+          "x": 5025.0,
+          "y": 6750.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "10"
+      },
+      {
+        "_position": {
+          "x": 4965.0,
+          "y": 6900.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "13"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "Farewell.",
+              "_meta": "Merchant_Generic_Farewell_01"
+            }
+          },
+          {
+            "statement": {
+              "_text": "I want to train with you.",
+              "_meta": "Merchant_Generic_Train_01"
+            }
+          }
+        ],
+        "_position": {
+          "x": 5220.0,
+          "y": 6930.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "14"
+      },
+      {
+        "_position": {
+          "x": 5085.0,
+          "y": 7095.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "20"
+      },
+      {
+        "statement": {
+          "_text": "Hmm...If you favor the two-handed mace, I can teach you the Juggernaut Strike. It’s a slow, but immensely powerful strike that has helped me many times against slow, durable foes. If you’ll donate 50 silvers to the “Temple cleanup” fund, I’ll teach you.",
+          "_meta": "Trainer_Micro_Juggernaught_01"
+        },
+        "_actorName": "name_unpc_soeran_01 ",
+        "_actorParameterID": "1b375fde-5a79-4f43-b8bb-a7a640f84a86",
+        "_position": {
+          "x": 5385.0,
+          "y": 7170.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "21"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "Deal, here’s your money.",
+              "_meta": "Merchant_Generic_Pay_01"
+            },
+            "condition": {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "ad61332c-4d7c-4ccf-a50b-8552780a4bda"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 9000010
+                }
+              },
+              "minAmount": {
+                "_value": 50
+              },
+              "itemMustBeEquiped": {},
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            }
+          },
+          {
+            "statement": {
+              "_text": "No, thanks.",
+              "_meta": "Merchant_Generic_No_02"
+            }
+          }
+        ],
+        "_position": {
+          "x": 5520.0,
+          "y": 7350.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "23"
+      },
+      {
+        "statement": {
+          "_text": "Alright, first take a firm stance, plant your feet and pull your mace back. Then once all your weight is on your back foot swing all that weight into a single upwards motion. Here, let me show you...",
+          "_meta": "Trainer_Micro_Juggernaught_02"
+        },
+        "_actorName": "name_unpc_soeran_01 ",
+        "_actorParameterID": "1b375fde-5a79-4f43-b8bb-a7a640f84a86",
+        "_position": {
+          "x": 5310.0,
+          "y": 7530.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "35"
+      },
+      {
+        "_action": {
+          "$type": "NodeCanvas.Tasks.Actions.FadeOut"
+        },
+        "_position": {
+          "x": 5400.0,
+          "y": 7650.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "37"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "fromCharacter": {
+                "_name": "gInstigator",
+                "_targetVariableID": "ad61332c-4d7c-4ccf-a50b-8552780a4bda"
+              },
+              "Items": [
+                {
+                  "_value": {
+                    "m_itemID": 9000010
+                  }
+                }
+              ],
+              "Amount": [
+                {
+                  "_value": 50
+                }
+              ],
+              "$type": "NodeCanvas.Tasks.Actions.RemoveItem"
+            },
+            {
+              "_location": {
+                "_key": "TRAIN_SOERAN"
+              },
+              "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 5370.0,
+          "y": 7725.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "39"
+      },
+      {
+        "_action": {
+          "$type": "NodeCanvas.Tasks.Actions.FadeIn"
+        },
+        "_position": {
+          "x": 5355.0,
+          "y": 7845.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "51"
+      },
+      {
+        "statement": {
+          "_text": "-Gah! Good hit! You've got a good handle on that skill now! Remember, it takes time to pull off. Be sure your blow will connect before you use it!",
+          "_meta": "Trainer_Micro_Juggernaught_03"
+        },
+        "_actorName": "name_unpc_soeran_01 ",
+        "_actorParameterID": "1b375fde-5a79-4f43-b8bb-a7a640f84a86",
+        "_position": {
+          "x": 5280.0,
+          "y": 7935.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "53"
+      },
+      {
+        "_position": {
+          "x": 5400.0,
+          "y": 8055.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "55"
+      },
+      {
+        "_position": {
+          "x": 5880.0,
+          "y": 7545.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "56"
+      }
+    ],
+    "connections": [
+      {
+        "_sourceNode": {
+          "$ref": "2"
+        },
+        "_targetNode": {
+          "$ref": "5"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "2"
+        },
+        "_targetNode": {
+          "$ref": "8"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "8"
+        },
+        "_targetNode": {
+          "$ref": "10"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "10"
+        },
+        "_targetNode": {
+          "$ref": "13"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "10"
+        },
+        "_targetNode": {
+          "$ref": "14"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "14"
+        },
+        "_targetNode": {
+          "$ref": "20"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "14"
+        },
+        "_targetNode": {
+          "$ref": "21"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "21"
+        },
+        "_targetNode": {
+          "$ref": "23"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "23"
+        },
+        "_targetNode": {
+          "$ref": "35"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "23"
+        },
+        "_targetNode": {
+          "$ref": "56"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "35"
+        },
+        "_targetNode": {
+          "$ref": "37"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "37"
+        },
+        "_targetNode": {
+          "$ref": "39"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "39"
+        },
+        "_targetNode": {
+          "$ref": "51"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "51"
+        },
+        "_targetNode": {
+          "$ref": "53"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "53"
+        },
+        "_targetNode": {
+          "$ref": "55"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      }
+    ],
+    "localBlackboard": {
+      "_name": "Local Blackboard",
+      "_variables": {
+        "gInstigator": {
+          "_name": "gInstigator",
+          "_id": "ad61332c-4d7c-4ccf-a50b-8552780a4bda",
+          "$type": "NodeCanvas.Framework.Variable`1[[Character, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+        }
+      }
+    },
+    "derivedData": {
+      "actorParameters": [
+        {
+          "_keyName": "name_unpc_soeran_01 ",
+          "_id": "1b375fde-5a79-4f43-b8bb-a7a640f84a86"
+        }
+      ],
+      "$type": "NodeCanvas.DialogueTrees.DialogueTree+DerivedSerializationData"
+    }
+  },
+  "replace": [
+    "Monsoon/_SNPC/CharactersToDesactivate/_UNPC/Sacrificed/UNPC_SoeranA/Dialogue_Soeran/NPC/DialogueTree_1_Initial",
+    "Monsoon/_SNPC/Hero/UNPC_SoeranA (1)/Dialogue_Soeran/NPC/DialogueTree_1_Initial",
+    "HallowedDungeonsSmall/AISquadManagerStructure/_Statics/TruthLotus/UNPC_FriendLotus/UNPC_SoeranA/Dialogue_Soeran/NPC/DialogueTree_1_Initial"
+  ]
+}

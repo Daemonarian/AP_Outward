@@ -1,0 +1,1061 @@
+{
+  "graph": {
+    "version": 2.92,
+    "type": "NodeCanvas.DialogueTrees.DialogueTreeExt",
+    "translation": {
+      "x": -1948.0,
+      "y": -3184.0
+    },
+    "zoomFactor": 0.7164611,
+    "nodes": [
+      {
+        "_condition": {
+          "conditions": [
+            {
+              "QuestEventRef": {
+                "m_eventUID": "PmNvyd9QWEaK7m8Zur1vMg"
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "UtAMLtS7aEOJHreBwtyazg"
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "T8rJOQ5Ra0qfV2vyBCXffw"
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ConditionList"
+        },
+        "_position": {
+          "x": 2048.0,
+          "y": 3284.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "2"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "_wim1WCgyEOPmJRPTCb6ZA"
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 3600.0,
+          "y": 3465.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "11"
+      },
+      {
+        "_action": {
+          "dialogueStarter": {
+            "_name": "Dialogue_RolandArgenson_BB/BC_WhisperingBonesLich",
+            "_targetVariableID": "5878c84f-0059-4176-b7e9-351c6cd9fa30"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.BranchDialogue"
+        },
+        "_position": {
+          "x": 3240.0,
+          "y": 3645.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "14"
+      },
+      {
+        "_condition": {
+          "questRef": {
+            "_value": {
+              "m_itemID": 7011001
+            }
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_IsQuestCompleted"
+        },
+        "_position": {
+          "x": 3795.0,
+          "y": 3690.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "17"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "PmNvyd9QWEaK7m8Zur1vMg"
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 2048.0,
+          "y": 3284.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "21"
+      },
+      {
+        "_condition": {
+          "questRef": {
+            "_value": {
+              "m_itemID": 7011002
+            }
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_IsQuestCompleted"
+        },
+        "_position": {
+          "x": 3600.0,
+          "y": 3930.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "24"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "UtAMLtS7aEOJHreBwtyazg"
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 2048.0,
+          "y": 3284.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "28"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "T8rJOQ5Ra0qfV2vyBCXffw"
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 2048.0,
+          "y": 3284.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "31"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "nllwi4FnR0qN7968EsJ07A"
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 3270.0,
+          "y": 4050.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "34"
+      },
+      {
+        "_condition": {
+          "conditions": [
+            {
+              "quest": {
+                "_value": 1
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_KnowQuest"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "5NfRrLWmaUqlWrev4DCIYg"
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ConditionList"
+        },
+        "_position": {
+          "x": 2985.0,
+          "y": 4155.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "37"
+      },
+      {
+        "_action": {
+          "dialogueStarter": {
+            "_name": "Dialogue_RolandArgenson_BB/BC_WhisperingBonesChe",
+            "_targetVariableID": "76697f5e-389e-4bf6-9963-ba593fb25552"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.BranchDialogue"
+        },
+        "_position": {
+          "x": 2505.0,
+          "y": 4335.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "44"
+      },
+      {
+        "_condition": {
+          "conditions": [
+            {
+              "QuestEventRef": {
+                "m_eventUID": "P2rqNERqN0O1RhkD1ff7_w"
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "HbTd6ustoU-VhQeidJcAEw"
+              },
+              "_invert": true,
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "UtAMLtS7aEOJHreBwtyazg"
+              },
+              "_invert": true,
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ConditionList"
+        },
+        "_position": {
+          "x": 3120.0,
+          "y": 4380.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "47"
+      },
+      {
+        "statement": {
+          "_text": "[PlayerName]! It’s good to see you! I almost didn’t make it to Berg in one piece. Some metal golem dog things nearly got me! If a passing hunter hadn’t saved me...Hoooh.",
+          "_meta": "Roland_BC_Prequest_16"
+        },
+        "_actorName": "name_unpc_rolandargenson_01 ",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 2895.0,
+          "y": 4605.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "56"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "_location": {
+                "_key": "ROLAND_GIFT_2"
+              },
+              "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "UtAMLtS7aEOJHreBwtyazg"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "8lbz0Jh_iUuDS4wpX_-vog"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 2048.0,
+          "y": 3284.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "58"
+      },
+      {
+        "statement": {
+          "_text": "He gave me some stuff to make traps and told me to use them, and my brain if I’m not good at fighting. But I’d rather try to get good at fighting than rely on using these tricky things. I nearly impaled myself last time I tried arming one.",
+          "_meta": "Roland_BC_Prequest_17"
+        },
+        "_actorName": "name_unpc_rolandargenson_01 ",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 2835.0,
+          "y": 4920.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "67"
+      },
+      {
+        "_targetNode": {
+          "availableChoices": [
+            {
+              "statement": {
+                "_text": "Thanks, Roland.",
+                "_meta": "Player_Roland_BC_Prequest_a_14"
+              }
+            },
+            {
+              "statement": {
+                "_text": "You should look after yourself Roland, keep it.",
+                "_meta": "Player_Roland_BC_Prequest_b_14"
+              }
+            }
+          ],
+          "_position": {
+            "x": 3690.0,
+            "y": 5430.0
+          },
+          "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+          "$id": "70"
+        },
+        "_position": {
+          "x": 3000.0,
+          "y": 5130.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.GoToNode",
+        "$id": "69"
+      },
+      {
+        "_condition": {
+          "conditions": [
+            {
+              "QuestEventRef": {
+                "m_eventUID": "HbTd6ustoU-VhQeidJcAEw"
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "Wl08NWMJokemPVfTEyT3UA"
+              },
+              "_invert": true,
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "T8rJOQ5Ra0qfV2vyBCXffw"
+              },
+              "_invert": true,
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ConditionList"
+        },
+        "_position": {
+          "x": 3870.0,
+          "y": 4800.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "76"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "8iAJYhhqj02ODuwZ9VvXMw"
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 3645.0,
+          "y": 4980.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "85"
+      },
+      {
+        "statement": {
+          "_text": "I stumbled on a small cache of gems the other day. I know this should go to my Blood Price Payment, but...You lost your home because of me. I think you need this more than me. Go on, take it.",
+          "_meta": "Roland_BC_Prequest_15"
+        },
+        "_actorName": "name_unpc_rolandargenson_01 ",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 3300.0,
+          "y": 5130.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "88"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "_location": {
+                "_key": "ROLAND_GIFT_3"
+              },
+              "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "T8rJOQ5Ra0qfV2vyBCXffw"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "8lbz0Jh_iUuDS4wpX_-vog"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 2048.0,
+          "y": 3284.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "90"
+      },
+      {
+        "$ref": "70"
+      },
+      {
+        "_position": {
+          "x": 3720.0,
+          "y": 5775.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "99"
+      },
+      {
+        "statement": {
+          "_text": "No. I insist. Take it. I want to make up for the shipwreck I got you caught in.",
+          "_meta": "Roland_BC_Prequest_18"
+        },
+        "_actorName": "name_unpc_rolandargenson_01 ",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 3825.0,
+          "y": 5580.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "100"
+      },
+      {
+        "statement": {
+          "_text": "Oh! [PlayerName]! I found this on a hunter’s corpse not too far out from town. It’s still got his blood on it, but...It’s still usable!",
+          "_meta": "Roland_BC_Prequest_14"
+        },
+        "_actorName": "name_unpc_rolandargenson_01 ",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 3765.0,
+          "y": 5130.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "102"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "_location": {
+                "_key": "ROLAND_GIFT_3"
+              },
+              "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "T8rJOQ5Ra0qfV2vyBCXffw"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "8lbz0Jh_iUuDS4wpX_-vog"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 2048.0,
+          "y": 3284.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "104"
+      },
+      {
+        "statement": {
+          "_text": "I’m getting better day by day...It’s still hopeless, but at least I can survive like this, even if it’s just barely. I’ll keep trying to make it up to you, [PlayerName], I promise.",
+          "_meta": "Roland_BC_Prequest_13"
+        },
+        "_actorName": "name_unpc_rolandargenson_01 ",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 4125.0,
+          "y": 5025.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "113"
+      },
+      {
+        "_position": {
+          "x": 4260.0,
+          "y": 5205.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "115"
+      },
+      {
+        "_action": {
+          "dialogueStarter": {
+            "_name": "Dialogue_RolandArgenson_BB/Prequest",
+            "_targetVariableID": "6c245008-7e4b-4974-9cbb-d4cad8464927"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.BranchDialogue"
+        },
+        "_position": {
+          "x": 3825.0,
+          "y": 4110.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "116"
+      },
+      {
+        "_action": {
+          "dialogueStarter": {
+            "_name": "Dialogue_RolandArgenson_BB/CallAdventure",
+            "_targetVariableID": "3a437545-f9b2-45c3-9d72-034223f53670"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.BranchDialogue"
+        },
+        "_position": {
+          "x": 4005.0,
+          "y": 3855.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "119"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "SilverAmount": {},
+              "XpAmount": {},
+              "ItemReward": [
+                {
+                  "Item": {
+                    "_value": {
+                      "m_itemID": 6500100
+                    }
+                  },
+                  "Quantity": {
+                    "_value": 3
+                  },
+                  "TryToEquip": {}
+                },
+                {
+                  "Item": {
+                    "_value": {
+                      "m_itemID": 5020010
+                    }
+                  },
+                  "Quantity": {
+                    "_value": 5
+                  },
+                  "TryToEquip": {}
+                },
+                {
+                  "Item": {
+                    "_value": {
+                      "m_itemID": 6500110
+                    }
+                  },
+                  "Quantity": {
+                    "_value": 2
+                  },
+                  "TryToEquip": {}
+                }
+              ],
+              "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "UtAMLtS7aEOJHreBwtyazg"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "8lbz0Jh_iUuDS4wpX_-vog"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 2880.0,
+          "y": 4755.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "122"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "SilverAmount": {},
+              "XpAmount": {},
+              "ItemReward": [
+                {
+                  "Item": {
+                    "_value": {
+                      "m_itemID": 6200060
+                    }
+                  },
+                  "Quantity": {
+                    "_value": 3
+                  },
+                  "TryToEquip": {}
+                },
+                {
+                  "Item": {
+                    "_value": {
+                      "m_itemID": 6200100
+                    }
+                  },
+                  "Quantity": {
+                    "_value": 2
+                  },
+                  "TryToEquip": {}
+                }
+              ],
+              "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "T8rJOQ5Ra0qfV2vyBCXffw"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "8lbz0Jh_iUuDS4wpX_-vog"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 3390.0,
+          "y": 5280.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "148"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "_location": {
+                "_key": "COMMISSION_COPAL_HELM"
+              },
+              "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "T8rJOQ5Ra0qfV2vyBCXffw"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "8lbz0Jh_iUuDS4wpX_-vog"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 3855.0,
+          "y": 5280.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "169"
+      }
+    ],
+    "connections": [
+      {
+        "_sourceNode": {
+          "$ref": "2"
+        },
+        "_targetNode": {
+          "$ref": "11"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "2"
+        },
+        "_targetNode": {
+          "$ref": "17"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "11"
+        },
+        "_targetNode": {
+          "$ref": "14"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "11"
+        },
+        "_targetNode": {
+          "$ref": "17"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "17"
+        },
+        "_targetNode": {
+          "$ref": "21"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "17"
+        },
+        "_targetNode": {
+          "$ref": "119"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "21"
+        },
+        "_targetNode": {
+          "$ref": "24"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "21"
+        },
+        "_targetNode": {
+          "$ref": "116"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "24"
+        },
+        "_targetNode": {
+          "$ref": "28"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "24"
+        },
+        "_targetNode": {
+          "$ref": "116"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "28"
+        },
+        "_targetNode": {
+          "$ref": "31"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "28"
+        },
+        "_targetNode": {
+          "$ref": "56"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "31"
+        },
+        "_targetNode": {
+          "$ref": "34"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "31"
+        },
+        "_targetNode": {
+          "$ref": "85"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "34"
+        },
+        "_targetNode": {
+          "$ref": "37"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "34"
+        },
+        "_targetNode": {
+          "$ref": "47"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "37"
+        },
+        "_targetNode": {
+          "$ref": "44"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "37"
+        },
+        "_targetNode": {
+          "$ref": "47"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "47"
+        },
+        "_targetNode": {
+          "$ref": "56"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "47"
+        },
+        "_targetNode": {
+          "$ref": "76"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "56"
+        },
+        "_targetNode": {
+          "$ref": "58"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "58"
+        },
+        "_targetNode": {
+          "$ref": "67"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "67"
+        },
+        "_targetNode": {
+          "$ref": "69"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "76"
+        },
+        "_targetNode": {
+          "$ref": "85"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "76"
+        },
+        "_targetNode": {
+          "$ref": "113"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "85"
+        },
+        "_targetNode": {
+          "$ref": "88"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "85"
+        },
+        "_targetNode": {
+          "$ref": "102"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "88"
+        },
+        "_targetNode": {
+          "$ref": "90"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "90"
+        },
+        "_targetNode": {
+          "$ref": "70"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "70"
+        },
+        "_targetNode": {
+          "$ref": "99"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "70"
+        },
+        "_targetNode": {
+          "$ref": "100"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "100"
+        },
+        "_targetNode": {
+          "$ref": "99"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "102"
+        },
+        "_targetNode": {
+          "$ref": "104"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "104"
+        },
+        "_targetNode": {
+          "$ref": "70"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "113"
+        },
+        "_targetNode": {
+          "$ref": "115"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "122"
+        },
+        "_targetNode": {
+          "$ref": "67"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "148"
+        },
+        "_targetNode": {
+          "$ref": "70"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "169"
+        },
+        "_targetNode": {
+          "$ref": "70"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      }
+    ],
+    "localBlackboard": {
+      "_name": "Local Blackboard",
+      "_variables": {
+        "gInstigator": {
+          "_name": "gInstigator",
+          "_id": "0483cf6b-da62-4a57-aaed-40f25b4bdf9b",
+          "$type": "NodeCanvas.Framework.Variable`1[[Character, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+        }
+      }
+    },
+    "derivedData": {
+      "actorParameters": [
+        {
+          "_keyName": "name_unpc_rolandargenson_01 ",
+          "_id": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760"
+        }
+      ],
+      "$type": "NodeCanvas.DialogueTrees.DialogueTree+DerivedSerializationData"
+    }
+  },
+  "replace": [
+    "CierzoNewTerrain/_SNPC/_UNPC/RolandAndRoland/UNPC_RolandArgenson (Standing)/Dialogue_RolandArgenson/NPC/DialogueTree_1_Initial",
+    "CierzoNewTerrain/_SNPC/_UNPC/RolandAndRoland/UNPC_RolandArgenson (kneeling)/Dialogue_RolandArgenson/NPC/DialogueTree_1_Initial",
+    "Chersonese_Dungeon4_BlueChamber/AISquadManagerStructure/_UNPC/RolandHurt/UNPC_RolandArgenson/Dialogue_RolandArgenson/NPC/DialogueTree_1_Initial",
+    "Chersonese_Dungeon4_CommonPath/AISquadManagerStructure/_UNPC/RolandMana/UNPC_RolandArgenson/Dialogue_RolandArgenson/NPC/DialogueTree_1_Initial",
+    "ChersoneseDungeonsSmall/AISquadManagerStructure/_UNPC/RolandShrimp/UNPC_RolandArgenson/Dialogue_RolandArgenson/NPC/DialogueTree_1_Initial",
+    "Berg/_SNPC/_UNPC/UNPC_RolandArgenson/Dialogue_RolandArgenson/NPC/DialogueTree_1_Initial",
+    "Emercar_Dungeon3/AISquadManagerStructure/_Statics/RolandCOW/UNPC_RolandArgenson/Dialogue_RolandArgenson/NPC/DialogueTree_1_Initial",
+    "Emercar_Dungeon6/AISquadManagerStructure/UNPC/UNPC_RolandArgenson(Lich)/Dialogue_RolandArgenson/NPC/DialogueTree_1_Initial",
+    "Emercar_Dungeon6/AISquadManagerStructure/UNPC/UNPC_RolandArgenson/Dialogue_RolandArgenson/NPC/DialogueTree_1_Initial"
+  ]
+}

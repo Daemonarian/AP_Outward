@@ -1,0 +1,1111 @@
+{
+  "graph": {
+    "version": 2.92,
+    "type": "NodeCanvas.DialogueTrees.DialogueTreeExt",
+    "translation": {
+      "x": -4726.0,
+      "y": -5914.0
+    },
+    "zoomFactor": 0.8960472,
+    "nodes": [
+      {
+        "statement": {
+          "_text": "[PlayerName]. Money up front. So long as you can actually pay for my medicine, I’ll see to it that you get what you need.",
+          "_meta": "Merchant_Cierzo_Alchemist_01"
+        },
+        "_actorName": "Alchemist",
+        "_actorParameterID": "e592641c-683d-4d8f-9c5c-768a2a7d1497",
+        "_position": {
+          "x": 5835.0,
+          "y": 4980.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "2"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "I want to buy something.",
+              "_meta": "Merchant_Generic_Shop_01"
+            }
+          },
+          {
+            "statement": {
+              "_text": "I’d like to talk.",
+              "_meta": "Merchant_Generic_Talk_01"
+            }
+          },
+          {
+            "statement": {
+              "_text": "Not now.",
+              "_meta": "Merchant_Generic_NotNow_01"
+            }
+          },
+          {
+            "statement": {
+              "_text": "Can you teach me about magic?",
+              "_meta": "Player_wizard_tutorial_a_00"
+            }
+          }
+        ],
+        "_position": {
+          "x": 5865.0,
+          "y": 5115.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "4"
+      },
+      {
+        "_action": {
+          "Merchant": {
+            "_name": "myMerchant",
+            "_targetVariableID": "4f3641a8-ecc7-4dba-bcea-5cefea3c9f46"
+          },
+          "PlayerCharacter": {
+            "_name": "gInstigator",
+            "_targetVariableID": "3a601c20-be18-4c6c-8460-357b1bcd1ab3"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.ShopDialogueAction"
+        },
+        "_position": {
+          "x": 5565.0,
+          "y": 5340.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "14"
+      },
+      {
+        "_position": {
+          "x": 5580.0,
+          "y": 5430.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "18"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "8MxnJSYz6UK6dlBz4oLFhg"
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 5820.0,
+          "y": 5550.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "19"
+      },
+      {
+        "_condition": {
+          "character": {
+            "_name": "gInstigator",
+            "_targetVariableID": "3a601c20-be18-4c6c-8460-357b1bcd1ab3"
+          },
+          "item": {
+            "_value": {
+              "m_itemID": 6600040
+            }
+          },
+          "minAmount": {
+            "_value": 1
+          },
+          "itemMustBeEquiped": {},
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+        },
+        "_position": {
+          "x": 5625.0,
+          "y": 5805.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "22"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "fromCharacter": {
+                "_name": "gInstigator",
+                "_targetVariableID": "3a601c20-be18-4c6c-8460-357b1bcd1ab3"
+              },
+              "Items": [
+                {
+                  "_value": {
+                    "m_itemID": 6600040
+                  }
+                }
+              ],
+              "Amount": [
+                {
+                  "_value": 1
+                }
+              ],
+              "$type": "NodeCanvas.Tasks.Actions.RemoveItem"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "qo9hPm7B4keavb0F4WfUVQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 5370.0,
+          "y": 6090.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "29"
+      },
+      {
+        "_condition": {
+          "_location": {
+            "_key": "QUEST_MINOR_ALCHEMY_CRYSTAL_POWDER"
+          },
+          "$type": "OutwardArchipelago.Graphs.Conditions.Condition_LocationCheck"
+        },
+        "_position": {
+          "x": 4826.0,
+          "y": 6014.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "41"
+      },
+      {
+        "_action": {
+          "SilverAmount": {
+            "_value": 15
+          },
+          "XpAmount": {},
+          "ItemReward": [
+            {
+              "Item": {
+                "_value": {
+                  "m_itemID": 4300110
+                }
+              },
+              "Quantity": {
+                "_value": 1
+              },
+              "TryToEquip": {}
+            },
+            {
+              "Item": {
+                "_value": {
+                  "m_itemID": 4300190
+                }
+              },
+              "Quantity": {
+                "_value": 1
+              },
+              "TryToEquip": {}
+            },
+            {
+              "Item": {
+                "_value": {
+                  "m_itemID": 4300070
+                }
+              },
+              "Quantity": {
+                "_value": 1
+              },
+              "TryToEquip": {}
+            }
+          ],
+          "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+        },
+        "_position": {
+          "x": 5310.0,
+          "y": 6210.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "44"
+      },
+      {
+        "_action": {
+          "QuestEventRef": {
+            "m_eventUID": "8MxnJSYz6UK6dlBz4oLFhg"
+          },
+          "RemoveAllStack": true,
+          "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+        },
+        "_position": {
+          "x": 5355.0,
+          "y": 6360.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "64"
+      },
+      {
+        "statement": {
+          "_text": "Alright, good work. Here, some silver, a healing potion, and a warmth potion. Remember, never go out in winter without proper preparation!",
+          "_meta": "Merchant_Cierzo_Alchemist_07"
+        },
+        "_actorName": "name_merchant_cierzoalchemist_01 ",
+        "_actorParameterID": "e592641c-683d-4d8f-9c5c-768a2a7d1497",
+        "_position": {
+          "x": 5310.0,
+          "y": 6570.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "67"
+      },
+      {
+        "_position": {
+          "x": 5430.0,
+          "y": 6720.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "69"
+      },
+      {
+        "_action": {
+          "_location": {
+            "_key": "QUEST_MINOR_ALCHEMY_CRYSTAL_POWDER"
+          },
+          "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+        },
+        "_position": {
+          "x": 4826.0,
+          "y": 6014.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "70"
+      },
+      {
+        "statement": {
+          "_text": "You know how to make Crystal Powder, right? Grind up and boil a whole bunch of Mana stones in an an an alchemy set. I’ll trade you some other potions and some silvers for your trouble",
+          "_meta": "Merchant_Cierzo_Alchemist_04"
+        },
+        "_actorName": "name_merchant_cierzoalchemist_01 ",
+        "_actorParameterID": "e592641c-683d-4d8f-9c5c-768a2a7d1497",
+        "_position": {
+          "x": 5715.0,
+          "y": 6795.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "73"
+      },
+      {
+        "statement": {
+          "_text": "Need something else?",
+          "_meta": "Merchant_Monsoon_Blacksmith_02"
+        },
+        "_actorName": "name_merchant_cierzoalchemist_01 ",
+        "_actorParameterID": "e592641c-683d-4d8f-9c5c-768a2a7d1497",
+        "_position": {
+          "x": 5790.0,
+          "y": 6945.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "75"
+      },
+      {
+        "_targetNode": {
+          "$ref": "4"
+        },
+        "_position": {
+          "x": 5895.0,
+          "y": 7065.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.GoToNode",
+        "$id": "77"
+      },
+      {
+        "_condition": {
+          "conditions": [
+            {
+              "QuestEventRef": {
+                "m_eventUID": "rPiRNjNqvEiD2_tYN34ogA"
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "rPiRNjNqvEiD2_tYN34ogA"
+              },
+              "ExpiryTime": 72,
+              "_invert": true,
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_CheckQuestEventExpiry"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ConditionList"
+        },
+        "_position": {
+          "x": 6000.0,
+          "y": 5685.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "78"
+      },
+      {
+        "statement": {
+          "_text": "Wait.",
+          "_meta": "Merchant_Generic_WaitJob"
+        },
+        "_actorName": "name_merchant_cierzoalchemist_01 ",
+        "_actorParameterID": "e592641c-683d-4d8f-9c5c-768a2a7d1497",
+        "_position": {
+          "x": 5775.0,
+          "y": 5910.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "85"
+      },
+      {
+        "_position": {
+          "x": 5895.0,
+          "y": 6015.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "87"
+      },
+      {
+        "_action": {
+          "QuestEventRef": {
+            "m_eventUID": "rPiRNjNqvEiD2_tYN34ogA"
+          },
+          "RemoveAllStack": true,
+          "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+        },
+        "_position": {
+          "x": 6315.0,
+          "y": 5925.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "88"
+      },
+      {
+        "statement": {
+          "_text": "Hmm, I’m running a little low on Crystal Powder for my advanced potions. If you’ve got an alchemy set of your own, make some for me, would you?",
+          "_meta": "Merchant_Cierzo_Alchemist_02"
+        },
+        "_actorName": "name_merchant_cierzoalchemist_01 ",
+        "_actorParameterID": "e592641c-683d-4d8f-9c5c-768a2a7d1497",
+        "_position": {
+          "x": 6045.0,
+          "y": 6090.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "91"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "Yes.",
+              "_meta": "Merchant_Generic_Yes_01"
+            }
+          },
+          {
+            "statement": {
+              "_text": "No.",
+              "_meta": "Merchant_Generic_No_01"
+            }
+          }
+        ],
+        "_position": {
+          "x": 6135.0,
+          "y": 6225.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "93"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "QuestEventRef": {
+                "m_eventUID": "8MxnJSYz6UK6dlBz4oLFhg"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "rPiRNjNqvEiD2_tYN34ogA"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 5985.0,
+          "y": 6360.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "99"
+      },
+      {
+        "_condition": {
+          "quest": {
+            "_value": 1
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_KnowQuest"
+        },
+        "_position": {
+          "x": 6015.0,
+          "y": 6480.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "106"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "quest": {},
+              "questRef": {
+                "_value": {
+                  "m_itemID": 7011603
+                }
+              },
+              "$type": "NodeCanvas.Tasks.Actions.RemoveQuest"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "qo9hPm7B4keavb0F4WfUVQ"
+              },
+              "RemoveAllStack": true,
+              "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 5925.0,
+          "y": 6600.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "109"
+      },
+      {
+        "_action": {
+          "quest": {},
+          "questRef": {
+            "_value": {
+              "m_itemID": 7011603
+            }
+          },
+          "$type": "NodeCanvas.Tasks.Actions.GiveQuest"
+        },
+        "_position": {
+          "x": 6075.0,
+          "y": 6705.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "118"
+      },
+      {
+        "statement": {
+          "_text": "Need something else?",
+          "_meta": "Merchant_Monsoon_Blacksmith_02"
+        },
+        "_actorName": "Alchemist",
+        "_actorParameterID": "e592641c-683d-4d8f-9c5c-768a2a7d1497",
+        "_position": {
+          "x": 6315.0,
+          "y": 6420.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "123"
+      },
+      {
+        "_targetNode": {
+          "$ref": "4"
+        },
+        "_position": {
+          "x": 6345.0,
+          "y": 6585.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.GoToNode",
+        "$id": "125"
+      },
+      {
+        "statement": {
+          "_text": "Farewell.",
+          "_meta": "Merchant_Generic_Farewell_01"
+        },
+        "_actorName": "name_merchant_cierzoalchemist_01 ",
+        "_actorParameterID": "e592641c-683d-4d8f-9c5c-768a2a7d1497",
+        "_position": {
+          "x": 6255.0,
+          "y": 5475.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "126"
+      },
+      {
+        "_position": {
+          "x": 6405.0,
+          "y": 5595.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "128"
+      },
+      {
+        "statement": {
+          "_text": "I could wax poetic about it all day. What’s got your curiosity?",
+          "_meta": "Wizard_tutorial_01"
+        },
+        "_actorName": "name_merchant_cierzoalchemist_01 ",
+        "_actorParameterID": "e592641c-683d-4d8f-9c5c-768a2a7d1497",
+        "_position": {
+          "x": 6885.0,
+          "y": 5280.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "129"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "What actually is Mana, and how do you control it?",
+              "_meta": "Player_wizard_tutorial_a_01"
+            }
+          },
+          {
+            "statement": {
+              "_text": "Where can I learn magic?",
+              "_meta": "Player_wizard_tutorial_a_02"
+            },
+            "condition": {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "3a601c20-be18-4c6c-8460-357b1bcd1ab3"
+              },
+              "skill": {
+                "_value": 2
+              },
+              "_invert": true,
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_KnowSkill"
+            }
+          }
+        ],
+        "_position": {
+          "x": 7065.0,
+          "y": 5460.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "131"
+      },
+      {
+        "statement": {
+          "_text": "Mana is energy that flows through everything. Plants, animals, people, even rocks sometimes. Mages are those who’ve learned how to capture that energy unleash it in the form of magic spells.",
+          "_meta": "Wizard_tutorial_02"
+        },
+        "_actorName": "name_merchant_cierzoalchemist_01 ",
+        "_actorParameterID": "e592641c-683d-4d8f-9c5c-768a2a7d1497",
+        "_position": {
+          "x": 6735.0,
+          "y": 5820.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "140"
+      },
+      {
+        "statement": {
+          "_text": "Magic is something that requires patience to master. By combining spells in the right sequence, you will achieve much greater results than using a spell on its own.",
+          "_meta": "Wizard_tutorial_03"
+        },
+        "_actorName": "name_merchant_cierzoalchemist_01 ",
+        "_actorParameterID": "e592641c-683d-4d8f-9c5c-768a2a7d1497",
+        "_position": {
+          "x": 6780.0,
+          "y": 5985.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "142"
+      },
+      {
+        "_targetNode": {
+          "$ref": "75"
+        },
+        "_position": {
+          "x": 7155.0,
+          "y": 6300.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.GoToNode",
+        "$id": "144"
+      },
+      {
+        "_condition": {
+          "quest": {
+            "_value": 3
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_KnowQuest"
+        },
+        "_position": {
+          "x": 7380.0,
+          "y": 5670.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "145"
+      },
+      {
+        "statement": {
+          "_text": "To unlock the power of Mana, you must travel to a Ley Line, a place where Aurai's life flows strong. The nearest one is the one under the Conflux Mountain. You know it, right? The large purple mountain in the Chersonese. ",
+          "_meta": "Wizard_tutorial_04"
+        },
+        "_actorName": "name_merchant_cierzoalchemist_01 ",
+        "_actorParameterID": "e592641c-683d-4d8f-9c5c-768a2a7d1497",
+        "_position": {
+          "x": 7275.0,
+          "y": 5910.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "148"
+      },
+      {
+        "statement": {
+          "_text": "The Holy Mission and the Kingdom of Levant have their own paths into the Conflux Mountain as well, and each one will test you differently. Take the path that you feel best meets your capability, or your sense of personal loyalty.",
+          "_meta": "Wizard_tutorial_05"
+        },
+        "_actorName": "name_merchant_cierzoalchemist_01 ",
+        "_actorParameterID": "e592641c-683d-4d8f-9c5c-768a2a7d1497",
+        "_position": {
+          "x": 7305.0,
+          "y": 6060.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "150"
+      },
+      {
+        "_action": {
+          "quest": {},
+          "questRef": {
+            "_value": {
+              "m_itemID": 7011620
+            }
+          },
+          "$type": "NodeCanvas.Tasks.Actions.GiveQuest"
+        },
+        "_position": {
+          "x": 7515.0,
+          "y": 5790.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "152"
+      }
+    ],
+    "connections": [
+      {
+        "_sourceNode": {
+          "$ref": "2"
+        },
+        "_targetNode": {
+          "$ref": "4"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "4"
+        },
+        "_targetNode": {
+          "$ref": "14"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "4"
+        },
+        "_targetNode": {
+          "$ref": "19"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "4"
+        },
+        "_targetNode": {
+          "$ref": "126"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "4"
+        },
+        "_targetNode": {
+          "$ref": "129"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "14"
+        },
+        "_targetNode": {
+          "$ref": "18"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "19"
+        },
+        "_targetNode": {
+          "$ref": "22"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "19"
+        },
+        "_targetNode": {
+          "$ref": "78"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "22"
+        },
+        "_targetNode": {
+          "$ref": "29"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "22"
+        },
+        "_targetNode": {
+          "$ref": "73"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "29"
+        },
+        "_targetNode": {
+          "$ref": "41"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "41"
+        },
+        "_targetNode": {
+          "$ref": "44"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "41"
+        },
+        "_targetNode": {
+          "$ref": "70"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "44"
+        },
+        "_targetNode": {
+          "$ref": "64"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "64"
+        },
+        "_targetNode": {
+          "$ref": "67"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "67"
+        },
+        "_targetNode": {
+          "$ref": "69"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "70"
+        },
+        "_targetNode": {
+          "$ref": "64"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "73"
+        },
+        "_targetNode": {
+          "$ref": "75"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "75"
+        },
+        "_targetNode": {
+          "$ref": "77"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "78"
+        },
+        "_targetNode": {
+          "$ref": "85"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "78"
+        },
+        "_targetNode": {
+          "$ref": "88"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "85"
+        },
+        "_targetNode": {
+          "$ref": "87"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "88"
+        },
+        "_targetNode": {
+          "$ref": "91"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "91"
+        },
+        "_targetNode": {
+          "$ref": "93"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "93"
+        },
+        "_targetNode": {
+          "$ref": "99"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "93"
+        },
+        "_targetNode": {
+          "$ref": "123"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "99"
+        },
+        "_targetNode": {
+          "$ref": "106"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "106"
+        },
+        "_targetNode": {
+          "$ref": "109"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "106"
+        },
+        "_targetNode": {
+          "$ref": "118"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "109"
+        },
+        "_targetNode": {
+          "$ref": "118"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "118"
+        },
+        "_targetNode": {
+          "$ref": "73"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "123"
+        },
+        "_targetNode": {
+          "$ref": "125"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "126"
+        },
+        "_targetNode": {
+          "$ref": "128"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "129"
+        },
+        "_targetNode": {
+          "$ref": "131"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "131"
+        },
+        "_targetNode": {
+          "$ref": "140"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "131"
+        },
+        "_targetNode": {
+          "$ref": "145"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "140"
+        },
+        "_targetNode": {
+          "$ref": "142"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "142"
+        },
+        "_targetNode": {
+          "$ref": "144"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "145"
+        },
+        "_targetNode": {
+          "$ref": "148"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "145"
+        },
+        "_targetNode": {
+          "$ref": "152"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "148"
+        },
+        "_targetNode": {
+          "$ref": "150"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "150"
+        },
+        "_targetNode": {
+          "$ref": "144"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "152"
+        },
+        "_targetNode": {
+          "$ref": "148"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      }
+    ],
+    "localBlackboard": {
+      "_name": "Local Blackboard",
+      "_variables": {
+        "gInstigator": {
+          "_name": "gInstigator",
+          "_id": "3a601c20-be18-4c6c-8460-357b1bcd1ab3",
+          "$type": "NodeCanvas.Framework.Variable`1[[Character, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+        },
+        "myMerchant": {
+          "_name": "myMerchant",
+          "_id": "4f3641a8-ecc7-4dba-bcea-5cefea3c9f46",
+          "$type": "NodeCanvas.Framework.Variable`1[[Merchant, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+        }
+      }
+    },
+    "derivedData": {
+      "actorParameters": [
+        {
+          "_keyName": "name_merchant_cierzoalchemist_01 ",
+          "_id": "e592641c-683d-4d8f-9c5c-768a2a7d1497"
+        }
+      ],
+      "$type": "NodeCanvas.DialogueTrees.DialogueTree+DerivedSerializationData"
+    }
+  },
+  "replace": [
+    "CierzoNewTerrain/_SNPC/_UNPC/NoLongerBlock/HumanSNPC_Alchemist/MerchantTemplate/NPC/ShopDialogue"
+  ]
+}

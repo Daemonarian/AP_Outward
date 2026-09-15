@@ -1,0 +1,3540 @@
+{
+  "graph": {
+    "version": 2.92,
+    "type": "NodeCanvas.DialogueTrees.DialogueTreeExt",
+    "translation": {
+      "x": -4992.0,
+      "y": -7678.0
+    },
+    "zoomFactor": 0.9258615,
+    "nodes": [
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "M9jv0FFhbEmAEham4pMO3Q"
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 6435.0,
+          "y": 2790.0
+        },
+        "_UID": "c1467c7f-dc2e-4500-a303-230c394a3476",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "2"
+      },
+      {
+        "_condition": {
+          "_minimumQuestLevel": 4,
+          "$type": "OutwardArchipelago.Graphs.Conditions.Condition_QuestLicense"
+        },
+        "_position": {
+          "x": 5092.0,
+          "y": 7778.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "5"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "Og71f8G5a0eVmLxZB0yOKg"
+          },
+          "_invert": true,
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 6315.0,
+          "y": 3000.0
+        },
+        "_UID": "8abc9388-f4db-42ea-9d4d-ac112fc0dfa9",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "7"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "Y5g2-Ri1bUq9vIy7E-_mBQ"
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 6000.0,
+          "y": 3315.0
+        },
+        "_UID": "7237d677-d3b6-4683-a8d4-25045449f1f5",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "10"
+      },
+      {
+        "_action": {
+          "$type": "NodeCanvas.Tasks.Actions.SetDialogueInterruptable"
+        },
+        "_position": {
+          "x": 5552.0,
+          "y": 3579.0
+        },
+        "_UID": "bf359d47-fb89-4252-89f3-80caa4eb2ffc",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "13"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "ZWE4gJRpJEqL6CLhDWKnGA"
+          },
+          "MinStack": 3,
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 5020.0,
+          "y": 3772.0
+        },
+        "_UID": "3f9fddf8-1e8c-43c3-ab4e-5a7eed26f95c",
+        "_tag": "",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "15"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc -Hah!  Success!  You delayed the demolition long enough that Desy was able to get an official letter from the headmaster through!  I have both the time and the authority to go examine that Rune Wall!\r",
+          "_meta": "Arcane_SO_Sabotage_44 "
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 4577.0,
+          "y": 4363.0
+        },
+        "_UID": "0d5c0f3e-ea9d-435e-9149-91d2532f6046",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "18"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc -Excellent work, [PlayerName]. You’ve earned your reward. Now, I have runes to memorize!\r",
+          "_meta": "Arcane_SO_Sabotage_45"
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 4577.0,
+          "y": 4483.0
+        },
+        "_UID": "4a6f2f08-784a-477f-bc80-baba544b87f7",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "20"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "ZWE4gJRpJEqL6CLhDWKnGA"
+          },
+          "MinStack": 4,
+          "_invert": true,
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 4532.0,
+          "y": 4618.0
+        },
+        "_UID": "c3f871e6-51a6-41a3-9d93-b30e53f50749",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "22"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "ZWE4gJRpJEqL6CLhDWKnGA"
+          },
+          "MinStack": 5,
+          "_invert": true,
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 4337.0,
+          "y": 4828.0
+        },
+        "_UID": "41822b43-bfbe-42a4-b5c9-02c9954ca28b",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "25"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "ZWE4gJRpJEqL6CLhDWKnGA"
+          },
+          "MinStack": 6,
+          "_invert": true,
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 4112.0,
+          "y": 5098.0
+        },
+        "_UID": "e5ec40d1-5bd4-45db-8fbd-385076dd6f00",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "28"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "QuestEventRef": {
+                "m_eventUID": "N9J5YpWIc0mQMRhXmX4qIA"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "Og71f8G5a0eVmLxZB0yOKg"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 4127.0,
+          "y": 5262.0
+        },
+        "_UID": "ac16d7a3-0c1a-4197-a627-48cea088612e",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "31"
+      },
+      {
+        "_action": {
+          "SilverAmount": {},
+          "XpAmount": {},
+          "ItemReward": [
+            {
+              "Item": {
+                "_value": {
+                  "m_itemID": 9000010
+                }
+              },
+              "Quantity": {
+                "_value": 200
+              },
+              "TryToEquip": {}
+            },
+            {
+              "Item": {
+                "_value": {
+                  "m_itemID": 5700240
+                }
+              },
+              "Quantity": {
+                "_value": 1
+              },
+              "TryToEquip": {}
+            },
+            {
+              "Item": {
+                "_value": {
+                  "m_itemID": 4100730
+                }
+              },
+              "Quantity": {
+                "_value": 1
+              },
+              "TryToEquip": {}
+            }
+          ],
+          "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+        },
+        "_position": {
+          "x": 4113.0,
+          "y": 5386.0
+        },
+        "_UID": "bb456d68-e6b0-4e07-8dd3-773433fb973d",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "38"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Good job out the-...Wait, you did everything on the list?  Didn't I say not to go overboard?  Well, let's just hope that doesn’t have unintended consequences. We actually do need that tunnel blocked before the Scourge use it...\r",
+          "_meta": "Arcane_SO_Sabotage_42"
+        },
+        "_actorName": "name_unpc_gregoryturnbull_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 4142.0,
+          "y": 5477.0
+        },
+        "_UID": "ce467611-2a81-4df1-b06f-7fe2a9862784",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "58"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "QuestEventRef": {
+                "m_eventUID": "IpfKz5M4UUCMuXewVclgOA"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "Og71f8G5a0eVmLxZB0yOKg"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 4607.0,
+          "y": 5038.0
+        },
+        "_UID": "3a9a4539-ec2a-48c6-8524-a03c7f9fb9d0",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "60"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - It feels like you did little bit of overkill, but better safe than sorry.  Excellent work, [PlayerName]\r",
+          "_meta": "Arcane_SO_Sabotage_41"
+        },
+        "_actorName": "name_unpc_gregoryturnbull_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 4637.0,
+          "y": 5323.0
+        },
+        "_UID": "e34b99f7-d22e-493a-81a2-4bfcbaf14bd5",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "67"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "QuestEventRef": {
+                "m_eventUID": "1AsQ9AU7VEiTgPhAPZj2nA"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "Og71f8G5a0eVmLxZB0yOKg"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 4802.0,
+          "y": 4828.0
+        },
+        "_UID": "7f63c32b-4c43-44d2-a7ae-4d7af2abe324",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "69"
+      },
+      {
+        "_action": {
+          "SilverAmount": {},
+          "XpAmount": {},
+          "ItemReward": [
+            {
+              "Item": {
+                "_value": {
+                  "m_itemID": 9000010
+                }
+              },
+              "Quantity": {
+                "_value": 200
+              },
+              "TryToEquip": {}
+            },
+            {
+              "Item": {
+                "_value": {
+                  "m_itemID": 5700240
+                }
+              },
+              "Quantity": {
+                "_value": 1
+              },
+              "TryToEquip": {}
+            },
+            {
+              "Item": {
+                "_value": {
+                  "m_itemID": 4100730
+                }
+              },
+              "Quantity": {
+                "_value": 1
+              },
+              "TryToEquip": {}
+            }
+          ],
+          "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+        },
+        "_position": {
+          "x": 4904.0,
+          "y": 4941.0
+        },
+        "_UID": "16fc8492-a0ed-48fa-9b17-3f464d7f4124",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "76"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "ZWE4gJRpJEqL6CLhDWKnGA"
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 5179.0,
+          "y": 3956.0
+        },
+        "_UID": "b9660978-1e0c-4b96-8d2e-d57cdeda03ba",
+        "_tag": "",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "96"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc -Word just came in. They’ve gone and demolished the tunnel....\r",
+          "_meta": "Arcane_SO_Sabotage_46"
+        },
+        "_actorName": "name_unpc_gregoryturnbull_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5162.0,
+          "y": 4348.0
+        },
+        "_UID": "6bd5e65f-ef65-466d-bd74-48e20ba41796",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "99"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc -*sigh* I guess we’ll just have to make do without that critical rune. You did put your life on the line, so I can’t in good conscience deny you your reward...But damn if this doesn’t sting.\r",
+          "_meta": "Arcane_SO_Sabotage_47"
+        },
+        "_actorName": "name_unpc_gregoryturnbull_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5177.0,
+          "y": 4468.0
+        },
+        "_UID": "ea42f6af-9c98-44ff-af3e-1c33f03ff13a",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "101"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "QuestEventRef": {
+                "m_eventUID": "NMlAGlKk0UyvksjC2f7QGg"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "Og71f8G5a0eVmLxZB0yOKg"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 5192.0,
+          "y": 4618.0
+        },
+        "_UID": "8c750fa4-2ad7-47d9-90e1-709a6df59260",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "103"
+      },
+      {
+        "_action": {
+          "SilverAmount": {},
+          "XpAmount": {},
+          "ItemReward": [
+            {
+              "Item": {
+                "_value": {
+                  "m_itemID": 9000010
+                }
+              },
+              "Quantity": {
+                "_value": 100
+              },
+              "TryToEquip": {}
+            },
+            {
+              "Item": {
+                "_value": {
+                  "m_itemID": 5700240
+                }
+              },
+              "Quantity": {
+                "_value": 1
+              },
+              "TryToEquip": {}
+            }
+          ],
+          "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+        },
+        "_position": {
+          "x": 5277.0,
+          "y": 4759.0
+        },
+        "_UID": "9489bd19-72dd-4d6a-9dd5-c5af22635f51",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "110"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc -You didn't even get ONE task done?!",
+          "_meta": "Arcane_SO_Sabotage_38"
+        },
+        "_actorName": "name_unpc_gregoryturnbull_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5464.0,
+          "y": 4163.0
+        },
+        "_UID": "4d80bce1-6876-4fe0-aba1-d5815297b0e8",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "125"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "fTBhxgz_DUmk60k85PaaCA"
+          },
+          "_invert": true,
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 6165.0,
+          "y": 3465.0
+        },
+        "_UID": "9ccff4ca-0a5b-4080-ba07-d81b8a94f305",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "127"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Ah!  Your arrival is most opportune.  We have a serious problem, Initiate.",
+          "_meta": "Arcane_SO_Sabotage_02"
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 6015.0,
+          "y": 3765.0
+        },
+        "_UID": "b0bf3b58-9b92-438b-9f47-bcccc322272f",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "130"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - So, have you heard about how the old golem production facility started up again, after that rogue golem made its proclamation just outside?  Well, some people have started finding ways inside.\r",
+          "_meta": "Arcane_SO_Sabotage_03"
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 6015.0,
+          "y": 3915.0
+        },
+        "_UID": "7bc08148-dd3f-4d04-85ca-7f1962dc3c68",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "132"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - An adventurer found a rune wall down in a mine shaft in there...From his description, I think <color=#00CCFF><b>one of those runes might be exactly what I need</b></color> in order to crack the Immaculate’s spell wide open.\r",
+          "_meta": "Arcane_SO_Sabotage_04"
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 6015.0,
+          "y": 4035.0
+        },
+        "_UID": "7194b6bf-f153-44bc-be21-72c72f05c4d5",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "134"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - The problem is, there’s plenty of Scourge that have managed to infiltrate the place as well.  The engineering branch just decided that it was highly likely that this tunnel could be used bypass the walls and invade the city.\r",
+          "_meta": "Arcane_SO_Sabotage_05"
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 6015.0,
+          "y": 4155.0
+        },
+        "_UID": "32d35b81-2ffc-4607-8bfb-4a45516730be",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "136"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - And guess who just got the contract to not just guard the tunnel but also collapse it with explosives?\r",
+          "_meta": "Arcane_SO_Sabotage_06"
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 6015.0,
+          "y": 4275.0
+        },
+        "_UID": "3331978b-3d81-439e-8361-5170df61fa77",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "138"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "NoLoc - Victor and the Wolfgang Mercenaries, I assume. ",
+              "_meta": "Player_Arcane_SO_Sabotage_06_a"
+            }
+          }
+        ],
+        "_position": {
+          "x": 6045.0,
+          "y": 4395.0
+        },
+        "_UID": "c42269c5-a26d-4c1f-baf3-172d847a3470",
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "140"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Exactly.  Now, he could just as easily collapse the tunnel deeper in and let us keep our access to the rune wall, or at least allow me to examine it first.  But given our recent...Antagonism...He’s taking more drastic action.\r",
+          "_meta": "Arcane_SO_Sabotage_07"
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 6015.0,
+          "y": 4530.0
+        },
+        "_UID": "c49ebd7c-de28-44ae-8f8b-1bb69cc498c9",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "144"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - He’s going to collapse the tunnel beyond, in front of, and directly on top of the Rune Wall, permanently blocking all access. And he’s ordered his Wolfgang friends to keep the area clear of any interference, with lethal force if they have to.\r",
+          "_meta": "Arcane_SO_Sabotage_08"
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 6015.0,
+          "y": 4665.0
+        },
+        "_UID": "bfeeabdf-8cf5-4fc4-9db7-3ec48f2749f4",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "146"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "NoLoc - What? Why’s he going so over the top with this? ",
+              "_meta": "Player_Arcane_SO_Sabotage_08_a"
+            }
+          },
+          {
+            "statement": {
+              "_text": "NoLoc - Somehow, I’m not surprised it’s coming to this. ",
+              "_meta": "Player_Arcane_SO_Sabotage_08_b"
+            }
+          }
+        ],
+        "_position": {
+          "x": 5985.0,
+          "y": 4845.0
+        },
+        "_UID": "a97bd8f6-73f8-4d15-832d-cc02b7aa17dd",
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "148"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Well, first of all, I think it’s personal at this point.  He’s a man who hates to lose control.  And not only did you leave his service, you immediately acted against him behind his back. The rumor mill is churning over this and he's losing face.\r",
+          "_meta": "Arcane_SO_Sabotage_09"
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 6030.0,
+          "y": 5055.0
+        },
+        "_UID": "708e4f7f-6d78-497e-8ecb-021dd9ba4845",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "154"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - I suspect his urge right now is to do whatever it takes to solidify his position, and make his opposition, that’s you and me, look as weak as possible right now. Regardless of if it destroys priceless history or ancient knowledge in the process.\r",
+          "_meta": "Arcane_SO_Sabotage_10"
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 6030.0,
+          "y": 5175.0
+        },
+        "_UID": "7af6a7d0-3efe-4a31-9230-446323687e57",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "156"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Secondly...I suspect he knows what we’re working on.  Having the Scourge hordes become less of a threat means less work for him, and less contracts for the mercs he’s so buddy-buddy with.  They all stand to lose business if we succeed.\r",
+          "_meta": "Arcane_SO_Sabotage_11"
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 6030.0,
+          "y": 5295.0
+        },
+        "_UID": "cf8d7a4c-ee85-4b7b-a58c-0696b4273ed4",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "158"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "NoLoc - So he's going to deliberately stop us from fixing the Scourge, by any means, huh? ",
+              "_meta": "Player_Arcane_SO_Sabotage_11_a"
+            }
+          }
+        ],
+        "_position": {
+          "x": 5910.0,
+          "y": 5430.0
+        },
+        "_UID": "134feb29-f3d4-4cdd-b23c-4166b3182b61",
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "160"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Precisely.  Now, the only one who can officially delay the demolition and get the Wolfgang to stand aside for me is the headmaster.  And he’s been summoned to Berg to be questioned by the Blue Chamber over a recent incident there.\r",
+          "_meta": "Arcane_SO_Sabotage_12"
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 6045.0,
+          "y": 5565.0
+        },
+        "_UID": "13af53fb-b92e-437b-a615-07192f404385",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "164"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - The demolition is scheduled to take place in about <color=#00CCFF><b>20 days</b></color>.  The headmaster is unlikely to get back before then, and no one from Sorobor is even allowed to see him at the moment. So, unless that demolition suffers some mysterious setbacks...\r",
+          "_meta": "Arcane_SO_Sabotage_13"
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 6045.0,
+          "y": 5700.0
+        },
+        "_UID": "308c723a-2a94-4213-b8fc-51c519a4d04a",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "166"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "NoLoc - Can't I just write down the runes and show them to you? ",
+              "_meta": "Player_Arcane_SO_Sabotage_13_a"
+            }
+          },
+          {
+            "statement": {
+              "_text": "NoLoc - You’re asking me to commit sabotage. ",
+              "_meta": "Player_Arcane_SO_Sabotage_13_b"
+            }
+          }
+        ],
+        "_position": {
+          "x": 6150.0,
+          "y": 5835.0
+        },
+        "_UID": "7520244f-c657-457f-a5bb-cc68769380e0",
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "168"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Oh really.  How familiar are you with Rune Magic, Initiate?\r",
+          "_meta": "Arcane_SO_Sabotage_14"
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5985.0,
+          "y": 5985.0
+        },
+        "_UID": "c1c110ab-da62-4698-b36f-6591e52cb20a",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "174"
+      },
+      {
+        "_condition": {
+          "conditions": [
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "2bf53ecc-e733-49ca-a75f-463c24c62eb6"
+              },
+              "skill": {
+                "_value": 1
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_KnowSkill"
+            },
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "2bf53ecc-e733-49ca-a75f-463c24c62eb6"
+              },
+              "skill": {
+                "_value": 2
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_KnowSkill"
+            },
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "2bf53ecc-e733-49ca-a75f-463c24c62eb6"
+              },
+              "skill": {
+                "_value": 3
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_KnowSkill"
+            },
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "2bf53ecc-e733-49ca-a75f-463c24c62eb6"
+              },
+              "skill": {
+                "_value": 4
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_KnowSkill"
+            }
+          ],
+          "_invert": true,
+          "$type": "NodeCanvas.Framework.ConditionList"
+        },
+        "_position": {
+          "x": 6045.0,
+          "y": 6105.0
+        },
+        "_UID": "5197d02a-c823-4521-b223-c1ebe941350c",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "176"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "NoLoc - Uh...Not at all, actually. ",
+              "_meta": "Player_Arcane_SO_Sabotage_14_a"
+            }
+          }
+        ],
+        "_position": {
+          "x": 5760.0,
+          "y": 6390.0
+        },
+        "_UID": "ad45c263-6eba-4a56-8424-a5a57d5b7c94",
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "191"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Right, so...Why are you even offering?  Rune Magic doesn’t work like that.\r",
+          "_meta": "Arcane_SO_Sabotage_15"
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5640.0,
+          "y": 6555.0
+        },
+        "_UID": "3762603a-347b-411d-bbe7-d4c0582fcc19",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "195"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Runes have a multitude of contexts depending on positioning, proximity, ordering and inflection. It's like a magical language where each letter’s meaning can change drastically. Each rune also has a magical signature that can't be passed on with just sketches.\r",
+          "_meta": "Arcane_SO_Sabotage_18"
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5760.0,
+          "y": 7005.0
+        },
+        "_UID": "cf70e9cd-5fea-470a-9268-7ddb1ee5b893",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "197"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - If I have just a sketch, which I already do, I can hazard a guess at how to compel the rune, but I'm still just shooting fireballs in the dark. I might succeed, or I might trigger some completely unintended and unhelpful effect.\r",
+          "_meta": "Arcane_SO_Sabotage_19"
+        },
+        "_actorName": "name_unpc_gregoryturnbull_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5804.0,
+          "y": 7172.0
+        },
+        "_UID": "c02fd3a1-54e4-4b09-8dcb-4cbc2e4bac6e",
+        "_tag": "skiprunes",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "199"
+      },
+      {
+        "_action": {
+          "audioClip": {
+            "_value": 5
+          },
+          "$type": "NodeCanvas.Tasks.Actions.PlayAudioAtPosition"
+        },
+        "_position": {
+          "x": 5904.0,
+          "y": 7278.0
+        },
+        "_UID": "0264ea2c-83fe-4782-af41-499ecc9514db",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "201"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - I would much rather avoid any unpleasant surprises, thank you. Do not “wing it”, as you humans call it, unless you absolutely must.\r",
+          "_meta": "Immaculate_SO_Sabotage_00"
+        },
+        "_actorName": "name_unpc_immaculatesorobor_01",
+        "_actorParameterID": "b505931f-513e-4818-9d99-72f6fac89de4",
+        "_position": {
+          "x": 5803.0,
+          "y": 7364.0
+        },
+        "_UID": "1853a386-66e4-455a-abd0-9454029b3a5e",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "204"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - I've got an especially good eidetic memory, I just need 15 minutes in front of that wall and I'll know everything I need to know.  But if I don't get that delay...\r",
+          "_meta": "Arcane_SO_Sabotage_20"
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5790.0,
+          "y": 7470.0
+        },
+        "_UID": "965ca0ab-0b94-43c5-839c-27a777f9c39e",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "206"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "NoLoc - How essential is this one rune? ",
+              "_meta": "Player_Arcane_SO_Sabotage_20_a"
+            }
+          }
+        ],
+        "_position": {
+          "x": 5880.0,
+          "y": 7605.0
+        },
+        "_UID": "518a5b15-4650-4090-8ed8-012bfdeb7683",
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "208"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - It’s important enough that <color=#00CCFF><b>I'm asking you to perform sabotage</b></color> against a Dean and put your life in danger. I’m not asking this of you lightly.\r",
+          "_meta": "Arcane_SO_Sabotage_21"
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5805.0,
+          "y": 7740.0
+        },
+        "_UID": "7d717f08-7a84-432f-8cf4-c399e041240a",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "212"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "NoLoc - A few mysterious setbacks, coming right up, then! ",
+              "_meta": "Player_Arcane_SO_Sabotage_21_a"
+            }
+          },
+          {
+            "statement": {
+              "_text": "NoLoc - ...This had better pay real well. You’re asking me to risk my entire career. ",
+              "_meta": "Player_Arcane_SO_Sabotage_21_b"
+            }
+          }
+        ],
+        "_position": {
+          "x": 5730.0,
+          "y": 7890.0
+        },
+        "_UID": "8c06cf7c-9670-478e-8ddb-e3f39de208b7",
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "214"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - I’ve spent the last few hours putting together the details of the job.  Here's what we know for sure.\r",
+          "_meta": "Arcane_SO_Sabotage_22"
+        },
+        "_actorName": "name_unpc_gregoryturnbull_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5745.0,
+          "y": 8145.0
+        },
+        "_UID": "9f372516-3e6f-47a4-8bbb-d8dfffa4de64",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "220"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - One, the tunnel in question is in the part of the factory accessible through a <color=#00CCFF><b>Ruined Golem Warehouse</b></color>, in the old battlefield just beyond the front gate. I don’t know how the Wolfgang got a key to the place, but you’ll likely need your own.\r\n",
+          "_meta": "Arcane_SO_Sabotage_23"
+        },
+        "_actorName": "name_unpc_gregoryturnbull_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5745.0,
+          "y": 8235.0
+        },
+        "_UID": "985b0398-6878-4b54-b962-824a410cc439",
+        "_tag": "",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "222"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Two, the Wolfgang Mercs have been hired to run security for the mine tunnel. There are at least 2 guys, plus one dog Golem with the new Power Coil model as backup patrolling down there.\r",
+          "_meta": "Arcane_SO_Sabotage_24"
+        },
+        "_actorName": "name_unpc_gregoryturnbull_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5730.0,
+          "y": 8325.0
+        },
+        "_UID": "55c42c94-9a4f-44ad-823a-3cf3b7b9387b",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "224"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Three, The mercs have also been hired to provide the explosives, although in order to get certain materials, they're taking out a series of loans from the Mercantile provost.\r",
+          "_meta": "Arcane_SO_Sabotage_25"
+        },
+        "_actorName": "name_unpc_gregoryturnbull_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5730.0,
+          "y": 8415.0
+        },
+        "_UID": "169c3588-1ef7-4841-ba9f-ce3c428db6fb",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "226"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Four, The Engineering Branch said they've detected another splinter tunnel that goes into the part of the factory under the Mana lake, near the <color=#00CCFF><b>Troglodyte Warren</b></color> down there.\r",
+          "_meta": "Arcane_SO_Sabotage_26"
+        },
+        "_actorName": "name_unpc_gregoryturnbull_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5730.0,
+          "y": 8520.0
+        },
+        "_UID": "44cf1ee1-7042-4eab-9cf1-255e6c97fa79",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "228"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - So, I've put together five options we could pursue to delay the project. Here’s the plan...\r",
+          "_meta": "Arcane_SO_Sabotage_27"
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5730.0,
+          "y": 8625.0
+        },
+        "_UID": "11ef560e-e83d-40e2-8b7b-248d9372c6db",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "230"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Option 1, <color=#00CCFF><b>remove the Power Coil from the Dog Golem that’s guarding the tunnel</b></color>, and replace it with this busted one.  The mercs should have the dog on low power Scourge detection mode, so you should be able to sneak up and make the switch easily.\r",
+          "_meta": "Arcane_SO_Sabotage_28"
+        },
+        "_actorName": "name_unpc_gregoryturnbull_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5730.0,
+          "y": 8730.0
+        },
+        "_UID": "9288de64-eaf2-47b0-8991-b36a7c9b3911",
+        "_tag": "The Plan",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "232"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Do that, and they'll need to scramble to get a replacement.  If possible, avoid confronting the actual mercenaries there. Considering how important destroying the tunnel is...Conflict there could have lasting consequences on our reputation.\r",
+          "_meta": "Arcane_SO_Sabotage_29"
+        },
+        "_actorName": "name_unpc_gregoryturnbull_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5730.0,
+          "y": 8835.0
+        },
+        "_UID": "b2340946-c7df-4c12-a42e-345a6ead030c",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "234"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Option 2, <color=#00CCFF><b>sabotage the bombs</b></color> that the mercs will use. They're likely to use <color=#00CCFF><b>three explosive packages, which they should be keeping at their camp</b></color>.  All you need to do is swap the red wires in the bombs with the blue ones, and they won't work as intended.\r",
+          "_meta": "Arcane_SO_Sabotage_30"
+        },
+        "_actorName": "name_unpc_gregoryturnbull_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5730.0,
+          "y": 8955.0
+        },
+        "_UID": "5a962905-3848-46b9-b406-5a3698ab5729",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "236"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Option 3, if that side-tunnel that goes <color=#00CCFF><b>under the mana lake</b></color> is actually connected to a trog burrow, throw this pot of <color=#00CCFF><b>Helen’s Troglodyte Pesticide</b></color> down there. It’ll flush them towards the mine tunnel where they’ll sow confusion among the guards.\r",
+          "_meta": "Arcane_SO_Sabotage_31"
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5730.0,
+          "y": 9090.0
+        },
+        "_UID": "4be23f57-4b7d-4815-b856-0cc47ed5b4fa",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "238"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - And lastly, we can try to call in a favor or two from the academy’s provosts. You might be able to <color=#00CCFF><b>convince the Mercantile provost</b></color> to withhold the next few loans, which will force the Wolfgang to delay.\r",
+          "_meta": "Arcane_SO_Sabotage_32"
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5730.0,
+          "y": 9210.0
+        },
+        "_UID": "95814327-af90-4911-9e61-7390ce8e1ec5",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "240"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Finally, the <color=#00CCFF><b>Academic Provost</b></color> is nominally the head of Sorobor while the Headmaster is gone. <color=#00CCFF><b>A letter from him</b></color> to delay the demolition might buy us a little time.\r",
+          "_meta": "Arcane_SO_Sabotage_33"
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5730.0,
+          "y": 9315.0
+        },
+        "_UID": "6fc1b0f2-97bf-4727-a38c-b70fa26fa498",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "242"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Now, get this done swiftly and thoroughly, but try not to go overboard, alright?  We just need to buy some time, not shut the entire operation down.\r",
+          "_meta": "Arcane_SO_Sabotage_35"
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5730.0,
+          "y": 9435.0
+        },
+        "_UID": "a49bfc15-6e4e-4bf5-a9f8-c2d6d68d65fb",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "244"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - I'd split this between you and Desy, but I’ve sent her to Berg to go request get an official response from the Headmaster. I don't know if I can trust the rest of my branch, so you're all I've got.\r",
+          "_meta": "Arcane_SO_Sabotage_36"
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5730.0,
+          "y": 9540.0
+        },
+        "_UID": "4a363035-5c2f-44a6-9732-720cb482dddd",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "246"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "NoLoc - You trust me more than people who you’ve worked with for years? ",
+              "_meta": "Player_Arcane_SO_Sabotage_36_a"
+            }
+          },
+          {
+            "statement": {
+              "_text": "NoLoc - I’m on it. I’ll be back when I’m done. ",
+              "_meta": "Player_Arcane_SO_Sabotage_37_b"
+            }
+          }
+        ],
+        "_position": {
+          "x": 5715.0,
+          "y": 9660.0
+        },
+        "_UID": "683e1ddb-1453-4b53-8c36-633a41df309c",
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "248"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - In general?  No.  For dealing with Victor?  Yes. I know that in no uncertain terms he has it out for you. You have no reason to go back to him.\r",
+          "_meta": "Arcane_SO_Sabotage_37"
+        },
+        "_actorName": "name_unpc_gregoryturnbull_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5610.0,
+          "y": 9780.0
+        },
+        "_UID": "5f1fbea2-04e4-439f-bdc0-0ceff8eac570",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "254"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "NoLoc - I’m on it. I’ll be back when I’m done. ",
+              "_meta": "Player_Arcane_SO_Sabotage_37_b"
+            }
+          }
+        ],
+        "_position": {
+          "x": 5730.0,
+          "y": 9915.0
+        },
+        "_UID": "31fe3387-013c-4a6e-b918-1e4f3ebec70a",
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "256"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "QuestEventRef": {
+                "m_eventUID": "fTBhxgz_DUmk60k85PaaCA"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "Rm_iNfgyeUS-5bUEJOQvow"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 5925.0,
+          "y": 10050.0
+        },
+        "_UID": "69e8de89-5023-4c41-8cc6-f7b421475872",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "260"
+      },
+      {
+        "_condition": {
+          "character": {
+            "_name": "gInstigator",
+            "_targetVariableID": "2bf53ecc-e733-49ca-a75f-463c24c62eb6"
+          },
+          "skill": {
+            "_value": 6
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_KnowSkill"
+        },
+        "_position": {
+          "x": 6240.0,
+          "y": 6390.0
+        },
+        "_UID": "b805b922-3d7f-4131-b540-89acef070c89",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "267"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "NoLoc - I know the Advanced Syntax. ",
+              "_meta": "Player_Arcane_SO_Sabotage_14_c"
+            }
+          }
+        ],
+        "_position": {
+          "x": 6105.0,
+          "y": 6600.0
+        },
+        "_UID": "3f30d7e7-b8cc-4bdb-96cc-ee1427ca11cf",
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "271"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Oh.  Impressive.  But you see the problem then, right?\r",
+          "_meta": "Arcane_SO_Sabotage_17"
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 6000.0,
+          "y": 6765.0
+        },
+        "_UID": "58a74b5b-be2d-441f-8507-ea8904f85b5e",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "275"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "NoLoc - I know the basics. ",
+              "_meta": "Player_Arcane_SO_Sabotage_14_b"
+            }
+          }
+        ],
+        "_position": {
+          "x": 6495.0,
+          "y": 6585.0
+        },
+        "_UID": "1cfbee79-3822-454e-9427-84bfaba04989",
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "277"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Uh huh.  Well, let me explain some advanced theory to you.\r",
+          "_meta": "Arcane_SO_Sabotage_16"
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 6450.0,
+          "y": 6750.0
+        },
+        "_UID": "5998977e-2c51-4ab9-b1ec-2041a468c713",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "281"
+      },
+      {
+        "_sourceNodeUID": "c02fd3a1-54e4-4b09-8dcb-4cbc2e4bac6e",
+        "_position": {
+          "x": 6495.0,
+          "y": 6060.0
+        },
+        "_UID": "da1fc764-d266-4466-b540-1dedd457b4f5",
+        "$type": "NodeCanvas.DialogueTrees.Jumper",
+        "$id": "283"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - So, how’s the mission going? Do you have an update for me?\r",
+          "_meta": "Arcane_SO_Sabotage_37_b"
+        },
+        "_actorName": "name_unpc_gregoryturnbull_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 6510.0,
+          "y": 3675.0
+        },
+        "_UID": "169186e2-5a4e-4f52-bb1c-4de5b9ec363c",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "284"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "ZWE4gJRpJEqL6CLhDWKnGA"
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 6960.0,
+          "y": 3975.0
+        },
+        "_UID": "3e5d3425-705e-47b5-8416-c2fa141a9482",
+        "_tag": "",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "286"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "NoLoc - I'm not done just yet... ",
+              "_meta": "Player_Arcane_SO_Sabotage_37_a"
+            }
+          },
+          {
+            "statement": {
+              "_text": "NoLoc - I’m done.",
+              "_meta": "Player_Arcane_SO_Sabotage_37_d"
+            }
+          },
+          {
+            "statement": {
+              "_text": "NoLoc - Can you run the plan by me again?",
+              "_meta": "Player_Arcane_SO_Sabotage_37_c"
+            }
+          }
+        ],
+        "_position": {
+          "x": 6885.0,
+          "y": 4200.0
+        },
+        "_UID": "f9f51d50-3279-46e4-b432-a5ccea676e23",
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "289"
+      },
+      {
+        "_position": {
+          "x": 6825.0,
+          "y": 4410.0
+        },
+        "_UID": "d7fe8d31-0d51-43d9-8bc4-b1b446905671",
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "297"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Are you sure?  You’re positive that we can’t make the outcome more certain?\r",
+          "_meta": "Arcane_SO_Sabotage_39"
+        },
+        "_actorName": "name_unpc_gregoryturnbull_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 6960.0,
+          "y": 4410.0
+        },
+        "_UID": "e0e97f1c-b35f-4121-aa72-eaba33487696",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "298"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "NoLoc - I'm positive we're in the clear. Any more would be unsafe. ",
+              "_meta": "Player_Arcane_SO_Sabotage_39_a"
+            }
+          },
+          {
+            "statement": {
+              "_text": "NoLoc - I'm not done just yet... ",
+              "_meta": "Player_Arcane_SO_Sabotage_37_a"
+            }
+          }
+        ],
+        "_position": {
+          "x": 6945.0,
+          "y": 4545.0
+        },
+        "_UID": "2e45c6fa-d64e-46f4-97dd-cae1d2babe63",
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "300"
+      },
+      {
+        "_action": {
+          "$type": "NodeCanvas.Tasks.Actions.SetDialogueInterruptable"
+        },
+        "_position": {
+          "x": 6856.0,
+          "y": 4688.0
+        },
+        "_UID": "f5cdb28f-bdf7-4f2c-b4c5-e0970288db85",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "306"
+      },
+      {
+        "_sourceNodeUID": "faa79325-1cef-4a90-ba7d-3abba942ad20",
+        "_position": {
+          "x": 6804.0,
+          "y": 4775.0
+        },
+        "_UID": "7f98365d-eb9c-4db7-b0f3-2fcdf1909b86",
+        "$type": "NodeCanvas.DialogueTrees.Jumper",
+        "$id": "308"
+      },
+      {
+        "_position": {
+          "x": 7290.0,
+          "y": 4710.0
+        },
+        "_UID": "0d69d8ea-0547-4bd7-ba64-0330afa40d60",
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "309"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Alright, I’ll go over the plan with you again.  Listen up!\r",
+          "_meta": "Arcane_SO_Sabotage_02"
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 7395.0,
+          "y": 4425.0
+        },
+        "_UID": "d03d6503-406c-4212-9c84-4fdc12b81e8f",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "310"
+      },
+      {
+        "_sourceNodeUID": "9288de64-eaf2-47b0-8991-b36a7c9b3911",
+        "_position": {
+          "x": 7485.0,
+          "y": 4605.0
+        },
+        "_UID": "226c4e39-573b-46ab-b772-58dd81412b91",
+        "$type": "NodeCanvas.DialogueTrees.Jumper",
+        "$id": "312"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "NoLoc - I'm not done just yet... ",
+              "_meta": "Player_Arcane_SO_Sabotage_37_a"
+            }
+          },
+          {
+            "statement": {
+              "_text": "NoLoc - Can you run the plan by me again?",
+              "_meta": "Player_Arcane_SO_Sabotage_37_c"
+            }
+          }
+        ],
+        "_position": {
+          "x": 7920.0,
+          "y": 4230.0
+        },
+        "_UID": "1362ad5c-480e-4de8-bae9-5e9f45664e43",
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "313"
+      },
+      {
+        "_position": {
+          "x": 7860.0,
+          "y": 4440.0
+        },
+        "_UID": "62b6cbbd-b9c7-4b88-a2cd-693624bf8153",
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "319"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Alright, I’ll go over the plan with you again.  Listen up!\r",
+          "_meta": "Arcane_SO_Sabotage_02"
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 8085.0,
+          "y": 4440.0
+        },
+        "_UID": "5899c4e6-beb0-4451-b6ae-bf2efdd5dd2a",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "320"
+      },
+      {
+        "_sourceNodeUID": "9288de64-eaf2-47b0-8991-b36a7c9b3911",
+        "_position": {
+          "x": 8145.0,
+          "y": 4620.0
+        },
+        "_UID": "edf16959-6c43-4f5c-80a2-139f60709955",
+        "$type": "NodeCanvas.DialogueTrees.Jumper",
+        "$id": "322"
+      },
+      {
+        "_action": {
+          "dialogueStarter": {
+            "_name": "GlobalBlackboard_Harmattan/GregoryTurnbull_Q4",
+            "_targetVariableID": "8dc0ddae-7da5-4fdf-b4c2-97ba3c779aeb"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.BranchDialogue"
+        },
+        "_position": {
+          "x": 6705.0,
+          "y": 3195.0
+        },
+        "_UID": "43308d71-b500-43e6-bd46-8fa0e63d84ce",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "323"
+      },
+      {
+        "statement": {
+          "_text": "Come back when you have <color=#00CCFF><b>Quest License 4</b></color>.",
+          "_meta": "com.daemonarium.apoutward.dialogue.arcane_dean.quest_license_4_required"
+        },
+        "_actorName": "name_unpc_gregoryturnbull_01",
+        "_position": {
+          "x": 5092.0,
+          "y": 7778.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "326"
+      },
+      {
+        "_position": {
+          "x": 5092.0,
+          "y": 7778.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "328"
+      },
+      {
+        "statement": {
+          "_text": "I’m hard at work, figuring out how to help our new friend here. Once I need your help again, I’ll let you know. <color=#00CCFF><b>For now, just give me some space to work</b></color>, [PlayerName].\r",
+          "_meta": "Arcane_SO_Sabotage_01"
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 6795.0,
+          "y": 2985.0
+        },
+        "_UID": "6b3471c4-55e5-41b8-bdd1-730b919104ad",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "329"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "ZWE4gJRpJEqL6CLhDWKnGA"
+          },
+          "MinStack": 6,
+          "_invert": true,
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 6856.0,
+          "y": 4892.0
+        },
+        "_UID": "a3fb9d85-f2af-4f0b-b3b7-a17e81a11bd9",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "ZWE4gJRpJEqL6CLhDWKnGA"
+          },
+          "MinStack": 5,
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 7298.0,
+          "y": 5003.0
+        },
+        "_UID": "faa79325-1cef-4a90-ba7d-3abba942ad20",
+        "_tag": "Sabotage Stack",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "334"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Good job out the-...Wait, you did everything on the list?  Didn't I say not to go overboard?  Well, let's just hope that doesn’t have unintended consequences. We actually do need that tunnel blocked before the Scourge use it...\r",
+          "_meta": "Arcane_SO_Sabotage_42"
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 6982.0,
+          "y": 5338.0
+        },
+        "_UID": "658e980b-289f-484e-a117-c11bac97bddf",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "337"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Well...All we can do now is wait until Desy comes back with news from the Headmaster...\r",
+          "_meta": "Arcane_SO_Sabotage_43"
+        },
+        "_actorName": "name_unpc_gregoryturnbull_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 6982.0,
+          "y": 5458.0
+        },
+        "_UID": "03c8ef70-8fac-48f7-b6c4-0ba775df9a25",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "339"
+      },
+      {
+        "_action": {
+          "QuestEventRef": {
+            "m_eventUID": "N9J5YpWIc0mQMRhXmX4qIA"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+        },
+        "_position": {
+          "x": 6982.0,
+          "y": 5593.0
+        },
+        "_UID": "4fd30c4b-b802-4959-b4b9-cd9a2d8bf511",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "341"
+      },
+      {
+        "_sourceNodeUID": "f752a09c-ac47-485e-87b9-037b960154f2",
+        "_position": {
+          "x": 8320.0,
+          "y": 6104.0
+        },
+        "_UID": "5f4be966-865f-4363-af3a-defcf3450ad6",
+        "$type": "NodeCanvas.DialogueTrees.Jumper",
+        "$id": "344"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "ZWE4gJRpJEqL6CLhDWKnGA"
+          },
+          "MinStack": 4,
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 7584.0,
+          "y": 5167.0
+        },
+        "_UID": "5e043183-ecea-4df0-833c-2d1ee7527fba",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "345"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - It feels like you did little bit of overkill, but better safe than sorry.  Excellent work, [PlayerName]\r",
+          "_meta": "Arcane_SO_Sabotage_41"
+        },
+        "_actorName": "name_unpc_gregoryturnbull_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 7514.0,
+          "y": 5354.0
+        },
+        "_UID": "a046972f-a656-4f36-8e37-87d3a4d45d78",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "348"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Well...All we can do now is wait until Desy comes back with news from the Headmaster...\r",
+          "_meta": "Arcane_SO_Sabotage_43"
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 7499.0,
+          "y": 5474.0
+        },
+        "_UID": "d82ffc4b-76c0-44c1-a847-20747aab916f",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "350"
+      },
+      {
+        "_action": {
+          "QuestEventRef": {
+            "m_eventUID": "IpfKz5M4UUCMuXewVclgOA"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+        },
+        "_position": {
+          "x": 7484.0,
+          "y": 5624.0
+        },
+        "_UID": "f56c92f6-2979-4172-ae3d-e82e9b2ea837",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "352"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "ZWE4gJRpJEqL6CLhDWKnGA"
+          },
+          "MinStack": 3,
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 8029.0,
+          "y": 5331.0
+        },
+        "_UID": "17e66868-e4b3-4133-91de-fdc4d933f4b3",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "355"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - This looks like it’ll be close.  Very close.  But it should work.  Good job out there [PlayerName].\r",
+          "_meta": "Arcane_SO_Sabotage_40"
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 7966.0,
+          "y": 5510.0
+        },
+        "_UID": "25193710-9fcb-483c-83c1-964300ba28a3",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "358"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Well...All we can do now is wait until Desy comes back with news from the Headmaster...\r",
+          "_meta": "Arcane_SO_Sabotage_43"
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 7951.0,
+          "y": 5630.0
+        },
+        "_UID": "9fe2b37c-f1e7-4aa7-9819-e760a6ea46b3",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "360"
+      },
+      {
+        "_action": {
+          "QuestEventRef": {
+            "m_eventUID": "1AsQ9AU7VEiTgPhAPZj2nA"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+        },
+        "_position": {
+          "x": 7981.0,
+          "y": 5765.0
+        },
+        "_UID": "05509782-0222-4b2e-96e5-4824937d054d",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "362"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "ZWE4gJRpJEqL6CLhDWKnGA"
+          },
+          "MinStack": 2,
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 8437.0,
+          "y": 5463.0
+        },
+        "_UID": "dba0d15d-ddc6-4487-b180-739b0fbf5398",
+        "_tag": "",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "365"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Well...All we can do now is wait until Desy comes back with news from the Headmaster...\r",
+          "_meta": "Arcane_SO_Sabotage_43"
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 8422.0,
+          "y": 5596.0
+        },
+        "_UID": "2a63c1a3-ef37-4ddf-a6a7-95373f03ea98",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "368"
+      },
+      {
+        "_action": {
+          "QuestEventRef": {
+            "m_eventUID": "NMlAGlKk0UyvksjC2f7QGg"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+        },
+        "_position": {
+          "x": 8464.0,
+          "y": 5732.0
+        },
+        "_UID": "d8e81547-f695-4c26-98db-bf14017ec417",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "370"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Well...All we can do now is wait until Desy comes back with news from the Headmaster...\r",
+          "_meta": "Arcane_SO_Sabotage_43"
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 8857.0,
+          "y": 5624.0
+        },
+        "_UID": "db9d752c-eaff-4310-b4dc-bda60c14c500",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "373"
+      },
+      {
+        "_action": {
+          "QuestEventRef": {
+            "m_eventUID": "NMlAGlKk0UyvksjC2f7QGg"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+        },
+        "_position": {
+          "x": 8887.0,
+          "y": 5774.0
+        },
+        "_UID": "a596e1eb-3c1f-427f-8bff-3704420e4e00",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "375"
+      },
+      {
+        "_condition": {
+          "checkMode": "AnyTrueSuffice",
+          "conditions": [
+            {
+              "QuestEventRef": {
+                "m_eventUID": "IpfKz5M4UUCMuXewVclgOA"
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "N9J5YpWIc0mQMRhXmX4qIA"
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "1AsQ9AU7VEiTgPhAPZj2nA"
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ConditionList"
+        },
+        "_position": {
+          "x": 7125.0,
+          "y": 6480.0
+        },
+        "_UID": "f752a09c-ac47-485e-87b9-037b960154f2",
+        "_tag": "Final",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "378"
+      },
+      {
+        "_action": {
+          "$type": "NodeCanvas.Tasks.Actions.FadeOut"
+        },
+        "_position": {
+          "x": 7099.0,
+          "y": 6691.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "387"
+      },
+      {
+        "_action": {
+          "$type": "NodeCanvas.Tasks.Actions.FadeIn"
+        },
+        "_position": {
+          "x": 7106.0,
+          "y": 6801.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "389"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc -Hah!  Success!  You delayed the demolition long enough that I was able to get an official letter from the headmaster through!  I have both the time and the authority to go examine that Rune Wall!\r",
+          "_meta": "Arcane_SO_Sabotage_44"
+        },
+        "_actorName": "name_unpc_gregoryturnbull_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 7055.0,
+          "y": 6919.0
+        },
+        "_UID": "ad002d0d-aa29-4eb2-8061-f43baf814a04",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "391"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc -Excellent work, [PlayerName]. You’ve earned your reward.  Now, I have runes to memorize!\r",
+          "_meta": "Arcane_SO_Sabotage_45"
+        },
+        "_actorName": "name_unpc_gregoryturnbull_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 7055.0,
+          "y": 7039.0
+        },
+        "_UID": "a24a9f92-a588-43db-9361-1c7b96961725",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "393"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "SilverAmount": {},
+              "XpAmount": {},
+              "ItemReward": [
+                {
+                  "Item": {
+                    "_value": {
+                      "m_itemID": 9000010
+                    }
+                  },
+                  "Quantity": {
+                    "_value": 200
+                  },
+                  "TryToEquip": {}
+                },
+                {
+                  "Item": {
+                    "_value": {
+                      "m_itemID": 5700240
+                    }
+                  },
+                  "Quantity": {
+                    "_value": 1
+                  },
+                  "TryToEquip": {}
+                },
+                {
+                  "Item": {
+                    "_value": {
+                      "m_itemID": 4100730
+                    }
+                  },
+                  "Quantity": {
+                    "_value": 1
+                  },
+                  "TryToEquip": {}
+                }
+              ],
+              "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+            },
+            {
+              "SilverAmount": {},
+              "XpAmount": {},
+              "ItemReward": [
+                {
+                  "Item": {
+                    "_value": {
+                      "m_itemID": 8205998
+                    }
+                  },
+                  "Quantity": {
+                    "_value": 1
+                  },
+                  "TryToEquip": {}
+                }
+              ],
+              "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 7118.0,
+          "y": 7182.0
+        },
+        "_UID": "5b4a20cb-0646-4025-8ca2-a6dacce3f783",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "395"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "QuestEventRef": {
+                "m_eventUID": "Og71f8G5a0eVmLxZB0yOKg"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "yh9NMBwPcUWbZRg6pChrEQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "vuuNZxv5f0-2FA0LvIfGRA"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 7355.0,
+          "y": 7339.0
+        },
+        "_UID": "2545949c-872b-4091-9a58-819fdbaf300a",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "426"
+      },
+      {
+        "_action": {
+          "$type": "NodeCanvas.Tasks.Actions.FadeOut"
+        },
+        "_position": {
+          "x": 7549.0,
+          "y": 6702.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "435"
+      },
+      {
+        "_action": {
+          "$type": "NodeCanvas.Tasks.Actions.FadeIn"
+        },
+        "_position": {
+          "x": 7556.0,
+          "y": 6812.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "437"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc -Word just came in...They demolished the tunnel...",
+          "_meta": "Arcane_SO_Sabotage_46"
+        },
+        "_actorName": "name_unpc_gregoryturnbull_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 7490.0,
+          "y": 6919.0
+        },
+        "_UID": "3a95d7d3-ad51-4fdb-9eb5-1ce2c2cac718",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "439"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc -*sigh* I guess we’ll just have to make do without that critical rune. You did put your life on the line, so I can’t in good conscience deny you your reward...But damn if this doesn’t sting.\r",
+          "_meta": "Arcane_SO_Sabotage_47"
+        },
+        "_actorName": "name_unpc_gregoryturnbull_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 7468.0,
+          "y": 7058.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "441"
+      },
+      {
+        "_action": {
+          "SilverAmount": {
+            "_value": 100
+          },
+          "XpAmount": {},
+          "ItemReward": [
+            {
+              "Item": {
+                "_value": {
+                  "m_itemID": 5700240
+                }
+              },
+              "Quantity": {
+                "_value": 1
+              },
+              "TryToEquip": {}
+            }
+          ],
+          "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+        },
+        "_position": {
+          "x": 7605.0,
+          "y": 7194.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "443"
+      },
+      {
+        "_action": {
+          "SilverAmount": {},
+          "XpAmount": {},
+          "ItemReward": [
+            {
+              "Item": {
+                "_value": {
+                  "m_itemID": 9000010
+                }
+              },
+              "Quantity": {
+                "_value": 200
+              },
+              "TryToEquip": {}
+            },
+            {
+              "Item": {
+                "_value": {
+                  "m_itemID": 5700240
+                }
+              },
+              "Quantity": {
+                "_value": 1
+              },
+              "TryToEquip": {}
+            },
+            {
+              "Item": {
+                "_value": {
+                  "m_itemID": 4100730
+                }
+              },
+              "Quantity": {
+                "_value": 1
+              },
+              "TryToEquip": {}
+            }
+          ],
+          "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+        },
+        "_position": {
+          "x": 4618.0,
+          "y": 5193.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode"
+      }
+    ],
+    "connections": [
+      {
+        "_sourceNode": {
+          "$ref": "2"
+        },
+        "_targetNode": {
+          "$ref": "5"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "2"
+        },
+        "_targetNode": {
+          "$ref": "329"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "5"
+        },
+        "_targetNode": {
+          "$ref": "7"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "5"
+        },
+        "_targetNode": {
+          "$ref": "326"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "7"
+        },
+        "_targetNode": {
+          "$ref": "10"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "7"
+        },
+        "_targetNode": {
+          "$ref": "323"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "10"
+        },
+        "_targetNode": {
+          "$ref": "13"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "10"
+        },
+        "_targetNode": {
+          "$ref": "127"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "13"
+        },
+        "_targetNode": {
+          "$ref": "15"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "15"
+        },
+        "_targetNode": {
+          "$ref": "18"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "15"
+        },
+        "_targetNode": {
+          "$ref": "96"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "18"
+        },
+        "_targetNode": {
+          "$ref": "20"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "20"
+        },
+        "_targetNode": {
+          "$ref": "22"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "22"
+        },
+        "_targetNode": {
+          "$ref": "25"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "22"
+        },
+        "_targetNode": {
+          "$ref": "69"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "25"
+        },
+        "_targetNode": {
+          "$ref": "28"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "25"
+        },
+        "_targetNode": {
+          "$ref": "60"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "28"
+        },
+        "_targetNode": {
+          "$ref": "31"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "31"
+        },
+        "_targetNode": {
+          "$ref": "38"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "38"
+        },
+        "_targetNode": {
+          "$ref": "58"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "60"
+        },
+        "_targetNode": {
+          "$ref": "67"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "69"
+        },
+        "_targetNode": {
+          "$ref": "76"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "96"
+        },
+        "_targetNode": {
+          "$ref": "99"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "96"
+        },
+        "_targetNode": {
+          "$ref": "125"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "99"
+        },
+        "_targetNode": {
+          "$ref": "101"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "101"
+        },
+        "_targetNode": {
+          "$ref": "103"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "103"
+        },
+        "_targetNode": {
+          "$ref": "110"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "125"
+        },
+        "_targetNode": {
+          "$ref": "99"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "127"
+        },
+        "_targetNode": {
+          "$ref": "130"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "127"
+        },
+        "_targetNode": {
+          "$ref": "284"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "130"
+        },
+        "_targetNode": {
+          "$ref": "132"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "132"
+        },
+        "_targetNode": {
+          "$ref": "134"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "134"
+        },
+        "_targetNode": {
+          "$ref": "136"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "136"
+        },
+        "_targetNode": {
+          "$ref": "138"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "138"
+        },
+        "_targetNode": {
+          "$ref": "140"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "140"
+        },
+        "_targetNode": {
+          "$ref": "144"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "144"
+        },
+        "_targetNode": {
+          "$ref": "146"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "146"
+        },
+        "_targetNode": {
+          "$ref": "148"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "148"
+        },
+        "_targetNode": {
+          "$ref": "154"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "148"
+        },
+        "_targetNode": {
+          "$ref": "154"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "154"
+        },
+        "_targetNode": {
+          "$ref": "156"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "156"
+        },
+        "_targetNode": {
+          "$ref": "158"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "158"
+        },
+        "_targetNode": {
+          "$ref": "160"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "160"
+        },
+        "_targetNode": {
+          "$ref": "164"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "164"
+        },
+        "_targetNode": {
+          "$ref": "166"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "166"
+        },
+        "_targetNode": {
+          "$ref": "168"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "168"
+        },
+        "_targetNode": {
+          "$ref": "174"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "168"
+        },
+        "_targetNode": {
+          "$ref": "283"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "174"
+        },
+        "_targetNode": {
+          "$ref": "176"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "176"
+        },
+        "_targetNode": {
+          "$ref": "191"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "176"
+        },
+        "_targetNode": {
+          "$ref": "267"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "191"
+        },
+        "_targetNode": {
+          "$ref": "195"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "195"
+        },
+        "_targetNode": {
+          "$ref": "197"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "197"
+        },
+        "_targetNode": {
+          "$ref": "199"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "199"
+        },
+        "_targetNode": {
+          "$ref": "201"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "201"
+        },
+        "_targetNode": {
+          "$ref": "204"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "204"
+        },
+        "_targetNode": {
+          "$ref": "206"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "206"
+        },
+        "_targetNode": {
+          "$ref": "208"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "208"
+        },
+        "_targetNode": {
+          "$ref": "212"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "212"
+        },
+        "_targetNode": {
+          "$ref": "214"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "214"
+        },
+        "_targetNode": {
+          "$ref": "220"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "214"
+        },
+        "_targetNode": {
+          "$ref": "220"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "220"
+        },
+        "_targetNode": {
+          "$ref": "222"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "222"
+        },
+        "_targetNode": {
+          "$ref": "224"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "224"
+        },
+        "_targetNode": {
+          "$ref": "226"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "226"
+        },
+        "_targetNode": {
+          "$ref": "228"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "228"
+        },
+        "_targetNode": {
+          "$ref": "230"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "230"
+        },
+        "_targetNode": {
+          "$ref": "232"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "232"
+        },
+        "_targetNode": {
+          "$ref": "234"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "234"
+        },
+        "_targetNode": {
+          "$ref": "236"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "236"
+        },
+        "_targetNode": {
+          "$ref": "238"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "238"
+        },
+        "_targetNode": {
+          "$ref": "240"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "240"
+        },
+        "_targetNode": {
+          "$ref": "242"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "242"
+        },
+        "_targetNode": {
+          "$ref": "244"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "244"
+        },
+        "_targetNode": {
+          "$ref": "246"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "246"
+        },
+        "_targetNode": {
+          "$ref": "248"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "248"
+        },
+        "_targetNode": {
+          "$ref": "254"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "248"
+        },
+        "_targetNode": {
+          "$ref": "260"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "254"
+        },
+        "_targetNode": {
+          "$ref": "256"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "256"
+        },
+        "_targetNode": {
+          "$ref": "260"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "267"
+        },
+        "_targetNode": {
+          "$ref": "271"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "267"
+        },
+        "_targetNode": {
+          "$ref": "277"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "271"
+        },
+        "_targetNode": {
+          "$ref": "275"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "275"
+        },
+        "_targetNode": {
+          "$ref": "197"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "277"
+        },
+        "_targetNode": {
+          "$ref": "281"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "281"
+        },
+        "_targetNode": {
+          "$ref": "197"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "284"
+        },
+        "_targetNode": {
+          "$ref": "286"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "286"
+        },
+        "_targetNode": {
+          "$ref": "289"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "286"
+        },
+        "_targetNode": {
+          "$ref": "313"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "289"
+        },
+        "_targetNode": {
+          "$ref": "297"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "289"
+        },
+        "_targetNode": {
+          "$ref": "298"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "289"
+        },
+        "_targetNode": {
+          "$ref": "310"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "298"
+        },
+        "_targetNode": {
+          "$ref": "300"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "300"
+        },
+        "_targetNode": {
+          "$ref": "306"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "300"
+        },
+        "_targetNode": {
+          "$ref": "309"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "306"
+        },
+        "_targetNode": {
+          "$ref": "308"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "310"
+        },
+        "_targetNode": {
+          "$ref": "312"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "313"
+        },
+        "_targetNode": {
+          "$ref": "319"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "313"
+        },
+        "_targetNode": {
+          "$ref": "320"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "320"
+        },
+        "_targetNode": {
+          "$ref": "322"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "326"
+        },
+        "_targetNode": {
+          "$ref": "328"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "334"
+        },
+        "_targetNode": {
+          "$ref": "337"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "334"
+        },
+        "_targetNode": {
+          "$ref": "345"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "337"
+        },
+        "_targetNode": {
+          "$ref": "339"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "339"
+        },
+        "_targetNode": {
+          "$ref": "341"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "341"
+        },
+        "_targetNode": {
+          "$ref": "344"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "345"
+        },
+        "_targetNode": {
+          "$ref": "348"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "345"
+        },
+        "_targetNode": {
+          "$ref": "355"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "348"
+        },
+        "_targetNode": {
+          "$ref": "350"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "350"
+        },
+        "_targetNode": {
+          "$ref": "352"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "352"
+        },
+        "_targetNode": {
+          "$ref": "344"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "355"
+        },
+        "_targetNode": {
+          "$ref": "358"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "355"
+        },
+        "_targetNode": {
+          "$ref": "365"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "358"
+        },
+        "_targetNode": {
+          "$ref": "360"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "360"
+        },
+        "_targetNode": {
+          "$ref": "362"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "362"
+        },
+        "_targetNode": {
+          "$ref": "344"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "365"
+        },
+        "_targetNode": {
+          "$ref": "368"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "365"
+        },
+        "_targetNode": {
+          "$ref": "373"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "368"
+        },
+        "_targetNode": {
+          "$ref": "370"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "370"
+        },
+        "_targetNode": {
+          "$ref": "344"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "373"
+        },
+        "_targetNode": {
+          "$ref": "375"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "375"
+        },
+        "_targetNode": {
+          "$ref": "344"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "378"
+        },
+        "_targetNode": {
+          "$ref": "387"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "378"
+        },
+        "_targetNode": {
+          "$ref": "435"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "387"
+        },
+        "_targetNode": {
+          "$ref": "389"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "389"
+        },
+        "_targetNode": {
+          "$ref": "391"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "391"
+        },
+        "_targetNode": {
+          "$ref": "393"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "393"
+        },
+        "_targetNode": {
+          "$ref": "395"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "395"
+        },
+        "_targetNode": {
+          "$ref": "426"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "435"
+        },
+        "_targetNode": {
+          "$ref": "437"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "437"
+        },
+        "_targetNode": {
+          "$ref": "439"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "439"
+        },
+        "_targetNode": {
+          "$ref": "441"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "441"
+        },
+        "_targetNode": {
+          "$ref": "443"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "443"
+        },
+        "_targetNode": {
+          "$ref": "426"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      }
+    ],
+    "canvasGroups": [
+      {
+        "name": "SABOTAGE STACKS",
+        "rect": {
+          "xMin": 6833.457,
+          "yMin": 4838.325,
+          "xMax": 9377.694,
+          "yMax": 6358.89
+        }
+      },
+      {
+        "name": "Fade to final",
+        "rect": {
+          "xMin": 7007.84,
+          "yMin": 6422.583,
+          "xMax": 7938.207,
+          "yMax": 7462.218
+        }
+      }
+    ],
+    "localBlackboard": {
+      "_name": "Local Blackboard",
+      "_variables": {
+        "gInstigator": {
+          "_name": "gInstigator",
+          "_id": "2bf53ecc-e733-49ca-a75f-463c24c62eb6",
+          "$type": "NodeCanvas.Framework.Variable`1[[Character, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+        }
+      }
+    },
+    "derivedData": {
+      "actorParameters": [
+        {
+          "_keyName": "name_unpc_gregoryturnbull_01",
+          "_id": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760"
+        },
+        {
+          "_keyName": "name_unpc_immaculatesorobor_01",
+          "_id": "b505931f-513e-4818-9d99-72f6fac89de4"
+        }
+      ],
+      "$type": "NodeCanvas.DialogueTrees.DialogueTree+DerivedSerializationData"
+    }
+  },
+  "replace": [
+    "Harmattan/Interactions/NPCs/NPCs_Positions/NPCs_Position_Quest04/UNPC_DLC_GregoryTurnbull_ArcaneDean_Q4/ArcaneDeanDialog/NPC/Dialogue_ArcaneDean_Q3",
+    "Harmattan/Interactions/NPCs/NPCs_Positions/NPCs_Positions_Quest00/UNPC_DLC_GregoryTurnbull_ArcaneDean_Q0/ArcaneDeanDialog/NPC/Dialogue_ArcaneDean_Q3",
+    "Harmattan/Interactions/NPCs/NPCs_Positions/NPCs_Position_Quest_Debate/UNPC_DLC_GregoryTurnbull_ArcaneDean_Debate/ArcaneDeanDialog/NPC/Dialogue_ArcaneDean_Q3",
+    "Harmattan/Interactions/NPCs/NPCs_Positions/NPCs_Position_Quest02/UNPC_DLC_GregoryTurnbull_ArcaneDean_Q2/ArcaneDeanDialog/NPC/Dialogue_ArcaneDean_Q3",
+    "Harmattan/Interactions/NPCs/NPCs_Positions/NPCs_Position_Quest02/UNPC_DLC_GregoryTurnbull_ArcaneDean_Q2Lab/ArcaneDeanDialog/NPC/Dialogue_ArcaneDean_Q3"
+  ]
+}

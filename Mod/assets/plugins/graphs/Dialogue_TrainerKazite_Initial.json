@@ -1,0 +1,311 @@
+{
+  "graph": {
+    "version": 2.92,
+    "type": "NodeCanvas.DialogueTrees.DialogueTreeExt",
+    "translation": {
+      "x": -6106.0,
+      "y": -5458.0
+    },
+    "nodes": [
+      {
+        "statement": {
+          "_text": "Amba, friend [PlayerName]! I continue to train every day so that someday I can fill Eto’s boots and protect Cierzo! Maybe we should train together, eh?",
+          "_meta": "Trainer_Micro_AnkleBlow_03"
+        },
+        "_actorName": "name_trainer_kazitetrainer_01 ",
+        "_actorParameterID": "8b9c0625-6c3d-4588-ae4e-76f04f07aeb3",
+        "_position": {
+          "x": 6030.0,
+          "y": 5085.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "2"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "I’d like to talk.",
+              "_meta": "Merchant_Generic_Talk_01"
+            }
+          },
+          {
+            "statement": {
+              "_text": "I want to train with you.",
+              "_meta": "Merchant_Generic_Train_01"
+            },
+            "condition": {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "78d35a0e-9529-4014-860f-d63311e1cef1"
+              },
+              "skill": {
+                "_value": 1
+              },
+              "_invert": true,
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_KnowSkill"
+            }
+          }
+        ],
+        "_position": {
+          "x": 6075.0,
+          "y": 5205.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "4"
+      },
+      {
+        "statement": {
+          "_text": "I made a trip to visit the old Hermit in the valley beyond the Ghost Pass. It is a dangerous journey, but his knowledge of magic is vast and strong. If you want to learn the spells of the Cabal of Winds, there is no better teacher.",
+          "_meta": "Trainer_Micro_AnkleBlow_04"
+        },
+        "_actorName": "name_trainer_kazitetrainer_01 ",
+        "_actorParameterID": "8b9c0625-6c3d-4588-ae4e-76f04f07aeb3",
+        "_position": {
+          "x": 5760.0,
+          "y": 5460.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "13"
+      },
+      {
+        "_position": {
+          "x": 5820.0,
+          "y": 5640.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "15"
+      },
+      {
+        "statement": {
+          "_text": "Yes, I can teach you a little Kazite trick. I can teach you a way to use a one-handed axe to cripple and slow your enemies! Is 50 silvers a fair price?",
+          "_meta": "Trainer_Micro_AnkleBlow_01"
+        },
+        "_actorName": "name_trainer_kazitetrainer_01 ",
+        "_actorParameterID": "8b9c0625-6c3d-4588-ae4e-76f04f07aeb3",
+        "_position": {
+          "x": 6285.0,
+          "y": 5520.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "16"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "Deal, here’s your money.",
+              "_meta": "Merchant_Generic_Pay_01"
+            },
+            "condition": {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "78d35a0e-9529-4014-860f-d63311e1cef1"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 9000010
+                }
+              },
+              "minAmount": {
+                "_value": 50
+              },
+              "itemMustBeEquiped": {},
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            }
+          },
+          {
+            "statement": {
+              "_text": "Not now.",
+              "_meta": "Merchant_Generic_NotNow_01"
+            }
+          }
+        ],
+        "_position": {
+          "x": 6375.0,
+          "y": 5730.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "18"
+      },
+      {
+        "statement": {
+          "_text": "It’s very simple. Everyone keeps their defenses up, to protect their vulnerable heads. Take advantage of this and aim low. You’d be surprised at how nasty a wound to the ankle can be!",
+          "_meta": "Trainer_Micro_AnkleBlow_02"
+        },
+        "_actorName": "name_trainer_kazitetrainer_01 ",
+        "_actorParameterID": "8b9c0625-6c3d-4588-ae4e-76f04f07aeb3",
+        "_position": {
+          "x": 6150.0,
+          "y": 5940.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "30"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "fromCharacter": {
+                "_name": "gInstigator",
+                "_targetVariableID": "78d35a0e-9529-4014-860f-d63311e1cef1"
+              },
+              "Items": [
+                {
+                  "_value": {
+                    "m_itemID": 9000010
+                  }
+                }
+              ],
+              "Amount": [
+                {
+                  "_value": 50
+                }
+              ],
+              "$type": "NodeCanvas.Tasks.Actions.RemoveItem"
+            },
+            {
+              "_location": {
+                "_key": "TRAIN_ODA"
+              },
+              "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 6225.0,
+          "y": 6105.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "32"
+      },
+      {
+        "_position": {
+          "x": 6240.0,
+          "y": 6225.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "44"
+      },
+      {
+        "_position": {
+          "x": 6660.0,
+          "y": 6000.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "45"
+      }
+    ],
+    "connections": [
+      {
+        "_sourceNode": {
+          "$ref": "2"
+        },
+        "_targetNode": {
+          "$ref": "4"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "4"
+        },
+        "_targetNode": {
+          "$ref": "13"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "4"
+        },
+        "_targetNode": {
+          "$ref": "16"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "13"
+        },
+        "_targetNode": {
+          "$ref": "15"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "16"
+        },
+        "_targetNode": {
+          "$ref": "18"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "18"
+        },
+        "_targetNode": {
+          "$ref": "30"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "18"
+        },
+        "_targetNode": {
+          "$ref": "45"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "30"
+        },
+        "_targetNode": {
+          "$ref": "32"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "32"
+        },
+        "_targetNode": {
+          "$ref": "44"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      }
+    ],
+    "localBlackboard": {
+      "_name": "Local Blackboard",
+      "_variables": {
+        "gInstigator": {
+          "_name": "gInstigator",
+          "_id": "78d35a0e-9529-4014-860f-d63311e1cef1",
+          "$type": "NodeCanvas.Framework.Variable`1[[Character, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+        },
+        "myTrainer": {
+          "_name": "myTrainer",
+          "_id": "763c1c0e-163c-4e01-9626-9cd0a32f0fa6",
+          "$type": "NodeCanvas.Framework.Variable`1[[Trainer, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+        }
+      }
+    },
+    "derivedData": {
+      "actorParameters": [
+        {
+          "_keyName": "name_trainer_kazitetrainer_01 ",
+          "_id": "8b9c0625-6c3d-4588-ae4e-76f04f07aeb3"
+        }
+      ],
+      "$type": "NodeCanvas.DialogueTrees.DialogueTree+DerivedSerializationData"
+    }
+  },
+  "replace": [
+    "CierzoNewTerrain/_SNPC/_Trainer/HumanSNPC_TrainerKazite/Dialogue_KaziteTrainer/NPC/DialogueTree_1_Initial"
+  ]
+}

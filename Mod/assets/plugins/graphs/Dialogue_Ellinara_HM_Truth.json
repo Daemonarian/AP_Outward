@@ -1,0 +1,869 @@
+{
+  "graph": {
+    "version": 2.92,
+    "type": "NodeCanvas.DialogueTrees.DialogueTreeExt",
+    "translation": {
+      "x": -2536.0,
+      "y": -2663.0
+    },
+    "zoomFactor": 0.7500081,
+    "nodes": [
+      {
+        "_condition": {
+          "questRef": {
+            "_value": {
+              "m_itemID": 7011103
+            }
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_IsQuestCompleted"
+        },
+        "_position": {
+          "x": 3225.0,
+          "y": 2100.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "2"
+      },
+      {
+        "_action": {
+          "dialogueStarter": {
+            "_name": "Dialogue_EllinaraA_BB/HMHallowPeacemaker",
+            "_targetVariableID": "04c23990-2396-415c-b0be-8468e226fb73"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.BranchDialogue"
+        },
+        "_position": {
+          "x": 2865.0,
+          "y": 2280.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "6"
+      },
+      {
+        "_condition": {
+          "questRef": {
+            "_value": {
+              "m_itemID": 7011003
+            }
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_IsQuestCompleted"
+        },
+        "_position": {
+          "x": 3420.0,
+          "y": 2250.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "9"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "M9jv0FFhbEmAEham4pMO3Q"
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 3060.0,
+          "y": 2640.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "13"
+      },
+      {
+        "_condition": {
+          "_minimumQuestLevel": 4,
+          "$type": "OutwardArchipelago.Graphs.Conditions.Condition_QuestLicense"
+        },
+        "_position": {
+          "x": 2636.0,
+          "y": 2763.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "16"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "HDoJDxyvMUC4dsWAgvSUsA"
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 2940.0,
+          "y": 2895.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "18"
+      },
+      {
+        "_condition": {
+          "checkMode": "AnyTrueSuffice",
+          "conditions": [
+            {
+              "QuestEventRef": {
+                "m_eventUID": "RINZXKvXh0u3HebOm3C-sA"
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "Gz69p-M5GkW-39eGJykf2g"
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ConditionList"
+        },
+        "_position": {
+          "x": 2773.0,
+          "y": 3021.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "21"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "r3ftFrwVzkqNy_w24w-l7w"
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 2580.0,
+          "y": 3195.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "28"
+      },
+      {
+        "statement": {
+          "_text": "You've accomplished a lot in such a short time, Missionary. <color=#00CCFF><b>Cardinal Bourlamaque wanted to see you</b></color>. I think you'll be working under him from now on. Congratulations on your promotion!",
+          "_meta": "Elinara_HM_TRUTH_06"
+        },
+        "_actorName": "name_unpc_ellinara_01 ",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 2400.0,
+          "y": 3465.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "31"
+      },
+      {
+        "_position": {
+          "x": 2490.0,
+          "y": 3630.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "33"
+      },
+      {
+        "_action": {
+          "QuestEventRef": {
+            "m_eventUID": "r3ftFrwVzkqNy_w24w-l7w"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+        },
+        "_position": {
+          "x": 2745.0,
+          "y": 3315.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "34"
+      },
+      {
+        "statement": {
+          "_text": "You’re looking for some of our members who have been having doubts? ...I do know there was a group that was talking a lot recently...I think they went out to a cave connected to one of the <color=#00CCFF><b>giant lotus plants</b></color> in the marsh.",
+          "_meta": "Elinara_HM_TRUTH_08"
+        },
+        "_actorName": "name_unpc_ellinara_01 ",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 3150.0,
+          "y": 3285.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "37"
+      },
+      {
+        "_position": {
+          "x": 3255.0,
+          "y": 3465.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "39"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "hunWfUJOVkeNXBE7k2HBjw"
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 3720.0,
+          "y": 3105.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "40"
+      },
+      {
+        "statement": {
+          "_text": "You need someone who can translate the Old Language for you? I remember that <color=#00CCFF><b>Sorobor recently unearthed something that could be of use...And Mofat was alive back before the Scourge</b></color>, so it’s likely he remember the Old Language.",
+          "_meta": "Elinara_HM_TRUTH_07"
+        },
+        "_actorName": "name_unpc_ellinara_01 ",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 3615.0,
+          "y": 3255.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "43"
+      },
+      {
+        "_position": {
+          "x": 3780.0,
+          "y": 3405.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "45"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "LyFRnbl_1EKPfQXF3ORocA"
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 4146.0,
+          "y": 3265.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "46"
+      },
+      {
+        "statement": {
+          "_text": "<color=#00CCFF><b>Oliele should be in the slums of Levant</b></color>, in the Abrassar desert. It's a difficult journey. Prepare yourself well for the desert heat.",
+          "_meta": "Elinara_HM_TRUTH_05"
+        },
+        "_actorName": "name_unpc_ellinara_01 ",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 3884.0,
+          "y": 3550.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "49"
+      },
+      {
+        "statement": {
+          "_text": "[PlayerName], Elatt needs your strength again.",
+          "_meta": "Elinara_HM_TRUTH_01"
+        },
+        "_actorName": "name_unpc_ellinara_01 ",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 4409.0,
+          "y": 3534.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "51"
+      },
+      {
+        "statement": {
+          "_text": "He needs you to <color=#00CCFF><b>go find Oliele in Abrassar desert</b></color>. He believes she is on the verge of an important discovery, and that she will need your help to complete it.",
+          "_meta": "Elinara_HM_TRUTH_02"
+        },
+        "_actorName": "name_unpc_ellinara_01 ",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 4365.0,
+          "y": 3720.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "53"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "Why me?",
+              "_meta": "Player_Elinara_HM_TRUTH_a_02"
+            }
+          },
+          {
+            "statement": {
+              "_text": "Why should we care about her? She left us.",
+              "_meta": "Player_Elinara_HM_TRUTH_b_02"
+            }
+          },
+          {
+            "statement": {
+              "_text": "Alright, I'm on it.",
+              "_meta": "Player_Elinara_HM_TRUTH_c_02"
+            }
+          }
+        ],
+        "_position": {
+          "x": 4477.0,
+          "y": 3915.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "55"
+      },
+      {
+        "statement": {
+          "_text": "Because she trusts you. She would see anyone else from the Holy Mission as a threat.",
+          "_meta": "Elinara_HM_TRUTH_03"
+        },
+        "_actorName": "name_unpc_ellinara_01 ",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 3907.0,
+          "y": 4140.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "63"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "QuestEventRef": {
+                "m_eventUID": "LyFRnbl_1EKPfQXF3ORocA"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "yh9NMBwPcUWbZRg6pChrEQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "3_soGcNagk-KcYSeqpEgMg"
+              },
+              "RemoveAllStack": true,
+              "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 4825.0,
+          "y": 4301.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "65"
+      },
+      {
+        "statement": {
+          "_text": "<color=#00CCFF><b>Oliele should be in the slums of Levant</b></color>, in the Abrassar desert. It's a difficult journey. Prepare yourself well for the desert heat.",
+          "_meta": "Elinara_HM_TRUTH_05"
+        },
+        "_actorName": "name_unpc_ellinara_01 ",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 4770.0,
+          "y": 4454.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "74"
+      },
+      {
+        "_position": {
+          "x": 4970.0,
+          "y": 4612.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "76"
+      },
+      {
+        "statement": {
+          "_text": "Even a lost sheep is still one of us, wherever they are. Elatt says she needs help. So we will help her. That's how it goes.",
+          "_meta": "Elinara_HM_TRUTH_04"
+        },
+        "_actorName": "name_unpc_ellinara_01 ",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 4357.0,
+          "y": 4140.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "77"
+      },
+      {
+        "statement": {
+          "_text": "Come back when you have <color=#00CCFF><b>Quest License 4</b></color>.",
+          "_meta": "com.daemonarium.apoutward.dialogue.ellinara.quest_license_4_required"
+        },
+        "_actorName": "name_unpc_ellinara_01 ",
+        "_position": {
+          "x": 2636.0,
+          "y": 2763.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "79"
+      },
+      {
+        "_position": {
+          "x": 2636.0,
+          "y": 2763.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "81"
+      },
+      {
+        "statement": {
+          "_text": "I haven’t heard anything from Oliele yet. I’ll let you know the moment she sends word, [PlayerName].",
+          "_meta": "Elinara_HM_Doubts_19"
+        },
+        "_actorName": "name_unpc_ellinara_01 ",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 3405.0,
+          "y": 2760.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "82"
+      },
+      {
+        "_position": {
+          "x": 3570.0,
+          "y": 2925.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "84"
+      },
+      {
+        "statement": {
+          "_text": "Some more of our people went missing in the swamp recently. I’m aware that there is an active bandit gang along the Pilgrim Road, but with this latest disappearance...I fear it may be more sinister than that.",
+          "_meta": "Elinara_HM_Doubts_17"
+        },
+        "_actorName": "name_unpc_ellinara_01 ",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 3690.0,
+          "y": 2385.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "85"
+      },
+      {
+        "statement": {
+          "_text": "Do you think you could look into it? <color=#00CCFF><b>Mofat would be able to tell you more</b></color>, he’s the old man in the pointed straw hat in the residential district. One of the people who has gone missing is a friend of his.",
+          "_meta": "Elinara_HM_Doubts_18"
+        },
+        "_actorName": "name_unpc_ellinara_01 ",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 3780.0,
+          "y": 2535.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "87"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "I’ll look into it.",
+              "_meta": "Player_Elinara_HM_Doubts_a_18"
+            }
+          },
+          {
+            "statement": {
+              "_text": "Any news about Oliele?",
+              "_meta": "Player_Elinara_HM_Doubts_b_18"
+            }
+          }
+        ],
+        "_position": {
+          "x": 3930.0,
+          "y": 2670.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "89"
+      },
+      {
+        "_position": {
+          "x": 3855.0,
+          "y": 2820.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "95"
+      },
+      {
+        "_targetNode": {
+          "$ref": "13"
+        },
+        "_position": {
+          "x": 4140.0,
+          "y": 2820.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.GoToNode",
+        "$id": "96"
+      }
+    ],
+    "connections": [
+      {
+        "_sourceNode": {
+          "$ref": "2"
+        },
+        "_targetNode": {
+          "$ref": "6"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "2"
+        },
+        "_targetNode": {
+          "$ref": "9"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "9"
+        },
+        "_targetNode": {
+          "$ref": "13"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "9"
+        },
+        "_targetNode": {
+          "$ref": "85"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "13"
+        },
+        "_targetNode": {
+          "$ref": "16"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "13"
+        },
+        "_targetNode": {
+          "$ref": "82"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "16"
+        },
+        "_targetNode": {
+          "$ref": "18"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "16"
+        },
+        "_targetNode": {
+          "$ref": "79"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "18"
+        },
+        "_targetNode": {
+          "$ref": "21"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "18"
+        },
+        "_targetNode": {
+          "$ref": "40"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "21"
+        },
+        "_targetNode": {
+          "$ref": "28"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "21"
+        },
+        "_targetNode": {
+          "$ref": "37"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "28"
+        },
+        "_targetNode": {
+          "$ref": "31"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "28"
+        },
+        "_targetNode": {
+          "$ref": "34"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "31"
+        },
+        "_targetNode": {
+          "$ref": "33"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "34"
+        },
+        "_targetNode": {
+          "$ref": "31"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "37"
+        },
+        "_targetNode": {
+          "$ref": "39"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "40"
+        },
+        "_targetNode": {
+          "$ref": "43"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "40"
+        },
+        "_targetNode": {
+          "$ref": "46"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "43"
+        },
+        "_targetNode": {
+          "$ref": "45"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "46"
+        },
+        "_targetNode": {
+          "$ref": "49"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "46"
+        },
+        "_targetNode": {
+          "$ref": "51"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "51"
+        },
+        "_targetNode": {
+          "$ref": "53"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "53"
+        },
+        "_targetNode": {
+          "$ref": "55"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "55"
+        },
+        "_targetNode": {
+          "$ref": "63"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "55"
+        },
+        "_targetNode": {
+          "$ref": "77"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "55"
+        },
+        "_targetNode": {
+          "$ref": "65"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "63"
+        },
+        "_targetNode": {
+          "$ref": "65"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "65"
+        },
+        "_targetNode": {
+          "$ref": "74"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "74"
+        },
+        "_targetNode": {
+          "$ref": "76"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "77"
+        },
+        "_targetNode": {
+          "$ref": "65"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "79"
+        },
+        "_targetNode": {
+          "$ref": "81"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "82"
+        },
+        "_targetNode": {
+          "$ref": "84"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "85"
+        },
+        "_targetNode": {
+          "$ref": "87"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "87"
+        },
+        "_targetNode": {
+          "$ref": "89"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "89"
+        },
+        "_targetNode": {
+          "$ref": "95"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "89"
+        },
+        "_targetNode": {
+          "$ref": "96"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      }
+    ],
+    "localBlackboard": {
+      "_name": "Local Blackboard",
+      "_variables": {
+        "gInstigator": {
+          "_name": "gInstigator",
+          "_id": "0483cf6b-da62-4a57-aaed-40f25b4bdf9b",
+          "$type": "NodeCanvas.Framework.Variable`1[[Character, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+        }
+      }
+    },
+    "derivedData": {
+      "actorParameters": [
+        {
+          "_keyName": "name_unpc_ellinara_01 ",
+          "_id": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760"
+        }
+      ],
+      "$type": "NodeCanvas.DialogueTrees.DialogueTree+DerivedSerializationData"
+    }
+  },
+  "replace": [
+    "Monsoon/_SNPC/CharactersToDesactivate/_UNPC/Elinarasaved/UNPC_EllinaraA/Dialogue_EllinaraA/NPC/DialogueTree_HM_Truth"
+  ]
+}

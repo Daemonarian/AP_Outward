@@ -1,0 +1,3448 @@
+{
+  "graph": {
+    "version": 2.92,
+    "type": "NodeCanvas.DialogueTrees.DialogueTreeExt",
+    "translation": {
+      "x": -533.0,
+      "y": -2033.0
+    },
+    "zoomFactor": 0.7499815,
+    "nodes": [
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "3L2rnG3UWEmfuLU3gy76yQ"
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 408.0,
+          "y": 346.0
+        },
+        "_UID": "c678f2f0-8362-441d-8369-6281b910c8d2",
+        "_tag": "start",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "2"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "6Kx88F4WvUKcHTf-pMf4CQ"
+          },
+          "_invert": true,
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 227.0,
+          "y": 508.0
+        },
+        "_UID": "1595b07e-63f2-46a3-a6d6-fbc81140fa99",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "5"
+      },
+      {
+        "_condition": {
+          "_minimumQuestLevel": 7,
+          "$type": "OutwardArchipelago.Graphs.Conditions.Condition_QuestLicense"
+        },
+        "_position": {
+          "x": 633.0,
+          "y": 2133.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "8"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - We need the necessities set up as swiftly as possible.  Food, Stone, Lumber, and Funds.",
+          "_meta": "Josef_CA_Basebuilding_00"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": -114.0,
+          "y": 724.0
+        },
+        "_UID": "269cc200-d8b5-4bdc-8993-1c42cada7b2d",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "10"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - To get construction done, we’ll need Stones and Lumber for building material, and we need Funds to purchase the more delicate things we can’t just scrounge up.",
+          "_meta": "Josef_CA_Basebuilding_01"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": -207.0,
+          "y": 857.0
+        },
+        "_UID": "d5317bdb-9188-4ad5-9dcd-f9e85120367d",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "12"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - We have to keep Food coming too. If we start running critically low, we’ll need to have all hands on deck foraging and hunting just to avoid starvation. Construction will halt completely.",
+          "_meta": "Josef_CA_Basebuilding_02"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": -256.0,
+          "y": 1027.0
+        },
+        "_UID": "663b7436-ecdf-4a35-bf7a-f9d4bd6369d9",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "14"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Also, do bear in mind that our resource stockpile has a limit. We can only hold so much of everything before we can’t store any more.",
+          "_meta": "Josef_CA_Basebuilding_03"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": -281.0,
+          "y": 1196.0
+        },
+        "_UID": "7310aae2-ce48-42a8-ae8b-a17b8532fc2d",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "16"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Once we’ve got at least two resource production facilities and 1 home set up, we can start planning for the extended future.",
+          "_meta": "Josef_CA_Fertilizer_Setup_02"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": -257.0,
+          "y": 1353.0
+        },
+        "_UID": "b095abad-796e-4376-a866-12622bd033ae",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "18"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Once we’ve got at least two resource production facilities and 1 home set up, we can start planning for the extended future.",
+          "_meta": "Josef_CA_Fertilizer_Setup_03"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": -293.0,
+          "y": 1481.0
+        },
+        "_UID": "da6d9db8-a78c-4121-bee0-94269047d5b9",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "20"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "QuestEventRef": {
+                "m_eventUID": "6Kx88F4WvUKcHTf-pMf4CQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "gE0Tx76ol0mtNBTjB1t_Kw"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "uEg8NE3nckWyTs_Y7jSTrQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": -221.0,
+          "y": 1608.0
+        },
+        "_UID": "eca7981a-35c2-4c2f-9cad-d709de29e36c",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "22"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "IjuCygb0OkS9rJ5XvjzC0g"
+          },
+          "_invert": true,
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 315.0,
+          "y": 2003.0
+        },
+        "_UID": "3fc59263-d9cf-450d-9b91-cab180903dce",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "31"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - So, what are we working on today?",
+          "_meta": "Josef_CA_Basebuilding_04"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": -380.0,
+          "y": 2577.0
+        },
+        "_UID": "09258667-40ae-4afd-ac6d-4355e92c04ca",
+        "_tag": "build",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "34"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "No Loc -I want to build something.",
+              "_meta": "Player_Josef_CA_Basebuilding_04_a"
+            },
+            "condition": {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "78d35a0e-9529-4014-860f-d63311e1cef1"
+              },
+              "$type": "Condition_IsHost"
+            }
+          },
+          {
+            "statement": {
+              "_text": "no loc - skip week",
+              "_meta": "Player_Josef_CA_Basebuilding_04_Skip_a"
+            },
+            "condition": {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "78d35a0e-9529-4014-860f-d63311e1cef1"
+              },
+              "$type": "Condition_IsHost"
+            }
+          },
+          {
+            "statement": {
+              "_text": "No loc - You’re a pretty good engineer! Where did you learn all this?",
+              "_meta": "Player_Josef_CA_Side_00_a"
+            }
+          },
+          {
+            "statement": {
+              "_text": "no loc - bye",
+              "_meta": "Merchant_Generic_Farewell_01"
+            }
+          }
+        ],
+        "_position": {
+          "x": -578.0,
+          "y": 4681.0
+        },
+        "_UID": "da4a71c4-4f98-4a40-890f-1bae77152336",
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "36"
+      },
+      {
+        "_condition": {
+          "conditions": [
+            {
+              "QuestEventRef": {
+                "m_eventUID": "IjuCygb0OkS9rJ5XvjzC0g"
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "bHDGVgBku0i3v83GiFcwxA"
+              },
+              "_invert": true,
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ConditionList"
+        },
+        "_position": {
+          "x": -1925.0,
+          "y": 5196.0
+        },
+        "_UID": "1516e785-e11a-40e7-b98c-b3cdb73d11c8",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "50"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Improvement Tuto",
+          "_meta": "Josef_CA_Basebuilding_05"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": -2003.0,
+          "y": 5432.0
+        },
+        "_UID": "2b66091e-80df-4f2d-97a5-bcdab5dd518e",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "57"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Improvement Tuto",
+          "_meta": "Josef_CA_Basebuilding_06"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": -2002.0,
+          "y": 5563.0
+        },
+        "_UID": "a71b96bc-9a3e-4d50-b626-d3a1098d1788",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "59"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Improvement Tuto",
+          "_meta": "Josef_CA_Basebuilding_07"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": -2015.0,
+          "y": 5700.0
+        },
+        "_UID": "a14bc34f-b69e-4806-a4bc-e574fd62431c",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "61"
+      },
+      {
+        "_action": {
+          "QuestEventRef": {
+            "m_eventUID": "bHDGVgBku0i3v83GiFcwxA"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+        },
+        "_position": {
+          "x": -1991.0,
+          "y": 5873.0
+        },
+        "_UID": "bf510f7b-9f79-473e-81a7-800ddd136c27",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "63"
+      },
+      {
+        "_condition": {
+          "conditions": [
+            {
+              "QuestEventRef": {
+                "m_eventUID": "UAohg3FN3UW_pSYkyImpiA"
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "zMbRoS5xCkChnck4JJtnZA"
+              },
+              "_invert": true,
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ConditionList"
+        },
+        "_position": {
+          "x": -1828.0,
+          "y": 6015.0
+        },
+        "_UID": "b6a3a663-1ffe-4efc-a00f-3d0f4c22a269",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "66"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Improvement Tuto",
+          "_meta": "Josef_CA_Basebuilding_08"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": -1975.0,
+          "y": 6314.0
+        },
+        "_UID": "4cf34208-847c-477a-9d3e-cbeea1d54808",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "73"
+      },
+      {
+        "_action": {
+          "QuestEventRef": {
+            "m_eventUID": "zMbRoS5xCkChnck4JJtnZA"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+        },
+        "_position": {
+          "x": -2008.0,
+          "y": 6470.0
+        },
+        "_UID": "c6e6134b-204e-4ff0-aaa8-e170bb090f02",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "75"
+      },
+      {
+        "_action": {
+          "Merchant": {
+            "_name": "gMerchant",
+            "_targetVariableID": "6afc9bd7-0f93-4a1c-b378-8c83c9f641f8"
+          },
+          "PlayerCharacter": {
+            "_name": "gInstigator",
+            "_targetVariableID": "78d35a0e-9529-4014-860f-d63311e1cef1"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.ShopDialogueAction"
+        },
+        "_position": {
+          "x": -1631.0,
+          "y": 6645.0
+        },
+        "_UID": "289e2c77-2cda-4483-b5eb-e40c1d070979",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "78"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - yay you sure?",
+          "_meta": "Player_Josef_CA_Basebuilding_04_Skip_01"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": -743.0,
+          "y": 5115.0
+        },
+        "_UID": "3ae6c3b6-0b47-444a-b1e6-2b667fd86cb9",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "82"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "no  loc - yea",
+              "_meta": "Merchant_Generic_Yes_01"
+            }
+          },
+          {
+            "statement": {
+              "_text": "no loc - no",
+              "_meta": "Merchant_Generic_No_01"
+            }
+          }
+        ],
+        "_position": {
+          "x": -771.0,
+          "y": 5266.0
+        },
+        "_UID": "1f3095be-bb64-4dab-86ea-7f891a9bd475",
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "84"
+      },
+      {
+        "_action": {
+          "Scenario": 1,
+          "$type": "NodeCanvas.Tasks.Actions.ActivateDefeatScenario"
+        },
+        "_position": {
+          "x": -902.0,
+          "y": 5424.0
+        },
+        "_UID": "5677a88e-aa04-46a9-9a36-d12766fe028e",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "90"
+      },
+      {
+        "_position": {
+          "x": -687.0,
+          "y": 5406.0
+        },
+        "_UID": "7119c4de-bca0-42d0-92a4-005544aadbef",
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "92"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Back when I was a bandit, I was the one who kept our essentials working. I made a primitive water filter and everything when I was a youth. After Dorion adopted me, he and Evangeline made sure I got the training I needed to refine my talents.",
+          "_meta": "Josef_CA_Side_01"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": -471.0,
+          "y": 5327.0
+        },
+        "_UID": "1b742fd8-7f03-45d6-ab3a-984eabad4939",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "93"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "no loc - Wait...You used to be a bandit? You don’t seem like the type!",
+              "_meta": "Player_Josef_CA_Side_01_a"
+            }
+          }
+        ],
+        "_position": {
+          "x": -554.0,
+          "y": 5476.0
+        },
+        "_UID": "a4ae70c3-ecf3-44a7-b957-83b534081430",
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "95"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Outside of those fools who mistakenly think robbery is “easy money”, most “Bandits” reject that label. Anything larger than a small pack of people would likely call themselves “Independents”.",
+          "_meta": "Josef_CA_Side_02"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": -514.0,
+          "y": 5622.0
+        },
+        "_UID": "fd82f768-1236-4111-bc15-2bacd085be41",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "99"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - I was born into a clan. Ours never really grew over 30 in size. Foraging for food on your own tends to become difficult after that.",
+          "_meta": "Josef_CA_Side_03"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": -540.0,
+          "y": 5765.0
+        },
+        "_UID": "21600ec5-c10b-43c1-8a9d-e9686d3cc139",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "101"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "no loc - How did you end up engineer in a major city, then?",
+              "_meta": "Player_Josef_CA_Side_03_a"
+            }
+          }
+        ],
+        "_position": {
+          "x": -520.0,
+          "y": 5908.0
+        },
+        "_UID": "561cf7f4-2595-45a5-a1ca-e44ed4e320dd",
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "103"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Our clan ran into disaster about 5 years ago. Disease. Our clan leader succumbed, and her replacement...She was cruel. Anyone displaying symptoms was cut down immediately. The group collapsed soon after.",
+          "_meta": "Josef_CA_Side_04"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": -547.0,
+          "y": 6040.0
+        },
+        "_UID": "7d541629-cb47-4839-b7b9-8f16737e01bd",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "107"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - And then, on a foraging trip, one of us accidentally woke a Gargoyle. As we tried to flee, I fell down a small ridge and broke my leg. My fellows left me behind, knowing that I would only slow them down.",
+          "_meta": "Josef_CA_Side_05"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": -554.0,
+          "y": 6192.0
+        },
+        "_UID": "0777d16e-9f2b-4709-8251-69541939210a",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "109"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - If a forager from Sirocco hadn’t found me, a Torcrab likely would have put my out of my misery, and a Medyse would have used my corpse to incubate its eggs.",
+          "_meta": "Josef_CA_Side_06"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": -543.0,
+          "y": 6343.0
+        },
+        "_UID": "602afa76-ca90-4d99-8514-5e50c6e7eac8",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "111"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc -I am beyond thankful I was taken in and had my wounds treated. I was happy to lend my aid to these people, despite their initial mistrust. Dorion offering to make me his adopted son was an honor I still don’t feel worthy of.",
+          "_meta": "Josef_CA_Side_07"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": -439.0,
+          "y": 6494.0
+        },
+        "_UID": "e3637feb-2a30-4380-a502-9d6e95c4f68b",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "113"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "no loc - So, how does civilization compare to the bandit life?",
+              "_meta": "Player_Josef_CA_Side_07_a"
+            }
+          }
+        ],
+        "_position": {
+          "x": -425.0,
+          "y": 6658.0
+        },
+        "_UID": "e26a94a9-1420-400b-a1d4-87a884bbefe5",
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "115"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - It’s nice not having to fear for my life every waking moment. It’s nice knowing that we all count on one another, and keep everyone alive. Even being a refugee trying to start over like this...It’s an improvement to life outside the walls.",
+          "_meta": "Josef_CA_Side_08"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": -394.0,
+          "y": 6839.0
+        },
+        "_UID": "336fa960-4b7e-4cf9-857e-c90f78479583",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "119"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Of course, I could do without the caste system the Nobility saddled us with. And I do miss many of my former companions. But overall, this life is much more stable.",
+          "_meta": "Josef_CA_Side_09"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": -317.0,
+          "y": 7149.0
+        },
+        "_UID": "398065b6-c4fa-49dc-92db-d6762d9113d0",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "121"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - I don’t blame many for choosing the life of an outlaw. Being true only to yourself and your crew, unbound by Blood Prices and restriction...It’s appealing to many. But the dangers are great. Not just to us, but those who we often have to prey upon just to survive.",
+          "_meta": "Josef_CA_Side_10"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": -342.0,
+          "y": 7305.0
+        },
+        "_UID": "acd830d5-f7c6-4f53-84cf-3324823e823b",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "123"
+      },
+      {
+        "_position": {
+          "x": 195.0,
+          "y": 5063.0
+        },
+        "_UID": "81e44223-6c5b-48bf-8cac-b6df57eb229a",
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "125"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "X8HNRwUVzEmJWyKBVsOcBg"
+          },
+          "_invert": true,
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 493.0,
+          "y": 2351.0
+        },
+        "_UID": "4f55c2f6-f245-4877-a939-45a0c2a1a01d",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "126"
+      },
+      {
+        "_condition": {
+          "_minimumQuestLevel": 8,
+          "$type": "OutwardArchipelago.Graphs.Conditions.Condition_QuestLicense"
+        },
+        "_position": {
+          "x": 633.0,
+          "y": 2133.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "129"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Alright, let’s get the next set of tasks queued up then.",
+          "_meta": "Josef_CA_Volcano_Setup_01"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": 93.0,
+          "y": 2843.0
+        },
+        "_UID": "1eb7df22-2228-4a43-a732-495306613269",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "131"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc -We’re working on nailing down our construction process, making it as streamlined and efficient as possible. Once we’ve got it up and running, we should be able to process more advanced materials, and create improvements to our buildings.",
+          "_meta": "Josef_CA_Volcano_Setup_02"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": -21.0,
+          "y": 2978.0
+        },
+        "_UID": "8f91e191-7233-46e9-a942-19439eb4ccf2",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "133"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Evangeline and Dorion are both planning to set up some traditional Magma Forges to better forge certain construction materials, but...I’m sure there’s a better way. I know a Levant engineer made an furnace that outperforms our typical design...",
+          "_meta": "Josef_CA_Volcano_Setup_03"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": -90.0,
+          "y": 3109.0
+        },
+        "_UID": "875cbf05-e999-4040-b466-c10fb4583088",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "135"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - We’ve set a timetable of about 80 days before we settle on a solution.  Once my work orders are cleared up, I should have the free time to come up with something more efficient. If you could help me clean my plate, here, I’d appreciate it.",
+          "_meta": "Josef_CA_Volcano_Setup_04"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": -135.0,
+          "y": 3221.0
+        },
+        "_UID": "cc1e1234-50cb-4078-b47c-6613c3fef8f8",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "137"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - We’ll need at least a total of 3 homes, and 2 specialized buildings completed before I can get on that task. I’m counting on you, [PlayerName]!",
+          "_meta": "Josef_CA_Volcano_Setup_05"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": -191.0,
+          "y": 3359.0
+        },
+        "_UID": "b1cdbf4c-691b-41de-8061-9422e60ce9e2",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "139"
+      },
+      {
+        "_action": {
+          "QuestEventRef": {
+            "m_eventUID": "X8HNRwUVzEmJWyKBVsOcBg"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+        },
+        "_position": {
+          "x": -131.0,
+          "y": 3516.0
+        },
+        "_UID": "9c30f636-6c62-4078-a300-3704c4275688",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "141"
+      },
+      {
+        "_sourceNodeUID": "09258667-40ae-4afd-ac6d-4355e92c04ca",
+        "_position": {
+          "x": -52.0,
+          "y": 3718.0
+        },
+        "_UID": "975b2f90-eeb9-4aad-a2ad-2021ee3932d3",
+        "$type": "NodeCanvas.DialogueTrees.Jumper",
+        "$id": "144"
+      },
+      {
+        "statement": {
+          "_text": "Come back when you have <color=#00CCFF><b>Quest License 8</b></color>.",
+          "_meta": "com.daemonarium.apoutward.dialogue.josef.quest_license_8_required"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_position": {
+          "x": 633.0,
+          "y": 2133.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "145"
+      },
+      {
+        "_position": {
+          "x": 633.0,
+          "y": 2133.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "147"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "1f7tgc76i0STto-_kCO7Tw"
+          },
+          "_invert": true,
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 1138.0,
+          "y": 2672.0
+        },
+        "_UID": "85ae8764-8f31-45a5-a3a6-d93ba85acd8a",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "148"
+      },
+      {
+        "_sourceNodeUID": "09258667-40ae-4afd-ac6d-4355e92c04ca",
+        "_position": {
+          "x": 1138.0,
+          "y": 3383.0
+        },
+        "_UID": "71f6e013-4492-440f-878d-e4d36f285b8e",
+        "$type": "NodeCanvas.DialogueTrees.Jumper",
+        "$id": "151"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "UAohg3FN3UW_pSYkyImpiA"
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 1614.0,
+          "y": 2997.0
+        },
+        "_UID": "9a9724b8-7eeb-4875-94c1-eab456f8e605",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "152"
+      },
+      {
+        "_condition": {
+          "character": {
+            "_name": "gInstigator",
+            "_targetVariableID": "78d35a0e-9529-4014-860f-d63311e1cef1"
+          },
+          "_invert": true,
+          "$type": "Condition_IsHost"
+        },
+        "_position": {
+          "x": 1825.0,
+          "y": 3158.0
+        },
+        "_UID": "9d751683-4397-44e0-9cac-e39682ef9ac9",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "155"
+      },
+      {
+        "_condition": {
+          "conditions": [
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "78d35a0e-9529-4014-860f-d63311e1cef1"
+              },
+              "skill": {
+                "_value": 2
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_KnowSkill"
+            },
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "78d35a0e-9529-4014-860f-d63311e1cef1"
+              },
+              "skill": {
+                "_value": 3
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_KnowSkill"
+            },
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "78d35a0e-9529-4014-860f-d63311e1cef1"
+              },
+              "skill": {
+                "_value": 4
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_KnowSkill"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ConditionList"
+        },
+        "_position": {
+          "x": 1710.0,
+          "y": 3333.0
+        },
+        "_UID": "6e588aad-ed96-479a-b8ca-76eda3ea0baa",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "158"
+      },
+      {
+        "_sourceNodeUID": "09258667-40ae-4afd-ac6d-4355e92c04ca",
+        "_position": {
+          "x": 1550.0,
+          "y": 3618.0
+        },
+        "_UID": "80133cc0-02c7-4548-a95a-a245dbc9c4ca",
+        "$type": "NodeCanvas.DialogueTrees.Jumper",
+        "$id": "170"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "ab-MlqvW9kGprZB7kmFx4g"
+          },
+          "_invert": true,
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 2018.0,
+          "y": 3563.0
+        },
+        "_UID": "86165880-dffa-4516-ad3a-66793cb9ff8a",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "171"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Whew! Now that I’ve got a little bit less work on my plate, I’ve been able to come up with a more effective furnace design. It would vastly improve the smelting of new bricks and other materials. Our workers would be able to do more with less resources.",
+          "_meta": "Josef_CA_Volcano_Start_01"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": 1809.0,
+          "y": 3866.0
+        },
+        "_UID": "57047f7c-38c5-45d3-a8d1-545d6f6bb41b",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "174"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - The problem is, I’ll need a Volcanic Forge Stone to make it work. And any that we had were lost in the city’s collapse. I need you to make us a new one. Easier said than done, unfortunately.",
+          "_meta": "Josef_CA_Volcano_Start_02"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": 1948.0,
+          "y": 4010.0
+        },
+        "_UID": "69cec2ea-d60b-4675-84d9-45d4c0d70127",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "176"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Some of our Miners have dug out a big chunk of Quartz Crystal that will serve as the raw material for the Forge Stone. Bring it into the belly of the Eldest Brother, the Volcano behind Old Sirocco. ",
+          "_meta": "Josef_CA_Volcano_Start_03"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": 2039.0,
+          "y": 4135.0
+        },
+        "_UID": "68fab720-b684-409f-8341-ad2f30161773",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "178"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - We have a site set up deep in the crater, where you can convert the Quartz into a Forge Stone. Once you’ve gotten it charged up, bring it home.  Easy as pie!",
+          "_meta": "Josef_CA_Volcano_Start_04"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": 2105.0,
+          "y": 4256.0
+        },
+        "_UID": "35e000b1-335f-4fdd-8d35-6f73500120f5",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "180"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "No loc - Won’t I...You know, catch fire, going into an active volcano?",
+              "_meta": "Player_CA_Volcano_Start_04_a"
+            }
+          },
+          {
+            "statement": {
+              "_text": "No loc - I’ve actually been in there already. I’m shocked I didn’t drop dead of heat stroke!",
+              "_meta": "Player_CA_Volcano_Start_04_b"
+            }
+          }
+        ],
+        "_position": {
+          "x": 2030.0,
+          "y": 4365.0
+        },
+        "_UID": "29568c32-91f3-4105-a9dd-ad7874ae3674",
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "182"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Heh, do you think we’d live in a city with a volcano in our literal backyard and not have found a solution for the heat? We lined the lower levels with enchanted Volcanic Quartz. They absorb heat from the nearby environment, and make it safe to traverse.",
+          "_meta": "Josef_CA_Volcano_Start_05"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": 2109.0,
+          "y": 4505.0
+        },
+        "_UID": "b76100c9-ee2b-4b4f-bec5-0f7e6d846624",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "188"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc -In fact, when you visit the Eldest Brother, take a look up and you’ll see an enormous Enchanted Quartz. We call it the Emberheart. With a little coaxing from our mages, it can keep our living areas cool, while also redirecting that heat to charge up Forge Stones for us.",
+          "_meta": "Josef_CA_Volcano_Start_06"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": 2114.0,
+          "y": 4645.0
+        },
+        "_UID": "5e0f15cf-9dcf-4d42-92ef-1d38f208c436",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "190"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc -You ever wonder why being near open magma outside doesn’t give you heat stroke on the spot, [PlayerName]? You can thank the Emberheart for that. That’s the kind of power it has.",
+          "_meta": "Josef_CA_Volcano_Start_07"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": 2093.0,
+          "y": 4787.0
+        },
+        "_UID": "0bc9e825-57ac-47ca-9e28-3edcc8f6a5b4",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "192"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc -It’ll still be hot in there like nothing you’ve ever experienced, but you won’t catch fire just by being in there.",
+          "_meta": "Josef_CA_Volcano_Start_08"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": 2112.0,
+          "y": 4879.0
+        },
+        "_UID": "66835882-a663-47ee-a86c-8687b55a8449",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "194"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "no loc  - And how do you expect me to carry such a huge chunk of Quartz? Do we have a wagon or something?",
+              "_meta": "Player_CA_Volcano_Start_08_a"
+            }
+          }
+        ],
+        "_position": {
+          "x": 1960.0,
+          "y": 4999.0
+        },
+        "_UID": "02dcada6-fe63-4991-8b27-928a74190f53",
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "196"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - I’ve got one of our old harnesses meant for carrying Quartz on your back. Of course, this does mean you can’t carry it and a backpack at the same time, [PlayerName].",
+          "_meta": "Josef_CA_Volcano_Start_09"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": 2154.0,
+          "y": 5124.0
+        },
+        "_UID": "cff5f4e4-8625-4925-bc1e-650ee3647865",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "200"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - You should leave your backpack here in the settlement, [PlayerName], we’ll look after it in the meantime. Prepare yourself as best you can with what space you have in your pockets.",
+          "_meta": "Josef_CA_Volcano_Start_10"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": 2163.0,
+          "y": 5257.0
+        },
+        "_UID": "a1781d93-c00e-4a37-89ef-a8eff5c4fa18",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "202"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Oh, and if you happen to lose the large Quartz, let me know immediately. It will cost you if you want a replacement, but we can handle it for you.",
+          "_meta": "Josef_CA_Volcano_Start_11"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": 2199.0,
+          "y": 5391.0
+        },
+        "_UID": "56983bb1-2e2b-494c-b182-de642d0c9e3e",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "204"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "no loc - How do I even get into the volcano in the first place?",
+              "_meta": "Player_CA_Volcano_Start_11_a"
+            }
+          }
+        ],
+        "_position": {
+          "x": 1856.0,
+          "y": 5741.0
+        },
+        "_UID": "bca9acc3-a974-4361-b30d-db70fa85ee94",
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "206"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - There’s a large brass door in the back of Old Sirocco’s upper district. The route there was closed during the city’s collapse, but you should be able to reopen it. There’s a lever a little further down.",
+          "_meta": "Josef_CA_Volcano_Start_12"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": 2167.0,
+          "y": 6063.0
+        },
+        "_UID": "30f79419-3737-4645-afe3-484caa923e42",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "210"
+      },
+      {
+        "_condition": {
+          "character": {
+            "_name": "gInstigator",
+            "_targetVariableID": "78d35a0e-9529-4014-860f-d63311e1cef1"
+          },
+          "$type": "Condition_IsHost"
+        },
+        "_position": {
+          "x": 2216.0,
+          "y": 6277.0
+        },
+        "_UID": "ca5d3976-f2da-4ea0-ac56-cabdc023b76f",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "212"
+      },
+      {
+        "_condition": {
+          "conditions": [
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "78d35a0e-9529-4014-860f-d63311e1cef1"
+              },
+              "skill": {
+                "_value": 2
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_KnowSkill"
+            },
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "78d35a0e-9529-4014-860f-d63311e1cef1"
+              },
+              "skill": {
+                "_value": 3
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_KnowSkill"
+            },
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "78d35a0e-9529-4014-860f-d63311e1cef1"
+              },
+              "skill": {
+                "_value": 4
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_KnowSkill"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ConditionList"
+        },
+        "_position": {
+          "x": 2128.0,
+          "y": 6457.0
+        },
+        "_UID": "1bf1b15c-80e1-436a-be02-24b9e85b2b5c",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "215"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - secret mode workaround - No need for crystal",
+          "_meta": "Trog_Chargeup_Line_01"
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "8aa933bc-782b-476b-b8e9-7b932ca6f675",
+        "_position": {
+          "x": 1844.0,
+          "y": 6694.0
+        },
+        "_UID": "1d1d768f-834d-4e7d-b2a0-35dbe7ebd642",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "227"
+      },
+      {
+        "_action": {
+          "QuestEventRef": {
+            "m_eventUID": "L_FfrfXO8Ua8zwx25Q-ovw"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+        },
+        "_position": {
+          "x": 1920.0,
+          "y": 6814.0
+        },
+        "_UID": "bbf3210f-153c-4493-bae7-97aab9e86e71",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "229"
+      },
+      {
+        "_action": {
+          "QuestEventRef": {
+            "m_eventUID": "ab-MlqvW9kGprZB7kmFx4g"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+        },
+        "_position": {
+          "x": 2190.0,
+          "y": 6949.0
+        },
+        "_UID": "99a1febb-0ca5-4add-a5a3-0bfeee448917",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "232"
+      },
+      {
+        "_sourceNodeUID": "09258667-40ae-4afd-ac6d-4355e92c04ca",
+        "_position": {
+          "x": 2198.0,
+          "y": 7057.0
+        },
+        "_UID": "46431be1-6657-408d-921d-f60ee3bb0b7e",
+        "$type": "NodeCanvas.DialogueTrees.Jumper",
+        "$id": "235"
+      },
+      {
+        "_action": {
+          "SilverAmount": {},
+          "XpAmount": {},
+          "ItemReward": [
+            {
+              "Item": {
+                "_value": {
+                  "m_itemID": 5380000
+                }
+              },
+              "Quantity": {
+                "_value": 1
+              },
+              "TryToEquip": {
+                "_value": true
+              }
+            }
+          ],
+          "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+        },
+        "_position": {
+          "x": 2304.0,
+          "y": 6707.0
+        },
+        "_UID": "ffcfa4b3-a878-4f70-a343-fb8e12cf17b3",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "236"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "L_FfrfXO8Ua8zwx25Q-ovw"
+          },
+          "_invert": true,
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 2664.0,
+          "y": 3716.0
+        },
+        "_UID": "87dd8fd2-bc74-4a2e-add6-32d2629712b6",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "246"
+      },
+      {
+        "_condition": {
+          "character": {
+            "_name": "gInstigator",
+            "_targetVariableID": "78d35a0e-9529-4014-860f-d63311e1cef1"
+          },
+          "item": {
+            "_value": {
+              "m_itemID": 5380001
+            }
+          },
+          "minAmount": {
+            "_value": 1
+          },
+          "itemMustBeEquiped": {
+            "_value": true
+          },
+          "SaveMatchingContainerVariable": "_ChargedBag",
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+        },
+        "_position": {
+          "x": 2808.0,
+          "y": 3926.0
+        },
+        "_UID": "6585a16e-ca56-4022-b95e-f00e50c4db07",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "249"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "X8HNRwUVzEmJWyKBVsOcBg"
+          },
+          "ExpiryTime": 3600,
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_CheckQuestEventExpiry"
+        },
+        "_position": {
+          "x": 2958.0,
+          "y": 4315.0
+        },
+        "_UID": "54729bb3-17fc-461c-a614-3c26619f7e80",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "256"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Ah. There you are. Unfortunately, the Forge Stones came a little too late for me to finish up my improved furnace design.  We wound up installing the more traditional Magma Furnace design instead.  ",
+          "_meta": "Josef_CA_Volcano_End_01"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": 2757.0,
+          "y": 4554.0
+        },
+        "_UID": "ff0ed79e-841d-43f6-860e-204924f489d9",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "259"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc -WWell, thanks anyway.  We’ll find a use for the Forge Stone you brought in regardless, and reward you for your work.  Still, shame about the loss of efficiency...",
+          "_meta": "Josef_CA_Volcano_End_02"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": 2761.0,
+          "y": 4678.0
+        },
+        "_UID": "6894c490-b4a4-41c1-83fb-b28622046053",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "261"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - In any case, we can process advanced building materials with those furnaces. I’ve come up with a number of improvements we can make to our specialized buildings. Let me know what we need, and we’ll get it built!",
+          "_meta": "Josef_CA_Volcano_End_04"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": 3041.0,
+          "y": 5150.0
+        },
+        "_UID": "75b2730f-a7f7-4c1e-8623-879c6a54fa58",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "263"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "QuestEventRef": {
+                "m_eventUID": "UAohg3FN3UW_pSYkyImpiA"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "QVkuDH0_nkKwVNaCEy5Zww"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 3100.0,
+          "y": 5455.0
+        },
+        "_UID": "18e9e2a0-163a-4107-b9d0-bb569fe40b02",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "265"
+      },
+      {
+        "_action": {
+          "VariableName": "_ChargedBag",
+          "$type": "NodeCanvas.Tasks.Actions.RemoveItemStoredInVariable"
+        },
+        "_position": {
+          "x": 3087.0,
+          "y": 5620.0
+        },
+        "_UID": "6acb40ac-2763-4394-8d6d-abbcf37e542f",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "272"
+      },
+      {
+        "_action": {
+          "quest": {},
+          "questRef": {
+            "_value": {
+              "m_itemID": 7011703
+            }
+          },
+          "$type": "NodeCanvas.Tasks.Actions.GiveQuest"
+        },
+        "_position": {
+          "x": 3102.0,
+          "y": 5751.0
+        },
+        "_UID": "8b0d5c04-46ca-4240-8200-640061cd8aee",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "274"
+      },
+      {
+        "_position": {
+          "x": 3244.0,
+          "y": 5892.0
+        },
+        "_UID": "ad75e041-0d2f-49e2-838a-5f20f6eb0231",
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "279"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Hah! You did it! Well, my improved furnace design is ready and waiting for this! Our efficiency with building materials just got a noticeable boost.  Thanks as always, [PlayerName]!",
+          "_meta": "Josef_CA_Volcano_End_03"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": 3219.0,
+          "y": 4571.0
+        },
+        "_UID": "16eab469-bd24-4d67-831d-e565c0d47d33",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "280"
+      },
+      {
+        "_action": {
+          "QuestEventRef": {
+            "m_eventUID": "15qqcupK4UiBUW-3kJ8Mgg"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+        },
+        "_position": {
+          "x": 3220.0,
+          "y": 4723.0
+        },
+        "_UID": "029d1d71-1629-41f8-b6eb-29622d5d21d2",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "282"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - So, how’s the Forge stone coming along?",
+          "_meta": "Josef_CA_Volcano_MidQuest_01"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 3675.0,
+          "y": 4209.0
+        },
+        "_UID": "897e7048-865d-42a9-a9c2-5beabb17ef93",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "285"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "No loc - I have some construction I need done first.",
+              "_meta": "Player_Josef_CA_Quest_Normal_Options"
+            }
+          },
+          {
+            "statement": {
+              "_text": "No loc - I...Lost the large Crystal Quartz you gave me...",
+              "_meta": "Player_CA_Volcano_MidQuest_01_b"
+            },
+            "condition": {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "78d35a0e-9529-4014-860f-d63311e1cef1"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 5380000
+                }
+              },
+              "minAmount": {
+                "_value": 1
+              },
+              "itemMustBeEquiped": {
+                "_value": true
+              },
+              "SaveMatchingContainerVariable": "",
+              "_invert": true,
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            }
+          }
+        ],
+        "_position": {
+          "x": 3693.0,
+          "y": 4380.0
+        },
+        "_UID": "ff3dbd94-e327-4202-b8e6-e7d70ba0b69b",
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "287"
+      },
+      {
+        "_sourceNodeUID": "09258667-40ae-4afd-ac6d-4355e92c04ca",
+        "_position": {
+          "x": 3618.0,
+          "y": 4751.0
+        },
+        "_UID": "61fb016c-71c6-414b-aab7-0bdfe20fc5dc",
+        "$type": "NodeCanvas.DialogueTrees.Jumper",
+        "$id": "299"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - *sigh* I’m quite disappointed in you. Fine. A replacement is 100 silver. Maybe that’ll teach you to waste valuable Quartz!",
+          "_meta": "Josef_CA_Volcano_MidQuest_03"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": 3896.0,
+          "y": 4660.0
+        },
+        "_UID": "1646154c-0476-4732-b9ca-30bc4e95e96a",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "300"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "No Loc - I'll buy a new one.",
+              "_meta": "Player_CA_Volcano_MidQuest_03_a"
+            },
+            "condition": {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "78d35a0e-9529-4014-860f-d63311e1cef1"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 9000010
+                }
+              },
+              "minAmount": {
+                "_value": 100
+              },
+              "itemMustBeEquiped": {},
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            }
+          },
+          {
+            "statement": {
+              "_text": "no loc - No thanks",
+              "_meta": "Merchant_Generic_No_02"
+            }
+          }
+        ],
+        "_position": {
+          "x": 3976.0,
+          "y": 4847.0
+        },
+        "_UID": "30ba0ae6-b8b0-4142-95b5-e062e610c018",
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "302"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Alright, give me a moment...I’m going to go see if one of our miners has a chunk we can borrow...",
+          "_meta": "Josef_CA_Volcano_MidQuest_04"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 3878.0,
+          "y": 5074.0
+        },
+        "_UID": "e4652287-b547-4d70-a46c-1091c0282f48",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "314"
+      },
+      {
+        "_action": {
+          "$type": "NodeCanvas.Tasks.Actions.FadeOut"
+        },
+        "_position": {
+          "x": 4033.0,
+          "y": 5240.0
+        },
+        "_UID": "cc69b9ef-5708-41fb-9d06-f02ef54c109a",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "316"
+      },
+      {
+        "_action": {
+          "SilverAmount": {},
+          "XpAmount": {},
+          "ItemReward": [
+            {
+              "Item": {
+                "_value": {
+                  "m_itemID": 5380000
+                }
+              },
+              "Quantity": {
+                "_value": 1
+              },
+              "TryToEquip": {
+                "_value": true
+              }
+            }
+          ],
+          "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+        },
+        "_position": {
+          "x": 3991.0,
+          "y": 5353.0
+        },
+        "_UID": "8d6a74f3-ff55-447e-8ed2-d2dad62945a5",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "318"
+      },
+      {
+        "_action": {
+          "fromCharacter": {
+            "_name": "gInstigator",
+            "_targetVariableID": "78d35a0e-9529-4014-860f-d63311e1cef1"
+          },
+          "Items": [
+            {
+              "_value": {
+                "m_itemID": 9000010
+              }
+            }
+          ],
+          "Amount": [
+            {
+              "_value": 100
+            }
+          ],
+          "$type": "NodeCanvas.Tasks.Actions.RemoveItem"
+        },
+        "_position": {
+          "x": 4076.0,
+          "y": 5478.0
+        },
+        "_UID": "4491321a-ee4b-4efc-8d15-f68d1e6c9ca9",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "328"
+      },
+      {
+        "_action": {
+          "$type": "NodeCanvas.Tasks.Actions.FadeIn"
+        },
+        "_position": {
+          "x": 4086.0,
+          "y": 5596.0
+        },
+        "_UID": "adc60565-31b3-46b0-a9a5-f24de62d3fa4",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "336"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Phew, there you are! Now don’t lose this one, you hear?",
+          "_meta": "Josef_CA_Volcano_MidQuest_05"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 3962.0,
+          "y": 5718.0
+        },
+        "_UID": "806aca2e-3bcf-44ce-a542-8e9d4167ee60",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "338"
+      },
+      {
+        "_position": {
+          "x": 4455.0,
+          "y": 5083.0
+        },
+        "_UID": "7cb32537-4ef9-4e68-8153-ff529aaa0423",
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "340"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "zx4y8ix0vUajo_RMtYDXrQ"
+          },
+          "_invert": true,
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 4555.0,
+          "y": 4108.0
+        },
+        "_UID": "46ba822f-0135-489e-ae67-17c68e511e0e",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "341"
+      },
+      {
+        "_sourceNodeUID": "09258667-40ae-4afd-ac6d-4355e92c04ca",
+        "_position": {
+          "x": 4391.0,
+          "y": 4336.0
+        },
+        "_UID": "51e91230-2ff6-460c-bfaa-9f795589a72d",
+        "$type": "NodeCanvas.DialogueTrees.Jumper",
+        "$id": "344"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "X8HNRwUVzEmJWyKBVsOcBg"
+          },
+          "ExpiryTime": 3600,
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_CheckQuestEventExpiry"
+        },
+        "_position": {
+          "x": 4773.0,
+          "y": 4408.0
+        },
+        "_UID": "1ab1aa7d-4e13-4cce-b8a1-037aff58e036",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "345"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Ah. There you are. Unfortunately, the Forge Stones came a little too late for me to finish up my improved furnace design.  We wound up installing the more traditional Magma Furnace design instead.  ",
+          "_meta": "Josef_CA_Volcano_End_01"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": 4572.0,
+          "y": 4647.0
+        },
+        "_UID": "302f4c7d-e1e7-4ae4-bc27-6dfa43334152",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "348"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc -WWell, thanks anyway.  We’ll find a use for the Forge Stone you brought in regardless, and reward you for your work.  Still, shame about the loss of efficiency...",
+          "_meta": "Josef_CA_Volcano_End_02"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": 4576.0,
+          "y": 4771.0
+        },
+        "_UID": "9de7c051-d52a-4717-96b3-6b6199aedadc",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "350"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - In any case, we can process advanced building materials with those furnaces. I’ve come up with a number of improvements we can make to our specialized buildings. Let me know what we need, and we’ll get it built!",
+          "_meta": "Josef_CA_Volcano_End_04"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": 4862.0,
+          "y": 5128.0
+        },
+        "_UID": "e7ba1742-742d-4c67-a10d-c4bfecb4608c",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "352"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "QuestEventRef": {
+                "m_eventUID": "UAohg3FN3UW_pSYkyImpiA"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "QVkuDH0_nkKwVNaCEy5Zww"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 4926.0,
+          "y": 5262.0
+        },
+        "_UID": "570c4d63-998d-4e5c-8601-f3b2ba36fdcd",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "354"
+      },
+      {
+        "_action": {
+          "quest": {},
+          "questRef": {
+            "_value": {
+              "m_itemID": 7011703
+            }
+          },
+          "$type": "NodeCanvas.Tasks.Actions.GiveQuest"
+        },
+        "_position": {
+          "x": 4975.0,
+          "y": 5410.0
+        },
+        "_UID": "c2cefec4-541e-46cc-bbdf-b83754495249",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "361"
+      },
+      {
+        "_position": {
+          "x": 5117.0,
+          "y": 5551.0
+        },
+        "_UID": "6945eba7-5cdc-41b9-b71f-d594590ad6a4",
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "366"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Hah! You did it! Well, my improved furnace design is ready and waiting for this! Our efficiency with building materials just got a noticeable boost.  Thanks as always, [PlayerName]!",
+          "_meta": "Josef_CA_Volcano_End_03"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_actorParameterID": "0b42736d-2c4b-4626-85a3-bd9f9344f572",
+        "_position": {
+          "x": 5034.0,
+          "y": 4664.0
+        },
+        "_UID": "8a4c838e-3b90-4954-a553-bd683236d013",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "367"
+      },
+      {
+        "_action": {
+          "QuestEventRef": {
+            "m_eventUID": "15qqcupK4UiBUW-3kJ8Mgg"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+        },
+        "_position": {
+          "x": 5035.0,
+          "y": 4816.0
+        },
+        "_UID": "146ec832-a484-4f0a-a19b-2a19dc42f3cc",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "369"
+      },
+      {
+        "statement": {
+          "_text": "Come back when you have <color=#00CCFF><b>Quest License 7</b></color>.",
+          "_meta": "com.daemonarium.apoutward.dialogue.josef.quest_license_7_required"
+        },
+        "_actorName": "name_unpc_Josef",
+        "_position": {
+          "x": 633.0,
+          "y": 2133.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "372"
+      },
+      {
+        "_position": {
+          "x": 633.0,
+          "y": 2133.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "374"
+      },
+      {
+        "_position": {
+          "x": 812.0,
+          "y": 1200.0
+        },
+        "_UID": "e8fc1374-5e4a-45a9-aaa6-31d53ba5e8a0",
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "375"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Pick pack stuff!"
+        },
+        "_actorName": "LOC KEY HERE",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 1293.0,
+          "y": 826.0
+        },
+        "_UID": "494bdddb-6395-43d9-92a4-38acf36b08b1",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "376"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "Gimme uncharged!"
+            }
+          },
+          {
+            "statement": {
+              "_text": "Upgrade Pack!"
+            }
+          }
+        ],
+        "_position": {
+          "x": 1325.0,
+          "y": 968.0
+        },
+        "_UID": "8d3fc817-bd65-462c-ac1e-15256d827902",
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "378"
+      },
+      {
+        "_action": {
+          "SilverAmount": {},
+          "XpAmount": {},
+          "ItemReward": [
+            {
+              "Item": {
+                "_value": {
+                  "m_itemID": 5380000
+                }
+              },
+              "Quantity": {
+                "_value": 1
+              },
+              "TryToEquip": {
+                "_value": true
+              }
+            }
+          ],
+          "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+        },
+        "_position": {
+          "x": 1131.0,
+          "y": 1151.0
+        },
+        "_UID": "1eb0acb9-ab0f-4937-8900-a046258fb5d0",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "384"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Get BackPack!"
+        },
+        "_actorName": "LOC KEY HERE",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 1115.0,
+          "y": 1269.0
+        },
+        "_UID": "9eb64fdb-57e8-4924-abc2-b6e2900f11cf",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "394"
+      },
+      {
+        "_condition": {
+          "character": {
+            "_name": "gInstigator",
+            "_targetVariableID": "78d35a0e-9529-4014-860f-d63311e1cef1"
+          },
+          "item": {
+            "_value": {
+              "m_itemID": 5380000
+            }
+          },
+          "minAmount": {
+            "_value": 1
+          },
+          "itemMustBeEquiped": {
+            "_value": true
+          },
+          "SaveMatchingContainerVariable": "_UnchargedBag",
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+        },
+        "_position": {
+          "x": 1495.0,
+          "y": 1124.0
+        },
+        "_UID": "79d6b82d-5d9d-4dc2-9f35-1eed885b2446",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "396"
+      },
+      {
+        "_action": {
+          "VariableName": "_UnchargedBag",
+          "$type": "NodeCanvas.Tasks.Actions.RemoveItemStoredInVariable"
+        },
+        "_position": {
+          "x": 1462.0,
+          "y": 1337.0
+        },
+        "_UID": "c05aa74b-11e3-40bb-aba8-2cc5d77f426e",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "403"
+      },
+      {
+        "_action": {
+          "SilverAmount": {},
+          "XpAmount": {},
+          "ItemReward": [
+            {
+              "Item": {
+                "_value": {
+                  "m_itemID": 5380001
+                }
+              },
+              "Quantity": {
+                "_value": 1
+              },
+              "TryToEquip": {
+                "_value": true
+              }
+            }
+          ],
+          "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+        },
+        "_position": {
+          "x": 1454.0,
+          "y": 1482.0
+        },
+        "_UID": "98de744a-8df1-45ee-a984-a9fba113434f",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "405"
+      },
+      {
+        "statement": {
+          "_text": "No have backpack needed!!"
+        },
+        "_position": {
+          "x": 1786.0,
+          "y": 1294.0
+        },
+        "_UID": "b3c29ce3-2b79-4498-ba3a-18a90d99b712",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "415"
+      },
+      {
+        "_position": {
+          "x": 2642.0,
+          "y": 5449.0
+        },
+        "_UID": "16387859-7294-47ba-8239-f6ea46133d29",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "417"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "No loc - Right, looks like I’m headed back through Old Sirocco’s back door, then.",
+              "_meta": "Player_CA_Volcano_Start_11_b"
+            }
+          }
+        ],
+        "_position": {
+          "x": 2416.0,
+          "y": 5737.0
+        },
+        "_UID": "510f20fb-8d5e-49d9-bf50-0cd77b147117",
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "418"
+      }
+    ],
+    "connections": [
+      {
+        "_sourceNode": {
+          "$ref": "2"
+        },
+        "_targetNode": {
+          "$ref": "5"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "2"
+        },
+        "_targetNode": {
+          "$ref": "375"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "5"
+        },
+        "_targetNode": {
+          "$ref": "8"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "5"
+        },
+        "_targetNode": {
+          "$ref": "31"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "8"
+        },
+        "_targetNode": {
+          "$ref": "10"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "8"
+        },
+        "_targetNode": {
+          "$ref": "372"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "10"
+        },
+        "_targetNode": {
+          "$ref": "12"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "12"
+        },
+        "_targetNode": {
+          "$ref": "14"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "14"
+        },
+        "_targetNode": {
+          "$ref": "16"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "16"
+        },
+        "_targetNode": {
+          "$ref": "18"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "18"
+        },
+        "_targetNode": {
+          "$ref": "20"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "20"
+        },
+        "_targetNode": {
+          "$ref": "22"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "22"
+        },
+        "_targetNode": {
+          "$ref": "31"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "31"
+        },
+        "_targetNode": {
+          "$ref": "34"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "31"
+        },
+        "_targetNode": {
+          "$ref": "126"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "34"
+        },
+        "_targetNode": {
+          "$ref": "36"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "36"
+        },
+        "_targetNode": {
+          "$ref": "50"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "36"
+        },
+        "_targetNode": {
+          "$ref": "82"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "36"
+        },
+        "_targetNode": {
+          "$ref": "93"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "36"
+        },
+        "_targetNode": {
+          "$ref": "125"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "50"
+        },
+        "_targetNode": {
+          "$ref": "57"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "50"
+        },
+        "_targetNode": {
+          "$ref": "66"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "57"
+        },
+        "_targetNode": {
+          "$ref": "59"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "59"
+        },
+        "_targetNode": {
+          "$ref": "61"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "61"
+        },
+        "_targetNode": {
+          "$ref": "63"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "63"
+        },
+        "_targetNode": {
+          "$ref": "66"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "66"
+        },
+        "_targetNode": {
+          "$ref": "73"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "66"
+        },
+        "_targetNode": {
+          "$ref": "78"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "73"
+        },
+        "_targetNode": {
+          "$ref": "75"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "75"
+        },
+        "_targetNode": {
+          "$ref": "78"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "82"
+        },
+        "_targetNode": {
+          "$ref": "84"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "84"
+        },
+        "_targetNode": {
+          "$ref": "90"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "84"
+        },
+        "_targetNode": {
+          "$ref": "92"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "93"
+        },
+        "_targetNode": {
+          "$ref": "95"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "95"
+        },
+        "_targetNode": {
+          "$ref": "99"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "99"
+        },
+        "_targetNode": {
+          "$ref": "101"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "101"
+        },
+        "_targetNode": {
+          "$ref": "103"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "103"
+        },
+        "_targetNode": {
+          "$ref": "107"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "107"
+        },
+        "_targetNode": {
+          "$ref": "109"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "109"
+        },
+        "_targetNode": {
+          "$ref": "111"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "111"
+        },
+        "_targetNode": {
+          "$ref": "113"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "113"
+        },
+        "_targetNode": {
+          "$ref": "115"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "115"
+        },
+        "_targetNode": {
+          "$ref": "119"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "119"
+        },
+        "_targetNode": {
+          "$ref": "121"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "121"
+        },
+        "_targetNode": {
+          "$ref": "123"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "126"
+        },
+        "_targetNode": {
+          "$ref": "129"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "126"
+        },
+        "_targetNode": {
+          "$ref": "148"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "129"
+        },
+        "_targetNode": {
+          "$ref": "131"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "129"
+        },
+        "_targetNode": {
+          "$ref": "145"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "131"
+        },
+        "_targetNode": {
+          "$ref": "133"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "133"
+        },
+        "_targetNode": {
+          "$ref": "135"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "135"
+        },
+        "_targetNode": {
+          "$ref": "137"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "137"
+        },
+        "_targetNode": {
+          "$ref": "139"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "139"
+        },
+        "_targetNode": {
+          "$ref": "141"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "141"
+        },
+        "_targetNode": {
+          "$ref": "144"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "145"
+        },
+        "_targetNode": {
+          "$ref": "147"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "148"
+        },
+        "_targetNode": {
+          "$ref": "151"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "148"
+        },
+        "_targetNode": {
+          "$ref": "152"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "152"
+        },
+        "_targetNode": {
+          "$ref": "151"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "152"
+        },
+        "_targetNode": {
+          "$ref": "155"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "155"
+        },
+        "_targetNode": {
+          "$ref": "158"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "155"
+        },
+        "_targetNode": {
+          "$ref": "171"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "158"
+        },
+        "_targetNode": {
+          "$ref": "170"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "158"
+        },
+        "_targetNode": {
+          "$ref": "171"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "171"
+        },
+        "_targetNode": {
+          "$ref": "174"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "171"
+        },
+        "_targetNode": {
+          "$ref": "246"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "174"
+        },
+        "_targetNode": {
+          "$ref": "176"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "176"
+        },
+        "_targetNode": {
+          "$ref": "178"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "178"
+        },
+        "_targetNode": {
+          "$ref": "180"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "180"
+        },
+        "_targetNode": {
+          "$ref": "182"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "182"
+        },
+        "_targetNode": {
+          "$ref": "188"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "182"
+        },
+        "_targetNode": {
+          "$ref": "188"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "188"
+        },
+        "_targetNode": {
+          "$ref": "190"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "190"
+        },
+        "_targetNode": {
+          "$ref": "192"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "192"
+        },
+        "_targetNode": {
+          "$ref": "194"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "194"
+        },
+        "_targetNode": {
+          "$ref": "196"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "196"
+        },
+        "_targetNode": {
+          "$ref": "200"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "200"
+        },
+        "_targetNode": {
+          "$ref": "202"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "202"
+        },
+        "_targetNode": {
+          "$ref": "204"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "204"
+        },
+        "_targetNode": {
+          "$ref": "206"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "206"
+        },
+        "_targetNode": {
+          "$ref": "210"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "210"
+        },
+        "_targetNode": {
+          "$ref": "212"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "212"
+        },
+        "_targetNode": {
+          "$ref": "215"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "212"
+        },
+        "_targetNode": {
+          "$ref": "236"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "215"
+        },
+        "_targetNode": {
+          "$ref": "227"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "215"
+        },
+        "_targetNode": {
+          "$ref": "236"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "227"
+        },
+        "_targetNode": {
+          "$ref": "229"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "229"
+        },
+        "_targetNode": {
+          "$ref": "232"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "232"
+        },
+        "_targetNode": {
+          "$ref": "235"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "236"
+        },
+        "_targetNode": {
+          "$ref": "232"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "246"
+        },
+        "_targetNode": {
+          "$ref": "249"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "246"
+        },
+        "_targetNode": {
+          "$ref": "341"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "249"
+        },
+        "_targetNode": {
+          "$ref": "256"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "249"
+        },
+        "_targetNode": {
+          "$ref": "285"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "256"
+        },
+        "_targetNode": {
+          "$ref": "259"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "256"
+        },
+        "_targetNode": {
+          "$ref": "280"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "259"
+        },
+        "_targetNode": {
+          "$ref": "261"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "261"
+        },
+        "_targetNode": {
+          "$ref": "263"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "263"
+        },
+        "_targetNode": {
+          "$ref": "265"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "265"
+        },
+        "_targetNode": {
+          "$ref": "272"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "272"
+        },
+        "_targetNode": {
+          "$ref": "274"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "274"
+        },
+        "_targetNode": {
+          "$ref": "279"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "280"
+        },
+        "_targetNode": {
+          "$ref": "282"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "282"
+        },
+        "_targetNode": {
+          "$ref": "263"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "285"
+        },
+        "_targetNode": {
+          "$ref": "287"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "287"
+        },
+        "_targetNode": {
+          "$ref": "299"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "287"
+        },
+        "_targetNode": {
+          "$ref": "300"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "300"
+        },
+        "_targetNode": {
+          "$ref": "302"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "302"
+        },
+        "_targetNode": {
+          "$ref": "314"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "302"
+        },
+        "_targetNode": {
+          "$ref": "340"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "314"
+        },
+        "_targetNode": {
+          "$ref": "316"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "316"
+        },
+        "_targetNode": {
+          "$ref": "318"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "318"
+        },
+        "_targetNode": {
+          "$ref": "328"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "328"
+        },
+        "_targetNode": {
+          "$ref": "336"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "336"
+        },
+        "_targetNode": {
+          "$ref": "338"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "341"
+        },
+        "_targetNode": {
+          "$ref": "344"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "341"
+        },
+        "_targetNode": {
+          "$ref": "345"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "345"
+        },
+        "_targetNode": {
+          "$ref": "348"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "345"
+        },
+        "_targetNode": {
+          "$ref": "367"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "348"
+        },
+        "_targetNode": {
+          "$ref": "350"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "350"
+        },
+        "_targetNode": {
+          "$ref": "352"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "352"
+        },
+        "_targetNode": {
+          "$ref": "354"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "354"
+        },
+        "_targetNode": {
+          "$ref": "361"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "361"
+        },
+        "_targetNode": {
+          "$ref": "366"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "367"
+        },
+        "_targetNode": {
+          "$ref": "369"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "369"
+        },
+        "_targetNode": {
+          "$ref": "352"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "372"
+        },
+        "_targetNode": {
+          "$ref": "374"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "376"
+        },
+        "_targetNode": {
+          "$ref": "378"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "378"
+        },
+        "_targetNode": {
+          "$ref": "384"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "378"
+        },
+        "_targetNode": {
+          "$ref": "396"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "384"
+        },
+        "_targetNode": {
+          "$ref": "394"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "396"
+        },
+        "_targetNode": {
+          "$ref": "403"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "396"
+        },
+        "_targetNode": {
+          "$ref": "415"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "403"
+        },
+        "_targetNode": {
+          "$ref": "405"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "417"
+        },
+        "_targetNode": {
+          "$ref": "206"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "417"
+        },
+        "_targetNode": {
+          "$ref": "418"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "418"
+        },
+        "_targetNode": {
+          "$ref": "210"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      }
+    ],
+    "localBlackboard": {
+      "_name": "Local Blackboard",
+      "_variables": {
+        "gInstigator": {
+          "_name": "gInstigator",
+          "_id": "78d35a0e-9529-4014-860f-d63311e1cef1",
+          "$type": "NodeCanvas.Framework.Variable`1[[Character, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+        },
+        "gMerchant": {
+          "_name": "gMerchant",
+          "_id": "6afc9bd7-0f93-4a1c-b378-8c83c9f641f8",
+          "$type": "NodeCanvas.Framework.Variable`1[[Merchant, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+        }
+      }
+    },
+    "derivedData": {
+      "actorParameters": [
+        {
+          "_keyName": "name_unpc_Josef",
+          "_id": "0b42736d-2c4b-4626-85a3-bd9f9344f572"
+        },
+        {
+          "_keyName": "name_unpc_narrator",
+          "_id": "8aa933bc-782b-476b-b8e9-7b932ca6f675"
+        }
+      ],
+      "$type": "NodeCanvas.DialogueTrees.DialogueTree+DerivedSerializationData"
+    }
+  },
+  "replace": [
+    "NewSirocco/BuildingVisualPool/9400121_CityHall_v/Building/BuildingVisual/prf_env_bld_BaseBuild_CityHall_A/3-Finished/NPCs/UNPC_DLC2_Josef_Engineer/Josef_Dialog/MerchantTemplate/NPC/ShopDialogue",
+    "NewSirocco/Interactions/Core Quest NPCS/UNPC_DLC2_Josef_Engineer/Josef_Dialog/MerchantTemplate/NPC/ShopDialogue"
+  ]
+}

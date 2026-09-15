@@ -1,0 +1,2264 @@
+{
+  "graph": {
+    "version": 2.92,
+    "type": "NodeCanvas.DialogueTrees.DialogueTreeExt",
+    "translation": {
+      "x": -4921.0,
+      "y": -3644.0
+    },
+    "zoomFactor": 0.9984133,
+    "nodes": [
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "d0uUx_uVZkSl-6shJJn0NQ"
+          },
+          "_invert": true,
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 5670.0,
+          "y": 1860.0
+        },
+        "_UID": "91fdfafb-d7ae-4da2-b182-e48af32d713d",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "2"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "Wl08NWMJokemPVfTEyT3UA"
+          },
+          "_invert": true,
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 5430.0,
+          "y": 2895.0
+        },
+        "_UID": "07851e22-d5f9-4715-be4c-b49079769363",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "5"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "M6nFmGRDV0GkjfmS8ohRcQ"
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 5205.0,
+          "y": 3375.0
+        },
+        "_UID": "e3841fe3-2f1b-49d5-acf4-d40cca830615",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "8"
+      },
+      {
+        "_condition": {
+          "_minimumQuestLevel": 3,
+          "$type": "OutwardArchipelago.Graphs.Conditions.Condition_QuestLicense"
+        },
+        "_position": {
+          "x": 5021.0,
+          "y": 3744.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "11"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "N5ElFbPczEa94WrmcBWExA"
+          },
+          "_invert": true,
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 4695.0,
+          "y": 3690.0
+        },
+        "_UID": "d6cd0d97-3af4-4aa8-926f-be936d8d8044",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "13"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc [PlayerName], there you are!  I’ve got work for you.  The Naturalist division’s come back to me with some of their findings on the blood you retrieved for us, and I need you to act on them.\r",
+          "_meta": "Victor_SO_Knife_01"
+        },
+        "_actorName": "name_unpc_victorberthelot_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 4020.0,
+          "y": 4095.0
+        },
+        "_UID": "bbf66a2e-d4f3-4605-b361-b3d487d56d6f",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "16"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc So...What did they do with the Butcher’s blood?\r",
+          "_meta": "Artois_SO_Knife_01"
+        },
+        "_actorName": "name_unpc_artoissutherland_01",
+        "_actorParameterID": "4414b1b8-99ef-4a6b-ac0e-ba842dc6fcce",
+        "_position": {
+          "x": 4155.0,
+          "y": 4260.0
+        },
+        "_UID": "b1dfa2aa-af80-4873-9aa1-068606faa618",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "18"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc Shh, keep that to yourself!  But yes, there was enough left over to do a bit of experimentation. And we discovered some interesting properties the blood has.  I have a new Power Coil design in mind, and I need you to get the first prototype ready.\r",
+          "_meta": "Victor_SO_Knife_02"
+        },
+        "_actorName": "name_unpc_victorberthelot_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 4005.0,
+          "y": 4410.0
+        },
+        "_UID": "08bcb6f9-5b2c-47aa-8442-ffd5825c07a4",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "20"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "NoLoc - I don’t see the connection. What does Scourge blood have to do with a Power Coil? ",
+              "_meta": "Player_Victor_SO_Knife_02_a "
+            }
+          }
+        ],
+        "_position": {
+          "x": 3990.0,
+          "y": 4560.0
+        },
+        "_UID": "08b869fb-2743-4e12-82e8-9ee587913a90",
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "22"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - According to the Naturalist branch, Scourge blood emits a certain kind of energy. They theorize that’s how the Scourge can tell each other apart. And Scourge less intelligent than an Immaculate don’t attack their own kind. It’s in their nature not to.\r",
+          "_meta": "Victor_SO_Knife_03"
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 4020.0,
+          "y": 4680.0
+        },
+        "_UID": "49e91aac-2081-4852-bfe2-a6179711954c",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "26"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Furthermore, when exposed to an electric charge, and some small-scale spellcraft, Scourge blood will be attracted to other sources of Scourge blood.  Essentially, we can use it to give our Golems the ability to track Scourge beasts more effectively.\r",
+          "_meta": "Victor_SO_Knife_04"
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 4020.0,
+          "y": 4815.0
+        },
+        "_UID": "aa85f0a0-e905-414d-bf87-743997f534d3",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "28"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - So...to sum up, if we use these new Power Coils in our Golems, not only will they be able to track down the Scourge, but better stalk them and infiltrate their tunnels? That’s quite the breakthrough!\r",
+          "_meta": "Artois_SO_Knife_02"
+        },
+        "_actorName": "name_unpc_desylaroche_01",
+        "_actorParameterID": "4414b1b8-99ef-4a6b-ac0e-ba842dc6fcce",
+        "_position": {
+          "x": 4125.0,
+          "y": 4935.0
+        },
+        "_UID": "bb2fb83a-1c77-48ac-8499-7f94c829de43",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "30"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Exactly, Artois! This kills multiple birds with one stone. If, that is, it works in practice. Hence, why I’m asking you to go see a contact of mine to make a prototype.\r",
+          "_meta": "Victor_SO_Knife_05"
+        },
+        "_actorName": "name_unpc_victorberthelot_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 4020.0,
+          "y": 5055.0
+        },
+        "_UID": "09ae32e4-17ea-453c-8b06-256dcb5664ce",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "32"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "NoLoc - Why not just ask the Engineering division to design it? ",
+              "_meta": "Player_Victor_SO_Knife_05_a"
+            }
+          }
+        ],
+        "_position": {
+          "x": 4050.0,
+          "y": 5175.0
+        },
+        "_UID": "8b7094df-4220-4460-9dd4-8aa109c200b7",
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "34"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - And have them take all the credit? No, I want to do this my way. We’re going to use <color=#00CCFF><b>one of my contacts in Levant</b></color> to design the prototype. Once I’m sure the design will work as intended, I’ll contract the Engineering branch for full production.\r",
+          "_meta": "Victor_SO_Knife_06"
+        },
+        "_actorName": "name_unpc_victorberthelot_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 4035.0,
+          "y": 5325.0
+        },
+        "_UID": "6d7092cf-470c-402b-91e4-ef975b42d579",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "38"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - I need you to <color=#00CCFF><b>head to the city of Levant in Abrassar Desert. My contact there will give you the details</b></color> of the task at hand. Give him this package, he’ll know what to do.\r",
+          "_meta": "Victor_SO_Knife_07"
+        },
+        "_actorName": "name_unpc_victorberthelot_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 3795.0,
+          "y": 5430.0
+        },
+        "_UID": "54c56dbe-7a62-4b86-a6dd-39e17334bdac",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "40"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - <color=#00CCFF><b>Speak to one of our Caravaners and see if he’ll give you a lift</b></color>, at least partway there. Levant’s the great big city in the East of the desert. <color=#00CCFF><b>The man you’re looking for is an Etios Van Vanoos, the engineer</b></color>.\r",
+          "_meta": "Victor_SO_Knife_08"
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 4020.0,
+          "y": 5550.0
+        },
+        "_UID": "3e87cb66-236d-40e0-8988-f1ff1421b930",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "42"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Do you want me to grab my backpack and give [PlayerName] a hand on the journey, Victor?\r",
+          "_meta": "Artois_SO_Knife_03"
+        },
+        "_actorName": "Artois",
+        "_actorParameterID": "4414b1b8-99ef-4a6b-ac0e-ba842dc6fcce",
+        "_position": {
+          "x": 4155.0,
+          "y": 5670.0
+        },
+        "_UID": "ad8f9a38-8cfd-4eea-ad2f-dbd4af91a843",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "44"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - No, I want you working with the Wolfgang Mercenaries, Artois. They’ve found a cache of busted Golems in the mountains, and I want someone I can trust to make sure none go “missing”, if you catch my drift. We need as many as we can get.\r",
+          "_meta": "Victor_SO_Knife_09"
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 4005.0,
+          "y": 5790.0
+        },
+        "_UID": "1f96d06d-d14f-441a-baee-edcfaf5ad4d9",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "46"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Now remember, [PlayerName], your next few blood price payments will depend on your performance here. So make sure you put your back into it, Apprentice!\r",
+          "_meta": "Victor_SO_Knife_10"
+        },
+        "_actorName": "name_unpc_victorberthelot_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 4005.0,
+          "y": 5910.0
+        },
+        "_UID": "b70c3477-152f-4198-8552-5bc0e9705b0b",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "48"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "NoLoc - Wait, I thought you said you’d guarantee that you’d cover my blood price! ",
+              "_meta": "Player_Victor_SO_Knife_10_a"
+            }
+          },
+          {
+            "statement": {
+              "_text": "NoLoc - Alright, I’m on it. ",
+              "_meta": "Player_Victor_SO_Knife_10_b "
+            }
+          }
+        ],
+        "_position": {
+          "x": 4065.0,
+          "y": 6045.0
+        },
+        "_UID": "6bffb720-ef18-4a5b-b0c2-1440b4bf45e7",
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "50"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Well, yes. But I can’t support a liability at my own expense, you know. That’s not how the real world works. You need to earn your keep, [PlayerName].\r",
+          "_meta": "Victor_SO_Knife_11"
+        },
+        "_actorName": "name_unpc_victorberthelot_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 3900.0,
+          "y": 6180.0
+        },
+        "_UID": "46ba4661-f10c-40bd-a640-98a4a1b3a3e0",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "56"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "NoLoc - You’re seriously using me. ",
+              "_meta": "Player_Victor_SO_Knife_11_a"
+            }
+          },
+          {
+            "statement": {
+              "_text": "NoLoc - Alright, I’m on it. ",
+              "_meta": "Player_Victor_SO_Knife_10_b"
+            }
+          }
+        ],
+        "_position": {
+          "x": 4110.0,
+          "y": 6285.0
+        },
+        "_UID": "2e809111-5db1-4a5d-8d1c-26c9f35ffb5c",
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "58"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - I don’t appreciate your attitude. You are the one who came to ME for a quick rise up the social ladder here, and you want me to pay your Blood Price for you. I’d say it is YOU who is using ME, Apprentice.\r",
+          "_meta": "Victor_SO_Knife_12"
+        },
+        "_actorName": "name_unpc_victorberthelot_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 3780.0,
+          "y": 6435.0
+        },
+        "_UID": "e7c3b308-d832-4c72-9d18-2462b52bca76",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "64"
+      },
+      {
+        "_action": {
+          "QuestEventRef": {
+            "m_eventUID": "N5ElFbPczEa94WrmcBWExA"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+        },
+        "_position": {
+          "x": 4200.0,
+          "y": 6585.0
+        },
+        "_UID": "381824b1-0cb0-4e87-b810-dc9a892cd220",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "66"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "kIr3jDUhf0qtpn-OXmrSWw"
+          },
+          "_invert": true,
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 5130.0,
+          "y": 3855.0
+        },
+        "_UID": "dc0d05a3-9781-4f81-b529-cb0ac8c6f18a",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "69"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "IPMJ-l_k7ECg2X2bFZFXMA"
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 5175.0,
+          "y": 4035.0
+        },
+        "_UID": "987650d4-844d-49fd-a64f-fe6e15915756",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "72"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Ah, you’re back.  Did you bring the new Power Coil prototype?\r",
+          "_meta": "Victor_SO_Knife_13 "
+        },
+        "_actorName": "name_unpc_victorberthelot_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 4950.0,
+          "y": 4245.0
+        },
+        "_UID": "b1b9b298-1a0b-4c5d-bac3-bffe8f275d57",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "75"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "NoLoc - Yes, here it is. ",
+              "_meta": "Player_Victor_SO_Knife_13_a "
+            }
+          },
+          {
+            "statement": {
+              "_text": "No loc Not now.",
+              "_meta": "Merchant_Generic_NotNow_01"
+            }
+          }
+        ],
+        "_position": {
+          "x": 5040.0,
+          "y": 4380.0
+        },
+        "_UID": "a7dcc55b-e613-403a-a649-bfabef491595",
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "77"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "NLKctSrP-UqnnitMQp6c6g"
+          },
+          "MinStack": 2,
+          "_invert": true,
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 4965.0,
+          "y": 4605.0
+        },
+        "_UID": "44456ab6-4235-4e8c-b93e-f18fd5b0a4de",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "83"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc- ...Huh.  This seems like the absolute minimum job.  Are you sure you didn’t slack off? If you aren’t being passionate about the work, don’t expect to get anything out of it!\r",
+          "_meta": "Victor_SO_Knife_14"
+        },
+        "_actorName": "name_unpc_victorberthelot_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 4620.0,
+          "y": 4830.0
+        },
+        "_UID": "68f06675-e7f6-4f10-83e7-4f4586691775",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "86"
+      },
+      {
+        "_sourceNodeUID": "68522dd7-186e-4330-9b53-1d47f995bb55",
+        "_position": {
+          "x": 4650.0,
+          "y": 4980.0
+        },
+        "_UID": "a401e27b-f808-472a-81ac-7d0c6c4df677",
+        "$type": "NodeCanvas.DialogueTrees.Jumper",
+        "$id": "88"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "NLKctSrP-UqnnitMQp6c6g"
+          },
+          "MinStack": 3,
+          "_invert": true,
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 5235.0,
+          "y": 4785.0
+        },
+        "_UID": "ac4df9f0-29b6-48e7-bfe1-b03e2a8dfd2f",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "89"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Mmm...Alright, this is a little less well designed than I expected, but I guess it’ll have to do.  It does prove that the theory is sound at least.  I’m going to see to it that it gets a few solid field tests in.\r",
+          "_meta": "Victor_SO_Knife_15"
+        },
+        "_actorName": "name_unpc_victorberthelot_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5010.0,
+          "y": 4920.0
+        },
+        "_UID": "2cb928cb-b9a5-47de-a746-2c8b5de833f4",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "92"
+      },
+      {
+        "_sourceNodeUID": "68522dd7-186e-4330-9b53-1d47f995bb55",
+        "_position": {
+          "x": 4965.0,
+          "y": 5085.0
+        },
+        "_UID": "24ed3387-e9a5-4990-9efe-66306760b5c2",
+        "$type": "NodeCanvas.DialogueTrees.Jumper",
+        "$id": "94"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "NLKctSrP-UqnnitMQp6c6g"
+          },
+          "MinStack": 4,
+          "_invert": true,
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 5415.0,
+          "y": 4920.0
+        },
+        "_UID": "a9cdb1fc-ed2b-4b55-809a-4c316a5a3f9e",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "95"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Ah, yes, this looks good.  The design seems solid.  I’ll run a field test or two to see just how well it performs, and have the Engineering branch start making more of these.\r",
+          "_meta": "Victor_SO_Knife_16"
+        },
+        "_actorName": "name_unpc_victorberthelot_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5295.0,
+          "y": 5100.0
+        },
+        "_UID": "bc0ccf18-b276-4159-adc6-d8e4563bb87a",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "98"
+      },
+      {
+        "_sourceNodeUID": "68522dd7-186e-4330-9b53-1d47f995bb55",
+        "_position": {
+          "x": 5325.0,
+          "y": 5265.0
+        },
+        "_UID": "f9ad6cff-4a0f-4ad7-b1cd-bb9bb2b0f057",
+        "$type": "NodeCanvas.DialogueTrees.Jumper",
+        "$id": "100"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "NLKctSrP-UqnnitMQp6c6g"
+          },
+          "MinStack": 5,
+          "_invert": true,
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 5745.0,
+          "y": 5070.0
+        },
+        "_UID": "f9993e0b-8f69-4644-8f78-809adf6b8b54",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "101"
+      },
+      {
+        "statement": {
+          "_text": "No Loc - Oh.  Oh wow.  Yes, this is exactly what I was hoping for.  Excellent work.  As soon as we get a full field test done, I’ll have the Engineering branch start making as many of these as we can afford.\r",
+          "_meta": "Victor_SO_Knife_17 "
+        },
+        "_actorName": "name_unpc_victorberthelot_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5715.0,
+          "y": 5220.0
+        },
+        "_UID": "0967b6a0-1d9f-4f8b-aa67-2943cb837b61",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "104"
+      },
+      {
+        "_sourceNodeUID": "68522dd7-186e-4330-9b53-1d47f995bb55",
+        "_position": {
+          "x": 5775.0,
+          "y": 5385.0
+        },
+        "_UID": "9a4a6d10-cdb1-45e7-9013-df04a53b9731",
+        "$type": "NodeCanvas.DialogueTrees.Jumper",
+        "$id": "106"
+      },
+      {
+        "_position": {
+          "x": 5400.0,
+          "y": 4500.0
+        },
+        "_UID": "fed764d2-d5da-4827-804a-f354a8b1d15c",
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "107"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - I need you to <color=#00CCFF><b>head to the city of Levant in Abrassar Desert. My contact there will give you the details</b></color> of the task at hand. Give him this package, he’ll know what to do.\r",
+          "_meta": "Victor_SO_Knife_07"
+        },
+        "_actorName": "name_unpc_victorberthelot_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5400.0,
+          "y": 4215.0
+        },
+        "_UID": "bad691e6-fd3a-4fe7-bfee-97e597cb70f9",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "108"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - <color=#00CCFF><b>Speak to one of our Caravaners and see if he’ll give you a lift</b></color>, at least partway there. Levant’s the great big city in the East of the desert. <color=#00CCFF><b>The man you’re looking for is an Etios Van Vanoos, the engineer</b></color>.\r",
+          "_meta": "Victor_SO_Knife_08"
+        },
+        "_actorName": "name_unpc_victorberthelot_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5415.0,
+          "y": 4350.0
+        },
+        "_UID": "55354887-5981-4a52-8063-1ea53d756bee",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "110"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - I’ve got nothing more for you, right now. Come back in a few days, [PlayerName].\r",
+          "_meta": "Victor_SO_Knife_22_a"
+        },
+        "_actorName": "name_unpc_victorberthelot_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5700.0,
+          "y": 4050.0
+        },
+        "_UID": "7679813a-1254-4731-80bf-e31fef85a3c4",
+        "_tag": "",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "112"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "9e6KIeiksUaaPr2XzET1Ow"
+          },
+          "_invert": true,
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 6030.0,
+          "y": 4203.0
+        },
+        "_UID": "e62ae34d-c3c0-4632-82a8-64a34b352e72",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "114"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - (You still have that <color=#00CCFF><b>package to deliver to Gregory Turnbull</b></color>, the Arcane Dean...)\r",
+          "_meta": "PLAYERNAME_SO_Knife_24"
+        },
+        "_position": {
+          "x": 5945.0,
+          "y": 4469.0
+        },
+        "_UID": "92724efe-6b0b-4ef6-ae3d-a4eb7a5e6c54",
+        "_tag": "",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "117"
+      },
+      {
+        "_position": {
+          "x": 6543.0,
+          "y": 4392.0
+        },
+        "_UID": "c8410a0d-5ca9-4db6-a8fe-cdd0c5566b9e",
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "119"
+      },
+      {
+        "statement": {
+          "_text": "Come back when you have <color=#00CCFF><b>Quest License 3</b></color>.",
+          "_meta": "com.daemonarium.apoutward.dialogue.military_dean.quest_license_3_required"
+        },
+        "_actorName": "name_unpc_victorberthelot_01",
+        "_position": {
+          "x": 5021.0,
+          "y": 3744.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "120"
+      },
+      {
+        "_position": {
+          "x": 5021.0,
+          "y": 3744.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "122"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - <color=#00CCFF><b>I don’t have any new work for you just yet</b></color>, [PlayerName]. I’m still waiting on some news from the Naturalist branch. Feel free to take a few days off.\r",
+          "_meta": "Victor_SO_Knife_00"
+        },
+        "_actorName": "name_unpc_victorberthelot_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5235.0,
+          "y": 3615.0
+        },
+        "_UID": "ab4bf01c-4a28-4648-ba95-af105392958d",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "123"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - I know what you did. And I won’t be played for a fool. How could you turn on me after all I’ve done for you?\r",
+          "_meta": "Victor_SO_Knife_22"
+        },
+        "_actorName": "name_unpc_victorberthelot_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 6154.0,
+          "y": 3166.0
+        },
+        "_UID": "c0f5c0e4-91cd-41e2-b66f-dd4b0d22a44f",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "125"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "NoLoc - All you’ve done? You’ve been using me from the start.  ",
+              "_meta": "Player_Victor_SO_Knife_22_a"
+            }
+          },
+          {
+            "statement": {
+              "_text": "No Loc - I believe in Turnbull’s ideas. ",
+              "_meta": "Player_Victor_SO_Knife_22_b"
+            }
+          }
+        ],
+        "_position": {
+          "x": 6169.0,
+          "y": 3271.0
+        },
+        "_UID": "f2cbf273-8a23-4991-baba-4ad43f7ce0ae",
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "127"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - You’ve made the worst kind of enemy possible, betrayer. You’ll come to regret your foolish action.",
+          "_meta": "Victor_SO_Knife_23"
+        },
+        "_actorName": "name_unpc_victorberthelot_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 6064.0,
+          "y": 3466.0
+        },
+        "_UID": "5d9ba8db-d113-4201-a31d-3ad160b6a9d7",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "133"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - So, you’re just so sensitive and foolish you let Turnbull play you. I’d be wary of any food he gives you, in sake he decides to start his Wendigo experiments again. Just in case, you know?\r",
+          "_meta": "Victor_SO_Knife_24"
+        },
+        "_actorName": "name_unpc_victorberthelot_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 6319.0,
+          "y": 3556.0
+        },
+        "_UID": "6ce4d6c1-08d4-449e-bf8a-c0bf60f72cdb",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "135"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "SA0XvrfRGkWZRfRmk19V2g"
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 6154.0,
+          "y": 2050.0
+        },
+        "_UID": "f92fb149-09f5-4063-9413-0fc60b07a0d0",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "137"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Well, I hope you’re happy with yourself. My tracker Golem project has to undergo massive revision, my reputation has taken a hit, and Artois is missing and presumed dead.\r",
+          "_meta": "Victor_Postgame_06"
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5917.0,
+          "y": 2245.0
+        },
+        "_UID": "c8f48a68-4b48-441d-983b-e2af59d824e1",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "140"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "NoLoc - Someday you’ll appreciate all we did. ",
+              "_meta": "Player_Victor_Postgame_06_a"
+            }
+          },
+          {
+            "statement": {
+              "_text": "NoLoc - Still upset that you lost? You can accept you were wrong without being this way. ",
+              "_meta": "Player_Victor_Postgame_06_b "
+            }
+          }
+        ],
+        "_position": {
+          "x": 5917.0,
+          "y": 2380.0
+        },
+        "_UID": "966a4387-7644-4a0a-894d-420ff25c436c",
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "142"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - ...One would certainly hope so. Now, get out of my sight.\r",
+          "_meta": "Victor_Postgame_07"
+        },
+        "_actorName": "name_unpc_victorberthelot_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5827.0,
+          "y": 2530.0
+        },
+        "_UID": "eb9c86b3-d50f-4281-980e-51f89b7873d5",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "148"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - It’s not about right or wrong. It’s about my well deserved victory being stolen from me. Months of work, sent back to the drawing board. I have every right to be upset at you. Now, shoo!\r",
+          "_meta": "Victor_Postgame_08"
+        },
+        "_actorName": "name_unpc_victorberthelot_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 6041.0,
+          "y": 2650.0
+        },
+        "_UID": "ec4f9d20-55ee-4b30-b5c6-19ee7cde15f1",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "150"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Looks like the region is safe from the looming threat of the Scourge that Turnbull nearly unleashed upon us. Can you imagine the danger that unchained Immaculates would have presented? \r",
+          "_meta": "Victor_Postgame_01"
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 6489.0,
+          "y": 2177.0
+        },
+        "_UID": "fc67b347-9f2d-48e2-a350-4f387cd769c5",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "152"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - I hope you’ve learned from your mistake, [PlayerName]. I know what’s best for Harmattan, for the region, even for you. Can you say you’re happier now, more than you were working for me?\r",
+          "_meta": "Victor_Postgame_02"
+        },
+        "_actorName": "name_unpc_victorberthelot_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 6489.0,
+          "y": 2282.0
+        },
+        "_UID": "eff974d3-8d8d-4262-b7db-d7db1eb51f5e",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "154"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "NoLoc - Yes, actually. ",
+              "_meta": "Player_Victor_Postgame_02_a"
+            }
+          },
+          {
+            "statement": {
+              "_text": "NoLoc - Not really. ",
+              "_meta": "Player_Victor_Postgame_02_b"
+            }
+          }
+        ],
+        "_position": {
+          "x": 6654.0,
+          "y": 2372.0
+        },
+        "_UID": "b180c1f9-157d-4a20-8a3d-6cd5fb5da643",
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "156"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Tsk, then you’re still an imbecile. Someday you’ll realize what a fool you were, and that you should never have gotten it into your head to leave my service. But by then, it’ll be too late.\r",
+          "_meta": "Victor_Postgame_03"
+        },
+        "_actorName": "name_unpc_victorberthelot_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 6399.0,
+          "y": 2522.0
+        },
+        "_UID": "b344cbb8-4b41-47b2-9086-9b52e316db07",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "162"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Such a shame you did not realize it sooner. Because now it’s too late. After all this, you’re not even worth taking on as an apprentice.\r",
+          "_meta": "Victor_Postgame_04"
+        },
+        "_actorName": "name_unpc_victorberthelot_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 6669.0,
+          "y": 2642.0
+        },
+        "_UID": "8f567b0b-6262-4917-9d45-8d78843f5463",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "164"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - I’ll be glad to test it out for ya.  We have just the operation in mind, actually. We’ve tracked a pack of Immaculates to a canyon cave and have ‘em cornered. With this new Coil in one of our golems, we can spring a trap on ‘em and wipe ‘em out.\r",
+          "_meta": "Merc_SO_Knife_01 "
+        },
+        "_actorName": "Wolfgang MercenaryLeader",
+        "_actorParameterID": "4eef6778-c771-4a9c-b8f6-eeeea5be7fc7",
+        "_position": {
+          "x": 7065.0,
+          "y": 3495.0
+        },
+        "_UID": "68522dd7-186e-4330-9b53-1d47f995bb55",
+        "_tag": "Levant Done",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "166"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Ah, this is Henri.  He’s the leader of the Wolfgang Mercenaries. One of his scouts discovered some Immaculates squatting in a cave nearby.\r",
+          "_meta": "Victor_SO_Knife_18"
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 6915.0,
+          "y": 3630.0
+        },
+        "_UID": "f406958f-7f44-4adb-9e51-feaf57d6e3b1",
+        "_tag": "",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "168"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Heh, if you want, come on and join us later.  We’d be glad to show one of Victor’s mates how it’s done out there!\r",
+          "_meta": "Merc_SO_Knife_02"
+        },
+        "_actorName": "Wolfgang MercenaryLeader",
+        "_actorParameterID": "4eef6778-c771-4a9c-b8f6-eeeea5be7fc7",
+        "_position": {
+          "x": 7065.0,
+          "y": 3765.0
+        },
+        "_UID": "0f320b99-743a-4aa3-83ce-29908cc14371",
+        "_tag": "",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "170"
+      },
+      {
+        "_action": {
+          "$type": "NodeCanvas.Tasks.Actions.SetDialogueInterruptable"
+        },
+        "_position": {
+          "x": 7160.0,
+          "y": 3899.0
+        },
+        "_UID": "5d01fdd4-5ae8-40f0-9e0e-de119d129c86",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "172"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "NLKctSrP-UqnnitMQp6c6g"
+          },
+          "MinStack": 4,
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 7095.0,
+          "y": 4010.0
+        },
+        "_UID": "ec3795dc-4549-4f01-aaff-28df0d2f9f9d",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "174"
+      },
+      {
+        "_action": {
+          "SilverAmount": {
+            "_value": 50
+          },
+          "XpAmount": {},
+          "ItemReward": [
+            {
+              "Item": {
+                "_value": {
+                  "m_itemID": 3100220
+                }
+              },
+              "Quantity": {
+                "_value": 1
+              },
+              "TryToEquip": {}
+            }
+          ],
+          "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+        },
+        "_position": {
+          "x": 6916.0,
+          "y": 4160.0
+        },
+        "_UID": "559e6c2b-c50e-47ed-aeca-3e53aefc978f",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "177"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - Anyway, you’re free for now.  Here, your reward for the job. I will let you know the next time I need you.\r",
+          "_meta": "Victor_SO_Knife_19"
+        },
+        "_actorName": "name_unpc_victorberthelot_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 7159.0,
+          "y": 4846.0
+        },
+        "_UID": "6fcdb6a4-e843-4629-8305-af3fc7ea4525",
+        "_tag": "",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "187"
+      },
+      {
+        "_sourceNodeUID": "bce3efb1-6397-4e1a-ad16-619e53bc0403",
+        "_position": {
+          "x": 7240.0,
+          "y": 4972.0
+        },
+        "_UID": "9c12d9f5-c247-449d-9d86-e8f4f124b2c0",
+        "$type": "NodeCanvas.DialogueTrees.Jumper",
+        "$id": "189"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "NLKctSrP-UqnnitMQp6c6g"
+          },
+          "MinStack": 3,
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 7290.0,
+          "y": 4160.0
+        },
+        "_UID": "d2db7a0c-f04d-4f15-b5ad-c8d459e0a3af",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "190"
+      },
+      {
+        "_action": {
+          "SilverAmount": {
+            "_value": 40
+          },
+          "XpAmount": {},
+          "ItemReward": [
+            {
+              "Item": {
+                "_value": {
+                  "m_itemID": 4300240
+                }
+              },
+              "Quantity": {
+                "_value": 2
+              },
+              "TryToEquip": {}
+            }
+          ],
+          "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+        },
+        "_position": {
+          "x": 7093.0,
+          "y": 4341.0
+        },
+        "_UID": "e90205db-914f-4321-84b7-19cdc990ecd7",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "193"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "NLKctSrP-UqnnitMQp6c6g"
+          },
+          "MinStack": 2,
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 7382.0,
+          "y": 4303.0
+        },
+        "_UID": "dd45c7c6-39df-47ad-a9d6-7ddbe7ece6cb",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "203"
+      },
+      {
+        "_action": {
+          "SilverAmount": {
+            "_value": 30
+          },
+          "XpAmount": {},
+          "ItemReward": [
+            {
+              "Item": {
+                "_value": {
+                  "m_itemID": 4300010
+                }
+              },
+              "Quantity": {
+                "_value": 2
+              },
+              "TryToEquip": {}
+            }
+          ],
+          "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+        },
+        "_position": {
+          "x": 7314.0,
+          "y": 4498.0
+        },
+        "_UID": "8f0fb084-b438-420b-a091-baf15039cfb6",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "206"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "NLKctSrP-UqnnitMQp6c6g"
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 7556.0,
+          "y": 4452.0
+        },
+        "_UID": "5558edce-dac0-49ae-84d1-a4d0932ec229",
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "216"
+      },
+      {
+        "_action": {
+          "SilverAmount": {
+            "_value": 20
+          },
+          "XpAmount": {},
+          "ItemReward": [
+            {
+              "Item": {
+                "_value": {
+                  "m_itemID": 4300010
+                }
+              },
+              "Quantity": {
+                "_value": 1
+              },
+              "TryToEquip": {}
+            }
+          ],
+          "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+        },
+        "_position": {
+          "x": 7525.0,
+          "y": 4601.0
+        },
+        "_UID": "e1547bce-506f-4ffb-af5b-9af61d201145",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "219"
+      },
+      {
+        "_action": {
+          "SilverAmount": {
+            "_value": 10
+          },
+          "XpAmount": {},
+          "ItemReward": [],
+          "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+        },
+        "_position": {
+          "x": 7770.0,
+          "y": 4651.0
+        },
+        "_UID": "66f09f18-a78f-44a6-b222-bd05c572f0bd",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "229"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "NoLoc - That’s all?  For such a long journey? ",
+              "_meta": "Player_Victor_SO_Knife_19_a"
+            }
+          },
+          {
+            "statement": {
+              "_text": "NoLoc - Let me know when there’s something else I can do! ",
+              "_meta": "Player_Victor_SO_Knife_19_b"
+            }
+          }
+        ],
+        "_position": {
+          "x": 7020.0,
+          "y": 5155.0
+        },
+        "_UID": "bce3efb1-6397-4e1a-ad16-619e53bc0403",
+        "_tag": "Player's Answer",
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "234"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - I don’t appreciate that tone, [PlayerName].  Someday you’ll appreciate all that I do for you.\r",
+          "_meta": "Victor_SO_Knife_20"
+        },
+        "_actorName": "name_unpc_victorberthelot_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 6945.0,
+          "y": 5365.0
+        },
+        "_UID": "dfd6979e-b969-4053-abef-bd6a3bc95457",
+        "_tag": "",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "240"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - I’ve got nothing more for you, right now. Come back in a few days, [PlayerName].\r",
+          "_meta": "Victor_SO_Knife_22_a"
+        },
+        "_actorName": "name_unpc_victorberthelot_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 7065.0,
+          "y": 5575.0
+        },
+        "_UID": "9e777092-953e-402f-8bde-78990d79aefa",
+        "_tag": "",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "242"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - (You still have that <color=#00CCFF><b>package to deliver to Gregory Turnbull</b></color>, the Arcane Dean...)\r",
+          "_meta": "PLAYERNAME_SO_Knife_24"
+        },
+        "_position": {
+          "x": 7111.0,
+          "y": 5728.0
+        },
+        "_UID": "1a20d55d-77f5-46fd-85a5-a04bf55f5baa",
+        "_tag": "",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "244"
+      },
+      {
+        "_action": {
+          "QuestEventRef": {
+            "m_eventUID": "kIr3jDUhf0qtpn-OXmrSWw"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+        },
+        "_position": {
+          "x": 7091.0,
+          "y": 5863.0
+        },
+        "_UID": "ba5f16df-0fc8-4b16-92b1-ca947e63b74c",
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "246"
+      },
+      {
+        "statement": {
+          "_text": "NoLoc - I will indeed, Apprentice. You’re proving to be quite an asset! A little longer and your promotion is guaranteed!\r",
+          "_meta": "Victor_SO_Knife_21"
+        },
+        "_actorName": "name_unpc_victorberthelot_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 7380.0,
+          "y": 5410.0
+        },
+        "_UID": "189e4115-7da6-4e83-9a9b-631f9c1eaa6b",
+        "_tag": "",
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "249"
+      }
+    ],
+    "connections": [
+      {
+        "_sourceNode": {
+          "$ref": "2"
+        },
+        "_targetNode": {
+          "$ref": "5"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "2"
+        },
+        "_targetNode": {
+          "$ref": "137"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "5"
+        },
+        "_targetNode": {
+          "$ref": "8"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "5"
+        },
+        "_targetNode": {
+          "$ref": "125"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "8"
+        },
+        "_targetNode": {
+          "$ref": "11"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "8"
+        },
+        "_targetNode": {
+          "$ref": "123"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "11"
+        },
+        "_targetNode": {
+          "$ref": "13"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "11"
+        },
+        "_targetNode": {
+          "$ref": "120"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "13"
+        },
+        "_targetNode": {
+          "$ref": "16"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "13"
+        },
+        "_targetNode": {
+          "$ref": "69"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "16"
+        },
+        "_targetNode": {
+          "$ref": "18"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "18"
+        },
+        "_targetNode": {
+          "$ref": "20"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "20"
+        },
+        "_targetNode": {
+          "$ref": "22"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "22"
+        },
+        "_targetNode": {
+          "$ref": "26"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "26"
+        },
+        "_targetNode": {
+          "$ref": "28"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "28"
+        },
+        "_targetNode": {
+          "$ref": "30"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "30"
+        },
+        "_targetNode": {
+          "$ref": "32"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "32"
+        },
+        "_targetNode": {
+          "$ref": "34"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "34"
+        },
+        "_targetNode": {
+          "$ref": "38"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "38"
+        },
+        "_targetNode": {
+          "$ref": "40"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "40"
+        },
+        "_targetNode": {
+          "$ref": "42"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "42"
+        },
+        "_targetNode": {
+          "$ref": "44"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "44"
+        },
+        "_targetNode": {
+          "$ref": "46"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "46"
+        },
+        "_targetNode": {
+          "$ref": "48"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "48"
+        },
+        "_targetNode": {
+          "$ref": "50"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "50"
+        },
+        "_targetNode": {
+          "$ref": "56"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "50"
+        },
+        "_targetNode": {
+          "$ref": "66"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "56"
+        },
+        "_targetNode": {
+          "$ref": "58"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "58"
+        },
+        "_targetNode": {
+          "$ref": "64"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "58"
+        },
+        "_targetNode": {
+          "$ref": "66"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "64"
+        },
+        "_targetNode": {
+          "$ref": "66"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "69"
+        },
+        "_targetNode": {
+          "$ref": "72"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "69"
+        },
+        "_targetNode": {
+          "$ref": "112"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "72"
+        },
+        "_targetNode": {
+          "$ref": "75"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "72"
+        },
+        "_targetNode": {
+          "$ref": "108"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "75"
+        },
+        "_targetNode": {
+          "$ref": "77"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "77"
+        },
+        "_targetNode": {
+          "$ref": "83"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "77"
+        },
+        "_targetNode": {
+          "$ref": "107"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "83"
+        },
+        "_targetNode": {
+          "$ref": "86"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "83"
+        },
+        "_targetNode": {
+          "$ref": "89"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "86"
+        },
+        "_targetNode": {
+          "$ref": "88"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "89"
+        },
+        "_targetNode": {
+          "$ref": "92"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "89"
+        },
+        "_targetNode": {
+          "$ref": "95"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "92"
+        },
+        "_targetNode": {
+          "$ref": "94"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "95"
+        },
+        "_targetNode": {
+          "$ref": "98"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "95"
+        },
+        "_targetNode": {
+          "$ref": "101"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "98"
+        },
+        "_targetNode": {
+          "$ref": "100"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "101"
+        },
+        "_targetNode": {
+          "$ref": "104"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "104"
+        },
+        "_targetNode": {
+          "$ref": "106"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "108"
+        },
+        "_targetNode": {
+          "$ref": "110"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "112"
+        },
+        "_targetNode": {
+          "$ref": "114"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "114"
+        },
+        "_targetNode": {
+          "$ref": "117"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "114"
+        },
+        "_targetNode": {
+          "$ref": "119"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "120"
+        },
+        "_targetNode": {
+          "$ref": "122"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "125"
+        },
+        "_targetNode": {
+          "$ref": "127"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "127"
+        },
+        "_targetNode": {
+          "$ref": "133"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "127"
+        },
+        "_targetNode": {
+          "$ref": "135"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "137"
+        },
+        "_targetNode": {
+          "$ref": "140"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "137"
+        },
+        "_targetNode": {
+          "$ref": "152"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "140"
+        },
+        "_targetNode": {
+          "$ref": "142"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "142"
+        },
+        "_targetNode": {
+          "$ref": "148"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "142"
+        },
+        "_targetNode": {
+          "$ref": "150"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "152"
+        },
+        "_targetNode": {
+          "$ref": "154"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "154"
+        },
+        "_targetNode": {
+          "$ref": "156"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "156"
+        },
+        "_targetNode": {
+          "$ref": "162"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "156"
+        },
+        "_targetNode": {
+          "$ref": "164"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "166"
+        },
+        "_targetNode": {
+          "$ref": "168"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "168"
+        },
+        "_targetNode": {
+          "$ref": "170"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "170"
+        },
+        "_targetNode": {
+          "$ref": "172"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "172"
+        },
+        "_targetNode": {
+          "$ref": "174"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "174"
+        },
+        "_targetNode": {
+          "$ref": "177"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "174"
+        },
+        "_targetNode": {
+          "$ref": "190"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "177"
+        },
+        "_targetNode": {
+          "$ref": "187"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "187"
+        },
+        "_targetNode": {
+          "$ref": "189"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "190"
+        },
+        "_targetNode": {
+          "$ref": "193"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "190"
+        },
+        "_targetNode": {
+          "$ref": "203"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "193"
+        },
+        "_targetNode": {
+          "$ref": "187"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "203"
+        },
+        "_targetNode": {
+          "$ref": "206"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "203"
+        },
+        "_targetNode": {
+          "$ref": "216"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "206"
+        },
+        "_targetNode": {
+          "$ref": "187"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "216"
+        },
+        "_targetNode": {
+          "$ref": "219"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "216"
+        },
+        "_targetNode": {
+          "$ref": "229"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "219"
+        },
+        "_targetNode": {
+          "$ref": "187"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "229"
+        },
+        "_targetNode": {
+          "$ref": "187"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "234"
+        },
+        "_targetNode": {
+          "$ref": "240"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "234"
+        },
+        "_targetNode": {
+          "$ref": "249"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "240"
+        },
+        "_targetNode": {
+          "$ref": "242"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "242"
+        },
+        "_targetNode": {
+          "$ref": "244"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "244"
+        },
+        "_targetNode": {
+          "$ref": "246"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "249"
+        },
+        "_targetNode": {
+          "$ref": "242"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      }
+    ],
+    "canvasGroups": [
+      {
+        "name": "Military Dean's task done Q2",
+        "rect": {
+          "xMin": 6892.998,
+          "yMin": 3433.058,
+          "xMax": 7977.673,
+          "yMax": 5938.602
+        }
+      },
+      {
+        "name": "During Postgame",
+        "rect": {
+          "xMin": 5867.052,
+          "yMin": 1988.672,
+          "xMax": 6928.349,
+          "yMax": 2851.475
+        }
+      },
+      {
+        "name": "During Q3/Q4",
+        "rect": {
+          "xMin": 6055.77,
+          "yMin": 3087.978,
+          "xMax": 6710.186,
+          "yMax": 3722.771
+        }
+      }
+    ],
+    "localBlackboard": {
+      "_name": "Local Blackboard",
+      "_variables": {
+        "gInstigator": {
+          "_name": "gInstigator",
+          "_id": "2bf53ecc-e733-49ca-a75f-463c24c62eb6",
+          "$type": "NodeCanvas.Framework.Variable`1[[Character, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+        }
+      }
+    },
+    "derivedData": {
+      "actorParameters": [
+        {
+          "_keyName": "name_unpc_victorberthelot_01",
+          "_id": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760"
+        },
+        {
+          "_keyName": "name_unpc_artoissutherland_01",
+          "_id": "4414b1b8-99ef-4a6b-ac0e-ba842dc6fcce"
+        },
+        {
+          "_keyName": "name_unpc_henriwolfgang_01",
+          "_id": "4eef6778-c771-4a9c-b8f6-eeeea5be7fc7"
+        }
+      ],
+      "$type": "NodeCanvas.DialogueTrees.DialogueTree+DerivedSerializationData"
+    }
+  },
+  "replace": [
+    "Harmattan/Interactions/NPCs/NPCs_Positions/NPCs_Position_Quest_Debate/UNPC_DLC_VictorBerthelot_MilitaryDean_Debate/MilitaryDean_Dialog/NPC/Dialogue_MilitaryDeanQ2",
+    "Harmattan/Interactions/NPCs/NPCs_Quest_General/UNPC_DLC_VictorBerthelot_MilitaryDean/MilitaryDean_Dialog/NPC/Dialogue_MilitaryDeanQ2"
+  ]
+}

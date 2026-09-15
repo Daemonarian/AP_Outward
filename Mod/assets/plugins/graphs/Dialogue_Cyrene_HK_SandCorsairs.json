@@ -1,0 +1,2114 @@
+{
+  "graph": {
+    "version": 2.92,
+    "type": "NodeCanvas.DialogueTrees.DialogueTreeExt",
+    "translation": {
+      "x": -1639.0,
+      "y": -3599.0
+    },
+    "nodes": [
+      {
+        "_condition": {
+          "questRef": {
+            "_value": {
+              "m_itemID": 7011302
+            }
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_IsQuestCompleted"
+        },
+        "_position": {
+          "x": 2325.0,
+          "y": 2355.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "2"
+      },
+      {
+        "_action": {
+          "dialogueStarter": {
+            "_name": "Dialogue_Cyrene_BB/HK_MouthToFeed",
+            "_targetVariableID": "04816249-5655-4026-b0a7-c8206444d1a8"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.BranchDialogue"
+        },
+        "_position": {
+          "x": 2070.0,
+          "y": 2535.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "6"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "M6nFmGRDV0GkjfmS8ohRcQ"
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 2655.0,
+          "y": 2475.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "9"
+      },
+      {
+        "_condition": {
+          "_minimumQuestLevel": 3,
+          "$type": "OutwardArchipelago.Graphs.Conditions.Condition_QuestLicense"
+        },
+        "_position": {
+          "x": 1739.0,
+          "y": 3699.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "12"
+      },
+      {
+        "_condition": {
+          "checkMode": "AnyTrueSuffice",
+          "conditions": [
+            {
+              "QuestEventRef": {
+                "m_eventUID": "H8vMawAkDEekzyCEBEKZmQ"
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "NQXQx7U5MkqGmCcruriLQQ"
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ConditionList"
+        },
+        "_position": {
+          "x": 2475.0,
+          "y": 2640.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "14"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "Rd05eRsnykWcTbjfnFZ3-g"
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 2265.0,
+          "y": 2835.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "21"
+      },
+      {
+        "statement": {
+          "_text": "Good work, [PlayerName]. With their leader dead, the Sand Corsairs are nothing more than disorganized rabble. We'll have the last of them put down by the end of the week at this rate. And most of them are Old Levant too. Two birds with one bullet.",
+          "_meta": "Cyrene_HK_Corsairs_14"
+        },
+        "_actorName": "name_unpc_cyrene_01 ",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 1515.0,
+          "y": 3060.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "24"
+      },
+      {
+        "statement": {
+          "_text": "Queen Calixa will no doubt recognize what you did for Levant. Here, your reward for a job well done.",
+          "_meta": "Cyrene_HK_Corsairs_15"
+        },
+        "_actorName": "name_unpc_cyrene_01 ",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 1485.0,
+          "y": 3300.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "26"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "I’ll come with you on the convoy.",
+              "_meta": "Player_Simeon_HK_HeroPeace_a_09"
+            },
+            "condition": {
+              "QuestEventRef": {
+                "m_eventUID": "fJSdc0sL90GdXz39AHFl5A"
+              },
+              "_invert": true,
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            }
+          },
+          {
+            "statement": {
+              "_text": "Farewell",
+              "_meta": "Merchant_Generic_Farewell_01"
+            }
+          }
+        ],
+        "_position": {
+          "x": 1515.0,
+          "y": 3555.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "28"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "QuestEventRef": {
+                "m_eventUID": "GXRyJ3ySUUmBVF04aZOCWQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "OdPDVNe8h0a8SeJz2te-Tg"
+              },
+              "RemoveAllStack": true,
+              "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+            },
+            {
+              "SilverAmount": {},
+              "XpAmount": {},
+              "ItemReward": [
+                {
+                  "Item": {
+                    "_value": {
+                      "m_itemID": 5110110
+                    }
+                  },
+                  "Quantity": {
+                    "_value": 1
+                  },
+                  "TryToEquip": {}
+                },
+                {
+                  "Item": {
+                    "_value": {
+                      "m_itemID": 6300030
+                    }
+                  },
+                  "Quantity": {
+                    "_value": 1
+                  },
+                  "TryToEquip": {}
+                },
+                {
+                  "Item": {
+                    "_value": {
+                      "m_itemID": 4400080
+                    }
+                  },
+                  "Quantity": {
+                    "_value": 12
+                  },
+                  "TryToEquip": {}
+                }
+              ],
+              "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+            },
+            {
+              "quest": {},
+              "questRef": {
+                "_value": {
+                  "m_itemID": 7011303
+                }
+              },
+              "$type": "NodeCanvas.Tasks.Actions.GiveQuest"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 1095.0,
+          "y": 3825.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "36"
+      },
+      {
+        "_action": {
+          "Stop": {
+            "_value": true
+          },
+          "Music": {
+            "_value": "BGM_EventQuest"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.StartMusicEvent"
+        },
+        "_position": {
+          "x": 1185.0,
+          "y": 3975.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "66"
+      },
+      {
+        "_action": {
+          "waitTime": {
+            "_value": 2.0
+          },
+          "$type": "NodeCanvas.Tasks.Actions.Wait"
+        },
+        "_position": {
+          "x": 1260.0,
+          "y": 4050.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "70"
+      },
+      {
+        "_action": {
+          "Area": {
+            "_value": "Levant"
+          },
+          "SpawnPoint": {},
+          "MoveBag": true,
+          "$type": "NodeCanvas.Tasks.Actions.AreaSwitchPlayers"
+        },
+        "_position": {
+          "x": 1260.0,
+          "y": 4140.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "73"
+      },
+      {
+        "_position": {
+          "x": 1455.0,
+          "y": 4245.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "77"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "QuestEventRef": {
+                "m_eventUID": "GXRyJ3ySUUmBVF04aZOCWQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "OdPDVNe8h0a8SeJz2te-Tg"
+              },
+              "RemoveAllStack": true,
+              "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+            },
+            {
+              "SilverAmount": {},
+              "XpAmount": {},
+              "ItemReward": [
+                {
+                  "Item": {
+                    "_value": {
+                      "m_itemID": 5110110
+                    }
+                  },
+                  "Quantity": {
+                    "_value": 1
+                  },
+                  "TryToEquip": {}
+                },
+                {
+                  "Item": {
+                    "_value": {
+                      "m_itemID": 6300030
+                    }
+                  },
+                  "Quantity": {
+                    "_value": 1
+                  },
+                  "TryToEquip": {}
+                },
+                {
+                  "Item": {
+                    "_value": {
+                      "m_itemID": 4400080
+                    }
+                  },
+                  "Quantity": {
+                    "_value": 12
+                  },
+                  "TryToEquip": {}
+                }
+              ],
+              "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+            },
+            {
+              "quest": {},
+              "questRef": {
+                "_value": {
+                  "m_itemID": 7011303
+                }
+              },
+              "$type": "NodeCanvas.Tasks.Actions.GiveQuest"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 1515.0,
+          "y": 3810.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "78"
+      },
+      {
+        "_action": {
+          "Stop": {
+            "_value": true
+          },
+          "Music": {
+            "_value": "BGM_EventQuest"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.StartMusicEvent"
+        },
+        "_position": {
+          "x": 1620.0,
+          "y": 4020.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "108"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "9LA8APv5DkCB7OSbF-4v8w"
+          },
+          "_invert": true,
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 2310.0,
+          "y": 3015.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "112"
+      },
+      {
+        "statement": {
+          "_text": "I'm amazed you got their leader to surrender. He confessed responsibility for everything and his troops disbanded. I don't like leaving these Old Levant troublemakers alive...But I'm not willing to exterminate a surrendering enemy.",
+          "_meta": "Cyrene_HK_Corsairs_12"
+        },
+        "_actorName": "name_unpc_cyrene_01 ",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 2070.0,
+          "y": 3135.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "115"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "What will you do with him now?",
+              "_meta": "Player_Cyrene_HK_Corsairs_a_12"
+            }
+          }
+        ],
+        "_position": {
+          "x": 2115.0,
+          "y": 3270.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "117"
+      },
+      {
+        "statement": {
+          "_text": "Put him on trial, I suppose. It’s barely a formality at this point, though. After all he’s done, he’ll either get the firing squad or be locked in the Hive Prison for the rest of his very short life.",
+          "_meta": "Cyrene_HK_Corsairs_13"
+        },
+        "_actorName": "name_unpc_cyrene_01 ",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 2010.0,
+          "y": 3375.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "121"
+      },
+      {
+        "statement": {
+          "_text": "Queen Calixa will no doubt recognize what you did for Levant. Here, your reward for a job well done.",
+          "_meta": "Cyrene_HK_Corsairs_15"
+        },
+        "_actorName": "name_unpc_cyrene_01 ",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 1995.0,
+          "y": 3495.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "123"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "I’ll come with you on the convoy.",
+              "_meta": "Player_Simeon_HK_HeroPeace_a_09"
+            },
+            "condition": {
+              "QuestEventRef": {
+                "m_eventUID": "fJSdc0sL90GdXz39AHFl5A"
+              },
+              "_invert": true,
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            }
+          },
+          {
+            "statement": {
+              "_text": "Farewell",
+              "_meta": "Merchant_Generic_Farewell_01"
+            }
+          }
+        ],
+        "_position": {
+          "x": 2130.0,
+          "y": 3675.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "125"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "QuestEventRef": {
+                "m_eventUID": "GXRyJ3ySUUmBVF04aZOCWQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "OdPDVNe8h0a8SeJz2te-Tg"
+              },
+              "RemoveAllStack": true,
+              "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+            },
+            {
+              "SilverAmount": {},
+              "XpAmount": {},
+              "ItemReward": [
+                {
+                  "Item": {
+                    "_value": {
+                      "m_itemID": 6300030
+                    }
+                  },
+                  "Quantity": {
+                    "_value": 3
+                  },
+                  "TryToEquip": {}
+                },
+                {
+                  "Item": {
+                    "_value": {
+                      "m_itemID": 5110110
+                    }
+                  },
+                  "Quantity": {
+                    "_value": 1
+                  },
+                  "TryToEquip": {}
+                },
+                {
+                  "Item": {
+                    "_value": {
+                      "m_itemID": 4400080
+                    }
+                  },
+                  "Quantity": {
+                    "_value": 12
+                  },
+                  "TryToEquip": {}
+                }
+              ],
+              "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+            },
+            {
+              "quest": {},
+              "questRef": {
+                "_value": {
+                  "m_itemID": 7011303
+                }
+              },
+              "$type": "NodeCanvas.Tasks.Actions.GiveQuest"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 1875.0,
+          "y": 3810.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "133"
+      },
+      {
+        "_action": {
+          "Stop": {
+            "_value": true
+          },
+          "Music": {
+            "_value": "BGM_EventQuest"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.StartMusicEvent"
+        },
+        "_position": {
+          "x": 1905.0,
+          "y": 3930.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "163"
+      },
+      {
+        "_action": {
+          "waitTime": {
+            "_value": 2.0
+          },
+          "$type": "NodeCanvas.Tasks.Actions.Wait"
+        },
+        "_position": {
+          "x": 1980.0,
+          "y": 4050.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "167"
+      },
+      {
+        "_action": {
+          "Area": {
+            "_value": "Levant"
+          },
+          "SpawnPoint": {},
+          "MoveBag": true,
+          "$type": "NodeCanvas.Tasks.Actions.AreaSwitchPlayers"
+        },
+        "_position": {
+          "x": 1950.0,
+          "y": 4140.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "170"
+      },
+      {
+        "_position": {
+          "x": 2235.0,
+          "y": 4320.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "174"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "QuestEventRef": {
+                "m_eventUID": "GXRyJ3ySUUmBVF04aZOCWQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "OdPDVNe8h0a8SeJz2te-Tg"
+              },
+              "RemoveAllStack": true,
+              "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+            },
+            {
+              "SilverAmount": {},
+              "XpAmount": {},
+              "ItemReward": [
+                {
+                  "Item": {
+                    "_value": {
+                      "m_itemID": 6300030
+                    }
+                  },
+                  "Quantity": {
+                    "_value": 3
+                  },
+                  "TryToEquip": {}
+                },
+                {
+                  "Item": {
+                    "_value": {
+                      "m_itemID": 5110110
+                    }
+                  },
+                  "Quantity": {
+                    "_value": 1
+                  },
+                  "TryToEquip": {}
+                },
+                {
+                  "Item": {
+                    "_value": {
+                      "m_itemID": 4400080
+                    }
+                  },
+                  "Quantity": {
+                    "_value": 12
+                  },
+                  "TryToEquip": {}
+                }
+              ],
+              "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+            },
+            {
+              "quest": {},
+              "questRef": {
+                "_value": {
+                  "m_itemID": 7011303
+                }
+              },
+              "$type": "NodeCanvas.Tasks.Actions.GiveQuest"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 2235.0,
+          "y": 3810.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "175"
+      },
+      {
+        "_action": {
+          "Stop": {
+            "_value": true
+          },
+          "Music": {
+            "_value": "BGM_EventQuest"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.StartMusicEvent"
+        },
+        "_position": {
+          "x": 2280.0,
+          "y": 3975.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "205"
+      },
+      {
+        "statement": {
+          "_text": "The leader of these bandits has long since fled the coop. Dammit, we should have moved faster. We may have struck a serious blow to the Corsairs, but as long as their leader is alive, they might be back someday.",
+          "_meta": "Cyrene_HK_Corsairs_17"
+        },
+        "_actorName": "name_unpc_cyrene_01 ",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 2460.0,
+          "y": 3270.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "209"
+      },
+      {
+        "statement": {
+          "_text": "Well, you still helped bring the Corsairs down. You’re entitled to your pay. Queen Calixa will no doubt be pleased with your work here, [PlayerName].",
+          "_meta": "Cyrene_HK_Corsairs_18"
+        },
+        "_actorName": "name_unpc_cyrene_01 ",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 2460.0,
+          "y": 3420.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "211"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "I’ll come with you on the convoy.",
+              "_meta": "Player_Simeon_HK_HeroPeace_a_09"
+            },
+            "condition": {
+              "QuestEventRef": {
+                "m_eventUID": "fJSdc0sL90GdXz39AHFl5A"
+              },
+              "_invert": true,
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            }
+          },
+          {
+            "statement": {
+              "_text": "Farewell",
+              "_meta": "Merchant_Generic_Farewell_01"
+            }
+          }
+        ],
+        "_position": {
+          "x": 2790.0,
+          "y": 3645.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "213"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "QuestEventRef": {
+                "m_eventUID": "GXRyJ3ySUUmBVF04aZOCWQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "OdPDVNe8h0a8SeJz2te-Tg"
+              },
+              "RemoveAllStack": true,
+              "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+            },
+            {
+              "SilverAmount": {},
+              "XpAmount": {},
+              "ItemReward": [
+                {
+                  "Item": {
+                    "_value": {
+                      "m_itemID": 5110110
+                    }
+                  },
+                  "Quantity": {
+                    "_value": 1
+                  },
+                  "TryToEquip": {}
+                },
+                {
+                  "Item": {
+                    "_value": {
+                      "m_itemID": 6300030
+                    }
+                  },
+                  "Quantity": {
+                    "_value": 1
+                  },
+                  "TryToEquip": {}
+                },
+                {
+                  "Item": {
+                    "_value": {
+                      "m_itemID": 4400080
+                    }
+                  },
+                  "Quantity": {
+                    "_value": 12
+                  },
+                  "TryToEquip": {}
+                }
+              ],
+              "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+            },
+            {
+              "quest": {},
+              "questRef": {
+                "_value": {
+                  "m_itemID": 7011303
+                }
+              },
+              "$type": "NodeCanvas.Tasks.Actions.GiveQuest"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 2595.0,
+          "y": 3810.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "221"
+      },
+      {
+        "_action": {
+          "Stop": {
+            "_value": true
+          },
+          "Music": {
+            "_value": "BGM_EventQuest"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.StartMusicEvent"
+        },
+        "_position": {
+          "x": 2655.0,
+          "y": 3960.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "251"
+      },
+      {
+        "_action": {
+          "waitTime": {
+            "_value": 2.0
+          },
+          "$type": "NodeCanvas.Tasks.Actions.Wait"
+        },
+        "_position": {
+          "x": 2685.0,
+          "y": 4050.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "255"
+      },
+      {
+        "_action": {
+          "Area": {
+            "_value": "Levant"
+          },
+          "SpawnPoint": {},
+          "MoveBag": true,
+          "$type": "NodeCanvas.Tasks.Actions.AreaSwitchPlayers"
+        },
+        "_position": {
+          "x": 2685.0,
+          "y": 4140.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "258"
+      },
+      {
+        "_position": {
+          "x": 2880.0,
+          "y": 4245.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "262"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "QuestEventRef": {
+                "m_eventUID": "GXRyJ3ySUUmBVF04aZOCWQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "OdPDVNe8h0a8SeJz2te-Tg"
+              },
+              "RemoveAllStack": true,
+              "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+            },
+            {
+              "SilverAmount": {},
+              "XpAmount": {},
+              "ItemReward": [
+                {
+                  "Item": {
+                    "_value": {
+                      "m_itemID": 5110110
+                    }
+                  },
+                  "Quantity": {
+                    "_value": 1
+                  },
+                  "TryToEquip": {}
+                },
+                {
+                  "Item": {
+                    "_value": {
+                      "m_itemID": 6300030
+                    }
+                  },
+                  "Quantity": {
+                    "_value": 1
+                  },
+                  "TryToEquip": {}
+                },
+                {
+                  "Item": {
+                    "_value": {
+                      "m_itemID": 4400080
+                    }
+                  },
+                  "Quantity": {
+                    "_value": 12
+                  },
+                  "TryToEquip": {}
+                }
+              ],
+              "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+            },
+            {
+              "quest": {},
+              "questRef": {
+                "_value": {
+                  "m_itemID": 7011303
+                }
+              },
+              "$type": "NodeCanvas.Tasks.Actions.GiveQuest"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 2970.0,
+          "y": 3840.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "263"
+      },
+      {
+        "_action": {
+          "Stop": {
+            "_value": true
+          },
+          "Music": {
+            "_value": "BGM_EventQuest"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.StartMusicEvent"
+        },
+        "_position": {
+          "x": 3060.0,
+          "y": 4005.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "293"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "au908Il1skiRZLBLybB72Q"
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 2940.0,
+          "y": 2850.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "297"
+      },
+      {
+        "statement": {
+          "_text": "If you need something, bother Yzan. I’m coordinating the troops right now!",
+          "_meta": "Cyrene_HK_Corsairs_11"
+        },
+        "_actorName": "Cyrene",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 2775.0,
+          "y": 3030.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "300"
+      },
+      {
+        "_position": {
+          "x": 2895.0,
+          "y": 3150.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "302"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "4NE1-GUpO0KiCVKM0LQjyg"
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 3225.0,
+          "y": 3075.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "303"
+      },
+      {
+        "statement": {
+          "_text": "Do you have any new information about the Sand Corsairs?",
+          "_meta": "Cyrene_HK_Corsairs_08"
+        },
+        "_actorName": "name_unpc_cyrene_01 ",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 3060.0,
+          "y": 3210.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "306"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "I found out where the Sand Corsairs are hiding. They’re in the Old Levant Ruins. Some Soroboreans are protecting them. I need Yzan’s help. Where is he?",
+              "_meta": "Player_Cyrene_HK_Corsairs_a_09"
+            }
+          }
+        ],
+        "_position": {
+          "x": 3075.0,
+          "y": 3315.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "308"
+      },
+      {
+        "statement": {
+          "_text": "Of course Old Levant has to be connected to this...I think I have an idea what you’re planning. <color=#00CCFF><b>Yzan is by the fountain in the South-East district of Levant</b></color>. Good luck.",
+          "_meta": "Cyrene_HK_Corsairs_10"
+        },
+        "_actorName": "name_unpc_cyrene_01 ",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 2925.0,
+          "y": 3435.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "312"
+      },
+      {
+        "_position": {
+          "x": 3090.0,
+          "y": 3540.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "314"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "hmXDXhPW502VwvhsT-DWuQ"
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 3630.0,
+          "y": 3270.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "315"
+      },
+      {
+        "statement": {
+          "_text": "The ruins in the west...That’s <color=#00CCFF><b>the ruins in the small canyon north of the large rock and tree</b></color>, I think...Hmm...",
+          "_meta": "Cyrene_HK_Corsairs_16"
+        },
+        "_actorName": "name_unpc_cyrene_01 ",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 3345.0,
+          "y": 3435.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "318"
+      },
+      {
+        "_position": {
+          "x": 3570.0,
+          "y": 3585.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "320"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "-1kYBlJjVkiTutv79RTd8w"
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 4005.0,
+          "y": 3450.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "321"
+      },
+      {
+        "statement": {
+          "_text": "Do you have any new information about the Sand Corsairs?",
+          "_meta": "Cyrene_HK_Corsairs_08"
+        },
+        "_actorName": "name_unpc_cyrene_01 ",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 3900.0,
+          "y": 3600.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "324"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "No new information yet. I’ll let you know if I find some.",
+              "_meta": "Player_Cyrene_HK_Corsairs_b_08"
+            }
+          },
+          {
+            "statement": {
+              "_text": "There’s some people in an old tower in the west that are supplying the food to the slums.",
+              "_meta": "Player_Cyrene_HK_Corsairs_a_08"
+            },
+            "condition": {
+              "QuestEventRef": {
+                "m_eventUID": "amC1OhW8jUyUhfn491EOZg"
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            }
+          },
+          {
+            "statement": {
+              "_text": "..."
+            }
+          }
+        ],
+        "_position": {
+          "x": 3945.0,
+          "y": 3780.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "326"
+      },
+      {
+        "_position": {
+          "x": 3765.0,
+          "y": 3975.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "336"
+      },
+      {
+        "statement": {
+          "_text": "The ruins in the west...That’s <color=#00CCFF><b>the ruins in the small canyon north of the large rock and tree</b></color>, I think...Hmm...",
+          "_meta": "Cyrene_HK_Corsairs_16"
+        },
+        "_actorName": "name_unpc_cyrene_01 ",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 4095.0,
+          "y": 4020.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "337"
+      },
+      {
+        "statement": {
+          "_text": "That’s not enough evidence for me to call in the cavalry. Check it out yourself and let me know if you find more.",
+          "_meta": "Cyrene_HK_Corsairs_09"
+        },
+        "_actorName": "name_unpc_cyrene_01 ",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 4005.0,
+          "y": 4125.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "339"
+      },
+      {
+        "_action": {
+          "QuestEventRef": {
+            "m_eventUID": "hmXDXhPW502VwvhsT-DWuQ"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+        },
+        "_position": {
+          "x": 4095.0,
+          "y": 4260.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "341"
+      },
+      {
+        "_position": {
+          "x": 4185.0,
+          "y": 4350.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "344"
+      },
+      {
+        "statement": {
+          "_text": "[PlayerName], good timing, I have work for you. The war is going well, but Levant itself is facing a crisis.",
+          "_meta": "Cyrene_HK_Corsairs_01"
+        },
+        "_actorName": "Cyrene",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 4500.0,
+          "y": 3690.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "345"
+      },
+      {
+        "statement": {
+          "_text": "Our situation is getting desperate. The war has cut us off from many of our usual trade routes, and the few that remain are being plundered by bandits. If things do not change soon, we face devastating famine.",
+          "_meta": "Cyrene_HK_Corsairs_02"
+        },
+        "_actorName": "Cyrene",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 4515.0,
+          "y": 3810.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "347"
+      },
+      {
+        "statement": {
+          "_text": "The worst are the \"<color=#00CCFF><b>Sand Corsairs</b></color>\", as they call themselves. They make no demands, refuse any negotiations, and leave no survivors in their raids. Then even managed to set fire to one of our cactus farms the other day.",
+          "_meta": "Cyrene_HK_Corsairs_03"
+        },
+        "_actorName": "Cyrene",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 4530.0,
+          "y": 3915.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "349"
+      },
+      {
+        "statement": {
+          "_text": "Our troops can at least resupply in the field by looting and pillaging the land they take. Our city itself is not so lucky. If these Sand Corsairs are not dealt with, we may win the war only to come home to a city of corpses.",
+          "_meta": "Cyrene_HK_Corsairs_04"
+        },
+        "_actorName": "Cyrene",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 4710.0,
+          "y": 4080.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "351"
+      },
+      {
+        "statement": {
+          "_text": "The Corsairs are extremely crafty, none of my agents have been able to locate where they operate from. If you can help us take them down, there will be a very handsome reward.",
+          "_meta": "Cyrene_HK_Corsairs_05"
+        },
+        "_actorName": "Cyrene",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 4710.0,
+          "y": 4200.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "353"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "Do you have any leads I can use?",
+              "_meta": "Player_Cyrene_HK_Corsairs_a_05"
+            }
+          },
+          {
+            "statement": {
+              "_text": "I’ll look into it if I have time. I can’t make promises.",
+              "_meta": "Player_Cyrene_HK_Corsairs_b_05"
+            }
+          }
+        ],
+        "_position": {
+          "x": 4695.0,
+          "y": 4290.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "355"
+      },
+      {
+        "statement": {
+          "_text": "You're a somewhat recent addition to the city. It's possible the people in the slums might open up to you. I do know that <color=#00CCFF><b>small amounts of food are being smuggled into the slums</b></color> from the outside, that might be an angle you can exploit.",
+          "_meta": "Cyrene_HK_Corsairs_06"
+        },
+        "_actorName": "Cyrene",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 4470.0,
+          "y": 4515.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "361"
+      },
+      {
+        "_action": {
+          "QuestEventRef": {
+            "m_eventUID": "-1kYBlJjVkiTutv79RTd8w"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+        },
+        "_position": {
+          "x": 4770.0,
+          "y": 4710.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "363"
+      },
+      {
+        "_position": {
+          "x": 4845.0,
+          "y": 4845.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "366"
+      },
+      {
+        "statement": {
+          "_text": "Come back when you have <color=#00CCFF><b>Quest License 3</b></color>.",
+          "_meta": "com.daemonarium.apoutward.dialogue.cyrene.quest_license_3_required"
+        },
+        "_actorName": "name_unpc_cyrene_01 ",
+        "_position": {
+          "x": 1739.0,
+          "y": 3699.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "367"
+      },
+      {
+        "_position": {
+          "x": 1739.0,
+          "y": 3699.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "369"
+      },
+      {
+        "statement": {
+          "_text": "Things are still hectic after the declaration of war, [PlayerName]. I’ll let you know if I need you on the front lines, or on home defense soon enough. Give me a few days to sort this mess out.",
+          "_meta": "Cyrene_HK_Corsairs_19"
+        },
+        "_actorName": "name_unpc_cyrene_01 ",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 2985.0,
+          "y": 2595.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "370"
+      },
+      {
+        "_position": {
+          "x": 3210.0,
+          "y": 2715.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "372"
+      }
+    ],
+    "connections": [
+      {
+        "_sourceNode": {
+          "$ref": "2"
+        },
+        "_targetNode": {
+          "$ref": "6"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "2"
+        },
+        "_targetNode": {
+          "$ref": "9"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "9"
+        },
+        "_targetNode": {
+          "$ref": "12"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "9"
+        },
+        "_targetNode": {
+          "$ref": "370"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "12"
+        },
+        "_targetNode": {
+          "$ref": "14"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "12"
+        },
+        "_targetNode": {
+          "$ref": "367"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "14"
+        },
+        "_targetNode": {
+          "$ref": "21"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "14"
+        },
+        "_targetNode": {
+          "$ref": "297"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "21"
+        },
+        "_targetNode": {
+          "$ref": "24"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "21"
+        },
+        "_targetNode": {
+          "$ref": "112"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "24"
+        },
+        "_targetNode": {
+          "$ref": "26"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "26"
+        },
+        "_targetNode": {
+          "$ref": "28"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "28"
+        },
+        "_targetNode": {
+          "$ref": "36"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "28"
+        },
+        "_targetNode": {
+          "$ref": "78"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "36"
+        },
+        "_targetNode": {
+          "$ref": "66"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "66"
+        },
+        "_targetNode": {
+          "$ref": "70"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "70"
+        },
+        "_targetNode": {
+          "$ref": "73"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "73"
+        },
+        "_targetNode": {
+          "$ref": "77"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "78"
+        },
+        "_targetNode": {
+          "$ref": "108"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "108"
+        },
+        "_targetNode": {
+          "$ref": "77"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "112"
+        },
+        "_targetNode": {
+          "$ref": "115"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "112"
+        },
+        "_targetNode": {
+          "$ref": "209"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "115"
+        },
+        "_targetNode": {
+          "$ref": "117"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "117"
+        },
+        "_targetNode": {
+          "$ref": "121"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "121"
+        },
+        "_targetNode": {
+          "$ref": "123"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "123"
+        },
+        "_targetNode": {
+          "$ref": "125"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "125"
+        },
+        "_targetNode": {
+          "$ref": "133"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "125"
+        },
+        "_targetNode": {
+          "$ref": "175"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "133"
+        },
+        "_targetNode": {
+          "$ref": "163"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "163"
+        },
+        "_targetNode": {
+          "$ref": "167"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "167"
+        },
+        "_targetNode": {
+          "$ref": "170"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "170"
+        },
+        "_targetNode": {
+          "$ref": "174"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "175"
+        },
+        "_targetNode": {
+          "$ref": "205"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "205"
+        },
+        "_targetNode": {
+          "$ref": "174"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "209"
+        },
+        "_targetNode": {
+          "$ref": "211"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "211"
+        },
+        "_targetNode": {
+          "$ref": "213"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "213"
+        },
+        "_targetNode": {
+          "$ref": "221"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "213"
+        },
+        "_targetNode": {
+          "$ref": "263"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "221"
+        },
+        "_targetNode": {
+          "$ref": "251"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "251"
+        },
+        "_targetNode": {
+          "$ref": "255"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "255"
+        },
+        "_targetNode": {
+          "$ref": "258"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "258"
+        },
+        "_targetNode": {
+          "$ref": "262"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "263"
+        },
+        "_targetNode": {
+          "$ref": "293"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "293"
+        },
+        "_targetNode": {
+          "$ref": "262"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "297"
+        },
+        "_targetNode": {
+          "$ref": "300"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "297"
+        },
+        "_targetNode": {
+          "$ref": "303"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "300"
+        },
+        "_targetNode": {
+          "$ref": "302"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "303"
+        },
+        "_targetNode": {
+          "$ref": "306"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "303"
+        },
+        "_targetNode": {
+          "$ref": "315"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "306"
+        },
+        "_targetNode": {
+          "$ref": "308"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "308"
+        },
+        "_targetNode": {
+          "$ref": "312"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "312"
+        },
+        "_targetNode": {
+          "$ref": "314"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "315"
+        },
+        "_targetNode": {
+          "$ref": "318"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "315"
+        },
+        "_targetNode": {
+          "$ref": "321"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "318"
+        },
+        "_targetNode": {
+          "$ref": "320"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "321"
+        },
+        "_targetNode": {
+          "$ref": "324"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "321"
+        },
+        "_targetNode": {
+          "$ref": "345"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "324"
+        },
+        "_targetNode": {
+          "$ref": "326"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "326"
+        },
+        "_targetNode": {
+          "$ref": "336"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "326"
+        },
+        "_targetNode": {
+          "$ref": "337"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "337"
+        },
+        "_targetNode": {
+          "$ref": "339"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "339"
+        },
+        "_targetNode": {
+          "$ref": "341"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "341"
+        },
+        "_targetNode": {
+          "$ref": "344"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "345"
+        },
+        "_targetNode": {
+          "$ref": "347"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "347"
+        },
+        "_targetNode": {
+          "$ref": "349"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "349"
+        },
+        "_targetNode": {
+          "$ref": "351"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "351"
+        },
+        "_targetNode": {
+          "$ref": "353"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "353"
+        },
+        "_targetNode": {
+          "$ref": "355"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "355"
+        },
+        "_targetNode": {
+          "$ref": "361"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "355"
+        },
+        "_targetNode": {
+          "$ref": "363"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "361"
+        },
+        "_targetNode": {
+          "$ref": "363"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "363"
+        },
+        "_targetNode": {
+          "$ref": "366"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "367"
+        },
+        "_targetNode": {
+          "$ref": "369"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "370"
+        },
+        "_targetNode": {
+          "$ref": "372"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      }
+    ],
+    "localBlackboard": {
+      "_name": "Local Blackboard",
+      "_variables": {
+        "gInstigator": {
+          "_name": "gInstigator",
+          "_id": "0483cf6b-da62-4a57-aaed-40f25b4bdf9b",
+          "$type": "NodeCanvas.Framework.Variable`1[[Character, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+        }
+      }
+    },
+    "derivedData": {
+      "actorParameters": [
+        {
+          "_keyName": "name_unpc_cyrene_01 ",
+          "_id": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760"
+        }
+      ],
+      "$type": "NodeCanvas.DialogueTrees.DialogueTree+DerivedSerializationData"
+    }
+  },
+  "replace": [
+    "Levant/_SNPC/UNPC_Cyrene (Palace)/Dialogue_Cyrene/NPC/DialogueTree_HK_SandCorsairs",
+    "Levant/_SNPC/DisablingForHMQ4/_UNPC/UNPC_Cyrene/Dialogue_Cyrene/NPC/DialogueTree_HK_SandCorsairs",
+    "Abrassar/AISquadManagerStructure/StaticEnemies/AssaultCorsairs/AssaultCorsairs_Calmed/UNPC_Cyrene/Dialogue_Cyrene/NPC/DialogueTree_HK_SandCorsairs",
+    "Abrassar_Dungeon1/AISquadManagerStructure/UNPC/UNPC_Cyrene/Dialogue_Cyrene_top/NPC/DialogueTree_HK_SandCorsairs",
+    "Abrassar_Dungeon1/AISquadManagerStructure/UNPC/UNPC_Cyrene/Dialogue_Cyrene/NPC/DialogueTree_HK_SandCorsairs",
+    "Berg/_SNPC/_UNPC/BlueChamberMeeting/CyreneZephy/UNPC_Cyrene/Dialogue_Cyrene/NPC/DialogueTree_HK_SandCorsairs"
+  ]
+}

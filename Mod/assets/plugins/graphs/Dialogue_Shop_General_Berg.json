@@ -1,0 +1,690 @@
+{
+  "graph": {
+    "version": 2.92,
+    "type": "NodeCanvas.DialogueTrees.DialogueTreeExt",
+    "translation": {
+      "x": -4072.0,
+      "y": -4112.0
+    },
+    "zoomFactor": 0.8128015,
+    "nodes": [
+      {
+        "statement": {
+          "_text": "Everything is for sale, EVERYTHING! Even my mother...But no discounts on her!",
+          "_meta": "Merchant_Berg_GeneralStore_01"
+        },
+        "_actorName": "General Store",
+        "_actorParameterID": "e592641c-683d-4d8f-9c5c-768a2a7d1497",
+        "_position": {
+          "x": 5535.0,
+          "y": 5385.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "2"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "I want to buy something.",
+              "_meta": "Merchant_Generic_Shop_01"
+            }
+          },
+          {
+            "statement": {
+              "_text": "I’d like to talk.",
+              "_meta": "Merchant_Generic_Talk_01"
+            }
+          },
+          {
+            "statement": {
+              "_text": "Not now.",
+              "_meta": "Merchant_Generic_NotNow_01"
+            }
+          }
+        ],
+        "_position": {
+          "x": 5610.0,
+          "y": 5565.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "4"
+      },
+      {
+        "_action": {
+          "Merchant": {
+            "_name": "myMerchant",
+            "_targetVariableID": "4f3641a8-ecc7-4dba-bcea-5cefea3c9f46"
+          },
+          "PlayerCharacter": {
+            "_name": "gInstigator",
+            "_targetVariableID": "3a601c20-be18-4c6c-8460-357b1bcd1ab3"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.ShopDialogueAction"
+        },
+        "_position": {
+          "x": 5295.0,
+          "y": 5775.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "12"
+      },
+      {
+        "_position": {
+          "x": 5250.0,
+          "y": 5880.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "16"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "kQS8SQ9kY0qlxLhmGgX2EQ"
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 5475.0,
+          "y": 5775.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "17"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "_location": {
+                "_key": "QUEST_MINOR_LEDGER_TO_BERG"
+              },
+              "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "Dn4p59YuxEiTY3kJKXM-hw"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 4172.0,
+          "y": 4212.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "20"
+      },
+      {
+        "_action": {
+          "QuestEventRef": {
+            "m_eventUID": "kQS8SQ9kY0qlxLhmGgX2EQ"
+          },
+          "RemoveAllStack": true,
+          "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+        },
+        "_position": {
+          "x": 5235.0,
+          "y": 6270.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "27"
+      },
+      {
+        "statement": {
+          "_text": "Perfect, I was waiting for this. Here, your pay for a delivery well done.",
+          "_meta": "Merchant_Cierzo_GeneralStore_02"
+        },
+        "_actorName": "name_merchant_berggeneralstore_01 ",
+        "_actorParameterID": "e592641c-683d-4d8f-9c5c-768a2a7d1497",
+        "_position": {
+          "x": 5205.0,
+          "y": 6360.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "30"
+      },
+      {
+        "_position": {
+          "x": 5340.0,
+          "y": 6555.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "32"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "db5zaOTWO0Kz0RpZmyO1vw"
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 5760.0,
+          "y": 5985.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "33"
+      },
+      {
+        "statement": {
+          "_text": "Be sure to come back sometime, these deliveries are needed pretty regularly.",
+          "_meta": "Merchant_Cierzo_GeneralStore_03"
+        },
+        "_actorName": "name_merchant_berggeneralstore_01 ",
+        "_actorParameterID": "e592641c-683d-4d8f-9c5c-768a2a7d1497",
+        "_position": {
+          "x": 5625.0,
+          "y": 6150.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "36"
+      },
+      {
+        "_position": {
+          "x": 5775.0,
+          "y": 6345.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "38"
+      },
+      {
+        "statement": {
+          "_text": "If you ever pass through Monsoon, could you take this ledger to the general store there? The owner’s been waiting on this one for over a week!",
+          "_meta": "Merchant_Berg_GeneralStore_02"
+        },
+        "_actorName": "name_merchant_berggeneralstore_01 ",
+        "_actorParameterID": "e592641c-683d-4d8f-9c5c-768a2a7d1497",
+        "_position": {
+          "x": 6060.0,
+          "y": 6150.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "39"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "Yes.",
+              "_meta": "Merchant_Generic_Yes_01"
+            }
+          },
+          {
+            "statement": {
+              "_text": "No.",
+              "_meta": "Merchant_Generic_No_01"
+            }
+          }
+        ],
+        "_position": {
+          "x": 6165.0,
+          "y": 6345.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "41"
+      },
+      {
+        "_action": {
+          "QuestEventRef": {
+            "m_eventUID": "db5zaOTWO0Kz0RpZmyO1vw"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+        },
+        "_position": {
+          "x": 5985.0,
+          "y": 6495.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "47"
+      },
+      {
+        "_condition": {
+          "quest": {
+            "_value": 1
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_KnowQuest"
+        },
+        "_position": {
+          "x": 5910.0,
+          "y": 6600.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "50"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "quest": {},
+              "questRef": {
+                "_value": {
+                  "m_itemID": 7011626
+                }
+              },
+              "$type": "NodeCanvas.Tasks.Actions.RemoveQuest"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "DvjONu3op0Ku01v25kav3g"
+              },
+              "RemoveAllStack": true,
+              "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 5775.0,
+          "y": 6750.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "53"
+      },
+      {
+        "_action": {
+          "quest": {},
+          "questRef": {
+            "_value": {
+              "m_itemID": 7011626
+            }
+          },
+          "$type": "NodeCanvas.Tasks.Actions.GiveQuest"
+        },
+        "_position": {
+          "x": 6030.0,
+          "y": 6945.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "62"
+      },
+      {
+        "statement": {
+          "_text": "Excellent, thank you. The sharing of information is essential for merchants like us. You’ll get your reward once you’ve delivered the ledger.",
+          "_meta": "Merchant_Cierzo_GeneralStore_05"
+        },
+        "_actorName": "name_merchant_berggeneralstore_01 ",
+        "_actorParameterID": "e592641c-683d-4d8f-9c5c-768a2a7d1497",
+        "_position": {
+          "x": 5985.0,
+          "y": 7095.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "67"
+      },
+      {
+        "statement": {
+          "_text": "Need something else?",
+          "_meta": "Merchant_Monsoon_Blacksmith_02"
+        },
+        "_actorName": "name_merchant_berggeneralstore_01 ",
+        "_actorParameterID": "e592641c-683d-4d8f-9c5c-768a2a7d1497",
+        "_position": {
+          "x": 6015.0,
+          "y": 7215.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "69"
+      },
+      {
+        "_targetNode": {
+          "$ref": "4"
+        },
+        "_position": {
+          "x": 6135.0,
+          "y": 7335.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.GoToNode",
+        "$id": "71"
+      },
+      {
+        "statement": {
+          "_text": "Need something else?",
+          "_meta": "Merchant_Monsoon_Blacksmith_02"
+        },
+        "_actorName": "name_merchant_berggeneralstore_01 ",
+        "_actorParameterID": "e592641c-683d-4d8f-9c5c-768a2a7d1497",
+        "_position": {
+          "x": 6345.0,
+          "y": 6495.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "72"
+      },
+      {
+        "_targetNode": {
+          "$ref": "4"
+        },
+        "_position": {
+          "x": 6375.0,
+          "y": 6645.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.GoToNode",
+        "$id": "74"
+      },
+      {
+        "statement": {
+          "_text": "Farewell.",
+          "_meta": "Merchant_Generic_Farewell_01"
+        },
+        "_actorName": "name_merchant_berggeneralstore_01 ",
+        "_actorParameterID": "e592641c-683d-4d8f-9c5c-768a2a7d1497",
+        "_position": {
+          "x": 5955.0,
+          "y": 5775.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "75"
+      },
+      {
+        "_position": {
+          "x": 6015.0,
+          "y": 5880.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "77"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "SilverAmount": {},
+              "XpAmount": {},
+              "ItemReward": [
+                {
+                  "Item": {
+                    "_value": {
+                      "m_itemID": 6200110
+                    }
+                  },
+                  "Quantity": {
+                    "_value": 1
+                  },
+                  "TryToEquip": {}
+                }
+              ],
+              "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "Dn4p59YuxEiTY3kJKXM-hw"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 5265.0,
+          "y": 6090.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "78"
+      }
+    ],
+    "connections": [
+      {
+        "_sourceNode": {
+          "$ref": "2"
+        },
+        "_targetNode": {
+          "$ref": "4"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "4"
+        },
+        "_targetNode": {
+          "$ref": "12"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "4"
+        },
+        "_targetNode": {
+          "$ref": "17"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "4"
+        },
+        "_targetNode": {
+          "$ref": "75"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "12"
+        },
+        "_targetNode": {
+          "$ref": "16"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "17"
+        },
+        "_targetNode": {
+          "$ref": "20"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "17"
+        },
+        "_targetNode": {
+          "$ref": "33"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "20"
+        },
+        "_targetNode": {
+          "$ref": "27"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "27"
+        },
+        "_targetNode": {
+          "$ref": "30"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "30"
+        },
+        "_targetNode": {
+          "$ref": "32"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "33"
+        },
+        "_targetNode": {
+          "$ref": "36"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "33"
+        },
+        "_targetNode": {
+          "$ref": "39"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "36"
+        },
+        "_targetNode": {
+          "$ref": "38"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "39"
+        },
+        "_targetNode": {
+          "$ref": "41"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "41"
+        },
+        "_targetNode": {
+          "$ref": "47"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "41"
+        },
+        "_targetNode": {
+          "$ref": "72"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "47"
+        },
+        "_targetNode": {
+          "$ref": "50"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "50"
+        },
+        "_targetNode": {
+          "$ref": "53"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "50"
+        },
+        "_targetNode": {
+          "$ref": "62"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "53"
+        },
+        "_targetNode": {
+          "$ref": "62"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "62"
+        },
+        "_targetNode": {
+          "$ref": "67"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "67"
+        },
+        "_targetNode": {
+          "$ref": "69"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "69"
+        },
+        "_targetNode": {
+          "$ref": "71"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "72"
+        },
+        "_targetNode": {
+          "$ref": "74"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "75"
+        },
+        "_targetNode": {
+          "$ref": "77"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "78"
+        },
+        "_targetNode": {
+          "$ref": "27"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      }
+    ],
+    "localBlackboard": {
+      "_name": "Local Blackboard",
+      "_variables": {
+        "gInstigator": {
+          "_name": "gInstigator",
+          "_id": "3a601c20-be18-4c6c-8460-357b1bcd1ab3",
+          "$type": "NodeCanvas.Framework.Variable`1[[Character, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+        },
+        "myMerchant": {
+          "_name": "myMerchant",
+          "_id": "4f3641a8-ecc7-4dba-bcea-5cefea3c9f46",
+          "$type": "NodeCanvas.Framework.Variable`1[[Merchant, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+        }
+      }
+    },
+    "derivedData": {
+      "actorParameters": [
+        {
+          "_keyName": "name_merchant_berggeneralstore_01 ",
+          "_id": "e592641c-683d-4d8f-9c5c-768a2a7d1497"
+        }
+      ],
+      "$type": "NodeCanvas.DialogueTrees.DialogueTree+DerivedSerializationData"
+    }
+  },
+  "replace": [
+    "Berg/_SNPC/_Merchants/HumanSNPC_CounterGeneralStore/MerchantTemplate (1)/NPC/ShopDialogue"
+  ]
+}

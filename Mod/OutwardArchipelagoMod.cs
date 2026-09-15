@@ -113,7 +113,7 @@ namespace OutwardArchipelago
             ArchipelagoConnector.Create();
             ModSceneManager.Instance.OnArchipelagoSceneReadyFirstTime += InitScene;
             ModResourceManager.Init();
-            _ = GraphPatcher.Instance; // force the GraphPatcher to load
+            gameObject.AddComponent<GraphPatcher>();
             _ = ScenePatcher.Instance; // force the ScenePatcher to load
 
 #if DEBUG

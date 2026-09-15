@@ -1,0 +1,3521 @@
+{
+  "graph": {
+    "version": 2.92,
+    "type": "NodeCanvas.DialogueTrees.DialogueTreeExt",
+    "translation": {
+      "x": -9073.0,
+      "y": -2397.0
+    },
+    "nodes": [
+      {
+        "_condition": {
+          "checkMode": "AnyTrueSuffice",
+          "conditions": [
+            {
+              "QuestEventRef": {
+                "m_eventUID": "90F4cEvSzEW6e15114mm1w"
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "_zOO3Vi6eEG8pIE2lZpYJw"
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ConditionList"
+        },
+        "_position": {
+          "x": 7605.0,
+          "y": 1635.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "2"
+      },
+      {
+        "statement": {
+          "_text": "Greetings, [PlayerName]. Is something the matter?",
+          "_meta": "Needs_tutorial_08"
+        },
+        "_actorName": "name_unpc_buraccarillon_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 7215.0,
+          "y": 2055.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "9"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "I’d like to talk.",
+              "_meta": "Merchant_Generic_Talk_01"
+            }
+          },
+          {
+            "statement": {
+              "_text": "I want to train with you.",
+              "_meta": "Merchant_Generic_Train_01"
+            },
+            "condition": {
+              "conditions": [
+                {
+                  "character": {
+                    "_name": "gInstigator",
+                    "_targetVariableID": "827bf9b2-76f5-49c6-9e00-36db9bb4ba3b"
+                  },
+                  "skill": {
+                    "_value": 1
+                  },
+                  "_invert": true,
+                  "$type": "NodeCanvas.Tasks.Conditions.Condition_KnowSkill"
+                },
+                {
+                  "QuestEventRef": {
+                    "m_eventUID": "k550tHkv5UWvMVhLCABppQ"
+                  },
+                  "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+                }
+              ],
+              "$type": "NodeCanvas.Framework.ConditionList"
+            }
+          },
+          {
+            "statement": {
+              "_text": "What do I need to learn to survive in the wild?",
+              "_meta": "Player_needs_tutorial_a_00"
+            }
+          },
+          {
+            "statement": {
+              "_text": "I’m going outside.",
+              "_meta": "Player_Burac_TutorialGate_a_01"
+            },
+            "condition": {
+              "conditions": [
+                {
+                  "QuestEventRef": {
+                    "m_eventUID": "lwFR3kEkyEWqlMH8swTnxQ"
+                  },
+                  "_invert": true,
+                  "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+                },
+                {
+                  "character": {
+                    "_name": "gInstigator",
+                    "_targetVariableID": "827bf9b2-76f5-49c6-9e00-36db9bb4ba3b"
+                  },
+                  "externalCondtion": {
+                    "_name": "_Cierzo_Blackboard/GoOutsideCondition",
+                    "_targetVariableID": "430d8383-8111-4d70-add6-c69f86fb7073"
+                  },
+                  "$type": "NodeCanvas.Tasks.Conditions.Condition_ExternalCondition"
+                },
+                {
+                  "QuestEventRef": {
+                    "m_eventUID": "_zOO3Vi6eEG8pIE2lZpYJw"
+                  },
+                  "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+                }
+              ],
+              "$type": "NodeCanvas.Framework.ConditionList"
+            }
+          },
+          {
+            "statement": {
+              "_text": "I’m going outside.",
+              "_meta": "Player_Burac_TutorialGate_a_01"
+            },
+            "condition": {
+              "conditions": [
+                {
+                  "character": {
+                    "_name": "gInstigator",
+                    "_targetVariableID": "827bf9b2-76f5-49c6-9e00-36db9bb4ba3b"
+                  },
+                  "externalCondtion": {
+                    "_name": "_Cierzo_Blackboard/GoOutsideCondition",
+                    "_targetVariableID": "430d8383-8111-4d70-add6-c69f86fb7073"
+                  },
+                  "$type": "NodeCanvas.Tasks.Conditions.Condition_ExternalCondition"
+                },
+                {
+                  "QuestEventRef": {
+                    "m_eventUID": "lwFR3kEkyEWqlMH8swTnxQ"
+                  },
+                  "_invert": true,
+                  "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+                },
+                {
+                  "QuestEventRef": {
+                    "m_eventUID": "_zOO3Vi6eEG8pIE2lZpYJw"
+                  },
+                  "_invert": true,
+                  "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+                }
+              ],
+              "$type": "NodeCanvas.Framework.ConditionList"
+            }
+          },
+          {
+            "statement": {
+              "_text": "Farewell.",
+              "_meta": "Merchant_Generic_Farewell_01"
+            }
+          }
+        ],
+        "_position": {
+          "x": 7020.0,
+          "y": 2235.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "11"
+      },
+      {
+        "_condition": {
+          "conditions": [
+            {
+              "questRef": {
+                "_value": {
+                  "m_itemID": 7011004
+                }
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_IsQuestCompleted"
+            },
+            {
+              "questRef": {
+                "_value": {
+                  "m_itemID": 7011004
+                }
+              },
+              "_invert": true,
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_IsQuestCompleted"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ConditionList"
+        },
+        "_position": {
+          "x": 6135.0,
+          "y": 2790.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "50"
+      },
+      {
+        "statement": {
+          "_text": "And what did you want to talk about?",
+          "_meta": "Burac_Vendavel_10"
+        },
+        "_actorName": "name_unpc_buraccarillon_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5775.0,
+          "y": 3180.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "59"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "I want to talk about Vendavel.",
+              "_meta": "Player_Burac_Vendavel_a_10"
+            }
+          },
+          {
+            "statement": {
+              "_text": "I want to talk about your work and the Chersonese in general.",
+              "_meta": "Player_Burac_Vendavel_a_11"
+            }
+          }
+        ],
+        "_position": {
+          "x": 5820.0,
+          "y": 3345.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "61"
+      },
+      {
+        "_condition": {
+          "quest": {
+            "_value": 2
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_KnowQuest"
+        },
+        "_position": {
+          "x": 5685.0,
+          "y": 3645.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "67"
+      },
+      {
+        "statement": {
+          "_text": "I hope I can count on your help dealing with the fortress of Vendavel. It remains a deadly threat to Cierzo.",
+          "_meta": "Burac_Vendavel_00-b"
+        },
+        "_actorName": "name_unpc_buraccarillon_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5430.0,
+          "y": 3945.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "70"
+      },
+      {
+        "statement": {
+          "_text": "When it was just unorganized bandits squatting there, it was bad enough. Now we know that <color=#00CCFF><b>3 warlords</b></color> have begun to muster them into an army. I think they mean to attack Cierzo. If they do...I don't know if we can hold them off. ",
+          "_meta": "Burac_Vendavel_01"
+        },
+        "_actorName": "name_unpc_buraccarillon_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5730.0,
+          "y": 4095.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "72"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "What do you recommend we do?",
+              "_meta": "Player_Burac_Vendavel_a_01"
+            }
+          }
+        ],
+        "_position": {
+          "x": 5820.0,
+          "y": 4230.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "74"
+      },
+      {
+        "statement": {
+          "_text": "I honestly don't know. If we send any kind of force to go attack the fortress, we risk stirring the hornet's nest...Maybe if we could isolate and deal with each of the warlords separately we’d have a chance.",
+          "_meta": "Burac_Vendavel_02"
+        },
+        "_actorName": "name_unpc_buraccarillon_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5715.0,
+          "y": 4350.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "78"
+      },
+      {
+        "statement": {
+          "_text": "It would be very dangerous to infiltrate the fortress. Use discretion and caution. Messing with Vendavel might get you imprisoned and put to work as a slave, or worse.",
+          "_meta": "Burac_Vendavel_03"
+        },
+        "_actorName": "name_unpc_buraccarillon_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5700.0,
+          "y": 4470.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "80"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "Do you know who is organizing them?",
+              "_meta": "Player_Burac_Vendavel_a_03"
+            }
+          },
+          {
+            "statement": {
+              "_text": "I’ll take care of it.",
+              "_meta": "Player_Burac_Vendavel_b_03"
+            }
+          }
+        ],
+        "_position": {
+          "x": 5775.0,
+          "y": 4590.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "82"
+      },
+      {
+        "statement": {
+          "_text": "One of them is a former warrior of mine, Crock. Exiled after he murdered two of my men in a drunken brawl five years ago. Another is a Kazite pirate captain whose description made even Eto wary...I think they know each other.",
+          "_meta": "Burac_Vendavel_04"
+        },
+        "_actorName": "name_unpc_buraccarillon_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5430.0,
+          "y": 4770.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "88"
+      },
+      {
+        "statement": {
+          "_text": "And lastly, there’s a lady mage who used to be part of one of Harmattan’s tribes. <color=#00CCFF><b>All 3 of them need to be dealt with</b></color>. As long as any of these people are in play, an attack against Cierzo is inevitable. If you have to, kill them. They’re that much of a threat.",
+          "_meta": "Burac_Vendavel_05"
+        },
+        "_actorName": "name_unpc_buraccarillon_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5385.0,
+          "y": 4875.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "90"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "I want to talk about your work and the Chersonese in general.",
+              "_meta": "Player_Burac_Vendavel_a_11"
+            }
+          },
+          {
+            "statement": {
+              "_text": "I’ll take care of it.",
+              "_meta": "Player_Burac_Vendavel_b_03"
+            }
+          }
+        ],
+        "_position": {
+          "x": 5445.0,
+          "y": 5010.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "92"
+      },
+      {
+        "_targetNode": {
+          "statement": {
+            "_text": "What do you want to know?",
+            "_meta": "Burac_Vendavel_11"
+          },
+          "_actorName": "name_unpc_buraccarillon_01",
+          "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+          "_position": {
+            "x": 6600.0,
+            "y": 3780.0
+          },
+          "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+          "$id": "99"
+        },
+        "_position": {
+          "x": 5445.0,
+          "y": 5205.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.GoToNode",
+        "$id": "98"
+      },
+      {
+        "_position": {
+          "x": 5625.0,
+          "y": 5145.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "101"
+      },
+      {
+        "statement": {
+          "_text": "Remember that the Fortress of Vendavel is a threat to the very existence of Cierzo. Be careful, [PlayerName].",
+          "_meta": "Burac_Vendavel_09"
+        },
+        "_actorName": "name_unpc_buraccarillon_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5865.0,
+          "y": 4935.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "102"
+      },
+      {
+        "_position": {
+          "x": 6105.0,
+          "y": 5070.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "104"
+      },
+      {
+        "_action": {
+          "quest": {},
+          "questRef": {
+            "_value": {
+              "m_itemID": 7011004
+            }
+          },
+          "$type": "NodeCanvas.Tasks.Actions.GiveQuest"
+        },
+        "_position": {
+          "x": 5895.0,
+          "y": 3795.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "105"
+      },
+      {
+        "statement": {
+          "_text": "Ah, [PlayerName], I am glad that you're back. We need all the help we can get. The <color=#00CCFF><b>Fortress of Vendavel</b></color> has become a threat to Cierzo that’s too dire to ignore.",
+          "_meta": "Burac_Vendavel_00"
+        },
+        "_actorName": "name_unpc_buraccarillon_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 5895.0,
+          "y": 3945.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "110"
+      },
+      {
+        "$ref": "99"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "What are you up to, Warden?",
+              "_meta": "Player_Burac_TutorialGate_a_12"
+            }
+          },
+          {
+            "statement": {
+              "_text": "What can you tell me about the Chersonese Region?",
+              "_meta": "Player_Burac_TutorialGate_d_05"
+            }
+          },
+          {
+            "statement": {
+              "_text": "Farewell.",
+              "_meta": "Merchant_Generic_Farewell_01"
+            }
+          }
+        ],
+        "_position": {
+          "x": 6615.0,
+          "y": 4020.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "112"
+      },
+      {
+        "statement": {
+          "_text": "Waiting on some scouts to come back from reconnaissance. Up to date information on what’s happening in the surrounding region is essential to keeping Cierzo safe.",
+          "_meta": "Burac_TutorialGate_13"
+        },
+        "_actorName": "name_unpc_buraccarillon_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 6345.0,
+          "y": 4470.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "120"
+      },
+      {
+        "_condition": {
+          "quest": {
+            "_value": 2
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_KnowQuest"
+        },
+        "_position": {
+          "x": 6390.0,
+          "y": 4605.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "122"
+      },
+      {
+        "statement": {
+          "_text": "There's a bandit group I suspect is planning to attack us, and I want us to be prepared. I may be a skilled warrior, but against two dozen foes even I would be swept aside.",
+          "_meta": "Burac_TutorialGate_14"
+        },
+        "_actorName": "name_unpc_buraccarillon_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 6210.0,
+          "y": 4755.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "125"
+      },
+      {
+        "statement": {
+          "_text": "My warriors and I are the last line of defense for Cierzo. We decide what enters and what is driven from our walls. We bear the heaviest responsibility in this tribe.",
+          "_meta": "Burac_TutorialGate_15"
+        },
+        "_actorName": "name_unpc_buraccarillon_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 6285.0,
+          "y": 4935.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "127"
+      },
+      {
+        "_position": {
+          "x": 6420.0,
+          "y": 5055.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "129"
+      },
+      {
+        "statement": {
+          "_text": "There's several packs of hyenas to the North that are muscling into our hunting grounds. There are some nasty Troglodytes in the area too. I suspect they're jockeying for territory and prey.",
+          "_meta": "Burac_TutorialGate_08"
+        },
+        "_actorName": "name_unpc_buraccarillon_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 6795.0,
+          "y": 4380.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "130"
+      },
+      {
+        "statement": {
+          "_text": "Stay far away from the North-East in particular. I've heard rumors of a Scourge Beast, a Shelled Horror specifically, near the Ghost Pass. It’s probably just a rumor, but better safe than sorry, I say.",
+          "_meta": "Burac_TutorialGate_09"
+        },
+        "_actorName": "name_unpc_buraccarillon_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 6810.0,
+          "y": 4515.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "132"
+      },
+      {
+        "statement": {
+          "_text": "Don't forget that two other tribes are in open hostility to us right now. Be wary of the Montcalm tribe in the Northern Hills and the band of Kazite piratescoast.",
+          "_meta": "Burac_TutorialGate_10"
+        },
+        "_actorName": "name_unpc_buraccarillon_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 6840.0,
+          "y": 4635.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "134"
+      },
+      {
+        "_condition": {
+          "questRef": {
+            "_value": {
+              "m_itemID": 7011004
+            }
+          },
+          "_invert": true,
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_IsQuestCompleted"
+        },
+        "_position": {
+          "x": 6930.0,
+          "y": 4770.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "136"
+      },
+      {
+        "statement": {
+          "_text": "Then there's the matter of several bandit crews deciding to join forces in the abandoned fortress, Vendavel along the southern coast. Stay well away from it. They’ve taken to enslaving anyone they capture.",
+          "_meta": "Burac_TutorialGate_11"
+        },
+        "_actorName": "name_unpc_buraccarillon_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 6705.0,
+          "y": 5010.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "140"
+      },
+      {
+        "_position": {
+          "x": 7095.0,
+          "y": 5190.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "142"
+      },
+      {
+        "_position": {
+          "x": 7560.0,
+          "y": 4440.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "143"
+      },
+      {
+        "statement": {
+          "_text": "Of course. If you favor 2-handed blades, but wish you had a more effective defense, I could teach you how to perform a Pommel Counter. It will allow you to confuse your foes and chain from defense to offense with style. How does 50 Silvers for a lesson sound?",
+          "_meta": "Trainer_Micro_PommelCounter_01"
+        },
+        "_actorName": "name_unpc_buraccarillon_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 7050.0,
+          "y": 2685.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "144"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "Deal, here’s your money.",
+              "_meta": "Merchant_Generic_Pay_01"
+            },
+            "condition": {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "827bf9b2-76f5-49c6-9e00-36db9bb4ba3b"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 9000010
+                }
+              },
+              "minAmount": {
+                "_value": 50
+              },
+              "itemMustBeEquiped": {},
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            }
+          },
+          {
+            "statement": {
+              "_text": "Farewell.",
+              "_meta": "Merchant_Generic_Farewell_01"
+            }
+          }
+        ],
+        "_position": {
+          "x": 7305.0,
+          "y": 2820.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "146"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "fromCharacter": {
+                "_name": "gInstigator",
+                "_targetVariableID": "827bf9b2-76f5-49c6-9e00-36db9bb4ba3b"
+              },
+              "Items": [
+                {
+                  "_value": {
+                    "m_itemID": 9000010
+                  }
+                }
+              ],
+              "Amount": [
+                {
+                  "_value": 50
+                }
+              ],
+              "$type": "NodeCanvas.Tasks.Actions.RemoveItem"
+            },
+            {
+              "_location": {
+                "_key": "TRAIN_BURAC"
+              },
+              "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 7125.0,
+          "y": 2970.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "158"
+      },
+      {
+        "statement": {
+          "_text": "This requires careful timing. Hold the blade horizontal and on impact, strike back with the flat of the blade. Then, bash them swiftly with the pommel before they can react! They will be dazed and confused as you seamlessly return to the offense!",
+          "_meta": "Trainer_Micro_PommelCounter_02"
+        },
+        "_actorName": "name_unpc_buraccarillon_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 7020.0,
+          "y": 3105.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "170"
+      },
+      {
+        "_position": {
+          "x": 7155.0,
+          "y": 3240.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "172"
+      },
+      {
+        "_position": {
+          "x": 7575.0,
+          "y": 3045.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "173"
+      },
+      {
+        "statement": {
+          "_text": "What’s got you worried?",
+          "_meta": "Needs_tutorial_01"
+        },
+        "_actorName": "name_unpc_buraccarillon_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 7665.0,
+          "y": 2715.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "174"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "I’ve noticed that the longer I stay out, the less maximum health and stamina I have.",
+              "_meta": "Player_needs_tutorial_a_01"
+            }
+          },
+          {
+            "statement": {
+              "_text": "How important is it to eat, drink and sleep?",
+              "_meta": "Player_needs_tutorial_a_02"
+            }
+          },
+          {
+            "statement": {
+              "_text": "How do I deal with dangerous temperatures?",
+              "_meta": "Player_needs_tutorial_a_03"
+            }
+          },
+          {
+            "statement": {
+              "_text": "What can you tell me about the Chersonese Region?",
+              "_meta": "Player_Burac_TutorialGate_d_05"
+            }
+          }
+        ],
+        "_position": {
+          "x": 8025.0,
+          "y": 3195.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "176"
+      },
+      {
+        "statement": {
+          "_text": "Pay attention to what your body tells you. As you push yourself, your maximum reserves of life and stamina will be diminished, and you will only be able to use a fraction of your normal maximum.",
+          "_meta": "Needs_tutorial_02"
+        },
+        "_actorName": "name_unpc_buraccarillon_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 7350.0,
+          "y": 3480.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "186"
+      },
+      {
+        "statement": {
+          "_text": "Sleeping in a tent or a bed will restore your reserves of stamina and life. Always be mindful of your limits and do not push them more than you need to. There is no shame in taking time to set up camp when you are exhausted.",
+          "_meta": "Needs_tutorial_03"
+        },
+        "_actorName": "name_unpc_buraccarillon_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 7335.0,
+          "y": 3615.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "188"
+      },
+      {
+        "_targetNode": {
+          "$ref": "11"
+        },
+        "_position": {
+          "x": 8040.0,
+          "y": 4185.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.GoToNode",
+        "$id": "190"
+      },
+      {
+        "statement": {
+          "_text": "Your body has needs. Hunger, thirst and exhaustion are persistent foes, so eat and drink when you need to. With a little preparation, you will find it easy enough to take care of yourself. ",
+          "_meta": "Needs_tutorial_04"
+        },
+        "_actorName": "name_unpc_buraccarillon_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 7755.0,
+          "y": 3540.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "191"
+      },
+      {
+        "statement": {
+          "_text": "Rest is the best remedy for a wounded body. If your reserves of life and stamina are diminished or you are gravely injured, it’s a good idea to rest in a bedroll or a tent. You will feel much more capable after a good rest.",
+          "_meta": "Needs_tutorial_05"
+        },
+        "_actorName": "name_unpc_buraccarillon_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 7725.0,
+          "y": 3645.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "193"
+      },
+      {
+        "statement": {
+          "_text": "If you're near civilization, a night at the inn will take care of your needs in exchange for a little silver.",
+          "_meta": "Needs_tutorial_06"
+        },
+        "_actorName": "name_unpc_buraccarillon_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 7740.0,
+          "y": 3765.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "195"
+      },
+      {
+        "statement": {
+          "_text": "Be mindful of the weather and climate you travel in. When the cold rolls in, you should dress warmly and use campfires or torches for warmth. If you stay cold for too long you may get sick, and eventually freeze to death.",
+          "_meta": "Needs_tutorial_07"
+        },
+        "_actorName": "name_unpc_buraccarillon_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 8175.0,
+          "y": 3585.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "197"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "_zOO3Vi6eEG8pIE2lZpYJw"
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 8025.0,
+          "y": 2730.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "199"
+      },
+      {
+        "_action": {
+          "QuestEventRef": {
+            "m_eventUID": "lwFR3kEkyEWqlMH8swTnxQ"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+        },
+        "_position": {
+          "x": 7980.0,
+          "y": 2820.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "202"
+      },
+      {
+        "statement": {
+          "_text": "Alright, I feel comfortable letting you outside the walls. Use the door whenever you want to head out. Stay safe out there.",
+          "_meta": "Burac_TutorialGate_17"
+        },
+        "_actorName": "name_unpc_buraccarillon_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 7920.0,
+          "y": 2895.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "205"
+      },
+      {
+        "_position": {
+          "x": 8130.0,
+          "y": 3030.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "207"
+      },
+      {
+        "_targetNode": {
+          "statement": {
+            "_text": "Well, you’ve got the essentials at least. Here, I'll teach you a <color=#00CCFF><b>skill</b></color>. Mastering these is the key to survival out in the wild. Want me to teach you one for the weapon you’re currently holding?",
+            "_meta": "Burac_TutorialGate_16"
+          },
+          "_actorName": "name_unpc_buraccarillon_01",
+          "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+          "_position": {
+            "x": 9870.0,
+            "y": 2115.0
+          },
+          "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+          "$id": "209"
+        },
+        "_position": {
+          "x": 8325.0,
+          "y": 2940.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.GoToNode",
+        "$id": "208"
+      },
+      {
+        "_targetNode": {
+          "$ref": "209"
+        },
+        "_position": {
+          "x": 8280.0,
+          "y": 2580.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.GoToNode",
+        "$id": "211"
+      },
+      {
+        "_position": {
+          "x": 8430.0,
+          "y": 2475.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "212"
+      },
+      {
+        "_condition": {
+          "checkMode": "AnyTrueSuffice",
+          "conditions": [
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "827bf9b2-76f5-49c6-9e00-36db9bb4ba3b"
+              },
+              "externalCondtion": {
+                "_name": "_Cierzo_Blackboard/GoOutsideCondition",
+                "_targetVariableID": "430d8383-8111-4d70-add6-c69f86fb7073"
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_ExternalCondition"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "_zOO3Vi6eEG8pIE2lZpYJw"
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ConditionList"
+        },
+        "_position": {
+          "x": 7800.0,
+          "y": 1815.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "213"
+      },
+      {
+        "_action": {
+          "QuestEventRef": {
+            "m_eventUID": "90F4cEvSzEW6e15114mm1w"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+        },
+        "_position": {
+          "x": 7620.0,
+          "y": 1950.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "221"
+      },
+      {
+        "statement": {
+          "_text": "Hold up there, [PlayerName]! Where do you think you’re going?",
+          "_meta": "Burac_TutorialGate_01"
+        },
+        "_actorName": "name_unpc_buraccarillon_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 8055.0,
+          "y": 2130.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "224"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "I’m going outside.",
+              "_meta": "Player_Burac_TutorialGate_a_01"
+            }
+          }
+        ],
+        "_position": {
+          "x": 8295.0,
+          "y": 2265.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "226"
+      },
+      {
+        "statement": {
+          "_text": "Not like that you aren't! You need at least an <color=#00CCFF><b>equipped weapon</b></color>, a <color=#00CCFF><b>waterskin</b></color> and an <color=#00CCFF><b> equipped backpack</b></color> before you're ready to face the outside world.",
+          "_meta": "Burac_TutorialGate_02"
+        },
+        "_actorName": "name_unpc_buraccarillon_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 8355.0,
+          "y": 2370.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "230"
+      },
+      {
+        "statement": {
+          "_text": "If I let you adventure outside without even the most basic of equipment, you'd be marching to your own death. You're not heading out for a picnic!",
+          "_meta": "Burac_TutorialGate_03"
+        },
+        "_actorName": "name_unpc_buraccarillon_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 8550.0,
+          "y": 2550.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "232"
+      },
+      {
+        "statement": {
+          "_text": "If you're pressed to find a weapon, make yourself a <color=#00CCFF><b>quarterstaff</b></color> from some tree wood. You can also craft a <color=#00CCFF><b>backpack</b></color>, although I'm more than certain you have one lying around at home.",
+          "_meta": "Burac_TutorialGate_04"
+        },
+        "_actorName": "name_unpc_buraccarillon_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 8805.0,
+          "y": 2685.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "234"
+      },
+      {
+        "statement": {
+          "_text": "I'm also sure you can find a spare <color=#00CCFF><b>waterskin</b></color> by the <color=#00CCFF><b>water purifier</b></color> on the town beach. Don't forget to fill it up while you're there!",
+          "_meta": "Burac_TutorialGate_07"
+        },
+        "_actorName": "name_unpc_buraccarillon_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 8940.0,
+          "y": 2865.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "236"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "But I need to get out! My life depends on it!",
+              "_meta": "Player_Burac_TutorialGate_a_04"
+            }
+          },
+          {
+            "statement": {
+              "_text": "Alright. I'll make sure I'm prepared before I head out.",
+              "_meta": "Player_Burac_TutorialGate_b_04"
+            }
+          }
+        ],
+        "_position": {
+          "x": 9105.0,
+          "y": 3015.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "238"
+      },
+      {
+        "statement": {
+          "_text": "And I can't let you out in this state. Your life also depends on it. I refuse to let someone needlessly be torn to shreds by a hyena or enslaved by pirates because they were unprepared!",
+          "_meta": "Burac_TutorialGate_05"
+        },
+        "_actorName": "name_unpc_buraccarillon_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 8850.0,
+          "y": 3180.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "244"
+      },
+      {
+        "statement": {
+          "_text": "Come back when you're seriously ready. And don't even think about using the <color=#00CCFF><b>storage tunnel</b></color> under the <color=#00CCFF><b>lighthouse</b></color> to sneak out! There's a pair of Troglodytes in there that we haven't had time to put down!",
+          "_meta": "Burac_TutorialGate_06"
+        },
+        "_actorName": "name_unpc_buraccarillon_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 8850.0,
+          "y": 3315.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "246"
+      },
+      {
+        "_targetNode": {
+          "$ref": "11"
+        },
+        "_position": {
+          "x": 9525.0,
+          "y": 3555.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.GoToNode",
+        "$id": "248"
+      },
+      {
+        "$ref": "209"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "_location": {
+                "_key": "BURAC_FREE_SKILL"
+              },
+              "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "lwFR3kEkyEWqlMH8swTnxQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "k550tHkv5UWvMVhLCABppQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 9173.0,
+          "y": 2497.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "249"
+      },
+      {
+        "_action": {
+          "SilverAmount": {},
+          "XpAmount": {},
+          "ItemReward": [
+            {
+              "Item": {
+                "_value": {
+                  "m_itemID": 5600010
+                }
+              },
+              "Quantity": {
+                "_value": 1
+              },
+              "TryToEquip": {}
+            }
+          ],
+          "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+        },
+        "_position": {
+          "x": 9870.0,
+          "y": 4515.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "258"
+      },
+      {
+        "statement": {
+          "_text": "There you go! Mastering skills like this one is the key to survival out in the wild. You should look for Trainers whenever you visit a new town. Some are in the open in towns, near training equipment. Others need to be sought out and chatted with first.",
+          "_meta": "Burac_TutorialGate_16-b"
+        },
+        "_actorName": "name_unpc_buraccarillon_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 9780.0,
+          "y": 4635.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "268"
+      },
+      {
+        "statement": {
+          "_text": "Alright, I feel comfortable letting you outside the walls. Use the door whenever you want to head out. Stay safe out there.",
+          "_meta": "Burac_TutorialGate_17"
+        },
+        "_actorName": "name_unpc_buraccarillon_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 9780.0,
+          "y": 4755.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "270"
+      },
+      {
+        "_targetNode": {
+          "$ref": "11"
+        },
+        "_position": {
+          "x": 9870.0,
+          "y": 5025.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.GoToNode",
+        "$id": "272"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "Yes.",
+              "_meta": "Merchant_Generic_Yes_01"
+            }
+          },
+          {
+            "statement": {
+              "_text": "I think I want to learn one for a different weapon, give me a minute Burac.",
+              "_meta": "Player_Burac_TutorialGate_b_16"
+            }
+          }
+        ],
+        "_position": {
+          "x": 10050.0,
+          "y": 2235.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "273"
+      },
+      {
+        "_condition": {
+          "checkMode": "AnyTrueSuffice",
+          "conditions": [
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "827bf9b2-76f5-49c6-9e00-36db9bb4ba3b"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 2000060
+                }
+              },
+              "minAmount": {
+                "_value": 1
+              },
+              "itemMustBeEquiped": {
+                "_value": true
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            },
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "827bf9b2-76f5-49c6-9e00-36db9bb4ba3b"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 2000010
+                }
+              },
+              "minAmount": {
+                "_value": 1
+              },
+              "itemMustBeEquiped": {
+                "_value": true
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            },
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "827bf9b2-76f5-49c6-9e00-36db9bb4ba3b"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 2000050
+                }
+              },
+              "minAmount": {
+                "_value": 1
+              },
+              "itemMustBeEquiped": {
+                "_value": true
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            },
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "827bf9b2-76f5-49c6-9e00-36db9bb4ba3b"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 2000020
+                }
+              },
+              "minAmount": {
+                "_value": 1
+              },
+              "itemMustBeEquiped": {
+                "_value": true
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ConditionList"
+        },
+        "_position": {
+          "x": 10020.0,
+          "y": 2385.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "279"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "_location": {
+                "_key": "TRAIN_MARKUS"
+              },
+              "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "lwFR3kEkyEWqlMH8swTnxQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "k550tHkv5UWvMVhLCABppQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 9795.0,
+          "y": 2595.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "306"
+      },
+      {
+        "_condition": {
+          "checkMode": "AnyTrueSuffice",
+          "conditions": [
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "827bf9b2-76f5-49c6-9e00-36db9bb4ba3b"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 2010050
+                }
+              },
+              "minAmount": {
+                "_value": 1
+              },
+              "itemMustBeEquiped": {
+                "_value": true
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            },
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "827bf9b2-76f5-49c6-9e00-36db9bb4ba3b"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 2010000
+                }
+              },
+              "minAmount": {
+                "_value": 1
+              },
+              "itemMustBeEquiped": {
+                "_value": true
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            },
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "827bf9b2-76f5-49c6-9e00-36db9bb4ba3b"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 2010040
+                }
+              },
+              "minAmount": {
+                "_value": 1
+              },
+              "itemMustBeEquiped": {
+                "_value": true
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            },
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "827bf9b2-76f5-49c6-9e00-36db9bb4ba3b"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 2010030
+                }
+              },
+              "minAmount": {
+                "_value": 1
+              },
+              "itemMustBeEquiped": {
+                "_value": true
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ConditionList"
+        },
+        "_position": {
+          "x": 10230.0,
+          "y": 2580.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "315"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "_location": {
+                "_key": "TRAIN_ODA"
+              },
+              "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "lwFR3kEkyEWqlMH8swTnxQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "k550tHkv5UWvMVhLCABppQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 9991.0,
+          "y": 2806.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "342"
+      },
+      {
+        "_condition": {
+          "checkMode": "AnyTrueSuffice",
+          "conditions": [
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "827bf9b2-76f5-49c6-9e00-36db9bb4ba3b"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 2020130
+                }
+              },
+              "minAmount": {
+                "_value": 1
+              },
+              "itemMustBeEquiped": {
+                "_value": true
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            },
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "827bf9b2-76f5-49c6-9e00-36db9bb4ba3b"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 2020010
+                }
+              },
+              "minAmount": {
+                "_value": 1
+              },
+              "itemMustBeEquiped": {
+                "_value": true
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            },
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "827bf9b2-76f5-49c6-9e00-36db9bb4ba3b"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 2020050
+                }
+              },
+              "minAmount": {
+                "_value": 1
+              },
+              "itemMustBeEquiped": {
+                "_value": true
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            },
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "827bf9b2-76f5-49c6-9e00-36db9bb4ba3b"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 2020020
+                }
+              },
+              "minAmount": {
+                "_value": 1
+              },
+              "itemMustBeEquiped": {
+                "_value": true
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ConditionList"
+        },
+        "_position": {
+          "x": 10380.0,
+          "y": 2775.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "351"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "_location": {
+                "_key": "TRAIN_TALERON"
+              },
+              "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "lwFR3kEkyEWqlMH8swTnxQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "k550tHkv5UWvMVhLCABppQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 10125.0,
+          "y": 3015.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "378"
+      },
+      {
+        "_condition": {
+          "checkMode": "AnyTrueSuffice",
+          "conditions": [
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "827bf9b2-76f5-49c6-9e00-36db9bb4ba3b"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 2100020
+                }
+              },
+              "minAmount": {
+                "_value": 1
+              },
+              "itemMustBeEquiped": {
+                "_value": true
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            },
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "827bf9b2-76f5-49c6-9e00-36db9bb4ba3b"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 2100080
+                }
+              },
+              "minAmount": {
+                "_value": 1
+              },
+              "itemMustBeEquiped": {
+                "_value": true
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            },
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "827bf9b2-76f5-49c6-9e00-36db9bb4ba3b"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 2100000
+                }
+              },
+              "minAmount": {
+                "_value": 1
+              },
+              "itemMustBeEquiped": {
+                "_value": true
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ConditionList"
+        },
+        "_position": {
+          "x": 10530.0,
+          "y": 2985.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "387"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "_location": {
+                "_key": "TRAIN_BURAC"
+              },
+              "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "lwFR3kEkyEWqlMH8swTnxQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "k550tHkv5UWvMVhLCABppQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 10320.0,
+          "y": 3225.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "408"
+      },
+      {
+        "_condition": {
+          "checkMode": "AnyTrueSuffice",
+          "conditions": [
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "827bf9b2-76f5-49c6-9e00-36db9bb4ba3b"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 2110040
+                }
+              },
+              "minAmount": {
+                "_value": 1
+              },
+              "itemMustBeEquiped": {
+                "_value": true
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            },
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "827bf9b2-76f5-49c6-9e00-36db9bb4ba3b"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 2110010
+                }
+              },
+              "minAmount": {
+                "_value": 1
+              },
+              "itemMustBeEquiped": {
+                "_value": true
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            },
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "827bf9b2-76f5-49c6-9e00-36db9bb4ba3b"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 2110000
+                }
+              },
+              "minAmount": {
+                "_value": 1
+              },
+              "itemMustBeEquiped": {
+                "_value": true
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            },
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "827bf9b2-76f5-49c6-9e00-36db9bb4ba3b"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 2110030
+                }
+              },
+              "minAmount": {
+                "_value": 1
+              },
+              "itemMustBeEquiped": {
+                "_value": true
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ConditionList"
+        },
+        "_position": {
+          "x": 10695.0,
+          "y": 3195.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "417"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "_location": {
+                "_key": "TRAIN_SAGARD_BATTLEBORN"
+              },
+              "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "lwFR3kEkyEWqlMH8swTnxQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "k550tHkv5UWvMVhLCABppQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 10485.0,
+          "y": 3435.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "444"
+      },
+      {
+        "_condition": {
+          "checkMode": "AnyTrueSuffice",
+          "conditions": [
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "827bf9b2-76f5-49c6-9e00-36db9bb4ba3b"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 2120050
+                }
+              },
+              "minAmount": {
+                "_value": 1
+              },
+              "itemMustBeEquiped": {
+                "_value": true
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            },
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "827bf9b2-76f5-49c6-9e00-36db9bb4ba3b"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 2120080
+                }
+              },
+              "minAmount": {
+                "_value": 1
+              },
+              "itemMustBeEquiped": {
+                "_value": true
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            },
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "827bf9b2-76f5-49c6-9e00-36db9bb4ba3b"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 2120080
+                }
+              },
+              "minAmount": {
+                "_value": 1
+              },
+              "itemMustBeEquiped": {
+                "_value": true
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            },
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "827bf9b2-76f5-49c6-9e00-36db9bb4ba3b"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 2120020
+                }
+              },
+              "minAmount": {
+                "_value": 1
+              },
+              "itemMustBeEquiped": {
+                "_value": true
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ConditionList"
+        },
+        "_position": {
+          "x": 10890.0,
+          "y": 3390.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "453"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "_location": {
+                "_key": "TRAIN_SOERAN"
+              },
+              "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "lwFR3kEkyEWqlMH8swTnxQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "k550tHkv5UWvMVhLCABppQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 10695.0,
+          "y": 3585.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "480"
+      },
+      {
+        "_condition": {
+          "checkMode": "AnyTrueSuffice",
+          "conditions": [
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "827bf9b2-76f5-49c6-9e00-36db9bb4ba3b"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 2130040
+                }
+              },
+              "minAmount": {
+                "_value": 1
+              },
+              "itemMustBeEquiped": {
+                "_value": true
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            },
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "827bf9b2-76f5-49c6-9e00-36db9bb4ba3b"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 2130010
+                }
+              },
+              "minAmount": {
+                "_value": 1
+              },
+              "itemMustBeEquiped": {
+                "_value": true
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            },
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "827bf9b2-76f5-49c6-9e00-36db9bb4ba3b"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 2130110
+                }
+              },
+              "minAmount": {
+                "_value": 1
+              },
+              "itemMustBeEquiped": {
+                "_value": true
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            },
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "827bf9b2-76f5-49c6-9e00-36db9bb4ba3b"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 2130020
+                }
+              },
+              "minAmount": {
+                "_value": 1
+              },
+              "itemMustBeEquiped": {
+                "_value": true
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            },
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "827bf9b2-76f5-49c6-9e00-36db9bb4ba3b"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 2130080
+                }
+              },
+              "minAmount": {
+                "_value": 1
+              },
+              "itemMustBeEquiped": {
+                "_value": true
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            },
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "827bf9b2-76f5-49c6-9e00-36db9bb4ba3b"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 2130000
+                }
+              },
+              "minAmount": {
+                "_value": 1
+              },
+              "itemMustBeEquiped": {
+                "_value": true
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            },
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "827bf9b2-76f5-49c6-9e00-36db9bb4ba3b"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 2130130
+                }
+              },
+              "minAmount": {
+                "_value": 1
+              },
+              "itemMustBeEquiped": {
+                "_value": true
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ConditionList"
+        },
+        "_position": {
+          "x": 11070.0,
+          "y": 3600.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "489"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "_location": {
+                "_key": "TRAIN_KING_SIMEON"
+              },
+              "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "lwFR3kEkyEWqlMH8swTnxQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "k550tHkv5UWvMVhLCABppQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 10935.0,
+          "y": 3885.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "534"
+      },
+      {
+        "_condition": {
+          "checkMode": "AnyTrueSuffice",
+          "conditions": [
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "827bf9b2-76f5-49c6-9e00-36db9bb4ba3b"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 2130030
+                }
+              },
+              "minAmount": {
+                "_value": 1
+              },
+              "itemMustBeEquiped": {
+                "_value": true
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            },
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "827bf9b2-76f5-49c6-9e00-36db9bb4ba3b"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 2140000
+                }
+              },
+              "minAmount": {
+                "_value": 1
+              },
+              "itemMustBeEquiped": {},
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            },
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "827bf9b2-76f5-49c6-9e00-36db9bb4ba3b"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 2130082
+                }
+              },
+              "minAmount": {
+                "_value": 1
+              },
+              "itemMustBeEquiped": {
+                "_value": true
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            },
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "827bf9b2-76f5-49c6-9e00-36db9bb4ba3b"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 2140020
+                }
+              },
+              "minAmount": {
+                "_value": 1
+              },
+              "itemMustBeEquiped": {
+                "_value": true
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            },
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "827bf9b2-76f5-49c6-9e00-36db9bb4ba3b"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 2140010
+                }
+              },
+              "minAmount": {
+                "_value": 1
+              },
+              "itemMustBeEquiped": {
+                "_value": true
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ConditionList"
+        },
+        "_position": {
+          "x": 11325.0,
+          "y": 3870.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "543"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "_location": {
+                "_key": "TRAIN_WANDERING_MERCENARY"
+              },
+              "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "lwFR3kEkyEWqlMH8swTnxQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "k550tHkv5UWvMVhLCABppQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 11145.0,
+          "y": 4095.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "576"
+      },
+      {
+        "_condition": {
+          "checkMode": "AnyTrueSuffice",
+          "conditions": [
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "827bf9b2-76f5-49c6-9e00-36db9bb4ba3b"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 2200000
+                }
+              },
+              "minAmount": {
+                "_value": 1
+              },
+              "itemMustBeEquiped": {
+                "_value": true
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            },
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "827bf9b2-76f5-49c6-9e00-36db9bb4ba3b"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 2200020
+                }
+              },
+              "minAmount": {
+                "_value": 1
+              },
+              "itemMustBeEquiped": {
+                "_value": true
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            },
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "827bf9b2-76f5-49c6-9e00-36db9bb4ba3b"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 2200010
+                }
+              },
+              "minAmount": {
+                "_value": 1
+              },
+              "itemMustBeEquiped": {
+                "_value": true
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ConditionList"
+        },
+        "_position": {
+          "x": 11535.0,
+          "y": 4110.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "585"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "SilverAmount": {},
+              "XpAmount": {},
+              "ItemReward": [
+                {
+                  "Item": {
+                    "_value": {
+                      "m_itemID": 8100100
+                    }
+                  },
+                  "Quantity": {
+                    "_value": 1
+                  },
+                  "TryToEquip": {}
+                }
+              ],
+              "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "lwFR3kEkyEWqlMH8swTnxQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "k550tHkv5UWvMVhLCABppQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 11340.0,
+          "y": 4320.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "606"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "SilverAmount": {},
+              "XpAmount": {},
+              "ItemReward": [
+                {
+                  "Item": {
+                    "_value": {
+                      "m_itemID": 8200110
+                    }
+                  },
+                  "Quantity": {
+                    "_value": 1
+                  },
+                  "TryToEquip": {}
+                }
+              ],
+              "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "lwFR3kEkyEWqlMH8swTnxQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "k550tHkv5UWvMVhLCABppQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 11730.0,
+          "y": 4395.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "622"
+      },
+      {
+        "_position": {
+          "x": 10365.0,
+          "y": 2400.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "638"
+      }
+    ],
+    "connections": [
+      {
+        "_sourceNode": {
+          "$ref": "2"
+        },
+        "_targetNode": {
+          "$ref": "9"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "2"
+        },
+        "_targetNode": {
+          "$ref": "213"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "9"
+        },
+        "_targetNode": {
+          "$ref": "11"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "11"
+        },
+        "_targetNode": {
+          "$ref": "50"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "11"
+        },
+        "_targetNode": {
+          "$ref": "144"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "11"
+        },
+        "_targetNode": {
+          "$ref": "174"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "11"
+        },
+        "_targetNode": {
+          "$ref": "199"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "11"
+        },
+        "_targetNode": {
+          "$ref": "211"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "11"
+        },
+        "_targetNode": {
+          "$ref": "212"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "50"
+        },
+        "_targetNode": {
+          "$ref": "59"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "50"
+        },
+        "_targetNode": {
+          "$ref": "99"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "59"
+        },
+        "_targetNode": {
+          "$ref": "61"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "61"
+        },
+        "_targetNode": {
+          "$ref": "67"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "61"
+        },
+        "_targetNode": {
+          "$ref": "99"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "67"
+        },
+        "_targetNode": {
+          "$ref": "70"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "67"
+        },
+        "_targetNode": {
+          "$ref": "105"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "70"
+        },
+        "_targetNode": {
+          "$ref": "72"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "72"
+        },
+        "_targetNode": {
+          "$ref": "74"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "74"
+        },
+        "_targetNode": {
+          "$ref": "78"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "78"
+        },
+        "_targetNode": {
+          "$ref": "80"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "80"
+        },
+        "_targetNode": {
+          "$ref": "82"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "82"
+        },
+        "_targetNode": {
+          "$ref": "88"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "82"
+        },
+        "_targetNode": {
+          "$ref": "102"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "88"
+        },
+        "_targetNode": {
+          "$ref": "90"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "90"
+        },
+        "_targetNode": {
+          "$ref": "92"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "92"
+        },
+        "_targetNode": {
+          "$ref": "98"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "92"
+        },
+        "_targetNode": {
+          "$ref": "101"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "102"
+        },
+        "_targetNode": {
+          "$ref": "104"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "105"
+        },
+        "_targetNode": {
+          "$ref": "110"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "110"
+        },
+        "_targetNode": {
+          "$ref": "72"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "99"
+        },
+        "_targetNode": {
+          "$ref": "112"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "112"
+        },
+        "_targetNode": {
+          "$ref": "120"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "112"
+        },
+        "_targetNode": {
+          "$ref": "130"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "112"
+        },
+        "_targetNode": {
+          "$ref": "143"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "120"
+        },
+        "_targetNode": {
+          "$ref": "122"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "122"
+        },
+        "_targetNode": {
+          "$ref": "125"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "122"
+        },
+        "_targetNode": {
+          "$ref": "127"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "125"
+        },
+        "_targetNode": {
+          "$ref": "127"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "127"
+        },
+        "_targetNode": {
+          "$ref": "129"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "130"
+        },
+        "_targetNode": {
+          "$ref": "132"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "132"
+        },
+        "_targetNode": {
+          "$ref": "134"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "134"
+        },
+        "_targetNode": {
+          "$ref": "136"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "136"
+        },
+        "_targetNode": {
+          "$ref": "140"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "136"
+        },
+        "_targetNode": {
+          "$ref": "142"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "140"
+        },
+        "_targetNode": {
+          "$ref": "142"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "144"
+        },
+        "_targetNode": {
+          "$ref": "146"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "146"
+        },
+        "_targetNode": {
+          "$ref": "158"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "146"
+        },
+        "_targetNode": {
+          "$ref": "173"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "158"
+        },
+        "_targetNode": {
+          "$ref": "170"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "170"
+        },
+        "_targetNode": {
+          "$ref": "172"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "174"
+        },
+        "_targetNode": {
+          "$ref": "176"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "176"
+        },
+        "_targetNode": {
+          "$ref": "186"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "176"
+        },
+        "_targetNode": {
+          "$ref": "191"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "176"
+        },
+        "_targetNode": {
+          "$ref": "197"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "186"
+        },
+        "_targetNode": {
+          "$ref": "188"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "188"
+        },
+        "_targetNode": {
+          "$ref": "190"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "191"
+        },
+        "_targetNode": {
+          "$ref": "193"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "193"
+        },
+        "_targetNode": {
+          "$ref": "195"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "195"
+        },
+        "_targetNode": {
+          "$ref": "190"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "197"
+        },
+        "_targetNode": {
+          "$ref": "190"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "199"
+        },
+        "_targetNode": {
+          "$ref": "202"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "199"
+        },
+        "_targetNode": {
+          "$ref": "208"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "202"
+        },
+        "_targetNode": {
+          "$ref": "205"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "205"
+        },
+        "_targetNode": {
+          "$ref": "207"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "213"
+        },
+        "_targetNode": {
+          "$ref": "221"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "213"
+        },
+        "_targetNode": {
+          "$ref": "224"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "221"
+        },
+        "_targetNode": {
+          "$ref": "9"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "224"
+        },
+        "_targetNode": {
+          "$ref": "226"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "226"
+        },
+        "_targetNode": {
+          "$ref": "230"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "230"
+        },
+        "_targetNode": {
+          "$ref": "232"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "232"
+        },
+        "_targetNode": {
+          "$ref": "234"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "234"
+        },
+        "_targetNode": {
+          "$ref": "236"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "236"
+        },
+        "_targetNode": {
+          "$ref": "238"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "238"
+        },
+        "_targetNode": {
+          "$ref": "244"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "238"
+        },
+        "_targetNode": {
+          "$ref": "248"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "244"
+        },
+        "_targetNode": {
+          "$ref": "246"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "246"
+        },
+        "_targetNode": {
+          "$ref": "248"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "209"
+        },
+        "_targetNode": {
+          "$ref": "249"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "249"
+        },
+        "_targetNode": {
+          "$ref": "258"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "258"
+        },
+        "_targetNode": {
+          "$ref": "268"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "268"
+        },
+        "_targetNode": {
+          "$ref": "270"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "270"
+        },
+        "_targetNode": {
+          "$ref": "272"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "273"
+        },
+        "_targetNode": {
+          "$ref": "279"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "273"
+        },
+        "_targetNode": {
+          "$ref": "638"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "279"
+        },
+        "_targetNode": {
+          "$ref": "306"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "279"
+        },
+        "_targetNode": {
+          "$ref": "315"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "306"
+        },
+        "_targetNode": {
+          "$ref": "258"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "315"
+        },
+        "_targetNode": {
+          "$ref": "342"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "315"
+        },
+        "_targetNode": {
+          "$ref": "351"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "342"
+        },
+        "_targetNode": {
+          "$ref": "258"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "351"
+        },
+        "_targetNode": {
+          "$ref": "378"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "351"
+        },
+        "_targetNode": {
+          "$ref": "387"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "378"
+        },
+        "_targetNode": {
+          "$ref": "258"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "387"
+        },
+        "_targetNode": {
+          "$ref": "408"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "387"
+        },
+        "_targetNode": {
+          "$ref": "417"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "408"
+        },
+        "_targetNode": {
+          "$ref": "258"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "417"
+        },
+        "_targetNode": {
+          "$ref": "444"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "417"
+        },
+        "_targetNode": {
+          "$ref": "453"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "444"
+        },
+        "_targetNode": {
+          "$ref": "258"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "453"
+        },
+        "_targetNode": {
+          "$ref": "480"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "453"
+        },
+        "_targetNode": {
+          "$ref": "489"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "480"
+        },
+        "_targetNode": {
+          "$ref": "258"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "489"
+        },
+        "_targetNode": {
+          "$ref": "534"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "489"
+        },
+        "_targetNode": {
+          "$ref": "543"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "534"
+        },
+        "_targetNode": {
+          "$ref": "258"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "543"
+        },
+        "_targetNode": {
+          "$ref": "576"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "543"
+        },
+        "_targetNode": {
+          "$ref": "585"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "576"
+        },
+        "_targetNode": {
+          "$ref": "258"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "585"
+        },
+        "_targetNode": {
+          "$ref": "606"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "585"
+        },
+        "_targetNode": {
+          "$ref": "622"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "606"
+        },
+        "_targetNode": {
+          "$ref": "258"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "622"
+        },
+        "_targetNode": {
+          "$ref": "258"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      }
+    ],
+    "localBlackboard": {
+      "_name": "Local Blackboard",
+      "_variables": {
+        "gInstigator": {
+          "_name": "gInstigator",
+          "_id": "827bf9b2-76f5-49c6-9e00-36db9bb4ba3b",
+          "$type": "NodeCanvas.Framework.Variable`1[[Character, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+        }
+      }
+    },
+    "derivedData": {
+      "actorParameters": [
+        {
+          "_keyName": "name_unpc_buraccarillon_01",
+          "_id": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760"
+        }
+      ],
+      "$type": "NodeCanvas.DialogueTrees.DialogueTree+DerivedSerializationData"
+    }
+  },
+  "replace": [
+    "CierzoNewTerrain/_SNPC/_UNPC/NoLongerBlock/UNPC_BuracCarillonA (Helmless)/Dialogue_BuracCarillon/NPC/DialogueTree",
+    "CierzoNewTerrain/_SNPC/_UNPC/NoLongerBlock/UNPC_BuracCarillonA (1)/Dialogue_BuracCarillon/NPC/DialogueTree",
+    "CierzoNewTerrain/_SNPC/_UNPC/NoLongerBlock/UNPC_BuracCarillonA/Dialogue_BuracCarillon/NPC/DialogueTree"
+  ]
+}

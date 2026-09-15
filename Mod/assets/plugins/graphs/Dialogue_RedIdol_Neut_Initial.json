@@ -1,0 +1,449 @@
+{
+  "graph": {
+    "version": 2.92,
+    "type": "NodeCanvas.DialogueTrees.DialogueTreeExt",
+    "translation": {
+      "x": -3460.0,
+      "y": -3478.0
+    },
+    "nodes": [
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "1mFBPI8vNkCmBg0Ao_Imcw"
+          },
+          "_invert": true,
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 4080.0,
+          "y": 3375.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "2"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "QuestEventRef": {
+                "m_eventUID": "1mFBPI8vNkCmBg0Ao_Imcw"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "_location": {
+                "_key": "SPAWN_SCARLET_LICHS_IDOL"
+              },
+              "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 3825.0,
+          "y": 3690.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "5"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "2kjiC2Hkh0uYCB1yk_Ec3A"
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 3750.0,
+          "y": 3825.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "12"
+      },
+      {
+        "_condition": {
+          "quest": {
+            "_value": 1
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_KnowQuest"
+        },
+        "_position": {
+          "x": 3675.0,
+          "y": 3930.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "15"
+      },
+      {
+        "statement": {
+          "_text": "Do not take my idol from this place! I thank you for saving it from the clutches of that vile beast, and I would reward you handsomely if you returned it to my altar within this place. ",
+          "_meta": "Enmerkar_SQ_RedLich_01"
+        },
+        "_actorName": "name_unpc_RedLichIdol_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 3525.0,
+          "y": 4350.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "18"
+      },
+      {
+        "statement": {
+          "_text": "Do not sell it to that man above. He would see to its destruction! Return it to the altar to which it belongs, and I will reward you far greater than that man ever could!",
+          "_meta": "Enmerkar_SQ_RedLich_02"
+        },
+        "_actorName": "name_unpc_RedLichIdol_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 3525.0,
+          "y": 4485.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "20"
+      },
+      {
+        "_position": {
+          "x": 3660.0,
+          "y": 4620.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "22"
+      },
+      {
+        "_action": {
+          "quest": {},
+          "questRef": {
+            "_value": {
+              "m_itemID": 7011622
+            }
+          },
+          "$type": "NodeCanvas.Tasks.Actions.GiveQuest"
+        },
+        "_position": {
+          "x": 3765.0,
+          "y": 4050.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "23"
+      },
+      {
+        "_position": {
+          "x": 4005.0,
+          "y": 3960.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "28"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "fromCharacter": {
+                "_name": "gInstigator",
+                "_targetVariableID": "0483cf6b-da62-4a57-aaed-40f25b4bdf9b"
+              },
+              "Items": [
+                {
+                  "_value": {
+                    "m_itemID": 5600030
+                  }
+                }
+              ],
+              "Amount": [
+                {
+                  "_value": 1
+                }
+              ],
+              "$type": "NodeCanvas.Tasks.Actions.RemoveItem"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "x7hF_Sx8BEWFuEOf3KohGQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 4395.0,
+          "y": 3600.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "29"
+      },
+      {
+        "statement": {
+          "_text": "I thank you mortal, for returning my likeness to its rightful place. My children will hear me much louder and clearer thanks to your efforts. In return, I grant you this dagger. May it be your shining moon in nights to come. ",
+          "_meta": "Enmerkar_SQ_RedLich_03"
+        },
+        "_actorName": "name_unpc_RedLichIdol_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 4425.0,
+          "y": 3885.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "41"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "nllwi4FnR0qN7968EsJ07A"
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 4410.0,
+          "y": 3975.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "43"
+      },
+      {
+        "statement": {
+          "_text": "Say...You share the Aberdeen’s bloodline, do you not? Perhaps we should become more...Acquainted. It would benefit us both greatly.",
+          "_meta": "Enmerkar_SQ_RedLich_04"
+        },
+        "_actorName": "name_unpc_RedLichIdol_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 4260.0,
+          "y": 4110.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "46"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "I’ve read enough books to know this is a bad idea. No thank you!",
+              "_meta": "Player_ Enmerkar_SQ_RedLich_a04"
+            }
+          }
+        ],
+        "_position": {
+          "x": 4335.0,
+          "y": 4245.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "48"
+      },
+      {
+        "statement": {
+          "_text": "Very well. I cannot force you. Regardless of your decision, I thank you. May you never be my enemy, Aberdeen. I have too many already.",
+          "_meta": "Enmerkar_SQ_RedLich_05"
+        },
+        "_actorName": "name_unpc_RedLichIdol_01",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 4260.0,
+          "y": 4425.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "52"
+      },
+      {
+        "_position": {
+          "x": 4410.0,
+          "y": 4605.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "54"
+      },
+      {
+        "_position": {
+          "x": 4710.0,
+          "y": 4095.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "55"
+      }
+    ],
+    "connections": [
+      {
+        "_sourceNode": {
+          "$ref": "2"
+        },
+        "_targetNode": {
+          "$ref": "5"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "2"
+        },
+        "_targetNode": {
+          "$ref": "29"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "5"
+        },
+        "_targetNode": {
+          "$ref": "12"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "12"
+        },
+        "_targetNode": {
+          "$ref": "15"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "12"
+        },
+        "_targetNode": {
+          "$ref": "28"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "15"
+        },
+        "_targetNode": {
+          "$ref": "18"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "15"
+        },
+        "_targetNode": {
+          "$ref": "23"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "18"
+        },
+        "_targetNode": {
+          "$ref": "20"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "20"
+        },
+        "_targetNode": {
+          "$ref": "22"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "23"
+        },
+        "_targetNode": {
+          "$ref": "18"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "29"
+        },
+        "_targetNode": {
+          "$ref": "41"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "41"
+        },
+        "_targetNode": {
+          "$ref": "43"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "43"
+        },
+        "_targetNode": {
+          "$ref": "46"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "43"
+        },
+        "_targetNode": {
+          "$ref": "55"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "46"
+        },
+        "_targetNode": {
+          "$ref": "48"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "48"
+        },
+        "_targetNode": {
+          "$ref": "52"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "52"
+        },
+        "_targetNode": {
+          "$ref": "54"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      }
+    ],
+    "localBlackboard": {
+      "_name": "Local Blackboard",
+      "_variables": {
+        "gInstigator": {
+          "_name": "gInstigator",
+          "_id": "0483cf6b-da62-4a57-aaed-40f25b4bdf9b",
+          "$type": "NodeCanvas.Framework.Variable`1[[Character, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+        }
+      }
+    },
+    "derivedData": {
+      "actorParameters": [
+        {
+          "_keyName": "name_unpc_RedLichIdol_01",
+          "_id": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760"
+        },
+        {
+          "_keyName": "name_unpc_narrator",
+          "_id": "14b13cce-e543-4f76-878f-d8470a636a8b"
+        }
+      ],
+      "$type": "NodeCanvas.DialogueTrees.DialogueTree+DerivedSerializationData"
+    }
+  },
+  "replace": [
+    "Emercar_Dungeon4/Interactions/Loot/DialogueTemplate/NPC/DialogueTree",
+    "Emercar_Dungeon4/Interactions/TheIdol/DialogueTemplate/NPC/DialogueTree"
+  ]
+}

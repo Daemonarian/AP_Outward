@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
 using HarmonyLib;
 using Newtonsoft.Json;
 using NodeCanvas.Framework;
@@ -12,95 +10,75 @@ using UnityEngine;
 
 namespace OutwardArchipelago.Graphs
 {
-    internal class GraphPatcher
+    internal class GraphPatcher : MonoBehaviour
     {
-        private const int MushroomShield = 2300150;
-        private const int BlueSkullEffigy = 6200160;
-        private static readonly Lazy<GraphPatcher> _instance = new(() => new GraphPatcher());
-        public static GraphPatcher Instance => _instance.Value;
+        public static GraphPatcher Instance { get; private set; }
 
         /// <summary>
         /// A cache of all the serialized graph objects by their unique path in the scene hierarchy.
         /// </summary>
-        private IReadOnlyDictionary<string, string> SerializedGraphs = null;
+        private IReadOnlyDictionary<string, FrozenGraphTemplate> TemplatesByPath = null;
 
-        public GraphPatcher()
+        protected void Awake()
         {
+            if (Instance is not null)
+            {
+                return;
+            }
+
+            Instance = this;
+
             LoadCustomGraphAssets();
         }
 
         private void LoadCustomGraphAssets()
         {
-            OutwardArchipelagoMod.Log.LogInfo("Loading graph assets...");
-
-            var graphAssetDir = Path.Combine(OutwardArchipelagoMod.Instance.AssetsPath, "graphs");
-            var graphFiles = Directory.GetFiles(graphAssetDir, "*.json", SearchOption.AllDirectories);
-            var serializedGraphs = new Dictionary<string, string>();
-            foreach (var graphFile in graphFiles)
+            try
             {
-                var graphName = OutwardArchipelagoMod.Instance.GetRelativePath(graphAssetDir, graphFile);
-                graphName = Regex.Replace(graphName, @"\.json$", "", RegexOptions.IgnoreCase);
-                graphName = graphName.Replace("\\", "/");
+                OutwardArchipelagoMod.Log.LogInfo("[GraphPatcher] Loading graph assets...");
 
-                if (string.Equals(graphName, "routing", StringComparison.OrdinalIgnoreCase))
+                var graphAssetDir = Path.Combine(OutwardArchipelagoMod.Instance.ModPath, "graphs");
+
+                var templatesByPath = new Dictionary<string, FrozenGraphTemplate>();
+                foreach (var graphFile in Directory.GetFiles(graphAssetDir, "*.json", SearchOption.TopDirectoryOnly))
                 {
-                    continue;
-                }
-
-                if (serializedGraphs.ContainsKey(graphName))
-                {
-                    OutwardArchipelagoMod.Log.LogWarning($"    duplicate graph asset: {graphName}");
-                    continue;
-                }
-
-                OutwardArchipelagoMod.Log.LogDebug($"  loading graph: {graphName}");
-
-                try
-                {
-                    var graph = File.ReadAllText(graphFile, Encoding.UTF8);
-                    serializedGraphs[graphName] = graph;
-                }
-                catch (Exception e)
-                {
-                    OutwardArchipelagoMod.Log.LogError($"Failed to load graph asset: {graphName}\n{e}");
-                }
-            }
-
-            OutwardArchipelagoMod.Log.LogInfo("  loading routing info...");
-
-            var routingPath = Path.Combine(graphAssetDir, "routing.json");
-            if (File.Exists(routingPath))
-            {
-                var json = File.ReadAllText(routingPath, Encoding.UTF8);
-                var rawManifest = JsonConvert.DeserializeObject<Dictionary<string, List<string>>>(json);
-
-                foreach (var entry in rawManifest)
-                {
-                    var graphName = entry.Key;
-                    if (serializedGraphs.TryGetValue(graphName, out var graph))
+                    try
                     {
-                        foreach (var graphAltName in entry.Value)
+                        var name = Path.GetFileNameWithoutExtension(graphFile);
+                        OutwardArchipelagoMod.Log.LogDebug($"[GraphPatcher]   Processing graph template: {name}");
+
+                        var rawText = File.ReadAllText(graphFile);
+                        var rawTemplate = JsonConvert.DeserializeObject<GraphTemplate>(rawText);
+                        var template = new FrozenGraphTemplate(name, rawTemplate);
+
+                        foreach (var unityPath in template.GraphsToReplace)
                         {
-                            if (!serializedGraphs.ContainsKey(graphAltName))
+                            if (templatesByPath.TryGetValue(unityPath, out var otherTemplate))
                             {
-                                serializedGraphs[graphAltName] = graph;
+                                OutwardArchipelagoMod.Log.LogWarning($"[GraphPatcher] Graph template \"{template.Name}\" specified a path to replace that is already in use by another template \"{otherTemplate.Name}\".");
                             }
                             else
                             {
-                                OutwardArchipelagoMod.Log.LogWarning($"duplicate graph asset defined in routing: {graphAltName}");
+                                templatesByPath[unityPath] = template;
                             }
                         }
                     }
+                    catch (Exception e)
+                    {
+                        OutwardArchipelagoMod.Log.LogError($"[GraphPatcher] An error occurred while processing a graph template: {e}");
+                    }
                 }
+
+                OutwardArchipelagoMod.Log.LogInfo("[GraphPatcher] All graph assets loaded!");
+
+                TemplatesByPath = templatesByPath;
             }
-            else
+            catch (Exception e)
             {
-                OutwardArchipelagoMod.Log.LogWarning("graph routing file not found: assets/graphs/routing.json");
+                OutwardArchipelagoMod.Log.LogError($"[GraphPatcher] An error occurred while loading custom graph assets: {e}");
+
+                TemplatesByPath = new Dictionary<string, FrozenGraphTemplate>();
             }
-
-            OutwardArchipelagoMod.Log.LogInfo("All graph assets loaded!");
-
-            SerializedGraphs = serializedGraphs;
         }
 
         /// <summary>
@@ -112,21 +90,21 @@ namespace OutwardArchipelago.Graphs
         /// <returns>Whether a custom graph asset was found.</returns>
         private bool TryGetGraphForGraphOwner(GraphOwner graphOwner, out Graph graph)
         {
-            DumpGraph(graphOwner, true);
+            DumpGraph(graphOwner);
 
-            if (/* OutwardArchipelagoMod.Instance.IsInArchipelagoGame && */ graphOwner is not null && SerializedGraphs is not null)
+            if (OutwardArchipelagoMod.Instance.IsArchipelagoEnabled && graphOwner is not null && TemplatesByPath is not null)
             {
                 var graphPath = GetGraphPath(graphOwner);
-                if (SerializedGraphs.TryGetValue(graphPath, out var serializedGraph))
+                if (TemplatesByPath.TryGetValue(graphPath, out var template))
                 {
-                    OutwardArchipelagoMod.Log.LogDebug($"Replacing graph with custom asset: {graphPath}");
+                    OutwardArchipelagoMod.Log.LogDebug($"[GraphPatcher] Replacing graph: {graphPath}");
 
                     var graphName = graphOwner.graph?.name ?? $"{graphOwner.name} {graphOwner.graphType.Name}";
                     var graphObjectReferences = (string.IsNullOrEmpty(graphOwner.boundGraphSerialization) ? graphOwner.boundGraphObjectReferences : graphOwner.graph?._objectReferences) ?? new();
 
                     graph = (Graph)ScriptableObject.CreateInstance(graphOwner.graphType);
                     graph.name = graphName;
-                    graph.Deserialize(serializedGraph, true, graphObjectReferences);
+                    graph.Deserialize(template.SerializedGraph, true, graphObjectReferences);
 
                     return true;
                 }
@@ -137,19 +115,18 @@ namespace OutwardArchipelago.Graphs
         }
 
         [Conditional("DEBUG")]
-        private void DumpGraph(GraphOwner graphOwner, bool prePatch)
+        private void DumpGraph(GraphOwner graphOwner)
         {
             if (graphOwner is null)
             {
                 return;
             }
 
-            var patchTag = prePatch ? "original" : "patched";
             var graphPath = GetGraphPath(graphOwner);
             var graphName = graphOwner.graph?.name ?? $"{graphOwner.name} {graphOwner.graphType.Name}";
             var serializedGraph = graphOwner.graph?.Serialize(false, graphOwner.graph._objectReferences) ?? graphOwner.boundGraphSerialization;
 
-            OutwardArchipelagoMod.Log.LogDebug($"DUMP {patchTag} NodeCanvas.Framework.Graph \"{graphPath}/{graphName}\": {serializedGraph}");
+            OutwardArchipelagoMod.Log.LogDebug($"DUMP NodeCanvas.Framework.Graph \"{graphPath}/{graphName}\": {serializedGraph}");
         }
 
         /// <summary>
@@ -182,7 +159,7 @@ namespace OutwardArchipelago.Graphs
             {
                 try
                 {
-                    if (!__instance.initialized && Instance.TryGetGraphForGraphOwner(__instance, out var graph))
+                    if (!__instance.initialized && Instance is not null && Instance.TryGetGraphForGraphOwner(__instance, out var graph))
                     {
                         __instance.initialized = true;
                         __instance.graph = graph;
@@ -193,7 +170,7 @@ namespace OutwardArchipelago.Graphs
                 }
                 catch (Exception e)
                 {
-                    OutwardArchipelagoMod.Log.LogError($"failed to load custom graph asset: {e}");
+                    OutwardArchipelagoMod.Log.LogError($"[GraphPatcher] Failed to load custom graph asset: {e}");
                 }
 
                 return true;

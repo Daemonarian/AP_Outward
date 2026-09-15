@@ -1,0 +1,3379 @@
+{
+  "graph": {
+    "version": 2.92,
+    "type": "NodeCanvas.DialogueTrees.DialogueTreeExt",
+    "translation": {
+      "x": -3810.176,
+      "y": -3712.373
+    },
+    "zoomFactor": 0.6333821,
+    "nodes": [
+      {
+        "statement": {
+          "_text": "This Forge Golem will stay a heap of junk until I find a way to fix it. Not easy to compete with the old masters.",
+          "_meta": "Merchant_Berg_Blacksmith_01"
+        },
+        "_actorName": "name_merchant_bergblacksmith_01 ",
+        "_actorParameterID": "72f85de9-5524-456c-a4d6-4272f391fc70",
+        "_position": {
+          "x": 6255.0,
+          "y": 5475.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "2"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "Browse shop",
+              "_meta": "Merchant_Monsoon_Blacksmith_03"
+            }
+          },
+          {
+            "statement": {
+              "_text": "Craft me something",
+              "_meta": "Merchant_Monsoon_Blacksmith_04"
+            },
+            "condition": {
+              "QuestEventRef": {
+                "m_eventUID": "L7Jlkq3OgUC9mO_U99I_DQ"
+              },
+              "_invert": true,
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            }
+          },
+          {
+            "statement": {
+              "_text": "Collect",
+              "_meta": "Merchant_Generic_Collect_01"
+            },
+            "condition": {
+              "QuestEventRef": {
+                "m_eventUID": "L7Jlkq3OgUC9mO_U99I_DQ"
+              },
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            }
+          },
+          {
+            "statement": {
+              "_text": "I want to have my equipment repaired.",
+              "_meta": "Merchant_Blacksmith_Repair"
+            }
+          },
+          {
+            "statement": {
+              "_text": "No, thanks.",
+              "_meta": "Merchant_Generic_No_02"
+            }
+          }
+        ],
+        "_position": {
+          "x": 6315.0,
+          "y": 5835.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "4"
+      },
+      {
+        "_action": {
+          "Merchant": {
+            "_name": "myMerchant",
+            "_targetVariableID": "816dcd74-5643-46a7-8f61-41ab9c7dad20"
+          },
+          "PlayerCharacter": {
+            "_name": "gInstigator",
+            "_targetVariableID": "51626b6e-5328-4c81-ba8b-3628b32e692e"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.ShopDialogueAction"
+        },
+        "_position": {
+          "x": 5985.0,
+          "y": 6015.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "20"
+      },
+      {
+        "_targetNode": {
+          "statement": {
+            "_text": "Need something else?",
+            "_meta": "Merchant_Monsoon_Blacksmith_02"
+          },
+          "_actorName": "Digger the Blacksmith",
+          "_actorParameterID": "72f85de9-5524-456c-a4d6-4272f391fc70",
+          "_position": {
+            "x": 6570.0,
+            "y": 5610.0
+          },
+          "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+          "$id": "25"
+        },
+        "_position": {
+          "x": 6000.0,
+          "y": 6150.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.GoToNode",
+        "$id": "24"
+      },
+      {
+        "_condition": {
+          "quest": {
+            "_value": 1
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_KnowQuest"
+        },
+        "_position": {
+          "x": 6225.0,
+          "y": 6195.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "27"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "MOSnQaJ9aUi8VNaciTKQHg"
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 6135.0,
+          "y": 6330.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "30"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "quest": {},
+              "questRef": {
+                "_value": {
+                  "m_itemID": 7011609
+                }
+              },
+              "$type": "NodeCanvas.Tasks.Actions.RemoveQuest"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "MOSnQaJ9aUi8VNaciTKQHg"
+              },
+              "RemoveAllStack": true,
+              "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 5970.0,
+          "y": 6435.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "33"
+      },
+      {
+        "_action": {
+          "quest": {},
+          "questRef": {
+            "_value": {
+              "m_itemID": 7011609
+            }
+          },
+          "$type": "NodeCanvas.Tasks.Actions.GiveQuest"
+        },
+        "_position": {
+          "x": 6315.0,
+          "y": 6540.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "42"
+      },
+      {
+        "statement": {
+          "_text": "I can craft you armor parts from the Copal and Jade you bring me. What do you want?",
+          "_meta": "Merchant_Berg_Blacksmith_02"
+        },
+        "_actorName": "name_merchant_bergblacksmith_01 ",
+        "_actorParameterID": "72f85de9-5524-456c-a4d6-4272f391fc70",
+        "_position": {
+          "x": 6150.0,
+          "y": 6660.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "47"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "Copal Armor set",
+              "_meta": "Merchant_Berg_Blacksmith_09"
+            }
+          },
+          {
+            "statement": {
+              "_text": "Jade Armor set",
+              "_meta": "Merchant_Berg_Blacksmith_10"
+            }
+          },
+          {
+            "statement": {
+              "_text": "Boots (2 Palladium scrap, 10 silver)",
+              "_meta": "Merchant_Monsoon_Blacksmith_08"
+            }
+          }
+        ],
+        "_position": {
+          "x": 6210.0,
+          "y": 6765.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "49"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "Helmet (2 Copal, 100 silver)",
+              "_meta": "Merchant_Berg_Blacksmith_03"
+            }
+          },
+          {
+            "statement": {
+              "_text": "Armor (5 Copal, 200 silver)",
+              "_meta": "Merchant_Berg_Blacksmith_04"
+            }
+          },
+          {
+            "statement": {
+              "_text": "Boots (2 Copal, 100 silver)",
+              "_meta": "Merchant_Berg_Blacksmith_05"
+            }
+          }
+        ],
+        "_position": {
+          "x": 5040.0,
+          "y": 7155.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "57"
+      },
+      {
+        "_condition": {
+          "conditions": [
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "51626b6e-5328-4c81-ba8b-3628b32e692e"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 6200060
+                }
+              },
+              "minAmount": {
+                "_value": 2
+              },
+              "itemMustBeEquiped": {},
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            },
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "51626b6e-5328-4c81-ba8b-3628b32e692e"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 9000010
+                }
+              },
+              "minAmount": {
+                "_value": 100
+              },
+              "itemMustBeEquiped": {},
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ConditionList"
+        },
+        "_position": {
+          "x": 4455.0,
+          "y": 7380.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "65"
+      },
+      {
+        "statement": {
+          "_text": "Are you sure?",
+          "_meta": "Merchant_Monsoon_Blacksmith_09"
+        },
+        "_actorName": "name_merchant_bergblacksmith_01 ",
+        "_actorParameterID": "72f85de9-5524-456c-a4d6-4272f391fc70",
+        "_position": {
+          "x": 4125.0,
+          "y": 7530.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "80"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "Yes.",
+              "_meta": "Merchant_Generic_Yes_01"
+            }
+          },
+          {
+            "statement": {
+              "_text": "No.",
+              "_meta": "Merchant_Generic_No_01"
+            }
+          }
+        ],
+        "_position": {
+          "x": 4290.0,
+          "y": 7665.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "82"
+      },
+      {
+        "_action": {
+          "fromCharacter": {
+            "_name": "gInstigator",
+            "_targetVariableID": "51626b6e-5328-4c81-ba8b-3628b32e692e"
+          },
+          "Items": [
+            {
+              "_value": {
+                "m_itemID": 6200060
+              }
+            },
+            {
+              "_value": {
+                "m_itemID": 9000010
+              }
+            }
+          ],
+          "Amount": [
+            {
+              "_value": 2
+            },
+            {
+              "_value": 100
+            }
+          ],
+          "$type": "NodeCanvas.Tasks.Actions.RemoveItem"
+        },
+        "_position": {
+          "x": 4305.0,
+          "y": 7845.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "88"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "QuestEventRef": {
+                "m_eventUID": "L7Jlkq3OgUC9mO_U99I_DQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "dYCGdL4gsEWT5IM2yInZXQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 4185.0,
+          "y": 8070.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "99"
+      },
+      {
+        "statement": {
+          "_text": "Come back to me later.",
+          "_meta": "Merchant_Monsoon_Blacksmith_10"
+        },
+        "_actorName": "name_merchant_bergblacksmith_01 ",
+        "_actorParameterID": "72f85de9-5524-456c-a4d6-4272f391fc70",
+        "_position": {
+          "x": 4140.0,
+          "y": 8220.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "106"
+      },
+      {
+        "_position": {
+          "x": 4260.0,
+          "y": 8355.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "108"
+      },
+      {
+        "_targetNode": {
+          "$ref": "25"
+        },
+        "_position": {
+          "x": 4575.0,
+          "y": 7860.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.GoToNode",
+        "$id": "109"
+      },
+      {
+        "statement": {
+          "_text": "You do not have enough of what I need. I can’t craft with what I don’t have.",
+          "_meta": "Merchant_Monsoon_Blacksmith_11"
+        },
+        "_actorName": "name_merchant_bergblacksmith_01 ",
+        "_actorParameterID": "72f85de9-5524-456c-a4d6-4272f391fc70",
+        "_position": {
+          "x": 4500.0,
+          "y": 7530.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "110"
+      },
+      {
+        "_condition": {
+          "conditions": [
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "51626b6e-5328-4c81-ba8b-3628b32e692e"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 6200060
+                }
+              },
+              "minAmount": {
+                "_value": 5
+              },
+              "itemMustBeEquiped": {},
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            },
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "51626b6e-5328-4c81-ba8b-3628b32e692e"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 9000010
+                }
+              },
+              "minAmount": {
+                "_value": 200
+              },
+              "itemMustBeEquiped": {},
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ConditionList"
+        },
+        "_position": {
+          "x": 5100.0,
+          "y": 7380.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "112"
+      },
+      {
+        "statement": {
+          "_text": "Are you sure?",
+          "_meta": "Merchant_Monsoon_Blacksmith_09"
+        },
+        "_actorName": "name_merchant_bergblacksmith_01 ",
+        "_actorParameterID": "72f85de9-5524-456c-a4d6-4272f391fc70",
+        "_position": {
+          "x": 4905.0,
+          "y": 7545.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "127"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "Yes.",
+              "_meta": "Merchant_Generic_Yes_01"
+            }
+          },
+          {
+            "statement": {
+              "_text": "No.",
+              "_meta": "Merchant_Generic_No_01"
+            }
+          }
+        ],
+        "_position": {
+          "x": 4935.0,
+          "y": 7680.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "129"
+      },
+      {
+        "_action": {
+          "fromCharacter": {
+            "_name": "gInstigator",
+            "_targetVariableID": "51626b6e-5328-4c81-ba8b-3628b32e692e"
+          },
+          "Items": [
+            {
+              "_value": {
+                "m_itemID": 6200060
+              }
+            },
+            {
+              "_value": {
+                "m_itemID": 9000010
+              }
+            }
+          ],
+          "Amount": [
+            {
+              "_value": 5
+            },
+            {
+              "_value": 200
+            }
+          ],
+          "$type": "NodeCanvas.Tasks.Actions.RemoveItem"
+        },
+        "_position": {
+          "x": 4950.0,
+          "y": 7860.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "135"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "QuestEventRef": {
+                "m_eventUID": "L7Jlkq3OgUC9mO_U99I_DQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "NUEERKznfkCk16uL1d7k7Q"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 4860.0,
+          "y": 7965.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "146"
+      },
+      {
+        "statement": {
+          "_text": "Come back to me later.",
+          "_meta": "Merchant_Monsoon_Blacksmith_10"
+        },
+        "_actorName": "name_merchant_bergblacksmith_01 ",
+        "_actorParameterID": "72f85de9-5524-456c-a4d6-4272f391fc70",
+        "_position": {
+          "x": 4845.0,
+          "y": 8100.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "153"
+      },
+      {
+        "_position": {
+          "x": 4935.0,
+          "y": 8220.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "155"
+      },
+      {
+        "_targetNode": {
+          "$ref": "25"
+        },
+        "_position": {
+          "x": 5235.0,
+          "y": 7860.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.GoToNode",
+        "$id": "156"
+      },
+      {
+        "statement": {
+          "_text": "You do not have enough of what I need. I can’t craft with what I don’t have.",
+          "_meta": "Merchant_Monsoon_Blacksmith_11"
+        },
+        "_actorName": "Digger the Blacksmith",
+        "_actorParameterID": "72f85de9-5524-456c-a4d6-4272f391fc70",
+        "_position": {
+          "x": 5160.0,
+          "y": 7545.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "157"
+      },
+      {
+        "_condition": {
+          "conditions": [
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "51626b6e-5328-4c81-ba8b-3628b32e692e"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 6200060
+                }
+              },
+              "minAmount": {
+                "_value": 2
+              },
+              "itemMustBeEquiped": {},
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            },
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "51626b6e-5328-4c81-ba8b-3628b32e692e"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 9000010
+                }
+              },
+              "minAmount": {
+                "_value": 100
+              },
+              "itemMustBeEquiped": {},
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ConditionList"
+        },
+        "_position": {
+          "x": 5775.0,
+          "y": 7380.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "159"
+      },
+      {
+        "statement": {
+          "_text": "Are you sure?",
+          "_meta": "Merchant_Monsoon_Blacksmith_09"
+        },
+        "_actorName": "name_merchant_bergblacksmith_01 ",
+        "_actorParameterID": "72f85de9-5524-456c-a4d6-4272f391fc70",
+        "_position": {
+          "x": 5565.0,
+          "y": 7590.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "174"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "Yes.",
+              "_meta": "Merchant_Generic_Yes_01"
+            }
+          },
+          {
+            "statement": {
+              "_text": "No.",
+              "_meta": "Merchant_Generic_No_01"
+            }
+          }
+        ],
+        "_position": {
+          "x": 5610.0,
+          "y": 7740.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "176"
+      },
+      {
+        "_action": {
+          "fromCharacter": {
+            "_name": "gInstigator",
+            "_targetVariableID": "51626b6e-5328-4c81-ba8b-3628b32e692e"
+          },
+          "Items": [
+            {
+              "_value": {
+                "m_itemID": 6200060
+              }
+            },
+            {
+              "_value": {
+                "m_itemID": 9000010
+              }
+            }
+          ],
+          "Amount": [
+            {
+              "_value": 2
+            },
+            {
+              "_value": 100
+            }
+          ],
+          "$type": "NodeCanvas.Tasks.Actions.RemoveItem"
+        },
+        "_position": {
+          "x": 5640.0,
+          "y": 7890.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "182"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "QuestEventRef": {
+                "m_eventUID": "L7Jlkq3OgUC9mO_U99I_DQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "Vt8ay8nLy0C3YmUZnulLuQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 5535.0,
+          "y": 8010.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "193"
+      },
+      {
+        "statement": {
+          "_text": "Come back to me later.",
+          "_meta": "Merchant_Monsoon_Blacksmith_10"
+        },
+        "_actorName": "name_merchant_bergblacksmith_01 ",
+        "_actorParameterID": "72f85de9-5524-456c-a4d6-4272f391fc70",
+        "_position": {
+          "x": 5520.0,
+          "y": 8175.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "200"
+      },
+      {
+        "_position": {
+          "x": 5625.0,
+          "y": 8295.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "202"
+      },
+      {
+        "_targetNode": {
+          "$ref": "25"
+        },
+        "_position": {
+          "x": 5895.0,
+          "y": 7905.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.GoToNode",
+        "$id": "203"
+      },
+      {
+        "statement": {
+          "_text": "You do not have enough of what I need. I can’t craft with what I don’t have.",
+          "_meta": "Merchant_Monsoon_Blacksmith_11"
+        },
+        "_actorName": "Digger the Blacksmith",
+        "_actorParameterID": "72f85de9-5524-456c-a4d6-4272f391fc70",
+        "_position": {
+          "x": 5835.0,
+          "y": 7605.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "204"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "Helmet (2 Petrified, 150 silver)",
+              "_meta": "Merchant_Berg_Blacksmith_06"
+            }
+          },
+          {
+            "statement": {
+              "_text": "Armor (5 Petrified, 250 silver)",
+              "_meta": "Merchant_Berg_Blacksmith_07"
+            }
+          },
+          {
+            "statement": {
+              "_text": "Boots (2 Petrified, 140 silver)",
+              "_meta": "Merchant_Berg_Blacksmith_08"
+            }
+          }
+        ],
+        "_position": {
+          "x": 7305.0,
+          "y": 7200.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "206"
+      },
+      {
+        "_condition": {
+          "conditions": [
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "51626b6e-5328-4c81-ba8b-3628b32e692e"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 6400080
+                }
+              },
+              "minAmount": {
+                "_value": 2
+              },
+              "itemMustBeEquiped": {},
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            },
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "51626b6e-5328-4c81-ba8b-3628b32e692e"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 9000010
+                }
+              },
+              "minAmount": {
+                "_value": 150
+              },
+              "itemMustBeEquiped": {},
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ConditionList"
+        },
+        "_position": {
+          "x": 6675.0,
+          "y": 7425.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "214"
+      },
+      {
+        "statement": {
+          "_text": "Are you sure?",
+          "_meta": "Merchant_Monsoon_Blacksmith_09"
+        },
+        "_actorName": "name_merchant_bergblacksmith_01 ",
+        "_actorParameterID": "72f85de9-5524-456c-a4d6-4272f391fc70",
+        "_position": {
+          "x": 6285.0,
+          "y": 7560.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "229"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "Yes.",
+              "_meta": "Merchant_Generic_Yes_01"
+            }
+          },
+          {
+            "statement": {
+              "_text": "No.",
+              "_meta": "Merchant_Generic_No_01"
+            }
+          }
+        ],
+        "_position": {
+          "x": 6345.0,
+          "y": 7695.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "231"
+      },
+      {
+        "_action": {
+          "fromCharacter": {
+            "_name": "gInstigator",
+            "_targetVariableID": "51626b6e-5328-4c81-ba8b-3628b32e692e"
+          },
+          "Items": [
+            {
+              "_value": {
+                "m_itemID": 6400080
+              }
+            },
+            {
+              "_value": {
+                "m_itemID": 9000010
+              }
+            }
+          ],
+          "Amount": [
+            {
+              "_value": 2
+            },
+            {
+              "_value": 150
+            }
+          ],
+          "$type": "NodeCanvas.Tasks.Actions.RemoveItem"
+        },
+        "_position": {
+          "x": 6360.0,
+          "y": 7890.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "237"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "QuestEventRef": {
+                "m_eventUID": "L7Jlkq3OgUC9mO_U99I_DQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "sin8_eosakeEmVSzNq8D6w"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 6360.0,
+          "y": 8010.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "248"
+      },
+      {
+        "statement": {
+          "_text": "Come back to me later.",
+          "_meta": "Merchant_Monsoon_Blacksmith_10"
+        },
+        "_actorName": "name_merchant_bergblacksmith_01 ",
+        "_actorParameterID": "72f85de9-5524-456c-a4d6-4272f391fc70",
+        "_position": {
+          "x": 6390.0,
+          "y": 8175.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "255"
+      },
+      {
+        "_position": {
+          "x": 6510.0,
+          "y": 8310.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "257"
+      },
+      {
+        "_targetNode": {
+          "$ref": "25"
+        },
+        "_position": {
+          "x": 6795.0,
+          "y": 7905.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.GoToNode",
+        "$id": "258"
+      },
+      {
+        "statement": {
+          "_text": "You do not have enough of what I need. I can’t craft with what I don’t have.",
+          "_meta": "Merchant_Monsoon_Blacksmith_11"
+        },
+        "_actorName": "name_merchant_bergblacksmith_01 ",
+        "_actorParameterID": "72f85de9-5524-456c-a4d6-4272f391fc70",
+        "_position": {
+          "x": 6705.0,
+          "y": 7575.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "259"
+      },
+      {
+        "_condition": {
+          "conditions": [
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "51626b6e-5328-4c81-ba8b-3628b32e692e"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 6400080
+                }
+              },
+              "minAmount": {
+                "_value": 5
+              },
+              "itemMustBeEquiped": {},
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            },
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "51626b6e-5328-4c81-ba8b-3628b32e692e"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 9000010
+                }
+              },
+              "minAmount": {
+                "_value": 250
+              },
+              "itemMustBeEquiped": {},
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ConditionList"
+        },
+        "_position": {
+          "x": 7335.0,
+          "y": 7395.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "261"
+      },
+      {
+        "statement": {
+          "_text": "Are you sure?",
+          "_meta": "Merchant_Monsoon_Blacksmith_09"
+        },
+        "_actorName": "name_merchant_bergblacksmith_01 ",
+        "_actorParameterID": "72f85de9-5524-456c-a4d6-4272f391fc70",
+        "_position": {
+          "x": 7125.0,
+          "y": 7575.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "276"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "Yes.",
+              "_meta": "Merchant_Generic_Yes_01"
+            }
+          },
+          {
+            "statement": {
+              "_text": "No.",
+              "_meta": "Merchant_Generic_No_01"
+            }
+          }
+        ],
+        "_position": {
+          "x": 7155.0,
+          "y": 7725.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "278"
+      },
+      {
+        "_action": {
+          "fromCharacter": {
+            "_name": "gInstigator",
+            "_targetVariableID": "51626b6e-5328-4c81-ba8b-3628b32e692e"
+          },
+          "Items": [
+            {
+              "_value": {
+                "m_itemID": 6400080
+              }
+            },
+            {
+              "_value": {
+                "m_itemID": 9000010
+              }
+            }
+          ],
+          "Amount": [
+            {
+              "_value": 5
+            },
+            {
+              "_value": 250
+            }
+          ],
+          "$type": "NodeCanvas.Tasks.Actions.RemoveItem"
+        },
+        "_position": {
+          "x": 7170.0,
+          "y": 7905.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "284"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "QuestEventRef": {
+                "m_eventUID": "L7Jlkq3OgUC9mO_U99I_DQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "wqk2hcuGk0KoPktoVouHZA"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 7095.0,
+          "y": 8025.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "295"
+      },
+      {
+        "statement": {
+          "_text": "Come back to me later.",
+          "_meta": "Merchant_Monsoon_Blacksmith_10"
+        },
+        "_actorName": "name_merchant_bergblacksmith_01 ",
+        "_actorParameterID": "72f85de9-5524-456c-a4d6-4272f391fc70",
+        "_position": {
+          "x": 7005.0,
+          "y": 8130.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "302"
+      },
+      {
+        "_position": {
+          "x": 7185.0,
+          "y": 8280.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "304"
+      },
+      {
+        "_targetNode": {
+          "$ref": "25"
+        },
+        "_position": {
+          "x": 7440.0,
+          "y": 7905.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.GoToNode",
+        "$id": "305"
+      },
+      {
+        "statement": {
+          "_text": "You do not have enough of what I need. I can’t craft with what I don’t have.",
+          "_meta": "Merchant_Monsoon_Blacksmith_11"
+        },
+        "_actorName": "name_merchant_bergblacksmith_01 ",
+        "_actorParameterID": "72f85de9-5524-456c-a4d6-4272f391fc70",
+        "_position": {
+          "x": 7470.0,
+          "y": 7575.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "306"
+      },
+      {
+        "_condition": {
+          "conditions": [
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "51626b6e-5328-4c81-ba8b-3628b32e692e"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 6400080
+                }
+              },
+              "minAmount": {
+                "_value": 2
+              },
+              "itemMustBeEquiped": {},
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            },
+            {
+              "character": {
+                "_name": "gInstigator",
+                "_targetVariableID": "51626b6e-5328-4c81-ba8b-3628b32e692e"
+              },
+              "item": {
+                "_value": {
+                  "m_itemID": 9000010
+                }
+              },
+              "minAmount": {
+                "_value": 140
+              },
+              "itemMustBeEquiped": {},
+              "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ConditionList"
+        },
+        "_position": {
+          "x": 7995.0,
+          "y": 7425.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "308"
+      },
+      {
+        "statement": {
+          "_text": "Are you sure?",
+          "_meta": "Merchant_Monsoon_Blacksmith_09"
+        },
+        "_actorName": "name_merchant_bergblacksmith_01 ",
+        "_actorParameterID": "72f85de9-5524-456c-a4d6-4272f391fc70",
+        "_position": {
+          "x": 7755.0,
+          "y": 7650.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "323"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "Yes.",
+              "_meta": "Merchant_Generic_Yes_01"
+            }
+          },
+          {
+            "statement": {
+              "_text": "No.",
+              "_meta": "Merchant_Generic_No_01"
+            }
+          }
+        ],
+        "_position": {
+          "x": 7770.0,
+          "y": 7770.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "325"
+      },
+      {
+        "_action": {
+          "fromCharacter": {
+            "_name": "gInstigator",
+            "_targetVariableID": "51626b6e-5328-4c81-ba8b-3628b32e692e"
+          },
+          "Items": [
+            {
+              "_value": {
+                "m_itemID": 6400080
+              }
+            },
+            {
+              "_value": {
+                "m_itemID": 9000010
+              }
+            }
+          ],
+          "Amount": [
+            {
+              "_value": 2
+            },
+            {
+              "_value": 140
+            }
+          ],
+          "$type": "NodeCanvas.Tasks.Actions.RemoveItem"
+        },
+        "_position": {
+          "x": 7740.0,
+          "y": 7935.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "331"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "QuestEventRef": {
+                "m_eventUID": "L7Jlkq3OgUC9mO_U99I_DQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "IPWiQRvgvE-yGBZQcXb3UQ"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 7665.0,
+          "y": 8040.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "342"
+      },
+      {
+        "statement": {
+          "_text": "Come back to me later.",
+          "_meta": "Merchant_Monsoon_Blacksmith_10"
+        },
+        "_actorName": "name_merchant_bergblacksmith_01 ",
+        "_actorParameterID": "72f85de9-5524-456c-a4d6-4272f391fc70",
+        "_position": {
+          "x": 7650.0,
+          "y": 8160.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "349"
+      },
+      {
+        "_position": {
+          "x": 7755.0,
+          "y": 8295.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "351"
+      },
+      {
+        "_targetNode": {
+          "$ref": "25"
+        },
+        "_position": {
+          "x": 8115.0,
+          "y": 7935.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.GoToNode",
+        "$id": "352"
+      },
+      {
+        "statement": {
+          "_text": "You do not have enough of what I need. I can’t craft with what I don’t have.",
+          "_meta": "Merchant_Monsoon_Blacksmith_11"
+        },
+        "_actorName": "name_merchant_bergblacksmith_01 ",
+        "_actorParameterID": "72f85de9-5524-456c-a4d6-4272f391fc70",
+        "_position": {
+          "x": 8055.0,
+          "y": 7635.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "353"
+      },
+      {
+        "_targetNode": {
+          "_condition": {
+            "QuestEventRef": {
+              "m_eventUID": "L7Jlkq3OgUC9mO_U99I_DQ"
+            },
+            "ExpiryTime": 24,
+            "_invert": true,
+            "$type": "NodeCanvas.Tasks.Conditions.Condition_CheckQuestEventExpiry"
+          },
+          "_position": {
+            "x": 7890.0,
+            "y": 5730.0
+          },
+          "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+          "$id": "356"
+        },
+        "_position": {
+          "x": 6585.0,
+          "y": 6135.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.GoToNode",
+        "$id": "355"
+      },
+      {
+        "statement": {
+          "_text": "For 50 silvers, I can do it for you.",
+          "_meta": "Merchant_Blacksmith_RepairCost"
+        },
+        "_actorName": "name_merchant_bergblacksmith_01 ",
+        "_actorParameterID": "72f85de9-5524-456c-a4d6-4272f391fc70",
+        "_position": {
+          "x": 6765.0,
+          "y": 6075.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "359"
+      },
+      {
+        "availableChoices": [
+          {
+            "statement": {
+              "_text": "Yes.",
+              "_meta": "Merchant_Generic_Yes_01"
+            }
+          },
+          {
+            "statement": {
+              "_text": "No, thanks.",
+              "_meta": "Merchant_Generic_No_02"
+            }
+          },
+          {
+            "statement": {
+              "_text": "No, thanks.",
+              "_meta": "Merchant_Generic_No_02"
+            }
+          }
+        ],
+        "_position": {
+          "x": 6840.0,
+          "y": 6195.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+        "$id": "361"
+      },
+      {
+        "_condition": {
+          "character": {
+            "_name": "gInstigator",
+            "_targetVariableID": "51626b6e-5328-4c81-ba8b-3628b32e692e"
+          },
+          "item": {
+            "_value": {
+              "m_itemID": 9000010
+            }
+          },
+          "minAmount": {
+            "_value": 50
+          },
+          "itemMustBeEquiped": {},
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+        },
+        "_position": {
+          "x": 6750.0,
+          "y": 6330.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "369"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "Sound": "UI_MERCHANT_CompleteTransaction",
+              "TransPos": {},
+              "$type": "NodeCanvas.Tasks.Actions.PlaySound"
+            },
+            {
+              "fromCharacter": {
+                "_name": "gInstigator",
+                "_targetVariableID": "51626b6e-5328-4c81-ba8b-3628b32e692e"
+              },
+              "Items": [
+                {
+                  "_value": {
+                    "m_itemID": 9000010
+                  }
+                }
+              ],
+              "Amount": [
+                {
+                  "_value": 50
+                }
+              ],
+              "$type": "NodeCanvas.Tasks.Actions.RemoveItem"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 6600.0,
+          "y": 6450.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "376"
+      },
+      {
+        "_action": {
+          "$type": "NodeCanvas.Tasks.Actions.FadeOut"
+        },
+        "_position": {
+          "x": 6675.0,
+          "y": 6555.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "388"
+      },
+      {
+        "_action": {
+          "$type": "NodeCanvas.Tasks.Actions.RepairEquipmentNodeAction"
+        },
+        "_position": {
+          "x": 6690.0,
+          "y": 6630.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "390"
+      },
+      {
+        "_action": {
+          "$type": "NodeCanvas.Tasks.Actions.FadeIn"
+        },
+        "_position": {
+          "x": 6705.0,
+          "y": 6720.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "392"
+      },
+      {
+        "statement": {
+          "_text": "There you go!",
+          "_meta": "Merchant_Monsoon_Blacksmith_13"
+        },
+        "_actorName": "name_merchant_bergblacksmith_01 ",
+        "_actorParameterID": "72f85de9-5524-456c-a4d6-4272f391fc70",
+        "_position": {
+          "x": 6705.0,
+          "y": 6825.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "394"
+      },
+      {
+        "_targetNode": {
+          "$ref": "25"
+        },
+        "_position": {
+          "x": 7020.0,
+          "y": 6945.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.GoToNode",
+        "$id": "396"
+      },
+      {
+        "statement": {
+          "_text": "I am sorry but you don't have enough silver.",
+          "_meta": "Merchant_Blacksmith_RepairNotEnoughMoney"
+        },
+        "_actorName": "name_merchant_bergblacksmith_01 ",
+        "_actorParameterID": "72f85de9-5524-456c-a4d6-4272f391fc70",
+        "_position": {
+          "x": 6945.0,
+          "y": 6495.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "397"
+      },
+      {
+        "_targetNode": {
+          "$ref": "25"
+        },
+        "_position": {
+          "x": 7230.0,
+          "y": 6405.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.GoToNode",
+        "$id": "399"
+      },
+      {
+        "_position": {
+          "x": 7155.0,
+          "y": 6000.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "400"
+      },
+      {
+        "$ref": "356"
+      },
+      {
+        "statement": {
+          "_text": "Not Finished",
+          "_meta": "Merchant_Monsoon_Blacksmith_12"
+        },
+        "_actorName": "name_merchant_bergblacksmith_01 ",
+        "_actorParameterID": "72f85de9-5524-456c-a4d6-4272f391fc70",
+        "_position": {
+          "x": 7860.0,
+          "y": 5895.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "401"
+      },
+      {
+        "_position": {
+          "x": 7875.0,
+          "y": 6015.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "403"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "dYCGdL4gsEWT5IM2yInZXQ"
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 8055.0,
+          "y": 6120.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "404"
+      },
+      {
+        "_action": {
+          "QuestEventRef": {
+            "m_eventUID": "MOSnQaJ9aUi8VNaciTKQHg"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+        },
+        "_position": {
+          "x": 7845.0,
+          "y": 6240.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "407"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "_location": {
+                "_key": "COMMISSION_COPAL_HELM"
+              },
+              "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "L7Jlkq3OgUC9mO_U99I_DQ"
+              },
+              "RemoveAllStack": true,
+              "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "dYCGdL4gsEWT5IM2yInZXQ"
+              },
+              "RemoveAllStack": true,
+              "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 3910.176,
+          "y": 3812.373
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "410"
+      },
+      {
+        "statement": {
+          "_text": "There you go!",
+          "_meta": "Merchant_Monsoon_Blacksmith_13"
+        },
+        "_actorName": "name_merchant_bergblacksmith_01 ",
+        "_actorParameterID": "72f85de9-5524-456c-a4d6-4272f391fc70",
+        "_position": {
+          "x": 7995.0,
+          "y": 7005.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "419"
+      },
+      {
+        "_position": {
+          "x": 8055.0,
+          "y": 7170.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "421"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "NUEERKznfkCk16uL1d7k7Q"
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 8175.0,
+          "y": 6300.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "422"
+      },
+      {
+        "_action": {
+          "QuestEventRef": {
+            "m_eventUID": "MOSnQaJ9aUi8VNaciTKQHg"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+        },
+        "_position": {
+          "x": 8085.0,
+          "y": 6375.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "425"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "_location": {
+                "_key": "COMMISSION_COPAL_ARMOR"
+              },
+              "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "L7Jlkq3OgUC9mO_U99I_DQ"
+              },
+              "RemoveAllStack": true,
+              "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "NUEERKznfkCk16uL1d7k7Q"
+              },
+              "RemoveAllStack": true,
+              "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 3910.176,
+          "y": 3812.373
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "428"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "Vt8ay8nLy0C3YmUZnulLuQ"
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 8475.0,
+          "y": 6465.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "437"
+      },
+      {
+        "_action": {
+          "QuestEventRef": {
+            "m_eventUID": "MOSnQaJ9aUi8VNaciTKQHg"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+        },
+        "_position": {
+          "x": 8415.0,
+          "y": 6540.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "440"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "_location": {
+                "_key": "COMMISSION_COPAL_BOOTS"
+              },
+              "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "L7Jlkq3OgUC9mO_U99I_DQ"
+              },
+              "RemoveAllStack": true,
+              "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "Vt8ay8nLy0C3YmUZnulLuQ"
+              },
+              "RemoveAllStack": true,
+              "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 3910.176,
+          "y": 3812.373
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "443"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "sin8_eosakeEmVSzNq8D6w"
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 8610.0,
+          "y": 6735.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "452"
+      },
+      {
+        "_action": {
+          "QuestEventRef": {
+            "m_eventUID": "MOSnQaJ9aUi8VNaciTKQHg"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+        },
+        "_position": {
+          "x": 8505.0,
+          "y": 6840.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "455"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "_location": {
+                "_key": "COMMISSION_PETRIFIED_WOOD_HELM"
+              },
+              "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "L7Jlkq3OgUC9mO_U99I_DQ"
+              },
+              "RemoveAllStack": true,
+              "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "sin8_eosakeEmVSzNq8D6w"
+              },
+              "RemoveAllStack": true,
+              "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 3910.176,
+          "y": 3812.373
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "458"
+      },
+      {
+        "statement": {
+          "_text": "There you go!",
+          "_meta": "Merchant_Monsoon_Blacksmith_13"
+        },
+        "_actorName": "name_merchant_bergblacksmith_01 ",
+        "_actorParameterID": "72f85de9-5524-456c-a4d6-4272f391fc70",
+        "_position": {
+          "x": 8760.0,
+          "y": 7470.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "467"
+      },
+      {
+        "_position": {
+          "x": 8805.0,
+          "y": 7590.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "469"
+      },
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "wqk2hcuGk0KoPktoVouHZA"
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 8895.0,
+          "y": 6900.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "470"
+      },
+      {
+        "_action": {
+          "QuestEventRef": {
+            "m_eventUID": "MOSnQaJ9aUi8VNaciTKQHg"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+        },
+        "_position": {
+          "x": 8835.0,
+          "y": 7020.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "473"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "_location": {
+                "_key": "COMMISSION_PETRIFIED_WOOD_ARMOR"
+              },
+              "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "L7Jlkq3OgUC9mO_U99I_DQ"
+              },
+              "RemoveAllStack": true,
+              "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "wqk2hcuGk0KoPktoVouHZA"
+              },
+              "RemoveAllStack": true,
+              "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 3910.176,
+          "y": 3812.373
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "476"
+      },
+      {
+        "_action": {
+          "QuestEventRef": {
+            "m_eventUID": "MOSnQaJ9aUi8VNaciTKQHg"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+        },
+        "_position": {
+          "x": 9240.0,
+          "y": 7005.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "485"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "_location": {
+                "_key": "COMMISSION_PETRIFIED_WOOD_BOOTS"
+              },
+              "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "L7Jlkq3OgUC9mO_U99I_DQ"
+              },
+              "RemoveAllStack": true,
+              "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "IPWiQRvgvE-yGBZQcXb3UQ"
+              },
+              "RemoveAllStack": true,
+              "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 3910.176,
+          "y": 3812.373
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "488"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "_location": {
+                "_key": "COMMISSION_COPAL_HELM"
+              },
+              "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "L7Jlkq3OgUC9mO_U99I_DQ"
+              },
+              "RemoveAllStack": true,
+              "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "dYCGdL4gsEWT5IM2yInZXQ"
+              },
+              "RemoveAllStack": true,
+              "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 7755.0,
+          "y": 6405.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "497"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "_location": {
+                "_key": "COMMISSION_COPAL_ARMOR"
+              },
+              "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "L7Jlkq3OgUC9mO_U99I_DQ"
+              },
+              "RemoveAllStack": true,
+              "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "NUEERKznfkCk16uL1d7k7Q"
+              },
+              "RemoveAllStack": true,
+              "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 8040.0,
+          "y": 6510.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "506"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "_location": {
+                "_key": "COMMISSION_COPAL_BOOTS"
+              },
+              "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "Vt8ay8nLy0C3YmUZnulLuQ"
+              },
+              "RemoveAllStack": true,
+              "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "L7Jlkq3OgUC9mO_U99I_DQ"
+              },
+              "RemoveAllStack": true,
+              "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 8340.0,
+          "y": 6615.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "515"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "_location": {
+                "_key": "COMMISSION_PETRIFIED_WOOD_HELM"
+              },
+              "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "L7Jlkq3OgUC9mO_U99I_DQ"
+              },
+              "RemoveAllStack": true,
+              "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "sin8_eosakeEmVSzNq8D6w"
+              },
+              "RemoveAllStack": true,
+              "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 8460.0,
+          "y": 6945.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "524"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "_location": {
+                "_key": "COMMISSION_PETRIFIED_WOOD_ARMOR"
+              },
+              "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "L7Jlkq3OgUC9mO_U99I_DQ"
+              },
+              "RemoveAllStack": true,
+              "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "wqk2hcuGk0KoPktoVouHZA"
+              },
+              "RemoveAllStack": true,
+              "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 8805.0,
+          "y": 7125.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "533"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "_location": {
+                "_key": "COMMISSION_PETRIFIED_WOOD_BOOTS"
+              },
+              "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "L7Jlkq3OgUC9mO_U99I_DQ"
+              },
+              "RemoveAllStack": true,
+              "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+            },
+            {
+              "QuestEventRef": {
+                "m_eventUID": "IPWiQRvgvE-yGBZQcXb3UQ"
+              },
+              "RemoveAllStack": true,
+              "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 9240.0,
+          "y": 7125.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "542"
+      },
+      {
+        "$ref": "25"
+      }
+    ],
+    "connections": [
+      {
+        "_sourceNode": {
+          "$ref": "2"
+        },
+        "_targetNode": {
+          "$ref": "4"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "4"
+        },
+        "_targetNode": {
+          "$ref": "20"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "4"
+        },
+        "_targetNode": {
+          "$ref": "27"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "4"
+        },
+        "_targetNode": {
+          "$ref": "355"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "4"
+        },
+        "_targetNode": {
+          "$ref": "359"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "4"
+        },
+        "_targetNode": {
+          "$ref": "400"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "20"
+        },
+        "_targetNode": {
+          "$ref": "24"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "27"
+        },
+        "_targetNode": {
+          "$ref": "30"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "27"
+        },
+        "_targetNode": {
+          "$ref": "42"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "30"
+        },
+        "_targetNode": {
+          "$ref": "33"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "30"
+        },
+        "_targetNode": {
+          "$ref": "47"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "33"
+        },
+        "_targetNode": {
+          "$ref": "42"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "42"
+        },
+        "_targetNode": {
+          "$ref": "47"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "47"
+        },
+        "_targetNode": {
+          "$ref": "49"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "49"
+        },
+        "_targetNode": {
+          "$ref": "57"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "49"
+        },
+        "_targetNode": {
+          "$ref": "206"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "57"
+        },
+        "_targetNode": {
+          "$ref": "65"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "57"
+        },
+        "_targetNode": {
+          "$ref": "112"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "57"
+        },
+        "_targetNode": {
+          "$ref": "159"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "65"
+        },
+        "_targetNode": {
+          "$ref": "80"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "65"
+        },
+        "_targetNode": {
+          "$ref": "110"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "80"
+        },
+        "_targetNode": {
+          "$ref": "82"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "82"
+        },
+        "_targetNode": {
+          "$ref": "88"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "82"
+        },
+        "_targetNode": {
+          "$ref": "109"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "88"
+        },
+        "_targetNode": {
+          "$ref": "99"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "99"
+        },
+        "_targetNode": {
+          "$ref": "106"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "106"
+        },
+        "_targetNode": {
+          "$ref": "108"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "110"
+        },
+        "_targetNode": {
+          "$ref": "109"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "112"
+        },
+        "_targetNode": {
+          "$ref": "127"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "112"
+        },
+        "_targetNode": {
+          "$ref": "157"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "127"
+        },
+        "_targetNode": {
+          "$ref": "129"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "129"
+        },
+        "_targetNode": {
+          "$ref": "135"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "129"
+        },
+        "_targetNode": {
+          "$ref": "156"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "135"
+        },
+        "_targetNode": {
+          "$ref": "146"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "146"
+        },
+        "_targetNode": {
+          "$ref": "153"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "153"
+        },
+        "_targetNode": {
+          "$ref": "155"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "157"
+        },
+        "_targetNode": {
+          "$ref": "156"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "159"
+        },
+        "_targetNode": {
+          "$ref": "174"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "159"
+        },
+        "_targetNode": {
+          "$ref": "204"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "174"
+        },
+        "_targetNode": {
+          "$ref": "176"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "176"
+        },
+        "_targetNode": {
+          "$ref": "182"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "176"
+        },
+        "_targetNode": {
+          "$ref": "203"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "182"
+        },
+        "_targetNode": {
+          "$ref": "193"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "193"
+        },
+        "_targetNode": {
+          "$ref": "200"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "200"
+        },
+        "_targetNode": {
+          "$ref": "202"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "204"
+        },
+        "_targetNode": {
+          "$ref": "203"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "206"
+        },
+        "_targetNode": {
+          "$ref": "214"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "206"
+        },
+        "_targetNode": {
+          "$ref": "261"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "206"
+        },
+        "_targetNode": {
+          "$ref": "308"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "214"
+        },
+        "_targetNode": {
+          "$ref": "229"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "214"
+        },
+        "_targetNode": {
+          "$ref": "259"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "229"
+        },
+        "_targetNode": {
+          "$ref": "231"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "231"
+        },
+        "_targetNode": {
+          "$ref": "237"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "231"
+        },
+        "_targetNode": {
+          "$ref": "258"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "237"
+        },
+        "_targetNode": {
+          "$ref": "248"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "248"
+        },
+        "_targetNode": {
+          "$ref": "255"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "255"
+        },
+        "_targetNode": {
+          "$ref": "257"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "259"
+        },
+        "_targetNode": {
+          "$ref": "258"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "261"
+        },
+        "_targetNode": {
+          "$ref": "276"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "261"
+        },
+        "_targetNode": {
+          "$ref": "306"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "276"
+        },
+        "_targetNode": {
+          "$ref": "278"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "278"
+        },
+        "_targetNode": {
+          "$ref": "284"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "278"
+        },
+        "_targetNode": {
+          "$ref": "305"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "284"
+        },
+        "_targetNode": {
+          "$ref": "295"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "295"
+        },
+        "_targetNode": {
+          "$ref": "302"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "302"
+        },
+        "_targetNode": {
+          "$ref": "304"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "306"
+        },
+        "_targetNode": {
+          "$ref": "305"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "308"
+        },
+        "_targetNode": {
+          "$ref": "323"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "308"
+        },
+        "_targetNode": {
+          "$ref": "353"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "323"
+        },
+        "_targetNode": {
+          "$ref": "325"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "325"
+        },
+        "_targetNode": {
+          "$ref": "331"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "325"
+        },
+        "_targetNode": {
+          "$ref": "352"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "331"
+        },
+        "_targetNode": {
+          "$ref": "342"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "342"
+        },
+        "_targetNode": {
+          "$ref": "349"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "349"
+        },
+        "_targetNode": {
+          "$ref": "351"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "353"
+        },
+        "_targetNode": {
+          "$ref": "352"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "359"
+        },
+        "_targetNode": {
+          "$ref": "361"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "361"
+        },
+        "_targetNode": {
+          "$ref": "369"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "361"
+        },
+        "_targetNode": {
+          "$ref": "399"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "369"
+        },
+        "_targetNode": {
+          "$ref": "376"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "369"
+        },
+        "_targetNode": {
+          "$ref": "397"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "376"
+        },
+        "_targetNode": {
+          "$ref": "388"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "388"
+        },
+        "_targetNode": {
+          "$ref": "390"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "390"
+        },
+        "_targetNode": {
+          "$ref": "392"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "392"
+        },
+        "_targetNode": {
+          "$ref": "394"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "394"
+        },
+        "_targetNode": {
+          "$ref": "396"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "397"
+        },
+        "_targetNode": {
+          "$ref": "396"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "356"
+        },
+        "_targetNode": {
+          "$ref": "401"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "356"
+        },
+        "_targetNode": {
+          "$ref": "404"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "401"
+        },
+        "_targetNode": {
+          "$ref": "403"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "404"
+        },
+        "_targetNode": {
+          "$ref": "407"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "404"
+        },
+        "_targetNode": {
+          "$ref": "422"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "407"
+        },
+        "_targetNode": {
+          "$ref": "410"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "410"
+        },
+        "_targetNode": {
+          "$ref": "419"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "419"
+        },
+        "_targetNode": {
+          "$ref": "421"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "422"
+        },
+        "_targetNode": {
+          "$ref": "425"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "422"
+        },
+        "_targetNode": {
+          "$ref": "437"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "425"
+        },
+        "_targetNode": {
+          "$ref": "428"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "428"
+        },
+        "_targetNode": {
+          "$ref": "419"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "437"
+        },
+        "_targetNode": {
+          "$ref": "440"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "437"
+        },
+        "_targetNode": {
+          "$ref": "452"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "440"
+        },
+        "_targetNode": {
+          "$ref": "443"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "443"
+        },
+        "_targetNode": {
+          "$ref": "419"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "452"
+        },
+        "_targetNode": {
+          "$ref": "455"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "452"
+        },
+        "_targetNode": {
+          "$ref": "470"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "455"
+        },
+        "_targetNode": {
+          "$ref": "458"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "458"
+        },
+        "_targetNode": {
+          "$ref": "467"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "467"
+        },
+        "_targetNode": {
+          "$ref": "469"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "470"
+        },
+        "_targetNode": {
+          "$ref": "473"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "470"
+        },
+        "_targetNode": {
+          "$ref": "485"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "473"
+        },
+        "_targetNode": {
+          "$ref": "476"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "476"
+        },
+        "_targetNode": {
+          "$ref": "467"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "485"
+        },
+        "_targetNode": {
+          "$ref": "488"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "488"
+        },
+        "_targetNode": {
+          "$ref": "467"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "497"
+        },
+        "_targetNode": {
+          "$ref": "419"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "506"
+        },
+        "_targetNode": {
+          "$ref": "419"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "515"
+        },
+        "_targetNode": {
+          "$ref": "419"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "524"
+        },
+        "_targetNode": {
+          "$ref": "467"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "533"
+        },
+        "_targetNode": {
+          "$ref": "467"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "542"
+        },
+        "_targetNode": {
+          "$ref": "467"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "25"
+        },
+        "_targetNode": {
+          "$ref": "4"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      }
+    ],
+    "localBlackboard": {
+      "_name": "Local Blackboard",
+      "_variables": {
+        "gInstigator": {
+          "_name": "gInstigator",
+          "_id": "51626b6e-5328-4c81-ba8b-3628b32e692e",
+          "$type": "NodeCanvas.Framework.Variable`1[[Character, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+        },
+        "myMerchant": {
+          "_name": "myMerchant",
+          "_id": "816dcd74-5643-46a7-8f61-41ab9c7dad20",
+          "$type": "NodeCanvas.Framework.Variable`1[[Merchant, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+        }
+      }
+    },
+    "derivedData": {
+      "actorParameters": [
+        {
+          "_keyName": "name_merchant_bergblacksmith_01 ",
+          "_id": "72f85de9-5524-456c-a4d6-4272f391fc70"
+        }
+      ],
+      "$type": "NodeCanvas.DialogueTrees.DialogueTree+DerivedSerializationData"
+    }
+  },
+  "replace": [
+    "Berg/_SNPC/_Merchants/HumanSNPC_Blacksmith/MerchantTemplate/NPC/ShopDialogue"
+  ]
+}

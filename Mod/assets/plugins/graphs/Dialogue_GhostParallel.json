@@ -1,0 +1,105 @@
+{
+  "graph": {
+    "version": 2.92,
+    "type": "NodeCanvas.DialogueTrees.DialogueTreeExt",
+    "translation": {
+      "x": -5122.0,
+      "y": -4989.0
+    },
+    "nodes": [
+      {
+        "_condition": {
+          "QuestEventRef": {
+            "m_eventUID": "rF1vxEOAo0-PRKcWCvdf_g"
+          },
+          "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+        },
+        "_position": {
+          "x": 5580.0,
+          "y": 5310.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+        "$id": "2"
+      },
+      {
+        "_position": {
+          "x": 5715.0,
+          "y": 5685.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.FinishNode",
+        "$id": "5"
+      },
+      {
+        "_action": {
+          "actions": [
+            {
+              "QuestEventRef": {
+                "m_eventUID": "rF1vxEOAo0-PRKcWCvdf_g"
+              },
+              "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            {
+              "_location": {
+                "_key": "SPAWN_DEPOWERED_BLUDGEON"
+              },
+              "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+            }
+          ],
+          "$type": "NodeCanvas.Framework.ActionList"
+        },
+        "_position": {
+          "x": 5806.0,
+          "y": 5461.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "6"
+      }
+    ],
+    "connections": [
+      {
+        "_sourceNode": {
+          "$ref": "2"
+        },
+        "_targetNode": {
+          "$ref": "5"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "2"
+        },
+        "_targetNode": {
+          "$ref": "6"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "6"
+        },
+        "_targetNode": {
+          "$ref": "5"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      }
+    ],
+    "localBlackboard": {
+      "_name": "Local Blackboard",
+      "_variables": {}
+    },
+    "derivedData": {
+      "actorParameters": [
+        {
+          "_keyName": "npc",
+          "_id": "41a44b63-c96d-4144-b36f-2b27792c9000",
+          "_actorObject": 1
+        }
+      ],
+      "$type": "NodeCanvas.DialogueTrees.DialogueTree+DerivedSerializationData"
+    }
+  },
+  "replace": [
+    "Caldera_Dungeon10/Interactions/Artifact/GhostParallel/DialogueTemplate/NPC/DialogueTree"
+  ]
+}

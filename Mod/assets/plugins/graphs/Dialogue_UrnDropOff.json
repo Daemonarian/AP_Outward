@@ -1,0 +1,119 @@
+{
+  "graph": {
+    "version": 2.92,
+    "type": "NodeCanvas.DialogueTrees.DialogueTreeExt",
+    "translation": {
+      "x": -2874.0,
+      "y": -2864.0
+    },
+    "nodes": [
+      {
+        "statement": {
+          "_text": "Definitive_ SwampSavior_04",
+          "_meta": "Definitive_Will_Altar_01"
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 3560.0,
+          "y": 3064.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "2"
+      },
+      {
+        "statement": {
+          "_text": "Definitive_ SwampSavior_04",
+          "_meta": "Definitive_Will_Altar_02"
+        },
+        "_actorName": "name_unpc_narrator",
+        "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+        "_position": {
+          "x": 3559.0,
+          "y": 3199.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+        "$id": "4"
+      },
+      {
+        "_action": {
+          "QuestEventRef": {
+            "m_eventUID": "YjrUbpLRrkq4CMkVbXn0-g"
+          },
+          "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+        },
+        "_position": {
+          "x": 3515.0,
+          "y": 3330.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "6"
+      },
+      {
+        "_action": {
+          "_location": {
+            "_key": "QUEST_MINOR_WILLIAM_OF_THE_WISP"
+          },
+          "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+        },
+        "_position": {
+          "x": 3548.0,
+          "y": 3434.0
+        },
+        "$type": "NodeCanvas.DialogueTrees.ActionNode",
+        "$id": "9"
+      }
+    ],
+    "connections": [
+      {
+        "_sourceNode": {
+          "$ref": "2"
+        },
+        "_targetNode": {
+          "$ref": "4"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "4"
+        },
+        "_targetNode": {
+          "$ref": "6"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      },
+      {
+        "_sourceNode": {
+          "$ref": "6"
+        },
+        "_targetNode": {
+          "$ref": "9"
+        },
+        "$type": "NodeCanvas.DialogueTrees.DTConnection"
+      }
+    ],
+    "localBlackboard": {
+      "_name": "Local Blackboard",
+      "_variables": {
+        "gInstigator": {
+          "_name": "gInstigator",
+          "_id": "0483cf6b-da62-4a57-aaed-40f25b4bdf9b",
+          "$type": "NodeCanvas.Framework.Variable`1[[Character, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+        }
+      }
+    },
+    "derivedData": {
+      "actorParameters": [
+        {
+          "_keyName": "name_unpc_narrator",
+          "_id": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760"
+        }
+      ],
+      "$type": "NodeCanvas.DialogueTrees.DialogueTree+DerivedSerializationData"
+    }
+  },
+  "replace": [
+    "Emercar_Dungeon5/Interactions/UNPC_DefEd_UrnDropOff/NPC/DialogueTree"
+  ]
+}
