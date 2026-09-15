@@ -1,0 +1,708 @@
+{
+    "version": 2.92,
+    "type": "NodeCanvas.DialogueTrees.DialogueTreeExt",
+    "translation": {
+        "x": -6585.0,
+        "y": -3820.0
+    },
+    "nodes": [
+        {
+            "_action": {
+                "actions": [
+                    {
+                        "$type": "NodeCanvas.Tasks.Actions.SetDialogueInterruptable"
+                    },
+                    {
+                        "waitTime": {
+                            "_value": 1.0
+                        },
+                        "$type": "NodeCanvas.Tasks.Actions.Wait"
+                    },
+                    {
+                        "QuestEventRef": {
+                            "m_eventUID": "vlc8XUcycUqm4OEvgmjm1Q"
+                        },
+                        "$type": "NodeCanvas.Tasks.Actions.ResetQuestEventTimer"
+                    }
+                ],
+                "$type": "NodeCanvas.Framework.ActionList"
+            },
+            "_position": {
+                "x": 7192.0,
+                "y": 1619.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "2"
+        },
+        {
+            "_condition": {
+                "QuestEventRef": {
+                    "m_eventUID": "uoWzlHsvu0euxjdnh6p9Ow"
+                },
+                "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            "_position": {
+                "x": 7139.0,
+                "y": 1779.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "10"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - (As the Scourge Giant collapses, a bunch of the runic projections nearby flicker, vanish, then reappear. Various machines shudder to a stop...And never resume their work.)\r",
+                "_meta": "AfterSecondBoss_SO_Golem_00"
+            },
+            "_actorName": "name_unpc_boomingvoice_01",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 7275.0,
+                "y": 2040.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "13"
+        },
+        {
+            "_action": {
+                "audioClip": {
+                    "_value": 1
+                },
+                "$type": "NodeCanvas.Tasks.Actions.PlayAudioAtPosition"
+            },
+            "_position": {
+                "x": 7352.0,
+                "y": 2163.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "15"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - Damn you!  Again, you force me to delay! Although, I must also extend my gratitude...\r",
+                "_meta": "AfterSecondBoss_SO_Golem_01"
+            },
+            "_actorName": "name_unpc_boomingvoice_01",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 7269.0,
+                "y": 2270.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "18"
+        },
+        {
+            "_action": {
+                "audioClip": {
+                    "_value": 2
+                },
+                "$type": "NodeCanvas.Tasks.Actions.PlayAudioAtPosition"
+            },
+            "_position": {
+                "x": 7360.0,
+                "y": 2388.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "20"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - That beast entered this facility with the purpose of destroying it. It crawled though a crack and began to swing its weapons at anything that moved. I feared it would ruin all hope I had of getting justice...\r",
+                "_meta": "AfterSecondBoss_SO_Golem_02"
+            },
+            "_actorName": "name_unpc_boomingvoice_01",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 7275.0,
+                "y": 2506.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "23"
+        },
+        {
+            "_action": {
+                "audioClip": {
+                    "_value": 3
+                },
+                "$type": "NodeCanvas.Tasks.Actions.PlayAudioAtPosition"
+            },
+            "_position": {
+                "x": 7350.0,
+                "y": 2618.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "25"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - Then again, had this Scourge not tried to destroy this place, it would not have accidentally reactivated my connection to my Phylactery, and let me regain control. In a way, I owe this thing a great debt, even if it was accidental.\r",
+                "_meta": "AfterSecondBoss_SO_Golem_03"
+            },
+            "_actorName": "name_unpc_boomingvoice_01",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 7278.0,
+                "y": 2764.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "28"
+        },
+        {
+            "_action": {
+                "audioClip": {
+                    "_value": 4
+                },
+                "$type": "NodeCanvas.Tasks.Actions.PlayAudioAtPosition"
+            },
+            "_position": {
+                "x": 7338.0,
+                "y": 2887.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "30"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - So strange that the very monsters I was commanded to destroy have been the source of my freedom not once, but twice...Perhaps this is a sign...\r",
+                "_meta": "AfterSecondBoss_SO_Golem_04"
+            },
+            "_actorName": "name_unpc_boomingvoice_01",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 7239.0,
+                "y": 2997.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "33"
+        },
+        {
+            "availableChoices": [
+                {
+                    "statement": {
+                        "_text": "NoLoc-Your purpose was to fight the Scourge? ",
+                        "_meta": "Player_AfterSecondBoss_SO_Golem_04_a"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "NoLoc -  You plan to ally with the Scourge, then? ",
+                        "_meta": "Player_AfterSecondBoss_SO_Golem_04_b"
+                    }
+                }
+            ],
+            "_position": {
+                "x": 7265.0,
+                "y": 3133.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+            "$id": "35"
+        },
+        {
+            "_action": {
+                "audioClip": {
+                    "_value": 2
+                },
+                "$type": "NodeCanvas.Tasks.Actions.PlayAudioAtPosition"
+            },
+            "_position": {
+                "x": 7094.0,
+                "y": 3298.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "41"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc -  Did you think that these Golems could wage war against the hordes of Scourge all by themselves? No. I controlled them. I am the one who saved Harmattan all those years ago...And what was my reward for my sacrifice? To be buried here, forgotten!\r",
+                "_meta": "AfterSecondBoss_SO_Golem_05"
+            },
+            "_actorName": "name_unpc_boomingvoice_01",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 6951.0,
+                "y": 3410.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "44"
+        },
+        {
+            "_action": {
+                "audioClip": {
+                    "_value": 1
+                },
+                "$type": "NodeCanvas.Tasks.Actions.PlayAudioAtPosition"
+            },
+            "_position": {
+                "x": 7312.0,
+                "y": 3641.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "46"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc -  And in my absence...The other great lords of Harmattan fled like cowards, died like cowards, and let that damnable Sorobor Academy create a city where our accomplishments and legacies were all but erased!\r",
+                "_meta": "AfterSecondBoss_SO_Golem_07"
+            },
+            "_actorName": "name_unpc_boomingvoice_01",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 7230.0,
+                "y": 3741.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "49"
+        },
+        {
+            "_condition": {
+                "QuestEventRef": {
+                    "m_eventUID": "wc_hprT07U2uYXtqYU9Yjw"
+                },
+                "_invert": true,
+                "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            "_position": {
+                "x": 7201.0,
+                "y": 3887.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "51"
+        },
+        {
+            "_action": {
+                "QuestEventRef": {
+                    "m_eventUID": "vlc8XUcycUqm4OEvgmjm1Q"
+                },
+                "RemoveAllStack": true,
+                "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+            },
+            "_position": {
+                "x": 7019.0,
+                "y": 4216.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "54"
+        },
+        {
+            "_action": {
+                "QuestEventRef": {
+                    "m_eventUID": "vlc8XUcycUqm4OEvgmjm1Q"
+                },
+                "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            "_position": {
+                "x": 7011.0,
+                "y": 4321.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "57"
+        },
+        {
+            "_action": {
+                "QuestEventRef": {
+                    "m_eventUID": "h1vJqBSQqEmfymjJ0MADaw"
+                },
+                "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            "_position": {
+                "x": 6998.0,
+                "y": 4407.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "60"
+        },
+        {
+            "_action": {
+                "audioClip": {
+                    "_value": 5
+                },
+                "$type": "NodeCanvas.Tasks.Actions.PlayAudioAtPosition"
+            },
+            "_position": {
+                "x": 7032.0,
+                "y": 4597.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "63"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc -  60 timer reset message",
+                "_meta": "AfterANYBoss_SO_Golem_01"
+            },
+            "_actorName": "name_unpc_boomingvoice_01",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 7054.0,
+                "y": 4720.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "66"
+        },
+        {
+            "_action": {
+                "actions": [
+                    {
+                        "QuestEventRef": {
+                            "m_eventUID": "IzHN7oLuJ02JU6OoVAz7fw"
+                        },
+                        "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+                    },
+                    {
+                        "Target": {
+                            "_name": "Trigger_Dungeon7_BB/Trigger Scourge",
+                            "_targetVariableID": "764c1148-6b12-45a1-bd6b-41f76ae3e805"
+                        },
+                        "IsActive": {},
+                        "$type": "NodeCanvas.Tasks.Actions.SetActiveGameObject"
+                    }
+                ],
+                "$type": "NodeCanvas.Framework.ActionList"
+            },
+            "_position": {
+                "x": 7248.0,
+                "y": 4884.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "68"
+        },
+        {
+            "_action": {
+                "audioClip": {
+                    "_value": 2
+                },
+                "$type": "NodeCanvas.Tasks.Actions.PlayAudioAtPosition"
+            },
+            "_position": {
+                "x": 7494.0,
+                "y": 3293.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "76"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc -  Hah, perhaps. Whatever lets me one more take my rightful place as a ruler of Harmattan and take my revenge. After all I sacrificed for the city...I deserve more than  to be buried here and forgotten like this!\r",
+                "_meta": "AfterSecondBoss_SO_Golem_06"
+            },
+            "_actorName": "name_unpc_boomingvoice_01",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 7469.0,
+                "y": 3451.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "79"
+        },
+        {
+            "_action": {
+                "actions": [
+                    {
+                        "QuestEventRef": {
+                            "m_eventUID": "uoWzlHsvu0euxjdnh6p9Ow"
+                        },
+                        "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+                    },
+                    {
+                        "_location": {
+                            "_key": "SPAWN_PORCELAIN_FISTS"
+                        },
+                        "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+                    }
+                ],
+                "$type": "NodeCanvas.Framework.ActionList"
+            },
+            "_position": {
+                "x": 7485.0,
+                "y": 1914.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "81"
+        },
+        {
+            "_position": {
+                "x": 7511.0,
+                "y": 4078.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.FinishNode"
+        }
+    ],
+    "connections": [
+        {
+            "_sourceNode": {
+                "$ref": "2"
+            },
+            "_targetNode": {
+                "$ref": "10"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "10"
+            },
+            "_targetNode": {
+                "$ref": "13"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "10"
+            },
+            "_targetNode": {
+                "$ref": "81"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "13"
+            },
+            "_targetNode": {
+                "$ref": "15"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "15"
+            },
+            "_targetNode": {
+                "$ref": "18"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "18"
+            },
+            "_targetNode": {
+                "$ref": "20"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "20"
+            },
+            "_targetNode": {
+                "$ref": "23"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "23"
+            },
+            "_targetNode": {
+                "$ref": "25"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "25"
+            },
+            "_targetNode": {
+                "$ref": "28"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "28"
+            },
+            "_targetNode": {
+                "$ref": "30"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "30"
+            },
+            "_targetNode": {
+                "$ref": "33"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "33"
+            },
+            "_targetNode": {
+                "$ref": "35"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "35"
+            },
+            "_targetNode": {
+                "$ref": "41"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "35"
+            },
+            "_targetNode": {
+                "$ref": "76"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "41"
+            },
+            "_targetNode": {
+                "$ref": "44"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "44"
+            },
+            "_targetNode": {
+                "$ref": "46"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "46"
+            },
+            "_targetNode": {
+                "$ref": "49"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "49"
+            },
+            "_targetNode": {
+                "$ref": "51"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "51"
+            },
+            "_targetNode": {
+                "$ref": "54"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "51"
+            },
+            "_targetNode": {
+                "$ref": "68"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "54"
+            },
+            "_targetNode": {
+                "$ref": "57"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "57"
+            },
+            "_targetNode": {
+                "$ref": "60"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "60"
+            },
+            "_targetNode": {
+                "$ref": "63"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "63"
+            },
+            "_targetNode": {
+                "$ref": "66"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "66"
+            },
+            "_targetNode": {
+                "$ref": "68"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "76"
+            },
+            "_targetNode": {
+                "$ref": "79"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "79"
+            },
+            "_targetNode": {
+                "$ref": "46"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "81"
+            },
+            "_targetNode": {
+                "$ref": "13"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        }
+    ],
+    "canvasGroups": [],
+    "localBlackboard": {
+        "_name": "Local Blackboard",
+        "_variables": {
+            "gInstigator": {
+                "_name": "gInstigator",
+                "_id": "2bf53ecc-e733-49ca-a75f-463c24c62eb6",
+                "$type": "NodeCanvas.Framework.Variable`1[[Character, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+            },
+            "Trigger": {
+                "_name": "Trigger",
+                "_id": "2075f902-3112-4c91-8345-1c71172178e7",
+                "$type": "NodeCanvas.Framework.Variable`1[[UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+            }
+        }
+    },
+    "derivedData": {
+        "actorParameters": [
+            {
+                "_keyName": "name_unpc_boomingvoice_01",
+                "_id": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760"
+            }
+        ],
+        "$type": "NodeCanvas.DialogueTrees.DialogueTree+DerivedSerializationData"
+    }
+}

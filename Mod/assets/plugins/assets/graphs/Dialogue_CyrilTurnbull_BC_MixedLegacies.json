@@ -1,0 +1,438 @@
+{
+    "version": 2.92,
+    "type": "NodeCanvas.DialogueTrees.DialogueTreeExt",
+    "translation": {
+        "x": -3711.0,
+        "y": -3776.0
+    },
+    "zoomFactor": 0.9932014,
+    "nodes": [
+        {
+            "_action": {
+                "QuestEventRef": {
+                    "m_eventUID": "zEXapCH7p0uoaoBgIX9Y_A"
+                },
+                "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            "_position": {
+                "x": 3885.0,
+                "y": 3435.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "2"
+        },
+        {
+            "statement": {
+                "_text": "Today really makes me nervous... Such immense shifts in the status quo are never good for business. I just hope our Headmaster knows what he\u2019s doing\u2026",
+                "_meta": "Cyrill_Turnbull_BC_Mix_Legacy_01"
+            },
+            "_actorName": "name_unpc_cyril_01 ",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 3780.0,
+                "y": 3570.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "5"
+        },
+        {
+            "availableChoices": [
+                {
+                    "statement": {
+                        "_text": "I thought Soroboreans were supposed to have absolute faith in their leadership?",
+                        "_meta": "Player_Cyrill_Turnbull_BC_Mix_Legacy_a_01"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "Well, given the work you have to do to get that position, I\u2019m sure he does.",
+                        "_meta": "Player_Cyrill_Turnbull_BC_Mix_Legacy_b_01"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "I want to train with you.",
+                        "_meta": "Merchant_Generic_Train_01"
+                    },
+                    "condition": {
+                        "conditions": [
+                            {
+                                "character": {
+                                    "_name": "gInstigator",
+                                    "_targetVariableID": "0483cf6b-da62-4a57-aaed-40f25b4bdf9b"
+                                },
+                                "skill": {
+                                    "_value": 1
+                                },
+                                "_invert": true,
+                                "$type": "NodeCanvas.Tasks.Conditions.Condition_KnowSkill"
+                            },
+                            {
+                                "QuestEventRef": {
+                                    "m_eventUID": "AA0VyQO--kqZFB2KLzx71Q"
+                                },
+                                "_invert": true,
+                                "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+                            }
+                        ],
+                        "$type": "NodeCanvas.Framework.ConditionList"
+                    }
+                }
+            ],
+            "_position": {
+                "x": 3780.0,
+                "y": 3690.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+            "$id": "7"
+        },
+        {
+            "statement": {
+                "_text": "Well... Yes. We\u2019re supposed to. But we\u2019re only human.",
+                "_meta": "Cyrill_Turnbull_BC_Mix_Legacy_02"
+            },
+            "_actorName": "Cyrill Turnbull",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 3480.0,
+                "y": 3930.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "22"
+        },
+        {
+            "_position": {
+                "x": 3795.0,
+                "y": 4065.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.FinishNode",
+            "$id": "24"
+        },
+        {
+            "statement": {
+                "_text": "One can only hope\u2026",
+                "_meta": "Cyrill_Turnbull_BC_Mix_Legacy_03"
+            },
+            "_actorName": "name_unpc_cyril_01 ",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 3885.0,
+                "y": 3930.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "25"
+        },
+        {
+            "statement": {
+                "_text": "I do know of an interesting spell that I could pass down. It\u2019s quite helpful in this ghost-filled region. The Mist Boon. It will protect you from ghostly, ethereal attacks, and make your own ethereal damage more powerful. How does 50 silvers in exchange sound?",
+                "_meta": "Trainer_Micro_MistBoon_01"
+            },
+            "_actorName": "name_unpc_cyril_01 ",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 4245.0,
+                "y": 3885.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "27"
+        },
+        {
+            "availableChoices": [
+                {
+                    "statement": {
+                        "_text": "Deal, here\u2019s your money.",
+                        "_meta": "Merchant_Generic_Pay_01"
+                    },
+                    "condition": {
+                        "character": {
+                            "_name": "gInstigator",
+                            "_targetVariableID": "0483cf6b-da62-4a57-aaed-40f25b4bdf9b"
+                        },
+                        "item": {
+                            "_value": {
+                                "m_itemID": 9000010
+                            }
+                        },
+                        "minAmount": {
+                            "_value": 50
+                        },
+                        "itemMustBeEquiped": {},
+                        "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "I'm fine, thank you.",
+                        "_meta": "Merchant_Generic_ImFine_01"
+                    }
+                }
+            ],
+            "_position": {
+                "x": 4290.0,
+                "y": 4005.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+            "$id": "29"
+        },
+        {
+            "statement": {
+                "_text": "Deal. Let\u2019s get started. First, we need to understand the nature of ghosts as a whole. They are-",
+                "_meta": "Trainer_Micro_MistBoon_02"
+            },
+            "_actorName": "name_unpc_cyril_01 ",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 4050.0,
+                "y": 4245.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "41"
+        },
+        {
+            "_action": {
+                "$type": "NodeCanvas.Tasks.Actions.FadeOut"
+            },
+            "_position": {
+                "x": 4170.0,
+                "y": 4365.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "43"
+        },
+        {
+            "_action": {
+                "actions": [
+                    {
+                        "fromCharacter": {
+                            "_name": "gInstigator",
+                            "_targetVariableID": "0483cf6b-da62-4a57-aaed-40f25b4bdf9b"
+                        },
+                        "Items": [
+                            {
+                                "_value": {
+                                    "m_itemID": 9000010
+                                }
+                            }
+                        ],
+                        "Amount": [
+                            {
+                                "_value": 50
+                            }
+                        ],
+                        "$type": "NodeCanvas.Tasks.Actions.RemoveItem"
+                    },
+                    {
+                        "_location": {
+                            "_key": "TRAIN_CYRIL_TURNBULL"
+                        },
+                        "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+                    }
+                ],
+                "$type": "NodeCanvas.Framework.ActionList"
+            },
+            "_position": {
+                "x": 4200.0,
+                "y": 4470.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "45"
+        },
+        {
+            "_action": {
+                "$type": "NodeCanvas.Tasks.Actions.FadeIn"
+            },
+            "_position": {
+                "x": 4200.0,
+                "y": 4575.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "57"
+        },
+        {
+            "statement": {
+                "_text": "-Yes, exactly, you've got it! With the Mist Boon, you will be more protected from ghostly attacks, and if you have something like Spiritual Varnish coated on your weapon, you will strike down ghosts in far greater safety.",
+                "_meta": "Trainer_Micro_MistBoon_03"
+            },
+            "_actorName": "name_unpc_cyril_01 ",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 4095.0,
+                "y": 4680.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "59"
+        },
+        {
+            "_position": {
+                "x": 4260.0,
+                "y": 4800.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.FinishNode",
+            "$id": "61"
+        },
+        {
+            "_position": {
+                "x": 4635.0,
+                "y": 4335.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.FinishNode",
+            "$id": "62"
+        }
+    ],
+    "connections": [
+        {
+            "_sourceNode": {
+                "$ref": "2"
+            },
+            "_targetNode": {
+                "$ref": "5"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "5"
+            },
+            "_targetNode": {
+                "$ref": "7"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "7"
+            },
+            "_targetNode": {
+                "$ref": "22"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "7"
+            },
+            "_targetNode": {
+                "$ref": "25"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "7"
+            },
+            "_targetNode": {
+                "$ref": "27"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "22"
+            },
+            "_targetNode": {
+                "$ref": "24"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "25"
+            },
+            "_targetNode": {
+                "$ref": "24"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "27"
+            },
+            "_targetNode": {
+                "$ref": "29"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "29"
+            },
+            "_targetNode": {
+                "$ref": "41"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "29"
+            },
+            "_targetNode": {
+                "$ref": "62"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "41"
+            },
+            "_targetNode": {
+                "$ref": "43"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "43"
+            },
+            "_targetNode": {
+                "$ref": "45"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "45"
+            },
+            "_targetNode": {
+                "$ref": "57"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "57"
+            },
+            "_targetNode": {
+                "$ref": "59"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "59"
+            },
+            "_targetNode": {
+                "$ref": "61"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        }
+    ],
+    "localBlackboard": {
+        "_name": "Local Blackboard",
+        "_variables": {
+            "gInstigator": {
+                "_name": "gInstigator",
+                "_id": "0483cf6b-da62-4a57-aaed-40f25b4bdf9b",
+                "$type": "NodeCanvas.Framework.Variable`1[[Character, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+            }
+        }
+    },
+    "derivedData": {
+        "actorParameters": [
+            {
+                "_keyName": "name_unpc_cyril_01 ",
+                "_id": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760"
+            }
+        ],
+        "$type": "NodeCanvas.DialogueTrees.DialogueTree+DerivedSerializationData"
+    }
+}

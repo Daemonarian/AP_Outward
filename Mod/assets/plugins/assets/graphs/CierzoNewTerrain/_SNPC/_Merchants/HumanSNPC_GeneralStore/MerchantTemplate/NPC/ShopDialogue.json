@@ -1,0 +1,978 @@
+{
+    "version": 2.92,
+    "type": "NodeCanvas.DialogueTrees.DialogueTreeExt",
+    "translation": {
+        "x": -6369.0,
+        "y": -5508.0
+    },
+    "nodes": [
+        {
+            "statement": {
+                "_text": "Business is slow for me whenever that Soroborean caravan comes in. Let me know if anything I have catches your eye!",
+                "_meta": "Merchant_Cierzo_GeneralStore_01"
+            },
+            "_actorName": "General Store",
+            "_actorParameterID": "c5474f61-b6dd-4fba-b619-f779585e03c2",
+            "_position": {
+                "x": 5865.0,
+                "y": 5280.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "2"
+        },
+        {
+            "availableChoices": [
+                {
+                    "statement": {
+                        "_text": "I want to buy something.",
+                        "_meta": "Merchant_Generic_Shop_01"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "I\u2019d like to talk.",
+                        "_meta": "Merchant_Generic_Talk_01"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "Not now.",
+                        "_meta": "Merchant_Generic_NotNow_01"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "Can you teach me about crafting and managing my inventory?",
+                        "_meta": "Player_craft_tutorial_a_00"
+                    }
+                }
+            ],
+            "_position": {
+                "x": 5910.0,
+                "y": 5430.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+            "$id": "4"
+        },
+        {
+            "_action": {
+                "Merchant": {
+                    "_name": "myMerchant",
+                    "_targetVariableID": "1c9af3b7-04e3-49dc-b561-b8dbb9474ece"
+                },
+                "PlayerCharacter": {
+                    "_name": "gInstigator",
+                    "_targetVariableID": "0554763b-0861-485f-82e1-b52171e6be86"
+                },
+                "$type": "NodeCanvas.Tasks.Actions.ShopDialogueAction"
+            },
+            "_position": {
+                "x": 5640.0,
+                "y": 5655.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "14"
+        },
+        {
+            "_condition": {
+                "QuestEventRef": {
+                    "m_eventUID": "azcxaDeHu0ufAIdwg4VVmQ"
+                },
+                "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            "_position": {
+                "x": 5820.0,
+                "y": 5655.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "18"
+        },
+        {
+            "_action": {
+                "actions": [
+                    {
+                        "_location": {
+                            "_key": "QUEST_MINOR_LEDGER_TO_CIERZO"
+                        },
+                        "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+                    },
+                    {
+                        "QuestEventRef": {
+                            "m_eventUID": "5RL_1QU-70Wk8B5pm7lf0g"
+                        },
+                        "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+                    }
+                ],
+                "$type": "NodeCanvas.Framework.ActionList"
+            },
+            "_position": {
+                "x": 6469.0,
+                "y": 5608.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "21"
+        },
+        {
+            "_action": {
+                "QuestEventRef": {
+                    "m_eventUID": "azcxaDeHu0ufAIdwg4VVmQ"
+                },
+                "RemoveAllStack": true,
+                "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+            },
+            "_position": {
+                "x": 5565.0,
+                "y": 6045.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "28"
+        },
+        {
+            "statement": {
+                "_text": "Perfect, I was waiting for this. Here, your pay for a delivery well done.",
+                "_meta": "Merchant_Cierzo_GeneralStore_02"
+            },
+            "_actorName": "name_merchant_cierzogeneralstore_01",
+            "_actorParameterID": "c5474f61-b6dd-4fba-b619-f779585e03c2",
+            "_position": {
+                "x": 5520.0,
+                "y": 6180.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "31"
+        },
+        {
+            "_position": {
+                "x": 5640.0,
+                "y": 6345.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.FinishNode",
+            "$id": "33"
+        },
+        {
+            "_condition": {
+                "QuestEventRef": {
+                    "m_eventUID": "kQS8SQ9kY0qlxLhmGgX2EQ"
+                },
+                "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            "_position": {
+                "x": 6105.0,
+                "y": 5865.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "34"
+        },
+        {
+            "statement": {
+                "_text": "Be sure to come back sometime, these deliveries are needed pretty regularly.",
+                "_meta": "Merchant_Cierzo_GeneralStore_03"
+            },
+            "_actorName": "name_merchant_cierzogeneralstore_01",
+            "_actorParameterID": "c5474f61-b6dd-4fba-b619-f779585e03c2",
+            "_position": {
+                "x": 5955.0,
+                "y": 6030.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "37"
+        },
+        {
+            "_position": {
+                "x": 6105.0,
+                "y": 6225.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.FinishNode",
+            "$id": "39"
+        },
+        {
+            "statement": {
+                "_text": "Are you planning to pass by Berg sometime soon? I have this ledger I need delivered to the general store there. You'll be paid, of course, on delivery. It won't even weight you down at all, I promise.",
+                "_meta": "Merchant_Cierzo_GeneralStore_04"
+            },
+            "_actorName": "name_merchant_cierzogeneralstore_01",
+            "_actorParameterID": "c5474f61-b6dd-4fba-b619-f779585e03c2",
+            "_position": {
+                "x": 6405.0,
+                "y": 6030.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "40"
+        },
+        {
+            "availableChoices": [
+                {
+                    "statement": {
+                        "_text": "Yes.",
+                        "_meta": "Merchant_Generic_Yes_01"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "No.",
+                        "_meta": "Merchant_Generic_No_01"
+                    }
+                }
+            ],
+            "_position": {
+                "x": 6495.0,
+                "y": 6225.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+            "$id": "42"
+        },
+        {
+            "_action": {
+                "QuestEventRef": {
+                    "m_eventUID": "kQS8SQ9kY0qlxLhmGgX2EQ"
+                },
+                "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            "_position": {
+                "x": 6270.0,
+                "y": 6390.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "48"
+        },
+        {
+            "_condition": {
+                "quest": {
+                    "_value": 1
+                },
+                "$type": "NodeCanvas.Tasks.Conditions.Condition_KnowQuest"
+            },
+            "_position": {
+                "x": 6165.0,
+                "y": 6480.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "51"
+        },
+        {
+            "_action": {
+                "actions": [
+                    {
+                        "quest": {},
+                        "questRef": {
+                            "_value": {
+                                "m_itemID": 7011604
+                            }
+                        },
+                        "$type": "NodeCanvas.Tasks.Actions.RemoveQuest"
+                    },
+                    {
+                        "QuestEventRef": {
+                            "m_eventUID": "Dn4p59YuxEiTY3kJKXM-hw"
+                        },
+                        "RemoveAllStack": true,
+                        "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+                    }
+                ],
+                "$type": "NodeCanvas.Framework.ActionList"
+            },
+            "_position": {
+                "x": 6075.0,
+                "y": 6585.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "54"
+        },
+        {
+            "_action": {
+                "quest": {},
+                "questRef": {
+                    "_value": {
+                        "m_itemID": 7011604
+                    }
+                },
+                "$type": "NodeCanvas.Tasks.Actions.GiveQuest"
+            },
+            "_position": {
+                "x": 6225.0,
+                "y": 6705.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "63"
+        },
+        {
+            "statement": {
+                "_text": "Excellent, thank you. The sharing of information is essential for merchants like us. You\u2019ll get your reward once you\u2019ve delivered the ledger.",
+                "_meta": "Merchant_Cierzo_GeneralStore_05"
+            },
+            "_actorName": "name_merchant_cierzogeneralstore_01",
+            "_actorParameterID": "c5474f61-b6dd-4fba-b619-f779585e03c2",
+            "_position": {
+                "x": 6210.0,
+                "y": 6840.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "68"
+        },
+        {
+            "statement": {
+                "_text": "Need something else?",
+                "_meta": "Merchant_Monsoon_Blacksmith_02"
+            },
+            "_actorName": "General Store",
+            "_actorParameterID": "c5474f61-b6dd-4fba-b619-f779585e03c2",
+            "_position": {
+                "x": 6270.0,
+                "y": 6975.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "70"
+        },
+        {
+            "_targetNode": {
+                "$ref": "4"
+            },
+            "_position": {
+                "x": 6300.0,
+                "y": 7095.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.GoToNode",
+            "$id": "72"
+        },
+        {
+            "statement": {
+                "_text": "Need something else?",
+                "_meta": "Merchant_Monsoon_Blacksmith_02"
+            },
+            "_actorName": "General Store",
+            "_actorParameterID": "c5474f61-b6dd-4fba-b619-f779585e03c2",
+            "_position": {
+                "x": 6690.0,
+                "y": 6360.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "73"
+        },
+        {
+            "_targetNode": {
+                "$ref": "4"
+            },
+            "_position": {
+                "x": 6720.0,
+                "y": 6525.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.GoToNode",
+            "$id": "75"
+        },
+        {
+            "statement": {
+                "_text": "Farewell.",
+                "_meta": "Merchant_Generic_Farewell_01"
+            },
+            "_actorName": "General Store",
+            "_actorParameterID": "c5474f61-b6dd-4fba-b619-f779585e03c2",
+            "_position": {
+                "x": 6285.0,
+                "y": 5685.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "76"
+        },
+        {
+            "_position": {
+                "x": 6345.0,
+                "y": 5790.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.FinishNode",
+            "$id": "78"
+        },
+        {
+            "statement": {
+                "_text": "Sure, what do you want to know?",
+                "_meta": "crafting_tutorial_01"
+            },
+            "_actorName": "name_merchant_berggeneralstore_01 ",
+            "_actorParameterID": "c5474f61-b6dd-4fba-b619-f779585e03c2",
+            "_position": {
+                "x": 6855.0,
+                "y": 5670.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "79"
+        },
+        {
+            "availableChoices": [
+                {
+                    "statement": {
+                        "_text": "Can you teach me about survival crafting?",
+                        "_meta": "Player_craft_tutorial_a_01"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "How useful is it to have a backpack?",
+                        "_meta": "Player_craft_tutorial_a_02"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "What\u2019s a good way to handle my inventory?",
+                        "_meta": "Player_craft_tutorial_a_03"
+                    }
+                }
+            ],
+            "_position": {
+                "x": 7020.0,
+                "y": 5820.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+            "$id": "81"
+        },
+        {
+            "statement": {
+                "_text": "Whenever you need to, you can craft a great variety of items to aid in your survival. For example, some wood and a linen scrap can be made into a torch if you need light.",
+                "_meta": "crafting_tutorial_02"
+            },
+            "_actorName": "name_merchant_berggeneralstore_01 ",
+            "_actorParameterID": "c5474f61-b6dd-4fba-b619-f779585e03c2",
+            "_position": {
+                "x": 6825.0,
+                "y": 6030.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "89"
+        },
+        {
+            "statement": {
+                "_text": "Not only can you assemble things like tents, backpacks and weapons out of raw materials, you can also disassemble many items like clothes, or weapons to get raw materials to make new items. ",
+                "_meta": "crafting_tutorial_03"
+            },
+            "_actorName": "name_merchant_berggeneralstore_01 ",
+            "_actorParameterID": "c5474f61-b6dd-4fba-b619-f779585e03c2",
+            "_position": {
+                "x": 6810.0,
+                "y": 6120.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "91"
+        },
+        {
+            "statement": {
+                "_text": "Using what your environment provides you, either through experimentation or learning crafting recipes, is the difference between a lost wanderer and an expert explorer. ",
+                "_meta": "crafting_tutorial_04"
+            },
+            "_actorName": "name_merchant_berggeneralstore_01 ",
+            "_actorParameterID": "c5474f61-b6dd-4fba-b619-f779585e03c2",
+            "_position": {
+                "x": 6825.0,
+                "y": 6225.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "93"
+        },
+        {
+            "_targetNode": {
+                "$ref": "4"
+            },
+            "_position": {
+                "x": 7440.0,
+                "y": 6495.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.GoToNode",
+            "$id": "95"
+        },
+        {
+            "statement": {
+                "_text": "The backpack is one of the most essential tools for any traveller. You\u2019ll be able to carry more before you are over encumbered, and you can hang a lantern from most backpacks, freeing both your hands when exploring dark caves. ",
+                "_meta": "crafting_tutorial_05"
+            },
+            "_actorName": "name_merchant_berggeneralstore_01 ",
+            "_actorParameterID": "c5474f61-b6dd-4fba-b619-f779585e03c2",
+            "_position": {
+                "x": 7230.0,
+                "y": 6090.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "96"
+        },
+        {
+            "statement": {
+                "_text": "If you get into a fight, however, it's usually best to drop the bag ([backpack]). If you need to make a quick evasive dodge (tap [dodge]), a backpack will slow you down and make you an easier target.",
+                "_meta": "crafting_tutorial_06"
+            },
+            "_actorName": "name_merchant_berggeneralstore_01 ",
+            "_actorParameterID": "c5474f61-b6dd-4fba-b619-f779585e03c2",
+            "_position": {
+                "x": 7260.0,
+                "y": 6195.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "98"
+        },
+        {
+            "statement": {
+                "_text": "Oh, and a word of caution. Should your backpack be hit, it will damage the items inside. Pay attention to your equipment's durability, even when you're not actively using it. ",
+                "_meta": "crafting_tutorial_07"
+            },
+            "_actorName": "name_merchant_berggeneralstore_01 ",
+            "_actorParameterID": "c5474f61-b6dd-4fba-b619-f779585e03c2",
+            "_position": {
+                "x": 7260.0,
+                "y": 6300.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "100"
+        },
+        {
+            "statement": {
+                "_text": "Keep only what you can't live without in your pockets, and store your camp gear and loot in your backpack. This will keep you light on your feet and more effective in a fight.",
+                "_meta": "crafting_tutorial_08"
+            },
+            "_actorName": "name_merchant_berggeneralstore_01 ",
+            "_actorParameterID": "c5474f61-b6dd-4fba-b619-f779585e03c2",
+            "_position": {
+                "x": 7605.0,
+                "y": 6000.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "102"
+        },
+        {
+            "statement": {
+                "_text": "Learning how to effectively split your gear between backpack and pockets is essential. You don't want to find yourself without bandages at a bad time, and you don't want to be overburdened either. ",
+                "_meta": "crafting_tutorial_09"
+            },
+            "_actorName": "name_merchant_berggeneralstore_01 ",
+            "_actorParameterID": "c5474f61-b6dd-4fba-b619-f779585e03c2",
+            "_position": {
+                "x": 7665.0,
+                "y": 6105.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "104"
+        },
+        {
+            "statement": {
+                "_text": "While wearing a backpack, anything you pick up will go straight to the bag. Consider setting items you use often, like bandages, to shortcuts (Quickslots) so you'll have them ready whenever you need them.",
+                "_meta": "crafting_tutorial_10"
+            },
+            "_actorName": "name_merchant_berggeneralstore_01 ",
+            "_actorParameterID": "c5474f61-b6dd-4fba-b619-f779585e03c2",
+            "_position": {
+                "x": 7740.0,
+                "y": 6210.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "106"
+        },
+        {
+            "_action": {
+                "actions": [
+                    {
+                        "SilverAmount": {},
+                        "XpAmount": {},
+                        "ItemReward": [
+                            {
+                                "Item": {
+                                    "_value": {
+                                        "m_itemID": 6200070
+                                    }
+                                },
+                                "Quantity": {
+                                    "_value": 3
+                                },
+                                "TryToEquip": {}
+                            }
+                        ],
+                        "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+                    },
+                    {
+                        "QuestEventRef": {
+                            "m_eventUID": "5RL_1QU-70Wk8B5pm7lf0g"
+                        },
+                        "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+                    }
+                ],
+                "$type": "NodeCanvas.Framework.ActionList"
+            },
+            "_position": {
+                "x": 5580.0,
+                "y": 5925.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "108"
+        }
+    ],
+    "connections": [
+        {
+            "_sourceNode": {
+                "$ref": "2"
+            },
+            "_targetNode": {
+                "$ref": "4"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "4"
+            },
+            "_targetNode": {
+                "$ref": "14"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "4"
+            },
+            "_targetNode": {
+                "$ref": "18"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "4"
+            },
+            "_targetNode": {
+                "$ref": "76"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "4"
+            },
+            "_targetNode": {
+                "$ref": "79"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "18"
+            },
+            "_targetNode": {
+                "$ref": "21"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "18"
+            },
+            "_targetNode": {
+                "$ref": "34"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "21"
+            },
+            "_targetNode": {
+                "$ref": "28"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "28"
+            },
+            "_targetNode": {
+                "$ref": "31"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "31"
+            },
+            "_targetNode": {
+                "$ref": "33"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "34"
+            },
+            "_targetNode": {
+                "$ref": "37"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "34"
+            },
+            "_targetNode": {
+                "$ref": "40"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "37"
+            },
+            "_targetNode": {
+                "$ref": "39"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "40"
+            },
+            "_targetNode": {
+                "$ref": "42"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "42"
+            },
+            "_targetNode": {
+                "$ref": "48"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "42"
+            },
+            "_targetNode": {
+                "$ref": "73"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "48"
+            },
+            "_targetNode": {
+                "$ref": "51"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "51"
+            },
+            "_targetNode": {
+                "$ref": "54"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "51"
+            },
+            "_targetNode": {
+                "$ref": "63"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "54"
+            },
+            "_targetNode": {
+                "$ref": "63"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "63"
+            },
+            "_targetNode": {
+                "$ref": "68"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "68"
+            },
+            "_targetNode": {
+                "$ref": "70"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "70"
+            },
+            "_targetNode": {
+                "$ref": "72"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "73"
+            },
+            "_targetNode": {
+                "$ref": "75"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "76"
+            },
+            "_targetNode": {
+                "$ref": "78"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "79"
+            },
+            "_targetNode": {
+                "$ref": "81"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "81"
+            },
+            "_targetNode": {
+                "$ref": "89"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "81"
+            },
+            "_targetNode": {
+                "$ref": "96"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "81"
+            },
+            "_targetNode": {
+                "$ref": "102"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "89"
+            },
+            "_targetNode": {
+                "$ref": "91"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "91"
+            },
+            "_targetNode": {
+                "$ref": "93"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "93"
+            },
+            "_targetNode": {
+                "$ref": "95"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "96"
+            },
+            "_targetNode": {
+                "$ref": "98"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "98"
+            },
+            "_targetNode": {
+                "$ref": "100"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "100"
+            },
+            "_targetNode": {
+                "$ref": "95"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "102"
+            },
+            "_targetNode": {
+                "$ref": "104"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "104"
+            },
+            "_targetNode": {
+                "$ref": "106"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "106"
+            },
+            "_targetNode": {
+                "$ref": "95"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "108"
+            },
+            "_targetNode": {
+                "$ref": "28"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        }
+    ],
+    "localBlackboard": {
+        "_name": "Local Blackboard",
+        "_variables": {
+            "myMerchant": {
+                "_name": "myMerchant",
+                "_id": "1c9af3b7-04e3-49dc-b561-b8dbb9474ece",
+                "$type": "NodeCanvas.Framework.Variable`1[[Merchant, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+            },
+            "gInstigator": {
+                "_name": "gInstigator",
+                "_id": "0554763b-0861-485f-82e1-b52171e6be86",
+                "$type": "NodeCanvas.Framework.Variable`1[[Character, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+            }
+        }
+    },
+    "derivedData": {
+        "actorParameters": [
+            {
+                "_keyName": "name_merchant_cierzogeneralstore_01",
+                "_id": "c5474f61-b6dd-4fba-b619-f779585e03c2"
+            }
+        ],
+        "$type": "NodeCanvas.DialogueTrees.DialogueTree+DerivedSerializationData"
+    }
+}

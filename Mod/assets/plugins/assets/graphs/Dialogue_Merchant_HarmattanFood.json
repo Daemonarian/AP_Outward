@@ -1,0 +1,897 @@
+{
+    "version": 2.92,
+    "type": "NodeCanvas.DialogueTrees.DialogueTreeExt",
+    "translation": {
+        "x": -262.0,
+        "y": -1274.0
+    },
+    "nodes": [
+        {
+            "statement": {
+                "_text": "The best food in Aurai, right here! From the Chersonese coast, to the Impasse mountains!\r\n",
+                "_meta": "MarketFood_SO_Sorobor_01"
+            },
+            "_actorName": "merchant",
+            "_actorParameterID": "b939d2c2-bff5-463b-ab31-73c8899bdd64",
+            "_position": {
+                "x": 390.0,
+                "y": 255.0
+            },
+            "_UID": "569421b8-eb58-4c4b-9ee8-0ba631abfd1d",
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "2"
+        },
+        {
+            "_condition": {
+                "QuestEventRef": {
+                    "m_eventUID": "jv3K9tNR1kq03Rwf26Wa3g"
+                },
+                "_invert": true,
+                "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            "_position": {
+                "x": 405.0,
+                "y": 375.0
+            },
+            "_UID": "5c7659e3-893d-47d4-b903-a89a3a401232",
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "4"
+        },
+        {
+            "availableChoices": [
+                {
+                    "statement": {
+                        "_text": "[NoLoc] I want to shop",
+                        "_meta": "Merchant_Generic_Shop_01"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "[NoLoc] Want to talk",
+                        "_meta": "Player_Task_SO_Sorobor_01_a"
+                    },
+                    "condition": {
+                        "QuestEventRef": {
+                            "m_eventUID": "4byzhopG-0a0Qb7Z6P_Hvw"
+                        },
+                        "_invert": true,
+                        "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "[NoLoc] give asked item",
+                        "_meta": "Player_Task_Complete_01"
+                    },
+                    "condition": {
+                        "conditions": [
+                            {
+                                "character": {
+                                    "_name": "gInstigator",
+                                    "_targetVariableID": "78d35a0e-9529-4014-860f-d63311e1cef1"
+                                },
+                                "item": {
+                                    "_value": {
+                                        "m_itemID": 4000330
+                                    }
+                                },
+                                "minAmount": {
+                                    "_value": 2
+                                },
+                                "itemMustBeEquiped": {},
+                                "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+                            },
+                            {
+                                "QuestEventRef": {
+                                    "m_eventUID": "4byzhopG-0a0Qb7Z6P_Hvw"
+                                },
+                                "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+                            }
+                        ],
+                        "$type": "NodeCanvas.Framework.ConditionList"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "[NoLoc] Leave",
+                        "_meta": "Merchant_Generic_Farewell_01"
+                    }
+                }
+            ],
+            "_position": {
+                "x": 285.0,
+                "y": 585.0
+            },
+            "_UID": "6b2bc05e-46e0-425f-a08d-842b9669d401",
+            "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNode",
+            "$id": "7"
+        },
+        {
+            "_action": {
+                "Merchant": {
+                    "_name": "gMerchant",
+                    "_targetVariableID": "6afc9bd7-0f93-4a1c-b378-8c83c9f641f8"
+                },
+                "PlayerCharacter": {
+                    "_name": "gInstigator",
+                    "_targetVariableID": "78d35a0e-9529-4014-860f-d63311e1cef1"
+                },
+                "$type": "NodeCanvas.Tasks.Actions.ShopDialogueAction"
+            },
+            "_position": {
+                "x": -566.0,
+                "y": 905.0
+            },
+            "_UID": "f3b37aa3-690a-4689-93d1-2c7f5ff869a2",
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "29"
+        },
+        {
+            "_sourceNodeUID": "4a817acc-d33a-4d44-99ed-1ca2624d92e0",
+            "_position": {
+                "x": -656.0,
+                "y": 1055.0
+            },
+            "_UID": "9bbd352f-6d39-4c09-87f9-086d6a61a5e2",
+            "$type": "NodeCanvas.DialogueTrees.Jumper",
+            "$id": "33"
+        },
+        {
+            "_condition": {
+                "conditions": [
+                    {
+                        "QuestEventRef": {
+                            "m_eventUID": "AT51E9xY5U2HIQcYAP4gSQ"
+                        },
+                        "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+                    },
+                    {
+                        "QuestEventRef": {
+                            "m_eventUID": "AT51E9xY5U2HIQcYAP4gSQ"
+                        },
+                        "ExpiryTime": 72,
+                        "_invert": true,
+                        "$type": "NodeCanvas.Tasks.Conditions.Condition_CheckQuestEventExpiry"
+                    }
+                ],
+                "$type": "NodeCanvas.Framework.ConditionList"
+            },
+            "_position": {
+                "x": -147.0,
+                "y": 982.0
+            },
+            "_UID": "40ec9c80-f347-42b1-8a51-002168099eab",
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "34"
+        },
+        {
+            "statement": {
+                "_text": "No Loc - I won\u2019t need your help for a few days, but be sure to come again when I\u2019ll have work for you.",
+                "_meta": "Merchant_Generic_WaitJob"
+            },
+            "_actorName": "name_merchant_sorobormarketarmor_01",
+            "_actorParameterID": "b939d2c2-bff5-463b-ab31-73c8899bdd64",
+            "_position": {
+                "x": -471.0,
+                "y": 1271.0
+            },
+            "_UID": "118dca42-0598-4134-8f2f-245fcf51b8b5",
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "41"
+        },
+        {
+            "_position": {
+                "x": -392.0,
+                "y": 1434.0
+            },
+            "_UID": "73c6ee00-40c9-43ab-ab23-13cfc9cbff08",
+            "$type": "NodeCanvas.DialogueTrees.FinishNode",
+            "$id": "43"
+        },
+        {
+            "_action": {
+                "actions": [
+                    {
+                        "QuestEventRef": {
+                            "m_eventUID": "AT51E9xY5U2HIQcYAP4gSQ"
+                        },
+                        "RemoveAllStack": true,
+                        "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+                    },
+                    {
+                        "QuestEventRef": {
+                            "m_eventUID": "sPAMA1fMZECsFhTY-kTqhA"
+                        },
+                        "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+                    }
+                ],
+                "$type": "NodeCanvas.Framework.ActionList"
+            },
+            "_position": {
+                "x": 4.0,
+                "y": 1248.0
+            },
+            "_UID": "a6b19b8d-03cb-46eb-86d3-f4586a98efe5",
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "44"
+        },
+        {
+            "_action": {
+                "QuestEventRef": {
+                    "m_eventUID": "4byzhopG-0a0Qb7Z6P_Hvw"
+                },
+                "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            "_position": {
+                "x": -4.0,
+                "y": 1379.0
+            },
+            "_UID": "a08a9f19-017c-46d9-97c9-39ad2f4959b0",
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "51"
+        },
+        {
+            "_condition": {
+                "quest": {
+                    "_value": 1
+                },
+                "$type": "NodeCanvas.Tasks.Conditions.Condition_KnowQuest"
+            },
+            "_position": {
+                "x": -59.0,
+                "y": 1497.0
+            },
+            "_UID": "03aa5514-5af3-4879-96b6-1325b230b735",
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "54"
+        },
+        {
+            "_action": {
+                "quest": {},
+                "questRef": {
+                    "_value": {
+                        "m_itemID": 7011633
+                    }
+                },
+                "$type": "NodeCanvas.Tasks.Actions.RemoveQuest"
+            },
+            "_position": {
+                "x": -228.0,
+                "y": 1682.0
+            },
+            "_UID": "d19f7db7-c4cc-447d-a7d8-f7854533b593",
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "57"
+        },
+        {
+            "_action": {
+                "quest": {},
+                "questRef": {
+                    "_value": {
+                        "m_itemID": 7011633
+                    }
+                },
+                "$type": "NodeCanvas.Tasks.Actions.GiveQuest"
+            },
+            "_position": {
+                "x": -8.0,
+                "y": 1842.0
+            },
+            "_UID": "391130c7-01ca-4dcc-851f-8f36092073bd",
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "62"
+        },
+        {
+            "statement": {
+                "_text": "[NoLoc] Do something for me.",
+                "_meta": "MarketFood_SO_Sorobor_02"
+            },
+            "_actorName": "name_merchant_sorobormarketfood_01",
+            "_actorParameterID": "b939d2c2-bff5-463b-ab31-73c8899bdd64",
+            "_position": {
+                "x": -25.0,
+                "y": 1989.0
+            },
+            "_UID": "ddc7e2e1-cc59-47e8-96f2-e05c63865b7a",
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "67"
+        },
+        {
+            "_sourceNodeUID": "4a817acc-d33a-4d44-99ed-1ca2624d92e0",
+            "_position": {
+                "x": 92.0,
+                "y": 2116.0
+            },
+            "_UID": "209abb43-cb81-44de-ae25-4a0434b075f9",
+            "$type": "NodeCanvas.DialogueTrees.Jumper",
+            "$id": "69"
+        },
+        {
+            "statement": {
+                "_text": "(No Loc)  thanks",
+                "_meta": "MerchantTask_Thanks_01"
+            },
+            "_actorName": "name_merchant_sorobormarketfood_01",
+            "_actorParameterID": "b939d2c2-bff5-463b-ab31-73c8899bdd64",
+            "_position": {
+                "x": 559.0,
+                "y": 1096.0
+            },
+            "_UID": "77264c3d-e629-4fdc-8979-f9a16e5637ef",
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "70"
+        },
+        {
+            "_condition": {
+                "QuestEventRef": {
+                    "m_eventUID": "_cSH8Ctln0GZasOZvG2y5w"
+                },
+                "_invert": true,
+                "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            "_position": {
+                "x": 595.0,
+                "y": 1251.0
+            },
+            "_UID": "87dd3f16-672f-4c36-9ad6-c6cc1742220d",
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "72"
+        },
+        {
+            "_action": {
+                "actions": [
+                    {
+                        "QuestEventRef": {
+                            "m_eventUID": "_cSH8Ctln0GZasOZvG2y5w"
+                        },
+                        "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+                    },
+                    {
+                        "QuestEventRef": {
+                            "m_eventUID": "BhQE2dC7LEmd_lg-7_PUiA"
+                        },
+                        "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+                    },
+                    {
+                        "fromCharacter": {
+                            "_name": "gInstigator",
+                            "_targetVariableID": "78d35a0e-9529-4014-860f-d63311e1cef1"
+                        },
+                        "Items": [
+                            {
+                                "_value": {
+                                    "m_itemID": 4000330
+                                }
+                            }
+                        ],
+                        "Amount": [
+                            {
+                                "_value": 2
+                            }
+                        ],
+                        "$type": "NodeCanvas.Tasks.Actions.RemoveItem"
+                    },
+                    {
+                        "QuestEventRef": {
+                            "m_eventUID": "4byzhopG-0a0Qb7Z6P_Hvw"
+                        },
+                        "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+                    }
+                ],
+                "$type": "NodeCanvas.Framework.ActionList"
+            },
+            "_position": {
+                "x": 473.0,
+                "y": 1488.0
+            },
+            "_UID": "2392a275-7c85-4d64-a539-02b0fd75cabc",
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "75"
+        },
+        {
+            "_action": {
+                "actions": [
+                    {
+                        "QuestEventRef": {
+                            "m_eventUID": "AT51E9xY5U2HIQcYAP4gSQ"
+                        },
+                        "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+                    },
+                    {
+                        "QuestEventRef": {
+                            "m_eventUID": "sPAMA1fMZECsFhTY-kTqhA"
+                        },
+                        "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+                    }
+                ],
+                "$type": "NodeCanvas.Framework.ActionList"
+            },
+            "_position": {
+                "x": 758.0,
+                "y": 1693.0
+            },
+            "_UID": "c48c6797-c38a-48ac-8a52-2d03bcc0068b",
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "91"
+        },
+        {
+            "_condition": {
+                "_location": {
+                    "_key": "QUEST_MINOR_NEED_FIRE_ELEMENTAL_PARTICLES"
+                },
+                "$type": "OutwardArchipelago.Graphs.Conditions.Condition_LocationCheck"
+            },
+            "_position": {
+                "x": 362.0,
+                "y": 1374.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "98"
+        },
+        {
+            "_action": {
+                "actions": [
+                    {
+                        "SilverAmount": {},
+                        "XpAmount": {},
+                        "ItemReward": [
+                            {
+                                "Item": {
+                                    "_value": {
+                                        "m_itemID": 4000380
+                                    }
+                                },
+                                "Quantity": {
+                                    "_value": 1
+                                },
+                                "TryToEquip": {}
+                            }
+                        ],
+                        "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+                    },
+                    {
+                        "SilverAmount": {
+                            "_value": 50
+                        },
+                        "XpAmount": {},
+                        "ItemReward": [],
+                        "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+                    }
+                ],
+                "$type": "NodeCanvas.Framework.ActionList"
+            },
+            "_position": {
+                "x": 730.0,
+                "y": 1860.0
+            },
+            "_UID": "75d888d6-f2f6-49f0-8c0b-c73ccb87b858",
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "101"
+        },
+        {
+            "_sourceNodeUID": "4a817acc-d33a-4d44-99ed-1ca2624d92e0",
+            "_position": {
+                "x": 800.0,
+                "y": 1978.0
+            },
+            "_UID": "5e53cf5f-a329-461b-9e22-09d39e8c8950",
+            "$type": "NodeCanvas.DialogueTrees.Jumper",
+            "$id": "117"
+        },
+        {
+            "_action": {
+                "_location": {
+                    "_key": "QUEST_MINOR_NEED_FIRE_ELEMENTAL_PARTICLES"
+                },
+                "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+            },
+            "_position": {
+                "x": 362.0,
+                "y": 1374.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "118"
+        },
+        {
+            "_action": {
+                "actions": [
+                    {
+                        "fromCharacter": {
+                            "_name": "gInstigator",
+                            "_targetVariableID": "78d35a0e-9529-4014-860f-d63311e1cef1"
+                        },
+                        "Items": [
+                            {
+                                "_value": {
+                                    "m_itemID": 4000330
+                                }
+                            }
+                        ],
+                        "Amount": [
+                            {
+                                "_value": 2
+                            }
+                        ],
+                        "$type": "NodeCanvas.Tasks.Actions.RemoveItem"
+                    },
+                    {
+                        "QuestEventRef": {
+                            "m_eventUID": "4byzhopG-0a0Qb7Z6P_Hvw"
+                        },
+                        "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+                    }
+                ],
+                "$type": "NodeCanvas.Framework.ActionList"
+            },
+            "_position": {
+                "x": 961.0,
+                "y": 1467.0
+            },
+            "_UID": "5a43fccf-c5d1-4dae-a2f3-cae285d5c46e",
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "121"
+        },
+        {
+            "_position": {
+                "x": 1341.0,
+                "y": 935.0
+            },
+            "_UID": "4a817acc-d33a-4d44-99ed-1ca2624d92e0",
+            "$type": "NodeCanvas.DialogueTrees.FinishNode",
+            "$id": "133"
+        },
+        {
+            "statement": {
+                "_text": "[NoLoc] You are banned",
+                "_meta": "RansomBan_SO_Sorobor_01"
+            },
+            "_actorName": "merchant",
+            "_actorParameterID": "b939d2c2-bff5-463b-ab31-73c8899bdd64",
+            "_position": {
+                "x": 675.0,
+                "y": 585.0
+            },
+            "_UID": "dd7de7a0-28b5-4611-9bf5-14b3c6ed07ec",
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "134"
+        },
+        {
+            "_sourceNodeUID": "4a817acc-d33a-4d44-99ed-1ca2624d92e0",
+            "_position": {
+                "x": 780.0,
+                "y": 720.0
+            },
+            "_UID": "72928798-6801-4abb-9863-a96a595eb268",
+            "$type": "NodeCanvas.DialogueTrees.Jumper",
+            "$id": "136"
+        },
+        {
+            "statement": {
+                "_text": "Welcome to my shop!"
+            },
+            "_position": {
+                "x": 5775.0,
+                "y": 5265.0
+            },
+            "_UID": "eba8c5e6-8fdf-4c06-9df3-5b67b1dd8635",
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "137"
+        },
+        {
+            "_action": {
+                "Merchant": {
+                    "_name": "gMerchant",
+                    "_targetVariableID": "6afc9bd7-0f93-4a1c-b378-8c83c9f641f8"
+                },
+                "PlayerCharacter": {
+                    "_name": "gInstigator",
+                    "_targetVariableID": "78d35a0e-9529-4014-860f-d63311e1cef1"
+                },
+                "$type": "NodeCanvas.Tasks.Actions.ShopDialogueAction"
+            },
+            "_position": {
+                "x": 5805.0,
+                "y": 5430.0
+            },
+            "_UID": "c1b0ef35-de89-4d46-840f-0c0cf38be439",
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "139"
+        }
+    ],
+    "connections": [
+        {
+            "_sourceNode": {
+                "$ref": "2"
+            },
+            "_targetNode": {
+                "$ref": "4"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "4"
+            },
+            "_targetNode": {
+                "$ref": "7"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "4"
+            },
+            "_targetNode": {
+                "$ref": "134"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "7"
+            },
+            "_targetNode": {
+                "$ref": "29"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "7"
+            },
+            "_targetNode": {
+                "$ref": "34"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "7"
+            },
+            "_targetNode": {
+                "$ref": "70"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "7"
+            },
+            "_targetNode": {
+                "$ref": "133"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "29"
+            },
+            "_targetNode": {
+                "$ref": "33"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "34"
+            },
+            "_targetNode": {
+                "$ref": "41"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "34"
+            },
+            "_targetNode": {
+                "$ref": "44"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "41"
+            },
+            "_targetNode": {
+                "$ref": "43"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "44"
+            },
+            "_targetNode": {
+                "$ref": "51"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "51"
+            },
+            "_targetNode": {
+                "$ref": "54"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "54"
+            },
+            "_targetNode": {
+                "$ref": "57"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "54"
+            },
+            "_targetNode": {
+                "$ref": "62"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "57"
+            },
+            "_targetNode": {
+                "$ref": "62"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "62"
+            },
+            "_targetNode": {
+                "$ref": "67"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "67"
+            },
+            "_targetNode": {
+                "$ref": "69"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "70"
+            },
+            "_targetNode": {
+                "$ref": "72"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "72"
+            },
+            "_targetNode": {
+                "$ref": "75"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "72"
+            },
+            "_targetNode": {
+                "$ref": "121"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "75"
+            },
+            "_targetNode": {
+                "$ref": "91"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "91"
+            },
+            "_targetNode": {
+                "$ref": "98"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "98"
+            },
+            "_targetNode": {
+                "$ref": "101"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "98"
+            },
+            "_targetNode": {
+                "$ref": "118"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "101"
+            },
+            "_targetNode": {
+                "$ref": "117"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "118"
+            },
+            "_targetNode": {
+                "$ref": "117"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "121"
+            },
+            "_targetNode": {
+                "$ref": "91"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "134"
+            },
+            "_targetNode": {
+                "$ref": "136"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "137"
+            },
+            "_targetNode": {
+                "$ref": "139"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        }
+    ],
+    "localBlackboard": {
+        "_name": "Local Blackboard",
+        "_variables": {
+            "gInstigator": {
+                "_name": "gInstigator",
+                "_id": "78d35a0e-9529-4014-860f-d63311e1cef1",
+                "$type": "NodeCanvas.Framework.Variable`1[[Character, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+            },
+            "gMerchant": {
+                "_name": "gMerchant",
+                "_id": "6afc9bd7-0f93-4a1c-b378-8c83c9f641f8",
+                "$type": "NodeCanvas.Framework.Variable`1[[Merchant, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+            }
+        }
+    },
+    "derivedData": {
+        "actorParameters": [
+            {
+                "_keyName": "name_merchant_sorobormarketfood_01",
+                "_id": "b939d2c2-bff5-463b-ab31-73c8899bdd64"
+            }
+        ],
+        "$type": "NodeCanvas.DialogueTrees.DialogueTree+DerivedSerializationData"
+    }
+}

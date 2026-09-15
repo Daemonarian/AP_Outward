@@ -1,0 +1,675 @@
+{
+    "version": 2.92,
+    "type": "NodeCanvas.DialogueTrees.DialogueTreeExt",
+    "translation": {
+        "x": 701.0,
+        "y": -52.0
+    },
+    "nodes": [
+        {
+            "_condition": {
+                "QuestEventRef": {
+                    "m_eventUID": "0bj5S2Z3Z022_7Ke0D5-OA"
+                },
+                "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            "_position": {
+                "x": -181.0,
+                "y": -370.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "2"
+        },
+        {
+            "statement": {
+                "_text": "(No Loc) The shriveled, twisted corpse of this old blood mage has a look of relief etched onto their face...",
+                "_meta": "BloodMage_SO_SideQuest_07"
+            },
+            "_position": {
+                "x": -493.0,
+                "y": -132.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "5"
+        },
+        {
+            "_condition": {
+                "conditions": [
+                    {
+                        "QuestEventRef": {
+                            "m_eventUID": "EfZ85UFhc0iNUZ3Dr7OT_w"
+                        },
+                        "MinStack": 3,
+                        "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+                    },
+                    {
+                        "QuestEventRef": {
+                            "m_eventUID": "HC7Q2_OHr0SyTA5wk1MoJg"
+                        },
+                        "MinStack": 3,
+                        "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+                    },
+                    {
+                        "QuestEventRef": {
+                            "m_eventUID": "oeO8M3a5bEaxaBEIFThQWg"
+                        },
+                        "MinStack": 3,
+                        "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+                    },
+                    {
+                        "QuestEventRef": {
+                            "m_eventUID": "mLOqr7As8kGKm3KC34irDA"
+                        },
+                        "MinStack": 3,
+                        "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+                    }
+                ],
+                "$type": "NodeCanvas.Framework.ConditionList"
+            },
+            "_position": {
+                "x": 87.0,
+                "y": -171.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "7"
+        },
+        {
+            "statement": {
+                "_text": "(No Loc) The shriveled, twisted corpse of this old blood mage has a look of relief etched onto their face...",
+                "_meta": "BloodMage_SO_SideQuest_07"
+            },
+            "_position": {
+                "x": -175.0,
+                "y": 79.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "18"
+        },
+        {
+            "_condition": {
+                "QuestEventRef": {
+                    "m_eventUID": "0bj5S2Z3Z022_7Ke0D5-OA"
+                },
+                "_invert": true,
+                "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            "_position": {
+                "x": -181.0,
+                "y": 208.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "20"
+        },
+        {
+            "statement": {
+                "_text": "(No Loc) A sudden shudder fills you, as forbidden knowledge leaks into your brain...",
+                "_meta": "BloodMage_SO_SideQuest_08"
+            },
+            "_position": {
+                "x": -450.0,
+                "y": 353.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "23"
+        },
+        {
+            "_action": {
+                "actions": [
+                    {
+                        "_location": {
+                            "_key": "QUEST_MINOR_BLOODY_BUSINESS"
+                        },
+                        "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+                    },
+                    {
+                        "QuestEventRef": {
+                            "m_eventUID": "0bj5S2Z3Z022_7Ke0D5-OA"
+                        },
+                        "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+                    }
+                ],
+                "$type": "NodeCanvas.Framework.ActionList"
+            },
+            "_position": {
+                "x": -601.0,
+                "y": 152.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "25"
+        },
+        {
+            "_position": {
+                "x": -601.0,
+                "y": 152.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.FinishNode",
+            "$id": "32"
+        },
+        {
+            "_position": {
+                "x": 108.0,
+                "y": 403.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.FinishNode",
+            "$id": "33"
+        },
+        {
+            "_condition": {
+                "QuestEventRef": {
+                    "m_eventUID": "DSooGqQNTEK7YXR8d71cJg"
+                },
+                "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            "_position": {
+                "x": 465.0,
+                "y": 51.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "34"
+        },
+        {
+            "_condition": {
+                "QuestEventRef": {
+                    "m_eventUID": "EfZ85UFhc0iNUZ3Dr7OT_w"
+                },
+                "_invert": true,
+                "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            "_position": {
+                "x": 511.0,
+                "y": 647.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "37"
+        },
+        {
+            "statement": {
+                "_text": "(No Loc) (You are gripped by the thought of an <color=#00CCFF><b>abandoned fortress</b></color>...)",
+                "_meta": "BloodMage_SO_SideQuest_06"
+            },
+            "_position": {
+                "x": 314.0,
+                "y": 835.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "40"
+        },
+        {
+            "_condition": {
+                "QuestEventRef": {
+                    "m_eventUID": "HC7Q2_OHr0SyTA5wk1MoJg"
+                },
+                "_invert": true,
+                "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            "_position": {
+                "x": 725.0,
+                "y": 957.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "42"
+        },
+        {
+            "statement": {
+                "_text": "(No Loc) (The image of a <color=#00CCFF><b>stone gazeebo</b></color> floats into your mind...)",
+                "_meta": "BloodMage_SO_SideQuest_03"
+            },
+            "_position": {
+                "x": 305.0,
+                "y": 1092.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "45"
+        },
+        {
+            "_condition": {
+                "QuestEventRef": {
+                    "m_eventUID": "oeO8M3a5bEaxaBEIFThQWg"
+                },
+                "_invert": true,
+                "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            "_position": {
+                "x": 860.0,
+                "y": 1287.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "47"
+        },
+        {
+            "statement": {
+                "_text": "(No Loc) (A <color=#00CCFF><b>crumbling temple</b></color> appears in your mind\u2019s eye...)",
+                "_meta": "BloodMage_SO_SideQuest_05"
+            },
+            "_position": {
+                "x": 725.0,
+                "y": 1437.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "50"
+        },
+        {
+            "_condition": {
+                "QuestEventRef": {
+                    "m_eventUID": "mLOqr7As8kGKm3KC34irDA"
+                },
+                "_invert": true,
+                "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            "_position": {
+                "x": 1115.0,
+                "y": 1692.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "52"
+        },
+        {
+            "statement": {
+                "_text": "(No Loc) (You see a flash of a <color=#00CCFF><b>windmill up on a cliff</b></color>...)",
+                "_meta": "BloodMage_SO_SideQuest_04"
+            },
+            "_position": {
+                "x": 736.0,
+                "y": 1895.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "55"
+        },
+        {
+            "_position": {
+                "x": 1391.0,
+                "y": 2112.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.FinishNode",
+            "$id": "57"
+        },
+        {
+            "statement": {
+                "_text": "(No Loc) Free...Me...!",
+                "_meta": "BloodMage_SO_SideQuest_01"
+            },
+            "_actorName": "name_unpc_unknown_01",
+            "_actorParameterID": "9f18d7cc-df96-4980-97f0-1c5220a67fae",
+            "_position": {
+                "x": 790.0,
+                "y": 199.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "58"
+        },
+        {
+            "availableChoices": [
+                {
+                    "statement": {
+                        "_text": "NOLOC - What the...Voices in my head!",
+                        "_meta": "Player_BloodMage_SO_SideQuest_01_a"
+                    }
+                }
+            ],
+            "_position": {
+                "x": 805.0,
+                "y": 304.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+            "$id": "60"
+        },
+        {
+            "statement": {
+                "_text": "(No Loc) Minions...They gather blood...Keep me immortal...<color=#00CCFF><b>Kill them</b></color>...Kill...Them...! Reward...You...",
+                "_meta": "BloodMage_SO_SideQuest_02"
+            },
+            "_actorName": "name_unpc_unknown_01",
+            "_actorParameterID": "9f18d7cc-df96-4980-97f0-1c5220a67fae",
+            "_position": {
+                "x": 796.0,
+                "y": 412.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "64"
+        },
+        {
+            "_action": {
+                "actions": [
+                    {
+                        "QuestEventRef": {
+                            "m_eventUID": "DSooGqQNTEK7YXR8d71cJg"
+                        },
+                        "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+                    },
+                    {
+                        "quest": {},
+                        "questRef": {
+                            "_value": {
+                                "m_itemID": 7011405
+                            }
+                        },
+                        "$type": "NodeCanvas.Tasks.Actions.GiveQuest"
+                    }
+                ],
+                "$type": "NodeCanvas.Framework.ActionList"
+            },
+            "_position": {
+                "x": 803.0,
+                "y": 514.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "66"
+        },
+        {
+            "_action": {
+                "actions": [
+                    {
+                        "SilverAmount": {},
+                        "XpAmount": {},
+                        "ItemReward": [
+                            {
+                                "Item": {
+                                    "_value": {
+                                        "m_itemID": 8201023
+                                    }
+                                },
+                                "Quantity": {
+                                    "_value": 1
+                                },
+                                "TryToEquip": {}
+                            },
+                            {
+                                "Item": {
+                                    "_value": {
+                                        "m_itemID": 8200190
+                                    }
+                                },
+                                "Quantity": {
+                                    "_value": 1
+                                },
+                                "TryToEquip": {}
+                            },
+                            {
+                                "Item": {
+                                    "_value": {
+                                        "m_itemID": 5800003
+                                    }
+                                },
+                                "Quantity": {
+                                    "_value": 1
+                                },
+                                "TryToEquip": {}
+                            }
+                        ],
+                        "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+                    },
+                    {
+                        "QuestEventRef": {
+                            "m_eventUID": "0bj5S2Z3Z022_7Ke0D5-OA"
+                        },
+                        "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+                    }
+                ],
+                "$type": "NodeCanvas.Framework.ActionList"
+            },
+            "_position": {
+                "x": -449.0,
+                "y": 523.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode"
+        }
+    ],
+    "connections": [
+        {
+            "_sourceNode": {
+                "$ref": "2"
+            },
+            "_targetNode": {
+                "$ref": "5"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "2"
+            },
+            "_targetNode": {
+                "$ref": "7"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "7"
+            },
+            "_targetNode": {
+                "$ref": "18"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "7"
+            },
+            "_targetNode": {
+                "$ref": "34"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "18"
+            },
+            "_targetNode": {
+                "$ref": "20"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "20"
+            },
+            "_targetNode": {
+                "$ref": "23"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "20"
+            },
+            "_targetNode": {
+                "$ref": "33"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "23"
+            },
+            "_targetNode": {
+                "$ref": "25"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "25"
+            },
+            "_targetNode": {
+                "$ref": "32"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "34"
+            },
+            "_targetNode": {
+                "$ref": "37"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "34"
+            },
+            "_targetNode": {
+                "$ref": "58"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "37"
+            },
+            "_targetNode": {
+                "$ref": "40"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "37"
+            },
+            "_targetNode": {
+                "$ref": "42"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "40"
+            },
+            "_targetNode": {
+                "$ref": "42"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "42"
+            },
+            "_targetNode": {
+                "$ref": "45"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "42"
+            },
+            "_targetNode": {
+                "$ref": "47"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "45"
+            },
+            "_targetNode": {
+                "$ref": "47"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "47"
+            },
+            "_targetNode": {
+                "$ref": "50"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "47"
+            },
+            "_targetNode": {
+                "$ref": "52"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "50"
+            },
+            "_targetNode": {
+                "$ref": "52"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "52"
+            },
+            "_targetNode": {
+                "$ref": "55"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "52"
+            },
+            "_targetNode": {
+                "$ref": "57"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "55"
+            },
+            "_targetNode": {
+                "$ref": "57"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "58"
+            },
+            "_targetNode": {
+                "$ref": "60"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "60"
+            },
+            "_targetNode": {
+                "$ref": "64"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "64"
+            },
+            "_targetNode": {
+                "$ref": "66"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "66"
+            },
+            "_targetNode": {
+                "$ref": "37"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        }
+    ],
+    "localBlackboard": {
+        "_name": "Local Blackboard",
+        "_variables": {}
+    },
+    "derivedData": {
+        "actorParameters": [
+            {
+                "_keyName": "name_unpc_unknown_01",
+                "_id": "9f18d7cc-df96-4980-97f0-1c5220a67fae"
+            }
+        ],
+        "$type": "NodeCanvas.DialogueTrees.DialogueTree+DerivedSerializationData"
+    }
+}

@@ -1,17 +1,15 @@
 using NodeCanvas.Framework;
 using OutwardArchipelago.Archipelago;
+using UnityEngine;
 
 namespace OutwardArchipelago.Graphs.Conditions
 {
     internal class Condition_LocationCheck : ConditionTask
     {
-        private readonly APWorld.Location _location;
-        public APWorld.Location Location => _location;
+        [SerializeField]
+        private readonly APWorld.LocationRef _location = new();
 
-        public Condition_LocationCheck(APWorld.Location location)
-        {
-            _location = location;
-        }
+        public APWorld.Location Location => _location.Location;
 
         public override string info => $"Has completed location check: {Location}";
 

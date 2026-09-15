@@ -410,9 +410,9 @@
         "actions": [
           {
             "_location": {
-              "_key":  "ROLAND_GIFT_1"
+              "_key": "ROLAND_GIFT_1"
             },
-            "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck2"
+            "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
           },
           {
             "QuestEventRef": {
@@ -448,7 +448,7 @@
         "y": 4170.0
       },
       "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
-      "$id": "114"
+      "$id": "97"
     }
   ],
   "connections": [
@@ -682,7 +682,7 @@
         "$ref": "77"
       },
       "_targetNode": {
-        "$ref": "114"
+        "$ref": "97"
       },
       "$type": "NodeCanvas.DialogueTrees.DTConnection"
     },
@@ -700,7 +700,7 @@
         "$ref": "67"
       },
       "_targetNode": {
-        "$ref": "114"
+        "$ref": "97"
       },
       "$type": "NodeCanvas.DialogueTrees.DTConnection"
     },
@@ -724,7 +724,7 @@
     },
     {
       "_sourceNode": {
-        "$ref": "114"
+        "$ref": "97"
       },
       "_targetNode": {
         "$ref": "70"

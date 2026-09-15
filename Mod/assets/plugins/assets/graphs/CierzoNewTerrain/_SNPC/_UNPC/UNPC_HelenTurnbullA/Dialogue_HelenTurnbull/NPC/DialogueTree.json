@@ -1,0 +1,2683 @@
+{
+    "version": 2.92,
+    "type": "NodeCanvas.DialogueTrees.DialogueTreeExt",
+    "translation": {
+        "x": -934.0,
+        "y": -7018.0
+    },
+    "zoomFactor": 0.7037265,
+    "nodes": [
+        {
+            "statement": {
+                "_text": "[PlayerName], always a pleasure! What do you want?",
+                "_meta": "Helen_Turnbull_NE_Call_To_Advent_01"
+            },
+            "_actorName": "name_unpc_helenturnbull_01",
+            "_actorParameterID": "1b375fde-5a79-4f43-b8bb-a7a640f84a86",
+            "_position": {
+                "x": 4560.0,
+                "y": 8985.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "2"
+        },
+        {
+            "availableChoices": [
+                {
+                    "statement": {
+                        "_text": "We have business to do.",
+                        "_meta": "Player_Helen_Turnbull_NE_Call_To_Advent_a_01"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "I\u2019m here about work.",
+                        "_meta": "Player_Helen_Turnbull_NE_Call_To_Advent_c_01"
+                    },
+                    "condition": {
+                        "QuestEventRef": {
+                            "m_eventUID": "iQSXAOjKT0aOFa89DMeyKg"
+                        },
+                        "_invert": true,
+                        "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "I'll leave you to your work, thanks for the chat.",
+                        "_meta": "Player_Helen_Turnbull_NE_Call_To_Advent_b_01"
+                    }
+                }
+            ],
+            "_position": {
+                "x": 4650.0,
+                "y": 9240.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+            "$id": "4"
+        },
+        {
+            "statement": {
+                "_text": "Glad to hear that. What kind of business?",
+                "_meta": "Helen_Turnbull_NE_Call_To_Advent_02"
+            },
+            "_actorName": "Helen Turnbull",
+            "_actorParameterID": "1b375fde-5a79-4f43-b8bb-a7a640f84a86",
+            "_position": {
+                "x": 4350.0,
+                "y": 9480.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "14"
+        },
+        {
+            "availableChoices": [
+                {
+                    "statement": {
+                        "_text": "I have this unusual item...",
+                        "_meta": "Player_Helen_Turnbull_NE_Call_To_Advent_b_01-s"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "I'll leave you to your work, thanks for the chat.",
+                        "_meta": "Player_Helen_Turnbull_NE_Call_To_Advent_b_01"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "I'll leave you to your work, thanks for the chat.",
+                        "_meta": "Player_Helen_Turnbull_NE_Call_To_Advent_b_01"
+                    }
+                }
+            ],
+            "_position": {
+                "x": 4350.0,
+                "y": 9645.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+            "$id": "16"
+        },
+        {
+            "statement": {
+                "_text": "I\u2019m always interested in curiosities. What have you got?",
+                "_meta": "Helen_Turnbull_NE_Call_To_Advent_15"
+            },
+            "_actorName": "name_unpc_helenturnbull_01",
+            "_actorParameterID": "1b375fde-5a79-4f43-b8bb-a7a640f84a86",
+            "_position": {
+                "x": 3930.0,
+                "y": 9885.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "24"
+        },
+        {
+            "availableChoices": [
+                {
+                    "statement": {
+                        "_text": "I found this Red Stone in the ribcage of a Giant.",
+                        "_meta": "Player_Helen_Turnbull_NE_Call_To_Advent_a_15"
+                    },
+                    "condition": {
+                        "character": {
+                            "_name": "gInstigator",
+                            "_targetVariableID": "4677abc8-6894-4a7e-b0ee-d72b68ca9559"
+                        },
+                        "item": {
+                            "_value": {
+                                "m_itemID": 7400050
+                            }
+                        },
+                        "minAmount": {
+                            "_value": 1
+                        },
+                        "itemMustBeEquiped": {},
+                        "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "I found this strange bullet that someone killed Zephyrien with. Do you know what this is?",
+                        "_meta": "Player_Helen_Turnbull_NE_Call_To_Advent_a_23"
+                    },
+                    "condition": {
+                        "conditions": [
+                            {
+                                "QuestEventRef": {
+                                    "m_eventUID": "ABmWCEcESkqmmJ_geH0ecw"
+                                },
+                                "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+                            },
+                            {
+                                "QuestEventRef": {
+                                    "m_eventUID": "4trFe5urCkKJmTKvdjy3Rg"
+                                },
+                                "_invert": true,
+                                "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+                            }
+                        ],
+                        "$type": "NodeCanvas.Framework.ConditionList"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "I found this very beautiful Halberd. Interested?",
+                        "_meta": "Player_Helen_Turnbull_NE_Call_To_Advent_b_23"
+                    },
+                    "condition": {
+                        "character": {
+                            "_name": "gInstigator",
+                            "_targetVariableID": "4677abc8-6894-4a7e-b0ee-d72b68ca9559"
+                        },
+                        "item": {
+                            "_value": {
+                                "m_itemID": 2140030
+                            }
+                        },
+                        "minAmount": {
+                            "_value": 1
+                        },
+                        "itemMustBeEquiped": {},
+                        "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "Actually, I don\u2019t think I have anything that\u2019ll interest you, sorry.",
+                        "_meta": "Player_Helen_Turnbull_NE_Call_To_Advent_a_21"
+                    }
+                }
+            ],
+            "_position": {
+                "x": 3990.0,
+                "y": 10065.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+            "$id": "26"
+        },
+        {
+            "statement": {
+                "_text": "Oho, an interesting piece. I\u2019ll give you 30 silver for that.",
+                "_meta": "Helen_Turnbull_NE_Call_To_Advent_16"
+            },
+            "_actorName": "name_unpc_helenturnbull_01",
+            "_actorParameterID": "1b375fde-5a79-4f43-b8bb-a7a640f84a86",
+            "_position": {
+                "x": 2175.0,
+                "y": 10425.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "54"
+        },
+        {
+            "availableChoices": [
+                {
+                    "statement": {
+                        "_text": "Really, only 30? I could get a better price with the Ash Giants for returning this Ash Giant\u2019s Heart, I\u2019m sure.",
+                        "_meta": "Player_Helen_Turnbull_NE_Call_To_Advent_a_16"
+                    },
+                    "condition": {
+                        "QuestEventRef": {
+                            "m_eventUID": "9vQDz-AmckOriPJjiM4pfA"
+                        },
+                        "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "Deal, here you go.",
+                        "_meta": "Player_Helen_Turnbull_NE_Call_To_Advent_c_15"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "At that price, I\u2019ll keep it.",
+                        "_meta": "Player_Helen_Turnbull_NE_Call_To_Advent_d_15"
+                    }
+                }
+            ],
+            "_position": {
+                "x": 2190.0,
+                "y": 10590.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+            "$id": "56"
+        },
+        {
+            "statement": {
+                "_text": "You drive a hard bargain, my friend. I\u2019ll give you 50 silvers, and not a single one more!",
+                "_meta": "Helen_Turnbull_NE_Call_To_Advent_17"
+            },
+            "_actorName": "name_unpc_helenturnbull_01",
+            "_actorParameterID": "1b375fde-5a79-4f43-b8bb-a7a640f84a86",
+            "_position": {
+                "x": 1635.0,
+                "y": 10815.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "66"
+        },
+        {
+            "availableChoices": [
+                {
+                    "statement": {
+                        "_text": "Deal, here you go.",
+                        "_meta": "Player_Helen_Turnbull_NE_Call_To_Advent_c_15"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "No deal.",
+                        "_meta": "Player_Helen_Turnbull_NE_Call_To_Advent_b_15"
+                    }
+                }
+            ],
+            "_position": {
+                "x": 1740.0,
+                "y": 10980.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+            "$id": "68"
+        },
+        {
+            "_action": {
+                "SilverAmount": {
+                    "_value": 50
+                },
+                "XpAmount": {},
+                "ItemReward": [],
+                "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+            },
+            "_position": {
+                "x": 1635.0,
+                "y": 11175.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "74"
+        },
+        {
+            "_action": {
+                "fromCharacter": {
+                    "_name": "gInstigator",
+                    "_targetVariableID": "4677abc8-6894-4a7e-b0ee-d72b68ca9559"
+                },
+                "Items": [
+                    {
+                        "_value": {
+                            "m_itemID": 7400050
+                        }
+                    }
+                ],
+                "Amount": [
+                    {
+                        "_value": 1
+                    }
+                ],
+                "$type": "NodeCanvas.Tasks.Actions.RemoveItem"
+            },
+            "_position": {
+                "x": 1680.0,
+                "y": 11295.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "79"
+        },
+        {
+            "statement": {
+                "_text": "A good deal for both of us.",
+                "_meta": "Helen_Turnbull_NE_Call_To_Advent_19"
+            },
+            "_actorName": "name_unpc_helenturnbull_01",
+            "_actorParameterID": "1b375fde-5a79-4f43-b8bb-a7a640f84a86",
+            "_position": {
+                "x": 1620.0,
+                "y": 11430.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "87"
+        },
+        {
+            "_targetNode": {
+                "$ref": "4"
+            },
+            "_position": {
+                "x": 1710.0,
+                "y": 11595.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.GoToNode",
+            "$id": "89"
+        },
+        {
+            "statement": {
+                "_text": "No deal then. Please reconsider the offer.",
+                "_meta": "Helen_Turnbull_NE_Call_To_Advent_18"
+            },
+            "_actorName": "name_unpc_helenturnbull_01",
+            "_actorParameterID": "1b375fde-5a79-4f43-b8bb-a7a640f84a86",
+            "_position": {
+                "x": 1905.0,
+                "y": 11115.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "90"
+        },
+        {
+            "_targetNode": {
+                "$ref": "4"
+            },
+            "_position": {
+                "x": 2025.0,
+                "y": 11280.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.GoToNode",
+            "$id": "92"
+        },
+        {
+            "_action": {
+                "SilverAmount": {
+                    "_value": 30
+                },
+                "XpAmount": {},
+                "ItemReward": [],
+                "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+            },
+            "_position": {
+                "x": 2280.0,
+                "y": 10845.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "93"
+        },
+        {
+            "_action": {
+                "fromCharacter": {
+                    "_name": "gInstigator",
+                    "_targetVariableID": "4677abc8-6894-4a7e-b0ee-d72b68ca9559"
+                },
+                "Items": [
+                    {
+                        "_value": {
+                            "m_itemID": 7400050
+                        }
+                    }
+                ],
+                "Amount": [
+                    {
+                        "_value": 1
+                    }
+                ],
+                "$type": "NodeCanvas.Tasks.Actions.RemoveItem"
+            },
+            "_position": {
+                "x": 2235.0,
+                "y": 10965.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "98"
+        },
+        {
+            "statement": {
+                "_text": "Excellent. A pleasure doing business as always!",
+                "_meta": "Helen_Turnbull_NE_Call_To_Advent_20"
+            },
+            "_actorName": "name_unpc_helenturnbull_01",
+            "_actorParameterID": "1b375fde-5a79-4f43-b8bb-a7a640f84a86",
+            "_position": {
+                "x": 2235.0,
+                "y": 11070.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "106"
+        },
+        {
+            "_targetNode": {
+                "$ref": "4"
+            },
+            "_position": {
+                "x": 2280.0,
+                "y": 11265.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.GoToNode",
+            "$id": "108"
+        },
+        {
+            "statement": {
+                "_text": "No deal then. Please reconsider the offer.",
+                "_meta": "Helen_Turnbull_NE_Call_To_Advent_18"
+            },
+            "_actorName": "name_unpc_helenturnbull_01",
+            "_actorParameterID": "1b375fde-5a79-4f43-b8bb-a7a640f84a86",
+            "_position": {
+                "x": 2475.0,
+                "y": 10860.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "109"
+        },
+        {
+            "_targetNode": {
+                "$ref": "4"
+            },
+            "_position": {
+                "x": 2595.0,
+                "y": 11010.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.GoToNode",
+            "$id": "111"
+        },
+        {
+            "statement": {
+                "_text": "What? Let me see that bullet! ...Oh my. I...Can\u2019t really tell much about it without tools, but...Whoever designed this was a tremendously cruel person, and very prepared.",
+                "_meta": "Helen_Turnbull_NE_Call_To_Advent_25"
+            },
+            "_actorName": "name_unpc_helenturnbull_01",
+            "_actorParameterID": "1b375fde-5a79-4f43-b8bb-a7a640f84a86",
+            "_position": {
+                "x": 2974.0,
+                "y": 10474.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "112"
+        },
+        {
+            "statement": {
+                "_text": "The casing itself is made from carefully forged Tsar Stone. I don\u2019t think it\u2019s possible to get that material back into usable form, though, not with that black poison goop all over it...Tell you what, I\u2019ll buy this off you for 30 silvers.",
+                "_meta": "Helen_Turnbull_NE_Call_To_Advent_26"
+            },
+            "_actorName": "name_unpc_helenturnbull_01",
+            "_actorParameterID": "1b375fde-5a79-4f43-b8bb-a7a640f84a86",
+            "_position": {
+                "x": 2880.0,
+                "y": 10785.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "114"
+        },
+        {
+            "availableChoices": [
+                {
+                    "statement": {
+                        "_text": "Mofat told me that the poison is distilled blood from an Immaculate. Only Sorobor Academy would be able to refine something this dangerous.",
+                        "_meta": "Player_Helen_Turnbull_NE_Call_To_Advent_a_26"
+                    },
+                    "condition": {
+                        "QuestEventRef": {
+                            "m_eventUID": "CvPsc6ZJ60eseLAsLk7P9w"
+                        },
+                        "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "Deal, here you go.",
+                        "_meta": "Player_Helen_Turnbull_NE_Call_To_Advent_c_15"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "At that price, I\u2019ll keep it.",
+                        "_meta": "Player_Helen_Turnbull_NE_Call_To_Advent_d_15"
+                    }
+                }
+            ],
+            "_position": {
+                "x": 2778.0,
+                "y": 11013.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+            "$id": "116"
+        },
+        {
+            "statement": {
+                "_text": "Did he? He must have been mistaken. Sorobor Academy doesn\u2019t do business with those monsters, and we certainly had no motive to see Zephyrien assassinated. Still...If it is Immaculate\u2019s blood...How does 50 silvers for the bullet sound?",
+                "_meta": "Helen_Turnbull_NE_Call_To_Advent_27"
+            },
+            "_actorName": "name_unpc_helenturnbull_01",
+            "_actorParameterID": "1b375fde-5a79-4f43-b8bb-a7a640f84a86",
+            "_position": {
+                "x": 2655.0,
+                "y": 11280.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "126"
+        },
+        {
+            "availableChoices": [
+                {
+                    "statement": {
+                        "_text": "I\u2019m with the Holy Mission. I can\u2019t let this get swept under the rug. This needs to be investigated!",
+                        "_meta": "Player_Helen_Turnbull_NE_Call_To_Advent_a_27"
+                    },
+                    "condition": {
+                        "QuestEventRef": {
+                            "m_eventUID": "1tkTEWMPbEGKmWItwxy4kQ"
+                        },
+                        "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "Deal, here you go.",
+                        "_meta": "Player_Helen_Turnbull_NE_Call_To_Advent_c_15"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "No deal.",
+                        "_meta": "Player_Helen_Turnbull_NE_Call_To_Advent_b_15"
+                    }
+                }
+            ],
+            "_position": {
+                "x": 2502.0,
+                "y": 11442.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+            "$id": "128"
+        },
+        {
+            "statement": {
+                "_text": "Trust me, [PlayerName], I don\u2019t think it\u2019s possible for anyone to find the truth of the matter from outside of our organization. We\u2019re too good at keeping secrets. Give it to me and I\u2019ll take care of it. How does 85 silvers interest you?",
+                "_meta": "Helen_Turnbull_NE_Call_To_Advent_28"
+            },
+            "_actorName": "name_unpc_helenturnbull_01",
+            "_actorParameterID": "1b375fde-5a79-4f43-b8bb-a7a640f84a86",
+            "_position": {
+                "x": 2460.0,
+                "y": 11655.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "138"
+        },
+        {
+            "availableChoices": [
+                {
+                    "statement": {
+                        "_text": "Deal, here you go.",
+                        "_meta": "Player_Helen_Turnbull_NE_Call_To_Advent_c_15"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "I don\u2019t want your hush money! I\u2019m keeping this bullet!",
+                        "_meta": "Player_Helen_Turnbull_NE_Call_To_Advent_a_28"
+                    }
+                }
+            ],
+            "_position": {
+                "x": 2490.0,
+                "y": 11775.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+            "$id": "140"
+        },
+        {
+            "_action": {
+                "actions": [
+                    {
+                        "SilverAmount": {
+                            "_value": 120
+                        },
+                        "XpAmount": {},
+                        "ItemReward": [],
+                        "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+                    },
+                    {
+                        "QuestEventRef": {
+                            "m_eventUID": "4trFe5urCkKJmTKvdjy3Rg"
+                        },
+                        "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+                    }
+                ],
+                "$type": "NodeCanvas.Framework.ActionList"
+            },
+            "_position": {
+                "x": 2265.0,
+                "y": 11955.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "146"
+        },
+        {
+            "statement": {
+                "_text": "A good deal for both of us.",
+                "_meta": "Helen_Turnbull_NE_Call_To_Advent_19"
+            },
+            "_actorName": "name_unpc_helenturnbull_01",
+            "_actorParameterID": "1b375fde-5a79-4f43-b8bb-a7a640f84a86",
+            "_position": {
+                "x": 2265.0,
+                "y": 12075.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "155"
+        },
+        {
+            "_targetNode": {
+                "$ref": "4"
+            },
+            "_position": {
+                "x": 2340.0,
+                "y": 12195.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.GoToNode",
+            "$id": "157"
+        },
+        {
+            "_targetNode": {
+                "statement": {
+                    "_text": "No deal then. Please reconsider the offer.",
+                    "_meta": "Helen_Turnbull_NE_Call_To_Advent_18"
+                },
+                "_actorName": "name_unpc_helenturnbull_01",
+                "_actorParameterID": "1b375fde-5a79-4f43-b8bb-a7a640f84a86",
+                "_position": {
+                    "x": 3360.0,
+                    "y": 11265.0
+                },
+                "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+                "$id": "159"
+            },
+            "_position": {
+                "x": 2700.0,
+                "y": 11955.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.GoToNode",
+            "$id": "158"
+        },
+        {
+            "_action": {
+                "actions": [
+                    {
+                        "SilverAmount": {
+                            "_value": 100
+                        },
+                        "XpAmount": {},
+                        "ItemReward": [],
+                        "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+                    },
+                    {
+                        "QuestEventRef": {
+                            "m_eventUID": "4trFe5urCkKJmTKvdjy3Rg"
+                        },
+                        "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+                    }
+                ],
+                "$type": "NodeCanvas.Framework.ActionList"
+            },
+            "_position": {
+                "x": 2880.0,
+                "y": 11685.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "161"
+        },
+        {
+            "statement": {
+                "_text": "A good deal for both of us.",
+                "_meta": "Helen_Turnbull_NE_Call_To_Advent_19"
+            },
+            "_actorName": "name_unpc_helenturnbull_01",
+            "_actorParameterID": "1b375fde-5a79-4f43-b8bb-a7a640f84a86",
+            "_position": {
+                "x": 2865.0,
+                "y": 11805.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "170"
+        },
+        {
+            "_targetNode": {
+                "$ref": "4"
+            },
+            "_position": {
+                "x": 2940.0,
+                "y": 11925.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.GoToNode",
+            "$id": "172"
+        },
+        {
+            "_targetNode": {
+                "$ref": "159"
+            },
+            "_position": {
+                "x": 3148.0,
+                "y": 11691.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.GoToNode",
+            "$id": "173"
+        },
+        {
+            "_action": {
+                "actions": [
+                    {
+                        "SilverAmount": {
+                            "_value": 60
+                        },
+                        "XpAmount": {},
+                        "ItemReward": [],
+                        "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+                    },
+                    {
+                        "QuestEventRef": {
+                            "m_eventUID": "4trFe5urCkKJmTKvdjy3Rg"
+                        },
+                        "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+                    }
+                ],
+                "$type": "NodeCanvas.Framework.ActionList"
+            },
+            "_position": {
+                "x": 3090.0,
+                "y": 11325.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "174"
+        },
+        {
+            "statement": {
+                "_text": "Excellent. A pleasure doing business as always!",
+                "_meta": "Helen_Turnbull_NE_Call_To_Advent_20"
+            },
+            "_actorName": "name_unpc_helenturnbull_01",
+            "_actorParameterID": "1b375fde-5a79-4f43-b8bb-a7a640f84a86",
+            "_position": {
+                "x": 3090.0,
+                "y": 11430.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "183"
+        },
+        {
+            "_targetNode": {
+                "$ref": "4"
+            },
+            "_position": {
+                "x": 3180.0,
+                "y": 11550.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.GoToNode",
+            "$id": "185"
+        },
+        {
+            "$ref": "159"
+        },
+        {
+            "_targetNode": {
+                "$ref": "4"
+            },
+            "_position": {
+                "x": 3495.0,
+                "y": 11430.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.GoToNode",
+            "$id": "186"
+        },
+        {
+            "statement": {
+                "_text": "Oh? Let me see that halberd... Incredible. The craftsmanship is excellent, and it does seem to be safe to hold without Corruption infecting the wielder\u2019s hands. I know people who would be very interested in this. How does 70 silver sound?",
+                "_meta": "Helen_Turnbull_NE_Call_To_Advent_29"
+            },
+            "_actorName": "name_unpc_helenturnbull_01",
+            "_actorParameterID": "1b375fde-5a79-4f43-b8bb-a7a640f84a86",
+            "_position": {
+                "x": 3748.0,
+                "y": 10397.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "187"
+        },
+        {
+            "availableChoices": [
+                {
+                    "statement": {
+                        "_text": "Deal, here you go.",
+                        "_meta": "Player_Helen_Turnbull_NE_Call_To_Advent_c_15"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "At that price, I\u2019ll keep it.",
+                        "_meta": "Player_Helen_Turnbull_NE_Call_To_Advent_d_15"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "At that price, I\u2019ll keep it.",
+                        "_meta": "Player_Helen_Turnbull_NE_Call_To_Advent_d_15"
+                    }
+                }
+            ],
+            "_position": {
+                "x": 3915.0,
+                "y": 10545.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+            "$id": "189"
+        },
+        {
+            "statement": {
+                "_text": "Excellent. A pleasure doing business as always!",
+                "_meta": "Helen_Turnbull_NE_Call_To_Advent_20"
+            },
+            "_actorName": "name_unpc_helenturnbull_01",
+            "_actorParameterID": "1b375fde-5a79-4f43-b8bb-a7a640f84a86",
+            "_position": {
+                "x": 3855.0,
+                "y": 10725.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "197"
+        },
+        {
+            "_action": {
+                "SilverAmount": {},
+                "XpAmount": {},
+                "ItemReward": [
+                    {
+                        "Item": {
+                            "_value": {
+                                "m_itemID": 6300030
+                            }
+                        },
+                        "Quantity": {
+                            "_value": 3
+                        },
+                        "TryToEquip": {}
+                    },
+                    {
+                        "Item": {
+                            "_value": {
+                                "m_itemID": 6400110
+                            }
+                        },
+                        "Quantity": {
+                            "_value": 3
+                        },
+                        "TryToEquip": {}
+                    },
+                    {
+                        "Item": {
+                            "_value": {
+                                "m_itemID": 6200070
+                            }
+                        },
+                        "Quantity": {
+                            "_value": 3
+                        },
+                        "TryToEquip": {}
+                    }
+                ],
+                "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+            },
+            "_position": {
+                "x": 3915.0,
+                "y": 10860.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "199"
+        },
+        {
+            "_action": {
+                "fromCharacter": {
+                    "_name": "gInstigator",
+                    "_targetVariableID": "4677abc8-6894-4a7e-b0ee-d72b68ca9559"
+                },
+                "Items": [
+                    {
+                        "_value": {
+                            "m_itemID": 2140030
+                        }
+                    }
+                ],
+                "Amount": [
+                    {
+                        "_value": 1
+                    }
+                ],
+                "$type": "NodeCanvas.Tasks.Actions.RemoveItem"
+            },
+            "_position": {
+                "x": 3960.0,
+                "y": 10950.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "219"
+        },
+        {
+            "_targetNode": {
+                "$ref": "4"
+            },
+            "_position": {
+                "x": 4005.0,
+                "y": 11085.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.GoToNode",
+            "$id": "227"
+        },
+        {
+            "statement": {
+                "_text": "No deal then. Please reconsider the offer.",
+                "_meta": "Helen_Turnbull_NE_Call_To_Advent_18"
+            },
+            "_actorName": "name_unpc_helenturnbull_01",
+            "_actorParameterID": "1b375fde-5a79-4f43-b8bb-a7a640f84a86",
+            "_position": {
+                "x": 4140.0,
+                "y": 10665.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "228"
+        },
+        {
+            "_targetNode": {
+                "$ref": "4"
+            },
+            "_position": {
+                "x": 4260.0,
+                "y": 10815.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.GoToNode",
+            "$id": "230"
+        },
+        {
+            "statement": {
+                "_text": "Don\u2019t get a lady\u2019s hopes like that! It\u2019s not nice!",
+                "_meta": "Helen_Turnbull_NE_Call_To_Advent_22"
+            },
+            "_actorName": "name_unpc_helenturnbull_01",
+            "_actorParameterID": "1b375fde-5a79-4f43-b8bb-a7a640f84a86",
+            "_position": {
+                "x": 4200.0,
+                "y": 10305.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "231"
+        },
+        {
+            "_targetNode": {
+                "$ref": "4"
+            },
+            "_position": {
+                "x": 4515.0,
+                "y": 10470.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.GoToNode",
+            "$id": "233"
+        },
+        {
+            "statement": {
+                "_text": "Look after yourself, [PlayerName].",
+                "_meta": "Helen_Turnbull_NE_Call_To_Advent_03"
+            },
+            "_actorName": "Helen Turnbull",
+            "_actorParameterID": "1b375fde-5a79-4f43-b8bb-a7a640f84a86",
+            "_position": {
+                "x": 4455.0,
+                "y": 9825.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "234"
+        },
+        {
+            "_position": {
+                "x": 4590.0,
+                "y": 9990.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.FinishNode",
+            "$id": "236"
+        },
+        {
+            "statement": {
+                "_text": "Work, eh? What do you need?",
+                "_meta": "Helen_Turnbull_NE_Call_To_Advent_21"
+            },
+            "_actorName": "name_unpc_helenturnbull_01",
+            "_actorParameterID": "1b375fde-5a79-4f43-b8bb-a7a640f84a86",
+            "_position": {
+                "x": 5040.0,
+                "y": 9540.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "237"
+        },
+        {
+            "availableChoices": [
+                {
+                    "statement": {
+                        "_text": "I\u2019m looking for something I can do nearby.",
+                        "_meta": "Player_Helen_Turnbull_NE_Call_To_Advent_a_02_W"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "(Give Mushroom Shield) I found that rare mushroom you wanted!",
+                        "_meta": "Player_Helen_Turnbull_NE_Call_To_Advent_a_01-j"
+                    },
+                    "condition": {
+                        "character": {
+                            "_name": "gInstigator",
+                            "_targetVariableID": "4677abc8-6894-4a7e-b0ee-d72b68ca9559"
+                        },
+                        "item": {
+                            "_value": {
+                                "m_itemID": 2300150
+                            }
+                        },
+                        "minAmount": {
+                            "_value": 1
+                        },
+                        "itemMustBeEquiped": {},
+                        "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+                    }
+                }
+            ],
+            "_position": {
+                "x": 5100.0,
+                "y": 9720.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+            "$id": "239"
+        },
+        {
+            "statement": {
+                "_text": "As a matter of fact, I could use an intrepid explorer for something. Tell me, how many risks are you willing to take for some money?",
+                "_meta": "Helen_Turnbull_NE_Call_To_Advent_04"
+            },
+            "_actorName": "name_unpc_helenturnbull_01",
+            "_actorParameterID": "1b375fde-5a79-4f43-b8bb-a7a640f84a86",
+            "_position": {
+                "x": 4980.0,
+                "y": 9870.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "251"
+        },
+        {
+            "availableChoices": [
+                {
+                    "statement": {
+                        "_text": "If the pay is good, I'm willing to put my life in danger.",
+                        "_meta": "Player_Helen_Turnbull_NE_Call_To_Advent_a_04"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "I am not going to risk my life for coins, if that's what you're asking.",
+                        "_meta": "Player_Helen_Turnbull_NE_Call_To_Advent_b_04"
+                    }
+                }
+            ],
+            "_position": {
+                "x": 5040.0,
+                "y": 10080.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+            "$id": "253"
+        },
+        {
+            "statement": {
+                "_text": "I\u2019m looking for a particularly <color=#00CCFF><b>rare mushroom</b></color> that I hear sometimes grows in <color=#00CCFF><b>Blister Burrow</b></color> this time of year. It\u2019s got some unique properties that Sorobor Academy would be very interested in.",
+                "_meta": "Helen_Turnbull_NE_Call_To_Advent_06"
+            },
+            "_actorName": "name_unpc_helenturnbull_01",
+            "_actorParameterID": "1b375fde-5a79-4f43-b8bb-a7a640f84a86",
+            "_position": {
+                "x": 4680.0,
+                "y": 10230.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "259"
+        },
+        {
+            "statement": {
+                "_text": "You\u2019ll know it if you find it. The primary characteristic is its immense size. You could practically use it as a shield if you were dumb enough to try it. Bring me that mushroom and I\u2019ll pay you 70 silvers for it.",
+                "_meta": "Helen_Turnbull_NE_Call_To_Advent_07"
+            },
+            "_actorName": "name_unpc_helenturnbull_01",
+            "_actorParameterID": "1b375fde-5a79-4f43-b8bb-a7a640f84a86",
+            "_position": {
+                "x": 4800.0,
+                "y": 10335.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "261"
+        },
+        {
+            "availableChoices": [
+                {
+                    "statement": {
+                        "_text": "Troglodytes and deep dark caves? That sounds like a terrible idea. Pass!",
+                        "_meta": "Player_Helen_Turnbull_NE_Call_To_Advent_a_07"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "What kind of properties does this mushroom have?",
+                        "_meta": "Player_Helen_Turnbull_NE_Call_To_Advent_b_07"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "Sounds like an adventure. I'll do it!",
+                        "_meta": "Player_Helen_Turnbull_NE_Call_To_Advent_c_07"
+                    }
+                }
+            ],
+            "_position": {
+                "x": 4890.0,
+                "y": 10695.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+            "$id": "263"
+        },
+        {
+            "statement": {
+                "_text": "And now you see why I don't want to go either. We are both smarter than we look!",
+                "_meta": "Helen_Turnbull_NE_Call_To_Advent_08"
+            },
+            "_actorName": "name_unpc_helenturnbull_01",
+            "_actorParameterID": "1b375fde-5a79-4f43-b8bb-a7a640f84a86",
+            "_position": {
+                "x": 4440.0,
+                "y": 10890.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "271"
+        },
+        {
+            "_targetNode": {
+                "$ref": "4"
+            },
+            "_position": {
+                "x": 4560.0,
+                "y": 11025.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.GoToNode",
+            "$id": "273"
+        },
+        {
+            "statement": {
+                "_text": "That's a trade secret, [PlayerName]. Maybe I'll tell you later. Are you interested, or not?",
+                "_meta": "Helen_Turnbull_NE_Call_To_Advent_09"
+            },
+            "_actorName": "name_unpc_helenturnbull_01",
+            "_actorParameterID": "1b375fde-5a79-4f43-b8bb-a7a640f84a86",
+            "_position": {
+                "x": 4785.0,
+                "y": 10995.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "274"
+        },
+        {
+            "availableChoices": [
+                {
+                    "statement": {
+                        "_text": "Yes.",
+                        "_meta": "Merchant_Generic_Yes_01"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "No, thanks.",
+                        "_meta": "Merchant_Generic_No_02"
+                    }
+                }
+            ],
+            "_position": {
+                "x": 4905.0,
+                "y": 11145.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+            "$id": "276"
+        },
+        {
+            "_targetNode": {
+                "_condition": {
+                    "quest": {
+                        "_value": 1
+                    },
+                    "$type": "NodeCanvas.Tasks.Conditions.Condition_KnowQuest"
+                },
+                "_position": {
+                    "x": 5385.0,
+                    "y": 10995.0
+                },
+                "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+                "$id": "283"
+            },
+            "_position": {
+                "x": 4845.0,
+                "y": 11265.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.GoToNode",
+            "$id": "282"
+        },
+        {
+            "_position": {
+                "x": 5160.0,
+                "y": 11295.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.FinishNode",
+            "$id": "286"
+        },
+        {
+            "$ref": "283"
+        },
+        {
+            "_condition": {
+                "QuestEventRef": {
+                    "m_eventUID": "fmpZ6qLCfECThs_Ycon-zg"
+                },
+                "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            "_position": {
+                "x": 5430.0,
+                "y": 11205.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "287"
+        },
+        {
+            "statement": {
+                "_text": "Perfect! Make sure you have a good weapon, a lantern, and plenty of supplies. It\u2019s a dangerous cave, and you will be putting your life on the line if you set foot inside. Don't forget that the Trogs have poor eyesight, but fantastic hearing.",
+                "_meta": "Helen_Turnbull_NE_Call_To_Advent_10"
+            },
+            "_actorName": "name_unpc_helenturnbull_01",
+            "_actorParameterID": "1b375fde-5a79-4f43-b8bb-a7a640f84a86",
+            "_position": {
+                "x": 5445.0,
+                "y": 11475.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "290"
+        },
+        {
+            "statement": {
+                "_text": "To get to <color=#00CCFF><b>Blister Burrow</b></color>, head out of Cierzo\u2019s main gate, then follow <color=#00CCFF><b>the road to the left</b></color>. When you get to another <color=#00CCFF><b>fork in the road at a wooden gate, turn left again</b></color>.",
+                "_meta": "Helen_Turnbull_NE_Call_To_Advent_11"
+            },
+            "_actorName": "name_unpc_helenturnbull_01",
+            "_actorParameterID": "1b375fde-5a79-4f43-b8bb-a7a640f84a86",
+            "_position": {
+                "x": 5505.0,
+                "y": 11625.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "292"
+        },
+        {
+            "statement": {
+                "_text": "You'll know you're going the right way if you pass through some <color=#00CCFF><b>wooden arches</b></color>. The entrance should be just ahead of you, along the hillside.",
+                "_meta": "Helen_Turnbull_NE_Call_To_Advent_12"
+            },
+            "_actorName": "name_unpc_helenturnbull_01",
+            "_actorParameterID": "1b375fde-5a79-4f43-b8bb-a7a640f84a86",
+            "_position": {
+                "x": 5415.0,
+                "y": 11760.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "294"
+        },
+        {
+            "_targetNode": {
+                "$ref": "4"
+            },
+            "_position": {
+                "x": 5565.0,
+                "y": 12015.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.GoToNode",
+            "$id": "296"
+        },
+        {
+            "_action": {
+                "actions": [
+                    {
+                        "QuestEventRef": {
+                            "m_eventUID": "fmpZ6qLCfECThs_Ycon-zg"
+                        },
+                        "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+                    },
+                    {
+                        "SilverAmount": {},
+                        "XpAmount": {},
+                        "ItemReward": [
+                            {
+                                "Item": {
+                                    "_value": {
+                                        "m_itemID": 4300110
+                                    }
+                                },
+                                "Quantity": {
+                                    "_value": 2
+                                },
+                                "TryToEquip": {}
+                            }
+                        ],
+                        "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+                    }
+                ],
+                "$type": "NodeCanvas.Framework.ActionList"
+            },
+            "_position": {
+                "x": 5685.0,
+                "y": 11310.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "297"
+        },
+        {
+            "_action": {
+                "quest": {},
+                "questRef": {
+                    "_value": {
+                        "m_itemID": 7011601
+                    }
+                },
+                "$type": "NodeCanvas.Tasks.Actions.GiveQuest"
+            },
+            "_position": {
+                "x": 5610.0,
+                "y": 11085.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "311"
+        },
+        {
+            "statement": {
+                "_text": "Fair enough. It's a good thing to understand your own boundaries. If you find some rare items, my coinpurse is always open!",
+                "_meta": "Helen_Turnbull_NE_Call_To_Advent_05"
+            },
+            "_actorName": "name_unpc_helenturnbull_01",
+            "_actorParameterID": "1b375fde-5a79-4f43-b8bb-a7a640f84a86",
+            "_position": {
+                "x": 5385.0,
+                "y": 10260.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "316"
+        },
+        {
+            "_targetNode": {
+                "$ref": "4"
+            },
+            "_position": {
+                "x": 5505.0,
+                "y": 10380.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.GoToNode",
+            "$id": "318"
+        },
+        {
+            "_condition": {
+                "_location": {
+                    "_key": "QUEST_MINOR_HELENS_FUNGUS"
+                },
+                "$type": "OutwardArchipelago.Graphs.Conditions.Condition_LocationCheck"
+            },
+            "_position": {
+                "x": 1034.0,
+                "y": 7118.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "319"
+        },
+        {
+            "_action": {
+                "actions": [
+                    {
+                        "SilverAmount": {
+                            "_value": 70
+                        },
+                        "XpAmount": {},
+                        "ItemReward": [],
+                        "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+                    },
+                    {
+                        "fromCharacter": {
+                            "_name": "gInstigator",
+                            "_targetVariableID": "4677abc8-6894-4a7e-b0ee-d72b68ca9559"
+                        },
+                        "Items": [
+                            {
+                                "_value": {
+                                    "m_itemID": 2300150
+                                }
+                            }
+                        ],
+                        "Amount": [
+                            {
+                                "_value": 1
+                            }
+                        ],
+                        "$type": "NodeCanvas.Tasks.Actions.RemoveItem"
+                    }
+                ],
+                "$type": "NodeCanvas.Framework.ActionList"
+            },
+            "_position": {
+                "x": 5655.0,
+                "y": 9915.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "322"
+        },
+        {
+            "_action": {
+                "QuestEventRef": {
+                    "m_eventUID": "iQSXAOjKT0aOFa89DMeyKg"
+                },
+                "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            "_position": {
+                "x": 5835.0,
+                "y": 10050.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "336"
+        },
+        {
+            "statement": {
+                "_text": "Ah! That\u2019s what I\u2019m looking for! Thank you, [PlayerName]! You\u2019ve more than earned your reward!",
+                "_meta": "Helen_Turnbull_NE_Call_To_Advent_14"
+            },
+            "_actorName": "name_unpc_helenturnbull_01",
+            "_actorParameterID": "1b375fde-5a79-4f43-b8bb-a7a640f84a86",
+            "_position": {
+                "x": 5820.0,
+                "y": 10200.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "339"
+        },
+        {
+            "_targetNode": {
+                "$ref": "4"
+            },
+            "_position": {
+                "x": 5985.0,
+                "y": 10320.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.GoToNode",
+            "$id": "341"
+        },
+        {
+            "_action": {
+                "actions": [
+                    {
+                        "_location": {
+                            "_key": "QUEST_MINOR_HELENS_FUNGUS"
+                        },
+                        "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+                    },
+                    {
+                        "fromCharacter": {
+                            "_name": "gInstigator",
+                            "_targetVariableID": "4677abc8-6894-4a7e-b0ee-d72b68ca9559"
+                        },
+                        "Items": [
+                            {
+                                "_value": {
+                                    "m_itemID": 2300150
+                                }
+                            }
+                        ],
+                        "Amount": [
+                            {
+                                "_value": 1
+                            }
+                        ],
+                        "$type": "NodeCanvas.Tasks.Actions.RemoveItem"
+                    }
+                ],
+                "$type": "NodeCanvas.Framework.ActionList"
+            },
+            "_position": {
+                "x": 1034.0,
+                "y": 7118.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "342"
+        },
+        {
+            "statement": {
+                "_text": "Look after yourself, [PlayerName].",
+                "_meta": "Helen_Turnbull_NE_Call_To_Advent_03"
+            },
+            "_actorName": "name_unpc_helenturnbull_01",
+            "_actorParameterID": "1b375fde-5a79-4f43-b8bb-a7a640f84a86",
+            "_position": {
+                "x": 5550.0,
+                "y": 9450.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "354"
+        },
+        {
+            "_position": {
+                "x": 5670.0,
+                "y": 9600.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.FinishNode",
+            "$id": "356"
+        },
+        {
+            "_condition": {
+                "questRef": {
+                    "_value": {
+                        "m_itemID": 7011001
+                    }
+                },
+                "$type": "NodeCanvas.Tasks.Conditions.Condition_IsQuestCompleted"
+            },
+            "_position": {
+                "x": 4770.0,
+                "y": 10440.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "357"
+        },
+        {
+            "statement": {
+                "_text": "With that payment, plus whatever the merchants give you for the loot you pick up along the way should be enough to pay your current Blood Price payment. Just be careful in there, that cave is known to be a Troglodyte breeding ground.",
+                "_meta": "Helen_Turnbull_NE_Call_To_Advent_07-b"
+            },
+            "_actorName": "name_unpc_helenturnbull_01",
+            "_actorParameterID": "1b375fde-5a79-4f43-b8bb-a7a640f84a86",
+            "_position": {
+                "x": 5040.0,
+                "y": 10575.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "361"
+        },
+        {
+            "availableChoices": [
+                {
+                    "statement": {
+                        "_text": "Considering Sorobor\u2019s recent scandal with those missing missionaries, I\u2019m not sure handing this over is a good idea.",
+                        "_meta": "Player_Helen_Turnbull_NE_Call_To_Advent_a_29"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "Deal, here you go.",
+                        "_meta": "Player_Helen_Turnbull_NE_Call_To_Advent_c_15"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "At that price, I\u2019ll keep it.",
+                        "_meta": "Player_Helen_Turnbull_NE_Call_To_Advent_d_15"
+                    }
+                }
+            ],
+            "_position": {
+                "x": 3580.0,
+                "y": 10533.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+            "$id": "363"
+        },
+        {
+            "statement": {
+                "_text": "Ah, yes, heard about that incident. Justice has been served and the people responsible have been dealt with, so I can assure you, giving this to me is quite safe. But if you\u2019re not sure, I can increase my price to 100 silver. What do you say?",
+                "_meta": "Helen_Turnbull_NE_Call_To_Advent_30"
+            },
+            "_actorName": "name_unpc_helenturnbull_01",
+            "_actorParameterID": "1b375fde-5a79-4f43-b8bb-a7a640f84a86",
+            "_position": {
+                "x": 3420.0,
+                "y": 10710.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "371"
+        },
+        {
+            "availableChoices": [
+                {
+                    "statement": {
+                        "_text": "Deal, here you go.",
+                        "_meta": "Player_Helen_Turnbull_NE_Call_To_Advent_c_15"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "No deal.",
+                        "_meta": "Player_Helen_Turnbull_NE_Call_To_Advent_b_15"
+                    }
+                }
+            ],
+            "_position": {
+                "x": 3600.0,
+                "y": 10920.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+            "$id": "373"
+        },
+        {
+            "_action": {
+                "SilverAmount": {
+                    "_value": 100
+                },
+                "XpAmount": {},
+                "ItemReward": [],
+                "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+            },
+            "_position": {
+                "x": 3645.0,
+                "y": 11115.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "379"
+        },
+        {
+            "_action": {
+                "fromCharacter": {
+                    "_name": "gInstigator",
+                    "_targetVariableID": "4677abc8-6894-4a7e-b0ee-d72b68ca9559"
+                },
+                "Items": [
+                    {
+                        "_value": {
+                            "m_itemID": 2140030
+                        }
+                    }
+                ],
+                "Amount": [
+                    {
+                        "_value": 1
+                    }
+                ],
+                "$type": "NodeCanvas.Tasks.Actions.RemoveItem"
+            },
+            "_position": {
+                "x": 3675.0,
+                "y": 11235.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "384"
+        },
+        {
+            "statement": {
+                "_text": "A good deal for both of us.",
+                "_meta": "Helen_Turnbull_NE_Call_To_Advent_19"
+            },
+            "_actorName": "name_unpc_helenturnbull_01",
+            "_actorParameterID": "1b375fde-5a79-4f43-b8bb-a7a640f84a86",
+            "_position": {
+                "x": 3615.0,
+                "y": 11355.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "392"
+        },
+        {
+            "_targetNode": {
+                "$ref": "4"
+            },
+            "_position": {
+                "x": 3705.0,
+                "y": 11475.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.GoToNode",
+            "$id": "394"
+        },
+        {
+            "_targetNode": {
+                "$ref": "228"
+            },
+            "_position": {
+                "x": 3855.0,
+                "y": 11100.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.GoToNode",
+            "$id": "395"
+        },
+        {
+            "_action": {
+                "quest": {
+                    "_value": 2
+                },
+                "questRef": {
+                    "_value": {
+                        "m_itemID": 7021001
+                    }
+                },
+                "$type": "NodeCanvas.Tasks.Actions.GiveQuest"
+            },
+            "_position": {
+                "x": 5790.0,
+                "y": 11910.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "396"
+        }
+    ],
+    "connections": [
+        {
+            "_sourceNode": {
+                "$ref": "2"
+            },
+            "_targetNode": {
+                "$ref": "4"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "4"
+            },
+            "_targetNode": {
+                "$ref": "14"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "4"
+            },
+            "_targetNode": {
+                "$ref": "237"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "4"
+            },
+            "_targetNode": {
+                "$ref": "354"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "14"
+            },
+            "_targetNode": {
+                "$ref": "16"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "16"
+            },
+            "_targetNode": {
+                "$ref": "24"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "16"
+            },
+            "_targetNode": {
+                "$ref": "234"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "24"
+            },
+            "_targetNode": {
+                "$ref": "26"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "26"
+            },
+            "_targetNode": {
+                "$ref": "54"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "26"
+            },
+            "_targetNode": {
+                "$ref": "112"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "26"
+            },
+            "_targetNode": {
+                "$ref": "187"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "26"
+            },
+            "_targetNode": {
+                "$ref": "231"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "54"
+            },
+            "_targetNode": {
+                "$ref": "56"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "56"
+            },
+            "_targetNode": {
+                "$ref": "66"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "56"
+            },
+            "_targetNode": {
+                "$ref": "93"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "56"
+            },
+            "_targetNode": {
+                "$ref": "109"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "66"
+            },
+            "_targetNode": {
+                "$ref": "68"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "68"
+            },
+            "_targetNode": {
+                "$ref": "74"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "68"
+            },
+            "_targetNode": {
+                "$ref": "90"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "74"
+            },
+            "_targetNode": {
+                "$ref": "79"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "79"
+            },
+            "_targetNode": {
+                "$ref": "87"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "87"
+            },
+            "_targetNode": {
+                "$ref": "89"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "90"
+            },
+            "_targetNode": {
+                "$ref": "92"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "93"
+            },
+            "_targetNode": {
+                "$ref": "98"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "98"
+            },
+            "_targetNode": {
+                "$ref": "106"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "106"
+            },
+            "_targetNode": {
+                "$ref": "108"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "109"
+            },
+            "_targetNode": {
+                "$ref": "111"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "112"
+            },
+            "_targetNode": {
+                "$ref": "114"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "114"
+            },
+            "_targetNode": {
+                "$ref": "116"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "116"
+            },
+            "_targetNode": {
+                "$ref": "126"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "116"
+            },
+            "_targetNode": {
+                "$ref": "174"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "116"
+            },
+            "_targetNode": {
+                "$ref": "159"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "126"
+            },
+            "_targetNode": {
+                "$ref": "128"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "128"
+            },
+            "_targetNode": {
+                "$ref": "138"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "128"
+            },
+            "_targetNode": {
+                "$ref": "161"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "128"
+            },
+            "_targetNode": {
+                "$ref": "173"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "138"
+            },
+            "_targetNode": {
+                "$ref": "140"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "140"
+            },
+            "_targetNode": {
+                "$ref": "146"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "140"
+            },
+            "_targetNode": {
+                "$ref": "158"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "146"
+            },
+            "_targetNode": {
+                "$ref": "155"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "155"
+            },
+            "_targetNode": {
+                "$ref": "157"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "161"
+            },
+            "_targetNode": {
+                "$ref": "170"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "170"
+            },
+            "_targetNode": {
+                "$ref": "172"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "174"
+            },
+            "_targetNode": {
+                "$ref": "183"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "183"
+            },
+            "_targetNode": {
+                "$ref": "185"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "159"
+            },
+            "_targetNode": {
+                "$ref": "186"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "187"
+            },
+            "_targetNode": {
+                "$ref": "189"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "189"
+            },
+            "_targetNode": {
+                "$ref": "197"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "189"
+            },
+            "_targetNode": {
+                "$ref": "228"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "197"
+            },
+            "_targetNode": {
+                "$ref": "199"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "199"
+            },
+            "_targetNode": {
+                "$ref": "219"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "219"
+            },
+            "_targetNode": {
+                "$ref": "227"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "228"
+            },
+            "_targetNode": {
+                "$ref": "230"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "231"
+            },
+            "_targetNode": {
+                "$ref": "233"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "234"
+            },
+            "_targetNode": {
+                "$ref": "236"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "237"
+            },
+            "_targetNode": {
+                "$ref": "239"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "239"
+            },
+            "_targetNode": {
+                "$ref": "251"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "239"
+            },
+            "_targetNode": {
+                "$ref": "319"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "251"
+            },
+            "_targetNode": {
+                "$ref": "253"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "253"
+            },
+            "_targetNode": {
+                "$ref": "259"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "253"
+            },
+            "_targetNode": {
+                "$ref": "316"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "259"
+            },
+            "_targetNode": {
+                "$ref": "261"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "261"
+            },
+            "_targetNode": {
+                "$ref": "263"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "263"
+            },
+            "_targetNode": {
+                "$ref": "271"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "263"
+            },
+            "_targetNode": {
+                "$ref": "274"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "263"
+            },
+            "_targetNode": {
+                "$ref": "283"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "271"
+            },
+            "_targetNode": {
+                "$ref": "273"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "274"
+            },
+            "_targetNode": {
+                "$ref": "276"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "276"
+            },
+            "_targetNode": {
+                "$ref": "282"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "276"
+            },
+            "_targetNode": {
+                "$ref": "286"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "283"
+            },
+            "_targetNode": {
+                "$ref": "287"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "283"
+            },
+            "_targetNode": {
+                "$ref": "311"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "287"
+            },
+            "_targetNode": {
+                "$ref": "290"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "287"
+            },
+            "_targetNode": {
+                "$ref": "297"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "290"
+            },
+            "_targetNode": {
+                "$ref": "292"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "292"
+            },
+            "_targetNode": {
+                "$ref": "294"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "294"
+            },
+            "_targetNode": {
+                "$ref": "296"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "297"
+            },
+            "_targetNode": {
+                "$ref": "290"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "311"
+            },
+            "_targetNode": {
+                "$ref": "287"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "316"
+            },
+            "_targetNode": {
+                "$ref": "318"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "319"
+            },
+            "_targetNode": {
+                "$ref": "322"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "319"
+            },
+            "_targetNode": {
+                "$ref": "342"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "322"
+            },
+            "_targetNode": {
+                "$ref": "336"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "336"
+            },
+            "_targetNode": {
+                "$ref": "339"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "339"
+            },
+            "_targetNode": {
+                "$ref": "341"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "342"
+            },
+            "_targetNode": {
+                "$ref": "336"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "354"
+            },
+            "_targetNode": {
+                "$ref": "356"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "357"
+            },
+            "_targetNode": {
+                "$ref": "263"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "357"
+            },
+            "_targetNode": {
+                "$ref": "361"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "361"
+            },
+            "_targetNode": {
+                "$ref": "263"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "363"
+            },
+            "_targetNode": {
+                "$ref": "371"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "363"
+            },
+            "_targetNode": {
+                "$ref": "197"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "363"
+            },
+            "_targetNode": {
+                "$ref": "228"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "371"
+            },
+            "_targetNode": {
+                "$ref": "373"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "373"
+            },
+            "_targetNode": {
+                "$ref": "379"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "373"
+            },
+            "_targetNode": {
+                "$ref": "395"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "379"
+            },
+            "_targetNode": {
+                "$ref": "384"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "384"
+            },
+            "_targetNode": {
+                "$ref": "392"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "392"
+            },
+            "_targetNode": {
+                "$ref": "394"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "396"
+            },
+            "_targetNode": {
+                "$ref": "296"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        }
+    ],
+    "localBlackboard": {
+        "_name": "Local Blackboard",
+        "_variables": {
+            "gInstigator": {
+                "_name": "gInstigator",
+                "_id": "4677abc8-6894-4a7e-b0ee-d72b68ca9559",
+                "$type": "NodeCanvas.Framework.Variable`1[[Character, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+            }
+        }
+    },
+    "derivedData": {
+        "actorParameters": [
+            {
+                "_keyName": "name_unpc_helenturnbull_01",
+                "_id": "1b375fde-5a79-4f43-b8bb-a7a640f84a86"
+            }
+        ],
+        "$type": "NodeCanvas.DialogueTrees.DialogueTree+DerivedSerializationData"
+    }
+}

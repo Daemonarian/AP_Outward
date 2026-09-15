@@ -1,26 +1,21 @@
-using System.Collections.Generic;
 using NodeCanvas.Framework;
 using OutwardArchipelago.Archipelago;
+using UnityEngine;
 
 namespace OutwardArchipelago.Graphs.Actions
 {
     internal class Action_CompleteLocationCheck : ActionTask
     {
-        private readonly IReadOnlyList<APWorld.Location> _locations;
-        public IReadOnlyList<APWorld.Location> Locations => _locations;
+        [SerializeField]
+        private readonly APWorld.LocationRef _location = new();
 
-        public Action_CompleteLocationCheck(IReadOnlyList<APWorld.Location> locations) => _locations = locations;
+        public APWorld.Location Location => _location.Location;
 
-        public Action_CompleteLocationCheck(APWorld.Location location) : this(new[] { location }) { }
-
-        public override string info => $"Complete Archipelago location checks: {string.Join(", ", Locations)}";
+        public override string info => $"Complete Archipelago location checks: {Location}";
 
         public override void OnExecute()
         {
-            foreach (var location in Locations)
-            {
-                ArchipelagoConnector.Instance.Locations.Complete(location);
-            }
+            ArchipelagoConnector.Instance.Locations.Complete(Location);
 
             base.EndAction();
         }

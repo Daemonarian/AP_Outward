@@ -1,24 +1,20 @@
 using NodeCanvas.Framework;
+using UnityEngine;
 
 namespace OutwardArchipelago.Graphs.Conditions
 {
     public class Condition_QuestLicense : ConditionTask
     {
-        public int MinimumQuestLevel { get; private set; }
+        [SerializeField]
+        private readonly int _minimumQuestLevel = 0;
 
-        public bool IsInverted { get; private set; }
-
-        public Condition_QuestLicense(int minimumQuestLevel, bool isInverted = false) : base()
-        {
-            MinimumQuestLevel = minimumQuestLevel;
-            IsInverted = isInverted;
-        }
+        public int MinimumQuestLevel => _minimumQuestLevel;
 
         public override string info
         {
             get
             {
-                var taskInfo = IsInverted ? $"Requires Quest License < {MinimumQuestLevel}" : $"Requires Quest License >= {MinimumQuestLevel}";
+                var taskInfo = invert ? $"Requires Quest License < {MinimumQuestLevel}" : $"Requires Quest License >= {MinimumQuestLevel}";
                 return $"{base.info}\n{taskInfo}";
             }
         }
@@ -27,12 +23,9 @@ namespace OutwardArchipelago.Graphs.Conditions
         {
             var currentQuestLicenseLevel = QuestLicenseManager.GetQuestLicenseLevel();
             var check = currentQuestLicenseLevel >= MinimumQuestLevel;
-            if (IsInverted)
-            {
-                check = !check;
-            }
 
-            OutwardArchipelagoMod.Log.LogDebug($"Condition_CheckLicense::OnCheck MinimumQuestLevel={MinimumQuestLevel} IsInverted={IsInverted} currentQuestLicenseLevel={currentQuestLicenseLevel} return {check}");
+            OutwardArchipelagoMod.Log.LogDebug($"Condition_CheckLicense::OnCheck MinimumQuestLevel={MinimumQuestLevel} currentQuestLicenseLevel={currentQuestLicenseLevel} return {check}");
+
             return check;
         }
     }

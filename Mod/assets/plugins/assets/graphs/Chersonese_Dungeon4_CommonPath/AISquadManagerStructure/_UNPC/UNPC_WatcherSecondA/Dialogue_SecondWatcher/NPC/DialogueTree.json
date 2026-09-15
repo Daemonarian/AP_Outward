@@ -1,0 +1,378 @@
+{
+    "version": 2.92,
+    "type": "NodeCanvas.DialogueTrees.DialogueTreeExt",
+    "translation": {
+        "x": -6625.0,
+        "y": -5728.0
+    },
+    "nodes": [
+        {
+            "statement": {
+                "_text": "Magic is the weapon of a patient warrior. You cannot charge into danger and unleash spells as you please. You must plan your attacks, and bring enemies into a fight that is to your advantage. Never forget that spells must be used in the right combination. Tread carefully, and do not depend on magic alone!",
+                "_meta": "Conflux_MageC_tutorial_01"
+            },
+            "_actorName": "name_unpc_watcher_02",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 6480.0,
+                "y": 4920.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "2"
+        },
+        {
+            "_condition": {
+                "character": {
+                    "_name": "gInstigator",
+                    "_targetVariableID": "d863c1dd-1a71-4ca6-a509-7fa967c5f1e3"
+                },
+                "skill": {
+                    "_value": 1
+                },
+                "_invert": true,
+                "$type": "NodeCanvas.Tasks.Conditions.Condition_KnowSkill"
+            },
+            "_position": {
+                "x": 6645.0,
+                "y": 5040.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "4"
+        },
+        {
+            "_position": {
+                "x": 6555.0,
+                "y": 5415.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.FinishNode",
+            "$id": "8"
+        },
+        {
+            "availableChoices": [
+                {
+                    "statement": {
+                        "_text": "Farewell.",
+                        "_meta": "Merchant_Generic_Farewell_01"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "I want to train with you.",
+                        "_meta": "Merchant_Generic_Train_01"
+                    },
+                    "condition": {
+                        "character": {
+                            "_name": "gInstigator",
+                            "_targetVariableID": "d863c1dd-1a71-4ca6-a509-7fa967c5f1e3"
+                        },
+                        "skill": {
+                            "_value": 2
+                        },
+                        "_invert": true,
+                        "$type": "NodeCanvas.Tasks.Conditions.Condition_KnowSkill"
+                    }
+                }
+            ],
+            "_position": {
+                "x": 6735.0,
+                "y": 5190.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+            "$id": "9"
+        },
+        {
+            "statement": {
+                "_text": "I can teach you to gain mastery over the cold. A Boon of Cool, you could call it. I\u2019ll teach you to resist the cold and ice, and increase the power of your own ice magic in exchange for 50 silvers, so we can get some decent food brought here. I\u2019m completely sick of Turmmips!",
+                "_meta": "Trainer_Micro_ColdBoon_01"
+            },
+            "_actorName": "name_unpc_watcher_02",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 6900.0,
+                "y": 5370.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "18"
+        },
+        {
+            "availableChoices": [
+                {
+                    "statement": {
+                        "_text": "Deal, here\u2019s your money.",
+                        "_meta": "Merchant_Generic_Pay_01"
+                    },
+                    "condition": {
+                        "character": {
+                            "_name": "gInstigator",
+                            "_targetVariableID": "d863c1dd-1a71-4ca6-a509-7fa967c5f1e3"
+                        },
+                        "item": {
+                            "_value": {
+                                "m_itemID": 9000010
+                            }
+                        },
+                        "minAmount": {
+                            "_value": 50
+                        },
+                        "itemMustBeEquiped": {},
+                        "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "Not now.",
+                        "_meta": "Merchant_Generic_NotNow_01"
+                    }
+                }
+            ],
+            "_position": {
+                "x": 7020.0,
+                "y": 5535.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+            "$id": "20"
+        },
+        {
+            "statement": {
+                "_text": "Ah, I can already taste the Luxe Lichette! So, to cast the Boon of Cool, you pull in any source of cold around you-",
+                "_meta": "Trainer_Micro_ColdBoon_02"
+            },
+            "_actorName": "name_unpc_watcher_02",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 6735.0,
+                "y": 5715.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "32"
+        },
+        {
+            "_action": {
+                "$type": "NodeCanvas.Tasks.Actions.FadeOut"
+            },
+            "_position": {
+                "x": 6855.0,
+                "y": 5835.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "34"
+        },
+        {
+            "_action": {
+                "actions": [
+                    {
+                        "fromCharacter": {
+                            "_name": "gInstigator",
+                            "_targetVariableID": "d863c1dd-1a71-4ca6-a509-7fa967c5f1e3"
+                        },
+                        "Items": [
+                            {
+                                "_value": {
+                                    "m_itemID": 9000010
+                                }
+                            }
+                        ],
+                        "Amount": [
+                            {
+                                "_value": 50
+                            }
+                        ],
+                        "$type": "NodeCanvas.Tasks.Actions.RemoveItem"
+                    },
+                    {
+                        "_location": {
+                            "_key": "TRAIN_SECOND_WATCHER"
+                        },
+                        "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+                    }
+                ],
+                "$type": "NodeCanvas.Framework.ActionList"
+            },
+            "_position": {
+                "x": 6840.0,
+                "y": 5910.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "36"
+        },
+        {
+            "_action": {
+                "$type": "NodeCanvas.Tasks.Actions.FadeIn"
+            },
+            "_position": {
+                "x": 6840.0,
+                "y": 6030.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "48"
+        },
+        {
+            "statement": {
+                "_text": "-And that's how you generate the Boon. It may be helpful to ward off the winter cold, but it's no substitute for warm clothes and a hot fire.",
+                "_meta": "Trainer_Micro_ColdBoon_03"
+            },
+            "_actorName": "name_unpc_watcher_02",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 6705.0,
+                "y": 6150.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "50"
+        },
+        {
+            "_position": {
+                "x": 6870.0,
+                "y": 6330.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.FinishNode",
+            "$id": "52"
+        },
+        {
+            "_position": {
+                "x": 7380.0,
+                "y": 5910.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.FinishNode",
+            "$id": "53"
+        }
+    ],
+    "connections": [
+        {
+            "_sourceNode": {
+                "$ref": "2"
+            },
+            "_targetNode": {
+                "$ref": "4"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "4"
+            },
+            "_targetNode": {
+                "$ref": "8"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "4"
+            },
+            "_targetNode": {
+                "$ref": "9"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "9"
+            },
+            "_targetNode": {
+                "$ref": "8"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "9"
+            },
+            "_targetNode": {
+                "$ref": "18"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "18"
+            },
+            "_targetNode": {
+                "$ref": "20"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "20"
+            },
+            "_targetNode": {
+                "$ref": "32"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "20"
+            },
+            "_targetNode": {
+                "$ref": "53"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "32"
+            },
+            "_targetNode": {
+                "$ref": "34"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "34"
+            },
+            "_targetNode": {
+                "$ref": "36"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "36"
+            },
+            "_targetNode": {
+                "$ref": "48"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "48"
+            },
+            "_targetNode": {
+                "$ref": "50"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "50"
+            },
+            "_targetNode": {
+                "$ref": "52"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        }
+    ],
+    "localBlackboard": {
+        "_name": "Local Blackboard",
+        "_variables": {
+            "gInstigator": {
+                "_name": "gInstigator",
+                "_id": "d863c1dd-1a71-4ca6-a509-7fa967c5f1e3",
+                "$type": "NodeCanvas.Framework.Variable`1[[Character, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+            }
+        }
+    },
+    "derivedData": {
+        "actorParameters": [
+            {
+                "_keyName": "name_unpc_watcher_02",
+                "_id": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760"
+            }
+        ],
+        "$type": "NodeCanvas.DialogueTrees.DialogueTree+DerivedSerializationData"
+    }
+}

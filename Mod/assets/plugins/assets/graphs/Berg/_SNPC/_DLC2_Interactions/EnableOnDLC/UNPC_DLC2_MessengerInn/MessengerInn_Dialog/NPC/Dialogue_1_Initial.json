@@ -1,0 +1,1504 @@
+{
+    "version": 2.92,
+    "type": "NodeCanvas.DialogueTrees.DialogueTreeExt",
+    "translation": {
+        "x": -3884.0,
+        "y": -2130.0
+    },
+    "nodes": [
+        {
+            "_condition": {
+                "QuestEventRef": {
+                    "m_eventUID": "Z3flMjR08UGADVVuPAd_BA"
+                },
+                "_invert": true,
+                "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            "_position": {
+                "x": 4714.0,
+                "y": 1699.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "2"
+        },
+        {
+            "_condition": {
+                "_minimumQuestLevel": 6,
+                "$type": "OutwardArchipelago.Graphs.Conditions.Condition_QuestLicense"
+            },
+            "_position": {
+                "x": 3984.0,
+                "y": 2230.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "5"
+        },
+        {
+            "_condition": {
+                "QuestEventRef": {
+                    "m_eventUID": "nllwi4FnR0qN7968EsJ07A"
+                },
+                "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            "_position": {
+                "x": 4456.0,
+                "y": 1996.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "7"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - Greetings [Playername] Aberdeen. This letter is for your eyes only, Rissa\u2019s orders.",
+                "_meta": "Messenger_CA_Prequest_01"
+            },
+            "_actorName": "name_unpc_Caldera_Messenger",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 4073.0,
+                "y": 2412.0
+            },
+            "_UID": "8256b049-3a21-4365-abcf-52e916f485b6",
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "10"
+        },
+        {
+            "availableChoices": [
+                {
+                    "statement": {
+                        "_text": "No Loc - Why\u2019s Rissa sending a messenger and not talking to me in person?",
+                        "_meta": "Player_Messenger_CA_Prequest_01_a"
+                    }
+                }
+            ],
+            "_position": {
+                "x": 3900.0,
+                "y": 2548.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+            "$id": "12"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - I don\u2019t know.  She said to say that \u201cthe eyes of our great enemy are on us.  We must act with great caution\u201d, and told me you\u2019d know what that meant.",
+                "_meta": "Messenger_CA_Prequest_06"
+            },
+            "_actorName": "name_unpc_Caldera_Messenger",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 3778.0,
+                "y": 2743.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "16"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - There\u2019s two letters for you, here\u2019s the first one. I\u2019ll be over here if you need anything.",
+                "_meta": "Messenger_CA_Prequest_08"
+            },
+            "_actorName": "LOC KEY HERE",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 3795.0,
+                "y": 2909.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "18"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - [PlayerName], I hope this letter finds you well. I apologize for this secrecy, but a recent incident reeks of the influence of the Scarlet Lady. The less openly we speak of this, the safer I believe we will be.",
+                "_meta": "Rissa_Letter_CA_Prequest_01"
+            },
+            "_actorName": "name_unpc_Caldera_Letter_Blues",
+            "_actorParameterID": "9f804ac9-126b-4889-ad3f-9cbf32e0d213",
+            "_position": {
+                "x": 3749.0,
+                "y": 3055.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "20"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - During the end of the war between the Collective and Levant, the volcano nearest to the city of Sirocco suffered a tremendous seismic shift, causing grave damage to the city.",
+                "_meta": "Letter_CA_Prequest_02"
+            },
+            "_actorName": "name_unpc_Caldera_Letter_Blues",
+            "_actorParameterID": "9f804ac9-126b-4889-ad3f-9cbf32e0d213",
+            "_position": {
+                "x": 3723.0,
+                "y": 3175.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "22"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - The damage to Sirocco is far worse than I expected.  Reports tell me that the city itself has collapsed into the ground. A total reconstruction may be needed for civilization in the region to survive.",
+                "_meta": "Letter_CA_Prequest_03"
+            },
+            "_actorName": "name_unpc_Caldera_Letter_Blues",
+            "_actorParameterID": "9f804ac9-126b-4889-ad3f-9cbf32e0d213",
+            "_position": {
+                "x": 3732.0,
+                "y": 3275.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "24"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - Worse still, we have not received word from their Chamberlord and his Nobles since the incident. I fear the worst for them. If any of the city\u2019s leadership has survived, give them the second letter the messenger has for you.",
+                "_meta": "Letter_CA_Prequest_04"
+            },
+            "_actorName": "name_unpc_Caldera_Letter_Blues",
+            "_actorParameterID": "9f804ac9-126b-4889-ad3f-9cbf32e0d213",
+            "_position": {
+                "x": 3741.0,
+                "y": 3400.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "26"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - I have convinced the other Chamberlords that immediate action must be taken to aid the city. For the duration of your mission, you represent the Blue Chamber Collective. Act accordingly.",
+                "_meta": "Rissa_Letter_CA_Prequest_02"
+            },
+            "_actorName": "name_unpc_Caldera_Letter_Blues",
+            "_actorParameterID": "9f804ac9-126b-4889-ad3f-9cbf32e0d213",
+            "_position": {
+                "x": 3713.0,
+                "y": 3692.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "28"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - Several wagons of food and construction resources are being prepared to make the journey to the Caldera. I need you to get there first, and inform the leaders of the city that aid is on the way. From there, manage the situation as best you can.",
+                "_meta": "Letter_CA_Prequest_05"
+            },
+            "_actorName": "name_unpc_Caldera_Letter_Blues",
+            "_actorParameterID": "9f804ac9-126b-4889-ad3f-9cbf32e0d213",
+            "_position": {
+                "x": 3715.0,
+                "y": 3866.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "30"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - Sirocco is an incredibly valuable city, regardless of their isolation.  Do anything it takes to ensure the future of its people and the stability of the region.",
+                "_meta": "Letter_CA_Prequest_06"
+            },
+            "_actorName": "name_unpc_Caldera_Letter_Blues",
+            "_actorParameterID": "9f804ac9-126b-4889-ad3f-9cbf32e0d213",
+            "_position": {
+                "x": 3710.0,
+                "y": 4004.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "32"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - The Ancestral Memories warn me of grave danger to the Caldera region. Be prepared for anything, [PlayerName]. May your ancestors guide you.",
+                "_meta": "Rissa_Letter_CA_Prequest_06"
+            },
+            "_actorName": "name_unpc_Caldera_Letter_Blues",
+            "_actorParameterID": "9f804ac9-126b-4889-ad3f-9cbf32e0d213",
+            "_position": {
+                "x": 3603.0,
+                "y": 4257.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "34"
+        },
+        {
+            "availableChoices": [
+                {
+                    "statement": {
+                        "_text": "No Loc - Looks like I\u2019m headed for the Caldera region. Apparently there\u2019s a second letter?",
+                        "_meta": "Player_Letter_CA_Prequest_11"
+                    }
+                }
+            ],
+            "_position": {
+                "x": 4552.0,
+                "y": 4835.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+            "$id": "36"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - Yes, right here. I was told you would know who it\u2019s for. Ensure it gets to them safely, [PlayerName].",
+                "_meta": "Messenger_CA_Prequest_12"
+            },
+            "_actorName": "name_unpc_Caldera_Messenger",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 4645.0,
+                "y": 4974.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "40"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - Well, that\u2019s all.  Maybe I\u2019ll see you some other time.",
+                "_meta": "Messenger_CA_Prequest_13"
+            },
+            "_actorName": "name_unpc_Caldera_Messenger",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 4692.0,
+                "y": 5114.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "42"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - Status warning",
+                "_meta": "Messenger_CA_Prequest_14"
+            },
+            "_actorName": "name_unpc_Caldera_Messenger",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 4735.0,
+                "y": 5301.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "44"
+        },
+        {
+            "_action": {
+                "QuestEventRef": {
+                    "m_eventUID": "Z3flMjR08UGADVVuPAd_BA"
+                },
+                "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            "_position": {
+                "x": 4699.0,
+                "y": 5458.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "46"
+        },
+        {
+            "_condition": {
+                "QuestEventRef": {
+                    "m_eventUID": "1tkTEWMPbEGKmWItwxy4kQ"
+                },
+                "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            "_position": {
+                "x": 4863.0,
+                "y": 2202.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "49"
+        },
+        {
+            "_condition": {
+                "QuestEventRef": {
+                    "m_eventUID": "rl1_bi9s4kyV5bV9UeW7eg"
+                },
+                "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            "_position": {
+                "x": 4551.0,
+                "y": 2489.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "52"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - Greetings, Champion!  Lockwell sent a letter for you. ",
+                "_meta": "Messenger_CA_Prequest_03"
+            },
+            "_actorName": "name_unpc_Caldera_Messenger",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 4251.0,
+                "y": 2761.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "55"
+        },
+        {
+            "availableChoices": [
+                {
+                    "statement": {
+                        "_text": "No Loc - Lockwell?!  What in Elatt\u2019s name does he want me for?",
+                        "_meta": "Player_Messenger_CA_Prequest_01_b"
+                    }
+                }
+            ],
+            "_position": {
+                "x": 4383.0,
+                "y": 2947.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+            "$id": "57"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - He didn\u2019t look happy about it. But apparently someone convinced him you were the best one for this job.",
+                "_meta": "Messenger_CA_Prequest_07"
+            },
+            "_actorName": "name_unpc_Caldera_Messenger",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 4386.0,
+                "y": 3071.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "61"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - There\u2019s two letters for you, here\u2019s the first one. I\u2019ll be over here if you need anything.",
+                "_meta": "Messenger_CA_Prequest_08"
+            },
+            "_actorName": "LOC KEY HERE",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 4384.0,
+                "y": 3195.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "63"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - I am less than pleased to assign this task to a member of the Holy Mission, least of all you, but I require someone with both status and strength. After much discussion, I have been convinced that you are our best option.",
+                "_meta": "Lockwell_Letter_CA_Prequest_01"
+            },
+            "_actorName": "name_unpc_Caldera_Letter_Monsoon",
+            "_actorParameterID": "4b795b51-e42c-4b2f-b581-b5844142e6e7",
+            "_position": {
+                "x": 4369.0,
+                "y": 3328.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "65"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - During the end of the war between the Collective and Levant, the volcano nearest to the city of Sirocco suffered a tremendous seismic shift, causing grave damage to the city.",
+                "_meta": "Letter_CA_Prequest_02"
+            },
+            "_actorName": "name_unpc_Caldera_Letter_Monsoon",
+            "_actorParameterID": "4b795b51-e42c-4b2f-b581-b5844142e6e7",
+            "_position": {
+                "x": 4371.0,
+                "y": 3587.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "67"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - The damage to Sirocco is far worse than I expected.  Reports tell me that the city itself has collapsed into the ground. A total reconstruction may be needed for civilization in the region to survive.",
+                "_meta": "Letter_CA_Prequest_03"
+            },
+            "_actorName": "name_unpc_Caldera_Letter_Monsoon",
+            "_actorParameterID": "4b795b51-e42c-4b2f-b581-b5844142e6e7",
+            "_position": {
+                "x": 4380.0,
+                "y": 3687.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "69"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - Worse still, we have not received word from their Chamberlord and his Nobles since the incident. I fear the worst for them. If any of the city\u2019s leadership has survived, give them the second letter the messenger has for you.",
+                "_meta": "Letter_CA_Prequest_04"
+            },
+            "_actorName": "name_unpc_Caldera_Letter_Monsoon",
+            "_actorParameterID": "4b795b51-e42c-4b2f-b581-b5844142e6e7",
+            "_position": {
+                "x": 4391.0,
+                "y": 3807.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "71"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - Several wagons of food and construction resources are being prepared to make the journey to the Caldera. I need you to get there first, and inform the leaders of the city that aid is on the way. From there, manage the situation as best you can.",
+                "_meta": "Letter_CA_Prequest_05"
+            },
+            "_actorName": "name_unpc_Caldera_Letter_Monsoon",
+            "_actorParameterID": "4b795b51-e42c-4b2f-b581-b5844142e6e7",
+            "_position": {
+                "x": 4408.0,
+                "y": 3919.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "73"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - Sirocco is an incredibly valuable city, regardless of their isolation.  Do anything it takes to ensure the future of its people and the stability of the region.",
+                "_meta": "Letter_CA_Prequest_06"
+            },
+            "_actorName": "name_unpc_Caldera_Letter_Monsoon",
+            "_actorParameterID": "4b795b51-e42c-4b2f-b581-b5844142e6e7",
+            "_position": {
+                "x": 4403.0,
+                "y": 4032.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "75"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - For the duration of this mission you will answer directly to me, not to Elatt.  He has agreed to this condition, and will leave this in our hands. Sirocco must remain an independent tribe in the Blue Chamber Collective, not become subservient to the Holy Mission.",
+                "_meta": "Lockwell_Letter_CA_Prequest_07"
+            },
+            "_actorName": "name_unpc_Caldera_Letter_Monsoon",
+            "_actorParameterID": "4b795b51-e42c-4b2f-b581-b5844142e6e7",
+            "_position": {
+                "x": 4395.0,
+                "y": 4298.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "77"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - Taleron has urged me to trust your capability and your judgment in this matter. Do not make him a liar.",
+                "_meta": "Lockwell_Letter_CA_Prequest_08"
+            },
+            "_actorName": "name_unpc_Caldera_Letter_Monsoon",
+            "_actorParameterID": "4b795b51-e42c-4b2f-b581-b5844142e6e7",
+            "_position": {
+                "x": 4419.0,
+                "y": 4425.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "79"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - Greetings, Templar.  Lockwell sent a letter for you. ",
+                "_meta": "Messenger_CA_Prequest_02"
+            },
+            "_actorName": "name_unpc_Caldera_Messenger",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 4677.0,
+                "y": 2767.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "81"
+        },
+        {
+            "_condition": {
+                "QuestEventRef": {
+                    "m_eventUID": "SV3XUncnQU60ozhj9xTRpg"
+                },
+                "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            "_position": {
+                "x": 5276.0,
+                "y": 2418.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "83"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - Ah, there you are, [PlayerName]!  There is an urgent letter from Kirouac for you!",
+                "_meta": "Messenger_CA_Prequest_04"
+            },
+            "_actorName": "name_unpc_Caldera_Messenger",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 5016.0,
+                "y": 2630.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "86"
+        },
+        {
+            "availableChoices": [
+                {
+                    "statement": {
+                        "_text": "No Loc - So, what\u2019s this about?",
+                        "_meta": "Player_Messenger_CA_Prequest_01_c"
+                    }
+                }
+            ],
+            "_position": {
+                "x": 5084.0,
+                "y": 2843.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+            "$id": "88"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - There\u2019s two letters for you, here\u2019s the first one. I\u2019ll be over here if you need anything.",
+                "_meta": "Messenger_CA_Prequest_08"
+            },
+            "_actorName": "LOC KEY HERE",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 4951.0,
+                "y": 3045.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "92"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - [PlayerName], our goddess has need of you.  Our old ally, Sirocco, is in dire peril and requires immediate aid!",
+                "_meta": "Kirouac_Letter_CA_Prequest_01"
+            },
+            "_actorName": "name_unpc_Caldera_Letter_Levant",
+            "_actorParameterID": "a9a7179d-9d0c-4663-80f6-8e15e89c15d5",
+            "_position": {
+                "x": 4898.0,
+                "y": 3189.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "94"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - During the end of the war between the Collective and Levant, the volcano nearest to the city of Sirocco suffered a tremendous seismic shift, causing grave damage to the city.",
+                "_meta": "Letter_CA_Prequest_02"
+            },
+            "_actorName": "name_unpc_Caldera_Letter_Levant",
+            "_actorParameterID": "a9a7179d-9d0c-4663-80f6-8e15e89c15d5",
+            "_position": {
+                "x": 4884.0,
+                "y": 3464.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "96"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - The damage to Sirocco is far worse than I expected.  Reports tell me that the city itself has collapsed into the ground. A total reconstruction may be needed for civilization in the region to survive.",
+                "_meta": "Letter_CA_Prequest_03"
+            },
+            "_actorName": "name_unpc_Caldera_Letter_Levant",
+            "_actorParameterID": "a9a7179d-9d0c-4663-80f6-8e15e89c15d5",
+            "_position": {
+                "x": 4936.0,
+                "y": 3647.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "98"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - Worse still, we have not received word from their Chamberlord and his Nobles since the incident. I fear the worst for them. If any of the city\u2019s leadership has survived, give them the second letter the messenger has for you.",
+                "_meta": "Letter_CA_Prequest_04"
+            },
+            "_actorName": "name_unpc_Caldera_Letter_Levant",
+            "_actorParameterID": "a9a7179d-9d0c-4663-80f6-8e15e89c15d5",
+            "_position": {
+                "x": 4966.0,
+                "y": 3802.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "100"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - Several wagons of food and construction resources are being prepared to make the journey to the Caldera. I need you to get there first, and inform the leaders of the city that aid is on the way. From there, manage the situation as best you can.",
+                "_meta": "Letter_CA_Prequest_05"
+            },
+            "_actorName": "name_unpc_Caldera_Letter_Levant",
+            "_actorParameterID": "a9a7179d-9d0c-4663-80f6-8e15e89c15d5",
+            "_position": {
+                "x": 4983.0,
+                "y": 3928.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "102"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - Sirocco is an incredibly valuable city, regardless of their isolation.  Do anything it takes to ensure the future of its people and the stability of the region.",
+                "_meta": "Letter_CA_Prequest_06"
+            },
+            "_actorName": "name_unpc_Caldera_Letter_Levant",
+            "_actorParameterID": "a9a7179d-9d0c-4663-80f6-8e15e89c15d5",
+            "_position": {
+                "x": 5007.0,
+                "y": 4072.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "104"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - Sirocco has been a valued ally to us when since the day our kingdom was founded.  The time has come to return that favor.  Calixa has her plate full just dealing with Levant right now, so this task is up to us mortals.",
+                "_meta": "Kirouac_Letter_CA_Prequest_08"
+            },
+            "_actorName": "name_unpc_Caldera_Letter_Levant",
+            "_actorParameterID": "a9a7179d-9d0c-4663-80f6-8e15e89c15d5",
+            "_position": {
+                "x": 5026.0,
+                "y": 4257.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "106"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - I trust that you will be able to handle this, Champion [PlayerName]. Do Levant proud!",
+                "_meta": "Kirouac_Letter_CA_Prequest_09"
+            },
+            "_actorName": "name_unpc_Caldera_Letter_Levant",
+            "_actorParameterID": "a9a7179d-9d0c-4663-80f6-8e15e89c15d5",
+            "_position": {
+                "x": 5050.0,
+                "y": 4384.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "108"
+        },
+        {
+            "_condition": {
+                "QuestEventRef": {
+                    "m_eventUID": "TSqqSaAA-kekbG6ml8yQ6Q"
+                },
+                "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            "_position": {
+                "x": 5603.0,
+                "y": 2617.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "110"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - Ah, you!  Sekiguchi Meiko has an urgent job for you!  I have a letter here, for your eyes only.",
+                "_meta": "Messenger_CA_Prequest_05"
+            },
+            "_actorName": "name_unpc_Caldera_Messenger",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 5662.0,
+                "y": 2849.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "113"
+        },
+        {
+            "availableChoices": [
+                {
+                    "statement": {
+                        "_text": "No Loc - So, what\u2019s this about?",
+                        "_meta": "Player_Messenger_CA_Prequest_01_c"
+                    }
+                }
+            ],
+            "_position": {
+                "x": 5763.0,
+                "y": 2981.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+            "$id": "115"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - There\u2019s two letters for you, here\u2019s the first one. I\u2019ll be over here if you need anything.",
+                "_meta": "Messenger_CA_Prequest_08"
+            },
+            "_actorName": "name_unpc_Caldera_Messenger",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 5648.0,
+                "y": 3112.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "119"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - I\u2019ll get right to the point, [PlayerName].  An enormous opportunity for Sorobor Academy has presented itself, one we cannot afford to let slip through our fingers.",
+                "_meta": "Meiko_Letter_CA_Prequest_01"
+            },
+            "_actorName": "name_unpc_Caldera_Letter_Sorobor",
+            "_actorParameterID": "47dab4bd-a710-4666-b021-d90e12abae5f",
+            "_position": {
+                "x": 5619.0,
+                "y": 3249.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "121"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - During the end of the war between the Collective and Levant, the volcano nearest to the city of Sirocco suffered a tremendous seismic shift, causing grave damage to the city.",
+                "_meta": "Letter_CA_Prequest_02"
+            },
+            "_actorName": "name_unpc_Caldera_Letter_Sorobor",
+            "_actorParameterID": "47dab4bd-a710-4666-b021-d90e12abae5f",
+            "_position": {
+                "x": 5641.0,
+                "y": 3566.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "123"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - The damage to Sirocco is far worse than I expected.  Reports tell me that the city itself has collapsed into the ground. A total reconstruction may be needed for civilization in the region to survive.",
+                "_meta": "Letter_CA_Prequest_03"
+            },
+            "_actorName": "name_unpc_Caldera_Letter_Sorobor",
+            "_actorParameterID": "47dab4bd-a710-4666-b021-d90e12abae5f",
+            "_position": {
+                "x": 5652.0,
+                "y": 3696.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "125"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - Worse still, we have not received word from their Chamberlord and his Nobles since the incident. I fear the worst for them. If any of the city\u2019s leadership has survived, give them the second letter the messenger has for you.",
+                "_meta": "Letter_CA_Prequest_04"
+            },
+            "_actorName": "name_unpc_Caldera_Letter_Sorobor",
+            "_actorParameterID": "47dab4bd-a710-4666-b021-d90e12abae5f",
+            "_position": {
+                "x": 5663.0,
+                "y": 3816.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "127"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - Several wagons of food and construction resources are being prepared to make the journey to the Caldera. I need you to get there first, and inform the leaders of the city that aid is on the way. From there, manage the situation as best you can.",
+                "_meta": "Letter_CA_Prequest_05"
+            },
+            "_actorName": "name_unpc_Caldera_Letter_Sorobor",
+            "_actorParameterID": "47dab4bd-a710-4666-b021-d90e12abae5f",
+            "_position": {
+                "x": 5680.0,
+                "y": 3928.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "129"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - Sirocco is an incredibly valuable city, regardless of their isolation.  Do anything it takes to ensure the future of its people and the stability of the region.",
+                "_meta": "Letter_CA_Prequest_06"
+            },
+            "_actorName": "name_unpc_Caldera_Letter_Sorobor",
+            "_actorParameterID": "47dab4bd-a710-4666-b021-d90e12abae5f",
+            "_position": {
+                "x": 5697.0,
+                "y": 4031.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "131"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - You\u2019ve proven you\u2019ve got grit and cleverness, [PlayerName]. Succeed here and not only will you bring wealth and prosperity to Sorobor, but you may also secure much for yourself.  Do not disappoint us.",
+                "_meta": "Meiko_Letter_CA_Prequest_10"
+            },
+            "_actorName": "name_unpc_Caldera_Letter_Sorobor",
+            "_actorParameterID": "47dab4bd-a710-4666-b021-d90e12abae5f",
+            "_position": {
+                "x": 5717.0,
+                "y": 4231.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "133"
+        },
+        {
+            "statement": {
+                "_text": "Come back when you have <color=#00CCFF><b>Quest License 6</b></color>.",
+                "_meta": "com.daemonarium.apoutward.dialogue.messenger_inn.quest_license_6_required"
+            },
+            "_actorName": "name_unpc_Caldera_Messenger",
+            "_position": {
+                "x": 3984.0,
+                "y": 2230.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "135"
+        },
+        {
+            "_position": {
+                "x": 3984.0,
+                "y": 2230.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.FinishNode",
+            "$id": "137"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - Well, that\u2019s all.  Maybe I\u2019ll see you some other time.",
+                "_meta": "Messenger_CA_Prequest_13"
+            },
+            "_actorName": "name_unpc_Caldera_Messenger",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 4989.0,
+                "y": 1937.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "138"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - Status warning",
+                "_meta": "Messenger_CA_Prequest_14"
+            },
+            "_actorName": "name_unpc_Caldera_Messenger",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 5130.0,
+                "y": 2062.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "140"
+        }
+    ],
+    "connections": [
+        {
+            "_sourceNode": {
+                "$ref": "2"
+            },
+            "_targetNode": {
+                "$ref": "5"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "2"
+            },
+            "_targetNode": {
+                "$ref": "138"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "5"
+            },
+            "_targetNode": {
+                "$ref": "7"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "5"
+            },
+            "_targetNode": {
+                "$ref": "135"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "7"
+            },
+            "_targetNode": {
+                "$ref": "10"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "7"
+            },
+            "_targetNode": {
+                "$ref": "49"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "10"
+            },
+            "_targetNode": {
+                "$ref": "12"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "12"
+            },
+            "_targetNode": {
+                "$ref": "16"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "16"
+            },
+            "_targetNode": {
+                "$ref": "18"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "18"
+            },
+            "_targetNode": {
+                "$ref": "20"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "20"
+            },
+            "_targetNode": {
+                "$ref": "22"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "22"
+            },
+            "_targetNode": {
+                "$ref": "24"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "24"
+            },
+            "_targetNode": {
+                "$ref": "26"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "26"
+            },
+            "_targetNode": {
+                "$ref": "28"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "28"
+            },
+            "_targetNode": {
+                "$ref": "30"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "30"
+            },
+            "_targetNode": {
+                "$ref": "32"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "32"
+            },
+            "_targetNode": {
+                "$ref": "34"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "34"
+            },
+            "_targetNode": {
+                "$ref": "36"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "36"
+            },
+            "_targetNode": {
+                "$ref": "40"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "40"
+            },
+            "_targetNode": {
+                "$ref": "42"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "42"
+            },
+            "_targetNode": {
+                "$ref": "44"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "44"
+            },
+            "_targetNode": {
+                "$ref": "46"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "49"
+            },
+            "_targetNode": {
+                "$ref": "52"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "49"
+            },
+            "_targetNode": {
+                "$ref": "83"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "52"
+            },
+            "_targetNode": {
+                "$ref": "55"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "52"
+            },
+            "_targetNode": {
+                "$ref": "81"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "55"
+            },
+            "_targetNode": {
+                "$ref": "57"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "57"
+            },
+            "_targetNode": {
+                "$ref": "61"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "61"
+            },
+            "_targetNode": {
+                "$ref": "63"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "63"
+            },
+            "_targetNode": {
+                "$ref": "65"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "65"
+            },
+            "_targetNode": {
+                "$ref": "67"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "67"
+            },
+            "_targetNode": {
+                "$ref": "69"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "69"
+            },
+            "_targetNode": {
+                "$ref": "71"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "71"
+            },
+            "_targetNode": {
+                "$ref": "73"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "73"
+            },
+            "_targetNode": {
+                "$ref": "75"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "75"
+            },
+            "_targetNode": {
+                "$ref": "77"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "77"
+            },
+            "_targetNode": {
+                "$ref": "79"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "79"
+            },
+            "_targetNode": {
+                "$ref": "36"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "81"
+            },
+            "_targetNode": {
+                "$ref": "57"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "83"
+            },
+            "_targetNode": {
+                "$ref": "86"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "83"
+            },
+            "_targetNode": {
+                "$ref": "110"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "86"
+            },
+            "_targetNode": {
+                "$ref": "88"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "88"
+            },
+            "_targetNode": {
+                "$ref": "92"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "92"
+            },
+            "_targetNode": {
+                "$ref": "94"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "94"
+            },
+            "_targetNode": {
+                "$ref": "96"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "96"
+            },
+            "_targetNode": {
+                "$ref": "98"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "98"
+            },
+            "_targetNode": {
+                "$ref": "100"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "100"
+            },
+            "_targetNode": {
+                "$ref": "102"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "102"
+            },
+            "_targetNode": {
+                "$ref": "104"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "104"
+            },
+            "_targetNode": {
+                "$ref": "106"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "106"
+            },
+            "_targetNode": {
+                "$ref": "108"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "108"
+            },
+            "_targetNode": {
+                "$ref": "36"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "110"
+            },
+            "_targetNode": {
+                "$ref": "113"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "113"
+            },
+            "_targetNode": {
+                "$ref": "115"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "115"
+            },
+            "_targetNode": {
+                "$ref": "119"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "119"
+            },
+            "_targetNode": {
+                "$ref": "121"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "121"
+            },
+            "_targetNode": {
+                "$ref": "123"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "123"
+            },
+            "_targetNode": {
+                "$ref": "125"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "125"
+            },
+            "_targetNode": {
+                "$ref": "127"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "127"
+            },
+            "_targetNode": {
+                "$ref": "129"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "129"
+            },
+            "_targetNode": {
+                "$ref": "131"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "131"
+            },
+            "_targetNode": {
+                "$ref": "133"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "133"
+            },
+            "_targetNode": {
+                "$ref": "36"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "135"
+            },
+            "_targetNode": {
+                "$ref": "137"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "138"
+            },
+            "_targetNode": {
+                "$ref": "140"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        }
+    ],
+    "canvasGroups": [],
+    "localBlackboard": {
+        "_name": "Local Blackboard",
+        "_variables": {
+            "gInstigator": {
+                "_name": "gInstigator",
+                "_id": "6c7ad705-fd66-469d-974a-b695c2e70211",
+                "$type": "NodeCanvas.Framework.Variable`1[[Character, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+            }
+        }
+    },
+    "derivedData": {
+        "actorParameters": [
+            {
+                "_keyName": "name_unpc_Caldera_Messenger",
+                "_id": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760"
+            },
+            {
+                "_keyName": "name_unpc_Caldera_Letter_Blues",
+                "_id": "9f804ac9-126b-4889-ad3f-9cbf32e0d213"
+            },
+            {
+                "_keyName": "name_unpc_Caldera_Letter_Monsoon",
+                "_id": "4b795b51-e42c-4b2f-b581-b5844142e6e7"
+            },
+            {
+                "_keyName": "name_unpc_Caldera_Letter_Levant",
+                "_id": "a9a7179d-9d0c-4663-80f6-8e15e89c15d5"
+            },
+            {
+                "_keyName": "name_unpc_Caldera_Letter_Sorobor",
+                "_id": "47dab4bd-a710-4666-b021-d90e12abae5f"
+            }
+        ],
+        "$type": "NodeCanvas.DialogueTrees.DialogueTree+DerivedSerializationData"
+    }
+}

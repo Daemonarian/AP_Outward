@@ -1,0 +1,127 @@
+{
+    "version": 2.92,
+    "type": "NodeCanvas.DialogueTrees.DialogueTreeExt",
+    "translation": {
+        "x": -5382.0,
+        "y": -4975.0
+    },
+    "nodes": [
+        {
+            "_condition": {
+                "QuestEventRef": {
+                    "m_eventUID": "bYPHUPScYEeilhgCqXbPAg"
+                },
+                "_invert": true,
+                "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            "_position": {
+                "x": 5970.0,
+                "y": 5235.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "2"
+        },
+        {
+            "_action": {
+                "actions": [
+                    {
+                        "_location": {
+                            "_key": "SPAWN_MERTONS_FIREPOKER"
+                        },
+                        "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+                    },
+                    {
+                        "QuestEventRef": {
+                            "m_eventUID": "bYPHUPScYEeilhgCqXbPAg"
+                        },
+                        "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+                    }
+                ],
+                "$type": "NodeCanvas.Framework.ActionList"
+            },
+            "_position": {
+                "x": 5760.0,
+                "y": 5445.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "5"
+        },
+        {
+            "_position": {
+                "x": 6075.0,
+                "y": 5685.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.FinishNode",
+            "$id": "12"
+        },
+        {
+            "statement": {
+                "_text": "(There is nothing I can do with that right now.) ",
+                "_meta": "Merchant_Generic_CannotDo_01"
+            },
+            "_position": {
+                "x": 6210.0,
+                "y": 5460.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "13"
+        }
+    ],
+    "connections": [
+        {
+            "_sourceNode": {
+                "$ref": "2"
+            },
+            "_targetNode": {
+                "$ref": "5"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "2"
+            },
+            "_targetNode": {
+                "$ref": "13"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "5"
+            },
+            "_targetNode": {
+                "$ref": "12"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "13"
+            },
+            "_targetNode": {
+                "$ref": "12"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        }
+    ],
+    "localBlackboard": {
+        "_name": "Local Blackboard",
+        "_variables": {
+            "gInstigator": {
+                "_name": "gInstigator",
+                "_id": "af4ea493-13fd-4565-8ae5-c684a4d3e8a0",
+                "$type": "NodeCanvas.Framework.Variable`1[[Character, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+            }
+        }
+    },
+    "derivedData": {
+        "actorParameters": [
+            {
+                "_keyName": "npc",
+                "_id": "a83bc1ad-5663-443d-b026-7f8848a2e277"
+            }
+        ],
+        "$type": "NodeCanvas.DialogueTrees.DialogueTree+DerivedSerializationData"
+    }
+}

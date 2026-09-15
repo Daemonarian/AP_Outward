@@ -1,0 +1,433 @@
+{
+    "version": 2.92,
+    "type": "NodeCanvas.DialogueTrees.DialogueTreeExt",
+    "translation": {
+        "x": -4450.0,
+        "y": -1362.0
+    },
+    "nodes": [
+        {
+            "_condition": {
+                "QuestEventRef": {
+                    "m_eventUID": "iQsYJddTjkWvDjthKbWEIg"
+                },
+                "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            "_position": {
+                "x": 5184.0,
+                "y": 1436.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "2"
+        },
+        {
+            "_action": {
+                "$type": "NodeCanvas.Tasks.Actions.SetDialogueInterruptable"
+            },
+            "_position": {
+                "x": 5160.0,
+                "y": 1663.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "5"
+        },
+        {
+            "_action": {
+                "QuestEventRef": {
+                    "m_eventUID": "fdjIUv8dakSJvPxvB39AUQ"
+                },
+                "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+            },
+            "_position": {
+                "x": 5096.0,
+                "y": 1775.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "7"
+        },
+        {
+            "_action": {
+                "actions": [
+                    {
+                        "_location": {
+                            "_key": "SPAWN_SCARLET_MASK"
+                        },
+                        "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+                    },
+                    {
+                        "_location": {
+                            "_key": "SPAWN_SCARLET_ROBES"
+                        },
+                        "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+                    },
+                    {
+                        "_location": {
+                            "_key": "SPAWN_SCARLET_BOOTS"
+                        },
+                        "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+                    },
+                    {
+                        "_location": {
+                            "_key": "SPAWN_CRACKED_RED_MOON"
+                        },
+                        "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+                    }
+                ],
+                "$type": "NodeCanvas.Framework.ActionList"
+            },
+            "_position": {
+                "x": 4980.0,
+                "y": 1879.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "10"
+        },
+        {
+            "_action": {
+                "Sound": "CS_Crimson_Spell_Explosion_Effect_03",
+                "TransPos": {},
+                "overrideAgent": {
+                    "_name": "gInstigator",
+                    "_targetVariableID": "6c7ad705-fd66-469d-974a-b695c2e70211"
+                },
+                "$type": "NodeCanvas.Tasks.Actions.PlaySound"
+            },
+            "_position": {
+                "x": 5040.0,
+                "y": 2011.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "21"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - The air is thick with intense magical warmth around the staff, as it channels the Scarlet Lady\u2019s power. You reach through the scorching heat, and with a yell, manage to yank it free, severing the connection!  New Sirocco is safe!",
+                "_meta": "RemoveEndStaff_CA_00"
+            },
+            "_actorName": "name_unpc_narrator",
+            "_actorParameterID": "eaff42b8-2e6f-407a-a7ee-377ae2c7c285",
+            "_position": {
+                "x": 4985.0,
+                "y": 2114.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "25"
+        },
+        {
+            "_action": {
+                "Sound": "CS_ScarletteEmissary_Voice_04",
+                "TransPos": {},
+                "overrideAgent": {
+                    "_name": "gInstigator",
+                    "_targetVariableID": "6c7ad705-fd66-469d-974a-b695c2e70211"
+                },
+                "$type": "NodeCanvas.Tasks.Actions.PlaySound"
+            },
+            "_position": {
+                "x": 5039.0,
+                "y": 2233.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "27"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - Hmph. After all my work of adding the bloodline of Sirocco\u2019s Chamberlords to my own, they disappoint me and die. Again, it seems the only true power is in the blood of the oldest families.",
+                "_meta": "ScarletLady_CA_ScarletFinal_Dungeon_18"
+            },
+            "_actorName": "name_unpc_RedLichIdol_01",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 4919.0,
+                "y": 2339.0
+            },
+            "_UID": "2ec8f6bc-ab8f-475e-9580-6234666e626f",
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "31"
+        },
+        {
+            "_action": {
+                "Sound": "CS_ScarletteEmissary_Voice_01",
+                "TransPos": {},
+                "overrideAgent": {
+                    "_name": "gInstigator",
+                    "_targetVariableID": "6c7ad705-fd66-469d-974a-b695c2e70211"
+                },
+                "$type": "NodeCanvas.Tasks.Actions.PlaySound"
+            },
+            "_position": {
+                "x": 4932.0,
+                "y": 2460.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "33"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - Very well, my plans will be adjusted. I suppose I should thank you for revealing my weaknesses to me, [PlayerName]. It makes my eventual victory all the more certain.",
+                "_meta": "ScarletLady_CA_ScarletFinal_Dungeon_19"
+            },
+            "_actorName": "name_unpc_RedLichIdol_01",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 4871.0,
+                "y": 2565.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "37"
+        },
+        {
+            "availableChoices": [
+                {
+                    "statement": {
+                        "_text": "no loc - Underestimate humanity at your peril, Scarlet Lady. We can clearly match you!",
+                        "_meta": "ScarletLady_CA_ScarletFinal_Dungeon_19_a"
+                    }
+                }
+            ],
+            "_position": {
+                "x": 4814.0,
+                "y": 2683.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+            "$id": "39"
+        },
+        {
+            "_action": {
+                "Sound": "CS_ScarletteEmissary_Voice_02",
+                "TransPos": {},
+                "overrideAgent": {
+                    "_name": "gInstigator",
+                    "_targetVariableID": "6c7ad705-fd66-469d-974a-b695c2e70211"
+                },
+                "$type": "NodeCanvas.Tasks.Actions.PlaySound"
+            },
+            "_position": {
+                "x": 5015.0,
+                "y": 2825.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "43"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - How quaint.  People die, systems collapse, societies crumble.  The only constant is the power of the blood, the power of wisdom and nobility, passed down through generations. Go on, treasure your victory today. It, like all mortal things, is transitory.",
+                "_meta": "ScarletLady_CA_ScarletFinal_Dungeon_20"
+            },
+            "_actorName": "LOC KEY HERE",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 4961.0,
+                "y": 2912.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "47"
+        },
+        {
+            "_action": {
+                "Sound": "CS_ScarletteEmissary_Voice_01",
+                "TransPos": {},
+                "overrideAgent": {
+                    "_name": "gInstigator",
+                    "_targetVariableID": "6c7ad705-fd66-469d-974a-b695c2e70211"
+                },
+                "$type": "NodeCanvas.Tasks.Actions.PlaySound"
+            },
+            "_position": {
+                "x": 5072.0,
+                "y": 3048.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "49"
+        },
+        {
+            "statement": {
+                "_text": "NoLoc - Know this, human, my exile is temporary as well.  Someday Aurai will witness my presence again, and I will cease to be a mere myth. Someday, I will return to the throne I deserve, and bring my ideals into reality.",
+                "_meta": "ScarletLady_CA_ScarletFinal_Dungeon_21"
+            },
+            "_actorName": "name_unpc_RedLichIdol_01",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 5040.0,
+                "y": 3195.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "53"
+        },
+        {
+            "statement": {
+                "_text": "Merchant_Generic_CannotDo_01",
+                "_meta": "Merchant_Generic_CannotDo_01"
+            },
+            "_actorName": "name_unpc_narrator",
+            "_actorParameterID": "eaff42b8-2e6f-407a-a7ee-377ae2c7c285",
+            "_position": {
+                "x": 5623.0,
+                "y": 1719.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "55"
+        }
+    ],
+    "connections": [
+        {
+            "_sourceNode": {
+                "$ref": "2"
+            },
+            "_targetNode": {
+                "$ref": "5"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "2"
+            },
+            "_targetNode": {
+                "$ref": "55"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "5"
+            },
+            "_targetNode": {
+                "$ref": "7"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "7"
+            },
+            "_targetNode": {
+                "$ref": "10"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "10"
+            },
+            "_targetNode": {
+                "$ref": "21"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "21"
+            },
+            "_targetNode": {
+                "$ref": "25"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "25"
+            },
+            "_targetNode": {
+                "$ref": "27"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "27"
+            },
+            "_targetNode": {
+                "$ref": "31"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "31"
+            },
+            "_targetNode": {
+                "$ref": "33"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "33"
+            },
+            "_targetNode": {
+                "$ref": "37"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "37"
+            },
+            "_targetNode": {
+                "$ref": "39"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "39"
+            },
+            "_targetNode": {
+                "$ref": "43"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "43"
+            },
+            "_targetNode": {
+                "$ref": "47"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "47"
+            },
+            "_targetNode": {
+                "$ref": "49"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "49"
+            },
+            "_targetNode": {
+                "$ref": "53"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        }
+    ],
+    "canvasGroups": [],
+    "localBlackboard": {
+        "_name": "Local Blackboard",
+        "_variables": {
+            "gInstigator": {
+                "_name": "gInstigator",
+                "_id": "6c7ad705-fd66-469d-974a-b695c2e70211",
+                "$type": "NodeCanvas.Framework.Variable`1[[Character, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+            }
+        }
+    },
+    "derivedData": {
+        "actorParameters": [
+            {
+                "_keyName": "name_unpc_RedLichIdol_01",
+                "_id": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760"
+            },
+            {
+                "_keyName": "name_unpc_narrator",
+                "_id": "eaff42b8-2e6f-407a-a7ee-377ae2c7c285"
+            }
+        ],
+        "$type": "NodeCanvas.DialogueTrees.DialogueTree+DerivedSerializationData"
+    }
+}

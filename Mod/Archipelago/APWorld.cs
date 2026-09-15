@@ -2065,7 +2065,7 @@ namespace OutwardArchipelago.Archipelago
         public sealed class ItemRef
         {
             [SerializeField]
-            private string _key;
+            private string _key = null;
 
             private Item _item = null;
 
@@ -2085,12 +2085,18 @@ namespace OutwardArchipelago.Archipelago
                     return _item;
                 }
 
-                set
+                private set
                 {
                     _item = value;
                     _key = _item?.Key;
                 }
             }
+
+            public ItemRef() { }
+
+            public ItemRef(string key) : this() => _key = key;
+
+            public ItemRef(Item item) : this() => Item = item;
         }
 
         public sealed partial class Location
@@ -2125,7 +2131,7 @@ namespace OutwardArchipelago.Archipelago
         public sealed class LocationRef
         {
             [SerializeField]
-            private string _key;
+            private string _key = null;
 
             private Location _location = null;
 
@@ -2133,7 +2139,7 @@ namespace OutwardArchipelago.Archipelago
             {
                 get
                 {
-                    if (_location is null && _key is not null)
+                    if (_location is null && !string.IsNullOrEmpty(_key))
                     {
                         if (!APWorld.Location.ByKey.TryGetValue(_key, out _location))
                         {
@@ -2145,12 +2151,18 @@ namespace OutwardArchipelago.Archipelago
                     return _location;
                 }
 
-                set
+                private set
                 {
                     _location = value;
                     _key = _location?.Key;
                 }
             }
+
+            public LocationRef() { }
+
+            public LocationRef(string key) : this() => _key = key;
+
+            public LocationRef(Location location) : this() => Location = location;
         }
 
     }

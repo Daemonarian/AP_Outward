@@ -1,0 +1,620 @@
+{
+    "version": 2.92,
+    "type": "NodeCanvas.DialogueTrees.DialogueTreeExt",
+    "translation": {
+        "x": -4553.0,
+        "y": -3893.0
+    },
+    "nodes": [
+        {
+            "_condition": {
+                "QuestEventRef": {
+                    "m_eventUID": "bjVloYMQxk6KXx0gph2A1Q"
+                },
+                "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            "_position": {
+                "x": 4065.0,
+                "y": 3225.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "2"
+        },
+        {
+            "_condition": {
+                "QuestEventRef": {
+                    "m_eventUID": "nllwi4FnR0qN7968EsJ07A"
+                },
+                "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            "_position": {
+                "x": 3945.0,
+                "y": 3465.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "5"
+        },
+        {
+            "_condition": {
+                "quest": {
+                    "_value": 1
+                },
+                "$type": "NodeCanvas.Tasks.Conditions.Condition_KnowQuest"
+            },
+            "_position": {
+                "x": 3540.0,
+                "y": 3600.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "8"
+        },
+        {
+            "_condition": {
+                "questRef": {
+                    "_value": {
+                        "m_itemID": 7011203
+                    }
+                },
+                "$type": "NodeCanvas.Tasks.Conditions.Condition_IsQuestCompleted"
+            },
+            "_position": {
+                "x": 3315.0,
+                "y": 3720.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "11"
+        },
+        {
+            "statement": {
+                "_text": "Hello there. I\u2019m just mentoring this smith. He\u2019s good at what he does, but a little help from me will push him on to greatness.",
+                "_meta": "Taleron_NEUT_Initial_01"
+            },
+            "_actorName": "name_unpc_taleron_01 ",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 3015.0,
+                "y": 4050.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "15"
+        },
+        {
+            "statement": {
+                "_text": "Don\u2019t mind the lines of light all over. It comes with the territory of reaching the rank of Disciple in the Holy Mission. With these, I can resist and destroy Corruption with my very body. It\u2019s quite helpful in my work, to be honest.",
+                "_meta": "Taleron_NEUT_Initial_02"
+            },
+            "_actorName": "name_unpc_taleron_01 ",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 3060.0,
+                "y": 4155.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "17"
+        },
+        {
+            "_targetNode": {
+                "availableChoices": [
+                    {
+                        "statement": {
+                            "_text": "Farewell.",
+                            "_meta": "Merchant_Generic_Farewell_01"
+                        }
+                    },
+                    {
+                        "statement": {
+                            "_text": "I want to train with you.",
+                            "_meta": "Merchant_Generic_Train_01"
+                        },
+                        "condition": {
+                            "character": {
+                                "_name": "gInstigator",
+                                "_targetVariableID": "0483cf6b-da62-4a57-aaed-40f25b4bdf9b"
+                            },
+                            "skill": {
+                                "_value": 2
+                            },
+                            "_invert": true,
+                            "$type": "NodeCanvas.Tasks.Conditions.Condition_KnowSkill"
+                        }
+                    }
+                ],
+                "_position": {
+                    "x": 4830.0,
+                    "y": 3795.0
+                },
+                "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+                "$id": "20"
+            },
+            "_position": {
+                "x": 3210.0,
+                "y": 4290.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.GoToNode",
+            "$id": "19"
+        },
+        {
+            "_action": {
+                "dialogueStarter": {
+                    "_name": "Dialogue_Taleron_BB/BC_WhispBones",
+                    "_targetVariableID": "533cfbb7-6ddd-4095-b55b-d422d09a0779"
+                },
+                "$type": "NodeCanvas.Tasks.Actions.BranchDialogue"
+            },
+            "_position": {
+                "x": 3405.0,
+                "y": 3915.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "29"
+        },
+        {
+            "_targetNode": {
+                "statement": {
+                    "_text": "Hello there. I\u2019m just mentoring this smith. He\u2019s good at what he does, but a little help from me will push him on to greatness.",
+                    "_meta": "Taleron_NEUT_Initial_01"
+                },
+                "_actorName": "name_unpc_taleron_01 ",
+                "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+                "_position": {
+                    "x": 4380.0,
+                    "y": 3390.0
+                },
+                "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+                "$id": "33"
+            },
+            "_position": {
+                "x": 4200.0,
+                "y": 4155.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.GoToNode",
+            "$id": "32"
+        },
+        {
+            "_condition": {
+                "QuestEventRef": {
+                    "m_eventUID": "1tkTEWMPbEGKmWItwxy4kQ"
+                },
+                "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            "_position": {
+                "x": 4080.0,
+                "y": 3645.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "35"
+        },
+        {
+            "$ref": "33"
+        },
+        {
+            "statement": {
+                "_text": "Don\u2019t mind the lines of light all over. It comes with the territory of reaching the rank of Disciple in the Holy Mission. With these, I can resist and destroy Corruption with my very body. It\u2019s quite helpful in my work, to be honest.",
+                "_meta": "Taleron_NEUT_Initial_02"
+            },
+            "_actorName": "name_unpc_taleron_01 ",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 4440.0,
+                "y": 3555.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "38"
+        },
+        {
+            "_targetNode": {
+                "$ref": "20"
+            },
+            "_position": {
+                "x": 4620.0,
+                "y": 3720.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.GoToNode",
+            "$id": "40"
+        },
+        {
+            "$ref": "20"
+        },
+        {
+            "_position": {
+                "x": 4755.0,
+                "y": 3960.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.FinishNode",
+            "$id": "41"
+        },
+        {
+            "statement": {
+                "_text": "I would gladly teach you the Macefill technique for...Say 50 silvers. It will allow you to parry and negate an enemy\u2019s magical attack, and enchant your mace with it. You don\u2019t even need to be a mage to do it!",
+                "_meta": "Trainer_Micro_MaceFill_01"
+            },
+            "_actorName": "name_unpc_taleron_01 ",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 4980.0,
+                "y": 3975.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "42"
+        },
+        {
+            "availableChoices": [
+                {
+                    "statement": {
+                        "_text": "Deal, here\u2019s your money.",
+                        "_meta": "Merchant_Generic_Pay_01"
+                    },
+                    "condition": {
+                        "character": {
+                            "_name": "gInstigator",
+                            "_targetVariableID": "0483cf6b-da62-4a57-aaed-40f25b4bdf9b"
+                        },
+                        "item": {
+                            "_value": {
+                                "m_itemID": 9000010
+                            }
+                        },
+                        "minAmount": {
+                            "_value": 50
+                        },
+                        "itemMustBeEquiped": {},
+                        "$type": "NodeCanvas.Tasks.Conditions.Condition_OwnsItem"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "I'm fine, thank you.",
+                        "_meta": "Merchant_Generic_ImFine_01"
+                    }
+                }
+            ],
+            "_position": {
+                "x": 5040.0,
+                "y": 4095.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+            "$id": "44"
+        },
+        {
+            "statement": {
+                "_text": "This may take some explaining. Mana is a \u201cflow\u201d, so what you must do, is carefully catch the spell by-",
+                "_meta": "Trainer_Micro_MaceFill_02"
+            },
+            "_actorName": "name_unpc_taleron_01 ",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 4800.0,
+                "y": 4335.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "56"
+        },
+        {
+            "_action": {
+                "$type": "NodeCanvas.Tasks.Actions.FadeOut"
+            },
+            "_position": {
+                "x": 4920.0,
+                "y": 4440.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "58"
+        },
+        {
+            "_action": {
+                "actions": [
+                    {
+                        "fromCharacter": {
+                            "_name": "gInstigator",
+                            "_targetVariableID": "0483cf6b-da62-4a57-aaed-40f25b4bdf9b"
+                        },
+                        "Items": [
+                            {
+                                "_value": {
+                                    "m_itemID": 9000010
+                                }
+                            }
+                        ],
+                        "Amount": [
+                            {
+                                "_value": 50
+                            }
+                        ],
+                        "$type": "NodeCanvas.Tasks.Actions.RemoveItem"
+                    },
+                    {
+                        "_location": {
+                            "_key": "TRAIN_TALERON"
+                        },
+                        "$type": "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck"
+                    }
+                ],
+                "$type": "NodeCanvas.Framework.ActionList"
+            },
+            "_position": {
+                "x": 4905.0,
+                "y": 4530.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "60"
+        },
+        {
+            "_action": {
+                "$type": "NodeCanvas.Tasks.Actions.FadeIn"
+            },
+            "_position": {
+                "x": 4950.0,
+                "y": 4650.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "72"
+        },
+        {
+            "statement": {
+                "_text": "-And that's how you use Macefill to capture an opponent's magical attack on your mace and enchant it! You're a very good student, [PlayerName]!",
+                "_meta": "Trainer_Micro_MaceFill_03"
+            },
+            "_actorName": "name_unpc_taleron_01 ",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 4845.0,
+                "y": 4755.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "74"
+        },
+        {
+            "_position": {
+                "x": 5010.0,
+                "y": 4890.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.FinishNode",
+            "$id": "76"
+        },
+        {
+            "_position": {
+                "x": 5385.0,
+                "y": 4425.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.FinishNode",
+            "$id": "77"
+        }
+    ],
+    "connections": [
+        {
+            "_sourceNode": {
+                "$ref": "2"
+            },
+            "_targetNode": {
+                "$ref": "5"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "2"
+            },
+            "_targetNode": {
+                "$ref": "33"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "5"
+            },
+            "_targetNode": {
+                "$ref": "8"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "5"
+            },
+            "_targetNode": {
+                "$ref": "35"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "8"
+            },
+            "_targetNode": {
+                "$ref": "11"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "8"
+            },
+            "_targetNode": {
+                "$ref": "32"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "11"
+            },
+            "_targetNode": {
+                "$ref": "15"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "11"
+            },
+            "_targetNode": {
+                "$ref": "29"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "15"
+            },
+            "_targetNode": {
+                "$ref": "17"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "17"
+            },
+            "_targetNode": {
+                "$ref": "19"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "35"
+            },
+            "_targetNode": {
+                "$ref": "32"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "35"
+            },
+            "_targetNode": {
+                "$ref": "32"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "33"
+            },
+            "_targetNode": {
+                "$ref": "38"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "38"
+            },
+            "_targetNode": {
+                "$ref": "40"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "20"
+            },
+            "_targetNode": {
+                "$ref": "41"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "20"
+            },
+            "_targetNode": {
+                "$ref": "42"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "42"
+            },
+            "_targetNode": {
+                "$ref": "44"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "44"
+            },
+            "_targetNode": {
+                "$ref": "56"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "44"
+            },
+            "_targetNode": {
+                "$ref": "77"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "56"
+            },
+            "_targetNode": {
+                "$ref": "58"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "58"
+            },
+            "_targetNode": {
+                "$ref": "60"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "60"
+            },
+            "_targetNode": {
+                "$ref": "72"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "72"
+            },
+            "_targetNode": {
+                "$ref": "74"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "74"
+            },
+            "_targetNode": {
+                "$ref": "76"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        }
+    ],
+    "localBlackboard": {
+        "_name": "Local Blackboard",
+        "_variables": {
+            "gInstigator": {
+                "_name": "gInstigator",
+                "_id": "0483cf6b-da62-4a57-aaed-40f25b4bdf9b",
+                "$type": "NodeCanvas.Framework.Variable`1[[Character, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+            }
+        }
+    },
+    "derivedData": {
+        "actorParameters": [
+            {
+                "_keyName": "name_unpc_taleron_01 ",
+                "_id": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760"
+            }
+        ],
+        "$type": "NodeCanvas.DialogueTrees.DialogueTree+DerivedSerializationData"
+    }
+}

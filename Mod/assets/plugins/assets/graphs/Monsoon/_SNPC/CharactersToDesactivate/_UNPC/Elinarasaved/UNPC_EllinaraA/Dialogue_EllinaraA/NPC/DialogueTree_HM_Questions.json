@@ -1,0 +1,1990 @@
+{
+    "version": 2.92,
+    "type": "NodeCanvas.DialogueTrees.DialogueTreeExt",
+    "translation": {
+        "x": -2609.0,
+        "y": -6102.0
+    },
+    "zoomFactor": 0.9278669,
+    "nodes": [
+        {
+            "_condition": {
+                "questRef": {
+                    "_value": {
+                        "m_itemID": 7011101
+                    }
+                },
+                "$type": "NodeCanvas.Tasks.Conditions.Condition_IsQuestCompleted"
+            },
+            "_position": {
+                "x": 1635.0,
+                "y": 2010.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "2"
+        },
+        {
+            "_action": {
+                "dialogueStarter": {
+                    "_name": "Dialogue_EllinaraA_BB/HMDoubts",
+                    "_targetVariableID": "68435575-720b-40d6-ac70-79bcb8825927"
+                },
+                "$type": "NodeCanvas.Tasks.Actions.BranchDialogue"
+            },
+            "_position": {
+                "x": 1365.0,
+                "y": 2205.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "6"
+        },
+        {
+            "_condition": {
+                "QuestEventRef": {
+                    "m_eventUID": "6ghZqSwPzU-ewQhngVT_1Q"
+                },
+                "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            "_position": {
+                "x": 1860.0,
+                "y": 2295.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "9"
+        },
+        {
+            "_condition": {
+                "_minimumQuestLevel": 2,
+                "$type": "OutwardArchipelago.Graphs.Conditions.Condition_QuestLicense"
+            },
+            "_position": {
+                "x": 2709.0,
+                "y": 6202.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "12"
+        },
+        {
+            "_condition": {
+                "QuestEventRef": {
+                    "m_eventUID": "S6usujloPU2h-FF6GY_dbA"
+                },
+                "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            "_position": {
+                "x": 1470.0,
+                "y": 2460.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "14"
+        },
+        {
+            "statement": {
+                "_text": "Yes, [PlayerName]?",
+                "_meta": "Elinara_HM_Questions_13"
+            },
+            "_actorName": "name_unpc_ellinara_01 ",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 1230.0,
+                "y": 2625.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "17"
+        },
+        {
+            "availableChoices": [
+                {
+                    "statement": {
+                        "_text": "I\u2019m here to report on the mission. We purified the altar. The Corruption under the Chersonese is back under control.",
+                        "_meta": "Elinara_HM_Questions_27"
+                    }
+                }
+            ],
+            "_position": {
+                "x": 1200.0,
+                "y": 2775.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+            "$id": "19"
+        },
+        {
+            "statement": {
+                "_text": "Good work, [PlayerName]. Where's Oliele?",
+                "_meta": "Elinara_HM_Questions_28"
+            },
+            "_actorName": "name_unpc_ellinara_01 ",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 1200.0,
+                "y": 2955.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "23"
+        },
+        {
+            "availableChoices": [
+                {
+                    "statement": {
+                        "_text": "She'll be back soon. She needs time. She...Ellat saved her life by replacing corrupted limbs with pure light.",
+                        "_meta": "Player_Elinara_HM_Questions_a_28"
+                    }
+                }
+            ],
+            "_position": {
+                "x": 1290.0,
+                "y": 3105.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+            "$id": "25"
+        },
+        {
+            "statement": {
+                "_text": "Ellat's name...I understand. Something that drastic will take its toll on even the most firm of believers. To happen to a new missionary\u2026I don't blame her for needing some time.",
+                "_meta": "Elinara_HM_Questions_29"
+            },
+            "_actorName": "name_unpc_ellinara_01 ",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 1245.0,
+                "y": 3225.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "29"
+        },
+        {
+            "statement": {
+                "_text": "You're free for now, [PlayerName]. I'll let you know when we need you again.",
+                "_meta": "Elinara_HM_Questions_30"
+            },
+            "_actorName": "name_unpc_ellinara_01 ",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 1245.0,
+                "y": 3345.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "31"
+        },
+        {
+            "statement": {
+                "_text": "(You feel the warmth of a campfire fill you...Elatt speaks in your mind)",
+                "_meta": "Elatt_HM_Questions_01"
+            },
+            "_actorName": "name_unpc_narrator",
+            "_actorParameterID": "931007f0-7c34-4ebc-9c4c-adc00f620300",
+            "_position": {
+                "x": 1275.0,
+                "y": 3480.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "33"
+        },
+        {
+            "_condition": {
+                "QuestEventRef": {
+                    "m_eventUID": "iBsopQ2mO0m-niO8Cy-2Aw"
+                },
+                "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            "_position": {
+                "x": 1335.0,
+                "y": 3615.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "35"
+        },
+        {
+            "statement": {
+                "_text": "The job is done, [PlayerName]. I fear that without proper care, the Corruption will only grow again under the Chersonese. I will have to think very long about how to resolve it...Even so, you did your duty.",
+                "_meta": "Elatt_HM_Questions_05"
+            },
+            "_actorName": "Elatt",
+            "_actorParameterID": "80422f19-50a2-44d6-93b2-b511e4ed9a64",
+            "_position": {
+                "x": 1050.0,
+                "y": 3765.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "38"
+        },
+        {
+            "availableChoices": [
+                {
+                    "statement": {
+                        "_text": "At what cost, though?",
+                        "_meta": "Player_Elatt_HM_Questions_a_02"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "What happened to Oliele?",
+                        "_meta": "Player_Elatt_HM_Questions_b_02"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "..."
+                    }
+                }
+            ],
+            "_position": {
+                "x": 1365.0,
+                "y": 4005.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+            "$id": "40"
+        },
+        {
+            "statement": {
+                "_text": "As Oliele purified the altar, the Corruption clung to her. It would have consumed her and left her an agonized quivering husk of flesh. I did the only thing I could for her.",
+                "_meta": "Elatt_HM_Questions_03"
+            },
+            "_actorName": "Elatt",
+            "_actorParameterID": "80422f19-50a2-44d6-93b2-b511e4ed9a64",
+            "_position": {
+                "x": 1290.0,
+                "y": 4230.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "48"
+        },
+        {
+            "statement": {
+                "_text": "Replacing her lost body parts with light is an extreme measure. She will bear those scars, and my blessing for the rest of her days. They are a part of her now.",
+                "_meta": "Elatt_HM_Questions_04"
+            },
+            "_actorName": "Elatt",
+            "_actorParameterID": "80422f19-50a2-44d6-93b2-b511e4ed9a64",
+            "_position": {
+                "x": 1275.0,
+                "y": 4365.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "50"
+        },
+        {
+            "statement": {
+                "_text": "You deserve a reward for your trials. I will grant a blessing to you.",
+                "_meta": "Elatt_HM_Questions_06"
+            },
+            "_actorName": "name_unpc_elatt_01 ",
+            "_actorParameterID": "80422f19-50a2-44d6-93b2-b511e4ed9a64",
+            "_position": {
+                "x": 1320.0,
+                "y": 4500.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "52"
+        },
+        {
+            "availableChoices": [
+                {
+                    "statement": {
+                        "_text": "Thank you for your blessing. I'll make good use of it.",
+                        "_meta": "Player_Elatt_HM_Questions_a_06"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "Give Oliele the blessing instead. I think she'll need it more than I will.",
+                        "_meta": "Player_Elatt_HM_Questions_b_06"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "..."
+                    }
+                }
+            ],
+            "_position": {
+                "x": 1380.0,
+                "y": 4710.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+            "$id": "54"
+        },
+        {
+            "statement": {
+                "_text": "(You feel warmth flood your body. You are filled with new strength)",
+                "_meta": "Elatt_HM_Questions_07"
+            },
+            "_actorName": "name_unpc_narrator",
+            "_actorParameterID": "931007f0-7c34-4ebc-9c4c-adc00f620300",
+            "_position": {
+                "x": 1035.0,
+                "y": 5160.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "62"
+        },
+        {
+            "_condition": {
+                "QuestEventRef": {
+                    "m_eventUID": "iBsopQ2mO0m-niO8Cy-2Aw"
+                },
+                "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            "_position": {
+                "x": 1035.0,
+                "y": 5325.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "64"
+        },
+        {
+            "_action": {
+                "actions": [
+                    {
+                        "QuestEventRef": {
+                            "m_eventUID": "027EF2IUi0KOWiwRf4owIg"
+                        },
+                        "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+                    },
+                    {
+                        "SilverAmount": {},
+                        "XpAmount": {},
+                        "ItemReward": [
+                            {
+                                "Item": {
+                                    "_value": {
+                                        "m_itemID": 8205270
+                                    }
+                                },
+                                "Quantity": {
+                                    "_value": 1
+                                },
+                                "TryToEquip": {}
+                            }
+                        ],
+                        "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+                    },
+                    {
+                        "QuestEventRef": {
+                            "m_eventUID": "3_soGcNagk-KcYSeqpEgMg"
+                        },
+                        "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+                    },
+                    {
+                        "quest": {},
+                        "questRef": {
+                            "_value": {
+                                "m_itemID": 7011102
+                            }
+                        },
+                        "$type": "NodeCanvas.Tasks.Actions.GiveQuest"
+                    }
+                ],
+                "$type": "NodeCanvas.Framework.ActionList"
+            },
+            "_position": {
+                "x": 1050.0,
+                "y": 5535.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "67"
+        },
+        {
+            "statement": {
+                "_text": "Carry on, my missionary. Continue your good work.",
+                "_meta": "Elatt_HM_Questions_10"
+            },
+            "_actorName": "name_unpc_elatt_01 ",
+            "_actorParameterID": "80422f19-50a2-44d6-93b2-b511e4ed9a64",
+            "_position": {
+                "x": 1365.0,
+                "y": 5805.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "87"
+        },
+        {
+            "_position": {
+                "x": 1470.0,
+                "y": 5955.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.FinishNode",
+            "$id": "89"
+        },
+        {
+            "statement": {
+                "_text": "Are you certain?",
+                "_meta": "Elatt_HM_Questions_08"
+            },
+            "_actorName": "Elatt",
+            "_actorParameterID": "80422f19-50a2-44d6-93b2-b511e4ed9a64",
+            "_position": {
+                "x": 1605.0,
+                "y": 4875.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "90"
+        },
+        {
+            "availableChoices": [
+                {
+                    "statement": {
+                        "_text": "Thank you for your blessing. I'll make good use of it.",
+                        "_meta": "Player_Elatt_HM_Questions_a_06"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "Yes, give it to her.",
+                        "_meta": "Player_Elatt_HM_Questions_a_08"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "..."
+                    }
+                }
+            ],
+            "_position": {
+                "x": 1620.0,
+                "y": 5025.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+            "$id": "92"
+        },
+        {
+            "statement": {
+                "_text": "You are exceptionally kind, [PlayerName]. It is done. She is grateful.",
+                "_meta": "Elatt_HM_Questions_09"
+            },
+            "_actorName": "name_unpc_elatt_01 ",
+            "_actorParameterID": "80422f19-50a2-44d6-93b2-b511e4ed9a64",
+            "_position": {
+                "x": 1695.0,
+                "y": 5235.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "100"
+        },
+        {
+            "_action": {
+                "actions": [
+                    {
+                        "QuestEventRef": {
+                            "m_eventUID": "KZbO9sBx-02vjzR-wcxI2w"
+                        },
+                        "StackAmount": 3,
+                        "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+                    },
+                    {
+                        "QuestEventRef": {
+                            "m_eventUID": "027EF2IUi0KOWiwRf4owIg"
+                        },
+                        "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+                    },
+                    {
+                        "QuestEventRef": {
+                            "m_eventUID": "3_soGcNagk-KcYSeqpEgMg"
+                        },
+                        "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+                    },
+                    {
+                        "quest": {},
+                        "questRef": {
+                            "_value": {
+                                "m_itemID": 7011102
+                            }
+                        },
+                        "$type": "NodeCanvas.Tasks.Actions.GiveQuest"
+                    },
+                    {
+                        "SilverAmount": {},
+                        "XpAmount": {},
+                        "ItemReward": [
+                            {
+                                "Item": {
+                                    "_value": {
+                                        "m_itemID": 3000070
+                                    }
+                                },
+                                "Quantity": {
+                                    "_value": 1
+                                },
+                                "TryToEquip": {}
+                            },
+                            {
+                                "Item": {
+                                    "_value": {
+                                        "m_itemID": 5700061
+                                    }
+                                },
+                                "Quantity": {
+                                    "_value": 1
+                                },
+                                "TryToEquip": {}
+                            },
+                            {
+                                "Item": {
+                                    "_value": {
+                                        "m_itemID": 4100430
+                                    }
+                                },
+                                "Quantity": {
+                                    "_value": 3
+                                },
+                                "TryToEquip": {}
+                            }
+                        ],
+                        "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+                    }
+                ],
+                "$type": "NodeCanvas.Framework.ActionList"
+            },
+            "_position": {
+                "x": 1740.0,
+                "y": 5475.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "102"
+        },
+        {
+            "statement": {
+                "_text": "Well done, [PlayerName]. I could not have asked for a better result. You brought peace to the tormented spirits under the Chersonese and established future safeguards for that region's safety.",
+                "_meta": "Elatt_HM_Questions_02"
+            },
+            "_actorName": "Elatt",
+            "_actorParameterID": "80422f19-50a2-44d6-93b2-b511e4ed9a64",
+            "_position": {
+                "x": 1500.0,
+                "y": 3765.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "134"
+        },
+        {
+            "_condition": {
+                "QuestEventRef": {
+                    "m_eventUID": "ZBIt62-XFkeQXklaM6IkBw"
+                },
+                "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            "_position": {
+                "x": 3735.0,
+                "y": 3195.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "136"
+        },
+        {
+            "_condition": {
+                "QuestEventRef": {
+                    "m_eventUID": "zfzikAeu4E2jVt618o5D0g"
+                },
+                "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            "_position": {
+                "x": 3060.0,
+                "y": 3450.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "139"
+        },
+        {
+            "statement": {
+                "_text": "<color=#00CCFF><b>Go beyond the Ghost Pass in the Chersonese, delve deep underground in the valley beyond it, find the source of the Corruption, and cleanse it by any means necessary</b></color>.",
+                "_meta": "Elinara_HM_Questions_26"
+            },
+            "_actorName": "name_unpc_ellinara_01 ",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 2460.0,
+                "y": 3555.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "142"
+        },
+        {
+            "_position": {
+                "x": 2790.0,
+                "y": 3795.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.FinishNode",
+            "$id": "144"
+        },
+        {
+            "statement": {
+                "_text": "Yes, [PlayerName]?",
+                "_meta": "Elinara_HM_Questions_13"
+            },
+            "_actorName": "name_unpc_ellinara_01 ",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 3240.0,
+                "y": 3570.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "145"
+        },
+        {
+            "availableChoices": [
+                {
+                    "statement": {
+                        "_text": "I burnt Greasy Fern at the Vigil's altar.",
+                        "_meta": "Player_Elinara_HM_Questions_a_13"
+                    }
+                }
+            ],
+            "_position": {
+                "x": 3240.0,
+                "y": 3705.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+            "$id": "147"
+        },
+        {
+            "statement": {
+                "_text": "And what did you see?",
+                "_meta": "Elinara_HM_Questions_14"
+            },
+            "_actorName": "name_unpc_ellinara_01 ",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 3225.0,
+                "y": 3855.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "151"
+        },
+        {
+            "availableChoices": [
+                {
+                    "statement": {
+                        "_text": "Spirits, trapped with a Scourge Beast in the crystal, stabbing it endlessly.",
+                        "_meta": "Player_Elinara_HM_Questions_a_14"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "I saw why the Vigils work. It was...Painful to look at.",
+                        "_meta": "Player_Elinara_HM_Questions_b_14"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "I don't want to talk about it.",
+                        "_meta": "Player_Elinara_HM_Questions_c_14"
+                    }
+                }
+            ],
+            "_position": {
+                "x": 3255.0,
+                "y": 4005.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+            "$id": "153"
+        },
+        {
+            "statement": {
+                "_text": "And what did you learn?",
+                "_meta": "Elinara_HM_Questions_15"
+            },
+            "_actorName": "name_unpc_ellinara_01 ",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 3300.0,
+                "y": 4275.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "161"
+        },
+        {
+            "availableChoices": [
+                {
+                    "statement": {
+                        "_text": "Sometimes, victory comes with great sacrifice.",
+                        "_meta": "Player_Elinara_HM_Questions_a_15"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "Sometimes, you have to do terrible, terrible things if you want to survive.",
+                        "_meta": "Player_Elinara_HM_Questions_b_15"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "Even gods make mistakes.",
+                        "_meta": "Player_Elinara_HM_Questions_c_15"
+                    }
+                }
+            ],
+            "_position": {
+                "x": 3255.0,
+                "y": 4440.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+            "$id": "163"
+        },
+        {
+            "statement": {
+                "_text": "Indeed. Now you understand why Elatt does not celebrate his victory against the Scourge. It came at grave cost.",
+                "_meta": "Elinara_HM_Questions_16"
+            },
+            "_actorName": "name_unpc_ellinara_01 ",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 2850.0,
+                "y": 4710.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "171"
+        },
+        {
+            "statement": {
+                "_text": "The Vigils are a necessary evil. Until the Scourge is purged from Aurai for good, those spirits must do their job to keep us all safe. They are a grim reminder of the evil we face, and our sworn mission.",
+                "_meta": "Elinara_HM_Questions_19"
+            },
+            "_actorName": "name_unpc_ellinara_01 ",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 3165.0,
+                "y": 5235.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "173"
+        },
+        {
+            "statement": {
+                "_text": "We cannot forever depend on the Vigils and on the warriors keeping the Scourge contained to their Canyon. We must find a way to someday free Aurai from them, permanently. For the sake of all those who suffer to keep up safe.",
+                "_meta": "Elinara_HM_Questions_20"
+            },
+            "_actorName": "name_unpc_ellinara_01 ",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 3150.0,
+                "y": 5370.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "175"
+        },
+        {
+            "availableChoices": [
+                {
+                    "statement": {
+                        "_text": "I understand. Whatever it takes.",
+                        "_meta": "Player_Elinara_HM_Questions_a_20"
+                    }
+                },
+                {
+                    "statement": {
+                        "_text": "Then we'd better hurry and get that done. The sooner we can free those spirits, the better.",
+                        "_meta": "Player_Elinara_HM_Questions_b_20"
+                    }
+                }
+            ],
+            "_position": {
+                "x": 3225.0,
+                "y": 5550.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+            "$id": "177"
+        },
+        {
+            "statement": {
+                "_text": "Oliele said much the same, although I can tell this revelation hurt her deeply.",
+                "_meta": "Elinara_HM_Questions_21"
+            },
+            "_actorName": "name_unpc_ellinara_01 ",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 3180.0,
+                "y": 5775.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "183"
+        },
+        {
+            "statement": {
+                "_text": "On that note, I have work for you. I sent Oliele on a mission shortly before you left for the Vigil, and I would honestly feel better about it if both of you were working on it. Something about it sends chills up my spine.",
+                "_meta": "Elinara_HM_Questions_22"
+            },
+            "_actorName": "Ellinara",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 3210.0,
+                "y": 5910.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "185"
+        },
+        {
+            "statement": {
+                "_text": "Are you familiar with the Montcalm tribe in the Chersonese?",
+                "_meta": "Elinara_HM_Questions_23"
+            },
+            "_actorName": "name_unpc_ellinara_01 ",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 3255.0,
+                "y": 6030.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "187"
+        },
+        {
+            "availableChoices": [
+                {
+                    "statement": {
+                        "_text": "Those lunatics who string up the corpses of their enemies all around their village? Yeah, I've heard about them. They've been hostile to Cierzo for years.",
+                        "_meta": "Player_Elinara_HM_Questions_a_23"
+                    }
+                }
+            ],
+            "_position": {
+                "x": 3345.0,
+                "y": 6165.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+            "$id": "189"
+        },
+        {
+            "statement": {
+                "_text": "They've been turning to the undead from the valley beyond the Ghost Pass for protection. While this is itself worrisome, things have taken a turn for the worse.",
+                "_meta": "Elinara_HM_Questions_24"
+            },
+            "_actorName": "name_unpc_ellinara_01 ",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 3285.0,
+                "y": 6315.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "193"
+        },
+        {
+            "statement": {
+                "_text": "Elatt can sense a huge growth of Corruption deep below the ground where these undead come from. Whatever is down there has become dangerously tainted. It must be cleansed before it becomes a serious threat to the Chersonese.",
+                "_meta": "Elinara_HM_Questions_25"
+            },
+            "_actorName": "name_unpc_ellinara_01 ",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 3300.0,
+                "y": 6465.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "195"
+        },
+        {
+            "statement": {
+                "_text": "<color=#00CCFF><b>Go beyond the Ghost Pass in the Chersonese, delve deep underground in the valley beyond it, find the source of the Corruption, and cleanse it by any means necessary</b></color>.",
+                "_meta": "Elinara_HM_Questions_26"
+            },
+            "_actorName": "name_unpc_ellinara_01 ",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 3165.0,
+                "y": 6615.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "197"
+        },
+        {
+            "_action": {
+                "actions": [
+                    {
+                        "QuestEventRef": {
+                            "m_eventUID": "zfzikAeu4E2jVt618o5D0g"
+                        },
+                        "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+                    },
+                    {
+                        "QuestEventRef": {
+                            "m_eventUID": "TtbAC1d0RECvRx2zWVFokw"
+                        },
+                        "RemoveAllStack": true,
+                        "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+                    },
+                    {
+                        "SilverAmount": {},
+                        "XpAmount": {},
+                        "ItemReward": [
+                            {
+                                "Item": {
+                                    "_value": {
+                                        "m_itemID": 4400060
+                                    }
+                                },
+                                "Quantity": {
+                                    "_value": 2
+                                },
+                                "TryToEquip": {}
+                            },
+                            {
+                                "Item": {
+                                    "_value": {
+                                        "m_itemID": 4300300
+                                    }
+                                },
+                                "Quantity": {
+                                    "_value": 1
+                                },
+                                "TryToEquip": {}
+                            },
+                            {
+                                "Item": {
+                                    "_value": {
+                                        "m_itemID": 4300310
+                                    }
+                                },
+                                "Quantity": {
+                                    "_value": 2
+                                },
+                                "TryToEquip": {}
+                            }
+                        ],
+                        "$type": "NodeCanvas.Tasks.Actions.GiveReward"
+                    }
+                ],
+                "$type": "NodeCanvas.Framework.ActionList"
+            },
+            "_position": {
+                "x": 3255.0,
+                "y": 6778.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "199"
+        },
+        {
+            "_condition": {
+                "quest": {
+                    "_value": 1
+                },
+                "$type": "NodeCanvas.Tasks.Conditions.Condition_KnowQuest"
+            },
+            "_position": {
+                "x": 3309.0,
+                "y": 7029.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "225"
+        },
+        {
+            "_action": {
+                "actions": [
+                    {
+                        "quest": {},
+                        "questRef": {
+                            "_value": {
+                                "m_itemID": 7011628
+                            }
+                        },
+                        "$type": "NodeCanvas.Tasks.Actions.GiveQuest"
+                    },
+                    {
+                        "quest": {},
+                        "questRef": {
+                            "_value": {
+                                "m_itemID": 7011621
+                            }
+                        },
+                        "$type": "NodeCanvas.Tasks.Actions.RemoveQuest"
+                    }
+                ],
+                "$type": "NodeCanvas.Framework.ActionList"
+            },
+            "_position": {
+                "x": 3159.0,
+                "y": 7149.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "228"
+        },
+        {
+            "_position": {
+                "x": 3399.0,
+                "y": 7314.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.FinishNode",
+            "$id": "239"
+        },
+        {
+            "statement": {
+                "_text": "Sometimes. But they are to be avoided at all costs. Or else we become the very monsters we fight against.",
+                "_meta": "Elinara_HM_Questions_17"
+            },
+            "_actorName": "name_unpc_ellinara_01 ",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 3165.0,
+                "y": 4860.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "240"
+        },
+        {
+            "statement": {
+                "_text": "Perhaps. Now you see why Elatt fights the Scourge as much as he can. Should we someday eradicate them, it will mean an end to the suffering of those spirits.",
+                "_meta": "Elinara_HM_Questions_18"
+            },
+            "_actorName": "Ellinara",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 3570.0,
+                "y": 4740.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "242"
+        },
+        {
+            "_condition": {
+                "QuestEventRef": {
+                    "m_eventUID": "1h7qTDo7GEGJtIypS05i7w"
+                },
+                "$type": "NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured"
+            },
+            "_position": {
+                "x": 4200.0,
+                "y": 3450.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ConditionNode",
+            "$id": "244"
+        },
+        {
+            "statement": {
+                "_text": "Before I give you your first mission, I want you to understand the lengths we must go to oppose the Scourge. <color=#00CCFF><b>Burn greasy fern at the altar on the hill next to the Vigil Crystal just outside Monsoon</b></color>, and tell me what you saw.",
+                "_meta": "Elinara_HM_Questions_02"
+            },
+            "_actorName": "name_unpc_ellinara_01 ",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 3825.0,
+                "y": 3645.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "247"
+        },
+        {
+            "_position": {
+                "x": 3960.0,
+                "y": 3810.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.FinishNode",
+            "$id": "249"
+        },
+        {
+            "statement": {
+                "_text": "Blessings of Elatt upon you, [PlayerName]. The time has come for your first mission.",
+                "_meta": "Elinara_HM_Questions_01"
+            },
+            "_actorName": "name_unpc_ellinara_01 ",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 4800.0,
+                "y": 3630.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "250"
+        },
+        {
+            "statement": {
+                "_text": "Before you go, however, I want you to fully understand the lengths to which we must go to protect Aurai from the Scourge. Have you ever seen one of the Vigils before?",
+                "_meta": "Elinara_HM_Questions_10"
+            },
+            "_actorName": "name_unpc_ellinara_01 ",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 4740.0,
+                "y": 3765.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "252"
+        },
+        {
+            "availableChoices": [
+                {
+                    "statement": {
+                        "_text": "Those are those giant crystal tower things, right? The ones that protect us from the Scourge?",
+                        "_meta": "Player_Elinara_HM_Questions_a_10"
+                    }
+                }
+            ],
+            "_position": {
+                "x": 4890.0,
+                "y": 3900.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt",
+            "$id": "254"
+        },
+        {
+            "statement": {
+                "_text": "Yes, exactly. There's one not far from Monsoon. I want you to <color=#00CCFF><b>go there and burn a Greasy Fern at the altar atop the hill beside it</b></color>. Breathe it in, and then tell me what you saw there. Only then will you be ready for your first real mission.",
+                "_meta": "Elinara_HM_Questions_11"
+            },
+            "_actorName": "name_unpc_ellinara_01 ",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 4755.0,
+                "y": 4020.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "258"
+        },
+        {
+            "statement": {
+                "_text": "If you don't have any Greasy Fern with you, I suggest asking around town for one. You're very unlikely to find any growing out in the swamp.",
+                "_meta": "Elinara_HM_Questions_12"
+            },
+            "_actorName": "name_unpc_ellinara_01 ",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 4740.0,
+                "y": 4170.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "260"
+        },
+        {
+            "_action": {
+                "actions": [
+                    {
+                        "quest": {},
+                        "questRef": {
+                            "_value": {
+                                "m_itemID": 7011101
+                            }
+                        },
+                        "$type": "NodeCanvas.Tasks.Actions.GiveQuest"
+                    },
+                    {
+                        "QuestEventRef": {
+                            "m_eventUID": "1h7qTDo7GEGJtIypS05i7w"
+                        },
+                        "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+                    },
+                    {
+                        "QuestEventRef": {
+                            "m_eventUID": "oG0XANjA70aa6MMKqpVzOQ"
+                        },
+                        "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+                    },
+                    {
+                        "QuestEventRef": {
+                            "m_eventUID": "TtbAC1d0RECvRx2zWVFokw"
+                        },
+                        "$type": "NodeCanvas.Tasks.Actions.SendQuestEvent"
+                    },
+                    {
+                        "QuestEventRef": {
+                            "m_eventUID": "3_soGcNagk-KcYSeqpEgMg"
+                        },
+                        "RemoveAllStack": true,
+                        "$type": "NodeCanvas.Tasks.Actions.RemoveQuestEvent"
+                    }
+                ],
+                "$type": "NodeCanvas.Framework.ActionList"
+            },
+            "_position": {
+                "x": 4770.0,
+                "y": 4290.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.ActionNode",
+            "$id": "262"
+        },
+        {
+            "_position": {
+                "x": 4860.0,
+                "y": 4455.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.FinishNode",
+            "$id": "277"
+        },
+        {
+            "statement": {
+                "_text": "Come back when you have <color=#00CCFF><b>Quest License 2</b></color>.",
+                "_meta": "com.daemonarium.apoutward.dialogue.ellinara.quest_license_2_required"
+            },
+            "_actorName": "name_unpc_ellinara_01 ",
+            "_position": {
+                "x": 2709.0,
+                "y": 6202.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "278"
+        },
+        {
+            "_position": {
+                "x": 2709.0,
+                "y": 6202.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.FinishNode",
+            "$id": "280"
+        },
+        {
+            "statement": {
+                "_text": "Take your time getting familiar with the Marsh, [PlayerName]. I will give you your first task soon enough. Prepare yourself and come back in a few days and I will have something for you to do.",
+                "_meta": "Elinara_HM_Questions_31"
+            },
+            "_actorName": "name_unpc_ellinara_01 ",
+            "_actorParameterID": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760",
+            "_position": {
+                "x": 2130.0,
+                "y": 2430.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.StatementNodeExt",
+            "$id": "281"
+        },
+        {
+            "_position": {
+                "x": 2355.0,
+                "y": 2550.0
+            },
+            "$type": "NodeCanvas.DialogueTrees.FinishNode",
+            "$id": "283"
+        }
+    ],
+    "connections": [
+        {
+            "_sourceNode": {
+                "$ref": "2"
+            },
+            "_targetNode": {
+                "$ref": "6"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "2"
+            },
+            "_targetNode": {
+                "$ref": "9"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "9"
+            },
+            "_targetNode": {
+                "$ref": "12"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "9"
+            },
+            "_targetNode": {
+                "$ref": "281"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "12"
+            },
+            "_targetNode": {
+                "$ref": "14"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "12"
+            },
+            "_targetNode": {
+                "$ref": "278"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "14"
+            },
+            "_targetNode": {
+                "$ref": "17"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "14"
+            },
+            "_targetNode": {
+                "$ref": "136"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "17"
+            },
+            "_targetNode": {
+                "$ref": "19"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "19"
+            },
+            "_targetNode": {
+                "$ref": "23"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "23"
+            },
+            "_targetNode": {
+                "$ref": "25"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "25"
+            },
+            "_targetNode": {
+                "$ref": "29"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "29"
+            },
+            "_targetNode": {
+                "$ref": "31"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "31"
+            },
+            "_targetNode": {
+                "$ref": "33"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "33"
+            },
+            "_targetNode": {
+                "$ref": "35"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "35"
+            },
+            "_targetNode": {
+                "$ref": "38"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "35"
+            },
+            "_targetNode": {
+                "$ref": "134"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "38"
+            },
+            "_targetNode": {
+                "$ref": "40"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "40"
+            },
+            "_targetNode": {
+                "$ref": "48"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "40"
+            },
+            "_targetNode": {
+                "$ref": "48"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "48"
+            },
+            "_targetNode": {
+                "$ref": "50"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "50"
+            },
+            "_targetNode": {
+                "$ref": "52"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "52"
+            },
+            "_targetNode": {
+                "$ref": "54"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "54"
+            },
+            "_targetNode": {
+                "$ref": "62"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "54"
+            },
+            "_targetNode": {
+                "$ref": "90"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "62"
+            },
+            "_targetNode": {
+                "$ref": "64"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "64"
+            },
+            "_targetNode": {
+                "$ref": "67"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "64"
+            },
+            "_targetNode": {
+                "$ref": "67"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "67"
+            },
+            "_targetNode": {
+                "$ref": "87"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "87"
+            },
+            "_targetNode": {
+                "$ref": "89"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "90"
+            },
+            "_targetNode": {
+                "$ref": "92"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "92"
+            },
+            "_targetNode": {
+                "$ref": "62"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "92"
+            },
+            "_targetNode": {
+                "$ref": "100"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "100"
+            },
+            "_targetNode": {
+                "$ref": "102"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "102"
+            },
+            "_targetNode": {
+                "$ref": "87"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "134"
+            },
+            "_targetNode": {
+                "$ref": "40"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "136"
+            },
+            "_targetNode": {
+                "$ref": "139"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "136"
+            },
+            "_targetNode": {
+                "$ref": "244"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "139"
+            },
+            "_targetNode": {
+                "$ref": "142"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "139"
+            },
+            "_targetNode": {
+                "$ref": "145"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "142"
+            },
+            "_targetNode": {
+                "$ref": "144"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "145"
+            },
+            "_targetNode": {
+                "$ref": "147"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "147"
+            },
+            "_targetNode": {
+                "$ref": "151"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "151"
+            },
+            "_targetNode": {
+                "$ref": "153"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "153"
+            },
+            "_targetNode": {
+                "$ref": "161"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "153"
+            },
+            "_targetNode": {
+                "$ref": "161"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "153"
+            },
+            "_targetNode": {
+                "$ref": "161"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "161"
+            },
+            "_targetNode": {
+                "$ref": "163"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "163"
+            },
+            "_targetNode": {
+                "$ref": "171"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "163"
+            },
+            "_targetNode": {
+                "$ref": "240"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "163"
+            },
+            "_targetNode": {
+                "$ref": "242"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "171"
+            },
+            "_targetNode": {
+                "$ref": "173"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "173"
+            },
+            "_targetNode": {
+                "$ref": "175"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "175"
+            },
+            "_targetNode": {
+                "$ref": "177"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "177"
+            },
+            "_targetNode": {
+                "$ref": "183"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "177"
+            },
+            "_targetNode": {
+                "$ref": "183"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "183"
+            },
+            "_targetNode": {
+                "$ref": "185"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "185"
+            },
+            "_targetNode": {
+                "$ref": "187"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "187"
+            },
+            "_targetNode": {
+                "$ref": "189"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "189"
+            },
+            "_targetNode": {
+                "$ref": "193"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "193"
+            },
+            "_targetNode": {
+                "$ref": "195"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "195"
+            },
+            "_targetNode": {
+                "$ref": "197"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "197"
+            },
+            "_targetNode": {
+                "$ref": "199"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "199"
+            },
+            "_targetNode": {
+                "$ref": "225"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "225"
+            },
+            "_targetNode": {
+                "$ref": "228"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "225"
+            },
+            "_targetNode": {
+                "$ref": "239"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "228"
+            },
+            "_targetNode": {
+                "$ref": "239"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "240"
+            },
+            "_targetNode": {
+                "$ref": "173"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "242"
+            },
+            "_targetNode": {
+                "$ref": "173"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "244"
+            },
+            "_targetNode": {
+                "$ref": "247"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "244"
+            },
+            "_targetNode": {
+                "$ref": "250"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "247"
+            },
+            "_targetNode": {
+                "$ref": "249"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "250"
+            },
+            "_targetNode": {
+                "$ref": "252"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "252"
+            },
+            "_targetNode": {
+                "$ref": "254"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "254"
+            },
+            "_targetNode": {
+                "$ref": "258"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "258"
+            },
+            "_targetNode": {
+                "$ref": "260"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "260"
+            },
+            "_targetNode": {
+                "$ref": "262"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "262"
+            },
+            "_targetNode": {
+                "$ref": "277"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "278"
+            },
+            "_targetNode": {
+                "$ref": "280"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        },
+        {
+            "_sourceNode": {
+                "$ref": "281"
+            },
+            "_targetNode": {
+                "$ref": "283"
+            },
+            "$type": "NodeCanvas.DialogueTrees.DTConnection"
+        }
+    ],
+    "localBlackboard": {
+        "_name": "Local Blackboard",
+        "_variables": {
+            "gInstigator": {
+                "_name": "gInstigator",
+                "_id": "0483cf6b-da62-4a57-aaed-40f25b4bdf9b",
+                "$type": "NodeCanvas.Framework.Variable`1[[Character, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+            }
+        }
+    },
+    "derivedData": {
+        "actorParameters": [
+            {
+                "_keyName": "name_unpc_ellinara_01 ",
+                "_id": "40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760"
+            },
+            {
+                "_keyName": "name_unpc_elatt_01 ",
+                "_id": "80422f19-50a2-44d6-93b2-b511e4ed9a64"
+            },
+            {
+                "_keyName": "name_unpc_narrator",
+                "_id": "931007f0-7c34-4ebc-9c4c-adc00f620300"
+            }
+        ],
+        "$type": "NodeCanvas.DialogueTrees.DialogueTree+DerivedSerializationData"
+    }
+}

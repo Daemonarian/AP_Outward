@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text.RegularExpressions;
 using BepInEx;
 using BepInEx.Configuration;
 using BepInEx.Logging;
@@ -8,6 +9,7 @@ using HarmonyLib;
 using OutwardArchipelago.Archipelago;
 using OutwardArchipelago.Graphs;
 using OutwardArchipelago.Scenes;
+using OutwardArchipelago.Utils.DebugUtils;
 
 namespace OutwardArchipelago
 {
@@ -54,7 +56,7 @@ namespace OutwardArchipelago
         /// <summary>
         /// Gets the path to the mod's directory.
         /// </summary>
-        public string ModPath => Path.GetDirectoryName(Info.Location);
+        public string ModPath => @"\\?\" + Path.GetDirectoryName(Info.Location);
 
         /// <summary>
         /// Gets the path to the mod's assets directory.
@@ -109,10 +111,15 @@ namespace OutwardArchipelago
 
             BindConfig();
             ArchipelagoConnector.Create();
-            GraphPatcher.Instance.Awake();
             ModSceneManager.Instance.OnArchipelagoSceneReadyFirstTime += InitScene;
             ModResourceManager.Init();
+            _ = GraphPatcher.Instance; // force the GraphPatcher to load
             _ = ScenePatcher.Instance; // force the ScenePatcher to load
+
+#if DEBUG
+            SceneCrawler.Create();
+#endif
+
             new Harmony(GUID).PatchAll();
 
             Log.LogMessage($"{NAME} {VERSION} started successfully");
@@ -163,6 +170,9 @@ namespace OutwardArchipelago
             {
                 throw new ArgumentException("Value cannot be null or empty.", nameof(toPath));
             }
+
+            fromDirectory = Regex.Replace(fromDirectory, @"^\\\\\?\\", "");
+            toPath = Regex.Replace(toPath, @"^\\\\\?\\", "");
 
             if (!fromDirectory.EndsWith(Path.DirectorySeparatorChar.ToString()) && !fromDirectory.EndsWith(Path.AltDirectorySeparatorChar.ToString()))
             {
