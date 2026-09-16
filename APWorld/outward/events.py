@@ -15,6 +15,8 @@ from .items import OutwardItem
 from .locations import OutwardLocation, OutwardRegionName
 
 if TYPE_CHECKING:
+    from collections.abc import Iterable
+
     from BaseClasses import Region
     from worlds.generic.Rules import CollectionRule
 
@@ -199,3 +201,18 @@ class OutwardEventGroup:
         14: OutwardEventName.PARALLEL_QUEST_VENDAVEL_QUEST_COMPLETE,
         15: OutwardEventName.PARALLEL_QUEST_RUST_AND_VENGEANCE_COMPLETE,
     }
+
+def add_world_events(world: OutwardWorld) -> None:
+    r"""
+    Add all events to the world.
+    """
+
+    for event_name in get_world_event_names(world):
+        world.add_event(event_name)
+
+def get_world_event_names(world: OutwardWorld) -> Iterable[str]:
+    r"""
+    Get the names of all events to add to the world.
+    """
+
+    yield from OutwardEventName.get_names()

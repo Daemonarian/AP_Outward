@@ -5,11 +5,12 @@ from worlds.AutoWorld import World
 
 from .common import OUTWARD
 from .factions import OutwardFaction
-from .events import ItemClassification, OutwardEvent, OutwardEventGroup, OutwardEventName
-from .items import OutwardGameItem, OutwardItem, OutwardItemGroup, OutwardItemName
-from .locations import OutwardGameLocation, OutwardLocation, OutwardLocationGroup, OutwardLocationName
+from .events import ItemClassification, OutwardEvent, OutwardEventGroup, OutwardEventName, add_world_events
+from .items import OutwardGameItem, OutwardItem, OutwardItemGroup, OutwardItemName, add_world_starting_items, add_world_items
+from .locations import OutwardGameLocation, OutwardLocation, OutwardLocationGroup, OutwardLocationName, add_world_locations
 from .options import OutwardOptions
-from .regions import OutwardEntrance, OutwardEntranceName, OutwardRegion, OutwardRegionName
+from .regions import OutwardEntrance, OutwardEntranceName, OutwardRegion, OutwardRegionName, add_world_regions, add_world_entrances
+from .rules import add_world_rules
 
 if TYPE_CHECKING:
     from collections.abc import Iterable
@@ -319,380 +320,29 @@ class OutwardWorld(World):
         return None
 
     def generate_early(self):
-        # we are using this hook in order to add items to the starting inventory
-        
-        # faction pact
-
-        if bool(self.options.start_with_faction_pact.value):
-            pact_item_name = self.get_pact_item_name()
-            if pact_item_name is not None:
-                self.push_precollected(self.create_item(pact_item_name))
-          
-        # breakthough points
-
-        if not bool(self.options.breakthrough_point_checks.value):
-            for _ in range(self.options.num_breakthough_points.value):
-                self.push_precollected(self.create_item(OutwardItemName.BREAKTHROUGH_POINT))
+        add_world_starting_items(self)
 
     def create_regions(self):
-        for region_name in OutwardRegionName.get_names():
-            self.add_region(region_name)
-        for entrance_name in OutwardEntranceName.get_names():
-            self.add_entrance(entrance_name)
-        for event_name in OutwardEventName.get_names():
-            self.add_event(event_name)
-        for location_name in OutwardLocationName.get_names():
-            self.add_location(location_name)
-
-        if not bool(self.options.breakthrough_point_checks.value):
-            for location_name in OutwardLocationGroup.SKILL_TRAINER_INTERACT:
-                item = self.create_item(OutwardItemName.SILVER_CURRENCY)
-                self.get_location(location_name).place_locked_item(item)
+        add_world_regions(self)
+        add_world_entrances(self)
+        add_world_events(self)
+        add_world_locations(self)
 
     def get_filler_item_name(self) -> str:
         return self.random.choice(tuple(OutwardItemGroup.FILLER))
       
     def create_items(self):
-        # faction pact
-
-        if not bool(self.options.start_with_faction_pact.value):
-            pact_item_name = self.get_pact_item_name()
-            if pact_item_name is not None:
-                self.add_item(pact_item_name)
-
-        # quest licenses
-
-        for _ in range(10):
-            self.add_item(OutwardItemName.QUEST_LICENSE)
-
-        # useful gear
-        
-        self.add_item(OutwardItemName.CEREMONIAL_BOW)
-        self.add_item(OutwardItemName.COMPASSWOOD_STAFF)
-        self.add_item(OutwardItemName.CRACKED_RED_MOON)
-        self.add_item(OutwardItemName.DEPOWERED_BLUDGEON)
-        self.add_item(OutwardItemName.EXPERIMENTAL_CHAKRAM)
-        self.add_item(OutwardItemName.FOSSILIZED_GREATAXE)
-        self.add_item(OutwardItemName.KRYPTEIA_TOMB_KEY)
-        self.add_item(OutwardItemName.MYRMITAUR_HAVEN_GATE_KEY)
-        self.add_item(OutwardItemName.MYSTERIOUS_LONG_BLADE)
-        self.add_item(OutwardItemName.RED_LADYS_DAGGER)
-        self.add_item(OutwardItemName.RUINED_HALBERD)
-        self.add_item(OutwardItemName.RUSTED_SPEAR)
-        self.add_item(OutwardItemName.SCARLET_GEM)
-        self.add_item(OutwardItemName.SCARLET_LICHS_IDOL)
-        self.add_item(OutwardItemName.SCARRED_DAGGER)
-        self.add_item(OutwardItemName.SCARRED_DAGGER)
-        self.add_item(OutwardItemName.SEALED_MACE)
-        self.add_item(OutwardItemName.SLUMBERING_SHIELD)
-        self.add_item(OutwardItemName.SMELLY_SEALED_BOX)
-        self.add_item(OutwardItemName.STRANGE_RUSTED_SWORD)
-        self.add_item(OutwardItemName.UNUSUAL_KNUCKLES)
-        self.add_item(OutwardItemName.WARM_AXE)
-
-        self.add_item(OutwardItemName.ANGLER_SHIELD)
-        self.add_item(OutwardItemName.ANTIQUE_PLATE_BOOTS)
-        self.add_item(OutwardItemName.ANTIQUE_PLATE_GARB)
-        self.add_item(OutwardItemName.ANTIQUE_PLATE_SALLET)
-        self.add_item(OutwardItemName.BLUE_SAND_ARMOR)
-        self.add_item(OutwardItemName.BLUE_SAND_BOOTS)
-        self.add_item(OutwardItemName.BLUE_SAND_HELM)
-        self.add_item(OutwardItemName.BRAND)
-        self.add_item(OutwardItemName.BRASS_WOLF_BACKPACK)
-        self.add_item(OutwardItemName.COPAL_ARMOR)
-        self.add_item(OutwardItemName.COPAL_BOOTS)
-        self.add_item(OutwardItemName.COPAL_HELM)
-        self.add_item(OutwardItemName.DISTORTED_EXPERIMENT)
-        self.add_item(OutwardItemName.DREAMER_HALBERD)
-        self.add_item(OutwardItemName.DUTY)
-        self.add_item(OutwardItemName.FABULOUS_PALLADIUM_SHIELD)
-        self.add_item(OutwardItemName.GEPS_LONGBLADE)
-        self.add_item(OutwardItemName.GHOST_PARALLEL)
-        self.add_item(OutwardItemName.GILDED_SHIVER_OF_TRAMONTANE)
-        self.add_item(OutwardItemName.GOLD_LICH_ARMOR)
-        self.add_item(OutwardItemName.GOLD_LICH_BOOTS)
-        self.add_item(OutwardItemName.GOLD_LICH_MASK)
-        self.add_item(OutwardItemName.GOLD_LICH_SPEAR)
-        self.add_item(OutwardItemName.GRIND)
-        self.add_item(OutwardItemName.JADE_LICH_BOOTS)
-        self.add_item(OutwardItemName.JADE_LICH_MASK)
-        self.add_item(OutwardItemName.JADE_LICH_ROBES)
-        self.add_item(OutwardItemName.JADE_LICH_STAFF)
-        self.add_item(OutwardItemName.LIGHT_MENDERS_BACKPACK)
-        self.add_item(OutwardItemName.LIGHT_MENDERS_LEXICON)
-        self.add_item(OutwardItemName.MEFINOS_TRADE_BACKPACK)
-        self.add_item(OutwardItemName.MERTONS_FIREPOKER)
-        self.add_item(OutwardItemName.MERTONS_FIREPOKER)
-        self.add_item(OutwardItemName.MERTONS_RIBCAGE)
-        self.add_item(OutwardItemName.MERTONS_SHINBONES)
-        self.add_item(OutwardItemName.MERTONS_SKULL)
-        self.add_item(OutwardItemName.MURMURE)
-        self.add_item(OutwardItemName.MYSTERIOUS_CHAKRAM)
-        self.add_item(OutwardItemName.ORNATE_BONE_SHIELD)
-        self.add_item(OutwardItemName.PALLADIUM_ARMOR)
-        self.add_item(OutwardItemName.PALLADIUM_BOOTS)
-        self.add_item(OutwardItemName.PALLADIUM_HELM)
-        self.add_item(OutwardItemName.PEARLESCENT_MAIL)
-        self.add_item(OutwardItemName.PETRIFIED_WOOD_ARMOR)
-        self.add_item(OutwardItemName.PETRIFIED_WOOD_BOOTS)
-        self.add_item(OutwardItemName.PETRIFIED_WOOD_HELM)
-        self.add_item(OutwardItemName.PILLAR_GREATHAMMER)
-        self.add_item(OutwardItemName.PORCELAIN_FISTS)
-        self.add_item(OutwardItemName.PORCELAIN_FISTS)
-        self.add_item(OutwardItemName.REVENANT_MOON)
-        self.add_item(OutwardItemName.ROTWOOD_STAFF)
-        self.add_item(OutwardItemName.RUST_LICH_ARMOR)
-        self.add_item(OutwardItemName.RUST_LICH_BOOTS)
-        self.add_item(OutwardItemName.RUST_LICH_HELMET)
-        self.add_item(OutwardItemName.SANDROSE)
-        self.add_item(OutwardItemName.SCARLET_BOOTS)
-        self.add_item(OutwardItemName.SCARLET_MASK)
-        self.add_item(OutwardItemName.SCARLET_ROBES)
-        self.add_item(OutwardItemName.SCEPTER_OF_THE_CRUEL_PRIEST)
-        self.add_item(OutwardItemName.SHRIEK)
-        self.add_item(OutwardItemName.SKYCROWN_MACE)
-        self.add_item(OutwardItemName.STARCHILD_CLAYMORE)
-        self.add_item(OutwardItemName.SUNFALL_AXE)
-        self.add_item(OutwardItemName.TENEBROUS_ARMOR)
-        self.add_item(OutwardItemName.TENEBROUS_BOOTS)
-        self.add_item(OutwardItemName.TENEBROUS_HELM)
-        self.add_item(OutwardItemName.THE_WILL_O_WISP)
-        self.add_item(OutwardItemName.THRICE_WROUGHT_HALBERD)
-        self.add_item(OutwardItemName.THRICE_WROUGHT_HALBERD)
-        self.add_item(OutwardItemName.TOKEBAKICIT)
-        self.add_item(OutwardItemName.TSAR_ARMOR)
-        self.add_item(OutwardItemName.TSAR_BOOTS)
-        self.add_item(OutwardItemName.TSAR_FISTS)
-        self.add_item(OutwardItemName.TSAR_HELM)
-        self.add_item(OutwardItemName.WERLIG_SPEAR)
-        self.add_item(OutwardItemName.WORLDEDGE_GREATAXE)
-        self.add_item(OutwardItemName.ZHORNS_DEMON_SHIELD)
-        self.add_item(OutwardItemName.ZHORNS_GLOWSTONE_DAGGER)
-        self.add_item(OutwardItemName.ZHORNS_HUNTING_BACKPACK)
-
-        # useful skills
-
-        self.add_item(OutwardItemName.BLADE_PUPPY)
-        self.add_item(OutwardItemName.BLESSED)
-        self.add_item(OutwardItemName.CHILL_HEX)
-        self.add_item(OutwardItemName.COOL)
-        self.add_item(OutwardItemName.CURSE_HEX)
-        self.add_item(OutwardItemName.DOOM_HEX)
-        self.add_item(OutwardItemName.ELATTS_INTERVENTION)
-        self.add_item(OutwardItemName.EXECUTION)
-        self.add_item(OutwardItemName.FLAMETHROWER)
-        self.add_item(OutwardItemName.GOLDEN_WATCHER)
-        self.add_item(OutwardItemName.HAUNT_HEX)
-        self.add_item(OutwardItemName.INFUSE_BLOOD)
-        self.add_item(OutwardItemName.INFUSE_MANA)
-        self.add_item(OutwardItemName.JUGGERNAUT)
-        self.add_item(OutwardItemName.KIROUACS_BREAKTHROUGH)
-        self.add_item(OutwardItemName.MACE_INFUSION)
-        self.add_item(OutwardItemName.MIST)
-        self.add_item(OutwardItemName.MOON_SWIPE)
-        self.add_item(OutwardItemName.POMMEL_COUNTER)
-        self.add_item(OutwardItemName.POSSESSED)
-        self.add_item(OutwardItemName.PRISMATIC_FLURRY)
-        self.add_item(OutwardItemName.PUNCTURE)
-        self.add_item(OutwardItemName.SCORCH_HEX)
-        self.add_item(OutwardItemName.SEVERED_OBSIDIAN)
-        self.add_item(OutwardItemName.SIMEONS_GAMBIT)
-        self.add_item(OutwardItemName.TALUS_CLEAVER)
-        self.add_item(OutwardItemName.WARM)
-
-        # skill trainer skills
-
-        for item, _ in self.skill_sanity_location_info.values():
-            self.add_item(item)
-
-        # wind altars
-
-        self.add_item(OutwardItemName.WIND_ALTAR_BOON_CHERSONESE)
-        self.add_item(OutwardItemName.WIND_ALTAR_BOON_ENMERKAR_FOREST)
-        self.add_item(OutwardItemName.WIND_ALTAR_BOON_ABRASSAR)
-        self.add_item(OutwardItemName.WIND_ALTAR_BOON_HALLOWED_MARSH)
-        self.add_item(OutwardItemName.WIND_ALTAR_BOON_ANTIQUE_PLATEAU)
-        self.add_item(OutwardItemName.WIND_ALTAR_BOON_CALDERA)
-
-        # breakthrough points
-
-        if bool(self.options.breakthrough_point_checks.value):
-            for _ in range(self.options.num_breakthough_points.value):
-                self.add_item(OutwardItemName.BREAKTHROUGH_POINT)
-
-        # friendly immaculate
-
-        self.add_item(OutwardItemName.CALYGREY_BONE_CAGE)
-        self.add_item(OutwardItemName.BARRIER_ARMOR)
-        self.add_item(OutwardItemName.BRIGANDS_BACKPACK)
-        self.add_item(OutwardItemName.SCOURGE_COCOON)
-        self.add_item(OutwardItemName.VAGABONDS_GELATIN)
-
-        # roland gifts
-
-        self.add_item(OutwardItemName.ROLAND_GIFT_1)
-        self.add_item(OutwardItemName.ROLAND_GIFT_2)
-        self.add_item(OutwardItemName.ROLAND_GIFT_3)
-
-        # filler items
-
-        location_count = len(tuple(self.get_locations()))
-        item_count = len(tuple(self.get_items()))
-        filler_count = location_count - item_count
-        if filler_count > 0:
-            for _ in range(filler_count):
-                item_name = self.get_filler_item_name()
-                self.add_item(item_name)
+        add_world_items(self)
 
     def set_rules(self):
-        # main quest events
-        
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_01_START, OutwardEventName.MAIN_QUEST_01_PREREQ)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_02_START, OutwardEventName.MAIN_QUEST_02_PREREQ)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_03_START, OutwardEventName.MAIN_QUEST_03_PREREQ)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_04_START, OutwardEventName.MAIN_QUEST_04_PREREQ)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_05_START, OutwardEventName.MAIN_QUEST_05_PREREQ)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_06_START, OutwardEventName.MAIN_QUEST_06_PREREQ)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_07_START, OutwardEventName.MAIN_QUEST_07_PREREQ)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_08_START, OutwardEventName.MAIN_QUEST_08_PREREQ)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_09_START, OutwardEventName.MAIN_QUEST_09_PREREQ)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_10_START, OutwardEventName.MAIN_QUEST_10_PREREQ)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_11_START, OutwardEventName.MAIN_QUEST_11_PREREQ)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_12_START, OutwardEventName.MAIN_QUEST_12_PREREQ)
-        
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_01_COMPLETE, OutwardEventName.MAIN_QUEST_01_START)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_02_COMPLETE, OutwardEventName.MAIN_QUEST_02_START)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_03_COMPLETE, OutwardEventName.MAIN_QUEST_03_START)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_04_COMPLETE, OutwardEventName.MAIN_QUEST_04_START)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_05_COMPLETE, OutwardEventName.MAIN_QUEST_05_START)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_06_COMPLETE, OutwardEventName.MAIN_QUEST_06_START)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_07_COMPLETE, OutwardEventName.MAIN_QUEST_07_START)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_08_COMPLETE, OutwardEventName.MAIN_QUEST_08_START)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_09_COMPLETE, OutwardEventName.MAIN_QUEST_09_START)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_10_COMPLETE, OutwardEventName.MAIN_QUEST_10_START)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_11_COMPLETE, OutwardEventName.MAIN_QUEST_11_START)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_12_COMPLETE, OutwardEventName.MAIN_QUEST_12_START)
-        
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_02_PREREQ, OutwardEventName.MAIN_QUEST_01_COMPLETE)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_03_PREREQ, OutwardEventName.MAIN_QUEST_02_COMPLETE)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_04_PREREQ, OutwardEventName.MAIN_QUEST_03_COMPLETE)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_05_PREREQ, OutwardEventName.MAIN_QUEST_04_COMPLETE)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_06_PREREQ, OutwardEventName.MAIN_QUEST_05_COMPLETE)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_07_PREREQ, OutwardEventName.MAIN_QUEST_06_COMPLETE)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_08_PREREQ, OutwardEventName.MAIN_QUEST_07_COMPLETE)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_09_PREREQ, OutwardEventName.MAIN_QUEST_08_COMPLETE)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_10_PREREQ, OutwardEventName.MAIN_QUEST_09_COMPLETE)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_11_PREREQ, OutwardEventName.MAIN_QUEST_10_COMPLETE)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_12_PREREQ, OutwardEventName.MAIN_QUEST_11_COMPLETE)
-        
-        # quest licenses
-
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_03_PREREQ, OutwardItemName.QUEST_LICENSE, 1)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_04_PREREQ, OutwardItemName.QUEST_LICENSE, 2)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_05_PREREQ, OutwardItemName.QUEST_LICENSE, 3)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_06_PREREQ, OutwardItemName.QUEST_LICENSE, 4)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_07_PREREQ, OutwardItemName.QUEST_LICENSE, 5)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_08_PREREQ, OutwardItemName.QUEST_LICENSE, 6)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_09_PREREQ, OutwardItemName.QUEST_LICENSE, 7)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_10_PREREQ, OutwardItemName.QUEST_LICENSE, 8)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_11_PREREQ, OutwardItemName.QUEST_LICENSE, 9)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_12_PREREQ, OutwardItemName.QUEST_LICENSE, 10)
-
-        # quest completion events
-
-        self.add_location_item_requirement(OutwardLocationName.QUEST_MAIN_01, OutwardEventName.MAIN_QUEST_01_COMPLETE)
-        self.add_location_item_requirement(OutwardLocationName.QUEST_MAIN_02, OutwardEventName.MAIN_QUEST_02_COMPLETE)
-        self.add_location_item_requirement(OutwardLocationName.QUEST_MAIN_03, OutwardEventName.MAIN_QUEST_03_COMPLETE)
-        self.add_location_item_requirement(OutwardLocationName.QUEST_MAIN_04, OutwardEventName.MAIN_QUEST_04_COMPLETE)
-        self.add_location_item_requirement(OutwardLocationName.QUEST_MAIN_05, OutwardEventName.MAIN_QUEST_05_COMPLETE)
-        self.add_location_item_requirement(OutwardLocationName.QUEST_MAIN_06, OutwardEventName.MAIN_QUEST_06_COMPLETE)
-        self.add_location_item_requirement(OutwardLocationName.QUEST_MAIN_07, OutwardEventName.MAIN_QUEST_07_COMPLETE)
-        self.add_location_item_requirement(OutwardLocationName.QUEST_MAIN_08, OutwardEventName.MAIN_QUEST_08_COMPLETE)
-        self.add_location_item_requirement(OutwardLocationName.QUEST_MAIN_09, OutwardEventName.MAIN_QUEST_09_COMPLETE)
-        self.add_location_item_requirement(OutwardLocationName.QUEST_MAIN_10, OutwardEventName.MAIN_QUEST_10_COMPLETE)
-        self.add_location_item_requirement(OutwardLocationName.QUEST_MAIN_11, OutwardEventName.MAIN_QUEST_11_COMPLETE)
-        self.add_location_item_requirement(OutwardLocationName.QUEST_MAIN_12, OutwardEventName.MAIN_QUEST_12_COMPLETE)
-
-        self.add_location_item_requirement(OutwardLocationName.QUEST_PARALLEL_BLOOD_UNDER_THE_SUN, OutwardEventName.MAIN_QUEST_04_COMPLETE)
-        self.add_location_item_requirement(OutwardLocationName.QUEST_PARALLEL_PURIFIER, OutwardEventName.MAIN_QUEST_02_COMPLETE)
-        self.add_location_item_requirement(OutwardLocationName.QUEST_PARALLEL_VENDAVEL_QUEST, OutwardEventName.MAIN_QUEST_02_COMPLETE)
-        self.add_location_item_requirement(OutwardLocationName.QUEST_PARALLEL_RUST_AND_VENGEANCE_1, OutwardEventName.MAIN_QUEST_04_COMPLETE)
-        self.add_location_item_requirement(OutwardLocationName.QUEST_PARALLEL_RUST_AND_VENGEANCE_2, OutwardEventName.MAIN_QUEST_04_COMPLETE)
-        self.add_location_item_requirement(OutwardLocationName.QUEST_PARALLEL_RUST_AND_VENGEANCE_3, OutwardEventName.MAIN_QUEST_04_COMPLETE)
-
-        # Looking to the Future
-
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_LOOKING_TO_THE_FUTURE_START, OutwardEventName.MAIN_QUEST_03_PREREQ, do_require_exists=False)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_ENROLLMENT_START, OutwardEventName.MAIN_QUEST_03_PREREQ, do_require_exists=False)
-
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_03_START, OutwardEventName.MAIN_QUEST_LOOKING_TO_THE_FUTURE_START, do_require_exists=False)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_03_START, OutwardEventName.MAIN_QUEST_ENROLLMENT_START, do_require_exists=False)
-        
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_LOOKING_TO_THE_FUTURE_BC_COMPLETE, OutwardEventName.MAIN_QUEST_LOOKING_TO_THE_FUTURE_START, do_require_exists=False)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_LOOKING_TO_THE_FUTURE_HK_COMPLETE, OutwardEventName.MAIN_QUEST_LOOKING_TO_THE_FUTURE_START, do_require_exists=False)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_LOOKING_TO_THE_FUTURE_HM_COMPLETE, OutwardEventName.MAIN_QUEST_LOOKING_TO_THE_FUTURE_START, do_require_exists=False)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_ENROLLMENT_COMPLETE, OutwardEventName.MAIN_QUEST_LOOKING_TO_THE_FUTURE_START, do_require_exists=False)
-
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_03_COMPLETE, OutwardEventName.MAIN_QUEST_LOOKING_TO_THE_FUTURE_BC_COMPLETE, do_require_exists=False)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_03_COMPLETE, OutwardEventName.MAIN_QUEST_LOOKING_TO_THE_FUTURE_HK_COMPLETE, do_require_exists=False)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_03_COMPLETE, OutwardEventName.MAIN_QUEST_LOOKING_TO_THE_FUTURE_HM_COMPLETE, do_require_exists=False)
-        self.add_location_item_requirement(OutwardEventName.MAIN_QUEST_03_COMPLETE, OutwardEventName.MAIN_QUEST_ENROLLMENT_COMPLETE, do_require_exists=False)
-
-        # useful items
-
-        self.add_location_item_requirement(OutwardLocationName.SPAWN_ANGLER_SHIELD, OutwardItemName.SLUMBERING_SHIELD)
-        self.add_location_item_requirement(OutwardLocationName.SPAWN_BRAND, OutwardItemName.STRANGE_RUSTED_SWORD)
-        self.add_location_item_requirement(OutwardLocationName.SPAWN_DISTORTED_EXPERIMENT, OutwardItemName.EXPERIMENTAL_CHAKRAM)
-        self.add_location_item_requirement(OutwardLocationName.SPAWN_DUTY, OutwardItemName.RUINED_HALBERD)
-        self.add_location_item_requirement(OutwardLocationName.SPAWN_GEPS_BLADE, OutwardItemName.MYSTERIOUS_LONG_BLADE)
-        self.add_location_item_requirement(OutwardLocationName.SPAWN_GHOST_PARALLEL, OutwardItemName.DEPOWERED_BLUDGEON)
-        self.add_location_item_requirement(OutwardLocationName.SPAWN_GILDED_SHIVER_OF_TRAMONTANE, OutwardItemName.SCARRED_DAGGER)
-        self.add_location_item_requirement(OutwardLocationName.SPAWN_GRIND, OutwardItemName.FOSSILIZED_GREATAXE)
-        self.add_location_item_requirement(OutwardLocationName.SPAWN_MURMURE, OutwardItemName.CEREMONIAL_BOW)
-        self.add_location_item_requirement(OutwardLocationName.SPAWN_PEARLESCENT_MAIL, OutwardEventName.MAIN_QUEST_05_COMPLETE)
-        self.add_location_item_requirement(OutwardLocationName.SPAWN_RED_LADYS_DAGGER, OutwardItemName.SCARLET_LICHS_IDOL)
-        self.add_location_item_requirement(OutwardLocationName.SPAWN_REVENANT_MOON, OutwardItemName.CRACKED_RED_MOON)
-        self.add_location_item_requirement(OutwardLocationName.SPAWN_REVENANT_MOON, OutwardItemName.SCARLET_GEM)
-        self.add_location_item_requirement(OutwardLocationName.SPAWN_ROTWOOD_STAFF, OutwardEventName.MAIN_QUEST_06_COMPLETE)
-        self.add_location_item_requirement(OutwardLocationName.SPAWN_ROTWOOD_STAFF, OutwardItemName.COMPASSWOOD_STAFF)
-        self.add_location_item_requirement(OutwardLocationName.SPAWN_SANDROSE, OutwardItemName.WARM_AXE)
-        self.add_location_item_requirement(OutwardLocationName.SPAWN_SCARLET_GEM, OutwardEventName.MAIN_QUEST_09_COMPLETE)
-        self.add_location_item_requirement(OutwardLocationName.SPAWN_SCARLET_GEM, OutwardItemName.RED_LADYS_DAGGER)
-        self.add_location_item_requirement(OutwardLocationName.SPAWN_SCARLET_LICHS_IDOL, OutwardItemName.KRYPTEIA_TOMB_KEY)
-        self.add_location_item_requirement(OutwardLocationName.SPAWN_SCEPTER_OF_THE_CRUEL_PRIEST, OutwardItemName.SEALED_MACE)
-        self.add_location_item_requirement(OutwardLocationName.SPAWN_SEALED_MACE, OutwardItemName.SMELLY_SEALED_BOX)
-        self.add_location_item_requirement(OutwardLocationName.SPAWN_SHRIEK, OutwardItemName.RUSTED_SPEAR)
-        self.add_location_item_requirement(OutwardLocationName.SPAWN_TOKEBAKICIT, OutwardItemName.UNUSUAL_KNUCKLES)
-        self.add_location_item_requirement(OutwardLocationName.SPAWN_WARM_AXE, OutwardItemName.MYRMITAUR_HAVEN_GATE_KEY)
-
-        # tier 2+ skill checks
-
-        for location_name, (_, tier) in self.skill_sanity_location_info.items():
-            if tier > 1:
-                if self.options.num_breakthough_points.value < len(OutwardLocationGroup.SKILL_TRAINER_INTERACT):
-                    self.set_location_missable(location_name)
-                else:
-                    self.add_location_item_requirement(location_name, OutwardItemName.BREAKTHROUGH_POINT, count=len(OutwardLocationGroup.SKILL_TRAINER_INTERACT))
-
-        # dreamer halberd
-
-        self.add_location_item_requirement(OutwardLocationName.SPAWN_DREAMER_HALBERD, OutwardEventName.FRIENDLY_IMMACULATE_CHERSONESE)
-        self.add_location_item_requirement(OutwardLocationName.SPAWN_DREAMER_HALBERD, OutwardEventName.FRIENDLY_IMMACULATE_ENMERKAR_FOREST)
-        self.add_location_item_requirement(OutwardLocationName.SPAWN_DREAMER_HALBERD, OutwardEventName.FRIENDLY_IMMACULATE_ABRASSAR)
-        self.add_location_item_requirement(OutwardLocationName.SPAWN_DREAMER_HALBERD, OutwardEventName.FRIENDLY_IMMACULATE_HALLOWED_MARSH)
-
-        # missable locations
-
-        for location in self.get_locations():
-            if location.check_missable(self):
-                self.set_location_missable(location.name)
-
-        # completion condition
-
-        goal_event_name = OutwardEventGroup.GOALS[self.options.goal.value]
-        self.multiworld.completion_condition[self.player] = lambda state: state.has(goal_event_name, self.player)
+        add_world_rules(self)
 
     def pre_fill(self):
+        if not bool(self.options.breakthrough_point_checks.value):
+            for location_name in OutwardLocationGroup.SKILL_TRAINER_INTERACT:
+                item = self.create_item(OutwardItemName.SILVER_CURRENCY)
+                self.get_location(location_name).place_locked_item(item)
+
         for location_name, (item_name, tier) in self.skill_sanity_location_info.items():
             if self.options.skillsanity.value == self.options.skillsanity.option_vanilla or (self.options.skillsanity.value == self.options.skillsanity.option_tier_one_only and tier > 1):
                 self.lock_location_item(location_name, item_name)

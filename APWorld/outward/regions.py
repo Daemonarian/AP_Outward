@@ -11,6 +11,8 @@ from worlds.generic.Rules import add_rule
 from .templates import OutwardObjectNamespace, OutwardObjectTemplate
 
 if TYPE_CHECKING:
+    from collections.abc import Iterable
+
     from BaseClasses import MultiWorld
     from worlds.generic.Rules import CollectionRule
 
@@ -686,3 +688,33 @@ class OutwardEntranceName(OutwardObjectNamespace):
     IMMACULATE_CAMP_ANY_ENMERKAR_FOREST_DOOR_ENTER = entrance("Immaculate Camp - Enmerkar Forest - Enter", OutwardRegionName.ENMERKAR_FOREST, OutwardRegionName.IMMACULATE_CAMP_ANY)
     IMMACULATE_CAMP_ANY_ABRASSAR_DOOR_ENTER = entrance("Immaculate Camp - Abrassar - Enter", OutwardRegionName.ABRASSAR, OutwardRegionName.IMMACULATE_CAMP_ANY)
     IMMACULATE_CAMP_ANY_HALLOWED_MARSH_DOOR_ENTER = entrance("Immaculate Camp - Hallowed Marsh - Enter", OutwardRegionName.HALLOWED_MARSH, OutwardRegionName.IMMACULATE_CAMP_ANY)
+
+def add_world_regions(world: OutwardWorld) -> None:
+    r"""
+    Add all regions to the world.
+    """
+
+    for region_name in get_world_region_names(world):
+        world.add_region(region_name)
+
+def add_world_entrances(world: OutwardWorld) -> None:
+    r"""
+    Add all entrances to the world
+    """
+
+    for entrance_name in get_world_entrance_names(world):
+        world.add_entrance(entrance_name)
+
+def get_world_region_names(world: OutwardWorld) -> Iterable[str]:
+    r"""
+    Get the names of all regions to add to the world.
+    """
+
+    yield from OutwardRegionName.get_names()
+
+def get_world_entrance_names(world: OutwardWorld) -> Iterable[str]:
+    r"""
+    Get the names of all entrances to add to the world.
+    """
+
+    yield from OutwardEntranceName.get_names()

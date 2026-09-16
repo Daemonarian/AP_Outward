@@ -11,6 +11,8 @@ from .factions import OutwardFaction, outward_factions
 from .regions import OutwardRegionName
 
 if TYPE_CHECKING:
+    from collections.abc import Iterable
+
     from BaseClasses import Region
     from worlds.generic.Rules import CollectionRule, ItemRule
 
@@ -60,6 +62,9 @@ class OutwardGameLocation(OutwardLocation):
     @property
     def faction(self) -> OutwardFaction:
         return self.template.faction
+
+    def check_accessible(self, world: OutwardWorld) -> bool:
+        return world.get_allowed_factions() & self.faction != 0
 
     def check_missable(self, world: OutwardWorld) -> bool:
         if self.missable:
@@ -447,6 +452,12 @@ class OutwardLocationName(OutwardGameObjectNamespace):
     ROLAND_GIFT_1 = location("Roland Argenson - Gift 1", OutwardRegionName.CIERZO)
     ROLAND_GIFT_2 = location("Roland Argenson - Gift 2", OutwardRegionName.BERG)
     ROLAND_GIFT_3 = location("Roland Argenson - Gift 3", OutwardRegionName.BERG)
+    ROLAND_FRIENDSHIP_1 = location("Roland Friendship Event - Cierzo Docks", OutwardRegionName.CIERZO, faction=OutwardFaction.BlueChamber)
+    ROLAND_FRIENDSHIP_2 = location("Roland Friendship Event - Berg - Quest 1", OutwardRegionName.BERG, faction=OutwardFaction.BlueChamber)
+    ROLAND_FRIENDSHIP_3 = location("Roland Friendship Event - Berg - Quest 2", OutwardRegionName.BERG, faction=OutwardFaction.BlueChamber)
+    ROLAND_FRIENDSHIP_4 = location("Roland Friendship Event - Conflux Chambers", OutwardRegionName.CONFLUX_CHAMBERS, faction=OutwardFaction.BlueChamber)
+    ROLAND_FRIENDSHIP_5 = location("Roland Friendship Event - Starfish Cave", OutwardRegionName.STARFISH_CAVE, faction=OutwardFaction.BlueChamber)
+    ROLAND_FRIENDSHIP_6 = location("Roland Friendship Event - Cabal of Wind Temple", OutwardRegionName.CABAL_OF_WIND_TEMPLE, faction=OutwardFaction.BlueChamber)
 
 class OutwardLocationGroup:
     SKILL_TRAINER_INTERACT = [
@@ -462,3 +473,18 @@ class OutwardLocationGroup:
         OutwardLocationName.SKILL_TRAINER_INTERACT_STYX,
         OutwardLocationName.SKILL_TRAINER_INTERACT_TURE,
     ]
+
+def add_world_locations(world: OutwardWorld) -> None:
+    r"""
+    Add all locations to the world.
+    """
+
+    for location_name in get_world_location_names(world):
+        world.add_location(location_name)
+
+def get_world_location_names(world: OutwardWorld) -> Iterable[str]:
+    r"""
+    Get the names of all locations to add to the world.
+    """
+
+    yield from OutwardLocationName.get_names()

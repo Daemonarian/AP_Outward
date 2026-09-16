@@ -8,6 +8,8 @@ from .templates import OutwardGameObjectNamespace, OutwardGameObjectTemplate
 from .factions import OutwardFaction
 
 if TYPE_CHECKING:
+    from collections.abc import Iterable
+
     from . import OutwardWorld
     from .templates import OutwardObjectTemplate
 
@@ -78,6 +80,7 @@ class OutwardItemName(OutwardGameObjectNamespace):
     FACTION_PACT_SOROBOR_ACADEMY = item("Sorobor Academy Pact", ItemClassification.progression, archipelago_id=8861516)
 
     BALTHAZAR_NOTE = item("Balthazar's Note", ItemClassification.progression, archipelago_id=8861517)
+    ROLAND_FRIENDSHIP = item("Progressive Roland Friendship", ItemClassification.progression)
     
     # custom filler items
 
@@ -1905,3 +1908,233 @@ class OutwardItemGroup:
         OutwardItemName.MEDIUM_RUBY,
         OutwardItemName.LARGE_EMERALD,
     ]
+
+def add_world_starting_items(world: OutwardWorld) -> None:
+    r"""
+    Add all items to the starting inventory.
+    """
+
+    for item_name in get_world_starting_item_names(world):
+        world.push_precollected(world.create_item(item_name))
+
+def add_world_items(world: OutwardWorld) -> None:
+    r"""
+    Add all items to the item pool.
+    """
+
+    for item_name in get_world_item_names(world):
+        world.add_item(item_name)
+
+def get_world_starting_item_names(world: OutwardWorld) -> Iterable[str]:
+    r"""
+    Get the names of all items to add to starting inventory.
+    """
+
+    # faction pact
+
+    if bool(world.options.start_with_faction_pact.value):
+        pact_item_name = world.get_pact_item_name()
+        if pact_item_name is not None:
+            yield pact_item_name
+          
+    # breakthough points
+
+    if not bool(world.options.breakthrough_point_checks.value):
+        for _ in range(world.options.num_breakthough_points.value):
+            yield OutwardItemName.BREAKTHROUGH_POINT
+
+def get_world_item_names(world: OutwardWorld) -> Iterable[str]:
+    r"""
+    Get the names of all items to add to the item pool.
+    """
+
+    # faction pact
+
+    if not bool(world.options.start_with_faction_pact.value):
+        pact_item_name = world.get_pact_item_name()
+        if pact_item_name is not None:
+            yield pact_item_name
+
+    # quest licenses
+
+    for _ in range(10):
+        yield OutwardItemName.QUEST_LICENSE
+
+    # useful gear
+        
+    yield OutwardItemName.CEREMONIAL_BOW
+    yield OutwardItemName.COMPASSWOOD_STAFF
+    yield OutwardItemName.CRACKED_RED_MOON
+    yield OutwardItemName.DEPOWERED_BLUDGEON
+    yield OutwardItemName.EXPERIMENTAL_CHAKRAM
+    yield OutwardItemName.FOSSILIZED_GREATAXE
+    yield OutwardItemName.KRYPTEIA_TOMB_KEY
+    yield OutwardItemName.MYRMITAUR_HAVEN_GATE_KEY
+    yield OutwardItemName.MYSTERIOUS_LONG_BLADE
+    yield OutwardItemName.RED_LADYS_DAGGER
+    yield OutwardItemName.RUINED_HALBERD
+    yield OutwardItemName.RUSTED_SPEAR
+    yield OutwardItemName.SCARLET_GEM
+    yield OutwardItemName.SCARLET_LICHS_IDOL
+    yield OutwardItemName.SCARRED_DAGGER
+    yield OutwardItemName.SCARRED_DAGGER
+    yield OutwardItemName.SEALED_MACE
+    yield OutwardItemName.SLUMBERING_SHIELD
+    yield OutwardItemName.SMELLY_SEALED_BOX
+    yield OutwardItemName.STRANGE_RUSTED_SWORD
+    yield OutwardItemName.UNUSUAL_KNUCKLES
+    yield OutwardItemName.WARM_AXE
+
+    yield OutwardItemName.ANGLER_SHIELD
+    yield OutwardItemName.ANTIQUE_PLATE_BOOTS
+    yield OutwardItemName.ANTIQUE_PLATE_GARB
+    yield OutwardItemName.ANTIQUE_PLATE_SALLET
+    yield OutwardItemName.BLUE_SAND_ARMOR
+    yield OutwardItemName.BLUE_SAND_BOOTS
+    yield OutwardItemName.BLUE_SAND_HELM
+    yield OutwardItemName.BRAND
+    yield OutwardItemName.BRASS_WOLF_BACKPACK
+    yield OutwardItemName.COPAL_ARMOR
+    yield OutwardItemName.COPAL_BOOTS
+    yield OutwardItemName.COPAL_HELM
+    yield OutwardItemName.DISTORTED_EXPERIMENT
+    yield OutwardItemName.DREAMER_HALBERD
+    yield OutwardItemName.DUTY
+    yield OutwardItemName.FABULOUS_PALLADIUM_SHIELD
+    yield OutwardItemName.GEPS_LONGBLADE
+    yield OutwardItemName.GHOST_PARALLEL
+    yield OutwardItemName.GILDED_SHIVER_OF_TRAMONTANE
+    yield OutwardItemName.GOLD_LICH_ARMOR
+    yield OutwardItemName.GOLD_LICH_BOOTS
+    yield OutwardItemName.GOLD_LICH_MASK
+    yield OutwardItemName.GOLD_LICH_SPEAR
+    yield OutwardItemName.GRIND
+    yield OutwardItemName.JADE_LICH_BOOTS
+    yield OutwardItemName.JADE_LICH_MASK
+    yield OutwardItemName.JADE_LICH_ROBES
+    yield OutwardItemName.JADE_LICH_STAFF
+    yield OutwardItemName.LIGHT_MENDERS_BACKPACK
+    yield OutwardItemName.LIGHT_MENDERS_LEXICON
+    yield OutwardItemName.MEFINOS_TRADE_BACKPACK
+    yield OutwardItemName.MERTONS_FIREPOKER
+    yield OutwardItemName.MERTONS_FIREPOKER
+    yield OutwardItemName.MERTONS_RIBCAGE
+    yield OutwardItemName.MERTONS_SHINBONES
+    yield OutwardItemName.MERTONS_SKULL
+    yield OutwardItemName.MURMURE
+    yield OutwardItemName.MYSTERIOUS_CHAKRAM
+    yield OutwardItemName.ORNATE_BONE_SHIELD
+    yield OutwardItemName.PALLADIUM_ARMOR
+    yield OutwardItemName.PALLADIUM_BOOTS
+    yield OutwardItemName.PALLADIUM_HELM
+    yield OutwardItemName.PEARLESCENT_MAIL
+    yield OutwardItemName.PETRIFIED_WOOD_ARMOR
+    yield OutwardItemName.PETRIFIED_WOOD_BOOTS
+    yield OutwardItemName.PETRIFIED_WOOD_HELM
+    yield OutwardItemName.PILLAR_GREATHAMMER
+    yield OutwardItemName.PORCELAIN_FISTS
+    yield OutwardItemName.PORCELAIN_FISTS
+    yield OutwardItemName.REVENANT_MOON
+    yield OutwardItemName.ROTWOOD_STAFF
+    yield OutwardItemName.RUST_LICH_ARMOR
+    yield OutwardItemName.RUST_LICH_BOOTS
+    yield OutwardItemName.RUST_LICH_HELMET
+    yield OutwardItemName.SANDROSE
+    yield OutwardItemName.SCARLET_BOOTS
+    yield OutwardItemName.SCARLET_MASK
+    yield OutwardItemName.SCARLET_ROBES
+    yield OutwardItemName.SCEPTER_OF_THE_CRUEL_PRIEST
+    yield OutwardItemName.SHRIEK
+    yield OutwardItemName.SKYCROWN_MACE
+    yield OutwardItemName.STARCHILD_CLAYMORE
+    yield OutwardItemName.SUNFALL_AXE
+    yield OutwardItemName.TENEBROUS_ARMOR
+    yield OutwardItemName.TENEBROUS_BOOTS
+    yield OutwardItemName.TENEBROUS_HELM
+    yield OutwardItemName.THE_WILL_O_WISP
+    yield OutwardItemName.THRICE_WROUGHT_HALBERD
+    yield OutwardItemName.THRICE_WROUGHT_HALBERD
+    yield OutwardItemName.TOKEBAKICIT
+    yield OutwardItemName.TSAR_ARMOR
+    yield OutwardItemName.TSAR_BOOTS
+    yield OutwardItemName.TSAR_FISTS
+    yield OutwardItemName.TSAR_HELM
+    yield OutwardItemName.WERLIG_SPEAR
+    yield OutwardItemName.WORLDEDGE_GREATAXE
+    yield OutwardItemName.ZHORNS_DEMON_SHIELD
+    yield OutwardItemName.ZHORNS_GLOWSTONE_DAGGER
+    yield OutwardItemName.ZHORNS_HUNTING_BACKPACK
+
+    # useful skills
+
+    yield OutwardItemName.BLADE_PUPPY
+    yield OutwardItemName.BLESSED
+    yield OutwardItemName.CHILL_HEX
+    yield OutwardItemName.COOL
+    yield OutwardItemName.CURSE_HEX
+    yield OutwardItemName.DOOM_HEX
+    yield OutwardItemName.ELATTS_INTERVENTION
+    yield OutwardItemName.EXECUTION
+    yield OutwardItemName.FLAMETHROWER
+    yield OutwardItemName.GOLDEN_WATCHER
+    yield OutwardItemName.HAUNT_HEX
+    yield OutwardItemName.INFUSE_BLOOD
+    yield OutwardItemName.INFUSE_MANA
+    yield OutwardItemName.JUGGERNAUT
+    yield OutwardItemName.KIROUACS_BREAKTHROUGH
+    yield OutwardItemName.MACE_INFUSION
+    yield OutwardItemName.MIST
+    yield OutwardItemName.MOON_SWIPE
+    yield OutwardItemName.POMMEL_COUNTER
+    yield OutwardItemName.POSSESSED
+    yield OutwardItemName.PRISMATIC_FLURRY
+    yield OutwardItemName.PUNCTURE
+    yield OutwardItemName.SCORCH_HEX
+    yield OutwardItemName.SEVERED_OBSIDIAN
+    yield OutwardItemName.SIMEONS_GAMBIT
+    yield OutwardItemName.TALUS_CLEAVER
+    yield OutwardItemName.WARM
+
+    # skill trainer skills
+
+    for item, _ in world.skill_sanity_location_info.values():
+        yield item
+
+    # wind altars
+
+    yield OutwardItemName.WIND_ALTAR_BOON_CHERSONESE
+    yield OutwardItemName.WIND_ALTAR_BOON_ENMERKAR_FOREST
+    yield OutwardItemName.WIND_ALTAR_BOON_ABRASSAR
+    yield OutwardItemName.WIND_ALTAR_BOON_HALLOWED_MARSH
+    yield OutwardItemName.WIND_ALTAR_BOON_ANTIQUE_PLATEAU
+    yield OutwardItemName.WIND_ALTAR_BOON_CALDERA
+
+    # breakthrough points
+
+    if bool(world.options.breakthrough_point_checks.value):
+        for _ in range(world.options.num_breakthough_points.value):
+            yield OutwardItemName.BREAKTHROUGH_POINT
+
+    # friendly immaculate
+
+    yield OutwardItemName.CALYGREY_BONE_CAGE
+    yield OutwardItemName.BARRIER_ARMOR
+    yield OutwardItemName.BRIGANDS_BACKPACK
+    yield OutwardItemName.SCOURGE_COCOON
+    yield OutwardItemName.VAGABONDS_GELATIN
+
+    # roland gifts
+
+    yield OutwardItemName.ROLAND_GIFT_1
+    yield OutwardItemName.ROLAND_GIFT_2
+    yield OutwardItemName.ROLAND_GIFT_3
+
+    # filler items
+
+    location_count = len(tuple(world.get_locations()))
+    item_count = len(tuple(world.get_items()))
+    filler_count = location_count - item_count
+    if filler_count > 0:
+        for _ in range(filler_count):
+            item_name = world.get_filler_item_name()
+            yield item_name

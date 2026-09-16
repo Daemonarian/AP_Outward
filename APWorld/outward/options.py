@@ -114,7 +114,7 @@ class WindAltarChecksOption(DefaultOnToggle):
 class NumBreakthoughPointsOption(Range):
     """
     Set the number of available breakthrough points.
-    A value of 11 means that all skill trainer skills are potentially available.
+    A value of 11 means that all skill trainer skills are potentially accessible.
     """
 
     display_name = "Number of Available Breakthough Points"
@@ -131,7 +131,7 @@ class BreakthroughPointChecksOption(Toggle):
     """
 
     display_name = "Breakthough Point checks"
-
+    
 @dataclass
 class OutwardOptions(PerGameCommonOptions):
     death_link: DeathLink
