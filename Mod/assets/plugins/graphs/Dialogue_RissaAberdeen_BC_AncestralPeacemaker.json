@@ -1125,7 +1125,7 @@
       {
         "statement": {
           "_text": "Come back when you have <color=#00CCFF><b>Quest License 5</b></color>.",
-          "_meta": "com.daemonarium.apoutward.dialogue.rissa.quest_license_5_required"
+          "_meta": "com.daemonarium.apoutward.quest_license_5_required"
         },
         "_actorName": "name_unpc_rissaaberdeen_01",
         "_position": {

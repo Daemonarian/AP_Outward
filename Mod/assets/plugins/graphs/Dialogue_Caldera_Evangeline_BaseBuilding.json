@@ -1127,7 +1127,7 @@
       {
         "statement": {
           "_text": "Come back when you have <color=#00CCFF><b>Quest License 9</b></color>.",
-          "_meta": "com.daemonarium.apoutward.dialogue.evangeline.quest_license_9_required"
+          "_meta": "com.daemonarium.apoutward.evangeline.quest_license_9_required"
         },
         "_actorName": "name_unpc_Evangeline",
         "_position": {
@@ -1318,7 +1318,7 @@
       {
         "statement": {
           "_text": "Come back when you have <color=#00CCFF><b>Quest License 10</b></color>.",
-          "_meta": "com.daemonarium.apoutward.dialogue.evangeline.quest_license_10_required"
+          "_meta": "com.daemonarium.apoutward.evangeline.quest_license_10_required"
         },
         "_actorName": "name_unpc_Evangeline",
         "_position": {

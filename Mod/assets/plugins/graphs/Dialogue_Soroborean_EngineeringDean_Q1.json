@@ -550,7 +550,7 @@
       {
         "statement": {
           "_text": "Come back when you have <color=#00CCFF><b>Quest License 2</b></color>.",
-          "_meta": "com.daemonarium.apoutward.dialogue.engineering_dean.quest_license_2_required"
+          "_meta": "com.daemonarium.apoutward.engineering_dean.quest_license_2_required"
         },
         "_actorName": "name_unpc_samuellaurent_01",
         "_position": {

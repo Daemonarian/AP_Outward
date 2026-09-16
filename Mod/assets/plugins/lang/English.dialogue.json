@@ -1,0 +1,121 @@
+{
+  "language": "English",
+  "entries": [
+    {
+      "key": "rissa.quest_license_1_required",
+      "general": "Come back when you have <color=#00CCFF><b>Quest License 1</b></color>."
+    },
+    {
+      "key": "recruiter.quest_license_1_required",
+      "general": "Come back when you have <color=#00CCFF><b>Quest License 1</b></color>."
+    },
+    {
+      "key": "rissa.quest_license_2_required",
+      "general": "Come back when you have <color=#00CCFF><b>Quest License 2</b></color>."
+    },
+    {
+      "key": "cyrene.quest_license_2_required",
+      "general": "Come back when you have <color=#00CCFF><b>Quest License 2</b></color>."
+    },
+    {
+      "key": "ellinara.quest_license_2_required",
+      "general": "Come back when you have <color=#00CCFF><b>Quest License 2</b></color>."
+    },
+    {
+      "key": "arcane_dean.quest_license_2_required",
+      "general": "Come back when you have <color=#00CCFF><b>Quest License 2</b></color>."
+    },
+    {
+      "key": "engineering_dean.quest_license_2_required",
+      "general": "Come back when you have <color=#00CCFF><b>Quest License 2</b></color>."
+    },
+    {
+      "key": "naturalist_dean.quest_license_2_required",
+      "general": "Come back when you have <color=#00CCFF><b>Quest License 2</b></color>."
+    },
+    {
+      "key": "rissa.quest_license_3_required",
+      "general": "Come back when you have <color=#00CCFF><b>Quest License 3</b></color>."
+    },
+    {
+      "key": "cyrene.quest_license_3_required",
+      "general": "Come back when you have <color=#00CCFF><b>Quest License 3</b></color>."
+    },
+    {
+      "key": "ellinara.quest_license_3_required",
+      "general": "Come back when you have <color=#00CCFF><b>Quest License 3</b></color>."
+    },
+    {
+      "key": "military_dean.quest_license_3_required",
+      "general": "Come back when you have <color=#00CCFF><b>Quest License 3</b></color>."
+    },
+    {
+      "key": "rissa.quest_license_4_required",
+      "general": "Come back when you have <color=#00CCFF><b>Quest License 4</b></color>."
+    },
+    {
+      "key": "calixa.quest_license_4_required",
+      "general": "Come back when you have <color=#00CCFF><b>Quest License 4</b></color>."
+    },
+    {
+      "key": "ellinara.quest_license_4_required",
+      "general": "Come back when you have <color=#00CCFF><b>Quest License 4</b></color>."
+    },
+    {
+      "key": "arcane_dean.quest_license_4_required",
+      "general": "Come back when you have <color=#00CCFF><b>Quest License 4</b></color>."
+    },
+    {
+      "key": "rissa.quest_license_5_required",
+      "general": "Come back when you have <color=#00CCFF><b>Quest License 5</b></color>."
+    },
+    {
+      "key": "calixa.quest_license_5_required",
+      "general": "Come back when you have <color=#00CCFF><b>Quest License 5</b></color>."
+    },
+    {
+      "key": "cardinal_bourlamaque.quest_license_5_required",
+      "general": "Come back when you have <color=#00CCFF><b>Quest License 5</b></color>."
+    },
+    {
+      "key": "arcane_dean.quest_license_5_required",
+      "general": "Come back when you have <color=#00CCFF><b>Quest License 5</b></color>."
+    },
+    {
+      "key": "messenger_inn.quest_license_6_required",
+      "general": "Come back when you have <color=#00CCFF><b>Quest License 6</b></color>."
+    },
+    {
+      "key": "josef.quest_license_7_required",
+      "general": "Come back when you have <color=#00CCFF><b>Quest License 7</b></color>."
+    },
+    {
+      "key": "josef.quest_license_8_required",
+      "general": "Come back when you have <color=#00CCFF><b>Quest License 8</b></color>."
+    },
+    {
+      "key": "evangeline.quest_license_9_required",
+      "general": "Come back when you have <color=#00CCFF><b>Quest License 9</b></color>."
+    },
+    {
+      "key": "evangeline.quest_license_10_required",
+      "general": "Come back when you have <color=#00CCFF><b>Quest License 10</b></color>."
+    },
+    {
+      "key": "rissa.faction_pact_bc_required",
+      "general": "I am ready to welcome you into the fold, but the Blue Chamber is built on more than just good will. We require a binding commitment to clear a Blood Price. Return to me when you hold a <color=#00CCFF><b>Blue Chamber Pact</b></color>."
+    },
+    {
+      "key": "calixa.faction_pact_hk_required",
+      "general": "Simeon has a habit of seeing the best in people, but I prefer tangible proof. If you truly wish to join the Heroic Kingdom, you must first secure a <color=#00CCFF><b>Heroic Kingdom Pact</b></color>. Without it, your words are as empty as the desert wind."
+    },
+    {
+      "key": "elatt.faction_pact_hm_required",
+      "general": "I sense the spark within you, but a flame requires fuel to burn. The path of the Holy Mission is one of sacrifice, not convenience. Return to the altar only when you carry a <color=#00CCFF><b>Holy Mission Pact</b></color> to seal your vow."
+    },
+    {
+      "key": "headmaster_salaberry.faction_pact_sa_required",
+      "general": "You speak of ambition, but the Academy runs on results, not words. Consider this your first assignment: acquire a <color=#00CCFF><b>Sorobor Academy Pact</b></color>. If you cannot secure even that simple asset, you have no future in Harmattan."
+    }
+  ]
+}

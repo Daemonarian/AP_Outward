@@ -1050,7 +1050,7 @@
       {
         "statement": {
           "_text": "Come back when you have <color=#00CCFF><b>Quest License 5</b></color>.",
-          "_meta": "com.daemonarium.apoutward.dialogue.cardinal_bourlamaque.quest_license_5_required"
+          "_meta": "com.daemonarium.apoutward.cardinal_bourlamaque.quest_license_5_required"
         },
         "_actorName": "name_unpc_cardinalbourlamaque_01 ",
         "_position": {

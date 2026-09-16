@@ -303,7 +303,7 @@
       {
         "statement": {
           "_text": "Come back when you have <color=#00CCFF><b>Quest License 1</b></color>.",
-          "_meta": "com.daemonarium.apoutward.dialogue.recruiter.quest_license_1_required"
+          "_meta": "com.daemonarium.apoutward.recruiter.quest_license_1_required"
         },
         "_actorName": "name_merchant_soroborrecruiter_01",
         "_position": {

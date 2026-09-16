@@ -1641,7 +1641,7 @@
       {
         "statement": {
           "_text": "Come back when you have <color=#00CCFF><b>Quest License 4</b></color>.",
-          "_meta": "com.daemonarium.apoutward.dialogue.arcane_dean.quest_license_4_required"
+          "_meta": "com.daemonarium.apoutward.arcane_dean.quest_license_4_required"
         },
         "_actorName": "name_unpc_gregoryturnbull_01",
         "_position": {

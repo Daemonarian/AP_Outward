@@ -820,7 +820,7 @@
       {
         "statement": {
           "_text": "Come back when you have <color=#00CCFF><b>Quest License 8</b></color>.",
-          "_meta": "com.daemonarium.apoutward.dialogue.josef.quest_license_8_required"
+          "_meta": "com.daemonarium.apoutward.josef.quest_license_8_required"
         },
         "_actorName": "name_unpc_Josef",
         "_position": {
@@ -1963,7 +1963,7 @@
       {
         "statement": {
           "_text": "Come back when you have <color=#00CCFF><b>Quest License 7</b></color>.",
-          "_meta": "com.daemonarium.apoutward.dialogue.josef.quest_license_7_required"
+          "_meta": "com.daemonarium.apoutward.josef.quest_license_7_required"
         },
         "_actorName": "name_unpc_Josef",
         "_position": {

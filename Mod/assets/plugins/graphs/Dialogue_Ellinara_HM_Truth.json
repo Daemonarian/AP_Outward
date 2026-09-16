@@ -398,7 +398,7 @@
       {
         "statement": {
           "_text": "Come back when you have <color=#00CCFF><b>Quest License 4</b></color>.",
-          "_meta": "com.daemonarium.apoutward.dialogue.ellinara.quest_license_4_required"
+          "_meta": "com.daemonarium.apoutward.ellinara.quest_license_4_required"
         },
         "_actorName": "name_unpc_ellinara_01 ",
         "_position": {

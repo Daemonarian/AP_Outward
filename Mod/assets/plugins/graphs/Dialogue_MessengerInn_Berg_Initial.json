@@ -832,7 +832,7 @@
       {
         "statement": {
           "_text": "Come back when you have <color=#00CCFF><b>Quest License 6</b></color>.",
-          "_meta": "com.daemonarium.apoutward.dialogue.messenger_inn.quest_license_6_required"
+          "_meta": "com.daemonarium.apoutward.messenger_inn.quest_license_6_required"
         },
         "_actorName": "name_unpc_Caldera_Messenger",
         "_position": {

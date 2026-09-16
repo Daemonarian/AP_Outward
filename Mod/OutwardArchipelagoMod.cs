@@ -8,6 +8,7 @@ using BepInEx.Logging;
 using HarmonyLib;
 using OutwardArchipelago.Archipelago;
 using OutwardArchipelago.Graphs;
+using OutwardArchipelago.Localization;
 using OutwardArchipelago.Scenes;
 using OutwardArchipelago.Utils.DebugUtils;
 
@@ -113,6 +114,7 @@ namespace OutwardArchipelago
             ArchipelagoConnector.Create();
             ModSceneManager.Instance.OnArchipelagoSceneReadyFirstTime += InitScene;
             ModResourceManager.Init();
+            gameObject.AddComponent<ModLocalizationManager>();
             gameObject.AddComponent<GraphPatcher>();
             _ = ScenePatcher.Instance; // force the ScenePatcher to load
 

@@ -116,4 +116,5 @@
     <WriteLinesToFile File="Properties\launchSettings.json" Lines="$(GeneratedLaunchSettings)" Overwrite="true" />
     <WriteLinesToFile File="$(OutwardHomeDir)\steam_appid.txt" Lines="794260" Overwrite="true" />
   </Target>
+  <ProjectExtensions><VisualStudio><UserProperties assets_4plugins_4lang_4english_1dialogue_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 </Project>

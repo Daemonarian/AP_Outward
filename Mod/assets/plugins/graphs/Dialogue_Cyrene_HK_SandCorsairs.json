@@ -1374,7 +1374,7 @@
       {
         "statement": {
           "_text": "Come back when you have <color=#00CCFF><b>Quest License 3</b></color>.",
-          "_meta": "com.daemonarium.apoutward.dialogue.cyrene.quest_license_3_required"
+          "_meta": "com.daemonarium.apoutward.cyrene.quest_license_3_required"
         },
         "_actorName": "name_unpc_cyrene_01 ",
         "_position": {
