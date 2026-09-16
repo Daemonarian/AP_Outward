@@ -334,14 +334,23 @@ class OutwardWorld(World):
     def create_items(self):
         add_world_items(self)
 
+        # filler items
+
+        location_count = len(tuple(self.get_locations()))
+        item_count = len(tuple(self.get_items()))
+        filler_count = location_count - item_count
+        if filler_count > 0:
+            for _ in range(filler_count):
+                item_name = self.get_filler_item_name()
+                self.add_item(item_name)
+
     def set_rules(self):
         add_world_rules(self)
 
     def pre_fill(self):
         if not bool(self.options.breakthrough_point_checks.value):
             for location_name in OutwardLocationGroup.SKILL_TRAINER_INTERACT:
-                item = self.create_item(OutwardItemName.SILVER_CURRENCY)
-                self.get_location(location_name).place_locked_item(item)
+                self.lock_location_item(location_name, OutwardItemName.SILVER_CURRENCY)
 
         for location_name, (item_name, tier) in self.skill_sanity_location_info.items():
             if self.options.skillsanity.value == self.options.skillsanity.option_vanilla or (self.options.skillsanity.value == self.options.skillsanity.option_tier_one_only and tier > 1):
