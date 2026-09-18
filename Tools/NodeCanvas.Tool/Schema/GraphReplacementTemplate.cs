@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
-using NodeCanvasRenderer.Schema.NodeCanvas.Framework;
+using NodeCanvas.Tool.Schema.NodeCanvas.Framework;
 
-namespace NodeCanvasRenderer.Schema
+namespace NodeCanvas.Tool.Schema
 {
     internal class GraphReplacementTemplate
     {

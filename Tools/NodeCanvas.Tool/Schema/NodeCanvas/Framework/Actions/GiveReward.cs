@@ -1,8 +1,8 @@
 using System.Text;
 using System.Text.Json.Serialization;
-using NodeCanvasRenderer.GraphViz;
+using NodeCanvas.Tool;
 
-namespace NodeCanvasRenderer.Schema.NodeCanvas.Framework.Actions
+namespace NodeCanvas.Tool.Schema.NodeCanvas.Framework.Actions
 {
     internal class GiveReward : ActionTask
     {

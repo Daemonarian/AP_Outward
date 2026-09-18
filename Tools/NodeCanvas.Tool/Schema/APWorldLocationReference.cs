@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace NodeCanvasRenderer.Schema
+namespace NodeCanvas.Tool.Schema
 {
     internal class APWorldLocationReference
     {

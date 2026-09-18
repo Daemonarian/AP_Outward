@@ -1,10 +1,10 @@
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using NodeCanvasRenderer.GraphViz;
-using NodeCanvasRenderer.Schema.NodeCanvas.Framework.Conditions;
+using NodeCanvas.Tool;
+using NodeCanvas.Tool.Schema.NodeCanvas.Framework.Conditions;
 
-namespace NodeCanvasRenderer.Schema.NodeCanvas.Framework
+namespace NodeCanvas.Tool.Schema.NodeCanvas.Framework
 {
     [JsonPolymorphic(TypeDiscriminatorPropertyName = "$type", UnknownDerivedTypeHandling = JsonUnknownDerivedTypeHandling.FailSerialization)]
     [JsonDerivedType(typeof(Condition_IsQuestCompleted), "NodeCanvas.Tasks.Conditions.Condition_IsQuestCompleted")]

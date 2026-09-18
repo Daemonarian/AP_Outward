@@ -1,8 +1,8 @@
 using System.Text.Json.Serialization;
-using NodeCanvasRenderer.GraphViz;
-using NodeCanvasRenderer.Schema.Records;
+using NodeCanvas.Tool;
+using NodeCanvas.Tool.Schema.Records;
 
-namespace NodeCanvasRenderer.Schema
+namespace NodeCanvas.Tool.Schema
 {
     public class QuestReference : IGraphVizLabelable
     {

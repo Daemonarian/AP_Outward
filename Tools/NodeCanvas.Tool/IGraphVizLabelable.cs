@@ -1,4 +1,4 @@
-namespace NodeCanvasRenderer.GraphViz
+namespace NodeCanvas.Tool
 {
     internal interface IGraphVizLabelable
     {

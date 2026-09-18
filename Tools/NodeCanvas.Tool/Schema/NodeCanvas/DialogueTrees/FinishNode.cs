@@ -1,8 +1,8 @@
 using System.Text;
 using System.Text.Json.Serialization;
-using NodeCanvasRenderer.Schema.NodeCanvas.Framework;
+using NodeCanvas.Tool.Schema.NodeCanvas.Framework;
 
-namespace NodeCanvasRenderer.Schema.NodeCanvas.DialogueTrees
+namespace NodeCanvas.Tool.Schema.NodeCanvas.DialogueTrees
 {
     internal class FinishNode : Node
     {

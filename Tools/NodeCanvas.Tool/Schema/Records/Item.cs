@@ -1,4 +1,4 @@
-namespace NodeCanvasRenderer.Schema.Records
+namespace NodeCanvas.Tool.Schema.Records
 {
     internal class Item
     {

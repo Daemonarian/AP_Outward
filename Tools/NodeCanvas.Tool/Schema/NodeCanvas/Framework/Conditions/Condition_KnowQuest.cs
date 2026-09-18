@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace NodeCanvasRenderer.Schema.NodeCanvas.Framework.Conditions
+namespace NodeCanvas.Tool.Schema.NodeCanvas.Framework.Conditions
 {
     internal class Condition_KnowQuest : ConditionTask
     {

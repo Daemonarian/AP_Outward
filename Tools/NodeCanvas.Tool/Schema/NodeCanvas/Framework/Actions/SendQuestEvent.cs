@@ -1,7 +1,7 @@
 using System.Text;
 using System.Text.Json.Serialization;
 
-namespace NodeCanvasRenderer.Schema.NodeCanvas.Framework.Actions
+namespace NodeCanvas.Tool.Schema.NodeCanvas.Framework.Actions
 {
     internal class SendQuestEvent : ActionTask
     {

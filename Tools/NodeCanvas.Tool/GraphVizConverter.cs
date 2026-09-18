@@ -1,10 +1,10 @@
 using System.Text;
 using System.Text.Json;
-using NodeCanvasRenderer.Schema;
-using NodeCanvasRenderer.Schema.NodeCanvas.DialogueTrees;
-using NodeCanvasRenderer.Schema.NodeCanvas.Framework;
+using NodeCanvas.Tool.Schema;
+using NodeCanvas.Tool.Schema.NodeCanvas.DialogueTrees;
+using NodeCanvas.Tool.Schema.NodeCanvas.Framework;
 
-namespace NodeCanvasRenderer.GraphViz
+namespace NodeCanvas.Tool
 {
     internal class GraphVizConverter
     {

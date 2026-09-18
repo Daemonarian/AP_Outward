@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
-using NodeCanvasRenderer.Schema.NodeCanvas.DialogueTrees;
+using NodeCanvas.Tool.Schema.NodeCanvas.DialogueTrees;
 
-namespace NodeCanvasRenderer.Schema.NodeCanvas.Framework
+namespace NodeCanvas.Tool.Schema.NodeCanvas.Framework
 {
     [JsonPolymorphic(TypeDiscriminatorPropertyName = "$type", UnknownDerivedTypeHandling = JsonUnknownDerivedTypeHandling.FailSerialization)]
     [JsonDerivedType(typeof(DTConnection), "NodeCanvas.DialogueTrees.DTConnection")]

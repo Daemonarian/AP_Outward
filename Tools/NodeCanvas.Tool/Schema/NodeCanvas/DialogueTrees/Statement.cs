@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
-using NodeCanvasRenderer.GraphViz;
+using NodeCanvas.Tool;
 
-namespace NodeCanvasRenderer.Schema.NodeCanvas.DialogueTrees
+namespace NodeCanvas.Tool.Schema.NodeCanvas.DialogueTrees
 {
     internal class Statement : IGraphVizLabelable
     {

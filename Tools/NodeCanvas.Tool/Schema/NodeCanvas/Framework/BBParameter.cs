@@ -1,7 +1,7 @@
 using System.Text.Json.Serialization;
-using NodeCanvasRenderer.GraphViz;
+using NodeCanvas.Tool;
 
-namespace NodeCanvasRenderer.Schema.NodeCanvas.Framework
+namespace NodeCanvas.Tool.Schema.NodeCanvas.Framework
 {
     internal class BBParameter : IGraphVizLabelable
     {

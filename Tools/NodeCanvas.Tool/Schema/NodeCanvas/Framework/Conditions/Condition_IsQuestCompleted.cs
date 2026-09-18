@@ -1,6 +1,7 @@
 using System.Text.Json.Serialization;
+using NodeCanvas.Tool.Schema;
 
-namespace NodeCanvasRenderer.Schema.NodeCanvas.Framework.Conditions
+namespace NodeCanvas.Tool.Schema.NodeCanvas.Framework.Conditions
 {
     internal class Condition_IsQuestCompleted : ConditionTask
     {

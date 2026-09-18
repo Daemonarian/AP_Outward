@@ -1,10 +1,10 @@
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using NodeCanvasRenderer.GraphViz;
-using NodeCanvasRenderer.Schema.NodeCanvas.Framework.Actions;
+using NodeCanvas.Tool;
+using NodeCanvas.Tool.Schema.NodeCanvas.Framework.Actions;
 
-namespace NodeCanvasRenderer.Schema.NodeCanvas.Framework
+namespace NodeCanvas.Tool.Schema.NodeCanvas.Framework
 {
     [JsonPolymorphic(TypeDiscriminatorPropertyName = "$type", UnknownDerivedTypeHandling = JsonUnknownDerivedTypeHandling.FailSerialization)]
     [JsonDerivedType(typeof(BranchDialogue), "NodeCanvas.Tasks.Actions.BranchDialogue")]

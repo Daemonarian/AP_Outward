@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace NodeCanvasRenderer.Schema.NodeCanvas.Framework
+namespace NodeCanvas.Tool.Schema.NodeCanvas.Framework
 {
     internal class GraphSerializationData
     {

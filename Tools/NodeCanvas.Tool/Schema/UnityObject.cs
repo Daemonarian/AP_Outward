@@ -1,8 +1,8 @@
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using NodeCanvasRenderer.GraphViz;
+using NodeCanvas.Tool;
 
-namespace NodeCanvasRenderer.Schema
+namespace NodeCanvas.Tool.Schema
 {
     [JsonConverter(typeof(UnityObjectConverter))]
     internal class UnityObject : IGraphVizLabelable

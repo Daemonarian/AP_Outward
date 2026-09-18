@@ -2,10 +2,9 @@ using System.Diagnostics;
 using System.Text;
 using System.Text.Json;
 using System.Text.Json.Serialization;
-using NodeCanvasRenderer.GraphViz;
-using NodeCanvasRenderer.Schema;
+using NodeCanvas.Tool.Schema;
 
-namespace NodeCanvasRenderer
+namespace NodeCanvas.Tool
 {
     internal class Program
     {
