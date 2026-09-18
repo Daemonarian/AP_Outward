@@ -1,70 +1,95 @@
-using System.Diagnostics;
-using System.Text;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using NodeCanvas.Tool.Schema;
+using CommandLine;
 
 namespace NodeCanvas.Tool
 {
     internal class Program
     {
-        private static readonly JsonSerializerOptions NodeCanvasSerializerOptions = new()
+        private const string StdFileName = "-";
+
+        /// <summary>
+        /// Command-line options for use with CommandLineParser.
+        /// </summary>
+        public class Options
         {
-            ReferenceHandler = ReferenceHandler.Preserve,
-            AllowOutOfOrderMetadataProperties = true,
-        };
+            [Option('i', "input", Required = false, Default = StdFileName,
+                HelpText = $"The input JSON file. If no input is specified, or the special value \"{StdFileName}\", then input is read from standard input.")]
+            public string Input { get; set; } = StdFileName;
+
+            [Option('o', "output", Required = false, Default = StdFileName,
+                HelpText = $"The output file. If no output is specified, or the special value \"{StdFileName}\", then output is written to standard output.")]
+            public string Output { get; set; } = StdFileName;
+
+            [Option('f', "format", Required = false, Default = FormatOptions.Template,
+                HelpText = $"The output format.")]
+            public FormatOptions Format { get; set; } = FormatOptions.Dot;
+
+            /// <summary>
+            /// Possible output formats.
+            /// </summary>
+            public enum FormatOptions
+            {
+                Template,
+                Dot,
+                SVG,
+            }
+        }
 
         static void Main(string[] args)
         {
-            var rawJson = File.ReadAllText("C:\\Users\\Zack Pepin\\source\\repos\\AP_Outward\\Mod\\assets\\plugins\\graphs\\Dialogue_RolandArgenson_Neut_Initial.json", Encoding.UTF8);
-            var graphTemplate = JsonSerializer.Deserialize<GraphReplacementTemplate>(rawJson, NodeCanvasSerializerOptions) ?? throw new Exception("Failed to deserialize graph replacement template."); ;
+            Parser.Default.ParseArguments<Options>(args).WithParsed(Main);
+        }
 
-            var graphVizCode = GraphVizConverter.ToGraphViz(graphTemplate.Graph);
+        static void Main(Options options)
+        {
+            // read the input file
 
-            var svgPath = Path.GetTempFileName();
-            var dotProcessInfo = new ProcessStartInfo
+            string rawInput;
+            if (string.Equals(options.Input, StdFileName, StringComparison.Ordinal))
             {
-                FileName = "dot",
-                Arguments = $"-Tsvg -o \"{svgPath}\"",
-                RedirectStandardInput = true,
-                UseShellExecute = false,
-                CreateNoWindow = true,
-            };
-
-            using (var process = Process.Start(dotProcessInfo) ?? throw new Exception("Failed to start dot process."))
+                rawInput = Console.In.ReadToEnd();
+            }
+            else
             {
-                using (var streamWriter = process.StandardInput)
+                rawInput = File.ReadAllText(options.Input);
+            }
+
+            // parse the input
+
+            var template = GraphTemplateSerializer.Deserialize(rawInput);
+
+            // convert to output format
+
+            string rawOutput;
+            if (options.Format == Options.FormatOptions.Template)
+            {
+                rawOutput = GraphTemplateSerializer.Serialize(template);
+            }
+            else
+            {
+                var dot = GraphVizConverter.ToGraphViz(template.Graph);
+                if (options.Format == Options.FormatOptions.Dot)
                 {
-                    streamWriter.Write(graphVizCode);
+                    rawOutput = dot;
                 }
-
-                process.WaitForExit();
-
-                if (process.ExitCode != 0)
+                else if (options.Format == Options.FormatOptions.SVG)
                 {
-                    Console.WriteLine(graphVizCode);
-                    throw new Exception("Graphviz exited with non-zero exit code.");
+                    rawOutput = GraphVizWrapper.GenerateSvgFromDot(dot);
+                }
+                else
+                {
+                    throw new Exception($"unexpected format option: {options.Format}");
                 }
             }
 
-            var svgUri = new Uri(svgPath);
-            var firefoxProcessInfo = new ProcessStartInfo
-            {
-                FileName = "C:\\Program Files\\Mozilla Firefox\\firefox.exe",
-                Arguments = $"\"{svgUri}\"",
-                UseShellExecute = false,
-                CreateNoWindow = true,
-            };
+            // write the output
 
-            using (var process = Process.Start(firefoxProcessInfo) ?? throw new Exception("Failed to start firefox process."))
+            if (string.Equals(options.Output, StdFileName, StringComparison.Ordinal))
             {
-                process.WaitForExit();
-
-                if (process.ExitCode != 0)
-                {
-                    Console.WriteLine(svgPath);
-                    throw new Exception("Firefox exited with non-zero exit code.");
-                }
+                Console.Out.Write(rawOutput);
+            }
+            else
+            {
+                File.WriteAllText(options.Output, rawOutput);
             }
         }
     }
