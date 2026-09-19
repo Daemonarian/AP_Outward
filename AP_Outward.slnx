@@ -7,7 +7,9 @@
     <Project Path="Test/APWorld.Test/APWorld.Test.msbuildproj" Type="13b669be-bb05-4ddf-9536-439f39a36129" Id="06fe2947-46c1-42bf-8e21-7acab74e9a25" />
   </Folder>
   <Folder Name="/Tools/">
-    <Project Path="Tools/NodeCanvas.LivePreview/NodeCanvas.LivePreview.csproj" />
+    <Project Path="Tools/NodeCanvas.LivePreview/NodeCanvas.LivePreview.csproj">
+      <Build Solution="Debug|*" Project="false" />
+    </Project>
     <Project Path="Tools/NodeCanvas.Tool/NodeCanvas.Tool.csproj" Id="95834c25-daf1-457d-bd40-bc285b4f2b92" />
   </Folder>
   <Folder Name="/Wrapper/">
