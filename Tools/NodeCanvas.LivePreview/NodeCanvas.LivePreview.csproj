@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <!-- Prevent MSBuild from looking for C# code -->
+    <EnableDefaultCompileItems>false</EnableDefaultCompileItems>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\NodeCanvas.Tool\NodeCanvas.Tool.csproj" ReferenceOutputAssembly="false" />
+  </ItemGroup>
+  
+  <Target Name="NpmInstall" BeforeTargets="Build">
+    <Exec Command="npm install" WorkingDirectory="$(MSBuildProjectDirectory)" />
+  </Target>
+
+  <Target Name="NpmCompile" AfterTargets="Build">
+    <Exec Command="npm run compile" WorkingDirectory="$(MSBuildProjectDirectory)" />
+  </Target>
+
+  <Target Name="PackageExtension" AfterTargets="NpmCompile">
+    <Exec Command="npx @vscode/vsce package" WorkingDirectory="$(MSBuildProjectDirectory)" />
+  </Target>
+
+  <Target Name="InstallExtension" AfterTargets="PackageExtension">
+    <Exec Command="code --install-extension outward-nodecanvas-preview-0.0.1.vsix" />
+  </Target>
+
+  <Target Name="NpmClean" BeforeTargets="Clean">
+    <RemoveDir Directories="$(MSBuildProjectDirectory)\out" />
+  </Target>
+</Project>

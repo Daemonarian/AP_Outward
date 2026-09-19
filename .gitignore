@@ -363,3 +363,7 @@ MigrationBackup/
 user.props
 
 Mod/Properties/launchSettings.json
+
+# VS Code Extension project
+out/
+*.vsix
