@@ -19,7 +19,7 @@
       <BuildOutputs Include="$(TargetDir)**\*.*" />
     </ItemGroup>
     <Message Text="Copying CLI binaries to VS Code extension..." Importance="high" />
-    <Copy SourceFiles="@(BuildOutputs)" DestinationFolder="..\NodeCanvas.LivePreview\bin\%(RecursiveDir)" />
+    <Copy SourceFiles="@(BuildOutputs)" DestinationFolder="..\Conflux.LivePreview\bin\%(RecursiveDir)" />
   </Target>
 
 </Project>

@@ -7,7 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\NodeCanvas.Tool\NodeCanvas.Tool.csproj" ReferenceOutputAssembly="false" />
+    <ProjectReference Include="..\NodeCanvas.Tool\Conflux.csproj" ReferenceOutputAssembly="false" />
   </ItemGroup>
   
   <Target Name="NpmInstall" BeforeTargets="Build">
@@ -23,7 +23,7 @@
   </Target>
 
   <Target Name="InstallExtension" AfterTargets="PackageExtension">
-    <Exec Command="code --install-extension outward-nodecanvas-preview-0.0.1.vsix" />
+    <Exec Command="code --install-extension conflux-preview-0.0.1.vsix" />
   </Target>
 
   <Target Name="NpmClean" BeforeTargets="Clean">

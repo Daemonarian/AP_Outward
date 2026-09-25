@@ -6,10 +6,10 @@ let previewPanel: vscode.WebviewPanel | undefined = undefined;
 let cliPath: string = '';
 
 export function activate(context: vscode.ExtensionContext) {
-    cliPath = path.join(context.extensionPath, 'bin', 'NodeCanvas.Tool.exe');
+    cliPath = path.join(context.extensionPath, 'bin', 'Conflux.exe');
     console.log("cliPath: " + cliPath);
 
-    let disposable = vscode.commands.registerCommand('outward-nodecanvas-preview.showPreview', () => {
+    let disposable = vscode.commands.registerCommand('conflux-preview.showPreview', () => {
         if (previewPanel) {
             previewPanel.reveal(vscode.ViewColumn.Beside);
             return;

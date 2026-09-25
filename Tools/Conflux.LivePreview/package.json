@@ -1,8 +1,8 @@
 {
-  "name": "outward-nodecanvas-preview",
-  "displayName": "outward-nodecanvas-preview",
+  "name": "conflux-preview",
+  "displayName": "conflux-preview",
   "publisher": "daemonarian",
-  "description": "Provides a live preview of our custom NodeCanvas graph files.",
+  "description": "Provides a live preview of Conflux scripts.",
   "version": "0.0.1",
   "engines": {
     "vscode": "^1.138.0"
@@ -15,8 +15,8 @@
   "contributes": {
     "commands": [
       {
-        "command": "outward-nodecanvas-preview.showPreview",
-        "title": "Outward Archipelago: Show NodeCanvas Preview"
+        "command": "conflux-preview.showPreview",
+        "title": "Conflux: Show Preview"
       }
     ]
   },
