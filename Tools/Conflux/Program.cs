@@ -1,9 +1,10 @@
 using CommandLine;
-using NodeCanvas.Tool.Conflux;
-using NodeCanvas.Tool.Schema;
-using NodeCanvas.Tool.Schema.NodeCanvas.Serialization;
+using Conflux.GraphViz;
+using Conflux.NodeCanvas;
+using Conflux.NodeCanvas.Serialization;
+using Conflux.Schema;
 
-namespace NodeCanvas.Tool
+namespace Conflux
 {
     internal class Program
     {
@@ -61,7 +62,7 @@ namespace NodeCanvas.Tool
             var trimmedInput = rawInput.AsSpan().TrimStart();
             var isLikelyJson = trimmedInput.Length > 0 && trimmedInput[0] == '{';
 
-            GraphReplacementTemplate? template = null;
+            GraphTemplate? template = null;
             ConfluxScript? script = null;
             if (isLikelyJson)
             {

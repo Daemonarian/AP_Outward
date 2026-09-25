@@ -1,0 +1,91 @@
+using System.Text;
+using Conflux.GraphViz;
+using Conflux.NodeCanvas.Blackboard;
+using Conflux.NodeCanvas.References;
+using Conflux.NodeCanvas.Serialization;
+using Newtonsoft.Json;
+
+namespace Conflux.NodeCanvas.Actions
+{
+    [NodeCanvasType("NodeCanvas.Tasks.Actions.GiveReward")]
+    internal class GiveReward : ActionTask
+    {
+        [JsonProperty("RewardReceiver")]
+        public Receiver RewardReceiver { get; set; } = Receiver.Host;
+
+        [JsonProperty("XpAmount")]
+        public BBParameter<int> XpAmount { get; set; } = new();
+
+        [JsonProperty("SilverAmount")]
+        public BBParameter<int> SilverAmount { get; set; } = new();
+
+        [JsonProperty("ItemReward")]
+        public List<ItemQuantity> ItemRewards { get; set; } = [];
+
+        public override string GetGraphVizShortName() => "Reward";
+
+        public override string GetGraphVizContent()
+        {
+            var content = new StringBuilder();
+
+            content.AppendLine();
+
+            if (RewardReceiver != Receiver.Host)
+            {
+                content.AppendLine($"To: {RewardReceiver}");
+            }
+
+            if (XpAmount.HasValue())
+            {
+                content.AppendLine($"XP: {XpAmount}");
+            }
+
+            if (SilverAmount.HasValue())
+            {
+                content.AppendLine($"Silver: {SilverAmount}");
+            }
+
+            foreach (var reward in ItemRewards)
+            {
+                var rewardLabel = reward.ToGraphVizLabel();
+                rewardLabel = GraphVizConverter.IndentLines(rewardLabel, indentFirstLine: false);
+                content.AppendLine($"- {rewardLabel}");
+            }
+
+            return content.ToString().TrimEnd();
+        }
+
+        public enum Receiver
+        {
+            Host,
+            Instigator,
+            Everyone
+        }
+
+        public class ItemQuantity : IGraphVizLabelable
+        {
+            [JsonProperty("Item")]
+            public BBParameter<ItemReference> Item { get; set; } = new();
+
+            [JsonProperty("Quantity")]
+            public BBParameter<int> Quantity { get; set; } = new();
+
+            [JsonProperty("TryToEquip")]
+            public BBParameter<bool> TryToEquip { get; set; } = new();
+
+            public string ToGraphVizLabel()
+            {
+                var label = new StringBuilder();
+
+                label.AppendLine($"{Item.ToGraphVizLabel()}: {Quantity.ToGraphVizLabel()}");
+
+                if (TryToEquip.HasValue())
+                {
+                    label.AppendLine($"TryToEquip: {TryToEquip}");
+                }
+
+                return label.ToString().TrimEnd();
+            }
+        }
+    }
+}
