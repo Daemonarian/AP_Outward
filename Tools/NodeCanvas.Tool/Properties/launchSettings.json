@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "NodeCanvas.Tool": {
+      "commandName": "Project",
+      "commandLineArgs": "--input Dialogue_RolandArgenson_Neut_Initial.json --format Template",
+      "workingDirectory": "..\\..\\Mod\\assets\\plugins\\graphs"
+    }
+  }
+}

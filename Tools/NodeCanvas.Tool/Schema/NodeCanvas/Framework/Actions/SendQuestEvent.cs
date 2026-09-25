@@ -1,17 +1,19 @@
 using System.Text;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
+using NodeCanvas.Tool.Schema.NodeCanvas.Serialization;
 
 namespace NodeCanvas.Tool.Schema.NodeCanvas.Framework.Actions
 {
+    [NodeCanvasType("NodeCanvas.Tasks.Actions.SendQuestEvent")]
     internal class SendQuestEvent : ActionTask
     {
-        [JsonPropertyName("QuestEventRef")]
+        [JsonProperty("QuestEventRef")]
         public QuestEventReference QuestEventRef { get; set; } = new();
 
-        [JsonPropertyName("StackAmount")]
+        [JsonProperty("StackAmount")]
         public int StackAmount { get; set; } = 1;
 
-        [JsonPropertyName("IgnoreNetworkSync")]
+        [JsonProperty("IgnoreNetworkSync")]
         public bool IgnoreNetworkSync { get; set; }
 
         public override string GetGraphVizShortName() => "SendQuestEvent";

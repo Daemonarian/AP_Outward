@@ -1,20 +1,22 @@
 using System.Text;
-using System.Text.Json.Serialization;
-using NodeCanvas.Tool;
-using NodeCanvas.Tool.Schema.NodeCanvas.Framework;
+using Newtonsoft.Json;
+using NodeCanvas.Tool.Schema.NodeCanvas.Serialization;
 
 namespace NodeCanvas.Tool.Schema.NodeCanvas.DialogueTrees
 {
-    internal class StatementNodeExt : Node
+    [NodeCanvasType("NodeCanvas.DialogueTrees.StatementNodeExt")]
+    internal class StatementNodeExt : DTNode
     {
-        [JsonPropertyName("statement")]
+        [JsonProperty("statement")]
         public Statement Statement { get; set; } = new Statement { Text = "This is a dialogue text" };
 
-        [JsonPropertyName("_actorName")]
-        public string ActorName { get; set; } = "INSTIGATOR";
+        [JsonProperty("_actorName")]
+        public string? ActorName { get; set; } = "INSTIGATOR";
 
-        [JsonPropertyName("_actorParameterID")]
+        [JsonProperty("_actorParameterID")]
         public string? ActorParameterID { get; set; } = null;
+
+        public override int OutConnectionCount => 1;
 
         public override string GetGraphVizShortName() => "Say";
 

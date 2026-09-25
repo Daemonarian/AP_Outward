@@ -1,14 +1,16 @@
 using System.Text;
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
+using NodeCanvas.Tool.Schema.NodeCanvas.Serialization;
 
 namespace NodeCanvas.Tool.Schema.NodeCanvas.Framework.Conditions
 {
+    [NodeCanvasType("NodeCanvas.Tasks.Conditions.Condition_QuestEventOccured")]
     internal class Condition_QuestEventOccured : ConditionTask
     {
-        [JsonPropertyName("QuestEventRef")]
+        [JsonProperty("QuestEventRef")]
         public QuestEventReference? QuestEventRef { get; set; }
 
-        [JsonPropertyName("MinStack")]
+        [JsonProperty("MinStack")]
         public int MinStack { get; set; } = 1;
 
         public override string GetGraphVizShortName() => "QuestEventOccurred";

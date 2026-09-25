@@ -1,23 +1,16 @@
 using System.Text;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using NodeCanvas.Tool;
-using NodeCanvas.Tool.Schema.NodeCanvas.DialogueTrees;
+using Newtonsoft.Json;
 
 namespace NodeCanvas.Tool.Schema.NodeCanvas.Framework
 {
-    [JsonPolymorphic(TypeDiscriminatorPropertyName = "$type", UnknownDerivedTypeHandling = JsonUnknownDerivedTypeHandling.FailSerialization)]
-    [JsonDerivedType(typeof(ActionNode), "NodeCanvas.DialogueTrees.ActionNode")]
-    [JsonDerivedType(typeof(ConditionNode), "NodeCanvas.DialogueTrees.ConditionNode")]
-    [JsonDerivedType(typeof(FinishNode), "NodeCanvas.DialogueTrees.FinishNode")]
-    [JsonDerivedType(typeof(GoToNode), "NodeCanvas.DialogueTrees.GoToNode")]
-    [JsonDerivedType(typeof(MultipleChoiceNode), "NodeCanvas.DialogueTrees.MultipleChoiceNodeExt")]
-    [JsonDerivedType(typeof(StatementNodeExt), "NodeCanvas.DialogueTrees.StatementNodeExt")]
     internal abstract class Node : IGraphVizLabelable
     {
+        [JsonIgnore]
+        public abstract int OutConnectionCount { get; }
+
         public virtual string GetGraphVizShortName() => GetType().Name;
 
-        public virtual string GetGraphVizContent() => JsonSerializer.Serialize(this, GraphVizConverter.DefaultSerializerOptions);
+        public virtual string GetGraphVizContent() => JsonConvert.SerializeObject(this, GraphVizConverter.DefaultSerializerSettings);
 
         public string ToGraphVizLabel()
         {

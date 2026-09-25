@@ -1,15 +1,16 @@
 using System.Text;
-using System.Text.Json.Serialization;
-using NodeCanvas.Tool;
+using Newtonsoft.Json;
+using NodeCanvas.Tool.Schema.NodeCanvas.Serialization;
 
 namespace NodeCanvas.Tool.Schema.NodeCanvas.Framework
 {
+    [NodeCanvasType("NodeCanvas.Framework.ConditionList")]
     internal class ConditionList : ConditionTask
     {
-        [JsonPropertyName("checkMode")]
+        [JsonProperty("checkMode")]
         public ConditionsCheckMode CheckMode { get; set; } = ConditionsCheckMode.AllTrueRequired;
 
-        [JsonPropertyName("conditions")]
+        [JsonProperty("conditions")]
         public List<ConditionTask> Conditions { get; set; } = [];
 
         public override string GetGraphVizShortName() => CheckMode switch

@@ -1,4 +1,7 @@
 using CommandLine;
+using NodeCanvas.Tool.Conflux;
+using NodeCanvas.Tool.Schema;
+using NodeCanvas.Tool.Schema.NodeCanvas.Serialization;
 
 namespace NodeCanvas.Tool
 {
@@ -36,10 +39,10 @@ namespace NodeCanvas.Tool
 
         static void Main(string[] args)
         {
-            Parser.Default.ParseArguments<Options>(args).WithParsed(Main);
+            Parser.Default.ParseArguments<Options>(args).WithParsed(Run);
         }
 
-        static void Main(Options options)
+        static void Run(Options options)
         {
             // read the input file
 
@@ -55,7 +58,31 @@ namespace NodeCanvas.Tool
 
             // parse the input
 
-            var template = GraphTemplateSerializer.Deserialize(rawInput);
+            var trimmedInput = rawInput.AsSpan().TrimStart();
+            var isLikelyJson = trimmedInput.Length > 0 && trimmedInput[0] == '{';
+
+            GraphReplacementTemplate? template = null;
+            ConfluxScript? script = null;
+            if (isLikelyJson)
+            {
+                template = GraphTemplateSerializer.Deserialize(rawInput);
+            }
+            else
+            {
+                script = ConfluxScriptSerializer.Deserialize(rawInput);
+            }
+
+            // translate the input
+
+            if (template is null)
+            {
+                if (script is null)
+                {
+                    throw new Exception("Script and template should not both be null.");
+                }
+
+                template = script.BuildGraphReplacementTemplate();
+            }
 
             // convert to output format
 

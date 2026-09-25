@@ -1,12 +1,16 @@
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 using NodeCanvas.Tool.Schema.NodeCanvas.Framework;
+using NodeCanvas.Tool.Schema.NodeCanvas.Serialization;
 
 namespace NodeCanvas.Tool.Schema.NodeCanvas.DialogueTrees
 {
-    internal class ConditionNode : Node
+    [NodeCanvasType("NodeCanvas.DialogueTrees.ConditionNode")]
+    internal class ConditionNode : DTNode
     {
-        [JsonPropertyName("_condition")]
+        [JsonProperty("_condition")]
         public ConditionTask? Condition { get; set; }
+
+        public override int OutConnectionCount => 2;
 
         public override string GetGraphVizShortName() => "If";
 

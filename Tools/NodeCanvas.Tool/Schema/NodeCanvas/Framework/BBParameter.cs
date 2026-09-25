@@ -1,14 +1,13 @@
-using System.Text.Json.Serialization;
-using NodeCanvas.Tool;
+using Newtonsoft.Json;
 
 namespace NodeCanvas.Tool.Schema.NodeCanvas.Framework
 {
     internal class BBParameter : IGraphVizLabelable
     {
-        [JsonPropertyName("_name")]
+        [JsonProperty("_name")]
         public string? Name { get; set; }
 
-        [JsonPropertyName("_targetVariableID")]
+        [JsonProperty("_targetVariableID")]
         public string? TargetVariableID { get; set; }
 
         public virtual bool HasValue() => !string.IsNullOrWhiteSpace(TargetVariableID);
@@ -31,7 +30,7 @@ namespace NodeCanvas.Tool.Schema.NodeCanvas.Framework
 
     internal class BBParameter<T> : BBParameter
     {
-        [JsonPropertyName("_value")]
+        [JsonProperty("_value")]
         public T? Value { get; set; }
 
         public override bool HasValue() => base.HasValue() || !EqualityComparer<T>.Default.Equals(Value, default);

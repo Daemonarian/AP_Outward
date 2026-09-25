@@ -1,0 +1,157 @@
+replace:
+  - "CierzoNewTerrain/_SNPC/_UNPC/RolandAndRoland/UNPC_RolandArgenson (Standing)/Dialogue_RolandArgenson/NPC/DialogueTree_1_Initial"
+  - "CierzoNewTerrain/_SNPC/_UNPC/RolandAndRoland/UNPC_RolandArgenson (kneeling)/Dialogue_RolandArgenson/NPC/DialogueTree_1_Initial"
+  - "Chersonese_Dungeon4_BlueChamber/AISquadManagerStructure/_UNPC/RolandHurt/UNPC_RolandArgenson/Dialogue_RolandArgenson/NPC/DialogueTree_1_Initial"
+  - "Chersonese_Dungeon4_CommonPath/AISquadManagerStructure/_UNPC/RolandMana/UNPC_RolandArgenson/Dialogue_RolandArgenson/NPC/DialogueTree_1_Initial"
+  - "ChersoneseDungeonsSmall/AISquadManagerStructure/_UNPC/RolandShrimp/UNPC_RolandArgenson/Dialogue_RolandArgenson/NPC/DialogueTree_1_Initial"
+  - "Berg/_SNPC/_UNPC/UNPC_RolandArgenson/Dialogue_RolandArgenson/NPC/DialogueTree_1_Initial"
+  - "Emercar_Dungeon3/AISquadManagerStructure/_Statics/RolandCOW/UNPC_RolandArgenson/Dialogue_RolandArgenson/NPC/DialogueTree_1_Initial"
+  - "Emercar_Dungeon6/AISquadManagerStructure/UNPC/UNPC_RolandArgenson(Lich)/Dialogue_RolandArgenson/NPC/DialogueTree_1_Initial"
+  - "Emercar_Dungeon6/AISquadManagerStructure/UNPC/UNPC_RolandArgenson/Dialogue_RolandArgenson/NPC/DialogueTree_1_Initial"
+
+threads:
+  start:
+    # ensure that Roland gift 1 is not skippable
+    - if:
+        condition:
+          and:
+            - isQuestComplete: Call_to_Adventure
+            - not:
+                hasQuestEvent: General_RolandGift1
+        then:
+          - goto: prequest
+
+    # ensure that Roland gift 2 is not skippable
+    - if:
+        condition:
+          and:
+            - hasQuestEvent: General_DoneQuest0
+            - not:
+                hasQuestEvent: General_RolandGift2
+        then:
+          - goto: gift2
+
+    # ensure that Roland gift 3 is not skippable
+    - if:
+        condition:
+          and:
+            - hasQuestEvent: General_DoneQuest1
+            - not:
+                hasQuestEvent: General_RolandGift3
+        then:
+          - goto: gift3
+    
+    # fallback to normal dialogue tree
+    - if:
+        condition:
+          hasQuestEvent: WhispBones_RolandLich
+        then:
+          - do:
+              startDialogue: Dialogue_RolandArgenson_BB/BC_WhisperingBonesLich
+          - finish
+    - if:
+        condition:
+          not:
+            isQuestComplete: Call_to_Adventure
+        then:
+          - do:
+              startDialogue: Dialogue_RolandArgenson_BB/CallAdventure
+          - finish
+    - if:
+        condition:
+          not:
+            isQuestComplete: Looking_to_the_Future
+        then:
+          - goto: prequest
+    - if:
+        condition:
+          and:
+            - hasQuestEvent: Faction_BlueChamber
+            - knowQuest: Whispering_Bones
+            - hasQuestEvent: WhispBones_StartTimer
+        then:
+          - do:
+              startDialogue: Dialogue_RolandArgenson_BB/BC_WhisperingBonesChe
+    - say:
+        actor: name_unpc_rolandargenson_01
+        text: "I'm getting better day by day...It's still hopeless, but at least I can survive like this, even if it's just barely. I'll keep trying to make it up to you, [PlayerName], I promise."
+        meta: Roland_BC_Prequest_13
+
+  prequest:
+    - do:
+        startDialogue: Dialogue_RolandArgenson_BB/Prequest
+
+  gift2:
+    - say:
+        actor: name_unpc_rolandargenson_01
+        text: "[PlayerName]! It's good to see you! I almost didn't make it to Berg in one piece. Some metal golem dog things nearly got me! If a passing hunter hadn't save me...Hoooh."
+        meta: Roland_BC_Prequest_16
+    - do:
+        sequence:
+          - sendLocationCheck: ROLAND_GIFT_2
+          - sendQuestEvent: General_RolandGift2
+          - sendQuestEvent: WhispBones_RolandFocus
+    - say:
+        actor: name_unpc_rolandargenson_01
+        text: "He gave me some stuff to make traps and told me to use them, and my brain if I'm not good at fighting. But I'd rather try to get good at fighting than rely on using these tricky things. I nearly impaled myself last time I tried arming one."
+        meta: Roland_BC_Prequest_17
+    - goto: thank
+
+  gift3:
+    - if:
+        condition:
+          hasQuestEvent: CallToAdventure_QuestEndedB
+        then:
+          - say:
+              actor: name_unpc_rolandargenson_01
+              text: "I stumbled on a small cache of gems the other day. I know this should go to my Blood Price Payment, but...You lost your home because of me. I think you need this more than me. Go on, take it."
+              meta: Roland_BC_Prequest_15
+          - do:
+              sequence:
+                - sendLocationCheck: ROLAND_GIFT_3
+                - sendQuestEvent: General_RolandGift3
+                - sendQuestEvent: WhispBones_RolandFocus
+        else:
+          - say:
+              actor: name_unpc_rolandargenson_01
+              text: "Oh! [PlayerName]! I found this on a hunter's corpse not too far out from town. It's still got his blood on it, but...It's still usable!"
+              meta: Roland_BC_Prequest_14
+          - do:
+              sequence:
+                - sendLocationCheck: ROLAND_GIFT_3
+                - sendQuestEvent: General_RolandGift3
+                - sendQuestEvent: WhispBones_RolandFocus
+    - goto: thank
+
+  thank:
+    - choice:
+        - statement:
+            text: Thanks, Roland.
+            meta: Player_Roland_BC_Prequest_a_14
+        - statement:
+            text: You should look after yourself Roland, keep it.
+            meta: Player_Roland_BC_Prequest_b_14
+          then:
+            - say:
+                actor: name_unpc_rolandargenson_01
+                text: "No. I insist. Take it. I want to make up for the shipwreck I got you caught in."
+                meta: Roland_BC_Prequest_18
+
+derivedData:
+  actors:
+    - key: name_unpc_rolandargenson_01
+      id: 40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760
+
+localBlackboard:
+  name: Local Blackboard
+  variables:
+    gInstigator:
+      name: gInstigator
+      id: 0483cf6b-da62-4a57-aaed-40f25b4bdf9b
+      type: "NodeCanvas.Framework.Variable`1[[Character, Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]"
+
+blackboard:
+  Dialogue_RolandArgenson_BB/BC_WhisperingBonesLich: 5878c84f-0059-4176-b7e9-351c6cd9fa30
+  Dialogue_RolandArgenson_BB/BC_WhisperingBonesChe: 76697f5e-389e-4bf6-9963-ba593fb25552
+  Dialogue_RolandArgenson_BB/Prequest: 6c245008-7e4b-4974-9cbb-d4cad8464927
+  Dialogue_RolandArgenson_BB/CallAdventure: 3a437545-f9b2-45c3-9d72-034223f53670

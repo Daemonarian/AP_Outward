@@ -1,15 +1,16 @@
 using System.Text;
-using System.Text.Json.Serialization;
-using NodeCanvas.Tool;
+using Newtonsoft.Json;
+using NodeCanvas.Tool.Schema.NodeCanvas.Serialization;
 
 namespace NodeCanvas.Tool.Schema.NodeCanvas.Framework
 {
+    [NodeCanvasType("NodeCanvas.Framework.ActionList")]
     internal class ActionList : ActionTask
     {
-        [JsonPropertyName("executionMode")]
+        [JsonProperty("executionMode")]
         public ActionsExecutionMode ExecutionMode { get; set; } = ActionsExecutionMode.ActionsRunInSequence;
 
-        [JsonPropertyName("actions")]
+        [JsonProperty("actions")]
         public List<ActionTask> Actions { get; set; } = [];
 
         public override string GetGraphVizShortName() => "Run";

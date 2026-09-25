@@ -1,13 +1,16 @@
 using System.Text;
-using System.Text.Json.Serialization;
-using NodeCanvas.Tool.Schema.NodeCanvas.Framework;
+using Newtonsoft.Json;
+using NodeCanvas.Tool.Schema.NodeCanvas.Serialization;
 
 namespace NodeCanvas.Tool.Schema.NodeCanvas.DialogueTrees
 {
-    internal class FinishNode : Node
+    [NodeCanvasType("NodeCanvas.DialogueTrees.FinishNode")]
+    internal class FinishNode : DTNode
     {
-        [JsonPropertyName("finishState")]
+        [JsonProperty("finishState")]
         public CompactStatus FinishState = CompactStatus.Success;
+
+        public override int OutConnectionCount => 0;
 
         public override string GetGraphVizShortName() => "Finish";
 

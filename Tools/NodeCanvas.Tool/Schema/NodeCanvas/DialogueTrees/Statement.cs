@@ -1,14 +1,18 @@
-using System.Text.Json.Serialization;
-using NodeCanvas.Tool;
+using Newtonsoft.Json;
+using NodeCanvas.Tool.Conflux.Deserializer;
+using YamlDotNet.Serialization;
 
 namespace NodeCanvas.Tool.Schema.NodeCanvas.DialogueTrees
 {
     internal class Statement : IGraphVizLabelable
     {
-        [JsonPropertyName("_text")]
+        [ConfluxMainProperty]
+        [YamlMember(Alias = "text")]
+        [JsonProperty("_text")]
         public string Text { get; set; } = "";
 
-        [JsonPropertyName("_meta")]
+        [YamlMember(Alias = "meta")]
+        [JsonProperty("_meta")]
         public string? Meta { get; set; } = null;
 
         public string ToGraphVizLabel()

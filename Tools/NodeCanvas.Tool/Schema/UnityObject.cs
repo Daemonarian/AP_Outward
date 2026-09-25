@@ -1,6 +1,5 @@
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using NodeCanvas.Tool;
+
+using Newtonsoft.Json;
 
 namespace NodeCanvas.Tool.Schema
 {
@@ -14,22 +13,34 @@ namespace NodeCanvas.Tool.Schema
 
     internal class UnityObjectConverter : JsonConverter<UnityObject>
     {
-        public override UnityObject? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+        public override UnityObject? ReadJson(JsonReader reader, Type objectType, UnityObject? existingValue, bool hasExistingValue, JsonSerializer serializer)
         {
-            if (reader.TokenType == JsonTokenType.Number)
+            if (reader.TokenType == JsonToken.Null)
             {
+                return null;
+            }
+
+            if (reader.TokenType == JsonToken.Integer)
+            {
+                var index = Convert.ToInt32(reader.Value);
                 return new UnityObject
                 {
-                    SideCarIndex = reader.GetInt32(),
+                    SideCarIndex = index,
                 };
             }
 
-            throw new JsonException($"Expected a number but got {reader.TokenType}");
+            throw new JsonSerializationException($"Expected a number for UnityObject, but got {reader.TokenType}.");
         }
 
-        public override void Write(Utf8JsonWriter writer, UnityObject value, JsonSerializerOptions options)
+        public override void WriteJson(JsonWriter writer, UnityObject? value, JsonSerializer serializer)
         {
-            writer.WriteNumberValue(value.SideCarIndex);
+            if (value == null)
+            {
+                writer.WriteNull();
+                return;
+            }
+
+            writer.WriteValue(value.SideCarIndex);
         }
     }
 }

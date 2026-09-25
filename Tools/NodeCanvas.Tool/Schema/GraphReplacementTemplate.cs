@@ -1,14 +1,14 @@
-using System.Text.Json.Serialization;
+using Newtonsoft.Json;
 using NodeCanvas.Tool.Schema.NodeCanvas.Framework;
 
 namespace NodeCanvas.Tool.Schema
 {
     internal class GraphReplacementTemplate
     {
-        [JsonPropertyName("routes")]
+        [JsonProperty("replace")]
         public List<string> Routes { get; set; } = [];
 
-        [JsonPropertyName("graph")]
+        [JsonProperty("graph")]
         public GraphSerializationData Graph { get; set; } = new();
     }
 }

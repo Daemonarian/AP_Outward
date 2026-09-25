@@ -1,5 +1,5 @@
 using System.Text;
-using System.Text.Json;
+using Newtonsoft.Json;
 using NodeCanvas.Tool.Schema;
 using NodeCanvas.Tool.Schema.NodeCanvas.DialogueTrees;
 using NodeCanvas.Tool.Schema.NodeCanvas.Framework;
@@ -8,11 +8,9 @@ namespace NodeCanvas.Tool
 {
     internal class GraphVizConverter
     {
-        public static readonly JsonSerializerOptions DefaultSerializerOptions = new()
+        public static readonly JsonSerializerSettings DefaultSerializerSettings = new()
         {
-            WriteIndented = true,
-            IndentCharacter = ' ',
-            IndentSize = 2,
+            Formatting = Formatting.Indented,
         };
 
         public static string ToGraphViz(GraphReplacementTemplate template)

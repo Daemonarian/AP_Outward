@@ -1,21 +1,22 @@
 using System.Text;
-using System.Text.Json.Serialization;
-using NodeCanvas.Tool;
+using Newtonsoft.Json;
+using NodeCanvas.Tool.Schema.NodeCanvas.Serialization;
 
 namespace NodeCanvas.Tool.Schema.NodeCanvas.Framework.Actions
 {
+    [NodeCanvasType("NodeCanvas.Tasks.Actions.GiveReward")]
     internal class GiveReward : ActionTask
     {
-        [JsonPropertyName("RewardReceiver")]
+        [JsonProperty("RewardReceiver")]
         public Receiver RewardReceiver { get; set; } = Receiver.Host;
 
-        [JsonPropertyName("XpAmount")]
+        [JsonProperty("XpAmount")]
         public BBParameter<int> XpAmount { get; set; } = new();
 
-        [JsonPropertyName("SilverAmount")]
+        [JsonProperty("SilverAmount")]
         public BBParameter<int> SilverAmount { get; set; } = new();
 
-        [JsonPropertyName("ItemReward")]
+        [JsonProperty("ItemReward")]
         public List<ItemQuantity> ItemRewards { get; set; } = [];
 
         public override string GetGraphVizShortName() => "Reward";
@@ -60,13 +61,13 @@ namespace NodeCanvas.Tool.Schema.NodeCanvas.Framework.Actions
 
         public class ItemQuantity : IGraphVizLabelable
         {
-            [JsonPropertyName("Item")]
+            [JsonProperty("Item")]
             public BBParameter<ItemReference> Item { get; set; } = new();
 
-            [JsonPropertyName("Quantity")]
+            [JsonProperty("Quantity")]
             public BBParameter<int> Quantity { get; set; } = new();
 
-            [JsonPropertyName("TryToEquip")]
+            [JsonProperty("TryToEquip")]
             public BBParameter<bool> TryToEquip { get; set; } = new();
 
             public string ToGraphVizLabel()

@@ -1,20 +1,23 @@
 using System.Text;
-using System.Text.Json.Serialization;
-using NodeCanvas.Tool;
+using Newtonsoft.Json;
 using NodeCanvas.Tool.Schema.NodeCanvas.Framework;
+using NodeCanvas.Tool.Schema.NodeCanvas.Serialization;
 
 namespace NodeCanvas.Tool.Schema.NodeCanvas.DialogueTrees
 {
-    internal class MultipleChoiceNode : Node
+    [NodeCanvasType("NodeCanvas.DialogueTrees.MultipleChoiceNodeExt")]
+    internal class MultipleChoiceNode : DTNode
     {
-        [JsonPropertyName("availableTime")]
+        [JsonProperty("availableTime")]
         public float AvailableTime { get; set; }
 
-        [JsonPropertyName("saySelection")]
+        [JsonProperty("saySelection")]
         public bool SaySelection { get; set; }
 
-        [JsonPropertyName("availableChoices")]
+        [JsonProperty("availableChoices")]
         public List<Choice> Choices { get; set; } = [];
+
+        public override int OutConnectionCount => Choices.Count;
 
         public override string GetGraphVizShortName() => "Choice";
 
@@ -44,13 +47,13 @@ namespace NodeCanvas.Tool.Schema.NodeCanvas.DialogueTrees
 
         internal class Choice : IGraphVizLabelable
         {
-            [JsonPropertyName("isUnfolded")]
+            [JsonProperty("isUnfolded")]
             public bool IsUnfolded { get; set; } = true;
 
-            [JsonPropertyName("statement")]
+            [JsonProperty("statement")]
             public Statement? Statement { get; set; } = null;
 
-            [JsonPropertyName("condition")]
+            [JsonProperty("condition")]
             public ConditionTask? Condition { get; set; } = null;
 
             public string ToGraphVizLabel()

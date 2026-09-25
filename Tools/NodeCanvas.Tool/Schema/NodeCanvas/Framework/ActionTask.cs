@@ -1,22 +1,13 @@
 using System.Text;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using NodeCanvas.Tool;
-using NodeCanvas.Tool.Schema.NodeCanvas.Framework.Actions;
+using Newtonsoft.Json;
 
 namespace NodeCanvas.Tool.Schema.NodeCanvas.Framework
 {
-    [JsonPolymorphic(TypeDiscriminatorPropertyName = "$type", UnknownDerivedTypeHandling = JsonUnknownDerivedTypeHandling.FailSerialization)]
-    [JsonDerivedType(typeof(BranchDialogue), "NodeCanvas.Tasks.Actions.BranchDialogue")]
-    [JsonDerivedType(typeof(Action_CompleteLocationCheck), "OutwardArchipelago.Graphs.Actions.Action_CompleteLocationCheck")]
-    [JsonDerivedType(typeof(SendQuestEvent), "NodeCanvas.Tasks.Actions.SendQuestEvent")]
-    [JsonDerivedType(typeof(ActionList), "NodeCanvas.Framework.ActionList")]
-    [JsonDerivedType(typeof(GiveReward), "NodeCanvas.Tasks.Actions.GiveReward")]
     internal class ActionTask : IGraphVizLabelable
     {
         public virtual string GetGraphVizShortName() => GetType().Name;
 
-        public virtual string GetGraphVizContent() => "\n" + JsonSerializer.Serialize(this, GraphVizConverter.DefaultSerializerOptions);
+        public virtual string GetGraphVizContent() => "\n" + JsonConvert.SerializeObject(this, GraphVizConverter.DefaultSerializerSettings);
 
         public string ToGraphVizLabel()
         {

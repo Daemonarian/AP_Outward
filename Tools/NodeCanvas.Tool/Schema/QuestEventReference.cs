@@ -1,12 +1,11 @@
-using System.Text.Json.Serialization;
-using NodeCanvas.Tool;
+using Newtonsoft.Json;
 using NodeCanvas.Tool.Schema.Records;
 
 namespace NodeCanvas.Tool.Schema
 {
     public class QuestEventReference : IGraphVizLabelable
     {
-        [JsonPropertyName("m_eventUID")]
+        [JsonProperty("m_eventUID")]
         public string? EventUID { get; set; }
 
         public string ToGraphVizLabel()
