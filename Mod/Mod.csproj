@@ -25,8 +25,12 @@
     <R2ModManProfileDir>C:\Users\User\AppData\Roaming\r2modmanPlus-local\OutwardDe\profiles\AP_Outward</R2ModManProfileDir>
     <ModFolderName>daemonarian-$(ModName)</ModFolderName>
     <CopyModOnBuild>false</CopyModOnBuild>
+    <ModLoggingDumpOutwardObjects>false</ModLoggingDumpOutwardObjects>
   </PropertyGroup>
   <Import Project="user.props" Condition="Exists('user.props')" />
+  <PropertyGroup Condition="'$(ModLoggingDumpOutwardObjects)' == 'true'">
+    <DefineConstants>$(DefineConstants);MOD_LOGGING_DUMP_OUTWARD_OBJECTS</DefineConstants>
+  </PropertyGroup>
   <ItemGroup>
     <Compile Remove="build\**" />
     <EmbeddedResource Remove="build\**" />

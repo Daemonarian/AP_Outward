@@ -114,7 +114,7 @@ namespace OutwardArchipelago.Graphs
             return false;
         }
 
-        [Conditional("DEBUG")]
+        [Conditional("MOD_LOGGING_DUMP_OUTWARD_OBJECTS")]
         private void DumpGraph(GraphOwner graphOwner)
         {
             if (graphOwner is null)
