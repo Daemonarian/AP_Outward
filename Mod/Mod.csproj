@@ -119,7 +119,7 @@
     </PropertyGroup>
     <WriteLinesToFile File="$(OutputPath)staging\manifest.json" Lines="$(NewPackageManifestContent)" Overwrite="true" />
   </Target>
-  <Target Name="StageModConfluxScripts" Inputs="@(ConfluxScripts)" Outputs="$(OutputPath)staging\plugins\graphs\%(ConfluxScripts.Filename).json">
+  <Target Name="StageModConfluxScripts" Inputs="$(ConfluxExe);@(ConfluxScripts)" Outputs="$(OutputPath)staging\plugins\graphs\%(ConfluxScripts.Filename).json">
     <MakeDir Directories="$(OutputPath)staging\plugins\graphs\" />
     <Exec Command="&quot;$(ConfluxExe)&quot; --input &quot;%(ConfluxScripts.FullPath)&quot; --output &quot;$(OutputPath)staging\plugins\graphs\%(ConfluxScripts.Filename).json&quot; --format Template" />
   </Target>
@@ -128,11 +128,13 @@
       <ModDir>$(R2ModManProfileDir)\BepInEx\plugins\$(ModFolderName)</ModDir>
     </PropertyGroup>
     <ItemGroup>
-      <StagedModFiles Include="$(OutputPath)staging\**\*.*" />
+      <_StagedRootFiles Include="$(OutputPath)staging\*.*" />
+      <_StagedPluginFiles Include="$(OutputPath)staging\plugins\**\*.*" />
     </ItemGroup>
     <RemoveDir Directories="$(ModDir)" />
     <MakeDir Directories="$(ModDir)" />
-    <Copy SourceFiles="@(StagedModFiles)" DestinationFiles="@(StagedModFiles->'$(ModDir)\%(RecursiveDir)%(Filename)%(Extension)')" />
+    <Copy SourceFiles="@(_StagedRootFiles)" DestinationFiles="@(_StagedRootFiles->'$(ModDir)\%(Filename)%(Extension)')" />
+    <Copy SourceFiles="@(_StagedPluginFiles)" DestinationFiles="@(_StagedPluginFiles->'$(ModDir)\%(RecursiveDir)%(Filename)%(Extension)')" />
   </Target>
   <Target Name="OverwriteLaunchSettings" AfterTargets="Build" Condition="$(CopyModOnBuild)">
     <PropertyGroup>

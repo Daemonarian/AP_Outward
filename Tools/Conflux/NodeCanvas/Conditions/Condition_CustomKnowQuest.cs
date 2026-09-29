@@ -4,10 +4,10 @@ using Newtonsoft.Json;
 
 namespace Conflux.NodeCanvas.Conditions
 {
-    [NodeCanvasType("OutwardArchipelago.Graphs.Actions.Condition_CustomKnowQuest")]
+    [NodeCanvasType("OutwardArchipelago.Graphs.Conditions.Condition_KnowQuest")]
     internal class Condition_CustomKnowQuest : ConditionTask
     {
-        [JsonProperty("quest")]
+        [JsonProperty("_quest")]
         public QuestReference? Quest { get; set; }
 
         public override string GetGraphVizShortName() => "KnowQuest";
