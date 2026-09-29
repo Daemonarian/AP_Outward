@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <ProjectGuid>{3d6aff82-c4e4-4757-a835-13a5bf191ade}</ProjectGuid>
@@ -9,20 +9,22 @@
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <AppendTargetFrameworkToOutputPath>false</AppendTargetFrameworkToOutputPath>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
-    <DebugType>None</DebugType>
-    <CodeGenProjectDir>..\Mod.CodeGen</CodeGenProjectDir>
-    <PackageName>OutwardArchipelago</PackageName>
-    <PackageAssetsDir>assets</PackageAssetsDir>
+    <AssemblyName>OutwardArchipelago</AssemblyName>
+    <RootNamespace>OutwardArchipelago</RootNamespace>
+  </PropertyGroup>
+  <PropertyGroup>
+    <VersionFile>$(ProjectDir)..\version.json</VersionFile>
+    <CodeGenExe>..\Mod.CodeGen\bin\$(Configuration)\net10.0\OutwardArchipelago.CodeGen.exe</CodeGenExe>
+    <ConfluxExe>..\Tools\Conflux\bin\$(Configuration)\net10.0\Conflux.exe</ConfluxExe>
+    <ModName>OutwardArchipelago</ModName>
+    <ModAssetsDir>assets\</ModAssetsDir>
+    <ModManifestFile>$(ModAssetsDir)manifest.json</ModManifestFile>
   </PropertyGroup>
   <PropertyGroup>
     <OutwardHomeDir>C:\Program Files (x86)\Steam\steamapps\common\Outward\Outward_Defed</OutwardHomeDir>
     <R2ModManProfileDir>C:\Users\User\AppData\Roaming\r2modmanPlus-local\OutwardDe\profiles\AP_Outward</R2ModManProfileDir>
-    <ModAssetsDir>$(PackageAssetsDir)\plugins</ModAssetsDir>
-    <ModFolderName>daemonarian-OutwardArchipelago</ModFolderName>
+    <ModFolderName>daemonarian-$(ModName)</ModFolderName>
     <CopyModOnBuild>false</CopyModOnBuild>
-    <AssemblyName>OutwardArchipelago</AssemblyName>
-    <RootNamespace>OutwardArchipelago</RootNamespace>
-    <VersionFile>$(ProjectDir)..\version.json</VersionFile>
   </PropertyGroup>
   <Import Project="user.props" Condition="Exists('user.props')" />
   <ItemGroup>
@@ -48,11 +50,21 @@
       <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
       <SkipGetTargetFrameworkProperties>true</SkipGetTargetFrameworkProperties>
     </ProjectReference>
+    <ProjectReference Include="..\Tools\Conflux\Conflux.csproj">
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+      <SkipGetTargetFrameworkProperties>true</SkipGetTargetFrameworkProperties>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="SideLoader">
       <HintPath>..\External\Libraries\SideLoader.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ModSharedFiles Include="..\README.md" />
+    <ModSharedFiles Include="..\CHANGELOG.md" />
+    <ModAssetFiles Include="$(ModAssetsDir)**\*.*" Exclude="$(ModManifestFile)" />
+    <ConfluxScripts Include="Conflux\*.yaml" />
   </ItemGroup>
   <Target Name="GenerateBuildInfo" BeforeTargets="CoreCompile">
     <Exec Command="powershell -NoProfile -Command &quot;(Get-Content -Path '$(VersionFile)' | ConvertFrom-Json).version&quot;" ConsoleToMSBuild="true" StandardOutputImportance="low">
@@ -74,29 +86,53 @@
   </Target>
   <Target Name="GenerateAPWorldBindings" BeforeTargets="CoreCompile">
     <PropertyGroup>
-      <CodeGenExe>$(CodeGenProjectDir)\bin\$(Configuration)\net10.0\OutwardArchipelago.CodeGen.exe</CodeGenExe>
       <CodeGenOutput>$(IntermediateOutputPath)APWorld.gen.cs</CodeGenOutput>
     </PropertyGroup>
-    <Message Text="Generating &quot;$(CodeGenOutput)&quot;" Importance="high" />
-    <Exec Command="&quot;$(CodeGenExe)&quot; --output &quot;$(CodeGenOutput)&quot; --namespace &quot;OutwardArchipelago.Archipelago&quot; --class &quot;APWorld&quot; --access-modifier &quot;internal&quot;" />
+    <Exec Command="&quot;$(CodeGenExe)&quot; --output &quot;$(CodeGenOutput)&quot; --namespace &quot;$(RootNamespace).Archipelago&quot; --class &quot;APWorld&quot; --access-modifier &quot;internal&quot;" />
     <ItemGroup>
       <Compile Include="$(CodeGenOutput)" />
     </ItemGroup>
   </Target>
-  <Target Name="InstallModLocally" AfterTargets="Build" Condition="$(CopyModOnBuild)">
+  <Target Name="StageMod" AfterTargets="Build" DependsOnTargets="StageModBinaries;StageModAssets;StageModSharedFiles;StageModManifest;StageModConfluxScripts" />
+  <Target Name="StageModBinaries" DependsOnTargets="Build">
+    <ItemGroup>
+      <PackageDllFiles Include="$(OutputPath)OutwardArchipelago.dll" />
+      <PackageDllFiles Include="$(OutputPath)Archipelago.MultiClient.Net.dll" />
+      <PackageDllFiles Include="$(OutputPath)Newtonsoft.Json.dll" />
+      <PackageDllFiles Include="$(OutputPath)OutwardArchipelago.pdb" Condition="'$(Configuration)' == 'Debug'" />
+    </ItemGroup>
+    <Copy SourceFiles="@(PackageDllFiles)" DestinationFolder="$(OutputPath)staging\plugins" SkipUnchangedFiles="true" />
+  </Target>
+  <Target Name="StageModAssets" Inputs="@(ModAssetFiles)" Outputs="@(ModAssetFiles->'$(OutputPath)staging\%(RecursiveDir)%(Filename)%(Extension)')">
+    <Copy SourceFiles="@(ModAssetFiles)" DestinationFiles="@(ModAssetFiles->'$(OutputPath)staging\%(RecursiveDir)%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+  </Target>
+  <Target Name="StageModSharedFiles" Inputs="@(ModSharedFiles)" Outputs="@(ModSharedFiles->'$(OutputPath)staging\%(Filename)%(Extension)')">
+    <Copy SourceFiles="@(ModSharedFiles)" DestinationFiles="@(ModSharedFiles->'$(OutputPath)staging\%(Filename)%(Extension)')" SkipUnchangedFiles="true" />
+  </Target>
+  <Target Name="StageModManifest" Inputs="$(VersionFile);$(ModManifestFile)" Outputs="$(OutputPath)staging\manifest.json">
+    <Exec Command="powershell -NoProfile -Command &quot;(Get-Content -Path '$(VersionFile)' | ConvertFrom-Json).version&quot;" ConsoleToMSBuild="true" StandardOutputImportance="low">
+      <Output TaskParameter="ConsoleOutput" PropertyName="Version" />
+    </Exec>
+    <PropertyGroup>
+      <PackageManifestContent>$([System.IO.File]::ReadAllText('$(ModManifestFile)'))</PackageManifestContent>
+      <NewPackageManifestContent>$(PackageManifestContent.Replace('{{MOD_VERSION}}', '$(Version)'))</NewPackageManifestContent>
+    </PropertyGroup>
+    <WriteLinesToFile File="$(OutputPath)staging\manifest.json" Lines="$(NewPackageManifestContent)" Overwrite="true" />
+  </Target>
+  <Target Name="StageModConfluxScripts" Inputs="@(ConfluxScripts)" Outputs="$(OutputPath)staging\plugins\graphs\%(ConfluxScripts.Filename).json">
+    <MakeDir Directories="$(OutputPath)staging\plugins\graphs\" />
+    <Exec Command="&quot;$(ConfluxExe)&quot; --input &quot;%(ConfluxScripts.FullPath)&quot; --output &quot;$(OutputPath)staging\plugins\graphs\%(ConfluxScripts.Filename).json&quot; --format Template" />
+  </Target>
+  <Target Name="InstallModLocally" AfterTargets="Build" DependsOnTargets="StageMod" Condition="$(CopyModOnBuild)">
     <PropertyGroup>
       <ModDir>$(R2ModManProfileDir)\BepInEx\plugins\$(ModFolderName)</ModDir>
     </PropertyGroup>
     <ItemGroup>
-      <ModAssetFiles Include="$(ModAssetsDir)\**\*.*" />
-      <ModDllFiles Include="$(OutputPath)OutwardArchipelago.dll" />
-      <ModDllFiles Include="$(OutputPath)Archipelago.MultiClient.Net.dll" />
-      <ModDllFiles Include="$(OutputPath)Newtonsoft.Json.dll" />
+      <StagedModFiles Include="$(OutputPath)staging\**\*.*" />
     </ItemGroup>
     <RemoveDir Directories="$(ModDir)" />
-      <MakeDir Directories="$(ModDir)" />
-      <Copy SourceFiles="@(ModAssetFiles)" DestinationFiles="@(ModAssetFiles->'$(ModDir)\%(RecursiveDir)%(Filename)%(Extension)')" />
-      <Copy SourceFiles="@(ModDllFiles)" DestinationFolder="$(ModDir)" />
+    <MakeDir Directories="$(ModDir)" />
+    <Copy SourceFiles="@(StagedModFiles)" DestinationFiles="@(StagedModFiles->'$(ModDir)\%(RecursiveDir)%(Filename)%(Extension)')" />
   </Target>
   <Target Name="OverwriteLaunchSettings" AfterTargets="Build" Condition="$(CopyModOnBuild)">
     <PropertyGroup>
@@ -116,5 +152,4 @@
     <WriteLinesToFile File="Properties\launchSettings.json" Lines="$(GeneratedLaunchSettings)" Overwrite="true" />
     <WriteLinesToFile File="$(OutwardHomeDir)\steam_appid.txt" Lines="794260" Overwrite="true" />
   </Target>
-  <ProjectExtensions><VisualStudio><UserProperties assets_4plugins_4lang_4english_1dialogue_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
 </Project>
