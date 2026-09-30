@@ -93,9 +93,92 @@ function updatePreview() {
                     <html lang="en">
                     <head>
                         <style>
-                            body { background-color: white; padding: 20px; display: flex; justify-content: center; }
-                            svg { max-width: 100%; height: auto; }
+                            body {
+                                width: 100%;
+                                height: 100%;
+                                margin: 0;
+                                padding: 0;
+                                overflow: hidden;
+                                background-color: white; 
+                            }
+
+                            svg {
+                                width: 100vw;
+                                height: 100vh;
+                                /*
+                                max-width: 100%;
+                                max-height: 100%;
+                                */
+                                display: block;
+                            }
                         </style>
+                        
+                        <script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
+                        <script>
+                            window.onload = function() {
+                                const svg = document.querySelector('svg');
+                                if (svg) {
+                                    const panZoom = svgPanZoom(svg, {
+                                        zoomEnabled: true,
+                                        controlIconsEnabled: true,
+                                        fit: true,
+                                        center: true,
+                                        minZoom: 1,
+                                        maxZoom: 1.5,
+                                        zoomScaleSensitivity: 0.5,
+                                        preventMouseEventsDefault: false
+                                    });
+
+                                    const fitZoomLevel = panZoom.getZoom();
+                                    panZoom.setMinZoom(fitZoomLevel);
+
+                                    let nativeWidth = 0;
+                                    let nativeHeight = 0;
+                                    if (svg.hasAttribute('viewBox')) {
+                                        const viewBox = svg.getAttribute('viewBox').split(' ');
+                                        nativeWidth = parseFloat(viewBox[2]);
+                                        nativeHeight = parseFloat(viewBox[3]);
+                                    } else if (svg.hasAttribute('width') || svg.hasAttribute('height')) {
+                                        if (svg.hasAttribute('width')) {
+                                            const rawWidth = svg.getAttribute('width');
+                                            nativeWidth = parseFloat(rawWidth);
+                                            if (rawWidth.includes('pt')) {
+                                                nativeWidth = nativeWidth * 1.3333;
+                                            }
+                                        }
+                                        if (svg.hasAttribute('height')) {
+                                            const rawHeight = svg.getAttribute('height');
+                                            nativeHeight = parseFloat(rawHeight);
+                                            if (rawHeight.includes('pt')) {
+                                                nativeHeight = nativeHeight * 1.3333;
+                                            }
+                                        }
+                                    }
+
+                                    let maxZoomLevelWidth = 0;
+                                    if (nativeWidth > 0) {
+                                        const screenWidth = svg.getBoundingClientRect().width;
+                                        maxZoomLevelWidth = nativeWidth / screenWidth;
+                                    }
+
+                                    let maxZoomLevelHeight = 0;
+                                    if (nativeHeight > 0) {
+                                        const screenHeight = svg.getBoundingClientRect().height;
+                                        maxZoomLevelHeight = nativeHeight / screenHeight;
+                                    }
+
+                                    let maxZoomLevel = Math.max(2 * maxZoomLevelWidth, 2 * maxZoomLevelHeight, 2 * fitZoomLevel);
+                                    panZoom.setMaxZoom(maxZoomLevel);
+
+                                    svg.querySelectorAll('text').forEach(textEl => {
+                                        textEl.style.cursor = 'text';
+                                        textEl.addEventListener('mousedown', (e) => {
+                                            e.stopPropagation();
+                                        });
+                                    });
+                                }
+                            };
+                        </script>
                     </head>
                     <body>
                         ${svgOutput}
