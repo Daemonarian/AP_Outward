@@ -18,7 +18,7 @@ namespace Conflux.NodeCanvas.Conditions
 
         public override string GetGraphVizContent() => Quest?.ToGraphVizLabel() ?? string.Empty;
 
-        public override KnowQuestConfluxCondition BuildConfluxCondition(Graph graph) => new()
+        protected override KnowQuestConfluxCondition BuildSubConfluxCondition(Graph graph) => new()
         {
             QuestObject = Quest?.BuildConfluxBlackboardVariableReference<ConfluxUnityObjectReference>(graph) ?? throw new ConfluxValueException("Quest should not be null."),
         };

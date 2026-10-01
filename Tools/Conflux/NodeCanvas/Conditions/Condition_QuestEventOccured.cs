@@ -32,7 +32,7 @@ namespace Conflux.NodeCanvas.Conditions
             return content.ToString().TrimEnd();
         }
 
-        public override HasQuestEventConfluxCondition BuildConfluxCondition(Graph graph) => new()
+        protected override HasQuestEventConfluxCondition BuildSubConfluxCondition(Graph graph) => new()
         {
             QuestEvent = QuestEventRef?.BuildConfluxObject(graph) ?? throw new ConfluxValueException("Condition_QuestEventOccured requires a QuestEventRef."),
             Count = MinStack,

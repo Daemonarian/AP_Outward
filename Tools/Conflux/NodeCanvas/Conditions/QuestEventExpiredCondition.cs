@@ -26,7 +26,7 @@ namespace Conflux.NodeCanvas.Conditions
             return content.ToString().TrimEnd();
         }
 
-        public override IsQuestEventExpiredConfluxCondition BuildConfluxCondition(Graph graph) => new()
+        protected override IsQuestEventExpiredConfluxCondition BuildSubConfluxCondition(Graph graph) => new()
         {
             QuestEvent = QuestEvent?.BuildConfluxObject(graph) ?? throw new ConfluxValueException("QuestEventExpiredCondition.QuestEvent must be specified."),
             ExpiryTime = ExpiryTime,

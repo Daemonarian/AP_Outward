@@ -39,7 +39,7 @@ namespace Conflux.NodeCanvas.Conditions
             return content.ToString().TrimEnd();
         }
 
-        public override ConfluxCondition BuildConfluxCondition(Graph graph) => CheckMode switch
+        protected override ConfluxCondition BuildSubConfluxCondition(Graph graph) => CheckMode switch
         {
             ConditionsCheckMode.AllTrueRequired => new AndConfluxCondition
             {

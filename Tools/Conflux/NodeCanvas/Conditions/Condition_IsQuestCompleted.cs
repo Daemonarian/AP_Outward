@@ -18,7 +18,7 @@ namespace Conflux.NodeCanvas.Conditions
 
         public override string GetGraphVizContent() => QuestRef?.ToGraphVizLabel() ?? string.Empty;
 
-        public override IsQuestCompleteConfluxCondition BuildConfluxCondition(Graph graph) => new()
+        protected override IsQuestCompleteConfluxCondition BuildSubConfluxCondition(Graph graph) => new()
         {
             Quest = QuestRef?.BuildConfluxBlackboardVariableReference<ConfluxQuestReference>(graph) ?? throw new ConfluxValueException("Condition_IsQuestCompleted requires a QuestRef."),
         };
