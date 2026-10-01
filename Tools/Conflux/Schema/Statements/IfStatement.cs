@@ -1,3 +1,5 @@
+using Conflux.NodeCanvas;
+using Conflux.NodeCanvas.Nodes;
 using Conflux.Schema.Conditions;
 using Conflux.Schema.Context;
 using Conflux.Schema.Deserializer;
@@ -18,7 +20,7 @@ namespace Conflux.Schema.Statements
         [YamlMember(Alias = "else")]
         public ConfluxBlock Else { get; set; } = new();
 
-        public override ConfluxGraph BuildGraph(INodeCanvasGraphContext context)
+        public override ConfluxGraph BuildGraph(NodeCanvasGraphContext context)
         {
             if (Condition is null)
             {
@@ -26,15 +28,30 @@ namespace Conflux.Schema.Statements
             }
 
             var condition = Condition.BuildCondition(context);
-            var ifNode = context.BuildIfNode(condition);
-            var thenGraph = Then.BuildGraph(context);
-            var elseGraph = Else.BuildGraph(context);
+            Node ifNode = context.GraphType switch
+            {
+                Graph.GraphType.BehaviourTree => new BinarySelectorNode
+                {
+                    Condition = condition,
+                },
+                Graph.GraphType.DialogueTree => new ConditionNode
+                {
+                    Condition = condition,
+                },
+                _ => throw new NotImplementedException($"If statements for graph type {context.GraphType} is not implemented."),
+            };
 
             var ifGraph = ConfluxGraph.CreateFromNode(context, ifNode);
             var thenLeaf = (LeafNode)ifGraph.GetNextNode(ifNode, 0);
             var elseLeaf = (LeafNode)ifGraph.GetNextNode(ifNode, 1);
 
-            return ifGraph.Attach(thenGraph, thenLeaf).Attach(elseGraph, elseLeaf);
+            var thenGraph = Then.BuildGraph(context);
+            ifGraph = ifGraph.Attach(thenGraph, thenLeaf);
+
+            var elseGraph = Else.BuildGraph(context);
+            ifGraph = ifGraph.Attach(elseGraph, elseLeaf);
+
+            return ifGraph;
         }
     }
 }

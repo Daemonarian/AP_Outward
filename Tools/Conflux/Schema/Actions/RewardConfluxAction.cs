@@ -1,9 +1,10 @@
 using Conflux.NodeCanvas.Actions;
-using Conflux.NodeCanvas.Blackboard;
 using Conflux.NodeCanvas.References;
-using Conflux.Outward;
+using Conflux.Schema.Blackboards;
 using Conflux.Schema.Context;
 using Conflux.Schema.Deserializer;
+using Conflux.Schema.Exceptions;
+using Conflux.Schema.References;
 using YamlDotNet.Serialization;
 
 namespace Conflux.Schema.Actions
@@ -11,62 +12,58 @@ namespace Conflux.Schema.Actions
     [ConfluxDerived("reward")]
     internal class RewardConfluxAction : ConfluxAction
     {
-        private const string SilverKey = "silver";
-
-        private const string XPKey = "xp";
-
         [ConfluxMainProperty]
         [YamlMember(Alias = "items")]
-        public Dictionary<string, int> ItemAmounts { get; set; } = [];
+        public List<ItemReward> ItemRewards { get; set; } = [];
 
         [YamlMember(Alias = "silver")]
-        public int? SilverAmount { get; set; }
+        public ConfluxBlackboardVariableReference<int> SilverAmount { get; set; } = new() { Value = 0 };
 
         [YamlMember(Alias = "xp")]
-        public int? XPAmount { get; set; }
+        public ConfluxBlackboardVariableReference<int> XPAmount { get; set; } = new() { Value = 0 };
 
         [YamlMember(Alias = "to")]
-        public GiveReward.Receiver Receiver { get; set; } = GiveReward.Receiver.Host;
+        public RewardReceiver Receiver { get; set; } = RewardReceiver.Host;
 
-        public override ActionTask BuildAction(INodeCanvasGraphContext context)
+        public override GiveReward BuildAction(NodeCanvasGraphContext context) => new()
         {
-            var silverAmount = new BBParameter<int>
-            {
-                Value = SilverAmount ?? ItemAmounts.GetValueOrDefault(SilverKey, 0),
-            };
+            RewardReceiver = GetNodeCanvasReceiver(context, Receiver),
+            SilverAmount = SilverAmount.BuildBBParameter(context),
+            XpAmount = XPAmount.BuildBBParameter(context),
+            ItemRewards = [.. ItemRewards.Select(r => r.BuildItemQuantity(context))],
+        };
 
-            var xpAmount = new BBParameter<int>
-            {
-                Value = XPAmount ?? ItemAmounts.GetValueOrDefault(XPKey, 0),
-            };
+        public enum RewardReceiver
+        {
+            Host,
+            Instigator,
+            Everyone,
+        }
 
-            var itemRewards = ItemAmounts
-                .Where(pair => pair.Key != SilverKey && pair.Key != XPKey)
-                .Select(pair => new GiveReward.ItemQuantity
-                {
-                    Item = new BBParameter<ItemReference>
-                    {
-                        Value = new ItemReference
-                        {
-                            ItemID = Item.ByKey[pair.Key].ID,
-                        },
-                    },
-                    Quantity = new BBParameter<int>
-                    {
-                        Value = pair.Value,
-                    },
-                    TryToEquip = new BBParameter<bool>
-                    {
-                        Value = false,
-                    },
-                }).ToList();
+        public static GiveReward.Receiver GetNodeCanvasReceiver(NodeCanvasGraphContext context, RewardReceiver receiver) => receiver switch
+        {
+            RewardReceiver.Host => GiveReward.Receiver.Host,
+            RewardReceiver.Instigator => GiveReward.Receiver.Instigator,
+            RewardReceiver.Everyone => GiveReward.Receiver.Everyone,
+            _ => throw new ConfluxValueException($"Unexpected reward reciever: {receiver}."),
+        };
 
-            return new GiveReward
+        public class ItemReward
+        {
+            [YamlMember(Alias = "item")]
+            public ConfluxBlackboardVariableReference<ItemReference, ConfluxItemReference> Item { get; set; } = new();
+
+            [YamlMember(Alias = "quantity")]
+            public ConfluxBlackboardVariableReference<int> Quantity { get; set; } = new() { Value = 1 };
+
+            [YamlMember(Alias = "equip")]
+            public ConfluxBlackboardVariableReference<bool> TryToEquip { get; set; } = new() { Value = false };
+
+            public GiveReward.ItemQuantity BuildItemQuantity(NodeCanvasGraphContext context) => new()
             {
-                RewardReceiver = Receiver,
-                SilverAmount = silverAmount,
-                XpAmount = xpAmount,
-                ItemRewards = itemRewards,
+                Item = Item.BuildBBParameter(context),
+                Quantity = Quantity.BuildBBParameter(context),
+                TryToEquip = TryToEquip.BuildBBParameter(context),
             };
         }
     }

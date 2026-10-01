@@ -8,18 +8,14 @@ namespace Conflux.Schema.Actions
     [ConfluxDerived("parallel")]
     internal class ParallelConfluxAction : ConfluxAction
     {
-        [YamlMember(Alias = "actions")]
         [ConfluxMainProperty]
+        [YamlMember(Alias = "actions")]
         public List<ConfluxAction> Actions { get; set; } = [];
 
-        public override ActionTask BuildAction(INodeCanvasGraphContext context)
+        public override ActionList BuildAction(NodeCanvasGraphContext context) => new()
         {
-            var actions = Actions.Select(a => a.BuildAction(context)).ToList();
-            return new ActionList
-            {
-                ExecutionMode = ActionList.ActionsExecutionMode.ActionsRunInParallel,
-                Actions = actions,
-            };
-        }
+            ExecutionMode = ActionList.ActionsExecutionMode.ActionsRunInParallel,
+            Actions = [.. Actions.Select(a => a.BuildAction(context))],
+        };
     }
 }

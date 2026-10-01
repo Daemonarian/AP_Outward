@@ -1,8 +1,10 @@
+using System.Collections.Frozen;
 using System.Collections.Immutable;
 using Conflux.NodeCanvas;
 using Conflux.NodeCanvas.Connections;
 using Conflux.NodeCanvas.Nodes;
 using Conflux.Schema.Context;
+using Conflux.Schema.Exceptions;
 using Conflux.Schema.Nodes;
 
 namespace Conflux.Schema
@@ -16,7 +18,7 @@ namespace Conflux.Schema
         /// <summary>
         /// The context needed for creating NodeCanvas objects.
         /// </summary>
-        public INodeCanvasGraphContext Context { get; init; }
+        public NodeCanvasGraphContext Context { get; init; }
 
         /// <summary>
         /// All of the nodes in the graph.
@@ -44,7 +46,7 @@ namespace Conflux.Schema
         /// <param name="context">The NodeCanvas graph context.</param>
         /// <param name="node">The node to wrap.</param>
         /// <returns>The wrapper Conflux graph.</returns>
-        public static ConfluxGraph CreateFromNode(INodeCanvasGraphContext context, Node node)
+        public static ConfluxGraph CreateFromNode(NodeCanvasGraphContext context, Node node)
         {
             var leaves = Enumerable.Range(0, node.OutConnectionCount).Select(_ => new LeafNode()).ToList();
             var connections = leaves.Select(leaf => context.BuildConnection(node, leaf)).ToList();
@@ -57,7 +59,7 @@ namespace Conflux.Schema
         /// </summary>
         /// <param name="context">The NodeCanvas graph context.</param>
         /// <returns>The empty Conflux graph.</returns>
-        public static ConfluxGraph CreateEmpty(INodeCanvasGraphContext context)
+        public static ConfluxGraph CreateEmpty(NodeCanvasGraphContext context)
         {
             return CreateFromNode(context, new LeafNode());
         }
@@ -67,12 +69,12 @@ namespace Conflux.Schema
         /// </summary>
         /// <param name="context"></param>
         /// <returns></returns>
-        public static ConfluxGraph CreateTerminal(INodeCanvasGraphContext context)
+        public static ConfluxGraph CreateTerminal(NodeCanvasGraphContext context)
         {
             return CreateFromNode(context, new TerminalNode());
         }
 
-        private ConfluxGraph(INodeCanvasGraphContext context, IEnumerable<Node> nodes, IEnumerable<Connection> connections, Node root, IReadOnlyDictionary<string, Node> labels)
+        private ConfluxGraph(NodeCanvasGraphContext context, IEnumerable<Node> nodes, IEnumerable<Connection> connections, Node root, IReadOnlyDictionary<string, Node> labels)
         {
             // validate the inputs
 
@@ -340,31 +342,37 @@ namespace Conflux.Schema
                 .PruneTerminals()
                 .ReplaceTerminals();
 
-            var nodeBaseType = Context.NodeBaseType;
-            foreach (var node in graph.Nodes)
+            var nodes = graph.Nodes.ToList();
+            foreach (var node in nodes)
             {
-                if (!node.GetType().IsAssignableTo(nodeBaseType))
+                if (!Context.IsValidNode(node))
                 {
-                    throw new Exception($"Node should be assignable to type {nodeBaseType}, not {node.GetType()}.");
+                    throw new ConfluxException($"All nodes must be of type {Context.NodeBaseType}, not {node.GetType()}.");
                 }
             }
 
-            var connectionBaseType = Context.ConnectionBaseType;
-            foreach (var connection in graph.Connections)
+            var connections = graph.Connections.ToList();
+            foreach (var connection in connections)
             {
-                if (!connection.GetType().IsAssignableTo(connectionBaseType))
+                if (!Context.IsValidConnection(connection))
                 {
-                    throw new Exception($"Connection should be assignable to type {connectionBaseType}, not {connection.GetType()}.");
+                    throw new ConfluxException($"All connections must be of type {Context.ConnectionBaseType}, not {connection.GetType()}.");
                 }
+            }
+
+            var derivedData = Context.Script.DerivedData?.BuildDerivedData(Context);
+            if (derivedData is null || !Context.IsValidDerivedData(derivedData))
+            {
+                throw new ConfluxException($"The derived data must be of type {Context.DerivedDataBaseType}, not {derivedData?.GetType()}.");
             }
 
             return new Graph
             {
                 Type = Context.GraphType,
-                LocalBlackboard = Context.Script.LocalBlackboard,
-                DerivedData = Context.Script.DerivedData,
-                Nodes = graph.Nodes.ToList(),
-                Connections = graph.Connections.ToList(),
+                LocalBlackboard = Context.Script.LocalBlackboard.BuildBlackboardSource(Context),
+                DerivedData = derivedData,
+                Nodes = [.. graph.Nodes],
+                Connections = [.. graph.Connections],
             };
         }
 
@@ -538,7 +546,11 @@ namespace Conflux.Schema
         {
             var replacements = Nodes
                 .OfType<TerminalNode>()
-                .ToDictionary(node => (Node)node, _ => Context.BuildTerminalNode());
+                .ToDictionary(
+                    node => (Node)node,
+                    _ => Context.BuildTerminalNode()
+                )
+                .ToFrozenDictionary();
             return ReplaceNodes(replacements);
         }
 

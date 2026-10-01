@@ -7,6 +7,6 @@ namespace Conflux.Schema.Actions
     [ConfluxPolymorphic]
     internal abstract class ConfluxAction
     {
-        public abstract ActionTask BuildAction(INodeCanvasGraphContext context);
+        public abstract ActionTask BuildAction(NodeCanvasGraphContext context);
     }
 }

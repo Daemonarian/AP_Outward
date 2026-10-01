@@ -46,6 +46,8 @@ namespace Conflux.NodeCanvas.Nodes
             return content.ToString().TrimEnd();
         }
 
+        public override string? GetGraphVizOutConnectionLabel(int index) => $"{index}";
+
         internal class Choice : IGraphVizLabelable
         {
             [JsonProperty("isUnfolded")]

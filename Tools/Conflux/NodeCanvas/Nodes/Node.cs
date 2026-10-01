@@ -13,6 +13,8 @@ namespace Conflux.NodeCanvas.Nodes
 
         public virtual string GetGraphVizContent() => JsonConvert.SerializeObject(this, GraphVizConverter.DefaultSerializerSettings);
 
+        public virtual string? GetGraphVizOutConnectionLabel(int index) => null;
+
         public string ToGraphVizLabel()
         {
             var label = new StringBuilder();

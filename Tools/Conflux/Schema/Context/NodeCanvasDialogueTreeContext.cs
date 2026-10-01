@@ -1,38 +1,26 @@
-using Conflux.NodeCanvas.Actions;
-using Conflux.NodeCanvas.Conditions;
+using Conflux.NodeCanvas;
 using Conflux.NodeCanvas.Connections;
+using Conflux.NodeCanvas.DerivedDatas;
 using Conflux.NodeCanvas.Nodes;
-using Conflux.Schema;
 
 namespace Conflux.Schema.Context
 {
     internal class NodeCanvasDialogueTreeContext(ConfluxScript script) : NodeCanvasGraphContext(script)
     {
-        public override string GraphType => "NodeCanvas.DialogueTrees.DialogueTreeExt";
+        public override Graph.GraphType GraphType => Graph.GraphType.DialogueTree;
 
         public override Type NodeBaseType => typeof(DTNode);
 
         public override Type ConnectionBaseType => typeof(DTConnection);
 
-        public override Connection BuildConnection(Node source, Node? target) => new DTConnection
+        public override Type DerivedDataBaseType => typeof(DTDerivedData);
+
+        public override DTConnection BuildConnection(Node source, Node target) => new()
         {
             SourceNode = source,
             TargetNode = target,
         };
 
-        public override Node BuildTerminalNode() => new FinishNode
-        {
-            FinishState = FinishNode.CompactStatus.Success,
-        };
-
-        public override Node BuildIfNode(ConditionTask condition) => new ConditionNode
-        {
-            Condition = condition,
-        };
-
-        public override Node BuildDoNode(ActionTask action) => new ActionNode
-        {
-            Action = action,
-        };
+        public override Node BuildTerminalNode() => new FinishNode();
     }
 }

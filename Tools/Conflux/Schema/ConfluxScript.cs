@@ -1,7 +1,7 @@
 using Conflux.NodeCanvas;
-using Conflux.NodeCanvas.Blackboard;
-using Conflux.NodeCanvas.DerivedData;
+using Conflux.Schema.Blackboards;
 using Conflux.Schema.Context;
+using Conflux.Schema.DerivedDatas;
 using YamlDotNet.Serialization;
 
 namespace Conflux.Schema
@@ -9,30 +9,21 @@ namespace Conflux.Schema
     /// <summary>
     /// Defines the main file format for a Conflux template.
     /// </summary>
-    internal class ConfluxScript
+    internal abstract class ConfluxScript
     {
+        [YamlMember(Alias = "type")]
+        public string TypeName { get; set; } = string.Empty;
+
         [YamlMember(Alias = "replace")]
         public List<string> Replace { get; set; } = [];
 
         [YamlMember(Alias = "threads")]
         public Dictionary<string, ConfluxBlock> Threads { get; set; } = [];
 
-        [YamlMember(Alias = "derivedData")]
-        public DTDerivedData DerivedData { get; set; } = new();
-
-        [YamlMember(Alias = "localBlackboard")]
-        public BlackboardSource LocalBlackboard { get; set; } = new();
-
         [YamlMember(Alias = "blackboard")]
-        public Dictionary<string, string> Blackboard { get; set; } = [];
+        public ConfluxLocalBlackboard LocalBlackboard { get; set; } = new();
 
-        [YamlIgnore]
-        public INodeCanvasGraphContext Context { get; init; }
-
-        public ConfluxScript()
-        {
-            Context = new NodeCanvasDialogueTreeContext(this);
-        }
+        public abstract ConfluxDerivedData DerivedData { get; }
 
         public GraphTemplate BuildGraphReplacementTemplate()
         {
@@ -43,12 +34,15 @@ namespace Conflux.Schema
             };
         }
 
+        protected abstract NodeCanvasGraphContext CreateContext();
+
         private Graph BuildNodeCanvasGraph()
         {
-            var graph = ConfluxGraph.CreateTerminal(Context);
+            var context = CreateContext();
+            var graph = ConfluxGraph.CreateTerminal(context);
             foreach (var (label, block) in Threads)
             {
-                var blockGraph = block.BuildGraph(Context);
+                var blockGraph = block.BuildGraph(context);
                 graph = graph.Merge(blockGraph, label);
             }
 

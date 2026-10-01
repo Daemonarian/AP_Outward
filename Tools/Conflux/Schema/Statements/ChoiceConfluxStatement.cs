@@ -21,18 +21,13 @@ namespace Conflux.Schema.Statements
         [YamlMember(Alias = "saySelection")]
         public bool SaySelection { get; set; } = false;
 
-        public override ConfluxGraph BuildGraph(INodeCanvasGraphContext context)
+        public override ConfluxGraph BuildGraph(NodeCanvasGraphContext context)
         {
             var node = new MultipleChoiceNode
             {
                 AvailableTime = AvailableTime,
                 SaySelection = SaySelection,
-                Choices = [.. Choices.Select(choice => new MultipleChoiceNode.Choice
-                {
-                    Statement = choice.Statement,
-                    Condition = choice.Condition?.BuildCondition(context),
-                    IsUnfolded = choice.IsUnfolded,
-                })],
+                Choices = [.. Choices.Select(choice => choice.BuildChoice(context))],
             };
 
             var graph = ConfluxGraph.CreateFromNode(context, node);
@@ -60,6 +55,13 @@ namespace Conflux.Schema.Statements
 
             [YamlMember(Alias = "then")]
             public ConfluxBlock Then { get; set; } = new();
+
+            public MultipleChoiceNode.Choice BuildChoice(NodeCanvasGraphContext context) => new()
+            {
+                Statement = Statement,
+                Condition = Condition?.BuildCondition(context),
+                IsUnfolded = IsUnfolded
+            };
         }
     }
 }

@@ -35,6 +35,7 @@ namespace Conflux.GraphViz
 
             sb.AppendLine("digraph {");
             sb.AppendLine("  node [shape=\"box\", style=\"rounded\", fontname=\"Consolas\", margin=\"0.2,0.1\"];");
+            sb.AppendLine("  edge [fontname=\"Consolas\"];");
             sb.AppendLine($"  Start [shape=doublecircle, label=\"Start\"];");
 
             foreach (var node in graph.Nodes)
@@ -76,17 +77,10 @@ namespace Conflux.GraphViz
                 var sourceIndex = nodeIndices[connection.SourceNode];
                 var targetIndex = nodeIndices[connection.TargetNode];
 
-                var edgeLabel = "";
-                if (connection.SourceNode is ConditionNode)
-                {
-                    edgeLabel = nodeOutConnectionIndex == 0 ? "yes" : (nodeOutConnectionIndex == 1 ? "no" : "");
-                }
-                else if (connection.SourceNode is MultipleChoiceNode)
-                {
-                    edgeLabel = $"{nodeOutConnectionIndex}";
-                }
+                var edgeLabel = connection.SourceNode.GetGraphVizOutConnectionLabel(nodeOutConnectionIndex)?.Trim();
+                var edgePropertyPart = string.IsNullOrWhiteSpace(edgeLabel) ? string.Empty : $" [label={EscapeString(edgeLabel)}]";
 
-                sb.AppendLine($"  Node{sourceIndex} -> Node{targetIndex} [label=\"{edgeLabel}\"];");
+                sb.AppendLine($"  Node{sourceIndex} -> Node{targetIndex}{edgePropertyPart};");
             }
 
             foreach (var node in graph.Nodes)

@@ -1,9 +1,9 @@
-using Conflux.NodeCanvas.Blackboard;
 using Conflux.NodeCanvas.Conditions;
 using Conflux.NodeCanvas.References;
-using Conflux.Outward;
+using Conflux.Schema.Blackboards;
 using Conflux.Schema.Context;
 using Conflux.Schema.Deserializer;
+using Conflux.Schema.References;
 using YamlDotNet.Serialization;
 
 namespace Conflux.Schema.Conditions
@@ -13,20 +13,11 @@ namespace Conflux.Schema.Conditions
     {
         [ConfluxMainProperty]
         [YamlMember(Alias = "quest")]
-        public string Quest { get; set; } = string.Empty;
+        public ConfluxBlackboardVariableReference<QuestReference, ConfluxQuestReference> Quest { get; set; } = new();
 
-        public override ConditionTask BuildCondition(INodeCanvasGraphContext context)
+        public override Condition_IsQuestCompleted BuildCondition(NodeCanvasGraphContext context) => new()
         {
-            return new Condition_IsQuestCompleted
-            {
-                QuestRef = new BBParameter<QuestReference>
-                {
-                    Value = new QuestReference
-                    {
-                        ItemID = Item.ByKey[Quest].ID,
-                    },
-                },
-            };
-        }
+            QuestRef = Quest.BuildBBParameter(context),
+        };
     }
 }

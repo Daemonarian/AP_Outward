@@ -1,4 +1,4 @@
-namespace Conflux.NodeCanvas.DerivedData
+namespace Conflux.NodeCanvas.DerivedDatas
 {
     internal class DerivedData
     {

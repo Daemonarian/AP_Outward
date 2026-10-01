@@ -1,53 +1,30 @@
-using Conflux.NodeCanvas.Actions;
-using Conflux.NodeCanvas.Blackboard;
-using Conflux.NodeCanvas.Conditions;
+using Conflux.NodeCanvas;
 using Conflux.NodeCanvas.Connections;
+using Conflux.NodeCanvas.DerivedDatas;
 using Conflux.NodeCanvas.Nodes;
-using Conflux.Schema;
 
 namespace Conflux.Schema.Context
 {
-    internal abstract class NodeCanvasGraphContext(ConfluxScript script) : INodeCanvasGraphContext
+    internal abstract class NodeCanvasGraphContext(ConfluxScript script)
     {
-        private readonly ConfluxScript _script = script;
+        public ConfluxScript Script { get; init; } = script;
 
-        public ConfluxScript Script => _script;
-
-        public BBParameter<T> BuildBBParameter<T>(string name)
-        {
-            if (Script.Blackboard.TryGetValue(name, out var id))
-            {
-                return new BBParameter<T>
-                {
-                    Name = name,
-                    TargetVariableID = id,
-                };
-            }
-
-            if (Script.LocalBlackboard.Variables.TryGetValue(name, out var variable))
-            {
-                return new BBParameter<T>
-                {
-                    Name = name,
-                    TargetVariableID = variable.ID,
-                };
-            }
-
-            throw new Exception($"Could not find blackboard variable named '{name}'.");
-        }
-
-        public abstract string GraphType { get; }
+        public abstract Graph.GraphType GraphType { get; }
 
         public abstract Type NodeBaseType { get; }
 
         public abstract Type ConnectionBaseType { get; }
 
+        public abstract Type DerivedDataBaseType { get; }
+
         public abstract Connection BuildConnection(Node source, Node target);
 
         public abstract Node BuildTerminalNode();
 
-        public abstract Node BuildIfNode(ConditionTask condition);
+        public bool IsValidNode(Node? node) => node is not null && node.GetType().IsAssignableTo(NodeBaseType);
 
-        public abstract Node BuildDoNode(ActionTask action);
+        public bool IsValidConnection(Connection? connection) => connection is not null && connection.GetType().IsAssignableTo(ConnectionBaseType);
+
+        public bool IsValidDerivedData(DerivedData? derivedData) => derivedData is not null && derivedData.GetType().IsAssignableTo(DerivedDataBaseType);
     }
 }

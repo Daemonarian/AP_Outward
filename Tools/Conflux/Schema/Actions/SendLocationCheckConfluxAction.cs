@@ -1,6 +1,7 @@
 using Conflux.NodeCanvas.Actions;
 using Conflux.Schema.Context;
 using Conflux.Schema.Deserializer;
+using Conflux.Schema.References;
 using YamlDotNet.Serialization;
 
 namespace Conflux.Schema.Actions
@@ -10,17 +11,11 @@ namespace Conflux.Schema.Actions
     {
         [ConfluxMainProperty]
         [YamlMember(Alias = "location")]
-        public string LocationKey { get; set; } = string.Empty;
+        public ConfluxLocationReference Location { get; set; } = new();
 
-        public override ActionTask BuildAction(INodeCanvasGraphContext context)
+        public override Action_CompleteLocationCheck BuildAction(NodeCanvasGraphContext context) => new()
         {
-            return new Action_CompleteLocationCheck
-            {
-                Location = new()
-                {
-                    Key = LocationKey,
-                },
-            };
-        }
+            Location = Location.BuildNodeCanvasObject(context),
+        };
     }
 }

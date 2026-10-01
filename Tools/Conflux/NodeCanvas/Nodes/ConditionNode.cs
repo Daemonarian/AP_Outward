@@ -15,5 +15,12 @@ namespace Conflux.NodeCanvas.Nodes
         public override string GetGraphVizShortName() => "If";
 
         public override string GetGraphVizContent() => Condition?.ToGraphVizLabel() ?? string.Empty;
+
+        public override string? GetGraphVizOutConnectionLabel(int index) => index switch
+        {
+            0 => "yes",
+            1 => "no",
+            _ => null
+        };
     }
 }

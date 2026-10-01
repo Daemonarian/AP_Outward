@@ -1,8 +1,7 @@
 using Conflux.NodeCanvas.Actions;
-using Conflux.NodeCanvas.References;
-using Conflux.Outward;
 using Conflux.Schema.Context;
 using Conflux.Schema.Deserializer;
+using Conflux.Schema.References;
 using YamlDotNet.Serialization;
 
 namespace Conflux.Schema.Actions
@@ -12,7 +11,7 @@ namespace Conflux.Schema.Actions
     {
         [ConfluxMainProperty]
         [YamlMember(Alias = "event")]
-        public string Key { get; set; } = string.Empty;
+        public ConfluxQuestEventReference QuestEvent { get; set; } = new();
 
         [YamlMember(Alias = "count")]
         public int Count { get; set; } = 1;
@@ -20,17 +19,11 @@ namespace Conflux.Schema.Actions
         [YamlMember(Alias = "ignoreNetworkSync")]
         public bool IgnoreNetworkSync { get; set; } = false;
 
-        public override ActionTask BuildAction(INodeCanvasGraphContext context)
+        public override SendQuestEvent BuildAction(NodeCanvasGraphContext context) => new()
         {
-            return new SendQuestEvent
-            {
-                QuestEventRef = new QuestEventReference
-                {
-                    EventUID = QuestEvent.ByKey[Key].UID,
-                },
-                StackAmount = Count,
-                IgnoreNetworkSync = IgnoreNetworkSync,
-            };
-        }
+            QuestEventRef = QuestEvent.BuildNodeCanvasObject(context),
+            StackAmount = Count,
+            IgnoreNetworkSync = IgnoreNetworkSync,
+        };
     }
 }

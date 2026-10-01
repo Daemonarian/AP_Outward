@@ -1,6 +1,6 @@
-using System.Collections;
 using System.Collections.Frozen;
 using System.Reflection;
+using Conflux.Schema.Exceptions;
 using YamlDotNet.Core;
 using YamlDotNet.Core.Events;
 using YamlDotNet.Serialization;
@@ -9,13 +9,13 @@ namespace Conflux.Schema.Deserializer
 {
     internal class ConfluxMainPropertyDeserializer : INodeDeserializer
     {
-        public static FrozenDictionary<Type, PropertyInfo> MainPropertyMapping => _mainPropertyMapping.Value;
+        public static FrozenDictionary<Type, MainPropertyInfo> MainPropertyMapping => _mainPropertyMapping.Value;
 
-        private static readonly Lazy<FrozenDictionary<Type, PropertyInfo>> _mainPropertyMapping = new(GetMainPropertyMapping);
+        private static readonly Lazy<FrozenDictionary<Type, MainPropertyInfo>> _mainPropertyMapping = new(GetMainPropertyMapping);
 
-        private static FrozenDictionary<Type, PropertyInfo> GetMainPropertyMapping()
+        private static FrozenDictionary<Type, MainPropertyInfo> GetMainPropertyMapping()
         {
-            var mainPropertyMapping = new Dictionary<Type, PropertyInfo>();
+            var mainPropertyMapping = new Dictionary<Type, MainPropertyInfo>();
             foreach (var type in Assembly.GetExecutingAssembly().GetTypes())
             {
                 foreach (var property in type.GetProperties())
@@ -31,7 +31,7 @@ namespace Conflux.Schema.Deserializer
                         throw new Exception($"Found multiple {typeof(ConfluxMainPropertyAttribute)} for type {type}.");
                     }
 
-                    mainPropertyMapping[type] = property;
+                    mainPropertyMapping[type] = new(mainPropertyAttribute, property);
                 }
             }
 
@@ -40,45 +40,49 @@ namespace Conflux.Schema.Deserializer
 
         public bool Deserialize(IParser reader, Type expectedType, Func<IParser, Type, object?> nestedObjectDeserializer, out object? value, ObjectDeserializer rootDeserializer)
         {
-            // Only intercept when YamlDotNet explicitly asks for a type with a main property.
+            // Look for a main property for the expected type.
 
             if (!MainPropertyMapping.TryGetValue(expectedType, out var mainProperty))
+            {
+                if (!expectedType.IsGenericType)
+                {
+                    value = null;
+                    return false;
+                }
+
+                var expectedGenericType = expectedType.GetGenericTypeDefinition();
+                if (!MainPropertyMapping.TryGetValue(expectedGenericType, out var genericMainProperty))
+                {
+                    value = null;
+                    return false;
+                }
+
+                var boundGenericMainProperty = expectedType.GetProperty(genericMainProperty.Property.Name) ??
+                    throw new ConfluxException($"Could not bind generic main property \"{genericMainProperty.Property}\" to specialized type \"{expectedType}\".");
+                mainProperty = new(genericMainProperty.Attribute, boundGenericMainProperty);
+            }
+
+            // Only intercept if the main property is forced or the reader is at a non-mapping type.
+
+            if (!mainProperty.Attribute.Force && reader.Accept<MappingStart>(out _))
             {
                 value = null;
                 return false;
             }
 
-            // Peek at the current YAML element without consuming it.
+            // Deserialize the main property.
 
-            if (IsMatchingYamlEvent(reader, mainProperty.PropertyType))
-            {
-                var propertyValue = nestedObjectDeserializer(reader, mainProperty.PropertyType);
-                value = Activator.CreateInstance(expectedType);
-                mainProperty.SetValue(value, propertyValue);
-                return true;
-            }
+            var propertyValue = nestedObjectDeserializer(reader, mainProperty.Property.PropertyType);
 
-            // Fallback to default deserializer logic.
+            // Instantiate the type and set the main property.
 
-            value = null;
-            return false;
+            var obj = Activator.CreateInstance(expectedType);
+            mainProperty.Property.SetValue(obj, propertyValue);
+
+            value = obj;
+            return true;
         }
 
-        private static bool IsMatchingYamlEvent(IParser reader, Type targetType)
-        {
-            if (typeof(IEnumerable).IsAssignableFrom(targetType) &&
-                targetType != typeof(string) &&
-                !typeof(IDictionary).IsAssignableFrom(targetType))
-            {
-                return reader.Accept<SequenceStart>(out _);
-            }
-
-            if (targetType.IsPrimitive || targetType == typeof(string))
-            {
-                return reader.Accept<Scalar>(out _);
-            }
-
-            return reader.Accept<MappingStart>(out _);
-        }
+        public record MainPropertyInfo(ConfluxMainPropertyAttribute Attribute, PropertyInfo Property);
     }
 }

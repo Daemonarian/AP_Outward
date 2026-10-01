@@ -11,7 +11,7 @@ namespace Conflux.Schema
         [YamlMember(Alias = "statements")]
         public List<ConfluxStatement> Statements { get; set; } = [];
 
-        public ConfluxGraph BuildGraph(INodeCanvasGraphContext context)
+        public ConfluxGraph BuildGraph(NodeCanvasGraphContext context)
         {
             var graph = ConfluxGraph.CreateEmpty(context);
             foreach (var statement in Statements)

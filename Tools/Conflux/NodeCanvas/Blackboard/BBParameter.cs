@@ -11,17 +11,17 @@ namespace Conflux.NodeCanvas.Blackboard
         [JsonProperty("_targetVariableID")]
         public string? TargetVariableID { get; set; }
 
-        public virtual bool HasValue() => !string.IsNullOrWhiteSpace(TargetVariableID);
+        public virtual bool HasValue() => !string.IsNullOrWhiteSpace(Name) || !string.IsNullOrWhiteSpace(TargetVariableID);
 
         public virtual string ToGraphVizLabel()
         {
+            if (!string.IsNullOrWhiteSpace(Name))
+            {
+                return Name.Trim();
+            }
+
             if (!string.IsNullOrWhiteSpace(TargetVariableID))
             {
-                if (!string.IsNullOrWhiteSpace(Name))
-                {
-                    return Name.Trim();
-                }
-
                 return TargetVariableID.Trim();
             }
 

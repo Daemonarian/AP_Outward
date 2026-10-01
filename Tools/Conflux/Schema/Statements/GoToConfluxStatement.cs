@@ -12,7 +12,7 @@ namespace Conflux.Schema.Statements
         [YamlMember(Alias = "label")]
         public string Label { get; set; } = string.Empty;
 
-        public override ConfluxGraph BuildGraph(INodeCanvasGraphContext context)
+        public override ConfluxGraph BuildGraph(NodeCanvasGraphContext context)
         {
             var node = new GoToLabelNode(Label);
             return ConfluxGraph.CreateFromNode(context, node);

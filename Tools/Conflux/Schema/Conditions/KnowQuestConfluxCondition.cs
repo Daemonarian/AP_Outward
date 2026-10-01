@@ -1,7 +1,7 @@
 using Conflux.NodeCanvas.Conditions;
-using Conflux.NodeCanvas.References;
 using Conflux.Schema.Context;
 using Conflux.Schema.Deserializer;
+using Conflux.Schema.References;
 using YamlDotNet.Serialization;
 
 namespace Conflux.Schema.Conditions
@@ -11,14 +11,11 @@ namespace Conflux.Schema.Conditions
     {
         [ConfluxMainProperty]
         [YamlMember(Alias = "quest")]
-        public string QuestKey { get; init; } = string.Empty;
+        public ConfluxQuestReference Quest { get; init; } = new();
 
-        public override ConditionTask BuildCondition(INodeCanvasGraphContext context)
+        public override Condition_CustomKnowQuest BuildCondition(NodeCanvasGraphContext context) => new()
         {
-            return new Condition_CustomKnowQuest
-            {
-                Quest = QuestReference.FromKey(QuestKey),
-            };
-        }
+            Quest = Quest.BuildNodeCanvasObject(context),
+        };
     }
 }

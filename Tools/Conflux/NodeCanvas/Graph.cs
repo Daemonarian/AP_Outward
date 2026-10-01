@@ -1,8 +1,10 @@
+using System.Runtime.Serialization;
 using Conflux.NodeCanvas.Blackboard;
 using Conflux.NodeCanvas.Connections;
-using Conflux.NodeCanvas.DerivedData;
+using Conflux.NodeCanvas.DerivedDatas;
 using Conflux.NodeCanvas.Nodes;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Conflux.NodeCanvas
 {
@@ -12,7 +14,7 @@ namespace Conflux.NodeCanvas
         public float Version { get; set; } = 2.92f;
 
         [JsonProperty("type")]
-        public string Type { get; set; } = "NodeCanvas.DialogueTrees.DialogueTreeExt";
+        public GraphType Type { get; set; } = GraphType.DialogueTree;
 
         [JsonProperty("nodes")]
         public List<Node> Nodes { get; set; } = [];
@@ -24,6 +26,16 @@ namespace Conflux.NodeCanvas
         public BlackboardSource LocalBlackboard { get; set; } = new();
 
         [JsonProperty("DerivedData")]
-        public DerivedData.DerivedData DerivedData { get; set; } = new();
+        public DerivedData DerivedData { get; set; } = new();
+
+        [JsonConverter(typeof(StringEnumConverter))]
+        public enum GraphType
+        {
+            [EnumMember(Value = "NodeCanvas.DialogueTrees.DialogueTreeExt")]
+            DialogueTree,
+
+            [EnumMember(Value = "NodeCanvas.BehaviourTrees.BehaviourTree")]
+            BehaviourTree
+        }
     }
 }

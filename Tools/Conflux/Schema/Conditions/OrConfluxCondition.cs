@@ -8,18 +8,14 @@ namespace Conflux.Schema.Conditions
     [ConfluxDerived("or")]
     internal class OrConfluxCondition : ConfluxCondition
     {
-        [YamlMember(Alias = "conditions")]
         [ConfluxMainProperty]
+        [YamlMember(Alias = "conditions")]
         public List<ConfluxCondition> Conditions { get; set; } = [];
 
-        public override ConditionTask BuildCondition(INodeCanvasGraphContext context)
+        public override ConditionList BuildCondition(NodeCanvasGraphContext context) => new()
         {
-            var conditions = Conditions.Select(c => c.BuildCondition(context)).ToList();
-            return new ConditionList
-            {
-                CheckMode = ConditionList.ConditionsCheckMode.AnyTrueSuffice,
-                Conditions = conditions,
-            };
-        }
+            CheckMode = ConditionList.ConditionsCheckMode.AnyTrueSuffice,
+            Conditions = [.. Conditions.Select(c => c.BuildCondition(context))],
+        };
     }
 }

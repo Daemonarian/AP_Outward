@@ -4,11 +4,11 @@ using Newtonsoft.Json;
 
 namespace Conflux.NodeCanvas.Nodes
 {
-    [NodeCanvasType("NodeCanvas.DialogueTrees.ActionNode")]
-    internal class ActionNode : DTNode
+    [NodeCanvasType("NodeCanvas.BehaviourTrees.ActionNode")]
+    internal class BTActionNode : BTNode
     {
         [JsonProperty("_action")]
-        public ActionTask? Action { get; set; }
+        public ActionTask? Action { get; set; } = null;
 
         public override int OutConnectionCount => 1;
 

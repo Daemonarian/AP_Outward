@@ -1,6 +1,7 @@
 using Conflux.NodeCanvas.Conditions;
 using Conflux.Schema.Context;
 using Conflux.Schema.Deserializer;
+using Conflux.Schema.Exceptions;
 using YamlDotNet.Serialization;
 
 namespace Conflux.Schema.Conditions
@@ -8,15 +9,15 @@ namespace Conflux.Schema.Conditions
     [ConfluxDerived("not")]
     internal class NotConfluxCondition : ConfluxCondition
     {
-        [ConfluxMainProperty]
+        [ConfluxMainProperty(Force = true)]
         [YamlMember(Alias = "condition")]
         public ConfluxCondition? Condition { get; set; }
 
-        public override ConditionTask BuildCondition(INodeCanvasGraphContext context)
+        public override ConditionTask BuildCondition(NodeCanvasGraphContext context)
         {
             if (Condition is null)
             {
-                throw new Exception($"Condition must not be null.");
+                throw new ConfluxValueException($"The value not.condition must be specified.");
             }
 
             var condition = Condition.BuildCondition(context);

@@ -14,6 +14,14 @@ namespace Conflux.Schema
         {
             return new DeserializerBuilder()
                 .WithNamingConvention(CamelCaseNamingConvention.Instance)
+                .WithTypeDiscriminatingNodeDeserializer(options =>
+                {
+                    options.AddKeyValueTypeDiscriminator<ConfluxScript>("type", new Dictionary<string, Type>()
+                    {
+                        { "behaviour", typeof(ConfluxBTScript) },
+                        { "dialogue", typeof(ConfluxDTScript) },
+                    });
+                })
                 .WithNodeDeserializer(new ConfluxPolymorphicDeserializer(), s => s.OnTop())
                 .WithNodeDeserializer(new ConfluxMainPropertyDeserializer(), s => s.OnTop())
                 .Build();
