@@ -1,6 +1,10 @@
 using System.Text;
 using Conflux.NodeCanvas.Blackboard;
+using Conflux.NodeCanvas.References;
 using Conflux.NodeCanvas.Serialization;
+using Conflux.Schema.Actions;
+using Conflux.Schema.Exceptions;
+using Conflux.Schema.References;
 using Newtonsoft.Json;
 
 namespace Conflux.NodeCanvas.Actions
@@ -29,5 +33,11 @@ namespace Conflux.NodeCanvas.Actions
 
             return content.ToString().TrimEnd();
         }
+
+        public override BranchConfluxAction BuildConfluxAction(Graph graph) => new()
+        {
+            DialogueStarter = DialogueStarter?.BuildConfluxBlackboardVariableReference<ConfluxUnityObjectReference>(graph) ?? throw new ConfluxException("DialogueStarter is required"),
+            DoWait = WaitActionFinish,
+        };
     }
 }

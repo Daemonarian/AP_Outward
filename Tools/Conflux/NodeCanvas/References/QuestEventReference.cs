@@ -1,10 +1,12 @@
 using Conflux.GraphViz;
 using Conflux.Outward;
+using Conflux.Schema.Exceptions;
+using Conflux.Schema.References;
 using Newtonsoft.Json;
 
 namespace Conflux.NodeCanvas.References
 {
-    public class QuestEventReference : IGraphVizLabelable
+    internal class QuestEventReference : IGraphVizLabelable, IConfluxObjectBuilder<ConfluxQuestEventReference>
     {
         [JsonProperty("m_eventUID")]
         public string? EventUID { get; set; }
@@ -22,6 +24,24 @@ namespace Conflux.NodeCanvas.References
             }
 
             return string.Empty;
+        }
+
+        public ConfluxQuestEventReference BuildConfluxObject(Graph graph)
+        {
+            if (EventUID is null)
+            {
+                throw new ConfluxValueException("QuestEventReference requires a valid EventUID.");
+            }
+
+            if (!QuestEvent.ByUID.TryGetValue(EventUID, out var questEvent))
+            {
+                throw new ConfluxValueException($"Unknown quest event: {EventUID}.");
+            }
+
+            return new()
+            {
+                Key = questEvent.Key,
+            };
         }
     }
 }

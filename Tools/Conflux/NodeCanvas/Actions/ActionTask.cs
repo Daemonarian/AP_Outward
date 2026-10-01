@@ -1,5 +1,6 @@
 using System.Text;
 using Conflux.GraphViz;
+using Conflux.Schema.Actions;
 using Newtonsoft.Json;
 
 namespace Conflux.NodeCanvas.Actions
@@ -9,6 +10,8 @@ namespace Conflux.NodeCanvas.Actions
         public virtual string GetGraphVizShortName() => GetType().Name;
 
         public virtual string GetGraphVizContent() => "\n" + JsonConvert.SerializeObject(this, GraphVizConverter.DefaultSerializerSettings);
+
+        public virtual ConfluxAction BuildConfluxAction(Graph graph) => throw new NotImplementedException($"BuildConfluxAction is not implemented for {GetType().Name}");
 
         public string ToGraphVizLabel()
         {

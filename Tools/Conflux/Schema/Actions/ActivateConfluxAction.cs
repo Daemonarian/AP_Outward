@@ -1,10 +1,11 @@
-using Conflux.NodeCanvas;
+using System.ComponentModel;
 using Conflux.NodeCanvas.Actions;
+using Conflux.NodeCanvas.References;
 using Conflux.Schema.Blackboards;
 using Conflux.Schema.Context;
-using Conflux.Schema.Deserializer;
 using Conflux.Schema.Exceptions;
 using Conflux.Schema.References;
+using Conflux.Schema.Serialization;
 using YamlDotNet.Serialization;
 
 namespace Conflux.Schema.Actions
@@ -17,6 +18,7 @@ namespace Conflux.Schema.Actions
         public ConfluxBlackboardVariableReference<UnityObject, ConfluxUnityObjectReference> Object { get; set; } = new();
 
         [YamlMember(Alias = "mode")]
+        [DefaultValue(ActivateMode.Toggle)]
         public ActivateMode Mode { get; set; } = ActivateMode.Toggle;
 
         public override SetObjectActiveAction BuildAction(NodeCanvasGraphContext context) => new()

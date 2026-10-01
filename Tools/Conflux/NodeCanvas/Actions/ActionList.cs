@@ -1,6 +1,7 @@
 using System.Text;
 using Conflux.GraphViz;
 using Conflux.NodeCanvas.Serialization;
+using Conflux.Schema.Actions;
 using Newtonsoft.Json;
 
 namespace Conflux.NodeCanvas.Actions
@@ -38,6 +39,19 @@ namespace Conflux.NodeCanvas.Actions
 
             return content.ToString().TrimEnd();
         }
+
+        public override ConfluxAction BuildConfluxAction(Graph graph) => ExecutionMode switch
+        {
+            ActionsExecutionMode.ActionsRunInSequence => new SequenceConfluxAction
+            {
+                Actions = [.. Actions.Select(action => action.BuildConfluxAction(graph))],
+            },
+            ActionsExecutionMode.ActionsRunInParallel => new ParallelConfluxAction
+            {
+                Actions = [.. Actions.Select(action => action.BuildConfluxAction(graph))],
+            },
+            _ => throw new NotImplementedException($"ActionList with ExecutionMode {ExecutionMode} is not implemented."),
+        };
 
         public enum ActionsExecutionMode
         {

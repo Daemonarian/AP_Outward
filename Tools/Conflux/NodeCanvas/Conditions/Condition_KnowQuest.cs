@@ -1,5 +1,7 @@
 using Conflux.NodeCanvas.Blackboard;
+using Conflux.NodeCanvas.References;
 using Conflux.NodeCanvas.Serialization;
+using Conflux.Schema.Conditions;
 using Newtonsoft.Json;
 
 namespace Conflux.NodeCanvas.Conditions
@@ -13,5 +15,13 @@ namespace Conflux.NodeCanvas.Conditions
         public override string GetGraphVizShortName() => "KnowQuest";
 
         public override string GetGraphVizContent() => Quest?.ToGraphVizLabel() ?? string.Empty;
+
+        public override KnowQuestConfluxCondition BuildConfluxCondition(Graph graph) => new()
+        {
+            Quest = new()
+            {
+                Key = "UNKNOWN",
+            },
+        };
     }
 }

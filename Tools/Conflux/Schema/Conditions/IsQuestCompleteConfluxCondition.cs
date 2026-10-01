@@ -2,8 +2,8 @@ using Conflux.NodeCanvas.Conditions;
 using Conflux.NodeCanvas.References;
 using Conflux.Schema.Blackboards;
 using Conflux.Schema.Context;
-using Conflux.Schema.Deserializer;
 using Conflux.Schema.References;
+using Conflux.Schema.Serialization;
 using YamlDotNet.Serialization;
 
 namespace Conflux.Schema.Conditions

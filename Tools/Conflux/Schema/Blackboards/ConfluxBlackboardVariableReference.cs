@@ -1,7 +1,7 @@
 using Conflux.NodeCanvas.Blackboard;
 using Conflux.Schema.Context;
-using Conflux.Schema.Deserializer;
 using Conflux.Schema.Exceptions;
+using Conflux.Schema.Serialization;
 using YamlDotNet.Serialization;
 
 namespace Conflux.Schema.Blackboards
@@ -9,10 +9,10 @@ namespace Conflux.Schema.Blackboards
     internal class ConfluxBlackboardVariableReference
     {
         [YamlMember(Alias = "name")]
-        public string? Name { get; set; } = null;
+        public string? Name { get; set; }
 
         [YamlMember(Alias = "id")]
-        public Guid? ID { get; set; } = null;
+        public Guid? ID { get; set; }
 
         public bool TryGetVariable(NodeCanvasGraphContext context, out ConfluxLocalBlackboardVariable variable)
         {

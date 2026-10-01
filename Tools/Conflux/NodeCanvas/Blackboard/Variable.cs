@@ -1,4 +1,7 @@
+using Conflux.NodeCanvas.References;
 using Conflux.NodeCanvas.Serialization;
+using Conflux.Schema.Blackboards;
+using Conflux.Schema.Exceptions;
 using Newtonsoft.Json;
 
 namespace Conflux.NodeCanvas.Blackboard
@@ -20,5 +23,14 @@ namespace Conflux.NodeCanvas.Blackboard
 
         [JsonProperty("_value")]
         public UnityObject? Value { get; set; }
+
+        public ConfluxLocalBlackboardVariable BuildConfluxLocalBlackboardVariable(Graph graph) => new()
+        {
+            Type = Type ?? throw new ConfluxValueException("Variable type is not specified."),
+            Name = Name ?? throw new ConfluxValueException("Variable name is not specified."),
+            ID = string.IsNullOrEmpty(ID) ? null : Guid.Parse(ID),
+            IsProtected = IsProtected ?? false,
+            Index = Value?.SideCarIndex,
+        };
     }
 }

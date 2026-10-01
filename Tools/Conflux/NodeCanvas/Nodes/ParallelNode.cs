@@ -1,6 +1,9 @@
 using System.Runtime.Serialization;
 using System.Text;
 using Conflux.NodeCanvas.Serialization;
+using Conflux.Schema;
+using Conflux.Schema.Exceptions;
+using Conflux.Schema.Statements;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 
@@ -39,6 +42,23 @@ namespace Conflux.NodeCanvas.Nodes
         }
 
         public override string? GetGraphVizOutConnectionLabel(int index) => $"{index}";
+
+        public override ConfluxBlock BuildConfluxBlock(Graph graph, List<ConfluxBlock> children)
+        {
+            return new ConfluxBlock
+            {
+                Statements = [new ParallelConfluxStatement{
+                    Policy = Policy switch
+                    {
+                        ParallelPolicy.FirstFailure => ParallelConfluxStatement.ParallelPolicy.FirstFailure,
+                        ParallelPolicy.FirstSuccess => ParallelConfluxStatement.ParallelPolicy.FirstSuccess,
+                        ParallelPolicy.FirstSuccessOrFailure => ParallelConfluxStatement.ParallelPolicy.FirstSuccessOrFailure,
+                        _ => throw new ConfluxException($"ParallelNode policy {Policy} is not supported."),
+                    },
+                    Tasks = [.. children],
+                }],
+            };
+        }
 
         [JsonConverter(typeof(StringEnumConverter))]
         public enum ParallelPolicy

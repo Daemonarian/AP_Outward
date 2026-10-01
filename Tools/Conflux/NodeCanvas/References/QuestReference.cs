@@ -1,10 +1,12 @@
 using Conflux.GraphViz;
 using Conflux.Outward;
+using Conflux.Schema.Exceptions;
+using Conflux.Schema.References;
 using Newtonsoft.Json;
 
 namespace Conflux.NodeCanvas.References
 {
-    public class QuestReference : IGraphVizLabelable
+    internal class QuestReference : IGraphVizLabelable, IConfluxObjectBuilder<ConfluxQuestReference>
     {
         public static QuestReference FromKey(string key) => new()
         {
@@ -22,6 +24,19 @@ namespace Conflux.NodeCanvas.References
             }
 
             return $"{ItemID}";
+        }
+
+        public ConfluxQuestReference BuildConfluxObject(Graph graph)
+        {
+            if (!Item.ByID.TryGetValue(ItemID, out var item))
+            {
+                throw new ConfluxValueException($"Unknown item ID {ItemID} for QuestReference.");
+            }
+
+            return new()
+            {
+                Key = item.Key,
+            };
         }
     }
 }

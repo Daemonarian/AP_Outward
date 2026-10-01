@@ -1,15 +1,17 @@
+using System.ComponentModel;
 using Conflux.NodeCanvas.Nodes;
 using Conflux.Schema.Context;
-using Conflux.Schema.Deserializer;
 using Conflux.Schema.Nodes;
+using Conflux.Schema.Serialization;
 using YamlDotNet.Serialization;
 
 namespace Conflux.Schema.Statements
 {
     [ConfluxDerived("parallel")]
-    internal class ParallelStatement : ConfluxStatement
+    internal class ParallelConfluxStatement : ConfluxStatement
     {
         [YamlMember(Alias = "policy")]
+        [DefaultValue(ParallelPolicy.FirstFailure)]
         public ParallelPolicy Policy { get; init; } = ParallelPolicy.FirstFailure;
 
         [ConfluxMainProperty]

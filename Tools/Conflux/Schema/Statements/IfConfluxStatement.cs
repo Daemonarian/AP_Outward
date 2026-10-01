@@ -2,14 +2,14 @@ using Conflux.NodeCanvas;
 using Conflux.NodeCanvas.Nodes;
 using Conflux.Schema.Conditions;
 using Conflux.Schema.Context;
-using Conflux.Schema.Deserializer;
 using Conflux.Schema.Nodes;
+using Conflux.Schema.Serialization;
 using YamlDotNet.Serialization;
 
 namespace Conflux.Schema.Statements
 {
     [ConfluxDerived("if")]
-    internal class IfStatement : ConfluxStatement
+    internal class IfConfluxStatement : ConfluxStatement
     {
         [YamlMember(Alias = "condition")]
         public ConfluxCondition? Condition { get; set; }

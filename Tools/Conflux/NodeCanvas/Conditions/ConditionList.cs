@@ -1,6 +1,8 @@
 using System.Text;
 using Conflux.GraphViz;
 using Conflux.NodeCanvas.Serialization;
+using Conflux.Schema.Conditions;
+using Conflux.Schema.Exceptions;
 using Newtonsoft.Json;
 
 namespace Conflux.NodeCanvas.Conditions
@@ -36,6 +38,19 @@ namespace Conflux.NodeCanvas.Conditions
 
             return content.ToString().TrimEnd();
         }
+
+        public override ConfluxCondition BuildConfluxCondition(Graph graph) => CheckMode switch
+        {
+            ConditionsCheckMode.AllTrueRequired => new AndConfluxCondition
+            {
+                Conditions = [.. Conditions.Select(c => c.BuildConfluxCondition(graph))],
+            },
+            ConditionsCheckMode.AnyTrueSuffice => new OrConfluxCondition
+            {
+                Conditions = [.. Conditions.Select(c => c.BuildConfluxCondition(graph))],
+            },
+            _ => throw new ConfluxValueException($"ConditionList CheckMode {CheckMode} is not supported."),
+        };
 
         internal enum ConditionsCheckMode
         {

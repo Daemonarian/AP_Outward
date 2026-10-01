@@ -2,7 +2,7 @@
   "profiles": {
     "NodeCanvas.Tool": {
       "commandName": "Project",
-      "commandLineArgs": "--input \"C:\\Users\\Zack Pepin\\source\\repos\\AP_Outward\\Mod\\Conflux\\Dialogue_RolandArgenson_Neut_Initial.yaml\" --format SVG",
+      "commandLineArgs": "--input \"C:\\Users\\Zack Pepin\\source\\repos\\AP_Outward\\Mod\\assets\\plugins\\graphs\\Behavior_UNPC_Berg.json\" --format Conflux",
       "workingDirectory": "..\\..\\Mod\\assets\\plugins\\graphs"
     }
   }

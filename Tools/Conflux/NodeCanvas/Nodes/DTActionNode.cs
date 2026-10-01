@@ -1,5 +1,7 @@
 using Conflux.NodeCanvas.Actions;
 using Conflux.NodeCanvas.Serialization;
+using Conflux.Schema.Exceptions;
+using Conflux.Schema.Statements;
 using Newtonsoft.Json;
 
 namespace Conflux.NodeCanvas.Nodes
@@ -15,5 +17,10 @@ namespace Conflux.NodeCanvas.Nodes
         public override string GetGraphVizShortName() => "Do";
 
         public override string GetGraphVizContent() => Action?.ToGraphVizLabel() ?? string.Empty;
+
+        protected override DoConfluxStatement BuildConfluxStatement(Graph graph) => new()
+        {
+            Action = Action?.BuildConfluxAction(graph) ?? throw new ConfluxException("DTActionNode requires an action."),
+        };
     }
 }

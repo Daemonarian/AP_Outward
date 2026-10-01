@@ -3,6 +3,8 @@ using Conflux.GraphViz;
 using Conflux.NodeCanvas.Blackboard;
 using Conflux.NodeCanvas.References;
 using Conflux.NodeCanvas.Serialization;
+using Conflux.Schema.Actions;
+using Conflux.Schema.References;
 using Newtonsoft.Json;
 
 namespace Conflux.NodeCanvas.Actions
@@ -55,6 +57,22 @@ namespace Conflux.NodeCanvas.Actions
             return content.ToString().TrimEnd();
         }
 
+        public override RewardConfluxAction BuildConfluxAction(Graph graph) => new()
+        {
+            Receiver = GetConfluxRewardReceiver(graph, RewardReceiver),
+            XPAmount = XpAmount.BuildConfluxBlackboardVariableReference(graph),
+            SilverAmount = SilverAmount.BuildConfluxBlackboardVariableReference(graph),
+            ItemRewards = [.. ItemRewards.Select(r => r.BuildConfluxItemReward(graph))],
+        };
+
+        private static RewardConfluxAction.RewardReceiver GetConfluxRewardReceiver(Graph graph, Receiver receiver) => receiver switch
+        {
+            Receiver.Host => RewardConfluxAction.RewardReceiver.Host,
+            Receiver.Instigator => RewardConfluxAction.RewardReceiver.Instigator,
+            Receiver.Everyone => RewardConfluxAction.RewardReceiver.Everyone,
+            _ => throw new ArgumentOutOfRangeException(nameof(receiver), receiver, null)
+        };
+
         public enum Receiver
         {
             Host,
@@ -86,6 +104,13 @@ namespace Conflux.NodeCanvas.Actions
 
                 return label.ToString().TrimEnd();
             }
+
+            public RewardConfluxAction.ItemReward BuildConfluxItemReward(Graph graph) => new()
+            {
+                Item = Item.BuildConfluxBlackboardVariableReference<ConfluxItemReference>(graph),
+                Quantity = Quantity.BuildConfluxBlackboardVariableReference(graph),
+                TryToEquip = TryToEquip.BuildConfluxBlackboardVariableReference(graph),
+            };
         }
     }
 }

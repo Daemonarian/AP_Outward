@@ -7,21 +7,20 @@ using YamlDotNet.Serialization;
 
 namespace Conflux.Schema.Conditions
 {
-    [ConfluxDerived("hasQuestEvent")]
-    internal class HasQuestEventConfluxCondition : ConfluxCondition
+    internal class IsQuestEventExpiredConfluxCondition : ConfluxCondition
     {
         [ConfluxMainProperty]
         [YamlMember(Alias = "event")]
         public ConfluxQuestEventReference QuestEvent { get; set; } = new();
 
-        [YamlMember(Alias = "count")]
+        [YamlMember(Alias = "expiryTime")]
         [DefaultValue(1)]
-        public int Count { get; set; } = 1;
+        public int ExpiryTime { get; set; } = 1;
 
-        public override Condition_QuestEventOccured BuildCondition(NodeCanvasGraphContext context) => new()
+        public override QuestEventExpiredCondition BuildCondition(NodeCanvasGraphContext context) => new()
         {
-            QuestEventRef = QuestEvent.BuildNodeCanvasObject(context),
-            MinStack = Count,
+            QuestEvent = QuestEvent.BuildNodeCanvasObject(context),
+            ExpiryTime = ExpiryTime,
         };
     }
 }

@@ -1,6 +1,8 @@
 using System.Text;
 using Conflux.NodeCanvas.References;
 using Conflux.NodeCanvas.Serialization;
+using Conflux.Schema.Conditions;
+using Conflux.Schema.Exceptions;
 using Newtonsoft.Json;
 
 namespace Conflux.NodeCanvas.Conditions
@@ -29,5 +31,11 @@ namespace Conflux.NodeCanvas.Conditions
 
             return content.ToString().TrimEnd();
         }
+
+        public override HasQuestEventConfluxCondition BuildConfluxCondition(Graph graph) => new()
+        {
+            QuestEvent = QuestEventRef?.BuildConfluxObject(graph) ?? throw new ConfluxValueException("Condition_QuestEventOccured requires a QuestEventRef."),
+            Count = MinStack,
+        };
     }
 }

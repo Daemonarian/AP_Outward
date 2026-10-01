@@ -1,4 +1,4 @@
-using Conflux.NodeCanvas;
+using Conflux.NodeCanvas.References;
 using Conflux.Schema.Context;
 using Conflux.Schema.Exceptions;
 using YamlDotNet.Serialization;
@@ -8,10 +8,10 @@ namespace Conflux.Schema.References
     internal class ConfluxStatementReference : INodeCanvasObjectBuilder<Statement>
     {
         [YamlMember(Alias = "meta")]
-        public string Meta { get; set; } = string.Empty;
+        public string? Meta { get; set; }
 
         [YamlMember(Alias = "text")]
-        public string Text { get; set; } = string.Empty;
+        public string? Text { get; set; }
 
         public Statement BuildNodeCanvasObject(NodeCanvasGraphContext context)
         {

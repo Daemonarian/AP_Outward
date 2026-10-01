@@ -5,7 +5,7 @@ using YamlDotNet.Core;
 using YamlDotNet.Core.Events;
 using YamlDotNet.Serialization;
 
-namespace Conflux.Schema.Deserializer
+namespace Conflux.Schema.Serialization
 {
     internal class ConfluxMainPropertyDeserializer : INodeDeserializer
     {

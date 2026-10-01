@@ -1,5 +1,5 @@
 using Conflux.Schema.Context;
-using Conflux.Schema.Deserializer;
+using Conflux.Schema.Serialization;
 using Conflux.Schema.Statements;
 using YamlDotNet.Serialization;
 

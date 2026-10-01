@@ -1,9 +1,10 @@
-using Conflux.NodeCanvas;
+using System.ComponentModel;
 using Conflux.NodeCanvas.Nodes;
 using Conflux.Schema.Conditions;
 using Conflux.Schema.Context;
-using Conflux.Schema.Deserializer;
 using Conflux.Schema.Nodes;
+using Conflux.Schema.References;
+using Conflux.Schema.Serialization;
 using YamlDotNet.Serialization;
 
 namespace Conflux.Schema.Statements
@@ -16,9 +17,11 @@ namespace Conflux.Schema.Statements
         public List<Choice> Choices { get; set; } = [];
 
         [YamlMember(Alias = "availableTime")]
+        [DefaultValue(0f)]
         public float AvailableTime { get; set; } = 0f;
 
         [YamlMember(Alias = "saySelection")]
+        [DefaultValue(false)]
         public bool SaySelection { get; set; } = false;
 
         public override ConfluxGraph BuildGraph(NodeCanvasGraphContext context)
@@ -45,7 +48,7 @@ namespace Conflux.Schema.Statements
         public class Choice
         {
             [YamlMember(Alias = "statement")]
-            public Statement Statement { get; set; } = new();
+            public ConfluxStatementReference Statement { get; set; } = new();
 
             [YamlMember(Alias = "condition")]
             public ConfluxCondition? Condition { get; set; } = null;
@@ -58,7 +61,7 @@ namespace Conflux.Schema.Statements
 
             public MultipleChoiceNode.Choice BuildChoice(NodeCanvasGraphContext context) => new()
             {
-                Statement = Statement,
+                Statement = Statement.BuildNodeCanvasObject(context),
                 Condition = Condition?.BuildCondition(context),
                 IsUnfolded = IsUnfolded
             };

@@ -1,20 +1,20 @@
 using Conflux.NodeCanvas.Nodes;
 using Conflux.Schema.Context;
-using Conflux.Schema.Deserializer;
 using Conflux.Schema.References;
+using Conflux.Schema.Serialization;
 using YamlDotNet.Serialization;
 
 namespace Conflux.Schema.Statements
 {
     [ConfluxDerived("say")]
-    internal class SayStatement : ConfluxStatement
+    internal class SayConfluxStatement : ConfluxStatement
     {
         [ConfluxMainProperty]
         [YamlMember(Alias = "statement")]
         public ConfluxStatementReference Statement { get; set; } = new();
 
         [YamlMember(Alias = "actor")]
-        public ConfluxActorReference? Actor { get; set; } = null;
+        public ConfluxActorReference? Actor { get; set; }
 
         public override ConfluxGraph BuildGraph(NodeCanvasGraphContext context)
         {

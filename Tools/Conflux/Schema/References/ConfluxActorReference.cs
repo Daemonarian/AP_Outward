@@ -1,7 +1,7 @@
 using Conflux.Schema.Context;
 using Conflux.Schema.DerivedDatas;
-using Conflux.Schema.Deserializer;
 using Conflux.Schema.Exceptions;
+using Conflux.Schema.Serialization;
 using YamlDotNet.Serialization;
 
 namespace Conflux.Schema.References
@@ -10,11 +10,11 @@ namespace Conflux.Schema.References
     {
         [ConfluxMainProperty]
         [YamlMember(Alias = "key")]
-        public string? Key { get; set; } = null;
+        public string? Key { get; set; }
 
         public ConfluxActor BuildActor(NodeCanvasGraphContext context)
         {
-            if (string.IsNullOrWhiteSpace(Key))
+            if (Key is null)
             {
                 throw new ConfluxValueException("The value actor.key must be specified.");
             }

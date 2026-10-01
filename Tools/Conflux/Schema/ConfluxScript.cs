@@ -12,7 +12,7 @@ namespace Conflux.Schema
     internal abstract class ConfluxScript
     {
         [YamlMember(Alias = "type")]
-        public string TypeName { get; set; } = string.Empty;
+        public abstract string TypeName { get; set; }
 
         [YamlMember(Alias = "replace")]
         public List<string> Replace { get; set; } = [];
@@ -23,7 +23,8 @@ namespace Conflux.Schema
         [YamlMember(Alias = "blackboard")]
         public ConfluxLocalBlackboard LocalBlackboard { get; set; } = new();
 
-        public abstract ConfluxDerivedData DerivedData { get; }
+        [YamlIgnore]
+        public abstract ConfluxDerivedData DerivedData { get; set; }
 
         public GraphTemplate BuildGraphReplacementTemplate()
         {

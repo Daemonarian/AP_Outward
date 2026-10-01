@@ -3,6 +3,7 @@ using Conflux.GraphViz;
 using Conflux.NodeCanvas;
 using Conflux.NodeCanvas.Serialization;
 using Conflux.Schema;
+using Conflux.Schema.Serialization;
 
 namespace Conflux
 {
@@ -35,6 +36,7 @@ namespace Conflux
                 Template,
                 Dot,
                 SVG,
+                Conflux,
             }
         }
 
@@ -88,7 +90,12 @@ namespace Conflux
             // convert to output format
 
             string rawOutput;
-            if (options.Format == Options.FormatOptions.Template)
+            if (options.Format == Options.FormatOptions.Conflux)
+            {
+                script ??= template.BuildConfluxScript();
+                rawOutput = ConfluxScriptSerializer.Serialize(script);
+            }
+            else if (options.Format == Options.FormatOptions.Template)
             {
                 rawOutput = GraphTemplateSerializer.Serialize(template);
             }

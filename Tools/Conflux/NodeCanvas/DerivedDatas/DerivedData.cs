@@ -1,6 +1,9 @@
+using Conflux.Schema.DerivedDatas;
+
 namespace Conflux.NodeCanvas.DerivedDatas
 {
-    internal class DerivedData
+    internal abstract class DerivedData
     {
+        public abstract ConfluxDerivedData BuildConfluxDerivedData(Graph graph);
     }
 }

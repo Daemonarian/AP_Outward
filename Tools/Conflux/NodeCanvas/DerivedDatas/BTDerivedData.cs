@@ -1,4 +1,5 @@
 using Conflux.NodeCanvas.Serialization;
+using Conflux.Schema.DerivedDatas;
 using Newtonsoft.Json;
 
 namespace Conflux.NodeCanvas.DerivedDatas
@@ -11,5 +12,11 @@ namespace Conflux.NodeCanvas.DerivedDatas
 
         [JsonProperty("updateInterval")]
         public float UpdateInterval { get; set; } = 0f;
+
+        public override ConfluxBTDerivedData BuildConfluxDerivedData(Graph graph) => new()
+        {
+            DoRepeat = Repeat,
+            UpdateInterval = UpdateInterval,
+        };
     }
 }

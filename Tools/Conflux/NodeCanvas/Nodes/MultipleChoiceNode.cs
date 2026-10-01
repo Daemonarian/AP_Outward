@@ -1,7 +1,11 @@
 using System.Text;
 using Conflux.GraphViz;
 using Conflux.NodeCanvas.Conditions;
+using Conflux.NodeCanvas.References;
 using Conflux.NodeCanvas.Serialization;
+using Conflux.Schema;
+using Conflux.Schema.Exceptions;
+using Conflux.Schema.Statements;
 using Newtonsoft.Json;
 
 namespace Conflux.NodeCanvas.Nodes
@@ -47,6 +51,30 @@ namespace Conflux.NodeCanvas.Nodes
         }
 
         public override string? GetGraphVizOutConnectionLabel(int index) => $"{index}";
+
+        public override ConfluxBlock BuildConfluxBlock(Graph graph, List<ConfluxBlock> children)
+        {
+            if (children.Count > OutConnectionCount)
+            {
+                throw new ConfluxException($"MultipleChoiceNode can only have {OutConnectionCount} children.");
+            }
+
+            return new ConfluxBlock
+            {
+                Statements = [new ChoiceConfluxStatement
+                {
+                    Choices = [.. Choices.Select((choice, i) => new ChoiceConfluxStatement.Choice
+                    {
+                        Statement = choice.Statement?.BuildConfluxStatementReference(graph) ?? throw new ConfluxException("Choice statement is required"),
+                        Condition = choice.Condition?.BuildConfluxCondition(graph),
+                        IsUnfolded = choice.IsUnfolded,
+                        Then = i < children.Count ? children[i] : new ConfluxBlock(),
+                    })],
+                    AvailableTime = AvailableTime,
+                    SaySelection = SaySelection,
+                }],
+            };
+        }
 
         internal class Choice : IGraphVizLabelable
         {

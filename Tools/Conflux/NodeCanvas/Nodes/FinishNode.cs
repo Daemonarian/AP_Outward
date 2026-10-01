@@ -1,5 +1,7 @@
 using System.Text;
 using Conflux.NodeCanvas.Serialization;
+using Conflux.Schema;
+using Conflux.Schema.Exceptions;
 using Newtonsoft.Json;
 
 namespace Conflux.NodeCanvas.Nodes
@@ -24,6 +26,19 @@ namespace Conflux.NodeCanvas.Nodes
             }
 
             return content.ToString();
+        }
+
+        public override ConfluxBlock BuildConfluxBlock(Graph graph, List<ConfluxBlock> children)
+        {
+            if (children.Count > OutConnectionCount)
+            {
+                throw new ConfluxException($"FinishNode can only have {OutConnectionCount} children.");
+            }
+
+            return new ConfluxBlock
+            {
+                Statements = [],
+            };
         }
 
         internal enum CompactStatus

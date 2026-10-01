@@ -1,4 +1,4 @@
-namespace Conflux.Schema.Deserializer
+namespace Conflux.Schema.Serialization
 {
     [AttributeUsage(AttributeTargets.Property, Inherited = false)]
     internal class ConfluxMainPropertyAttribute : Attribute

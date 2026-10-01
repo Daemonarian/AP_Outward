@@ -1,20 +1,21 @@
 using Conflux.GraphViz;
-using Conflux.Schema.Deserializer;
+using Conflux.Schema.References;
+using Conflux.Schema.Serialization;
 using Newtonsoft.Json;
 using YamlDotNet.Serialization;
 
-namespace Conflux.NodeCanvas
+namespace Conflux.NodeCanvas.References
 {
     internal class Statement : IGraphVizLabelable
     {
         [ConfluxMainProperty]
         [YamlMember(Alias = "text")]
         [JsonProperty("_text")]
-        public string Text { get; set; } = "";
+        public string? Text { get; set; }
 
         [YamlMember(Alias = "meta")]
         [JsonProperty("_meta")]
-        public string? Meta { get; set; } = null;
+        public string? Meta { get; set; }
 
         public string ToGraphVizLabel()
         {
@@ -30,5 +31,11 @@ namespace Conflux.NodeCanvas
 
             return string.Empty;
         }
+
+        public ConfluxStatementReference BuildConfluxStatementReference(Graph graph) => new()
+        {
+            Meta = Meta,
+            Text = Text,
+        };
     }
 }

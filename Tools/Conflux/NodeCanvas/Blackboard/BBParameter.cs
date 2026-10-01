@@ -1,4 +1,6 @@
 using Conflux.GraphViz;
+using Conflux.Schema.Blackboards;
+using Conflux.Schema.Context;
 using Newtonsoft.Json;
 
 namespace Conflux.NodeCanvas.Blackboard
@@ -27,6 +29,12 @@ namespace Conflux.NodeCanvas.Blackboard
 
             return string.Empty;
         }
+
+        public ConfluxBlackboardVariableReference BuildConfluxBlackboardVariableReference(Graph graph) => new()
+        {
+            Name = Name,
+            ID = string.IsNullOrEmpty(TargetVariableID) ? null : Guid.Parse(TargetVariableID),
+        };
     }
 
     internal class BBParameter<T> : BBParameter
@@ -49,6 +57,42 @@ namespace Conflux.NodeCanvas.Blackboard
             }
 
             return Value?.ToString() ?? string.Empty;
+        }
+
+        public new ConfluxBlackboardVariableReference<T> BuildConfluxBlackboardVariableReference(Graph graph)
+        {
+            if (HasValue())
+            {
+                return new()
+                {
+                    Name = Name,
+                    ID = string.IsNullOrEmpty(TargetVariableID) ? null : Guid.Parse(TargetVariableID),
+                };
+            }
+
+            return new()
+            {
+                Value = Value,
+            };
+        }
+
+        public ConfluxBlackboardVariableReference<T, T2> BuildConfluxBlackboardVariableReference<T2>(Graph graph) where T2 : INodeCanvasObjectBuilder<T>
+        {
+            if (HasValue())
+            {
+                return new()
+                {
+                    Name = Name,
+                    ID = string.IsNullOrEmpty(TargetVariableID) ? null : Guid.Parse(TargetVariableID),
+                };
+            }
+
+            var builder = Value as IConfluxObjectBuilder<T2> ?? throw new NotImplementedException($"The value of type {typeof(T).Name} does not implement IConfluxObjectBuilder<{typeof(T2).Name}>.");
+
+            return new()
+            {
+                Value = builder.BuildConfluxObject(graph),
+            };
         }
     }
 }

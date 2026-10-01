@@ -1,10 +1,11 @@
+using System.ComponentModel;
 using Conflux.NodeCanvas.Actions;
 using Conflux.NodeCanvas.References;
 using Conflux.Schema.Blackboards;
 using Conflux.Schema.Context;
-using Conflux.Schema.Deserializer;
 using Conflux.Schema.Exceptions;
 using Conflux.Schema.References;
+using Conflux.Schema.Serialization;
 using YamlDotNet.Serialization;
 
 namespace Conflux.Schema.Actions
@@ -23,6 +24,7 @@ namespace Conflux.Schema.Actions
         public ConfluxBlackboardVariableReference<int> XPAmount { get; set; } = new() { Value = 0 };
 
         [YamlMember(Alias = "to")]
+        [DefaultValue(RewardReceiver.Host)]
         public RewardReceiver Receiver { get; set; } = RewardReceiver.Host;
 
         public override GiveReward BuildAction(NodeCanvasGraphContext context) => new()

@@ -1,6 +1,7 @@
 using System.Text;
 using Conflux.NodeCanvas.References;
 using Conflux.NodeCanvas.Serialization;
+using Conflux.Schema.Actions;
 using Newtonsoft.Json;
 
 namespace Conflux.NodeCanvas.Actions
@@ -37,5 +38,12 @@ namespace Conflux.NodeCanvas.Actions
 
             return content.ToString().TrimEnd();
         }
+
+        public override SendQuestEventConfluxAction BuildConfluxAction(Graph graph) => new()
+        {
+            QuestEvent = QuestEventRef.BuildConfluxObject(graph),
+            Count = StackAmount,
+            IgnoreNetworkSync = IgnoreNetworkSync,
+        };
     }
 }

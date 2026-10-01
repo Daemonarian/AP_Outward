@@ -26,7 +26,7 @@ namespace Conflux.NodeCanvas
         public BlackboardSource LocalBlackboard { get; set; } = new();
 
         [JsonProperty("DerivedData")]
-        public DerivedData DerivedData { get; set; } = new();
+        public DerivedData? DerivedData { get; set; } = null;
 
         [JsonConverter(typeof(StringEnumConverter))]
         public enum GraphType

@@ -2,7 +2,7 @@ using Conflux.Schema.Statements;
 using YamlDotNet.Core;
 using YamlDotNet.Serialization;
 
-namespace Conflux.Schema
+namespace Conflux.Schema.Serialization
 {
     internal class ConfluxThreadNodeDeserializer : INodeDeserializer
     {

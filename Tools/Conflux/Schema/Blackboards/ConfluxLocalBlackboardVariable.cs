@@ -1,9 +1,10 @@
 using System.Collections.Frozen;
-using Conflux.NodeCanvas;
+using System.ComponentModel;
 using Conflux.NodeCanvas.Blackboard;
+using Conflux.NodeCanvas.References;
 using Conflux.Schema.Context;
-using Conflux.Schema.Deserializer;
 using Conflux.Schema.Exceptions;
+using Conflux.Schema.Serialization;
 using YamlDotNet.Serialization;
 
 namespace Conflux.Schema.Blackboards
@@ -28,13 +29,14 @@ namespace Conflux.Schema.Blackboards
         public string Type { get; set; } = string.Empty;
 
         [YamlMember(Alias = "id")]
-        public Guid? ID { get; set; } = null;
+        public Guid? ID { get; set; }
 
         [YamlMember(Alias = "protected")]
+        [DefaultValue(false)]
         public bool IsProtected { get; set; } = false;
 
         [YamlMember(Alias = "index")]
-        public int? Index { get; set; } = null;
+        public int? Index { get; set; }
 
         public Variable BuildVariable(NodeCanvasGraphContext context)
         {
