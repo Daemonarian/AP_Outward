@@ -1,12 +1,14 @@
 using Conflux.NodeCanvas.References;
 using Conflux.Schema.Context;
 using Conflux.Schema.Exceptions;
+using Conflux.Schema.Serialization;
 using YamlDotNet.Serialization;
 
 namespace Conflux.Schema.References
 {
     internal class ConfluxUnityObjectReference : INodeCanvasObjectBuilder<UnityObject>
     {
+        [ConfluxMainProperty]
         [YamlMember(Alias = "index")]
         public int? SideCarIndex { get; set; }
 

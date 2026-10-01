@@ -7,6 +7,7 @@ using YamlDotNet.Serialization;
 
 namespace Conflux.Schema.Conditions
 {
+    [ConfluxDerived("isQuestEventExpired")]
     internal class IsQuestEventExpiredConfluxCondition : ConfluxCondition
     {
         [ConfluxMainProperty]

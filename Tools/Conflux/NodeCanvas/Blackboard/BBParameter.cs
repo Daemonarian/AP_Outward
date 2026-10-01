@@ -42,8 +42,6 @@ namespace Conflux.NodeCanvas.Blackboard
         [JsonProperty("_value")]
         public T? Value { get; set; }
 
-        public override bool HasValue() => base.HasValue() || !EqualityComparer<T>.Default.Equals(Value, default);
-
         public override string ToGraphVizLabel()
         {
             if (base.HasValue())
