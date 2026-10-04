@@ -10,10 +10,10 @@ namespace Conflux.NodeCanvas
 {
     internal class Graph
     {
-        [JsonProperty("version")]
+        [JsonProperty("version", DefaultValueHandling = DefaultValueHandling.Include)]
         public float Version { get; set; } = 2.92f;
 
-        [JsonProperty("type")]
+        [JsonProperty("type", DefaultValueHandling = DefaultValueHandling.Include)]
         public GraphType Type { get; set; } = GraphType.DialogueTree;
 
         [JsonProperty("nodes")]
