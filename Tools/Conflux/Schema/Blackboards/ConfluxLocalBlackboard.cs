@@ -40,5 +40,7 @@ namespace Conflux.Schema.Blackboards
                 Variables = variables,
             };
         }
+
+        public bool IsEmpty() => Variables.Count == 0;
     }
 }

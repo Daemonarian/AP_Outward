@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Text;
 using Conflux.NodeCanvas.Blackboard;
 using Conflux.NodeCanvas.References;
@@ -16,6 +17,7 @@ namespace Conflux.NodeCanvas.Actions
         public BBParameter<UnityObject>? DialogueStarter { get; set; }
 
         [JsonProperty("waitActionFinish")]
+        [DefaultValue(true)]
         public bool WaitActionFinish { get; set; } = true;
 
         public override string GetGraphVizShortName() => "Branch";

@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Runtime.Serialization;
 using System.Text;
 using Conflux.NodeCanvas.Serialization;
@@ -13,9 +14,11 @@ namespace Conflux.NodeCanvas.Nodes
     internal class ParallelNode(int outConnectionCount = -1) : BTNode
     {
         [JsonProperty("policy")]
+        [DefaultValue(ParallelPolicy.FirstFailure)]
         public ParallelPolicy Policy { get; set; } = ParallelPolicy.FirstFailure;
 
         [JsonProperty("dynamic")]
+        [DefaultValue(false)]
         public bool IsDynamic { get; set; } = false;
 
         private readonly int _outConnectionCount = outConnectionCount;

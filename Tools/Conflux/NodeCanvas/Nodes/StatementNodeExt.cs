@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Text;
 using Conflux.GraphViz;
 using Conflux.NodeCanvas.References;
@@ -13,13 +14,14 @@ namespace Conflux.NodeCanvas.Nodes
         public const string DefaultActorName = "INSTIGATOR";
 
         [JsonProperty("statement")]
-        public Statement Statement { get; set; } = new Statement { Text = "This is a dialogue text" };
+        public Statement? Statement { get; set; }
 
         [JsonProperty("_actorName")]
+        [DefaultValue(DefaultActorName)]
         public string? ActorName { get; set; } = DefaultActorName;
 
         [JsonProperty("_actorParameterID")]
-        public string? ActorParameterID { get; set; } = null;
+        public string? ActorParameterID { get; set; }
 
         public override int OutConnectionCount => 1;
 
@@ -38,14 +40,14 @@ namespace Conflux.NodeCanvas.Nodes
                 content.Append(ActorParameterID.Trim()).Append(": ");
             }
 
-            content.Append(Statement.ToGraphVizLabel());
+            content.Append(Statement?.ToGraphVizLabel());
 
             return GraphVizConverter.WordWrap(content.ToString().TrimEnd());
         }
 
         protected override SayConfluxStatement BuildConfluxStatement(Graph graph) => new()
         {
-            Statement = Statement.BuildConfluxStatementReference(graph),
+            Statement = Statement?.BuildConfluxStatementReference(graph),
             Actor = new()
             {
                 Key = ActorName is null || string.Equals(ActorName, DefaultActorName, StringComparison.Ordinal) ? null : ActorName,

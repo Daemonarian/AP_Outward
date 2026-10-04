@@ -1,8 +1,11 @@
+using System.ComponentModel;
+using System.Runtime.Serialization;
 using System.Text;
 using Conflux.NodeCanvas.Serialization;
 using Conflux.Schema;
 using Conflux.Schema.Exceptions;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Conflux.NodeCanvas.Nodes
 {
@@ -10,6 +13,7 @@ namespace Conflux.NodeCanvas.Nodes
     internal class FinishNode : DTNode
     {
         [JsonProperty("finishState")]
+        [DefaultValue(CompactStatus.Success)]
         public CompactStatus FinishState = CompactStatus.Success;
 
         public override int OutConnectionCount => 0;
@@ -41,10 +45,14 @@ namespace Conflux.NodeCanvas.Nodes
             };
         }
 
+        [JsonConverter(typeof(StringEnumConverter))]
         internal enum CompactStatus
         {
+            [EnumMember(Value = "Failure")]
             Failure,
-            Success
+
+            [EnumMember(Value = "Success")]
+            Success,
         }
     }
 }

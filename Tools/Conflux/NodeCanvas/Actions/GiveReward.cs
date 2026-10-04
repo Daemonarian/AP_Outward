@@ -1,3 +1,5 @@
+using System.ComponentModel;
+using System.Runtime.Serialization;
 using System.Text;
 using Conflux.GraphViz;
 using Conflux.NodeCanvas.Blackboard;
@@ -6,6 +8,7 @@ using Conflux.NodeCanvas.Serialization;
 using Conflux.Schema.Actions;
 using Conflux.Schema.References;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Conflux.NodeCanvas.Actions
 {
@@ -13,6 +16,7 @@ namespace Conflux.NodeCanvas.Actions
     internal class GiveReward : ActionTask
     {
         [JsonProperty("RewardReceiver")]
+        [DefaultValue(Receiver.Host)]
         public Receiver RewardReceiver { get; set; } = Receiver.Host;
 
         [JsonProperty("XpAmount")]
@@ -73,11 +77,17 @@ namespace Conflux.NodeCanvas.Actions
             _ => throw new ArgumentOutOfRangeException(nameof(receiver), receiver, null)
         };
 
+        [JsonConverter(typeof(StringEnumConverter))]
         public enum Receiver
         {
+            [EnumMember(Value = "Host")]
             Host,
+
+            [EnumMember(Value = "Instigator")]
             Instigator,
-            Everyone
+
+            [EnumMember(Value = "Everyone")]
+            Everyone,
         }
 
         public class ItemQuantity : IGraphVizLabelable

@@ -16,7 +16,8 @@ namespace Conflux.NodeCanvas.Actions
     internal class SetObjectActiveAction : ActionTask
     {
         [JsonProperty("setTo")]
-        public SetActiveMode Mode { get; set; } = SetActiveMode.Deactivate;
+        [DefaultValue(SetActiveMode.Toggle)]
+        public SetActiveMode Mode { get; set; } = SetActiveMode.Toggle;
 
         [JsonProperty("overrideAgent")]
         public BBParameter<UnityObject> Object { get; set; } = new();
@@ -45,7 +46,7 @@ namespace Conflux.NodeCanvas.Actions
             _ => throw new ConfluxValueException($"SetObjectActiveAction mode {mode} is not supported."),
         };
 
-        [TypeConverter(typeof(StringEnumConverter))]
+        [JsonConverter(typeof(StringEnumConverter))]
         public enum SetActiveMode
         {
             [EnumMember(Value = "Deactivate")]

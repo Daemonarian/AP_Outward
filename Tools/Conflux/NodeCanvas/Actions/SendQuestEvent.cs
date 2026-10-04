@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Text;
 using Conflux.NodeCanvas.References;
 using Conflux.NodeCanvas.Serialization;
@@ -13,10 +14,12 @@ namespace Conflux.NodeCanvas.Actions
         public QuestEventReference QuestEventRef { get; set; } = new();
 
         [JsonProperty("StackAmount")]
+        [DefaultValue(1)]
         public int StackAmount { get; set; } = 1;
 
         [JsonProperty("IgnoreNetworkSync")]
-        public bool IgnoreNetworkSync { get; set; }
+        [DefaultValue(false)]
+        public bool IgnoreNetworkSync { get; set; } = false;
 
         public override string GetGraphVizShortName() => "SendQuestEvent";
 

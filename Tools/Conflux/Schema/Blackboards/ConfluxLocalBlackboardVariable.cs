@@ -64,7 +64,7 @@ namespace Conflux.Schema.Blackboards
                 Name = Name,
                 Type = fullyQualifiedType,
                 ID = ID?.ToString(),
-                IsProtected = IsProtected ? true : null,
+                IsProtected = IsProtected,
                 Value = value,
             };
         }

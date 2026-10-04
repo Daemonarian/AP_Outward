@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using Conflux.NodeCanvas.References;
 using Conflux.NodeCanvas.Serialization;
 using Conflux.Schema.Blackboards;
@@ -19,7 +20,8 @@ namespace Conflux.NodeCanvas.Blackboard
         public string? ID { get; set; }
 
         [JsonProperty("_protected")]
-        public bool? IsProtected { get; set; }
+        [DefaultValue(false)]
+        public bool IsProtected { get; set; } = false;
 
         [JsonProperty("_value")]
         public UnityObject? Value { get; set; }
@@ -29,7 +31,7 @@ namespace Conflux.NodeCanvas.Blackboard
             Type = Type ?? throw new ConfluxValueException("Variable type is not specified."),
             Name = Name ?? throw new ConfluxValueException("Variable name is not specified."),
             ID = string.IsNullOrEmpty(ID) ? null : Guid.Parse(ID),
-            IsProtected = IsProtected ?? false,
+            IsProtected = IsProtected,
             Index = Value?.SideCarIndex,
         };
     }

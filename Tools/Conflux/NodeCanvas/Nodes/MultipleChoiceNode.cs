@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Text;
 using Conflux.GraphViz;
 using Conflux.NodeCanvas.Conditions;
@@ -14,10 +15,12 @@ namespace Conflux.NodeCanvas.Nodes
     internal class MultipleChoiceNode : DTNode
     {
         [JsonProperty("availableTime")]
-        public float AvailableTime { get; set; }
+        [DefaultValue(0f)]
+        public float AvailableTime { get; set; } = 0f;
 
         [JsonProperty("saySelection")]
-        public bool SaySelection { get; set; }
+        [DefaultValue(false)]
+        public bool SaySelection { get; set; } = false;
 
         [JsonProperty("availableChoices")]
         public List<Choice> Choices { get; set; } = [];
@@ -79,13 +82,14 @@ namespace Conflux.NodeCanvas.Nodes
         internal class Choice : IGraphVizLabelable
         {
             [JsonProperty("isUnfolded")]
+            [DefaultValue(true)]
             public bool IsUnfolded { get; set; } = true;
 
             [JsonProperty("statement")]
-            public Statement? Statement { get; set; } = null;
+            public Statement? Statement { get; set; }
 
             [JsonProperty("condition")]
-            public ConditionTask? Condition { get; set; } = null;
+            public ConditionTask? Condition { get; set; }
 
             public string ToGraphVizLabel()
             {

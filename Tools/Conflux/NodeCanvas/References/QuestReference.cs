@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using Conflux.GraphViz;
 using Conflux.Outward;
 using Conflux.Schema.Exceptions;
@@ -14,6 +15,7 @@ namespace Conflux.NodeCanvas.References
         };
 
         [JsonProperty("m_itemID")]
+        [DefaultValue(-1)]
         public int ItemID { get; set; } = -1;
 
         public string ToGraphVizLabel()

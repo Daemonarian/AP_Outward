@@ -11,7 +11,7 @@ namespace Conflux.Schema.Statements
     {
         [ConfluxMainProperty]
         [YamlMember(Alias = "statement")]
-        public ConfluxStatementReference Statement { get; set; } = new();
+        public ConfluxStatementReference? Statement { get; set; }
 
         [YamlMember(Alias = "actor")]
         public ConfluxActorReference? Actor { get; set; }
@@ -21,7 +21,7 @@ namespace Conflux.Schema.Statements
             var actor = Actor?.BuildActor(context);
             var node = new StatementNodeExt
             {
-                Statement = Statement.BuildNodeCanvasObject(context),
+                Statement = Statement?.BuildNodeCanvasObject(context),
                 ActorName = actor?.Key,
                 ActorParameterID = actor?.ID?.ToString(),
             };

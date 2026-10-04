@@ -10,7 +10,7 @@ namespace Conflux.NodeCanvas.Nodes
     internal class BTActionNode : BTNode
     {
         [JsonProperty("_action")]
-        public ActionTask? Action { get; set; } = null;
+        public ActionTask? Action { get; set; }
 
         public override int OutConnectionCount => 1;
 

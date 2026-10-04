@@ -8,8 +8,15 @@ namespace Conflux.Schema
     {
         public override string TypeName { get => "dialogue"; set { } }
 
-        [YamlMember(Alias = "data")]
+        [YamlIgnore]
         public ConfluxDTDerivedData DTDerivedData { get; set; } = new();
+
+        [YamlMember(Alias = "data")]
+        public ConfluxDTDerivedData? DTDerivedDataProxy
+        {
+            get => DTDerivedData.IsEmpty() ? null : DTDerivedData;
+            set => DTDerivedData = value ?? new();
+        }
 
         public override ConfluxDerivedData DerivedData
         {

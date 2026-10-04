@@ -8,8 +8,15 @@ namespace Conflux.Schema
     {
         public override string TypeName { get => "behaviour"; set { } }
 
-        [YamlMember(Alias = "data")]
+        [YamlIgnore]
         public ConfluxBTDerivedData BTDerivedData { get; set; } = new();
+
+        [YamlMember(Alias = "data")]
+        public ConfluxBTDerivedData? BTDerivedDataProxy
+        {
+            get => BTDerivedData.IsEmpty() ? null : BTDerivedData;
+            set => BTDerivedData = value ?? new();
+        }
 
         public override ConfluxDerivedData DerivedData
         {

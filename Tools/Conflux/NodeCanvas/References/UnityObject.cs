@@ -1,16 +1,12 @@
 using Conflux.GraphViz;
 using Conflux.Schema.References;
-using Conflux.Schema.Serialization;
 using Newtonsoft.Json;
-using YamlDotNet.Serialization;
 
 namespace Conflux.NodeCanvas.References
 {
     [JsonConverter(typeof(UnityObjectConverter))]
     internal class UnityObject : IGraphVizLabelable, IConfluxObjectBuilder<ConfluxUnityObjectReference>
     {
-        [ConfluxMainProperty]
-        [YamlMember(Alias = "index")]
         public int SideCarIndex { get; set; }
 
         public string ToGraphVizLabel() => $"UnityObject[{SideCarIndex}]";

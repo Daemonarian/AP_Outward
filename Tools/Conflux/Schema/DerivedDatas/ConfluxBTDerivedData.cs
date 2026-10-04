@@ -20,5 +20,7 @@ namespace Conflux.Schema.DerivedDatas
             Repeat = DoRepeat,
             UpdateInterval = UpdateInterval,
         };
+
+        public override bool IsEmpty() => DoRepeat == false && UpdateInterval == 0f;
     }
 }

@@ -6,5 +6,7 @@ namespace Conflux.Schema.DerivedDatas
     internal abstract class ConfluxDerivedData
     {
         public abstract DerivedData BuildDerivedData(NodeCanvasGraphContext context);
+
+        public abstract bool IsEmpty();
     }
 }

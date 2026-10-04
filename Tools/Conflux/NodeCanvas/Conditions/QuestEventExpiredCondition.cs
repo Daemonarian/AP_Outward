@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Text;
 using Conflux.NodeCanvas.References;
 using Conflux.NodeCanvas.Serialization;
@@ -11,9 +12,10 @@ namespace Conflux.NodeCanvas.Conditions
     internal class QuestEventExpiredCondition : ConditionTask
     {
         [JsonProperty("QuestEventRef")]
-        public QuestEventReference? QuestEvent { get; set; } = null;
+        public QuestEventReference? QuestEvent { get; set; }
 
         [JsonProperty("ExpiryTime")]
+        [DefaultValue(1)]
         public int ExpiryTime { get; set; } = 1;
 
         public override string GetGraphVizShortName() => "IsQuestEventExpired";

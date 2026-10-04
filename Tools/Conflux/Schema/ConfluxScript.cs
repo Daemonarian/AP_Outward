@@ -20,8 +20,15 @@ namespace Conflux.Schema
         [YamlMember(Alias = "threads")]
         public Dictionary<string, ConfluxBlock> Threads { get; set; } = [];
 
-        [YamlMember(Alias = "blackboard")]
+        [YamlIgnore]
         public ConfluxLocalBlackboard LocalBlackboard { get; set; } = new();
+
+        [YamlMember(Alias = "blackboard")]
+        public ConfluxLocalBlackboard? LocalBlackboardProxy
+        {
+            get => LocalBlackboard.IsEmpty() ? null : LocalBlackboard;
+            set => LocalBlackboard = value ?? new();
+        }
 
         [YamlIgnore]
         public abstract ConfluxDerivedData DerivedData { get; set; }

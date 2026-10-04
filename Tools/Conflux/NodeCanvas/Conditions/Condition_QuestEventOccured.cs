@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Text;
 using Conflux.NodeCanvas.References;
 using Conflux.NodeCanvas.Serialization;
@@ -14,6 +15,7 @@ namespace Conflux.NodeCanvas.Conditions
         public QuestEventReference? QuestEventRef { get; set; }
 
         [JsonProperty("MinStack")]
+        [DefaultValue(1)]
         public int MinStack { get; set; } = 1;
 
         public override string GetGraphVizShortName() => "QuestEventOccurred";

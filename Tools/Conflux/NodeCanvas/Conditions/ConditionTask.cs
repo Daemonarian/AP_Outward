@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Text;
 using System.Text.Json;
 using Conflux.GraphViz;
@@ -9,7 +10,8 @@ namespace Conflux.NodeCanvas.Conditions
     internal abstract class ConditionTask : IGraphVizLabelable
     {
         [JsonProperty("_invert")]
-        public bool Invert { get; set; }
+        [DefaultValue(false)]
+        public bool Invert { get; set; } = false;
 
         public virtual string GetGraphVizShortName() => GetType().Name;
 

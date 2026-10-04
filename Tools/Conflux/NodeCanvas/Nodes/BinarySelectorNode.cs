@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using System.Text;
 using Conflux.NodeCanvas.Conditions;
 using Conflux.NodeCanvas.Serialization;
@@ -15,6 +16,7 @@ namespace Conflux.NodeCanvas.Nodes
         public ConditionTask? Condition { get; set; } = null;
 
         [JsonProperty("dynamic")]
+        [DefaultValue(false)]
         public bool IsDynamic { get; set; } = false;
 
         public override int OutConnectionCount => 2;

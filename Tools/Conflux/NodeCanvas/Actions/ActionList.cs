@@ -1,8 +1,11 @@
+using System.ComponentModel;
+using System.Runtime.Serialization;
 using System.Text;
 using Conflux.GraphViz;
 using Conflux.NodeCanvas.Serialization;
 using Conflux.Schema.Actions;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Conflux.NodeCanvas.Actions
 {
@@ -10,6 +13,7 @@ namespace Conflux.NodeCanvas.Actions
     internal class ActionList : ActionTask
     {
         [JsonProperty("executionMode")]
+        [DefaultValue(ActionsExecutionMode.ActionsRunInSequence)]
         public ActionsExecutionMode ExecutionMode { get; set; } = ActionsExecutionMode.ActionsRunInSequence;
 
         [JsonProperty("actions")]
@@ -53,10 +57,15 @@ namespace Conflux.NodeCanvas.Actions
             _ => throw new NotImplementedException($"ActionList with ExecutionMode {ExecutionMode} is not implemented."),
         };
 
+
+        [JsonConverter(typeof(StringEnumConverter))]
         public enum ActionsExecutionMode
         {
+            [EnumMember(Value = "ActionsRunInSequence")]
             ActionsRunInSequence,
-            ActionsRunInParallel
+
+            [EnumMember(Value = "ActionsRunInParallel")]
+            ActionsRunInParallel,
         }
     }
 }

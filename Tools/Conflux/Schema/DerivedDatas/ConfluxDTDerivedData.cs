@@ -28,5 +28,7 @@ namespace Conflux.Schema.DerivedDatas
         {
             ActorParameters = [.. Actors.Values.Select(a => a.BuildActorParameter(context))],
         };
+
+        public override bool IsEmpty() => Actors.Count == 0;
     }
 }

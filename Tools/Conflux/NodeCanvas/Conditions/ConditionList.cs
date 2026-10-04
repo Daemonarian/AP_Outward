@@ -1,9 +1,12 @@
+using System.ComponentModel;
+using System.Runtime.Serialization;
 using System.Text;
 using Conflux.GraphViz;
 using Conflux.NodeCanvas.Serialization;
 using Conflux.Schema.Conditions;
 using Conflux.Schema.Exceptions;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
 
 namespace Conflux.NodeCanvas.Conditions
 {
@@ -11,6 +14,7 @@ namespace Conflux.NodeCanvas.Conditions
     internal class ConditionList : ConditionTask
     {
         [JsonProperty("checkMode")]
+        [DefaultValue(ConditionsCheckMode.AllTrueRequired)]
         public ConditionsCheckMode CheckMode { get; set; } = ConditionsCheckMode.AllTrueRequired;
 
         [JsonProperty("conditions")]
@@ -52,9 +56,13 @@ namespace Conflux.NodeCanvas.Conditions
             _ => throw new ConfluxValueException($"ConditionList CheckMode {CheckMode} is not supported."),
         };
 
+        [JsonConverter(typeof(StringEnumConverter))]
         internal enum ConditionsCheckMode
         {
+            [EnumMember(Value = "AllTrueRequired")]
             AllTrueRequired,
+
+            [EnumMember(Value = "AnyTrueSuffice")]
             AnyTrueSuffice
         }
     }

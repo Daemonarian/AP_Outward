@@ -7,7 +7,7 @@ namespace Conflux.NodeCanvas.Nodes
     internal class GoToNode : DTNode
     {
         [JsonProperty("_targetNode")]
-        public Node? TargetNode { get; set; } = null;
+        public Node? TargetNode { get; set; }
 
         public override int OutConnectionCount => 0;
 

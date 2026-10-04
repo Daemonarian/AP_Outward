@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using Conflux.NodeCanvas.Nodes;
 using Newtonsoft.Json;
 
@@ -12,6 +13,7 @@ namespace Conflux.NodeCanvas.Connections
         public Node? TargetNode { get; set; }
 
         [JsonProperty("_isDisabled")]
-        public bool IsDisabled { get; set; }
+        [DefaultValue(false)]
+        public bool IsDisabled { get; set; } = false;
     }
 }
