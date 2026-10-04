@@ -1,0 +1,434 @@
+type: behaviour
+
+replace:
+- CierzoNewTerrain/_SNPC/Tree Behavior UNPC
+
+data:
+  repeat: true
+  
+threads:
+  start:
+  - parallel:
+    - - parallel:
+        - - if:
+              condition:
+                or:
+                - hasQuestEvent: Oliele_Monsoon
+                - hasQuestEvent: General_DoneQuest0
+              then:
+              - do:
+                  sequence:
+                  - activate:
+                      object:
+                        name: Oliele_D
+                      mode: Deactivate
+                  - activate:
+                      object:
+                        name: OlieleOffMonsoonA
+                      mode: Deactivate
+              else:
+              - do:
+                  sequence:
+                  - activate:
+                      object:
+                        name: Oliele_D
+                      mode: Activate
+                  - activate:
+                      object:
+                        name: OlieleOffMonsoonA
+                      mode: Activate
+        - - if:
+              condition:
+                or:
+                - hasQuestEvent: Yzan_Levant
+                - hasQuestEvent: General_DoneQuest0
+              then:
+              - do:
+                  activate:
+                    object:
+                      name: Yzan_D
+                    mode: Deactivate
+              else:
+              - do:
+                  activate:
+                    object:
+                      name: Yzan_D
+                    mode: Activate
+        - - if:
+              condition:
+                and:
+                - hasQuestEvent: General_DoneQuest4
+                - not:
+                    hasQuestEvent: Vendavel_CierzoDestroyed
+              then:
+              - do:
+                  sequence:
+                  - activate:
+                      object:
+                        name: RissaManorOff
+                      mode: Activate
+                  - activate:
+                      object:
+                        name: RissaFrontHouse
+                      mode: Deactivate
+                  - activate:
+                      object:
+                        name: HurryRissa
+                      mode: Deactivate
+              else:
+              - if:
+                  condition:
+                    or:
+                    - hasQuestEvent: Rissa_Berg
+                    - hasQuestEvent: General_DoneQuest0
+                  then:
+                  - do:
+                      sequence:
+                      - activate:
+                          object:
+                            name: RissaManorOff
+                          mode: Deactivate
+                      - activate:
+                          object:
+                            name: RissaFrontHouse
+                          mode: Deactivate
+                      - activate:
+                          object:
+                            name: HurryRissa
+                          mode: Deactivate
+                  else:
+                  - if:
+                      condition:
+                        and:
+                        - hasQuestEvent: Oliele_Monsoon
+                        - hasQuestEvent: Yzan_Levant
+                      then:
+                      - do:
+                          sequence:
+                          - activate:
+                              object:
+                                name: RissaManorOff
+                              mode: Deactivate
+                          - activate:
+                              object:
+                                name: RissaFrontHouse
+                              mode: Deactivate
+                          - activate:
+                              object:
+                                name: HurryRissa
+                              mode: Activate
+                      else:
+                      - do:
+                          sequence:
+                          - activate:
+                              object:
+                                name: RissaManorOff
+                              mode: Activate
+                          - activate:
+                              object:
+                                name: RissaFrontHouse
+                              mode: Activate
+                          - activate:
+                              object:
+                                name: HurryRissa
+                              mode: Deactivate
+        - - if:
+              condition:
+                hasQuestEvent: Vendavel_CrockPacified
+              then:
+              - do:
+                  activate:
+                    object:
+                      name: Crock
+                    mode: Activate
+              else:
+              - do:
+                  activate:
+                    object:
+                      name: Crock
+                    mode: Deactivate
+    - - parallel:
+        - - if:
+              condition:
+                and:
+                - hasQuestEvent: General_DoneQuest0
+                - not:
+                    hasQuestEvent: General_MachineRepair
+              then:
+              - do:
+                  sequence:
+                  - activate:
+                      object:
+                        name: CleanWater
+                      mode: Deactivate
+                  - activate:
+                      object:
+                        name: DirtyWater
+                      mode: Activate
+              else:
+              - do:
+                  sequence:
+                  - activate:
+                      object:
+                        name: CleanWater
+                      mode: Activate
+                  - activate:
+                      object:
+                        name: DirtyWater
+                      mode: Deactivate
+        - - if:
+              condition:
+                hasQuestEvent: General_SortieCierzo
+              then:
+              - do:
+                  sequence:
+                  - activate:
+                      object:
+                        name: ThirdPlace
+                      mode: Activate
+                  - activate:
+                      object:
+                        name: BasicPosition
+                      mode: Activate
+                  - activate:
+                      object:
+                        name: BlockedEntrance
+                      mode: Deactivate
+                  - activate:
+                      object:
+                        name: SecondPlace
+                      mode: Deactivate
+              else:
+              - if:
+                  condition:
+                    hasQuestEvent: General_IntroPlayerHouse
+                  then:
+                  - do:
+                      sequence:
+                      - activate:
+                          object:
+                            name: ThirdPlace
+                          mode: Deactivate
+                      - activate:
+                          object:
+                            name: BasicPosition
+                          mode: Activate
+                      - activate:
+                          object:
+                            name: BlockedEntrance
+                          mode: Deactivate
+                      - activate:
+                          object:
+                            name: SecondPlace
+                          mode: Activate
+                  else:
+                  - do:
+                      sequence:
+                      - activate:
+                          object:
+                            name: ThirdPlace
+                          mode: Deactivate
+                      - activate:
+                          object:
+                            name: BasicPosition
+                          mode: Deactivate
+                      - activate:
+                          object:
+                            name: BlockedEntrance
+                          mode: Activate
+                      - activate:
+                          object:
+                            name: SecondPlace
+                          mode: Deactivate
+        - - if:
+              condition:
+                hasQuestEvent: Vendavel_RospaPacified
+              then:
+              - do:
+                  activate:
+                    object:
+                      name: EtoAkiyuki
+                    mode: Deactivate
+              else:
+              - do:
+                  activate:
+                    object:
+                      name: EtoAkiyuki
+                    mode: Activate
+    - - parallel:
+        - - if:
+              condition:
+                hasQuestEvent: General_SortieCierzo
+              then:
+              - if:
+                  condition:
+                    hasQuestEvent: Vendavel_BuracHelm
+                  then:
+                  - do:
+                      sequence:
+                      - activate:
+                          object:
+                            name: BuracBlockDoor
+                          mode: Deactivate
+                      - activate:
+                          object:
+                            name: BuracAwayDoor
+                          mode: Deactivate
+                      - activate:
+                          object:
+                            name: HelmlessBurac
+                          mode: Activate
+                  else:
+                  - do:
+                      sequence:
+                      - activate:
+                          object:
+                            name: BuracBlockDoor
+                          mode: Deactivate
+                      - activate:
+                          object:
+                            name: BuracAwayDoor
+                          mode: Activate
+                      - activate:
+                          object:
+                            name: HelmlessBurac
+                          mode: Deactivate
+              else:
+              - do:
+                  sequence:
+                  - activate:
+                      object:
+                        name: BuracBlockDoor
+                      mode: Activate
+                  - activate:
+                      object:
+                        name: BuracAwayDoor
+                      mode: Deactivate
+                  - activate:
+                      object:
+                        name: HelmlessBurac
+                      mode: Deactivate
+        - - if:
+              condition:
+                or:
+                - hasQuestEvent: General_SortieCierzo
+                - hasQuestEvent: General_BuracGaveSkill
+              then:
+              - do:
+                  sequence:
+                  - activate:
+                      object:
+                        name: ToChersoneseCond
+                      mode: Deactivate
+                  - activate:
+                      object:
+                        name: ToChersoneseNoCond
+                      mode: Activate
+              else:
+              - do:
+                  sequence:
+                  - activate:
+                      object:
+                        name: ToChersoneseCond
+                      mode: Activate
+                  - activate:
+                      object:
+                        name: ToChersoneseNoCond
+                      mode: Deactivate
+        - - if:
+              condition:
+                hasQuestEvent: General_NotLighthouseOwner
+              then:
+              - do:
+                  sequence:
+                  - activate:
+                      object:
+                        name: WarpToHouse
+                      mode: Deactivate
+                  - activate:
+                      object:
+                        name: WhileLostHouse
+                      mode: Activate
+              else:
+              - do:
+                  sequence:
+                  - activate:
+                      object:
+                        name: WarpToHouse
+                      mode: Activate
+                  - activate:
+                      object:
+                        name: WhileLostHouse
+                      mode: Deactivate
+        - - if:
+              condition:
+                hasQuestEvent: Artifacts_MertonBody
+              then:
+              - do:
+                  activate:
+                    object:
+                      name: MertonBody
+                    mode: Deactivate
+              else:
+              - do:
+                  activate:
+                    object:
+                      name: MertonBody
+                    mode: Activate
+        - - if:
+              condition:
+                and:
+                - hasQuestEvent: General_RolandGift1
+                - hasQuestEvent: General_DoneQuest0
+              then:
+              - do:
+                  sequence:
+                  - activate:
+                      object:
+                        name: CoA_Roland
+                      mode: Deactivate
+                  - activate:
+                      object:
+                        name: Prequest_Roland
+                      mode: Deactivate
+              else:
+              - if:
+                  condition:
+                    isQuestComplete: Call_to_Adventure
+                  then:
+                  - do:
+                      sequence:
+                      - activate:
+                          object:
+                            name: CoA_Roland
+                          mode: Deactivate
+                      - activate:
+                          object:
+                            name: Prequest_Roland
+                          mode: Activate
+                  else:
+                  - do:
+                      sequence:
+                      - activate:
+                          object:
+                            name: CoA_Roland
+                          mode: Activate
+                      - activate:
+                          object:
+                            name: Prequest_Roland
+                          mode: Deactivate
+        - - if:
+              condition:
+                hasQuestEvent: Artifacts_MertonHead
+              then:
+              - do:
+                  activate:
+                    object:
+                      name: MertonHead
+                    mode: Deactivate
+              else:
+              - do:
+                  activate:
+                    object:
+                      name: MertonHead
+                    mode: Activate
