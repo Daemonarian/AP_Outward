@@ -73,6 +73,7 @@
   <ItemGroup>
     <UpToDateCheckInput Include="$(CodeGenExe)" />
     <UpToDateCheckInput Include="$(ConfluxExe)" />
+    <UpToDateCheckInput Include="@(ConfluxScripts)" />
   </ItemGroup>
   <Target Name="GenerateBuildInfo" BeforeTargets="CoreCompile">
     <Exec Command="powershell -NoProfile -Command &quot;(Get-Content -Path '$(VersionFile)' | ConvertFrom-Json).version&quot;" ConsoleToMSBuild="true" StandardOutputImportance="low">
