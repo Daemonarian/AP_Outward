@@ -33,7 +33,6 @@ namespace Conflux.NodeCanvas.Blackboard
         public ConfluxBlackboardVariableReference BuildConfluxBlackboardVariableReference(Graph graph) => new()
         {
             Name = Name,
-            ID = string.IsNullOrEmpty(TargetVariableID) ? null : Guid.Parse(TargetVariableID),
         };
     }
 
