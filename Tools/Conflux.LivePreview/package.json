@@ -20,6 +20,12 @@
       }
     ]
   },
+  "capabilities": {
+    "untrustedWorkspaces": {
+      "supported": true,
+      "description":  "Conflux Live Preview safely renders YAML schemas and does not execute workspace binaries."
+    }
+  },
   "scripts": {
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
