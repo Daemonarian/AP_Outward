@@ -63,7 +63,6 @@ namespace Conflux.NodeCanvas.Blackboard
                 return new()
                 {
                     Name = Name,
-                    ID = string.IsNullOrEmpty(TargetVariableID) ? null : Guid.Parse(TargetVariableID),
                 };
             }
 
@@ -80,7 +79,6 @@ namespace Conflux.NodeCanvas.Blackboard
                 return new()
                 {
                     Name = Name,
-                    ID = string.IsNullOrEmpty(TargetVariableID) ? null : Guid.Parse(TargetVariableID),
                 };
             }
 

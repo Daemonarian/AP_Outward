@@ -17,9 +17,6 @@ namespace Conflux.Schema
         [YamlMember(Alias = "replace")]
         public List<string> Replace { get; set; } = [];
 
-        [YamlMember(Alias = "threads")]
-        public Dictionary<string, ConfluxBlock> Threads { get; set; } = [];
-
         [YamlIgnore]
         public ConfluxLocalBlackboard LocalBlackboard { get; set; } = new();
 
@@ -32,6 +29,9 @@ namespace Conflux.Schema
 
         [YamlIgnore]
         public abstract ConfluxDerivedData DerivedData { get; set; }
+
+        [YamlMember(Alias = "threads")]
+        public Dictionary<string, ConfluxBlock> Threads { get; set; } = [];
 
         public GraphTemplate BuildGraphReplacementTemplate()
         {
