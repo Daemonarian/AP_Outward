@@ -1,0 +1,164 @@
+type: dialogue
+
+replace:
+- CierzoNewTerrain/_SNPC/_UNPC/RolandAndRoland/UNPC_RolandArgenson (Standing)/Dialogue_RolandArgenson/NPC/DialogueTree_Neut_Prequest
+- CierzoNewTerrain/_SNPC/_UNPC/RolandAndRoland/UNPC_RolandArgenson (kneeling)/Dialogue_RolandArgenson/NPC/DialogueTree_Neut_Prequest
+- Chersonese_Dungeon4_BlueChamber/AISquadManagerStructure/_UNPC/RolandHurt/UNPC_RolandArgenson/Dialogue_RolandArgenson/NPC/DialogueTree_Neut_Prequest
+- Chersonese_Dungeon4_CommonPath/AISquadManagerStructure/_UNPC/RolandMana/UNPC_RolandArgenson/Dialogue_RolandArgenson/NPC/DialogueTree_Neut_Prequest
+- ChersoneseDungeonsSmall/AISquadManagerStructure/_UNPC/RolandShrimp/UNPC_RolandArgenson/Dialogue_RolandArgenson/NPC/DialogueTree_Neut_Prequest
+- Berg/_SNPC/_UNPC/UNPC_RolandArgenson/Dialogue_RolandArgenson/NPC/DialogueTree_Neut_Prequest
+- Emercar_Dungeon3/AISquadManagerStructure/_Statics/RolandCOW/UNPC_RolandArgenson/Dialogue_RolandArgenson/NPC/DialogueTree_Neut_Prequest
+- Emercar_Dungeon6/AISquadManagerStructure/UNPC/UNPC_RolandArgenson(Lich)/Dialogue_RolandArgenson/NPC/DialogueTree_Neut_Prequest
+- Emercar_Dungeon6/AISquadManagerStructure/UNPC/UNPC_RolandArgenson/Dialogue_RolandArgenson/NPC/DialogueTree_Neut_Prequest
+
+data:
+  actors:
+    name_unpc_rolandargenson_01:
+      id: 40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760
+      object: 1
+
+blackboard:
+  gInstigator:
+    type: character
+    id: 0483cf6b-da62-4a57-aaed-40f25b4bdf9b
+
+threads:
+  start:
+  - if:
+      condition:
+        not:
+          hasQuestEvent: Prequest_RolandWhining
+      then:
+      - say:
+          statement:
+            meta: Roland_BC_Prequest_01
+            text: So, you know. Yeah, it was my fault the boat got wrecked. It's my fault Yzan's got a Blood Price to pay. It's my fault your investment went belly up. Because I was a careless idiot.
+          actor: name_unpc_rolandargenson_01
+      - say:
+          statement:
+            meta: Roland_BC_Prequest_02
+            text: I don’t even know how Rissa found out. It’s like she has some kind of sixth sense.
+          actor: name_unpc_rolandargenson_01
+      - if:
+          condition:
+            hasQuestEvent: Argenson_Furax
+          then:
+          - say:
+              statement:
+                meta: Roland_BC_Prequest_03
+                text: "You're here to take what little I have, like you did to my brother, I guess? I already gave Rissa every silver I had. "
+              actor: name_unpc_rolandargenson_01
+      - choice:
+        - statement:
+            meta: Player_Roland_BC_Prequest_a_03
+            text: At least you deserve your Blood Price. I don't.
+          then:
+          - say:
+              statement:
+                meta: Roland_BC_Prequest_04
+                text: I can't imagine how that must feel. It's bad enough knowing that I deserve my own. How do you even cope?
+              actor: name_unpc_rolandargenson_01
+        - statement:
+            meta: Player_Roland_BC_Prequest_b_03
+            text: Get to work and pay it back. Do your duty to the tribe.
+          then:
+          - say:
+              statement:
+                meta: Roland_BC_Prequest_05
+                text: I know my duty. And my future descendant's duties. We will pay our Blood Price for however many generations it takes. I won't run from this. This is my punishment, and I will shoulder it however I can, until I die. That's what's expected of me, right?
+              actor: name_unpc_rolandargenson_01
+        - statement:
+            meta: Player_Roland_BC_Prequest_c_03
+            text: Grow up and stop whining. We all have burdens to bear.
+          then:
+          - say:
+              statement:
+                meta: Roland_BC_Prequest_06
+                text: That’s what Rissa told me. I guess this is just the way the world is. Shut up, give up on your life, and live for everyone else. Fine. I can try, at least.
+              actor: name_unpc_rolandargenson_01
+        - statement:
+            meta: Player_Roland_BC_Prequest_d_03
+            text: You have no idea how much I want to kill you, Roland. I lost my home because of you.
+          condition:
+            hasQuestEvent: CallToAdventure_QuestEndedB
+          then:
+          - say:
+              statement:
+                meta: Roland_BC_Prequest_07
+                text: I know, I know. I'm sorry. I’ll try to save up to repay you. Somehow. After all, part of my Blood Price has to go to helping you, right?
+              actor: name_unpc_rolandargenson_01
+      - choice:
+        - statement:
+            meta: Player_Roland_BC_Prequest_a_07
+            text: How do you intend to pay your Blood Price?
+          then:
+          - say:
+              statement:
+                meta: Roland_BC_Prequest_08
+                text: I don’t know. I’m bad at everything I do. I don’t have the patience to fish, I’m not good with steel… Bah. I might just throw myself at the outside world and try to make it there.
+              actor: name_unpc_rolandargenson_01
+          - choice:
+            - statement:
+                meta: Player_Roland_BC_Prequest_a_08
+                text: You? Challenge the outside world? You’d be dead in a day.
+              then:
+              - say:
+                  statement:
+                    meta: Roland_BC_Prequest_09
+                    text: Maybe. But maybe I don’t care. Either learn and succeed, or die and it’s not my problem anymore… Risks don’t scare me right now.
+                  actor: name_unpc_rolandargenson_01
+            - statement:
+                meta: Player_Roland_BC_Prequest_b_08
+                text: That’s the spirit. Make it work or die trying!
+          - say:
+              statement:
+                meta: Roland_BC_Prequest_10
+                text: Ugh...Maybe I should beg Eto to teach me some of his personal <color=#F3FF00><b>combat Skills</b></color> first... I don’t want to be torn to pieces by Hyenas or Troglodytes…
+              actor: name_unpc_rolandargenson_01
+          - do:
+              sendQuestEvent: Prequest_RolandWhining
+          - if:
+              condition:
+                or:
+                - hasQuestEvent: Prequest_BCProposition
+                - hasQuestEvent: Prequest_HKProposition
+                - hasQuestEvent: Prequest_HMProposition
+              then:
+              - goto: gift1
+      else:
+      - if:
+          condition:
+            or:
+            - hasQuestEvent: Prequest_BCProposition
+            - hasQuestEvent: Prequest_HKProposition
+            - hasQuestEvent: Prequest_HMProposition
+          then:
+          - goto: gift1
+          else:
+          - goto: goodbye
+
+  gift1:
+  - if:
+      condition:
+        not:
+          hasQuestEvent: General_RolandGift1
+      then:
+      - say:
+          statement:
+            meta: Roland_BC_Prequest_12
+            text: You’re leaving Cierzo, right? Hang on...Here, it’s not much but it should help a little. I’ll keep trying to make it up to you, [PlayerName], I promise.
+          actor: name_unpc_rolandargenson_01
+      - do:
+          sequence:
+          - sendLocationCheck: ROLAND_GIFT_1
+          - sendQuestEvent: General_RolandGift1
+          - sendQuestEvent: WhispBones_RolandFocus
+      else:
+      - goto: goodbye
+
+  goodbye:
+  - say:
+      statement:
+        meta: Roland_BC_Prequest_11
+        text: Ugh...This latest attempt at fishing was a botch...How in Elatt’s name am I going to be able to live like this?
+      actor: name_unpc_rolandargenson_01
