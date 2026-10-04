@@ -1,0 +1,1185 @@
+type: behaviour
+data:
+  repeat: true
+replace:
+- Berg/_SNPC/Tree Behavior UNPC
+threads:
+  start:
+  - parallel:
+    - - parallel:
+        - - if:
+              condition:
+                and:
+                - not:
+                    hasQuestEvent: General_BCMeeting
+                - not:
+                    hasQuestEvent: AncPeace_AgressifBattleborn
+                - not:
+                    hasQuestEvent: AncPeace_DefeatFromBattleborn
+                - not:
+                    hasQuestEvent: General_BCExplosion
+              then:
+              - do:
+                  sequence:
+                  - activate:
+                      object:
+                        name: SagardInn
+                        id: ed8b7018-41df-423e-b9c6-1b442c1ca33b
+                      mode: Activate
+                  - activate:
+                      object:
+                        name: EnnemiSagard
+                        id: 6befe074-bab4-446a-8d29-63a01be41846
+                      mode: Deactivate
+                  - activate:
+                      object:
+                        name: AllieSagard
+                        id: 88499a63-2ffe-40d9-9f4a-9d352e7db0c4
+                      mode: Deactivate
+                  - activate:
+                      object:
+                        name: PassifAlly
+                        id: 2e4d1589-3505-44b6-bbf3-94f15cb23638
+                      mode: Deactivate
+                  - activate:
+                      object:
+                        name: ExitInn
+                        id: b21c1d28-5611-4a1f-b3a1-b94fa8ccd655
+                      mode: Activate
+                  - activate:
+                      object:
+                        name: InnDialogue
+                        id: 5becfb15-c90c-48ee-8541-73d29fb6701b
+                      mode: Activate
+              else:
+              - if:
+                  condition:
+                    and:
+                    - hasQuestEvent: AncPeace_AgressifBattleborn
+                    - not:
+                        hasQuestEvent: AncPeace_DeathBattleborn
+                    - not:
+                        hasQuestEvent: AncPeace_DefeatFromBattleborn
+                  then:
+                  - do:
+                      sequence:
+                      - activate:
+                          object:
+                            name: SagardInn
+                            id: ed8b7018-41df-423e-b9c6-1b442c1ca33b
+                          mode: Deactivate
+                      - activate:
+                          object:
+                            name: EnnemiSagard
+                            id: 6befe074-bab4-446a-8d29-63a01be41846
+                          mode: Activate
+                      - activate:
+                          object:
+                            name: AllieSagard
+                            id: 88499a63-2ffe-40d9-9f4a-9d352e7db0c4
+                          mode: Deactivate
+                      - activate:
+                          object:
+                            name: PassifAlly
+                            id: 2e4d1589-3505-44b6-bbf3-94f15cb23638
+                          mode: Deactivate
+                      - activate:
+                          object:
+                            name: ExitInn
+                            id: b21c1d28-5611-4a1f-b3a1-b94fa8ccd655
+                          mode: Deactivate
+                      - activate:
+                          object:
+                            name: InnDialogue
+                            id: 5becfb15-c90c-48ee-8541-73d29fb6701b
+                          mode: Deactivate
+                  else:
+                  - if:
+                      condition:
+                        hasQuestEvent: Faction_HolyMission
+                      then:
+                      - if:
+                          condition:
+                            and:
+                            - hasQuestEvent: General_BCExplosion
+                            - not:
+                                hasQuestEvent: General_DoneQuest2
+                          then:
+                          - if:
+                              condition:
+                                hasQuestEvent: MixedLegacies_FadeDone
+                              then:
+                              - do:
+                                  sequence:
+                                  - activate:
+                                      object:
+                                        name: SagardInn
+                                        id: ed8b7018-41df-423e-b9c6-1b442c1ca33b
+                                      mode: Deactivate
+                                  - activate:
+                                      object:
+                                        name: EnnemiSagard
+                                        id: 6befe074-bab4-446a-8d29-63a01be41846
+                                      mode: Deactivate
+                                  - activate:
+                                      object:
+                                        name: AllieSagard
+                                        id: 88499a63-2ffe-40d9-9f4a-9d352e7db0c4
+                                      mode: Deactivate
+                                  - activate:
+                                      object:
+                                        name: PassifAlly
+                                        id: 2e4d1589-3505-44b6-bbf3-94f15cb23638
+                                      mode: Activate
+                                  - activate:
+                                      object:
+                                        name: ExitInn
+                                        id: b21c1d28-5611-4a1f-b3a1-b94fa8ccd655
+                                      mode: Activate
+                                  - activate:
+                                      object:
+                                        name: InnDialogue
+                                        id: 5becfb15-c90c-48ee-8541-73d29fb6701b
+                                      mode: Activate
+                              else:
+                              - if:
+                                  condition:
+                                    hasQuestEvent: Faction_HolyMission
+                                  then:
+                                  - do:
+                                      sequence:
+                                      - activate:
+                                          object:
+                                            name: SagardInn
+                                            id: ed8b7018-41df-423e-b9c6-1b442c1ca33b
+                                          mode: Deactivate
+                                      - activate:
+                                          object:
+                                            name: EnnemiSagard
+                                            id: 6befe074-bab4-446a-8d29-63a01be41846
+                                          mode: Deactivate
+                                      - activate:
+                                          object:
+                                            name: AllieSagard
+                                            id: 88499a63-2ffe-40d9-9f4a-9d352e7db0c4
+                                          mode: Deactivate
+                                      - activate:
+                                          object:
+                                            name: PassifAlly
+                                            id: 2e4d1589-3505-44b6-bbf3-94f15cb23638
+                                          mode: Activate
+                                      - activate:
+                                          object:
+                                            name: ExitInn
+                                            id: b21c1d28-5611-4a1f-b3a1-b94fa8ccd655
+                                          mode: Activate
+                                      - activate:
+                                          object:
+                                            name: InnDialogue
+                                            id: 5becfb15-c90c-48ee-8541-73d29fb6701b
+                                          mode: Activate
+                                  else:
+                                  - do:
+                                      sequence:
+                                      - activate:
+                                          object:
+                                            name: SagardInn
+                                            id: ed8b7018-41df-423e-b9c6-1b442c1ca33b
+                                          mode: Deactivate
+                                      - activate:
+                                          object:
+                                            name: EnnemiSagard
+                                            id: 6befe074-bab4-446a-8d29-63a01be41846
+                                          mode: Deactivate
+                                      - activate:
+                                          object:
+                                            name: AllieSagard
+                                            id: 88499a63-2ffe-40d9-9f4a-9d352e7db0c4
+                                          mode: Activate
+                                      - activate:
+                                          object:
+                                            name: PassifAlly
+                                            id: 2e4d1589-3505-44b6-bbf3-94f15cb23638
+                                          mode: Deactivate
+                                      - activate:
+                                          object:
+                                            name: ExitInn
+                                            id: b21c1d28-5611-4a1f-b3a1-b94fa8ccd655
+                                          mode: Activate
+                                      - activate:
+                                          object:
+                                            name: InnDialogue
+                                            id: 5becfb15-c90c-48ee-8541-73d29fb6701b
+                                          mode: Activate
+                          else:
+                          - do:
+                              sequence:
+                              - activate:
+                                  object:
+                                    name: SagardInn
+                                    id: ed8b7018-41df-423e-b9c6-1b442c1ca33b
+                                  mode: Activate
+                              - activate:
+                                  object:
+                                    name: EnnemiSagard
+                                    id: 6befe074-bab4-446a-8d29-63a01be41846
+                                  mode: Deactivate
+                              - activate:
+                                  object:
+                                    name: AllieSagard
+                                    id: 88499a63-2ffe-40d9-9f4a-9d352e7db0c4
+                                  mode: Deactivate
+                              - activate:
+                                  object:
+                                    name: PassifAlly
+                                    id: 2e4d1589-3505-44b6-bbf3-94f15cb23638
+                                  mode: Deactivate
+                              - activate:
+                                  object:
+                                    name: ExitInn
+                                    id: b21c1d28-5611-4a1f-b3a1-b94fa8ccd655
+                                  mode: Activate
+                              - activate:
+                                  object:
+                                    name: InnDialogue
+                                    id: 5becfb15-c90c-48ee-8541-73d29fb6701b
+                                  mode: Activate
+                      else:
+                      - if:
+                          condition:
+                            and:
+                            - hasQuestEvent: General_BCExplosion
+                            - not:
+                                hasQuestEvent: General_DoneQuest1
+                          then:
+                          - if:
+                              condition:
+                                hasQuestEvent: TendFlame_BombExplodedFromFail
+                              then:
+                              - do:
+                                  sequence:
+                                  - activate:
+                                      object:
+                                        name: SagardInn
+                                        id: ed8b7018-41df-423e-b9c6-1b442c1ca33b
+                                      mode: Activate
+                                  - activate:
+                                      object:
+                                        name: EnnemiSagard
+                                        id: 6befe074-bab4-446a-8d29-63a01be41846
+                                      mode: Deactivate
+                                  - activate:
+                                      object:
+                                        name: AllieSagard
+                                        id: 88499a63-2ffe-40d9-9f4a-9d352e7db0c4
+                                      mode: Deactivate
+                                  - activate:
+                                      object:
+                                        name: PassifAlly
+                                        id: 2e4d1589-3505-44b6-bbf3-94f15cb23638
+                                      mode: Deactivate
+                                  - activate:
+                                      object:
+                                        name: ExitInn
+                                        id: b21c1d28-5611-4a1f-b3a1-b94fa8ccd655
+                                      mode: Activate
+                                  - activate:
+                                      object:
+                                        name: InnDialogue
+                                        id: 5becfb15-c90c-48ee-8541-73d29fb6701b
+                                      mode: Activate
+                              else:
+                              - if:
+                                  condition:
+                                    hasQuestEvent: MixedLegacies_FadeDone
+                                  then:
+                                  - do:
+                                      sequence:
+                                      - activate:
+                                          object:
+                                            name: SagardInn
+                                            id: ed8b7018-41df-423e-b9c6-1b442c1ca33b
+                                          mode: Deactivate
+                                      - activate:
+                                          object:
+                                            name: EnnemiSagard
+                                            id: 6befe074-bab4-446a-8d29-63a01be41846
+                                          mode: Deactivate
+                                      - activate:
+                                          object:
+                                            name: AllieSagard
+                                            id: 88499a63-2ffe-40d9-9f4a-9d352e7db0c4
+                                          mode: Deactivate
+                                      - activate:
+                                          object:
+                                            name: PassifAlly
+                                            id: 2e4d1589-3505-44b6-bbf3-94f15cb23638
+                                          mode: Activate
+                                      - activate:
+                                          object:
+                                            name: ExitInn
+                                            id: b21c1d28-5611-4a1f-b3a1-b94fa8ccd655
+                                          mode: Activate
+                                      - activate:
+                                          object:
+                                            name: InnDialogue
+                                            id: 5becfb15-c90c-48ee-8541-73d29fb6701b
+                                          mode: Activate
+                                  else:
+                                  - do:
+                                      sequence:
+                                      - activate:
+                                          object:
+                                            name: SagardInn
+                                            id: ed8b7018-41df-423e-b9c6-1b442c1ca33b
+                                          mode: Deactivate
+                                      - activate:
+                                          object:
+                                            name: EnnemiSagard
+                                            id: 6befe074-bab4-446a-8d29-63a01be41846
+                                          mode: Deactivate
+                                      - activate:
+                                          object:
+                                            name: AllieSagard
+                                            id: 88499a63-2ffe-40d9-9f4a-9d352e7db0c4
+                                          mode: Activate
+                                      - activate:
+                                          object:
+                                            name: PassifAlly
+                                            id: 2e4d1589-3505-44b6-bbf3-94f15cb23638
+                                          mode: Deactivate
+                                      - activate:
+                                          object:
+                                            name: ExitInn
+                                            id: b21c1d28-5611-4a1f-b3a1-b94fa8ccd655
+                                          mode: Activate
+                                      - activate:
+                                          object:
+                                            name: InnDialogue
+                                            id: 5becfb15-c90c-48ee-8541-73d29fb6701b
+                                          mode: Activate
+                          else:
+                          - if:
+                              condition:
+                                hasQuestEvent: General_BCMeeting
+                              then:
+                              - do:
+                                  sequence:
+                                  - activate:
+                                      object:
+                                        name: SagardInn
+                                        id: ed8b7018-41df-423e-b9c6-1b442c1ca33b
+                                      mode: Deactivate
+                                  - activate:
+                                      object:
+                                        name: EnnemiSagard
+                                        id: 6befe074-bab4-446a-8d29-63a01be41846
+                                      mode: Deactivate
+                                  - activate:
+                                      object:
+                                        name: AllieSagard
+                                        id: 88499a63-2ffe-40d9-9f4a-9d352e7db0c4
+                                      mode: Deactivate
+                                  - activate:
+                                      object:
+                                        name: PassifAlly
+                                        id: 2e4d1589-3505-44b6-bbf3-94f15cb23638
+                                      mode: Deactivate
+                                  - activate:
+                                      object:
+                                        name: ExitInn
+                                        id: b21c1d28-5611-4a1f-b3a1-b94fa8ccd655
+                                      mode: Activate
+                                  - activate:
+                                      object:
+                                        name: InnDialogue
+                                        id: 5becfb15-c90c-48ee-8541-73d29fb6701b
+                                      mode: Activate
+                              else:
+                              - do:
+                                  sequence:
+                                  - activate:
+                                      object:
+                                        name: SagardInn
+                                        id: ed8b7018-41df-423e-b9c6-1b442c1ca33b
+                                      mode: Activate
+                                  - activate:
+                                      object:
+                                        name: EnnemiSagard
+                                        id: 6befe074-bab4-446a-8d29-63a01be41846
+                                      mode: Deactivate
+                                  - activate:
+                                      object:
+                                        name: AllieSagard
+                                        id: 88499a63-2ffe-40d9-9f4a-9d352e7db0c4
+                                      mode: Deactivate
+                                  - activate:
+                                      object:
+                                        name: PassifAlly
+                                        id: 2e4d1589-3505-44b6-bbf3-94f15cb23638
+                                      mode: Deactivate
+                                  - activate:
+                                      object:
+                                        name: ExitInn
+                                        id: b21c1d28-5611-4a1f-b3a1-b94fa8ccd655
+                                      mode: Activate
+                                  - activate:
+                                      object:
+                                        name: InnDialogue
+                                        id: 5becfb15-c90c-48ee-8541-73d29fb6701b
+                                      mode: Activate
+        - - if:
+              condition:
+                or:
+                - hasQuestEvent:
+                    event: MixedLegacies_DeathLevantins
+                    count: 4
+                - hasQuestEvent: MixedLegacies_DeathByLevantins
+              then:
+              - do:
+                  activate:
+                    object:
+                      name: Killed6Intruders
+                      id: 11f94964-b9dd-49cb-bb30-800613f6b22d
+                    mode: Deactivate
+              else:
+              - do:
+                  activate:
+                    object:
+                      name: Killed6Intruders
+                      id: 11f94964-b9dd-49cb-bb30-800613f6b22d
+                    mode: Activate
+        - - if:
+              condition:
+                and:
+                - hasQuestEvent: TendFlame_BombExplodedFromFail
+                - not:
+                    hasQuestEvent: General_DoneQuest3
+              then:
+              - do:
+                  activate:
+                    object:
+                      name: Expulsion
+                      id: e3732248-65e1-43b9-81a6-961a66574e22
+                    mode: Activate
+              else:
+              - do:
+                  activate:
+                    object:
+                      name: Expulsion
+                      id: e3732248-65e1-43b9-81a6-961a66574e22
+                    mode: Deactivate
+        - - if:
+              condition:
+                or:
+                - hasQuestEvent: TendFlame_ShadyRefusal
+                - hasQuestEvent: General_BCExplosion
+                - hasQuestEvent: TendFlame_BombDissolved
+              then:
+              - do:
+                  activate:
+                    object:
+                      name: CyreneZephy
+                      id: 7dc6cb84-6f33-4857-ac56-cd96bcd6416f
+                    mode: Deactivate
+              else:
+              - do:
+                  activate:
+                    object:
+                      name: CyreneZephy
+                      id: 7dc6cb84-6f33-4857-ac56-cd96bcd6416f
+                    mode: Activate
+        - - if:
+              condition:
+                and:
+                - hasQuestEvent: General_RolandGift2
+                - hasQuestEvent: General_RolandGift3
+                - or:
+                  - not:
+                      hasQuestEvent: WhispBones_RolandBerg
+                  - hasQuestEvent: WhispBones_RolandDeath
+                  - hasQuestEvent: WhispBones_NecropolisAccess
+                  - hasQuestEvent: WhispBones_ReadyForAction
+              then:
+              - do:
+                  activate:
+                    object:
+                      name: Roland
+                      id: a9a43609-d75f-401e-9aa5-041c9b5f8f0f
+                    mode: Deactivate
+              else:
+              - do:
+                  activate:
+                    object:
+                      name: Roland
+                      id: a9a43609-d75f-401e-9aa5-041c9b5f8f0f
+                    mode: Activate
+        - - if:
+              condition:
+                and:
+                - not:
+                    hasQuestEvent: General_BCMeeting
+                - not:
+                    hasQuestEvent: General_BCExplosion
+              then:
+              - do:
+                  activate:
+                    object:
+                      name: CyrillTurnbull
+                      id: 07dfbc34-60ab-4300-b3d0-a4c80e7e053e
+                    mode: Activate
+              else:
+              - if:
+                  condition:
+                    hasQuestEvent: Faction_HolyMission
+                  then:
+                  - if:
+                      condition:
+                        hasQuestEvent: General_DoneQuest2
+                      then:
+                      - do:
+                          activate:
+                            object:
+                              name: CyrillTurnbull
+                              id: 07dfbc34-60ab-4300-b3d0-a4c80e7e053e
+                            mode: Activate
+                      else:
+                      - do:
+                          activate:
+                            object:
+                              name: CyrillTurnbull
+                              id: 07dfbc34-60ab-4300-b3d0-a4c80e7e053e
+                            mode: Deactivate
+                  else:
+                  - if:
+                      condition:
+                        hasQuestEvent: General_DoneQuest1
+                      then:
+                      - do:
+                          activate:
+                            object:
+                              name: CyrillTurnbull
+                              id: 07dfbc34-60ab-4300-b3d0-a4c80e7e053e
+                            mode: Activate
+                      else:
+                      - do:
+                          activate:
+                            object:
+                              name: CyrillTurnbull
+                              id: 07dfbc34-60ab-4300-b3d0-a4c80e7e053e
+                            mode: Deactivate
+    - - parallel:
+        - - if:
+              condition:
+                or:
+                - hasQuestEvent:
+                    event: MixedLegacies_DeathLevantins
+                    count: 2
+                - hasQuestEvent: MixedLegacies_DeathByLevantins
+              then:
+              - do:
+                  activate:
+                    object:
+                      name: Killed2Intruders
+                      id: 045561d4-0bf5-4245-9f27-b5d75f6a0843
+                    mode: Deactivate
+              else:
+              - do:
+                  activate:
+                    object:
+                      name: Killed2Intruders
+                      id: 045561d4-0bf5-4245-9f27-b5d75f6a0843
+                    mode: Activate
+        - - if:
+              condition:
+                and:
+                - hasQuestEvent: General_BCMeeting
+                - not:
+                    hasQuestEvent: General_PathEnemerkarD5D6Open
+              then:
+              - if:
+                  condition:
+                    not:
+                      hasQuestEvent: Faction_HeroicKingdom
+                  then:
+                  - do:
+                      activate:
+                        object:
+                          name: BlueChamberMeeting
+                          id: 9a953e21-5ad5-45f4-98fc-89da0008bf7c
+                        mode: Activate
+                  else:
+                  - if:
+                      condition:
+                        hasQuestEvent: General_DoneQuest1
+                      then:
+                      - do:
+                          activate:
+                            object:
+                              name: BlueChamberMeeting
+                              id: 9a953e21-5ad5-45f4-98fc-89da0008bf7c
+                            mode: Deactivate
+                      else:
+                      - do:
+                          activate:
+                            object:
+                              name: BlueChamberMeeting
+                              id: 9a953e21-5ad5-45f4-98fc-89da0008bf7c
+                            mode: Activate
+              else:
+              - do:
+                  activate:
+                    object:
+                      name: BlueChamberMeeting
+                      id: 9a953e21-5ad5-45f4-98fc-89da0008bf7c
+                    mode: Deactivate
+        - - if:
+              condition:
+                hasQuestEvent: General_DoneQuest4
+              then:
+              - if:
+                  condition:
+                    and:
+                    - isQuestEventExpired:
+                        event: General_DoneQuest4
+                        expiryTime: 72
+                    - hasQuestEvent: Vendavel_CierzoDestroyed
+                  then:
+                  - do:
+                      activate:
+                        object:
+                          name: Rissa
+                          id: 725f1217-5e21-4c43-adb1-84ddceeeedc6
+                        mode: Activate
+                  else:
+                  - do:
+                      activate:
+                        object:
+                          name: Rissa
+                          id: 725f1217-5e21-4c43-adb1-84ddceeeedc6
+                        mode: Deactivate
+              else:
+              - if:
+                  condition:
+                    and:
+                    - not:
+                        hasQuestEvent: Faction_BlueChamber
+                    - not:
+                        hasQuestEvent: Faction_HeroicKingdom
+                    - hasQuestEvent: Faction_Chosen
+                    - not:
+                        hasQuestEvent: Faction_HolyMission
+                  then:
+                  - if:
+                      condition:
+                        and:
+                        - hasQuestEvent: Rissa_Berg
+                        - not:
+                            hasQuestEvent: General_PathEnemerkarD5D6Open
+                      then:
+                      - do:
+                          activate:
+                            object:
+                              name: Rissa
+                              id: 725f1217-5e21-4c43-adb1-84ddceeeedc6
+                            mode: Activate
+                      else:
+                      - if:
+                          condition:
+                            or:
+                            - hasQuestEvent: MixedLegacies_HostageFound
+                            - hasQuestEvent: General_DoneQuest2
+                          then:
+                          - do:
+                              activate:
+                                object:
+                                  name: Rissa
+                                  id: 725f1217-5e21-4c43-adb1-84ddceeeedc6
+                                mode: Activate
+                          else:
+                          - do:
+                              activate:
+                                object:
+                                  name: Rissa
+                                  id: 725f1217-5e21-4c43-adb1-84ddceeeedc6
+                                mode: Deactivate
+                  else:
+                  - if:
+                      condition:
+                        and:
+                        - hasQuestEvent: Rissa_Berg
+                        - not:
+                            hasQuestEvent: Rissa_Captured
+                        - not:
+                            hasQuestEvent: General_BCMeeting
+                      then:
+                      - if:
+                          condition:
+                            hasQuestEvent: Faction_HeroicKingdom
+                          then:
+                          - if:
+                              condition:
+                                and:
+                                - hasQuestEvent: General_BCExplosion
+                                - not:
+                                    hasQuestEvent: SandCorsairs_ScoutsInfo
+                                - not:
+                                    hasQuestEvent: MixedLegacies_HostageFound
+                              then:
+                              - do:
+                                  activate:
+                                    object:
+                                      name: Rissa
+                                      id: 725f1217-5e21-4c43-adb1-84ddceeeedc6
+                                    mode: Deactivate
+                              else:
+                              - do:
+                                  activate:
+                                    object:
+                                      name: Rissa
+                                      id: 725f1217-5e21-4c43-adb1-84ddceeeedc6
+                                    mode: Activate
+                          else:
+                          - if:
+                              condition:
+                                hasQuestEvent: Faction_HolyMission
+                              then:
+                              - if:
+                                  condition:
+                                    and:
+                                    - hasQuestEvent: General_BCExplosion
+                                    - not:
+                                        hasQuestEvent: Truth_TabletFound
+                                    - not:
+                                        hasQuestEvent: MixedLegacies_HostageFound
+                                  then:
+                                  - do:
+                                      activate:
+                                        object:
+                                          name: Rissa
+                                          id: 725f1217-5e21-4c43-adb1-84ddceeeedc6
+                                        mode: Deactivate
+                                  else:
+                                  - do:
+                                      activate:
+                                        object:
+                                          name: Rissa
+                                          id: 725f1217-5e21-4c43-adb1-84ddceeeedc6
+                                        mode: Activate
+                              else:
+                              - do:
+                                  activate:
+                                    object:
+                                      name: Rissa
+                                      id: 725f1217-5e21-4c43-adb1-84ddceeeedc6
+                                    mode: Activate
+                      else:
+                      - do:
+                          activate:
+                            object:
+                              name: Rissa
+                              id: 725f1217-5e21-4c43-adb1-84ddceeeedc6
+                            mode: Deactivate
+        - - if:
+              condition:
+                or:
+                - knowQuest:
+                    questObject: 1
+                - hasQuestEvent: General_DoneQuest3
+              then:
+              - do:
+                  activate:
+                    object:
+                      name: Julius
+                      id: 9a678c60-4bc2-4ab1-b407-060ebdd2c463
+                    mode: Deactivate
+              else:
+              - do:
+                  activate:
+                    object:
+                      name: Julius
+                      id: 9a678c60-4bc2-4ab1-b407-060ebdd2c463
+                    mode: Activate
+        - - if:
+              condition:
+                and:
+                - hasQuestEvent: MixedLegacies_DefEd_AmbushWarning
+                - hasQuestEvent: General_BCMeeting
+                - not:
+                    hasQuestEvent: General_PathEnemerkarD5D6Open
+              then:
+              - do:
+                  activate:
+                    object:
+                      name: ShadyGuy
+                      id: 78846b99-b5c4-4f34-b98f-d05fc9c83c42
+                    mode: Deactivate
+              else:
+              - do:
+                  activate:
+                    object:
+                      name: ShadyGuy
+                      id: 78846b99-b5c4-4f34-b98f-d05fc9c83c42
+                    mode: Activate
+        - - if:
+              condition:
+                and:
+                - hasQuestEvent: Faction_BlueChamber
+                - not:
+                    hasQuestEvent: PlayerHouse_Berg_HouseAvailable
+              then:
+              - do:
+                  activate:
+                    object:
+                      name: HouseSeller
+                      id: 38c08eb1-6e23-4669-b430-49a78e9d6e2f
+                    mode: Activate
+              else:
+              - if:
+                  condition:
+                    and:
+                    - hasQuestEvent: General_DoneQuest4
+                    - not:
+                        hasQuestEvent: PlayerHouse_Berg_HouseAvailable
+                  then:
+                  - do:
+                      activate:
+                        object:
+                          name: HouseSeller
+                          id: 38c08eb1-6e23-4669-b430-49a78e9d6e2f
+                        mode: Activate
+                  else:
+                  - do:
+                      activate:
+                        object:
+                          name: HouseSeller
+                          id: 38c08eb1-6e23-4669-b430-49a78e9d6e2f
+                        mode: Deactivate
+        - - if:
+              condition:
+                hasQuestEvent: Purifier_ReadyToBerg
+              then:
+              - do:
+                  activate:
+                    object:
+                      name: Bourlamaque
+                      id: 714c86dd-0d10-4484-aa66-ae630b0c3aa8
+                    mode: Activate
+              else:
+              - do:
+                  activate:
+                    object:
+                      name: Bourlamaque
+                      id: 714c86dd-0d10-4484-aa66-ae630b0c3aa8
+                    mode: Deactivate
+    - - if:
+          condition:
+            and:
+            - hasQuestEvent: WhispBones_KrypteiaMember
+            - not:
+                isQuestComplete: Whispering_Bones
+          then:
+          - do:
+              activate:
+                object:
+                  name: AgoniseJulius
+                  id: 780c40bd-5243-4ee3-bbc5-b63220c35dd6
+                mode: Activate
+          else:
+          - do:
+              activate:
+                object:
+                  name: AgoniseJulius
+                  id: 780c40bd-5243-4ee3-bbc5-b63220c35dd6
+                mode: Deactivate
+    - - parallel:
+        - - if:
+              condition:
+                hasQuestEvent: Taleron_Berg
+              then:
+              - do:
+                  activate:
+                    object:
+                      name: Taleron_D
+                      id: 137dc06c-58e7-4934-bffb-95ec654ca785
+                    mode: Deactivate
+              else:
+              - do:
+                  activate:
+                    object:
+                      name: Taleron_D
+                      id: 137dc06c-58e7-4934-bffb-95ec654ca785
+                    mode: Activate
+        - - if:
+              condition:
+                or:
+                - hasQuestEvent: Purifier_SentToElatt
+                - isQuestComplete: Purifier
+              then:
+              - do:
+                  activate:
+                    object:
+                      name: JagerSullivan
+                      id: 923aedbf-fd39-4717-ace8-e41e136415a5
+                    mode: Deactivate
+              else:
+              - do:
+                  activate:
+                    object:
+                      name: JagerSullivan
+                      id: 923aedbf-fd39-4717-ace8-e41e136415a5
+                    mode: Activate
+        - - if:
+              condition:
+                and:
+                - hasQuestEvent: General_PathEnemerkarD5D6Open
+                - not:
+                    hasQuestEvent: General_DoneQuest2
+              then:
+              - if:
+                  condition:
+                    not:
+                      hasQuestEvent: Faction_HolyMission
+                  then:
+                  - if:
+                      condition:
+                        hasQuestEvent: TendFlame_BombExplodedFromFail
+                      then:
+                      - do:
+                          activate:
+                            object:
+                              name: BlueChamberDevasted
+                              id: d72401ab-ad33-4c9a-ba68-b54d923c92ef
+                            mode: Deactivate
+                      else:
+                      - do:
+                          activate:
+                            object:
+                              name: BlueChamberDevasted
+                              id: d72401ab-ad33-4c9a-ba68-b54d923c92ef
+                            mode: Activate
+                  else:
+                  - do:
+                      activate:
+                        object:
+                          name: BlueChamberDevasted
+                          id: d72401ab-ad33-4c9a-ba68-b54d923c92ef
+                        mode: Deactivate
+              else:
+              - do:
+                  activate:
+                    object:
+                      name: BlueChamberDevasted
+                      id: d72401ab-ad33-4c9a-ba68-b54d923c92ef
+                    mode: Deactivate
+        - - if:
+              condition:
+                hasQuestEvent: Oliele_Berg
+              then:
+              - do:
+                  activate:
+                    object:
+                      name: OlieleDoubts
+                      id: ba44ad93-2cf2-4b20-b888-6492dd8f09c6
+                    mode: Activate
+              else:
+              - do:
+                  activate:
+                    object:
+                      name: OlieleDoubts
+                      id: ba44ad93-2cf2-4b20-b888-6492dd8f09c6
+                    mode: Deactivate
+        - - if:
+              condition:
+                and:
+                - hasQuestEvent: General_BCMeeting
+                - not:
+                    hasQuestEvent: TendFlame_BombDissolved
+                - not:
+                    hasQuestEvent: General_PathEnemerkarD5D6Open
+              then:
+              - do:
+                  activate:
+                    object:
+                      name: Mathias_D
+                      id: 61499366-1989-4621-9857-ec23e76299f6
+                    mode: Deactivate
+              else:
+              - do:
+                  activate:
+                    object:
+                      name: Mathias_D
+                      id: 61499366-1989-4621-9857-ec23e76299f6
+                    mode: Activate
+    - - parallel:
+        - - if:
+              condition:
+                and:
+                - not:
+                    hasQuestEvent: General_BCExplosion
+                - not:
+                    hasQuestEvent: General_BCMeeting
+                - not:
+                    hasQuestEvent: Gabriella_NotTownBerg
+              then:
+              - if:
+                  condition:
+                    hasQuestEvent: WhispBones_GabAwayTime
+                  then:
+                  - if:
+                      condition:
+                        isQuestEventExpired:
+                          event: WhispBones_GabAwayTime
+                          expiryTime: 48
+                      then:
+                      - if:
+                          condition:
+                            and:
+                            - hasQuestEvent: WhispBones_NecropolisAccess
+                            - not:
+                                hasQuestEvent: General_DoneQuest3
+                          then:
+                          - do:
+                              activate:
+                                object:
+                                  name: Gabriella
+                                  id: 56fa92df-94ba-4f44-a376-d8bbfdc48109
+                                mode: Deactivate
+                          else:
+                          - do:
+                              activate:
+                                object:
+                                  name: Gabriella
+                                  id: 56fa92df-94ba-4f44-a376-d8bbfdc48109
+                                mode: Activate
+                      else:
+                      - do:
+                          activate:
+                            object:
+                              name: Gabriella
+                              id: 56fa92df-94ba-4f44-a376-d8bbfdc48109
+                            mode: Deactivate
+                  else:
+                  - if:
+                      condition:
+                        and:
+                        - hasQuestEvent: WhispBones_NecropolisAccess
+                        - not:
+                            hasQuestEvent: General_DoneQuest3
+                      then:
+                      - do:
+                          activate:
+                            object:
+                              name: Gabriella
+                              id: 56fa92df-94ba-4f44-a376-d8bbfdc48109
+                            mode: Deactivate
+                      else:
+                      - do:
+                          activate:
+                            object:
+                              name: Gabriella
+                              id: 56fa92df-94ba-4f44-a376-d8bbfdc48109
+                            mode: Activate
+              else:
+              - if:
+                  condition:
+                    hasQuestEvent: General_DoneQuest2
+                  then:
+                  - if:
+                      condition:
+                        and:
+                        - hasQuestEvent: WhispBones_NecropolisAccess
+                        - not:
+                            hasQuestEvent: General_DoneQuest3
+                      then:
+                      - do:
+                          activate:
+                            object:
+                              name: Gabriella
+                              id: 56fa92df-94ba-4f44-a376-d8bbfdc48109
+                            mode: Deactivate
+                      else:
+                      - do:
+                          activate:
+                            object:
+                              name: Gabriella
+                              id: 56fa92df-94ba-4f44-a376-d8bbfdc48109
+                            mode: Activate
+                  else:
+                  - do:
+                      activate:
+                        object:
+                          name: Gabriella
+                          id: 56fa92df-94ba-4f44-a376-d8bbfdc48109
+                        mode: Deactivate
+        - - if:
+              condition:
+                hasQuestEvent: Enmerkar_WindAltar_Activated
+              then:
+              - do:
+                  sequence:
+                  - activate:
+                      object:
+                        name: ActivatedPillar
+                        id: 5f6d9e05-8c57-46b3-a3f7-f8be39853bc0
+                      mode: Activate
+                  - activate:
+                      object:
+                        name: FxTriggerd
+                        id: 5d352d96-8cff-4de6-8768-6bf7e8917fa6
+                      mode: Deactivate
+              else:
+              - do:
+                  sequence:
+                  - activate:
+                      object:
+                        name: ActivatedPillar
+                        id: 5f6d9e05-8c57-46b3-a3f7-f8be39853bc0
+                      mode: Deactivate
+                  - activate:
+                      object:
+                        name: FxTriggerd
+                        id: 5d352d96-8cff-4de6-8768-6bf7e8917fa6
+                      mode: Activate
+        - - if:
+              condition:
+                hasQuestEvent: MixedLegacies_DeathByLevantins
+              then:
+              - do:
+                  activate:
+                    object:
+                      name: Intruders
+                      id: f581c98a-5bab-4bdc-b5df-8f89f456d01a
+                    mode: Deactivate
+              else:
+              - if:
+                  condition:
+                    and:
+                    - hasQuestEvent: General_BCExplosion
+                    - not:
+                        hasQuestEvent: General_DoneQuest1
+                  then:
+                  - if:
+                      condition:
+                        hasQuestEvent: TendFlame_BombExplodedFromFail
+                      then:
+                      - do:
+                          activate:
+                            object:
+                              name: Intruders
+                              id: f581c98a-5bab-4bdc-b5df-8f89f456d01a
+                            mode: Deactivate
+                      else:
+                      - do:
+                          activate:
+                            object:
+                              name: Intruders
+                              id: f581c98a-5bab-4bdc-b5df-8f89f456d01a
+                            mode: Activate
+                  else:
+                  - do:
+                      activate:
+                        object:
+                          name: Intruders
+                          id: f581c98a-5bab-4bdc-b5df-8f89f456d01a
+                        mode: Deactivate
