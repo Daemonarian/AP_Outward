@@ -70,6 +70,10 @@
     <ModAssetFiles Include="$(ModAssetsDir)**\*.*" Exclude="$(ModManifestFile)" />
     <ConfluxScripts Include="Conflux\*.yaml" />
   </ItemGroup>
+  <ItemGroup>
+    <UpToDateCheckInput Include="$(CodeGenExe)" />
+    <UpToDateCheckInput Include="$(ConfluxExe)" />
+  </ItemGroup>
   <Target Name="GenerateBuildInfo" BeforeTargets="CoreCompile">
     <Exec Command="powershell -NoProfile -Command &quot;(Get-Content -Path '$(VersionFile)' | ConvertFrom-Json).version&quot;" ConsoleToMSBuild="true" StandardOutputImportance="low">
       <Output TaskParameter="ConsoleOutput" PropertyName="Version" />
@@ -123,7 +127,7 @@
     </PropertyGroup>
     <WriteLinesToFile File="$(OutputPath)staging\manifest.json" Lines="$(NewPackageManifestContent)" Overwrite="true" />
   </Target>
-  <Target Name="StageModConfluxScripts" Inputs="$(ConfluxExe);@(ConfluxScripts)" Outputs="$(OutputPath)staging\plugins\graphs\%(ConfluxScripts.Filename).json">
+  <Target Name="StageModConfluxScripts" Inputs="$(ConfluxExe);%(ConfluxScripts.Identity)" Outputs="$(OutputPath)staging\plugins\graphs\%(ConfluxScripts.Filename).json">
     <MakeDir Directories="$(OutputPath)staging\plugins\graphs\" />
     <Exec Command="&quot;$(ConfluxExe)&quot; --input &quot;%(ConfluxScripts.FullPath)&quot; --output &quot;$(OutputPath)staging\plugins\graphs\%(ConfluxScripts.Filename).json&quot; --format Template" />
   </Target>
