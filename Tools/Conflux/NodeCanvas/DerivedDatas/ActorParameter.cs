@@ -19,7 +19,7 @@ namespace Conflux.NodeCanvas.DerivedDatas
 
         public ConfluxActor BuildConfluxObject(Graph graph) => new()
         {
-            Key = Key,
+            Key = Key?.Trim(),
             ID = string.IsNullOrEmpty(ID) ? null : Guid.Parse(ID),
             Object = Object?.BuildConfluxObject(graph),
         };

@@ -1,8 +1,11 @@
+using System.Collections.Immutable;
 using System.ComponentModel;
 using System.Text;
 using Conflux.GraphViz;
+using Conflux.NodeCanvas.DerivedDatas;
 using Conflux.NodeCanvas.References;
 using Conflux.NodeCanvas.Serialization;
+using Conflux.Schema.Exceptions;
 using Conflux.Schema.Statements;
 using Newtonsoft.Json;
 
@@ -18,7 +21,7 @@ namespace Conflux.NodeCanvas.Nodes
 
         [JsonProperty("_actorName")]
         [DefaultValue(DefaultActorName)]
-        public string? ActorName { get; set; } = DefaultActorName;
+        public string ActorName { get; set; } = DefaultActorName;
 
         [JsonProperty("_actorParameterID")]
         public string? ActorParameterID { get; set; }
@@ -45,13 +48,35 @@ namespace Conflux.NodeCanvas.Nodes
             return GraphVizConverter.WordWrap(content.ToString().TrimEnd());
         }
 
-        protected override SayConfluxStatement BuildConfluxStatement(Graph graph) => new()
+        protected override SayConfluxStatement BuildConfluxStatement(Graph graph)
         {
-            Statement = Statement?.BuildConfluxStatementReference(graph),
-            Actor = new()
+            var actorName = ActorName;
+            if (graph.DerivedData is DTDerivedData dtDerivedData &&
+                !string.IsNullOrWhiteSpace(ActorParameterID))
             {
-                Key = ActorName is null || string.Equals(ActorName, DefaultActorName, StringComparison.Ordinal) ? null : ActorName,
-            },
-        };
+                var matchingActorParameters = dtDerivedData.ActorParameters
+                    .Where(ap => string.Equals(ap.ID, ActorParameterID, StringComparison.Ordinal))
+                    .ToImmutableList();
+                if (matchingActorParameters.Count == 1)
+                {
+                    actorName = matchingActorParameters[0].Key;
+                }
+                else if (matchingActorParameters.Count > 1)
+                {
+                    throw new ConfluxException($"Found multiple actor parameters matching ID \"{ActorParameterID}\": {matchingActorParameters[0].Key} and {matchingActorParameters[1].Key}.");
+                }
+            }
+
+            actorName = actorName?.Trim();
+
+            return new()
+            {
+                Statement = Statement?.BuildConfluxStatementReference(graph),
+                Actor = new()
+                {
+                    Key = string.Equals(actorName, DefaultActorName, StringComparison.Ordinal) ? null : actorName,
+                },
+            };
+        }
     }
 }

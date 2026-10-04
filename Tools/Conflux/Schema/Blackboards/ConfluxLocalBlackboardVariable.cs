@@ -21,6 +21,9 @@ namespace Conflux.Schema.Blackboards
             { "object", "NodeCanvas.Framework.Variable`1[[UnityEngine.GameObject, UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null]]" },
         }.ToFrozenDictionary();
 
+        public static readonly FrozenDictionary<string, string> TypeAliasReverseMapping = TypeAliasMapping
+            .ToFrozenDictionary(pair => pair.Value, pair => pair.Key);
+
         [YamlIgnore]
         public string Name { get; set; } = string.Empty;
 

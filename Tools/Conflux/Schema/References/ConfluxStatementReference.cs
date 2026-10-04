@@ -15,11 +15,6 @@ namespace Conflux.Schema.References
 
         public Statement BuildNodeCanvasObject(NodeCanvasGraphContext context)
         {
-            if (string.IsNullOrWhiteSpace(Meta))
-            {
-                throw new ConfluxValueException("The value statement.meta must be specified.");
-            }
-
             if (string.IsNullOrWhiteSpace(Text))
             {
                 throw new ConfluxValueException("The value statement.text must be specified.");

@@ -26,13 +26,31 @@ namespace Conflux.NodeCanvas.Blackboard
         [JsonProperty("_value")]
         public UnityObject? Value { get; set; }
 
-        public ConfluxLocalBlackboardVariable BuildConfluxLocalBlackboardVariable(Graph graph) => new()
+        public ConfluxLocalBlackboardVariable BuildConfluxLocalBlackboardVariable(Graph graph)
         {
-            Type = Type ?? throw new ConfluxValueException("Variable type is not specified."),
-            Name = Name ?? throw new ConfluxValueException("Variable name is not specified."),
-            ID = string.IsNullOrEmpty(ID) ? null : Guid.Parse(ID),
-            IsProtected = IsProtected,
-            Index = Value?.SideCarIndex,
-        };
+            if (Type is null)
+            {
+                throw new ConfluxValueException("Variable type is not specified.");
+            }
+
+            if (Name is null)
+            {
+                throw new ConfluxValueException("Variable name is not specified.");
+            }
+
+            if (!ConfluxLocalBlackboardVariable.TypeAliasReverseMapping.TryGetValue(Type, out var typeAlias))
+            {
+                throw new ConfluxValueException($"Unknown variable type: {Type}.");
+            }
+
+            return new()
+            {
+                Type = typeAlias,
+                Name = Name,
+                ID = string.IsNullOrEmpty(ID) ? null : Guid.Parse(ID),
+                IsProtected = IsProtected,
+                Index = Value?.SideCarIndex,
+            };
+        }
     }
 }

@@ -54,10 +54,18 @@ namespace Conflux.Schema.Statements
             public ConfluxCondition? Condition { get; set; } = null;
 
             [YamlMember(Alias = "unfolded")]
+            [DefaultValue(true)]
             public bool IsUnfolded { get; set; } = true;
 
-            [YamlMember(Alias = "then")]
+            [YamlIgnore]
             public ConfluxBlock Then { get; set; } = new();
+
+            [YamlMember(Alias = "then")]
+            public ConfluxBlock? ThenProxy
+            {
+                get => Then.IsEmpty() ? null : Then;
+                set => Then = value ?? new();
+            }
 
             public MultipleChoiceNode.Choice BuildChoice(NodeCanvasGraphContext context) => new()
             {

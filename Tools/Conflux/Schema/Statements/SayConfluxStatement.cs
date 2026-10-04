@@ -22,7 +22,7 @@ namespace Conflux.Schema.Statements
             var node = new StatementNodeExt
             {
                 Statement = Statement?.BuildNodeCanvasObject(context),
-                ActorName = actor?.Key,
+                ActorName = actor?.Key ?? StatementNodeExt.DefaultActorName,
                 ActorParameterID = actor?.ID?.ToString(),
             };
             return ConfluxGraph.CreateFromNode(context, node);

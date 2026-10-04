@@ -14,11 +14,25 @@ namespace Conflux.Schema.Statements
         [YamlMember(Alias = "condition")]
         public ConfluxCondition? Condition { get; set; }
 
-        [YamlMember(Alias = "then")]
+        [YamlIgnore]
         public ConfluxBlock Then { get; set; } = new();
 
-        [YamlMember(Alias = "else")]
+        [YamlMember(Alias = "then")]
+        public ConfluxBlock? ThenProxy
+        {
+            get => Then.IsEmpty() ? null : Then;
+            set => Then = value ?? new();
+        }
+
+        [YamlIgnore]
         public ConfluxBlock Else { get; set; } = new();
+
+        [YamlMember(Alias = "else")]
+        public ConfluxBlock? ElseProxy
+        {
+            get => Else.IsEmpty() ? null : Else;
+            set => Else = value ?? new();
+        }
 
         public override ConfluxGraph BuildGraph(NodeCanvasGraphContext context)
         {

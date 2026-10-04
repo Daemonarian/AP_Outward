@@ -21,5 +21,7 @@ namespace Conflux.Schema
 
             return graph;
         }
+
+        public bool IsEmpty() => Statements.Count == 0;
     }
 }
