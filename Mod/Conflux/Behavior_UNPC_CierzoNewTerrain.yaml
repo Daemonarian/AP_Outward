@@ -1,7 +1,7 @@
-type: behaviour
-
 replace:
 - CierzoNewTerrain/_SNPC/Tree Behavior UNPC
+
+type: behaviour
 
 data:
   repeat: true
@@ -375,6 +375,8 @@ threads:
                     object:
                       name: MertonBody
                     mode: Activate
+
+        # Ensure Roland sticks around to give out gift 1
         - - if:
               condition:
                 and:
@@ -417,6 +419,7 @@ threads:
                           object:
                             name: Prequest_Roland
                           mode: Deactivate
+
         - - if:
               condition:
                 hasQuestEvent: Artifacts_MertonHead

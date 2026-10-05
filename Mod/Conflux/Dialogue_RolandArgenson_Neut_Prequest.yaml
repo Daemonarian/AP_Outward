@@ -1,5 +1,3 @@
-type: dialogue
-
 replace:
 - CierzoNewTerrain/_SNPC/_UNPC/RolandAndRoland/UNPC_RolandArgenson (Standing)/Dialogue_RolandArgenson/NPC/DialogueTree_Neut_Prequest
 - CierzoNewTerrain/_SNPC/_UNPC/RolandAndRoland/UNPC_RolandArgenson (kneeling)/Dialogue_RolandArgenson/NPC/DialogueTree_Neut_Prequest
@@ -11,16 +9,18 @@ replace:
 - Emercar_Dungeon6/AISquadManagerStructure/UNPC/UNPC_RolandArgenson(Lich)/Dialogue_RolandArgenson/NPC/DialogueTree_Neut_Prequest
 - Emercar_Dungeon6/AISquadManagerStructure/UNPC/UNPC_RolandArgenson/Dialogue_RolandArgenson/NPC/DialogueTree_Neut_Prequest
 
-data:
-  actors:
-    name_unpc_rolandargenson_01:
-      id: 40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760
-      object: 1
+type: dialogue
 
 blackboard:
   gInstigator:
     type: character
     id: 0483cf6b-da62-4a57-aaed-40f25b4bdf9b
+
+data:
+  actors:
+    name_unpc_rolandargenson_01:
+      id: 40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760
+      object: 1
 
 threads:
   start:

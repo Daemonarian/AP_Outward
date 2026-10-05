@@ -1,8 +1,11 @@
-type: behaviour
-data:
-  repeat: true
 replace:
 - Berg/_SNPC/Tree Behavior UNPC
+
+type: behaviour
+
+data:
+  repeat: true
+
 threads:
   start:
   - parallel:
@@ -417,29 +420,40 @@ threads:
                     object:
                       name: CyreneZephy
                     mode: Activate
+
+          # Ensure Roland sticks around to give out gifts 2 and 3
         - - if:
               condition:
-                and:
-                - hasQuestEvent: General_RolandGift2
-                - hasQuestEvent: General_RolandGift3
-                - or:
+                or:
+                - and:
+                  - hasQuestEvent: General_DoneQuest0
                   - not:
-                      hasQuestEvent: WhispBones_RolandBerg
-                  - hasQuestEvent: WhispBones_RolandDeath
-                  - hasQuestEvent: WhispBones_NecropolisAccess
-                  - hasQuestEvent: WhispBones_ReadyForAction
+                      hasQuestEvent: General_RolandGift2
+                - and:
+                  - hasQuestEvent: General_DoneQuest1
+                  - not:
+                      hasQuestEvent: General_RolandGift3
+                - and:
+                  - hasQuestEvent: WhispBones_RolandBerg
+                  - not:
+                      hasQuestEvent: WhispBones_RolandDeath
+                  - not:
+                      hasQuestEvent: WhispBones_NecropolisAccess
+                  - not:
+                      hasQuestEvent: WhispBones_ReadyForAction
               then:
               - do:
                   activate:
                     object:
                       name: Roland
-                    mode: Deactivate
+                    mode: Activate
               else:
               - do:
                   activate:
                     object:
                       name: Roland
-                    mode: Activate
+                    mode: Deactivate
+
         - - if:
               condition:
                 and:

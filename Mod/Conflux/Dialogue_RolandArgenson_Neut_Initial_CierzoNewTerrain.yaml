@@ -1,0 +1,53 @@
+replace:
+  - CierzoNewTerrain/_SNPC/_UNPC/RolandAndRoland/UNPC_RolandArgenson (Standing)/Dialogue_RolandArgenson/NPC/DialogueTree_1_Initial
+  - CierzoNewTerrain/_SNPC/_UNPC/RolandAndRoland/UNPC_RolandArgenson (kneeling)/Dialogue_RolandArgenson/NPC/DialogueTree_1_Initial
+
+type: dialogue
+
+blackboard:
+  gInstigator: character
+
+data:
+  actors:
+    name_unpc_rolandargenson_01: 40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760
+
+threads:
+  start:
+    # ensure that Roland gift 1 is not skippable
+    - if:
+        condition:
+          and:
+            - isQuestComplete: Call_to_Adventure
+            - not:
+                hasQuestEvent: General_RolandGift1
+        then:
+          - goto: prequest
+
+    # fallback to normal dialogue tree
+    - if:
+        condition:
+          not:
+            isQuestComplete: Call_to_Adventure
+        then:
+          - do:
+              branch:
+                dialogue:
+                  name: Dialogue_RolandArgenson_BB/CallAdventure
+          - finish
+    - if:
+        condition:
+          not:
+            isQuestComplete: Looking_to_the_Future
+        then:
+          - goto: prequest
+    - say:
+        actor: name_unpc_rolandargenson_01
+        statement:
+          meta: Roland_BC_Prequest_13
+          text: "I'm getting better day by day...It's still hopeless, but at least I can survive like this, even if it's just barely. I'll keep trying to make it up to you, [PlayerName], I promise."
+
+  prequest:
+    - do:
+        branch:
+          dialogue:
+            name: Dialogue_RolandArgenson_BB/Prequest
