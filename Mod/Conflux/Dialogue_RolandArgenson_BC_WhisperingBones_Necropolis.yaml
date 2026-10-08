@@ -1,0 +1,269 @@
+replace:
+- CierzoNewTerrain/_SNPC/_UNPC/RolandAndRoland/UNPC_RolandArgenson (Standing)/Dialogue_RolandArgenson/NPC/DialogueTree_BC_WhisperingBonesNecr
+- CierzoNewTerrain/_SNPC/_UNPC/RolandAndRoland/UNPC_RolandArgenson (kneeling)/Dialogue_RolandArgenson/NPC/DialogueTree_BC_WhisperingBonesNecr
+- Chersonese_Dungeon4_BlueChamber/AISquadManagerStructure/_UNPC/RolandHurt/UNPC_RolandArgenson/Dialogue_RolandArgenson/NPC/DialogueTree_BC_WhisperingBonesNecr
+- Chersonese_Dungeon4_CommonPath/AISquadManagerStructure/_UNPC/RolandMana/UNPC_RolandArgenson/Dialogue_RolandArgenson/NPC/DialogueTree_BC_WhisperingBonesNecr
+- ChersoneseDungeonsSmall/AISquadManagerStructure/_UNPC/RolandShrimp/UNPC_RolandArgenson/Dialogue_RolandArgenson/NPC/DialogueTree_BC_WhisperingBonesNecr
+- Berg/_SNPC/_UNPC/UNPC_RolandArgenson/Dialogue_RolandArgenson/NPC/DialogueTree_BC_WhisperingBonesNecr
+- Emercar_Dungeon3/AISquadManagerStructure/_Statics/RolandCOW/UNPC_RolandArgenson/Dialogue_RolandArgenson/NPC/DialogueTree_BC_WhisperingBonesNecr
+- Emercar_Dungeon6/AISquadManagerStructure/UNPC/UNPC_RolandArgenson/Dialogue_RolandArgenson/NPC/DialogueTree_BC_WhisperingBonesNecr
+- Emercar_Dungeon6/AISquadManagerStructure/UNPC/UNPC_RolandArgenson(Lich)/Dialogue_RolandArgenson/NPC/DialogueTree_BC_WhisperingBonesNecr
+
+type: dialogue
+
+blackboard:
+  gInstigator:
+    type: character
+    id: 0483cf6b-da62-4a57-aaed-40f25b4bdf9b
+    
+data:
+  actors:
+    name_unpc_rolandargenson_01: 40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760
+    name_unpc_whisperingbones_01: ec8cf461-8ed3-4958-8665-3905fea2a99a
+    name_unpc_narrator: 5ab66945-e323-413b-bc4b-a55d634bc192
+
+threads:
+  start:
+  - if:
+      condition:
+        hasQuestEvent: WhispBones_RolandLich
+      then:
+      - do:
+          branch:
+            dialogue:
+              name: Dialogue_RolandArgenson_BB/BC_WhisperingBonesLich
+      else:
+      - if:
+          condition:
+            and:
+            - not:
+                hasQuestEvent: BC_Necropolis_LeftAltar
+            - not:
+                hasQuestEvent: BC_Necropolis_RightAltar
+          then:
+          - say:
+              statement:
+                meta: Roland_BC_Bones_47
+                text: I can't talk. I need to pay attention and make sure no more ghosts sneak up on Gabriella! Focus on what's in front of you, focus on what's in front of you...
+              actor: name_unpc_rolandargenson_01
+          else:
+          - say:
+              statement:
+                meta: Roland_BC_Bones_48
+                text: Thank Elatt you made it. I really don't like the look of this mess. She already added her entire spirit to the Ancestral Memories. They're in agony! Can you hear them? Can you see them?
+              actor: name_unpc_rolandargenson_01
+          - choice:
+            - statement:
+                meta: Player_Roland_BC_Bones_a_48
+                text: No, Roland, I can't. How bad is it?
+              then:
+              - say:
+                  statement:
+                    meta: Roland_BC_Bones_49
+                    text: Really. you can't see it? The Ancestral Memories are in a frenzied storm around that altar, and there's this huge streak of red winding around it...
+                  actor: name_unpc_rolandargenson_01
+              - if:
+                  condition:
+                    not:
+                      hasQuestEvent: WhispBones_NecroNotInTime
+                  then:
+                  - say:
+                      statement:
+                        meta: Roland_BC_Bones_50
+                        text: Looks like we caught it early enough. That woman's spirit is still being resisted by the rest of the memories. We might be able to do something about this.
+                      actor: name_unpc_rolandargenson_01
+                  else:
+                  - say:
+                      statement:
+                        meta: Roland_BC_Bones_51
+                        text: She's already done serious damage to them. So many of the Memories are tainted with red... It's hard to tell where she ends and where the Ancestral Memories begin.
+                      actor: name_unpc_rolandargenson_01
+                  
+              - say:
+                  statement:
+                    meta: Roland_BC_Bones_52
+                    text: I think... I think I might be able to use my mana sword to cut her spirit out of that mess. It's risky, but if I jam the blade in just the right spot and cut very carefully, we have a chance.
+                  actor: name_unpc_rolandargenson_01
+              - say:
+                  statement:
+                    meta: Roland_BC_Bones_52-b
+                    text: Stand back, once I start cutting, memories and ghosts will start pouring out of that storm. If you get caught in that... it's not healthy.
+                  actor: name_unpc_rolandargenson_01
+              - choice:
+                - statement:
+                    meta: Player_Roland_BC_Bones_a_52
+                    text: But you're going to get caught in that!
+                  then:
+                  - say:
+                      statement:
+                        meta: Roland_BC_Bones_53
+                        text: Yeah, I am... but I don't see any other option. I'll have to take that risk. Rissa said if we lose these Ancestral Memories, the whole Collective will suffer.
+                      actor: name_unpc_rolandargenson_01
+                  - choice:
+                    - statement:
+                        meta: Player_Roland_BC_Bones_a_53
+                        text: Are you sure you can handle this?
+                - statement:
+                    meta: Player_Roland_BC_Bones_b_52
+                    text: Oh great. Don't mess this up, Roland.
+              - if:
+                  condition:
+                    hasQuestEvent:
+                      event: WhispBones_RolandFocus
+                      count: 5
+                  then:
+                  - if:
+                      condition:
+                        hasQuestEvent: WhispBones_Trinket
+                      then:
+                      - say:
+                          statement:
+                            meta: Roland_BC_Bones_54
+                            text: Yeah. Yeah, I'm sure. I can handle this. I know exactly what I have to do. Now stand back, and let me work.
+                          actor: name_unpc_rolandargenson_01
+                      - say:
+                          statement:
+                            meta: Roland_BC_Bones_63
+                            text: (As Roland plants his mana sword into the air around the altar, a violent burst of blue energy blinds you. Then, a woman’s scream breaks the air, and red energy rushes past you)
+                          actor: name_unpc_narrator
+                      - say:
+                          statement:
+                            meta: Roland_BC_Bones_64
+                            text: (As the brilliant light fades, Roland remains, his eyes glowing with a strange, fey light.)
+                          actor: name_unpc_narrator
+                      - do:
+                          fadeOut: 1
+                      - do:
+                          sequence:
+                          - sendQuestEvent: WhispBones_RolandLich
+                          - sendQuestEvent: WhispBones_CalmSpirits
+                          - music:
+                              music: BGM_EventDramatic
+                              stop: false
+                      - do:
+                          fadeIn: 1
+                      else:
+                      - say:
+                          statement:
+                            meta: Roland_BC_Bones_55
+                            text: I'm not sure... but it's the best shot we've got. Stand back. Here goes nothing.
+                          actor: name_unpc_rolandargenson_01
+                      - say:
+                          statement:
+                            meta: Roland_BC_Bones_63
+                            text: (As Roland plants his mana sword into the air around the altar, a violent burst of blue energy blinds you. Then, a woman’s scream breaks the air, and red energy rushes past you)
+                          actor: name_unpc_narrator
+                      - say:
+                          statement:
+                            meta: Roland_BC_Bones_56
+                            text: (Roland stares ahead, empty and cold. His spirit has almost completely left his body, and it is starting to shut down.)
+                          actor: name_unpc_narrator
+                      - say:
+                          statement:
+                            meta: Roland_BC_Bones_58
+                            text: (With a jerk of a motion, he grips your arm. A flood of Roland's memories pour into you. You feel your spirit grow in strength)
+                          actor: name_unpc_narrator
+                      - do:
+                          fadeOut: 1
+                      - do:
+                          sequence:
+                          - sendQuestEvent: WhispBones_RolandDeath
+                          - sendQuestEvent: WhispBones_CalmSpirits
+                          - music:
+                              music: BGM_EventDramatic
+                              stop: false
+                      - do:
+                          reward:
+                            items:
+                            - item: Hackmanite
+                              quantity: 2
+                              equip: false
+                            - item: Occult_Remains
+                              quantity: 3
+                              equip: false
+                            - item: Luxe_Lichette
+                              quantity: 2
+                              equip: false
+                            silver: 0
+                            xp: 0
+                      - do:
+                          fadeIn: 1
+                  else:
+                  - if:
+                      condition:
+                        and:
+                        - hasQuestEvent:
+                            event: WhispBones_RolandFocus
+                            count: 3
+                        - hasQuestEvent: WhispBones_Trinket
+                      then:
+                      - say:
+                          statement:
+                            meta: Roland_BC_Bones_55
+                            text: I'm not sure... but it's the best shot we've got. Stand back. Here goes nothing.
+                          actor: name_unpc_rolandargenson_01
+                      - say:
+                          statement:
+                            meta: Roland_BC_Bones_63
+                            text: (As Roland plants his mana sword into the air around the altar, a violent burst of blue energy blinds you. Then, a woman’s scream breaks the air, and red energy rushes past you)
+                          actor: name_unpc_narrator
+                      - do:
+                          fadeOut: 1
+                      - do:
+                          reward:
+                            items:
+                            - item: Lantern_of_Souls
+                              quantity: 1
+                              equip: false
+                            - item: Occult_Remains
+                              quantity: 3
+                              equip: false
+                            - item: Luxe_Lichette
+                              quantity: 2
+                              equip: false
+                            silver: 0
+                            xp: 0
+                      - do:
+                          sequence:
+                          - sendQuestEvent: WhispBones_RolandDeath
+                          - sendQuestEvent: WhispBones_AngrySpirits
+                          - music:
+                              music: BGM_EventDramatic
+                              stop: false
+                      - do:
+                          fadeIn: 1
+                      else:
+                      - say:
+                          statement:
+                            meta: Roland_BC_Bones_59
+                            text: Honestly, I don't care. If we don't do something, this could destroy Berg. It could destroy the entire Collective. Even if I can't handle it, I have to try.
+                          actor: name_unpc_rolandargenson_01
+                      - say:
+                          statement:
+                            meta: Roland_BC_Bones_63
+                            text: (As Roland plants his mana sword into the air around the altar, a violent burst of blue energy blinds you. Then, a woman’s scream breaks the air, and red energy rushes past you)
+                          actor: name_unpc_narrator
+                      - say:
+                          statement:
+                            meta: Roland_BC_Bones_60
+                            text: I... Am... We are... I am Jarinda. I am... I am why am I... Why am I in this... Body?
+                          actor: name_unpc_rolandargenson_01
+                      - say:
+                          statement:
+                            meta: Roland_BC_Bones_61
+                            text: "[PlayerName]... I have her... I have her... I can't hold... Her here forever... <color=#00CCFF><b>Kill her</b></color>... Before she..."
+                          actor: name_unpc_rolandargenson_01
+                      - say:
+                          statement:
+                            meta: Roland_BC_Bones_62
+                            text: I will not... Allow it! I must endure! I must survive! She depends on me! I cannot let the Lady come to harm!
+                          actor: name_unpc_rolandargenson_01
+                      - do:
+                          fadeOut: 1
+                      - do:
+                          sequence:
+                          - sendQuestEvent: WhispBones_PossessedRoland
+                          - sendQuestEvent: WhispBones_AngrySpirits
+                          - music:
+                              music: BGM_EventDramatic
+                              stop: false

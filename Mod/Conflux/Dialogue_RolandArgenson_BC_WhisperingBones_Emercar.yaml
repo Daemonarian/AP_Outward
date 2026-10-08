@@ -1,0 +1,229 @@
+replace:
+- CierzoNewTerrain/_SNPC/_UNPC/RolandAndRoland/UNPC_RolandArgenson (kneeling)/Dialogue_RolandArgenson/NPC/DialogueTree_BC_WhisperingBonesEme
+- CierzoNewTerrain/_SNPC/_UNPC/RolandAndRoland/UNPC_RolandArgenson (Standing)/Dialogue_RolandArgenson/NPC/DialogueTree_BC_WhisperingBonesEme
+- Chersonese_Dungeon4_BlueChamber/AISquadManagerStructure/_UNPC/RolandHurt/UNPC_RolandArgenson/Dialogue_RolandArgenson/NPC/DialogueTree_BC_WhisperingBonesEme
+- Chersonese_Dungeon4_CommonPath/AISquadManagerStructure/_UNPC/RolandMana/UNPC_RolandArgenson/Dialogue_RolandArgenson/NPC/DialogueTree_BC_WhisperingBonesEme
+- ChersoneseDungeonsSmall/AISquadManagerStructure/_UNPC/RolandShrimp/UNPC_RolandArgenson/Dialogue_RolandArgenson/NPC/DialogueTree_BC_WhisperingBonesEme
+- Berg/_SNPC/_UNPC/UNPC_RolandArgenson/Dialogue_RolandArgenson/NPC/DialogueTree_BC_WhisperingBonesEme
+- Emercar_Dungeon3/AISquadManagerStructure/_Statics/RolandCOW/UNPC_RolandArgenson/Dialogue_RolandArgenson/NPC/DialogueTree_BC_WhisperingBonesEme
+- Emercar_Dungeon6/AISquadManagerStructure/UNPC/UNPC_RolandArgenson/Dialogue_RolandArgenson/NPC/DialogueTree_BC_WhisperingBonesEme
+- Emercar_Dungeon6/AISquadManagerStructure/UNPC/UNPC_RolandArgenson(Lich)/Dialogue_RolandArgenson/NPC/DialogueTree_BC_WhisperingBonesEme
+
+type: dialogue
+
+blackboard:
+  gInstigator:
+    type: character
+    id: 0483cf6b-da62-4a57-aaed-40f25b4bdf9b
+    
+data:
+  actors:
+    name_unpc_rolandargenson_01: 40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760
+    name_unpc_whisperingbones_01: ec8cf461-8ed3-4958-8665-3905fea2a99a
+
+threads:
+  start:
+  - if:
+      condition:
+        hasQuestEvent: WhispBones_NecropolisAccess
+      then:
+      - do:
+          branch:
+            dialogue:
+              name: Dialogue_RolandArgenson_BB/BC_WhisperingBonesNecr
+      else:
+      - if:
+          condition:
+            hasQuestEvent: WhispBones_COWDone
+          then:
+          - say:
+              statement:
+                meta: Roland_BC_Bones_46_B
+                text: You’re the one who really handled that fight. You should be the one to report on all the juicy details.
+              actor: name_unpc_rolandargenson_01
+          else:
+          - if:
+              condition:
+                or:
+                - hasQuestEvent: WhispBones_ReadyForAction
+                - hasQuestEvent: WhispBones_COW
+              then:
+              - if:
+                  condition:
+                    hasQuestEvent: WhispBones_COW
+                  then:
+                  - if:
+                      condition:
+                        hasQuestEvent: WhispBones_GreenHorrorDeath
+                      then:
+                      - if:
+                          condition:
+                            hasQuestEvent: WhispBones_AutoRoland
+                          else:
+                          - do:
+                              sendQuestEvent: WhispBones_AutoRoland
+                      - if:
+                          condition:
+                            hasQuestEvent:
+                              event: WhispBones_RolandFocus
+                              count: 3
+                          then:
+                          - say:
+                              statement:
+                                meta: Roland_BC_Bones_44
+                                text: We did it. We actually did it. We killed a damn Shelled Horror! And I’m not dead!
+                              actor: name_unpc_rolandargenson_01
+                          - choice:
+                            - statement:
+                                meta: Player_Roland_BC_Bones_a_44
+                                text: You carried your weight there. Good work.
+                              then:
+                              - say:
+                                  statement:
+                                    meta: Roland_BC_Bones_45
+                                    text: For the first time in my life, it really feels like I did. Thanks for everything, [PlayerName]. Alright, let's <color=#00CCFF><b>rip a trophy off this thing and show Gabriella</b></color>, eh?
+                                  actor: name_unpc_rolandargenson_01
+                              - do:
+                                  fadeOut: 1
+                              - goto: rolandFriendship
+                            - statement:
+                                meta: Player_Roland_BC_Bones_b_44
+                                text: What do you mean "we"? I did all the work!
+                              then:
+                              - say:
+                                  statement:
+                                    meta: Roland_BC_Bones_46
+                                    text: I... I guess you did, didn't you. I'm sorry. I shouldn't have...Let's just go <color=#00CCFF><b>report this to Gabriella</b></color> and get on with stopping whatever is going on.
+                                  actor: name_unpc_rolandargenson_01
+                              - do:
+                                  fadeOut: 1
+                              - goto: rolandNoFriendship
+                          else:
+                          - say:
+                              statement:
+                                meta: Roland_BC_Bones_65
+                                text: I’m sorry that I didn’t help you, I just...I couldn’t...I was scared, alright? There, I said it! I’m sorry! Let’s just...Let’s just go report to Gabriella.
+                              actor: name_unpc_rolandargenson_01
+                          - choice:
+                            - statement:
+                                meta: Player_Roland_BC_Bones_a_65
+                                text: You wouldn’t have been any help anyway. Go home, Roland, you’re not cut out for this stuff.
+                              then:
+                              - goto: rolandNoFriendship
+                            - statement:
+                                meta: Player_Roland_BC_Bones_b_65
+                                text: It happens. Don’t let it get to you. Just do better next time. I’ll see you in Berg, yeah?
+                              then:
+                              - goto: rolandFriendship
+                  else:
+                  - say:
+                      statement:
+                        meta: Salutation_Generic_02
+                        text: Greetings. I hope you’re well!
+                      actor: name_unpc_rolandargenson_01
+              else:
+              - if:
+                  condition:
+                    hasQuestEvent: WhispBones_GabriellaGaveMission
+                  then:
+                  - if:
+                      condition:
+                        not:
+                          hasQuestEvent: WhispBones_Trinket
+                      then:
+                      - say:
+                          statement:
+                            meta: Roland_BC_Bones_26
+                            text: There's no way I'm ready to take down a Scourge Beast! Those things are massive and terrifying and deadly! I don't feel like I've got a full grasp of my Mana yet either...
+                          actor: name_unpc_rolandargenson_01
+                      else:
+                      - say:
+                          statement:
+                            meta: Roland_BC_Bones_GotTrinket
+                            text: Oh!  [PlayerName]! That little gem trinket helps a lot! My mana sword feels much more stable! But still...Killing a Shell Horror? I don’t know how anyone could be ready for that!
+                          actor: name_unpc_rolandargenson_01
+                  - choice:
+                    - statement:
+                        meta: Player_Roland_BC_Bones_a_26
+                        text: I’m not prepared either. I need to take some time to get ready for this.
+                      then:
+                      - say:
+                          statement:
+                            meta: Roland_BC_Bones_27
+                            text: Yeah, great minds think alike. I’m going to keep training too.
+                          actor: name_unpc_rolandargenson_01
+                    - statement:
+                        meta: Player_Roland_BC_Bones_c_26
+                        text: What's wrong with your Mana? You're able to summon that sword just fine.
+                      condition:
+                        not:
+                          hasQuestEvent: WhispBones_Trinket
+                      then:
+                      - say:
+                          statement:
+                            meta: Roland_BC_Bones_32
+                            text: Yes, but... it bends a lot while I have it out. I don't know if I can use it as an actual weapon. It feels blunt half the time I swing it. My Mana reserves are huge, but I can’t seem to focus them properly.
+                          actor: name_unpc_rolandargenson_01
+                      - choice:
+                        - statement:
+                            meta: Player_Roland_BC_Bones_a_32
+                            text: I wonder... Maybe we can find someone to make you a tool that makes it easier to focus that thing?
+                          then:
+                          - say:
+                              statement:
+                                meta: Roland_BC_Bones_34
+                                text: I'm sure there's <color=#00CCFF><b>a smith somewhere in this city</b></color> who has the know-how to make something like that! Could you ask him for me?
+                              actor: name_unpc_rolandargenson_01
+                          - if:
+                              condition:
+                                hasQuestEvent: WhispBones_SeeTaleron
+                              else:
+                              - do:
+                                  sendQuestEvent: WhispBones_SeeTaleron
+                    - statement:
+                        meta: Player_Roland_BC_Bones_d_26
+                        text: It’s time to kill that green Scourge Beast! Meet me at the Cabal of Winds Temple.
+                      then:
+                      - say:
+                          statement:
+                            meta: Roland_BC_Bones_36
+                            text: Right. We'll never know unless we try. Alright, I’m on my way there. <color=#00CCFF><b>See you at the old temple</b></color>. You’ve seen it, right? It’s that <color=#00CCFF><b>large ruin on top of the mountain in Enmerkar</b></color>.
+                          actor: name_unpc_rolandargenson_01
+                      - do:
+                          fadeOut: 1
+                      - do:
+                          sequence:
+                          - sendQuestEvent: WhispBones_COW
+                          - sendQuestEvent: WhispBones_ReadyForAction
+                      - do:
+                          fadeIn: 1
+                    - statement:
+                        meta: Player_Roland_BC_Bones_d_26
+                        text: It’s time to kill that green Scourge Beast! Meet me at the Cabal of Winds Temple.
+                  else:
+                  - say:
+                      statement:
+                        meta: Roland_BC_Bones_25
+                        text: Gabriella chewed me out over letting a Rock Mantis get the better of me. I should really pay more attention to my surroundings.
+                      actor: name_unpc_rolandargenson_01
+
+  rolandFriendship:
+  - do:
+      sequence:
+      - sendQuestEvent: WhispBones_COWDone
+      - sendQuestEvent: WhispBones_RolandFocus
+      - removeQuestEvent:
+          questEvent: WhispBones_ReadyForAction
+          removeAll: true
+  - do:
+      fadeIn: 1
+
+  rolandNoFriendship:
+  - do:
+      sequence:
+      - sendQuestEvent: WhispBones_COWDone
+      - removeQuestEvent:
+          questEvent: WhispBones_ReadyForAction
+          removeAll: true
+  - do:
+      fadeIn: 1

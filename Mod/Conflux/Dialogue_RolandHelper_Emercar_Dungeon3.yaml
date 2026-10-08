@@ -1,0 +1,24 @@
+replace:
+- Emercar_Dungeon3\Interactions\RolandHelper\DialogueTemplate\NPC
+
+type: dialogue
+
+data:
+  actors:
+    npc:
+      id: 5b4c8663-6cb4-483e-9355-8af7d175d0e4
+      object: 1
+
+threads:
+  start:
+  - if:
+      condition:
+        and:
+        - hasQuestEvent:
+            event: WhispBones_RolandFocus
+            count: 3
+        - not:
+            hasQuestEvent: WhispBones_RolandHelper
+      then:
+      - do:
+          sendQuestEvent: WhispBones_RolandHelper

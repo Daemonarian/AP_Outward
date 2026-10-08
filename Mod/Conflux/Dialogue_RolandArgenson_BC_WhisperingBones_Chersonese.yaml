@@ -1,0 +1,304 @@
+replace:
+- CierzoNewTerrain/_SNPC/_UNPC/RolandAndRoland/UNPC_RolandArgenson (Standing)/Dialogue_RolandArgenson/NPC/DialogueTree_BC_WhisperingBonesChe
+- CierzoNewTerrain/_SNPC/_UNPC/RolandAndRoland/UNPC_RolandArgenson (kneeling)/Dialogue_RolandArgenson/NPC/DialogueTree_BC_WhisperingBonesChe
+- Chersonese_Dungeon4_BlueChamber/AISquadManagerStructure/_UNPC/RolandHurt/UNPC_RolandArgenson/Dialogue_RolandArgenson/NPC/DialogueTree_BC_WhisperingBonesChe
+- Chersonese_Dungeon4_CommonPath/AISquadManagerStructure/_UNPC/RolandMana/UNPC_RolandArgenson/Dialogue_RolandArgenson/NPC/DialogueTree_BC_WhisperingBonesChe
+- ChersoneseDungeonsSmall/AISquadManagerStructure/_UNPC/RolandShrimp/UNPC_RolandArgenson/Dialogue_RolandArgenson/NPC/DialogueTree_BC_WhisperingBonesChe
+- Berg/_SNPC/_UNPC/UNPC_RolandArgenson/Dialogue_RolandArgenson/NPC/DialogueTree_BC_WhisperingBonesChe
+- Emercar_Dungeon3/AISquadManagerStructure/_Statics/RolandCOW/UNPC_RolandArgenson/Dialogue_RolandArgenson/NPC/DialogueTree_BC_WhisperingBonesChe
+- Emercar_Dungeon6/AISquadManagerStructure/UNPC/UNPC_RolandArgenson/Dialogue_RolandArgenson/NPC/DialogueTree_BC_WhisperingBonesChe
+- Emercar_Dungeon6/AISquadManagerStructure/UNPC/UNPC_RolandArgenson(Lich)/Dialogue_RolandArgenson/NPC/DialogueTree_BC_WhisperingBonesChe
+
+type: dialogue
+
+blackboard:
+  gInstigator:
+    type: character
+    id: 0483cf6b-da62-4a57-aaed-40f25b4bdf9b
+    
+data:
+  actors:
+    name_unpc_rolandargenson_01: 40fbaef3-4bf8-4bc9-bf2f-ae0d25ded760
+    name_unpc_narrator: 2c2f9eef-4a26-4ce4-bda8-53087a8fad98
+
+threads:
+  start:
+  - if:
+      condition:
+        isQuestComplete: Whispering_Bones
+      then:
+      - say:
+          statement:
+            meta: Salutation_Generic_02
+            text: Greetings. I hope you’re well!
+          actor: name_unpc_rolandargenson_01
+      else:
+      - if:
+          condition:
+            hasQuestEvent: WhispBones_RolandBerg
+          then:
+          - do:
+              branch:
+                dialogue:
+                  name: Dialogue_RolandArgenson_BB/BC_WhisperingBonesEme
+          else:
+          - if:
+              condition:
+                hasQuestEvent: WhispBones_RolandShrimp
+              then:
+              - if:
+                  condition:
+                    hasQuestEvent: WhispBones_ShrimpDone
+                  else:
+                  - say:
+                      statement:
+                        meta: Roland_BC_Bones_18
+                        text: Gahh...I’ve made a terrible mistake...I gave up so much of my life to the Ley Line that my body is as frail as a spiderweb. I couldn’t even take on a single Pistol Shrimp like this. I'm useless. I'll never shake this Blood Price. I'll never amount to anything.
+                      actor: name_unpc_rolandargenson_01
+                  - choice:
+                    - statement:
+                        meta: Player_Roland_BC_Bones_a_18
+                        text: What are you going to do about it? Just whine? Or are you going to actually try?
+                      then:
+                      - say:
+                          statement:
+                            meta: Roland_BC_Bones_19
+                            text: You're right. I have either get good or die trying. No in-between. Nothing will change if I don't. All I can do is just push ahead and make it happen, or die trying.
+                          actor: name_unpc_rolandargenson_01
+                      - do:
+                          sequence:
+                          - sendQuestEvent: WhispBones_ShrimpDone
+                          - sendQuestEvent:
+                              event: WhispBones_RolandFocus
+                              count: 3
+                    - statement:
+                        meta: Player_Roland_BC_Bones_b_18
+                        text: Roland, get your chin up. There's always hope if you keep at it.
+                      then:
+                      - say:
+                          statement:
+                            meta: Roland_BC_Bones_20
+                            text: Oh, right. Hope. The little carrot you dangle in front of a horse to make it keep going. Life's already beaten me with the damn stick, why should I care about the stupid carrot that I'll never manage to reach? Hope’s just a big, cruel lie we tell ourselves when there's nothing we can do.
+                          actor: name_unpc_rolandargenson_01
+                      - do:
+                          sequence:
+                          - sendQuestEvent: WhispBones_ShrimpDone
+                          - sendQuestEvent:
+                              event: WhispBones_RolandFocus
+                              count: 2
+                  - choice:
+                    - statement:
+                        meta: Player_Roland_BC_Bones_a_19
+                        text: So, what was it we were looking for?
+                      then:
+                      - say:
+                          statement:
+                            meta: Roland_BC_Bones_21
+                            text: It's my dad's old compass. Yzan and I borrowed it back when we were kids to go run around outside. You can probably imagine how that ended up. Stupid Pistol shrimp would have killed us if it wasn't for the old Warden coming in to save us. It's all I have left to remember my dad by.
+                          actor: name_unpc_rolandargenson_01
+                      - choice:
+                        - statement:
+                            meta: Player_Roland_BC_Bones_a_21
+                            text: I can see why you'd come back for this.
+                          then:
+                          - say:
+                              statement:
+                                meta: Roland_BC_Bones_22
+                                text: Thanks for helping me find it again, [PlayerName]. I won't forget this.
+                              actor: name_unpc_rolandargenson_01
+                        - statement:
+                            meta: Player_Roland_BC_Bones_b_21
+                            text: It looks broken, it’s probably not even worth 10 silvers.
+                          then:
+                          - say:
+                              statement:
+                                meta: Roland_BC_Bones_23
+                                text: Yeah, but to me it's worth a lot more than that. Thanks for helping me find it again.
+                              actor: name_unpc_rolandargenson_01
+              - say:
+                  statement:
+                    meta: Roland_BC_Bones_24
+                    text: I'm going to go report to Gabriella once I’ve caught my breath. <color=#00CCFF><b>I'll see you back in Berg</b></color>, [PlayerName].
+                  actor: name_unpc_rolandargenson_01
+              - do:
+                  fadeOut: 1
+              - do:
+                  sequence:
+                  - sendQuestEvent: WhispBones_RolandBerg
+                  - reward:
+                      items:
+                      - item: Turmmip_Potage
+                        quantity: 2
+                        equip: false
+                      - item: Astral_Potion
+                        quantity: 2
+                        equip: false
+                      silver: 0
+                      xp: 0
+              - do:
+                  fadeIn: 1
+              else:
+              - if:
+                  condition:
+                    hasQuestEvent: WhispBones_FoundRoland
+                  then:
+                  - if:
+                      condition:
+                        hasQuestEvent: WhispBones_RolandAnswer1
+                      else:
+                      - say:
+                          statement:
+                            meta: Roland_BC_Bones_06
+                            text: Oh, Elatt's name... Everything hurts. Everything. Hurts. I had no idea the Mana ritual was so painful.
+                          actor: name_unpc_rolandargenson_01
+                      - choice:
+                        - statement:
+                            meta: Player_Roland_BC_Bones_a_06
+                            text: Roland, exactly how much of your life did you sacrifice to tap into the Ley Line's Mana?
+                          then:
+                          - say:
+                              statement:
+                                meta: Roland_BC_Bones_07
+                                text: I don't know. I just kept pouring my life into the Ley Line, as much as I could bear... I wanted as much Mana as I could take.
+                              actor: name_unpc_rolandargenson_01
+                          - choice:
+                            - statement:
+                                meta: Player_Roland_BC_Bones_a_07
+                                text: Roland, you complete moron. Do you have a death wish?
+                              then:
+                              - say:
+                                  statement:
+                                    meta: Roland_BC_Bones_08
+                                    text: You're asking? I honestly don't care what happens to me anymore. Rissa has me by the stones. If I don't work for her, I can't pay my Blood Price. If I do work for her, I face almost certain death. Both options are impossible to deal with. I don’t exactly have much to lose.
+                                  actor: name_unpc_rolandargenson_01
+                            - statement:
+                                meta: Player_Roland_BC_Bones_b_07
+                                text: You must have gained a ton of magical power. How does it feel?
+                              then:
+                              - say:
+                                  statement:
+                                    meta: Roland_BC_Bones_09
+                                    text: I feel worn and empty... but also full of power. For the first time in my life, I think I can actually make a difference. With this, I can actually reshape my future.
+                                  actor: name_unpc_rolandargenson_01
+                              - do:
+                                  sequence:
+                                  - sendQuestEvent: WhispBones_RolandFocus
+                                  - sendQuestEvent: WhispBones_RolandAnswer1
+                          - say:
+                              statement:
+                                meta: Roland_BC_Bones_10
+                                text: I'm already able to use Magic. See this sword? I made it myself out of my own Mana. I can make a blade whenever I need one, now!
+                              actor: name_unpc_rolandargenson_01
+                          - choice:
+                            - statement:
+                                meta: Player_Roland_BC_Bones_a_10
+                                text: That's... a sword made of Mana? That's actually kind of impressive for a new mage. Do you know how to use it?
+                              then:
+                              - say:
+                                  statement:
+                                    meta: Roland_BC_Bones_11
+                                    text: It might be made of Mana, but it's still a sword. The pointy end goes into the bad guys. How hard can it be to use?
+                                  actor: name_unpc_rolandargenson_01
+                  - say:
+                      statement:
+                        meta: Roland_BC_Bones_12
+                        text: Hey...[PlayerName]? While we're back here in the Chersonese... There's <color=#00CCFF><b>somewhere I want to go</b></color>. I'd feel better if you came along.
+                      actor: name_unpc_rolandargenson_01
+                  - say:
+                      statement:
+                        meta: Roland_BC_Bones_15
+                        text: When we were kids, Yzan and I went into the <color=#00CCFF><b>Starfish cave on the beach near Cierzo</b></color>. I... lost something there. Something that belonged to my father.
+                      actor: name_unpc_rolandargenson_01
+                  - choice:
+                    - statement:
+                        meta: Player_Roland_BC_Bones_a_15
+                        text: I'm not taking a detour for us to pick up an old trinket you dropped in a cave years ago. We have work to do.
+                      then:
+                      - say:
+                          statement:
+                            meta: Roland_BC_Bones_16
+                            text: I suppose... It probably got destroyed or stolen years ago anyway. I’ll head back to Berg and to report to Gabriella, then.
+                          actor: name_unpc_rolandargenson_01
+                      - do:
+                          fadeOut: 1
+                      - do:
+                          sequence:
+                          - sendQuestEvent: WhispBones_RolandBerg
+                          - reward:
+                              items:
+                              - item: Turmmip_Potage
+                                quantity: 2
+                                equip: false
+                              - item: Astral_Potion
+                                quantity: 2
+                                equip: false
+                              silver: 0
+                              xp: 0
+                      - do:
+                          fadeIn: 1
+                    - statement:
+                        meta: Player_Roland_BC_Bones_b_15
+                        text: Sure, why not. It's not that far out of the way.
+                      then:
+                      - say:
+                          statement:
+                            meta: Roland_BC_Bones_17
+                            text: Really? Thanks, [PlayerName]. It means a lot to me. The cave I'm talking about is the one right <color=#00CCFF><b>near Cierzo's back door, on the beach where the tunnel from the storage tunnel comes out.</b></color>
+                          actor: name_unpc_rolandargenson_01
+                      - do:
+                          fadeOut: 1
+                      - do:
+                          sendQuestEvent: WhispBones_RolandShrimp
+                      - do:
+                          fadeIn: 1
+                  else:
+                  - if:
+                      condition:
+                        hasQuestEvent: WhispBones_DeathMantis
+                      then:
+                      - say:
+                          statement:
+                            meta: Roland_BC_Bones_02
+                            text: Who... What... Oh. [PlayerName]. That was you who saved me? Thank you, I really owe you one. That rock mantis really had me.
+                          actor: name_unpc_rolandargenson_01
+                      - choice:
+                        - statement:
+                            meta: Player_Roland_BC_Bones_a_02
+                            text: You're injured. Hang on, let me patch that up.
+                          then:
+                          - say:
+                              statement:
+                                meta: Roland_BC_Bones_03
+                                text: I have some bandages on me, I can handle it myself. I'll patch this up and I'll keep going.
+                              actor: name_unpc_rolandargenson_01
+                          - choice:
+                            - statement:
+                                meta: Player_Roland_BC_Bones_a_03
+                                text: Whoa whoa whoa, I'm coming with you. I don't want to have to bail you out again!
+                              then:
+                              - say:
+                                  statement:
+                                    meta: Roland_BC_Bones_04
+                                    text: No. If I'm going to do this, I need to try to make it on my own. Give me a few minutes head start to <color=#00CCFF><b>get to the heart of the mountain</b></color>, alright?
+                                  actor: name_unpc_rolandargenson_01
+                            - statement:
+                                meta: Player_Roland_BC_Bones_b_03
+                                text: Fine by me. Don't get into any more trouble.
+                              then:
+                              - say:
+                                  statement:
+                                    meta: Roland_BC_Bones_05
+                                    text: Right. I’ll try to avoid running into anything else lethal today. Thanks.
+                                  actor: name_unpc_rolandargenson_01
+                          - do:
+                              fadeOut: 1
+                          - do:
+                              sendQuestEvent: WhispBones_FoundRoland
+                          - do:
+                              fadeIn: 1
+                      else:
+                      - say:
+                          statement:
+                            meta: Roland_BC_Bones_01
+                            text: (He is barely conscious)
+                          actor: name_unpc_narrator
