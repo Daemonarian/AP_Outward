@@ -2,57 +2,84 @@ import * as vscode from 'vscode';
 import { spawn } from 'child_process';
 import * as path from 'path';
 
-let previewPanel: vscode.WebviewPanel | undefined = undefined;
 let cliPath: string = '';
+
+const activePreviews = new Map<string, vscode.WebviewPanel>();
+const activeTimeouts = new Map<string, NodeJS.Timeout>();
 
 export function activate(context: vscode.ExtensionContext) {
     cliPath = path.join(context.extensionPath, 'bin', 'Conflux.exe');
-    console.log("cliPath: " + cliPath);
 
-    let disposable = vscode.commands.registerCommand('conflux-preview.showPreview', () => {
-        if (previewPanel) {
-            previewPanel.reveal(vscode.ViewColumn.Beside);
+    let previewCommand = vscode.commands.registerCommand('conflux-preview.showPreview', () => {
+        const editor = vscode.window.activeTextEditor;
+        if (!editor || (editor.document.languageId !== 'yaml' && editor.document.languageId !== 'json'))
+        {
             return;
         }
 
-        previewPanel = vscode.window.createWebviewPanel(
-            'nodeCanvasPreview', 
-            'Dialogue Preview', 
-            vscode.ViewColumn.Beside, 
-            { enableScripts: true }
+        const documentUri = editor.document.uri.toString();
+        if (activePreviews.has(documentUri)) {
+            activePreviews.get(documentUri)?.reveal(vscode.ViewColumn.Beside);
+            return;
+        }
+
+        const panel = vscode.window.createWebviewPanel(
+            'confluxPreview',
+            `Preview: ${vscode.workspace.asRelativePath(editor.document.uri)}`,
+            vscode.ViewColumn.Beside,
+            { enableScripts: true}
         );
 
-        previewPanel.onDidDispose(() => { previewPanel = undefined; });
-        updatePreview();
+        activePreviews.set(documentUri, panel);
+
+        panel.onDidDispose(() => {
+            activePreviews.delete(documentUri);
+        });
+
+        updatePreview(panel, editor.document);
     });
 
-    context.subscriptions.push(disposable);
+    context.subscriptions.push(previewCommand);
 
-    let timeout: NodeJS.Timeout | undefined = undefined;
     vscode.workspace.onDidChangeTextDocument(event => {
-        if (vscode.window.activeTextEditor && event.document === vscode.window.activeTextEditor.document) {
-            if (timeout) {
-                clearTimeout(timeout);
+        const documentUri = event.document.uri.toString();
+        if (activePreviews.has(documentUri)) {
+            const panel = activePreviews.get(documentUri)!;
+
+            if (activeTimeouts.has(documentUri)) {
+                const oldTimeout = activeTimeouts.get(documentUri)!;
+                clearTimeout(oldTimeout);
+                activeTimeouts.delete(documentUri);
             }
 
-            timeout = setTimeout(() => updatePreview(), 500);
+            const timeout = setTimeout(() => updatePreview(panel, event.document), 500);
+            activeTimeouts.set(documentUri, timeout);
+        }
+    });
+
+    vscode.workspace.onDidDeleteFiles(event => {
+        for (const uri of event.files) {
+            const uriString = uri.toString();
+            if (activePreviews.has(uriString)) {
+                activePreviews.get(uriString)?.dispose();
+            }
         }
     });
 }
 
-function updatePreview() {
-    if (!previewPanel || !vscode.window.activeTextEditor) {
+function updatePreview(panel: vscode.WebviewPanel, document: vscode.TextDocument) {
+    if (!panel || !vscode.window.activeTextEditor) {
         return;
     }
 
-    const editorText = vscode.window.activeTextEditor.document.getText();
+    const editorText = document.getText();
     
     const process = spawn(cliPath, ['--input', '-', '--output', '-', '--format', 'SVG']);
 
     process.on('error', (err) => {
         console.error('Failed to start CLI process:', err.message);
-        if (previewPanel) {
-            previewPanel.webview.html = `
+        if (panel) {
+            panel.webview.html = `
                 <div style="padding: 20px; color: red; font-family: sans-serif;">
                     <h2>Execution Error</h2>
                     <p>Could not start the C# tool. The executable was not found.</p>
@@ -74,13 +101,13 @@ function updatePreview() {
     });
 
     process.on('close', (code) => {
-        if (!previewPanel) {
+        if (!panel) {
             return;
         }
 
         if (code === 0) {
             if (!svgOutput.trim()) {
-                previewPanel.webview.html = `
+                panel.webview.html = `
                     <div style="padding: 20px; color: #856404; font-family: sans-serif;">
                         <h2>Warning: Empty Output (Code 0)</h2>
                         <p>The C# tool reported a successful run, but returned no SVG data.</p>
@@ -88,7 +115,7 @@ function updatePreview() {
                         <pre style="white-space: pre-wrap; background: #fff3cd; padding: 10px;">${errorOutput || "No error output captured."}</pre>
                     </div>`;
             } else {
-                previewPanel.webview.html = `
+                panel.webview.html = `
                     <!DOCTYPE html>
                     <html lang="en">
                     <head>
@@ -186,7 +213,7 @@ function updatePreview() {
                     </html>`;
             }
         } else {
-            previewPanel.webview.html = `
+            panel.webview.html = `
                 <div style="padding: 20px; color: red; font-family: sans-serif;">
                     <h2>C# CLI Crash (Exit Code: ${code})</h2>
                     <p>The tool encountered an error processing this file:</p>
