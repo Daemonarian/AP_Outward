@@ -41,12 +41,12 @@ namespace Conflux.NodeCanvas.Actions
                 content.AppendLine($"To: {RewardReceiver}");
             }
 
-            if (XpAmount.HasValue())
+            if (XpAmount.IsReference())
             {
                 content.AppendLine($"XP: {XpAmount}");
             }
 
-            if (SilverAmount.HasValue())
+            if (SilverAmount.IsReference())
             {
                 content.AppendLine($"Silver: {SilverAmount}");
             }
@@ -107,7 +107,7 @@ namespace Conflux.NodeCanvas.Actions
 
                 label.AppendLine($"{Item.ToGraphVizLabel()}: {Quantity.ToGraphVizLabel()}");
 
-                if (TryToEquip.HasValue())
+                if (TryToEquip.IsReference())
                 {
                     label.AppendLine($"TryToEquip: {TryToEquip}");
                 }

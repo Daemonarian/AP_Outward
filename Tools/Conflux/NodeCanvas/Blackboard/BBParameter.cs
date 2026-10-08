@@ -13,7 +13,7 @@ namespace Conflux.NodeCanvas.Blackboard
         [JsonProperty("_targetVariableID")]
         public string? TargetVariableID { get; set; }
 
-        public virtual bool HasValue() => !string.IsNullOrWhiteSpace(Name) || !string.IsNullOrWhiteSpace(TargetVariableID);
+        public virtual bool IsReference() => !string.IsNullOrWhiteSpace(Name) || !string.IsNullOrWhiteSpace(TargetVariableID);
 
         public virtual string ToGraphVizLabel()
         {
@@ -34,6 +34,10 @@ namespace Conflux.NodeCanvas.Blackboard
         {
             Name = Name,
         };
+
+        public override bool Equals(object? obj) => obj is BBParameter parameter && Name == parameter.Name && TargetVariableID == parameter.TargetVariableID;
+
+        public override int GetHashCode() => HashCode.Combine(Name, TargetVariableID);
     }
 
     internal class BBParameter<T> : BBParameter
@@ -43,7 +47,7 @@ namespace Conflux.NodeCanvas.Blackboard
 
         public override string ToGraphVizLabel()
         {
-            if (base.HasValue())
+            if (base.IsReference())
             {
                 return base.ToGraphVizLabel();
             }
@@ -58,7 +62,7 @@ namespace Conflux.NodeCanvas.Blackboard
 
         public new ConfluxBlackboardVariableReference<T> BuildConfluxBlackboardVariableReference(Graph graph)
         {
-            if (HasValue())
+            if (IsReference())
             {
                 return new()
                 {
@@ -74,12 +78,17 @@ namespace Conflux.NodeCanvas.Blackboard
 
         public ConfluxBlackboardVariableReference<T, T2> BuildConfluxBlackboardVariableReference<T2>(Graph graph) where T2 : INodeCanvasObjectBuilder<T>
         {
-            if (HasValue())
+            if (IsReference())
             {
                 return new()
                 {
                     Name = Name,
                 };
+            }
+
+            if (Value is null)
+            {
+                return new();
             }
 
             var builder = Value as IConfluxObjectBuilder<T2> ?? throw new NotImplementedException($"The value of type {typeof(T).Name} does not implement IConfluxObjectBuilder<{typeof(T2).Name}>.");
@@ -89,5 +98,14 @@ namespace Conflux.NodeCanvas.Blackboard
                 Value = builder.BuildConfluxObject(graph),
             };
         }
+
+        public static implicit operator BBParameter<T>(T value) => new()
+        {
+            Value = value,
+        };
+
+        public override bool Equals(object? obj) => obj is BBParameter<T> parameter && base.Equals(obj) && EqualityComparer<T?>.Default.Equals(Value, parameter.Value);
+
+        public override int GetHashCode() => HashCode.Combine(base.GetHashCode(), Value);
     }
 }
