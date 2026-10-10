@@ -25,7 +25,7 @@ export function activate(context: vscode.ExtensionContext) {
 
         const panel = vscode.window.createWebviewPanel(
             'confluxPreview',
-            `Preview: ${vscode.workspace.asRelativePath(editor.document.uri)}`,
+            `Preview: ${path.basename(editor.document.fileName)}`,
             vscode.ViewColumn.Beside,
             { enableScripts: true}
         );
