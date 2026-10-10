@@ -2,6 +2,7 @@ using System.ComponentModel;
 using Conflux.NodeCanvas.Nodes;
 using Conflux.Schema.Conditions;
 using Conflux.Schema.Context;
+using Conflux.Schema.Exceptions;
 using Conflux.Schema.Nodes;
 using Conflux.Schema.References;
 using Conflux.Schema.Serialization;
@@ -23,6 +24,26 @@ namespace Conflux.Schema.Statements
         [YamlMember(Alias = "saySelection")]
         [DefaultValue(false)]
         public bool SaySelection { get; set; } = false;
+
+        [YamlIgnore]
+        public override IReadOnlyList<ConfluxBlock> ChildBlocks
+        {
+            get => [.. Choices.Select(c => c.Then ?? new ConfluxBlock())];
+
+            set
+            {
+                if (Choices.Count < value.Count)
+                {
+                    throw new ConfluxValueException($"Too many child blocks. Expected {Choices.Count}, instead got {value.Count}.");
+                }
+
+                foreach (var (i, choice) in Choices.Index())
+                {
+                    var childBlock = i < value.Count ? value[i] : new();
+                    choice.Then = childBlock;
+                }
+            }
+        }
 
         public override ConfluxGraph BuildGraph(NodeCanvasGraphContext context)
         {

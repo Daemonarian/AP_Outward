@@ -20,7 +20,10 @@ namespace Conflux.Schema.Statements
 
         [ConfluxMainProperty]
         [YamlMember(Alias = "tasks")]
-        public List<ConfluxBlock> Tasks { get; init; } = [];
+        public List<ConfluxBlock> Tasks { get; set; } = [];
+
+        [YamlIgnore]
+        public override IReadOnlyList<ConfluxBlock> ChildBlocks { get => Tasks; set => Tasks = [.. value]; }
 
         public override ConfluxGraph BuildGraph(NodeCanvasGraphContext context)
         {

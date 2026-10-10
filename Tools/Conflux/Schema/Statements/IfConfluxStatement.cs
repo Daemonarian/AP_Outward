@@ -2,6 +2,7 @@ using Conflux.NodeCanvas;
 using Conflux.NodeCanvas.Nodes;
 using Conflux.Schema.Conditions;
 using Conflux.Schema.Context;
+using Conflux.Schema.Exceptions;
 using Conflux.Schema.Nodes;
 using Conflux.Schema.Serialization;
 using YamlDotNet.Serialization;
@@ -32,6 +33,23 @@ namespace Conflux.Schema.Statements
         {
             get => Else.IsEmpty() ? null : Else;
             set => Else = value ?? new();
+        }
+
+        [YamlIgnore]
+        public override IReadOnlyList<ConfluxBlock> ChildBlocks
+        {
+            get => [Then, Else];
+
+            set
+            {
+                if (value.Count > 2)
+                {
+                    throw new ConfluxValueException($"Too many child blocks. Expected 2, instead got {value.Count}.");
+                }
+
+                Then = 0 < value.Count ? value[0] : new();
+                Else = 1 < value.Count ? value[1] : new();
+            }
         }
 
         public override ConfluxGraph BuildGraph(NodeCanvasGraphContext context)

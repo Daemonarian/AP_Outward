@@ -12,11 +12,14 @@ namespace Conflux.Schema.Statements
     {
         [YamlMember(Alias = "policy")]
         [DefaultValue(ParallelPolicy.FirstFailure)]
-        public ParallelPolicy Policy { get; init; } = ParallelPolicy.FirstFailure;
+        public ParallelPolicy Policy { get; set; } = ParallelPolicy.FirstFailure;
 
         [ConfluxMainProperty]
         [YamlMember(Alias = "tasks")]
-        public List<ConfluxBlock> Tasks { get; init; } = [];
+        public List<ConfluxBlock> Tasks { get; set; } = [];
+
+        [YamlIgnore]
+        public override IReadOnlyList<ConfluxBlock> ChildBlocks { get => Tasks; set => Tasks = [.. value]; }
 
         public override ConfluxGraph BuildGraph(NodeCanvasGraphContext context)
         {
