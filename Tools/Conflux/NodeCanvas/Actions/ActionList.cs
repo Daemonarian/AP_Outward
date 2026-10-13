@@ -1,6 +1,5 @@
 using System.ComponentModel;
 using System.Runtime.Serialization;
-using System.Text;
 using Conflux.GraphViz;
 using Conflux.NodeCanvas.Serialization;
 using Conflux.Schema.Actions;
@@ -10,39 +9,23 @@ using Newtonsoft.Json.Converters;
 namespace Conflux.NodeCanvas.Actions
 {
     [NodeCanvasType("NodeCanvas.Framework.ActionList")]
-    internal class ActionList : ActionTask
+    internal class ActionList : NodeCanvasAction
     {
         [JsonProperty("executionMode")]
+        [GraphVizIgnore]
         [DefaultValue(ActionsExecutionMode.ActionsRunInSequence)]
         public ActionsExecutionMode ExecutionMode { get; set; } = ActionsExecutionMode.ActionsRunInSequence;
 
         [JsonProperty("actions")]
-        public List<ActionTask> Actions { get; set; } = [];
+        [GraphVizProperty(IsMainProperty = true)]
+        public List<NodeCanvasAction> Actions { get; set; } = [];
 
-        public override string GetGraphVizShortName() => "Run";
-
-        public override string GetGraphVizContent()
+        public override string GetGraphVizShortName() => ExecutionMode switch
         {
-            var content = new StringBuilder();
-
-            var executionModeLabel = ExecutionMode switch
-            {
-                ActionsExecutionMode.ActionsRunInSequence => "sequence",
-                ActionsExecutionMode.ActionsRunInParallel => "parallel",
-                _ => ExecutionMode.ToString(),
-            };
-
-            content.AppendLine(executionModeLabel);
-
-            foreach (var action in Actions)
-            {
-                var actionLabel = action.ToGraphVizLabel();
-                actionLabel = GraphVizConverter.IndentLines(actionLabel, indentFirstLine: false);
-                content.AppendLine($"- {actionLabel}");
-            }
-
-            return content.ToString().TrimEnd();
-        }
+            ActionsExecutionMode.ActionsRunInSequence => "Sequence",
+            ActionsExecutionMode.ActionsRunInParallel => "Parallel",
+            _ => ExecutionMode.ToString(),
+        };
 
         public override ConfluxAction BuildConfluxAction(Graph graph) => ExecutionMode switch
         {

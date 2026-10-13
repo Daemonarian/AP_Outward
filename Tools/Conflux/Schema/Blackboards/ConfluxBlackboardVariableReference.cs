@@ -100,7 +100,15 @@ namespace Conflux.Schema.Blackboards
 
         public static implicit operator ConfluxBlackboardVariableReference<T>(T value) => new() { Value = value };
 
-        public override bool Equals(object? obj) => obj is ConfluxBlackboardVariableReference<T> reference && base.Equals(obj) && EqualityComparer<T?>.Default.Equals(Value, reference.Value);
+        public override bool Equals(object? obj)
+        {
+            if (obj is T value)
+            {
+                obj = (ConfluxBlackboardVariableReference<T>)value;
+            }
+
+            return obj is ConfluxBlackboardVariableReference<T> reference && base.Equals(obj) && EqualityComparer<T?>.Default.Equals(Value, reference.Value);
+        }
 
         public override int GetHashCode() => HashCode.Combine(base.GetHashCode(), Value);
     }
@@ -142,7 +150,15 @@ namespace Conflux.Schema.Blackboards
 
         public static implicit operator ConfluxBlackboardVariableReference<Tout, Tin>(Tin value) => new() { Value = value };
 
-        public override bool Equals(object? obj) => obj is ConfluxBlackboardVariableReference<Tout, Tin> reference && base.Equals(obj) && EqualityComparer<Tin?>.Default.Equals(Value, reference.Value);
+        public override bool Equals(object? obj)
+        {
+            if (obj is Tin value)
+            {
+                obj = (ConfluxBlackboardVariableReference<Tout, Tin>)value;
+            }
+
+            return obj is ConfluxBlackboardVariableReference<Tout, Tin> reference && base.Equals(obj) && EqualityComparer<Tin?>.Default.Equals(Value, reference.Value);
+        }
 
         public override int GetHashCode() => HashCode.Combine(base.GetHashCode(), Value);
     }

@@ -13,7 +13,7 @@ namespace Conflux.Schema.Actions
         [YamlMember(Alias = "location")]
         public ConfluxLocationReference Location { get; set; } = new();
 
-        public override Action_CompleteLocationCheck BuildAction(NodeCanvasGraphContext context) => new()
+        public override SendLocationCheckNodeCanvasAction BuildAction(NodeCanvasGraphContext context) => new()
         {
             Location = Location.BuildNodeCanvasObject(context),
         };

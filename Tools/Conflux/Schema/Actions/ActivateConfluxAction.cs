@@ -21,14 +21,14 @@ namespace Conflux.Schema.Actions
         [DefaultValue(ActivateMode.Toggle)]
         public ActivateMode Mode { get; set; } = ActivateMode.Toggle;
 
-        public override SetObjectActiveAction BuildAction(NodeCanvasGraphContext context) => new()
+        public override SetObjectActiveNodeCanvasAction BuildAction(NodeCanvasGraphContext context) => new()
         {
             Object = Object.BuildBBParameter(context),
             Mode = Mode switch
             {
-                ActivateMode.Deactivate => SetObjectActiveAction.SetActiveMode.Deactivate,
-                ActivateMode.Activate => SetObjectActiveAction.SetActiveMode.Activate,
-                ActivateMode.Toggle => SetObjectActiveAction.SetActiveMode.Toggle,
+                ActivateMode.Deactivate => SetObjectActiveNodeCanvasAction.SetActiveMode.Deactivate,
+                ActivateMode.Activate => SetObjectActiveNodeCanvasAction.SetActiveMode.Activate,
+                ActivateMode.Toggle => SetObjectActiveNodeCanvasAction.SetActiveMode.Toggle,
                 _ => throw new ConfluxValueException($"Unexpected activate.mode value: {Mode}"),
             },
         };

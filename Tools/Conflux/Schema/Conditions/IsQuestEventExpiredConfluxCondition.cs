@@ -18,7 +18,7 @@ namespace Conflux.Schema.Conditions
         [DefaultValue(1)]
         public int ExpiryTime { get; set; } = 1;
 
-        public override QuestEventExpiredCondition BuildCondition(NodeCanvasGraphContext context) => new()
+        public override QuestEventExpiredNodeCanvasCondition BuildCondition(NodeCanvasGraphContext context) => new()
         {
             QuestEvent = QuestEvent.BuildNodeCanvasObject(context),
             ExpiryTime = ExpiryTime,

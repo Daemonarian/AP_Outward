@@ -10,27 +10,32 @@ namespace Conflux.NodeCanvas.Nodes
     internal abstract class Node : IGraphVizLabelable
     {
         [JsonIgnore]
+        [GraphVizIgnore]
         public abstract int OutConnectionCount { get; }
 
-        public virtual string GetGraphVizShortName() => GetType().Name;
+        public virtual string GetGraphVizShortName() => GraphVizConverter.BuildGraphVizName(this);
 
-        public virtual string GetGraphVizContent() => JsonConvert.SerializeObject(this, GraphVizConverter.DefaultSerializerSettings);
+        public virtual string GetGraphVizContent() => GraphVizConverter.BuildGraphVizContent(this);
 
         public virtual string? GetGraphVizOutConnectionLabel(int index) => null;
 
         public virtual ConfluxBlock BuildConfluxBlock(Graph graph, List<ConfluxBlock> children)
         {
-            if (OutConnectionCount < 0 || OutConnectionCount > 1)
-            {
-                throw new NotImplementedException($"BuildConfluxBlock is not implemented for {GetType().Name} with OutConnectionCount {OutConnectionCount}");
-            }
-
-            if (children.Count > OutConnectionCount)
-            {
-                throw new ConfluxException($"Node can have at most {OutConnectionCount} child(ren), not {children.Count}.");
-            }
-
             var statement = BuildConfluxStatement(graph);
+            if (statement.AcceptsChildBlocks)
+            {
+                statement.ChildBlocks = children;
+                return new()
+                {
+                    Statements = [statement],
+                };
+            }
+
+            if (children.Count > 1)
+            {
+                throw new ConfluxException($"Node ({GetType().Name}) must have at most one out-going connection; not {children.Count}.");
+            }
+
             var childBlock = children.Count > 0 ? children[0] : new ConfluxBlock();
             return new ConfluxBlock
             {
@@ -38,13 +43,13 @@ namespace Conflux.NodeCanvas.Nodes
             };
         }
 
-        protected virtual ConfluxStatement BuildConfluxStatement(Graph graph) => throw new NotImplementedException($"BuildConfluxStatement is not implemented for {GetType().Name}");
+        protected virtual ConfluxStatement BuildConfluxStatement(Graph graph) => throw new NotImplementedException($"{nameof(BuildConfluxStatement)} is not implemented for {nameof(Node)} of type {GetType().Name}.");
 
-        public string ToGraphVizLabel()
+        public virtual string ToGraphVizLabel()
         {
             var label = new StringBuilder();
             label.AppendLine(GetGraphVizShortName().Trim());
-            label.AppendLine(GetGraphVizContent());
+            label.AppendLine(GetGraphVizContent().Trim());
             return label.ToString().TrimEnd();
         }
     }

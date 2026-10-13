@@ -1,6 +1,6 @@
 using System.ComponentModel;
 using System.Runtime.Serialization;
-using System.Text;
+using Conflux.GraphViz;
 using Conflux.NodeCanvas.Blackboard;
 using Conflux.NodeCanvas.References;
 using Conflux.NodeCanvas.Serialization;
@@ -13,24 +13,16 @@ using Newtonsoft.Json.Converters;
 namespace Conflux.NodeCanvas.Actions
 {
     [NodeCanvasType("NodeCanvas.Tasks.Actions.SetObjectActive")]
-    internal class SetObjectActiveAction : ActionTask
+    [GraphVizObject(Alias = "SetObjectActive")]
+    internal class SetObjectActiveNodeCanvasAction : NodeCanvasAction
     {
         [JsonProperty("setTo")]
         [DefaultValue(SetActiveMode.Toggle)]
         public SetActiveMode Mode { get; set; } = SetActiveMode.Toggle;
 
         [JsonProperty("overrideAgent")]
+        [GraphVizProperty(IsMainProperty = true)]
         public BBParameter<UnityObject> Object { get; set; } = new();
-
-        public override string GetGraphVizShortName() => "SetObjectActive";
-
-        public override string GetGraphVizContent()
-        {
-            var content = new StringBuilder();
-            content.AppendLine(Object.ToGraphVizLabel());
-            content.AppendLine($"Mode: {Mode}");
-            return content.ToString().TrimEnd();
-        }
 
         public override ActivateConfluxAction BuildConfluxAction(Graph graph) => new()
         {

@@ -13,7 +13,8 @@ using Newtonsoft.Json.Converters;
 namespace Conflux.NodeCanvas.Actions
 {
     [NodeCanvasType("NodeCanvas.Tasks.Actions.GiveReward")]
-    internal class GiveReward : ActionTask
+    [GraphVizObject(Alias = "GiveReward")]
+    internal class GiveRewardNodeCanvasAction : NodeCanvasAction
     {
         [JsonProperty("RewardReceiver")]
         [DefaultValue(Receiver.Host)]
@@ -27,39 +28,6 @@ namespace Conflux.NodeCanvas.Actions
 
         [JsonProperty("ItemReward")]
         public List<ItemQuantity> ItemRewards { get; set; } = [];
-
-        public override string GetGraphVizShortName() => "Reward";
-
-        public override string GetGraphVizContent()
-        {
-            var content = new StringBuilder();
-
-            content.AppendLine();
-
-            if (RewardReceiver != Receiver.Host)
-            {
-                content.AppendLine($"To: {RewardReceiver}");
-            }
-
-            if (XpAmount.IsReference())
-            {
-                content.AppendLine($"XP: {XpAmount}");
-            }
-
-            if (SilverAmount.IsReference())
-            {
-                content.AppendLine($"Silver: {SilverAmount}");
-            }
-
-            foreach (var reward in ItemRewards)
-            {
-                var rewardLabel = reward.ToGraphVizLabel();
-                rewardLabel = GraphVizConverter.IndentLines(rewardLabel, indentFirstLine: false);
-                content.AppendLine($"- {rewardLabel}");
-            }
-
-            return content.ToString().TrimEnd();
-        }
 
         public override RewardConfluxAction BuildConfluxAction(Graph graph) => new()
         {

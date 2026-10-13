@@ -1,7 +1,13 @@
+using System.Collections;
+using System.Collections.Immutable;
+using System.ComponentModel;
+using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using Conflux.NodeCanvas;
 using Conflux.NodeCanvas.Connections;
 using Conflux.NodeCanvas.Nodes;
+using Conflux.Schema.Exceptions;
 using Newtonsoft.Json;
 
 namespace Conflux.GraphViz
@@ -99,6 +105,141 @@ namespace Conflux.GraphViz
             sb.AppendLine("}");
 
             return sb.ToString();
+        }
+
+        /// <summary>
+        /// Build a string representation of an object suitable for a GraphViz
+        /// label.
+        /// </summary>
+        /// <param name="obj">The object to represent.</param>
+        /// <returns>The string representation.</returns>
+        public static string BuildGraphVizLabel(object? obj, bool ignoreToGraphVizLabel = false)
+        {
+            if (obj is null)
+            {
+                return "null";
+            }
+            else if (!ignoreToGraphVizLabel && obj is IGraphVizLabelable labelable)
+            {
+                return labelable.ToGraphVizLabel();
+            }
+            else if (obj is IEnumerable enumerable)
+            {
+                var label = new StringBuilder();
+                label.AppendLine();
+
+                foreach (var item in enumerable)
+                {
+                    var itemLabel = BuildGraphVizLabel(item);
+                    label.AppendLine($"- {IndentLines(itemLabel, indentFirstLine: false)}");
+                }
+
+                return label.ToString().TrimEnd();
+            }
+            else if (obj.GetType().IsClass)
+            {
+                var type = obj.GetType();
+                var label = new StringBuilder();
+
+                var name = BuildGraphVizName(obj);
+                label.Append(name);
+
+                var content = BuildGraphVizContent(obj);
+                if (!string.IsNullOrWhiteSpace(content))
+                {
+                    label.Append(": ").Append(content);
+                }
+
+                return label.ToString().TrimEnd();
+            }
+            else
+            {
+                return $"{obj}";
+            }
+        }
+
+        public static string BuildGraphVizName(object obj)
+        {
+            var type = obj.GetType();
+            if (!type.IsClass)
+            {
+                throw new ConfluxException($"{nameof(obj)} should be an instance of a class, not {type}.");
+            }
+
+            var graphVizObjectAttribute = type.GetCustomAttribute<GraphVizObjectAttribute>();
+            if (graphVizObjectAttribute?.Alias is not null)
+            {
+                return graphVizObjectAttribute.Alias;
+            }
+
+            return Regex.Replace(type.Name, @"(BT|DT|NodeCanvas)(Node|Action|Condition)$", "");
+        }
+
+        /// <summary>
+        /// Build a string representation of the contents of an object.
+        /// </summary>
+        /// <param name="obj">The object to represent.</param>
+        /// <returns>The string representation.</returns>
+        public static string BuildGraphVizContent(object obj)
+        {
+            var type = obj.GetType();
+            if (!type.IsClass)
+            {
+                throw new ConfluxException($"{nameof(obj)} should be an instance of a class, not {type}.");
+            }
+
+            var props = type.GetProperties(BindingFlags.Public | BindingFlags.Instance)
+                .Where(p => p.GetCustomAttribute<GraphVizIgnoreAttribute>() is null)
+                .ToImmutableList();
+            var mainProp = props.SingleOrDefault(p => p?.GetCustomAttribute<GraphVizPropertyAttribute>()?.IsMainProperty == true, null);
+
+            var label = new StringBuilder();
+
+            if (mainProp is not null)
+            {
+                var propValue = mainProp.GetValue(obj);
+                if (propValue is not null)
+                {
+                    var defaultValueAttribute = mainProp.GetCustomAttribute<DefaultValueAttribute>();
+                    if (defaultValueAttribute is null || propValue != defaultValueAttribute.Value)
+                    {
+                        var propLabel = BuildGraphVizLabel(propValue);
+                        label.Append(propLabel);
+                    }
+                }
+            }
+
+            label.AppendLine();
+
+            foreach (var prop in props)
+            {
+                var graphVizPropertyAttribute = prop.GetCustomAttribute<GraphVizPropertyAttribute>();
+                if (graphVizPropertyAttribute is not null && graphVizPropertyAttribute.IsMainProperty)
+                {
+                    continue;
+                }
+
+                var propValue = prop.GetValue(obj);
+                if (propValue is null)
+                {
+                    continue;
+                }
+
+                var defaultValueAttribute = prop.GetCustomAttribute<DefaultValueAttribute>();
+                if (defaultValueAttribute is not null && Equals(propValue, defaultValueAttribute.Value))
+                {
+                    continue;
+                }
+
+                var propName = graphVizPropertyAttribute?.Alias is not null ?
+                    graphVizPropertyAttribute.Alias :
+                    prop.Name;
+                var propLabel = BuildGraphVizLabel(propValue);
+
+                label.AppendLine($"{propName}: {IndentLines(propLabel, indentFirstLine: false)}");
+            }
+
+            return label.ToString().TrimEnd();
         }
 
         /// <summary>

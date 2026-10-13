@@ -19,7 +19,7 @@ namespace Conflux.Schema.Conditions
         [YamlMember(Alias = "questObject")]
         public ConfluxBlackboardVariableReference<UnityObject, ConfluxUnityObjectReference>? QuestObject { get; init; }
 
-        public override ConditionTask BuildCondition(NodeCanvasGraphContext context)
+        public override NodeCanvasCondition BuildCondition(NodeCanvasGraphContext context)
         {
             if (Quest is null)
             {
@@ -39,7 +39,7 @@ namespace Conflux.Schema.Conditions
             {
                 if (QuestObject is null)
                 {
-                    return new Condition_CustomKnowQuest
+                    return new KnowQuestNodeCanvasCondition
                     {
                         Quest = Quest.BuildNodeCanvasObject(context),
                     };

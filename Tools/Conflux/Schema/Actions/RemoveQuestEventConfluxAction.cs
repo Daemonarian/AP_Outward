@@ -24,7 +24,7 @@ namespace Conflux.Schema.Actions
 
         public override RemoveQuestEventNodeCanvasAction BuildAction(NodeCanvasGraphContext context) => new()
         {
-            QuestEventRef = QuestEvent?.BuildNodeCanvasObject(context),
+            QuestEvent = QuestEvent?.BuildNodeCanvasObject(context),
             RemoveAllStack = RemoveAllStack,
             StackDecreaseAmount = StackDecreaseAmount,
         };

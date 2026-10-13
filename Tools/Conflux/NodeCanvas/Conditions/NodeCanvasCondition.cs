@@ -7,15 +7,16 @@ using Newtonsoft.Json;
 
 namespace Conflux.NodeCanvas.Conditions
 {
-    internal abstract class ConditionTask : IGraphVizLabelable
+    internal abstract class NodeCanvasCondition : IGraphVizLabelable
     {
         [JsonProperty("_invert")]
+        [GraphVizIgnore]
         [DefaultValue(false)]
         public bool Invert { get; set; } = false;
 
-        public virtual string GetGraphVizShortName() => GetType().Name;
+        public virtual string GetGraphVizShortName() => GraphVizConverter.BuildGraphVizName(this);
 
-        public virtual string GetGraphVizContent() => "\n" + JsonConvert.SerializeObject(this, GraphVizConverter.DefaultSerializerSettings);
+        public virtual string GetGraphVizContent() => GraphVizConverter.BuildGraphVizContent(this);
 
         protected abstract ConfluxCondition BuildSubConfluxCondition(Graph graph);
 
@@ -34,7 +35,7 @@ namespace Conflux.NodeCanvas.Conditions
             return condition;
         }
 
-        public string ToGraphVizLabel()
+        public virtual string ToGraphVizLabel()
         {
             var label = new StringBuilder();
 

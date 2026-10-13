@@ -1,6 +1,6 @@
 using System.ComponentModel;
 using System.Runtime.Serialization;
-using System.Text;
+using Conflux.GraphViz;
 using Conflux.NodeCanvas.Serialization;
 using Conflux.Schema;
 using Conflux.Schema.Exceptions;
@@ -11,6 +11,7 @@ using Newtonsoft.Json.Converters;
 namespace Conflux.NodeCanvas.Nodes
 {
     [NodeCanvasType("NodeCanvas.BehaviourTrees.Parallel")]
+    [GraphVizObject(Alias = "Parallel")]
     internal class ParallelNode(int outConnectionCount = -1) : BTNode
     {
         [JsonProperty("policy")]
@@ -24,25 +25,6 @@ namespace Conflux.NodeCanvas.Nodes
         private readonly int _outConnectionCount = outConnectionCount;
 
         public override int OutConnectionCount => _outConnectionCount;
-
-        public override string GetGraphVizShortName() => "Parallel";
-
-        public override string GetGraphVizContent()
-        {
-            var content = new StringBuilder();
-
-            if (Policy != ParallelPolicy.FirstFailure)
-            {
-                content.AppendLine($"Policy: {Policy}");
-            }
-
-            if (IsDynamic)
-            {
-                content.AppendLine("IsDynamic: yes");
-            }
-
-            return content.ToString();
-        }
 
         public override string? GetGraphVizOutConnectionLabel(int index) => $"{index}";
 

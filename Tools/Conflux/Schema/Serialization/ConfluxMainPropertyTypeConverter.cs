@@ -27,7 +27,7 @@ namespace Conflux.Schema.Serialization
                 return false;
             }
 
-            return ConfluxMainPropertyInfo.TryGet(type, out _);
+            return ConfluxMainPropertyInfo.TryGet(type, out _) || ConfluxDerivedInfo.TryGet(type, out _);
         }
 
         public object? ReadYaml(IParser parser, Type type, ObjectDeserializer rootDeserializer)

@@ -33,8 +33,8 @@ namespace Conflux.Schema.Actions
             return new()
             {
                 Sound = Sound,
-                TransPos = Transform?.BuildBBParameter(context),
-                Pos = Position?.BuildNodeCanvasObject(context),
+                Transform = Transform?.BuildBBParameter(context),
+                Position = Position?.BuildNodeCanvasObject(context),
                 PlayAt = Transform is not null ? PlaySoundNodeCanvasAction.PositionType.Transform : (Position is not null ? PlaySoundNodeCanvasAction.PositionType.Pos : PlaySoundNodeCanvasAction.PositionType.Camera),
             };
         }

@@ -1,6 +1,6 @@
 using System.ComponentModel;
 using System.Runtime.Serialization;
-using System.Text;
+using Conflux.GraphViz;
 using Conflux.NodeCanvas.Serialization;
 using Conflux.Schema;
 using Conflux.Schema.Exceptions;
@@ -10,27 +10,15 @@ using Newtonsoft.Json.Converters;
 namespace Conflux.NodeCanvas.Nodes
 {
     [NodeCanvasType("NodeCanvas.DialogueTrees.FinishNode")]
+    [GraphVizObject(Alias = "Finish")]
     internal class FinishNode : DTNode
     {
         [JsonProperty("finishState")]
+        [GraphVizProperty(IsMainProperty = true)]
         [DefaultValue(CompactStatus.Success)]
-        public CompactStatus FinishState = CompactStatus.Success;
+        public CompactStatus FinishState { get; set; } = CompactStatus.Success;
 
         public override int OutConnectionCount => 0;
-
-        public override string GetGraphVizShortName() => "Finish";
-
-        public override string GetGraphVizContent()
-        {
-            var content = new StringBuilder();
-
-            if (FinishState != CompactStatus.Success)
-            {
-                content.AppendLine($"FinishState: {FinishState}");
-            }
-
-            return content.ToString();
-        }
 
         public override ConfluxBlock BuildConfluxBlock(Graph graph, List<ConfluxBlock> children)
         {

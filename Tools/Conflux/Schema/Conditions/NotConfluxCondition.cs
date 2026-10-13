@@ -13,7 +13,7 @@ namespace Conflux.Schema.Conditions
         [YamlMember(Alias = "condition")]
         public ConfluxCondition? Condition { get; set; }
 
-        public override ConditionTask BuildCondition(NodeCanvasGraphContext context)
+        public override NodeCanvasCondition BuildCondition(NodeCanvasGraphContext context)
         {
             if (Condition is null)
             {

@@ -7,6 +7,6 @@ namespace Conflux.Schema.Conditions
     [ConfluxPolymorphic]
     internal abstract class ConfluxCondition
     {
-        public abstract ConditionTask BuildCondition(NodeCanvasGraphContext context);
+        public abstract NodeCanvasCondition BuildCondition(NodeCanvasGraphContext context);
     }
 }

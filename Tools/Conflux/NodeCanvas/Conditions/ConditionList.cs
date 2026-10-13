@@ -1,6 +1,5 @@
 using System.ComponentModel;
 using System.Runtime.Serialization;
-using System.Text;
 using Conflux.GraphViz;
 using Conflux.NodeCanvas.Serialization;
 using Conflux.Schema.Conditions;
@@ -11,14 +10,16 @@ using Newtonsoft.Json.Converters;
 namespace Conflux.NodeCanvas.Conditions
 {
     [NodeCanvasType("NodeCanvas.Framework.ConditionList")]
-    internal class ConditionList : ConditionTask
+    internal class ConditionList : NodeCanvasCondition
     {
         [JsonProperty("checkMode")]
+        [GraphVizIgnore]
         [DefaultValue(ConditionsCheckMode.AllTrueRequired)]
         public ConditionsCheckMode CheckMode { get; set; } = ConditionsCheckMode.AllTrueRequired;
 
         [JsonProperty("conditions")]
-        public List<ConditionTask> Conditions { get; set; } = [];
+        [GraphVizProperty(IsMainProperty = true)]
+        public List<NodeCanvasCondition> Conditions { get; set; } = [];
 
         public override string GetGraphVizShortName() => CheckMode switch
         {
@@ -26,22 +27,6 @@ namespace Conflux.NodeCanvas.Conditions
             ConditionsCheckMode.AnyTrueSuffice => "Or",
             _ => CheckMode.ToString(),
         };
-
-        public override string GetGraphVizContent()
-        {
-            var content = new StringBuilder();
-
-            content.AppendLine();
-
-            foreach (var condition in Conditions)
-            {
-                var conditionLabel = condition.ToGraphVizLabel();
-                conditionLabel = GraphVizConverter.IndentLines(conditionLabel, indentFirstLine: false);
-                content.AppendLine($"- {conditionLabel}");
-            }
-
-            return content.ToString().TrimEnd();
-        }
 
         protected override ConfluxCondition BuildSubConfluxCondition(Graph graph) => CheckMode switch
         {

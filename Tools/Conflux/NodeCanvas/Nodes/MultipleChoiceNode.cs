@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 namespace Conflux.NodeCanvas.Nodes
 {
     [NodeCanvasType("NodeCanvas.DialogueTrees.MultipleChoiceNodeExt")]
+    [GraphVizObject(Alias = "Choice")]
     internal class MultipleChoiceNode : DTNode
     {
         [JsonProperty("availableTime")]
@@ -23,35 +24,10 @@ namespace Conflux.NodeCanvas.Nodes
         public bool SaySelection { get; set; } = false;
 
         [JsonProperty("availableChoices")]
+        [GraphVizProperty(IsMainProperty = true)]
         public List<Choice> Choices { get; set; } = [];
 
         public override int OutConnectionCount => Choices.Count;
-
-        public override string GetGraphVizShortName() => "Choice";
-
-        public override string GetGraphVizContent()
-        {
-            var content = new StringBuilder();
-
-            if (AvailableTime != 0f)
-            {
-                content.AppendLine($"AvailableTime: {AvailableTime}");
-            }
-
-            if (SaySelection)
-            {
-                content.AppendLine("SaySelection: yes");
-            }
-
-            foreach (var choice in Choices)
-            {
-                var choiceLabel = choice.ToGraphVizLabel();
-                choiceLabel = GraphVizConverter.IndentLines(choiceLabel, indentFirstLine: false);
-                content.AppendLine($"- {choiceLabel}");
-            }
-
-            return content.ToString().TrimEnd();
-        }
 
         public override string? GetGraphVizOutConnectionLabel(int index) => $"{index}";
 
@@ -89,7 +65,7 @@ namespace Conflux.NodeCanvas.Nodes
             public Statement? Statement { get; set; }
 
             [JsonProperty("condition")]
-            public ConditionTask? Condition { get; set; }
+            public NodeCanvasCondition? Condition { get; set; }
 
             public string ToGraphVizLabel()
             {

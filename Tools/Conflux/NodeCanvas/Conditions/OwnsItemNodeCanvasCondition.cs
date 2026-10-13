@@ -1,4 +1,3 @@
-using System.Text;
 using Conflux.GraphViz;
 using Conflux.NodeCanvas.Blackboard;
 using Conflux.NodeCanvas.References;
@@ -10,12 +9,14 @@ using Newtonsoft.Json;
 namespace Conflux.NodeCanvas.Conditions
 {
     [NodeCanvasType("NodeCanvas.Tasks.Conditions.Condition_OwnsItem")]
-    internal class OwnsItemNodeCanvasCondition : ConditionTask
+    [GraphVizObject(Alias = "OwnsItem")]
+    internal class OwnsItemNodeCanvasCondition : NodeCanvasCondition
     {
         [JsonProperty("character")]
         public BBParameter<UnityObject>? Character { get; set; }
 
         [JsonProperty("item")]
+        [GraphVizProperty(IsMainProperty = true)]
         public BBParameter<ItemReference>? Item { get; set; }
 
         [JsonProperty("minAmount")]
@@ -26,41 +27,6 @@ namespace Conflux.NodeCanvas.Conditions
 
         [JsonProperty("SaveMatchingContainerVariable")]
         public string? SaveMatchingContainerVariable { get; set; }
-
-        public override string GetGraphVizShortName() => "OwnsItem";
-
-        public override string GetGraphVizContent()
-        {
-            var content = new StringBuilder();
-            content.AppendLine();
-
-            if (Character is not null)
-            {
-                content.AppendLine($"Character: {GraphVizConverter.IndentLines(Character.ToGraphVizLabel())}");
-            }
-
-            if (Item is not null)
-            {
-                content.AppendLine($"Item: {GraphVizConverter.IndentLines(Item.ToGraphVizLabel())}");
-            }
-
-            if (MinAmount is not null)
-            {
-                content.AppendLine($"MinAmount: {GraphVizConverter.IndentLines(MinAmount.ToGraphVizLabel())}");
-            }
-
-            if (ItemMustBeEquipped is not null)
-            {
-                content.AppendLine($"ItemMustBeEquipped: {GraphVizConverter.IndentLines(ItemMustBeEquipped.ToGraphVizLabel())}");
-            }
-
-            if (SaveMatchingContainerVariable is not null)
-            {
-                content.AppendLine($"SaveMatchingContainerVariable: {GraphVizConverter.IndentLines(SaveMatchingContainerVariable)}");
-            }
-
-            return content.ToString().TrimEnd();
-        }
 
         protected override OwnsItemConfluxCondition BuildSubConfluxCondition(Graph graph) => new()
         {

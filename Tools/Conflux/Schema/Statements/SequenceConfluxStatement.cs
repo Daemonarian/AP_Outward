@@ -27,7 +27,7 @@ namespace Conflux.Schema.Statements
 
         public override ConfluxGraph BuildGraph(NodeCanvasGraphContext context)
         {
-            var node = new SequencerNodeCanvasNode(Tasks.Count)
+            var node = new SequencerNode(Tasks.Count)
             {
                 IsDynamic = IsDynamic,
                 IsRandom = IsRandom,

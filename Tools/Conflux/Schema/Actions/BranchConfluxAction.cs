@@ -20,7 +20,7 @@ namespace Conflux.Schema.Actions
         [DefaultValue(true)]
         public bool DoWait { get; set; } = true;
 
-        public override BranchDialogue BuildAction(NodeCanvasGraphContext context) => new()
+        public override BranchNodeCanvasAction BuildAction(NodeCanvasGraphContext context) => new()
         {
             DialogueStarter = DialogueStarter.BuildBBParameter(context),
             WaitActionFinish = DoWait,

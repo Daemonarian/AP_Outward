@@ -52,12 +52,7 @@ namespace Conflux.NodeCanvas.Blackboard
                 return base.ToGraphVizLabel();
             }
 
-            if (Value is IGraphVizLabelable labelableValue)
-            {
-                return labelableValue.ToGraphVizLabel();
-            }
-
-            return Value?.ToString() ?? string.Empty;
+            return GraphVizConverter.BuildGraphVizLabel(Value);
         }
 
         public new ConfluxBlackboardVariableReference<T> BuildConfluxBlackboardVariableReference(Graph graph)
@@ -104,7 +99,15 @@ namespace Conflux.NodeCanvas.Blackboard
             Value = value,
         };
 
-        public override bool Equals(object? obj) => obj is BBParameter<T> parameter && base.Equals(obj) && EqualityComparer<T?>.Default.Equals(Value, parameter.Value);
+        public override bool Equals(object? obj)
+        {
+            if (obj is T value)
+            {
+                obj = (BBParameter<T>)value;
+            }
+
+            return obj is BBParameter<T> parameter && base.Equals(obj) && EqualityComparer<T?>.Default.Equals(Value, parameter.Value);
+        }
 
         public override int GetHashCode() => HashCode.Combine(base.GetHashCode(), Value);
     }

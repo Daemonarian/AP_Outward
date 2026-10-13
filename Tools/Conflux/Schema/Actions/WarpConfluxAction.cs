@@ -26,7 +26,7 @@ namespace Conflux.Schema.Actions
         [YamlMember(Alias = "targetUID")]
         public string? TargetUID { get; set; }
 
-        public override WarpNodeCanvasAction BuildAction(NodeCanvasGraphContext context) => new()
+        public override WarpCharacterNodeCanvasAction BuildAction(NodeCanvasGraphContext context) => new()
         {
             AllPlayers = AllPlayers?.BuildBBParameter(context),
             TurnCamera = TurnCamera?.BuildBBParameter(context),

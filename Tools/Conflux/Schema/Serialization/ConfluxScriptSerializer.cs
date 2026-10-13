@@ -30,7 +30,7 @@ namespace Conflux.Schema.Serialization
         private static ISerializer BuildSerializer() => new SerializerBuilder()
             .WithNamingConvention(CamelCaseNamingConvention.Instance)
             .WithTypeConverter(new ConfluxMainPropertyTypeConverter())
-            .WithEventEmitter(next => new ConfluxPolymorphicEventEmitter(next))
+            //.WithEventEmitter(next => new ConfluxPolymorphicEventEmitter(next))
             .ConfigureDefaultValuesHandling(DefaultValuesHandling.OmitDefaults | DefaultValuesHandling.OmitEmptyCollections)
             .Build();
 

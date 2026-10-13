@@ -1,3 +1,4 @@
+using Conflux.GraphViz;
 using Conflux.NodeCanvas.Conditions;
 using Conflux.NodeCanvas.Serialization;
 using Conflux.Schema;
@@ -8,16 +9,14 @@ using Newtonsoft.Json;
 namespace Conflux.NodeCanvas.Nodes
 {
     [NodeCanvasType("NodeCanvas.DialogueTrees.ConditionNode")]
+    [GraphVizObject(Alias = "If")]
     internal class ConditionNode : DTNode
     {
         [JsonProperty("_condition")]
-        public ConditionTask? Condition { get; set; }
+        [GraphVizProperty(IsMainProperty = true)]
+        public NodeCanvasCondition? Condition { get; set; }
 
         public override int OutConnectionCount => 2;
-
-        public override string GetGraphVizShortName() => "If";
-
-        public override string GetGraphVizContent() => Condition?.ToGraphVizLabel() ?? string.Empty;
 
         public override string? GetGraphVizOutConnectionLabel(int index) => index switch
         {
@@ -35,21 +34,14 @@ namespace Conflux.NodeCanvas.Nodes
 
             var statement = new IfConfluxStatement
             {
-                Condition = Condition?.BuildConfluxCondition(graph) ?? throw new ConfluxException("ConditionNode requires a condition."),
+                Condition = Condition?.BuildConfluxCondition(graph),
                 Then = children.Count > 0 ? children[0] : new ConfluxBlock(),
                 Else = children.Count > 1 ? children[1] : new ConfluxBlock(),
             };
 
             return new ConfluxBlock
             {
-                Statements = [
-                    new IfConfluxStatement
-                    {
-                        Condition = Condition?.BuildConfluxCondition(graph) ?? throw new ConfluxException("ConditionNode requires a condition."),
-                        Then = children.Count > 0 ? children[0] : new ConfluxBlock(),
-                        Else = children.Count > 1 ? children[1] : new ConfluxBlock(),
-                    },
-                ],
+                Statements = [statement],
             };
         }
     }

@@ -12,6 +12,7 @@ using Newtonsoft.Json;
 namespace Conflux.NodeCanvas.Nodes
 {
     [NodeCanvasType("NodeCanvas.DialogueTrees.StatementNodeExt")]
+    [GraphVizObject(Alias = "Say")]
     internal class StatementNodeExt : DTNode
     {
         public const string DefaultActorName = "INSTIGATOR";
@@ -27,8 +28,6 @@ namespace Conflux.NodeCanvas.Nodes
         public string? ActorParameterID { get; set; }
 
         public override int OutConnectionCount => 1;
-
-        public override string GetGraphVizShortName() => "Say";
 
         public override string GetGraphVizContent()
         {
@@ -72,9 +71,9 @@ namespace Conflux.NodeCanvas.Nodes
             return new()
             {
                 Statement = Statement?.BuildConfluxStatementReference(graph),
-                Actor = new()
+                Actor = string.Equals(actorName, DefaultActorName, StringComparison.Ordinal) ? null : new()
                 {
-                    Key = string.Equals(actorName, DefaultActorName, StringComparison.Ordinal) ? null : actorName,
+                    Key = actorName,
                 },
             };
         }

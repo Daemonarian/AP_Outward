@@ -12,15 +12,15 @@ namespace Conflux.Schema.Conditions
     {
         [ConfluxMainProperty]
         [YamlMember(Alias = "event")]
-        public ConfluxQuestEventReference QuestEvent { get; set; } = new();
+        public ConfluxQuestEventReference? QuestEvent { get; set; } = new();
 
         [YamlMember(Alias = "count")]
         [DefaultValue(1)]
         public int Count { get; set; } = 1;
 
-        public override Condition_QuestEventOccured BuildCondition(NodeCanvasGraphContext context) => new()
+        public override QuestEventOccuredNodeCanvasCondition BuildCondition(NodeCanvasGraphContext context) => new()
         {
-            QuestEventRef = QuestEvent.BuildNodeCanvasObject(context),
+            QuestEvent = QuestEvent?.BuildNodeCanvasObject(context),
             MinStack = Count,
         };
     }

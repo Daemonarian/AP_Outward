@@ -27,7 +27,7 @@ namespace Conflux.Schema.Actions
         [DefaultValue(RewardReceiver.Host)]
         public RewardReceiver Receiver { get; set; } = RewardReceiver.Host;
 
-        public override GiveReward BuildAction(NodeCanvasGraphContext context) => new()
+        public override GiveRewardNodeCanvasAction BuildAction(NodeCanvasGraphContext context) => new()
         {
             RewardReceiver = GetNodeCanvasReceiver(context, Receiver),
             SilverAmount = SilverAmount.BuildBBParameter(context),
@@ -42,11 +42,11 @@ namespace Conflux.Schema.Actions
             Everyone,
         }
 
-        public static GiveReward.Receiver GetNodeCanvasReceiver(NodeCanvasGraphContext context, RewardReceiver receiver) => receiver switch
+        public static GiveRewardNodeCanvasAction.Receiver GetNodeCanvasReceiver(NodeCanvasGraphContext context, RewardReceiver receiver) => receiver switch
         {
-            RewardReceiver.Host => GiveReward.Receiver.Host,
-            RewardReceiver.Instigator => GiveReward.Receiver.Instigator,
-            RewardReceiver.Everyone => GiveReward.Receiver.Everyone,
+            RewardReceiver.Host => GiveRewardNodeCanvasAction.Receiver.Host,
+            RewardReceiver.Instigator => GiveRewardNodeCanvasAction.Receiver.Instigator,
+            RewardReceiver.Everyone => GiveRewardNodeCanvasAction.Receiver.Everyone,
             _ => throw new ConfluxValueException($"Unexpected reward reciever: {receiver}."),
         };
 
@@ -61,7 +61,7 @@ namespace Conflux.Schema.Actions
             [YamlMember(Alias = "equip")]
             public ConfluxBlackboardVariableReference<bool> TryToEquip { get; set; } = new() { Value = false };
 
-            public GiveReward.ItemQuantity BuildItemQuantity(NodeCanvasGraphContext context) => new()
+            public GiveRewardNodeCanvasAction.ItemQuantity BuildItemQuantity(NodeCanvasGraphContext context) => new()
             {
                 Item = Item.BuildBBParameter(context),
                 Quantity = Quantity.BuildBBParameter(context),

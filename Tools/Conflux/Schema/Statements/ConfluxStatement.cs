@@ -9,6 +9,9 @@ namespace Conflux.Schema.Statements
     internal abstract class ConfluxStatement
     {
         [YamlIgnore]
+        public virtual bool AcceptsChildBlocks => false;
+
+        [YamlIgnore]
         public virtual IReadOnlyList<ConfluxBlock> ChildBlocks
         {
             get => [];

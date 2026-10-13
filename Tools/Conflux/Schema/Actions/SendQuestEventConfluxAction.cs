@@ -12,7 +12,7 @@ namespace Conflux.Schema.Actions
     {
         [ConfluxMainProperty]
         [YamlMember(Alias = "event")]
-        public ConfluxQuestEventReference QuestEvent { get; set; } = new();
+        public ConfluxQuestEventReference? QuestEvent { get; set; }
 
         [YamlMember(Alias = "count")]
         [DefaultValue(1)]
@@ -22,9 +22,9 @@ namespace Conflux.Schema.Actions
         [DefaultValue(false)]
         public bool IgnoreNetworkSync { get; set; } = false;
 
-        public override SendQuestEvent BuildAction(NodeCanvasGraphContext context) => new()
+        public override SendQuestEventNodeCanvasAction BuildAction(NodeCanvasGraphContext context) => new()
         {
-            QuestEventRef = QuestEvent.BuildNodeCanvasObject(context),
+            QuestEvent = QuestEvent?.BuildNodeCanvasObject(context),
             StackAmount = Count,
             IgnoreNetworkSync = IgnoreNetworkSync,
         };

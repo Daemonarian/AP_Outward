@@ -1,4 +1,3 @@
-using Conflux.Schema.Exceptions;
 using YamlDotNet.Core;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.EventEmitters;
@@ -10,13 +9,8 @@ namespace Conflux.Schema.Serialization
         public override void Emit(MappingStartEventInfo eventInfo, IEmitter emitter)
         {
             if (eventInfo.Source is not null &&
-                ConfluxPolymorphicInfo.TryGet(eventInfo.Source.StaticType, out var polymorphicInfo))
+                ConfluxDerivedInfo.TryGet(eventInfo.Source.Type, out var derivedInfo))
             {
-                if (!ConfluxDerivedInfo.TryGet(eventInfo.Source.Type, out var derivedInfo))
-                {
-                    throw new ConfluxException($"Attempted to serialize a Conflux polymorphic sub-type {eventInfo.Source.Type.Name} of {polymorphicInfo.Type.Name}, but no Conflux derived info was found.");
-                }
-
                 eventInfo.IsImplicit = true;
                 nextEmitter.Emit(new MappingStartEventInfo(eventInfo.Source) { IsImplicit = true }, emitter);
                 nextEmitter.Emit(new ScalarEventInfo(new ObjectDescriptor(derivedInfo.Key, typeof(string), typeof(string)))
@@ -34,7 +28,7 @@ namespace Conflux.Schema.Serialization
             base.Emit(eventInfo, emitter);
 
             if (eventInfo.Source is not null &&
-                ConfluxPolymorphicInfo.TryGet(eventInfo.Source.StaticType, out _))
+                ConfluxDerivedInfo.TryGet(eventInfo.Source.Type, out _))
             {
                 nextEmitter.Emit(new MappingEndEventInfo(eventInfo.Source), emitter);
             }

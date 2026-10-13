@@ -1,4 +1,3 @@
-using System.Text;
 using Conflux.GraphViz;
 using Conflux.NodeCanvas.Blackboard;
 using Conflux.NodeCanvas.References;
@@ -10,7 +9,8 @@ using Newtonsoft.Json;
 namespace Conflux.NodeCanvas.Actions
 {
     [NodeCanvasType("NodeCanvas.Tasks.Actions.RemoveItem")]
-    internal class RemoveItemNodeCanvasAction : ActionTask
+    [GraphVizObject(Alias = "RemoveItem")]
+    internal class RemoveItemNodeCanvasAction : NodeCanvasAction
     {
         [JsonProperty("fromCharacter")]
         public BBParameter<UnityObject>? FromCharacter { get; set; }
@@ -20,35 +20,6 @@ namespace Conflux.NodeCanvas.Actions
 
         [JsonProperty("Amount")]
         public List<BBParameter<int>>? Amount { get; set; }
-
-        public override string GetGraphVizShortName() => "RemoveItem";
-
-        public override string GetGraphVizContent()
-        {
-            var content = new StringBuilder();
-
-            if (FromCharacter is not null)
-            {
-                content.AppendLine($"FromCharacter: {GraphVizConverter.IndentLines(FromCharacter.ToGraphVizLabel())}");
-            }
-
-            if (Items is not null)
-            {
-                for (var i = 0; i < Items.Count; i++)
-                {
-                    var item = Items[i];
-                    content.AppendLine($"- Item: {GraphVizConverter.IndentLines(item.ToGraphVizLabel())}");
-
-                    if (Amount is not null && i < Amount.Count)
-                    {
-                        var amount = Amount[i];
-                        content.AppendLine($"  Amount: {GraphVizConverter.IndentLines(amount.ToGraphVizLabel())}");
-                    }
-                }
-            }
-
-            return content.ToString().TrimEnd();
-        }
 
         public override RemoveItemConfluxAction BuildConfluxAction(Graph graph) => new()
         {
