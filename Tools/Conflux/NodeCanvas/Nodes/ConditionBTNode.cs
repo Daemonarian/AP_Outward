@@ -16,7 +16,7 @@ namespace Conflux.NodeCanvas.Nodes
 
         public override int OutConnectionCount => 1;
 
-        protected override ConditionConfluxStatement BuildConfluxStatement(Graph graph) => new()
+        protected override AssertConfluxStatement BuildConfluxStatement(Graph graph) => new()
         {
             Condition = Condition?.BuildConfluxCondition(graph),
         };

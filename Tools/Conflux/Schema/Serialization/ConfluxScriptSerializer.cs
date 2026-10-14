@@ -1,3 +1,4 @@
+using YamlDotNet.Core;
 using YamlDotNet.Serialization;
 using YamlDotNet.Serialization.NamingConventions;
 
@@ -28,9 +29,10 @@ namespace Conflux.Schema.Serialization
             .Build();
 
         private static ISerializer BuildSerializer() => new SerializerBuilder()
+            .DisableAliases()
             .WithNamingConvention(CamelCaseNamingConvention.Instance)
-            .WithTypeConverter(new ConfluxMainPropertyTypeConverter())
-            //.WithEventEmitter(next => new ConfluxPolymorphicEventEmitter(next))
+            .WithEventEmitter(next => new ConfluxPolymorphicEventEmitter(next))
+            .WithEventEmitter(next => new ConfluxMainPropertyEventEmitter(next))
             .ConfigureDefaultValuesHandling(DefaultValuesHandling.OmitDefaults | DefaultValuesHandling.OmitEmptyCollections)
             .Build();
 
@@ -41,7 +43,13 @@ namespace Conflux.Schema.Serialization
 
         public static string Serialize(ConfluxScript script)
         {
-            return Serializer.Serialize(script);
+            using var textWriter = new StringWriter();
+            var baseEmitter = new Emitter(textWriter);
+            var confluxEmitter = new ConfluxMainPropertyEmitter(baseEmitter);
+
+            Serializer.Serialize(confluxEmitter, script);
+
+            return textWriter.ToString();
         }
     }
 }

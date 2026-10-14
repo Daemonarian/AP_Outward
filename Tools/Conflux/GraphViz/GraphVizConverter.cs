@@ -115,15 +115,27 @@ namespace Conflux.GraphViz
         /// <returns>The string representation.</returns>
         public static string BuildGraphVizLabel(object? obj, bool ignoreToGraphVizLabel = false)
         {
+            if (!ignoreToGraphVizLabel && obj is IGraphVizLabelable labelable)
+            {
+                return labelable.ToGraphVizLabel();
+            }
+
             if (obj is null)
             {
                 return "null";
             }
-            else if (!ignoreToGraphVizLabel && obj is IGraphVizLabelable labelable)
+
+            if (obj.GetType().IsValueType)
             {
-                return labelable.ToGraphVizLabel();
+                return $"{obj}";
             }
-            else if (obj is IEnumerable enumerable)
+
+            if (obj is string str)
+            {
+                return str;
+            }
+
+            if (obj is IEnumerable enumerable)
             {
                 var label = new StringBuilder();
                 label.AppendLine();
@@ -136,7 +148,8 @@ namespace Conflux.GraphViz
 
                 return label.ToString().TrimEnd();
             }
-            else if (obj.GetType().IsClass)
+
+            if (obj.GetType().IsClass)
             {
                 var type = obj.GetType();
                 var label = new StringBuilder();
@@ -152,10 +165,8 @@ namespace Conflux.GraphViz
 
                 return label.ToString().TrimEnd();
             }
-            else
-            {
-                return $"{obj}";
-            }
+
+            return $"{obj}";
         }
 
         public static string BuildGraphVizName(object obj)

@@ -2,6 +2,7 @@ using System.Collections.Concurrent;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using Conflux.Schema.Exceptions;
+using YamlDotNet.Serialization;
 
 namespace Conflux.Schema.Serialization
 {
@@ -46,11 +47,33 @@ namespace Conflux.Schema.Serialization
                         throw new ConfluxException($"Type {type} must specify at most one {nameof(ConfluxMainPropertyAttribute)}, but at least two were found: {mainProperty.Property.Name} and {property.Name}.");
                     }
 
-                    mainProperty = new(property, attribute);
+                    var yamlMemberAttribute = property.GetCustomAttribute<YamlMemberAttribute>();
+                    var yamlKey = yamlMemberAttribute?.Alias ?? ToCamelCase(property.Name);
+
+                    mainProperty = new(property, attribute, yamlKey);
                 }
             }
 
             return mainProperty;
+        }
+
+        /// <summary>
+        /// Camel-cases a string.
+        /// </summary>
+        /// <param name="value">The string to camel-case.</param>
+        /// <returns>
+        /// A reference to the original string if no change is required;
+        /// otherwise, a newly constructed string with the first character
+        /// replaced with its lower-case equivalent.
+        /// </returns>
+        private static string ToCamelCase(string value)
+        {
+            if (string.IsNullOrEmpty(value) || char.IsLower(value[0]))
+            {
+                return value;
+            }
+
+            return char.ToLowerInvariant(value[0]) + value[1..];
         }
 
         /// <summary>
@@ -63,10 +86,16 @@ namespace Conflux.Schema.Serialization
         /// </summary>
         public ConfluxMainPropertyAttribute Attribute { get; init; }
 
-        private ConfluxMainPropertyInfo(PropertyInfo property, ConfluxMainPropertyAttribute attribute)
+        /// <summary>
+        /// The actual key used for the main property in the raw YAML file.
+        /// </summary>
+        public string YamlKey { get; set; }
+
+        private ConfluxMainPropertyInfo(PropertyInfo property, ConfluxMainPropertyAttribute attribute, string yamlKey)
         {
             Property = property;
             Attribute = attribute;
+            YamlKey = yamlKey;
         }
 
         /// <summary>

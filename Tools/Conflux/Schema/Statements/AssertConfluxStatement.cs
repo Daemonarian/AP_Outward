@@ -6,8 +6,8 @@ using YamlDotNet.Serialization;
 
 namespace Conflux.Schema.Statements
 {
-    [ConfluxDerived("condition")]
-    internal class ConditionConfluxStatement : ConfluxStatement
+    [ConfluxDerived("assert")]
+    internal class AssertConfluxStatement : ConfluxStatement
     {
         [ConfluxMainProperty]
         [YamlMember(Alias = "condition")]
