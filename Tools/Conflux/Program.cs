@@ -84,7 +84,9 @@ namespace Conflux
                     throw new Exception("Script and template should not both be null.");
                 }
 
-                template = script.BuildGraphReplacementTemplate();
+                var builtTemplate = script.BuildGraphReplacementTemplate();
+                var templateJson = GraphTemplateSerializer.Serialize(builtTemplate);
+                template = GraphTemplateSerializer.Deserialize(templateJson);
             }
 
             // convert to output format

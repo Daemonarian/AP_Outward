@@ -1,11 +1,13 @@
 using Conflux.GraphViz;
+using Conflux.NodeCanvas.Serialization;
 using Conflux.Schema.Blackboards;
 using Conflux.Schema.Context;
+using Conflux.Schema.Exceptions;
 using Newtonsoft.Json;
 
 namespace Conflux.NodeCanvas.Blackboard
 {
-    internal class BBParameter : IGraphVizLabelable
+    internal class BBParameter : IGraphVizLabelable, IDefaultCheckable
     {
         [JsonProperty("_name")]
         public string? Name { get; set; }
@@ -30,14 +32,21 @@ namespace Conflux.NodeCanvas.Blackboard
             return string.Empty;
         }
 
-        public ConfluxBlackboardVariableReference BuildConfluxBlackboardVariableReference(Graph graph) => new()
+        public virtual ConfluxBlackboardVariableReference BuildConfluxBlackboardVariableReference(Graph graph) => new()
         {
             Name = Name,
+            ID = string.IsNullOrWhiteSpace(Name) && !string.IsNullOrWhiteSpace(TargetVariableID) ? Guid.Parse(TargetVariableID) : null,
         };
 
-        public override bool Equals(object? obj) => obj is BBParameter parameter && Name == parameter.Name && TargetVariableID == parameter.TargetVariableID;
+        public virtual bool IsDefaultValue(object? value)
+        {
+            if (value is not null)
+            {
+                throw new ConfluxException("The default value of a BBParameter must be null.");
+            }
 
-        public override int GetHashCode() => HashCode.Combine(Name, TargetVariableID);
+            return !IsReference();
+        }
     }
 
     internal class BBParameter<T> : BBParameter
@@ -55,13 +64,14 @@ namespace Conflux.NodeCanvas.Blackboard
             return GraphVizConverter.BuildGraphVizLabel(Value);
         }
 
-        public new ConfluxBlackboardVariableReference<T> BuildConfluxBlackboardVariableReference(Graph graph)
+        public override ConfluxBlackboardVariableReference<T> BuildConfluxBlackboardVariableReference(Graph graph)
         {
             if (IsReference())
             {
                 return new()
                 {
                     Name = Name,
+                    ID = string.IsNullOrWhiteSpace(Name) && !string.IsNullOrWhiteSpace(TargetVariableID) ? Guid.Parse(TargetVariableID) : null,
                 };
             }
 
@@ -78,6 +88,7 @@ namespace Conflux.NodeCanvas.Blackboard
                 return new()
                 {
                     Name = Name,
+                    ID = string.IsNullOrWhiteSpace(Name) && !string.IsNullOrWhiteSpace(TargetVariableID) ? Guid.Parse(TargetVariableID) : null,
                 };
             }
 
@@ -94,21 +105,31 @@ namespace Conflux.NodeCanvas.Blackboard
             };
         }
 
-        public static implicit operator BBParameter<T>(T value) => new()
-        {
-            Value = value,
-        };
+        public static implicit operator BBParameter<T>(T value) => new() { Value = value };
 
-        public override bool Equals(object? obj)
+        public override bool IsDefaultValue(object? value)
         {
-            if (obj is T value)
+            if (IsReference())
             {
-                obj = (BBParameter<T>)value;
+                return false;
             }
 
-            return obj is BBParameter<T> parameter && base.Equals(obj) && EqualityComparer<T?>.Default.Equals(Value, parameter.Value);
-        }
+            if (typeof(IDefaultCheckable).IsAssignableFrom(typeof(T)))
+            {
+                if (Value is null)
+                {
+                    return value is null;
+                }
 
-        public override int GetHashCode() => HashCode.Combine(base.GetHashCode(), Value);
+                return ((IDefaultCheckable)Value).IsDefaultValue(value);
+            }
+
+            if (value is null)
+            {
+                return Value is null;
+            }
+
+            return EqualityComparer<T>.Default.Equals(Value, (T)value);
+        }
     }
 }

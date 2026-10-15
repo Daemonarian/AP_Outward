@@ -7,6 +7,7 @@ namespace Conflux.NodeCanvas.Serialization
     {
         private static readonly JsonSerializerSettings SerializerSettings = new()
         {
+            ContractResolver = new NodeCanvasContractResolver(),
             PreserveReferencesHandling = PreserveReferencesHandling.Objects,
             TypeNameHandling = TypeNameHandling.Auto,
             MetadataPropertyHandling = MetadataPropertyHandling.ReadAhead,
