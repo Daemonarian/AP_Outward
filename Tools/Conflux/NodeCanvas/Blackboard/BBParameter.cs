@@ -1,3 +1,5 @@
+using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
 using Conflux.GraphViz;
 using Conflux.NodeCanvas.Serialization;
 using Conflux.Schema.Blackboards;
@@ -6,7 +8,7 @@ using Newtonsoft.Json;
 
 namespace Conflux.NodeCanvas.Blackboard
 {
-    internal class BBParameter : IGraphVizLabelable, IDefaultCheckable
+    internal class BBParameter : IConfluxObjectBuilder<ConfluxBlackboardVariableReference>, IGraphVizLabelable, IDefaultCheckable
     {
         [JsonProperty("_name")]
         public string? Name { get; set; }
@@ -15,6 +17,17 @@ namespace Conflux.NodeCanvas.Blackboard
         public string? TargetVariableID { get; set; }
 
         public virtual bool IsReference() => !string.IsNullOrWhiteSpace(Name) || !string.IsNullOrWhiteSpace(TargetVariableID);
+
+        public virtual ConfluxBlackboardVariableReference BuildConfluxBlackboardVariableReference(Graph graph) => BuildReferenceBlackboardVariableReference<ConfluxBlackboardVariableReference>(graph);
+
+        protected T BuildReferenceBlackboardVariableReference<T>(Graph graph) where T : ConfluxBlackboardVariableReference, new() => new()
+        {
+            Name = Name,
+            ID = string.IsNullOrWhiteSpace(Name) && !string.IsNullOrWhiteSpace(TargetVariableID) ? Guid.Parse(TargetVariableID) : null,
+        };
+
+        [return: NotNull]
+        public ConfluxBlackboardVariableReference BuildConfluxObject(Graph graph) => BuildConfluxBlackboardVariableReference(graph);
 
         public virtual string ToGraphVizLabel()
         {
@@ -31,14 +44,6 @@ namespace Conflux.NodeCanvas.Blackboard
             return string.Empty;
         }
 
-        public virtual ConfluxBlackboardVariableReference BuildConfluxBlackboardVariableReference(Graph graph) => BuildReferenceBlackboardVariableReference<ConfluxBlackboardVariableReference>(graph);
-
-        protected T BuildReferenceBlackboardVariableReference<T>(Graph graph) where T : ConfluxBlackboardVariableReference, new() => new()
-        {
-            Name = Name,
-            ID = string.IsNullOrWhiteSpace(Name) && !string.IsNullOrWhiteSpace(TargetVariableID) ? Guid.Parse(TargetVariableID) : null,
-        };
-
         public virtual bool IsDefaultValue(object? value)
         {
             if (value is not null)
@@ -50,7 +55,7 @@ namespace Conflux.NodeCanvas.Blackboard
         }
     }
 
-    internal class BBParameter<T> : BBParameter
+    internal class BBParameter<T> : BBParameter, IConfluxObjectBuilder
     {
         [JsonProperty("_value")]
         public T? Value { get; set; }
@@ -76,28 +81,28 @@ namespace Conflux.NodeCanvas.Blackboard
                 return BuildReferenceBlackboardVariableReference<ConfluxBlackboardVariableReference<T2>>(graph);
             }
 
-            T2? value;
-            if (Value is null)
-            {
-                value = default;
-            }
-            else if (Value is IConfluxObjectBuilder<T2> valueBuilder)
-            {
-                value = valueBuilder.BuildConfluxObject(graph);
-            }
-            else if (Value is T2 newValue)
-            {
-                value = newValue;
-            }
-            else
-            {
-                throw new ConfluxException($"Cannot build Conflux type {typeof(T2).Name} from NodeCanvas type {typeof(T).Name}.");
-            }
-
             return new()
             {
-                Value = value,
+                Value = ConfluxObjectBuilder.Build<T, T2>(graph, Value),
             };
+        }
+
+        public bool TryBuildConfluxObject<T2>(Graph graph, [NotNullWhen(true)] out T2? target)
+        {
+            if (typeof(T2).IsGenericType && typeof(T2).GetGenericTypeDefinition() == typeof(ConfluxBlackboardVariableReference<>))
+            {
+                var buildMethod = GetType()
+                    .GetMethod(nameof(BuildConfluxBlackboardVariableReference), BindingFlags.Instance)
+                    ?.MakeGenericMethod(typeof(T2).GetGenericArguments());
+                if (buildMethod is not null)
+                {
+                    target = (T2)buildMethod.Invoke(this, [graph])!;
+                    return true;
+                }
+            }
+
+            target = default;
+            return false;
         }
 
         public override bool IsDefaultValue(object? value)

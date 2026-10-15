@@ -14,14 +14,14 @@ namespace Conflux.NodeCanvas.Conditions
     internal class HasStatusLevelNodeCanvasCondition : NodeCanvasCondition
     {
         [JsonProperty("statuses")]
-        public BBParameter<NodeCanvasList<UnityObject, ConfluxUnityObjectReference>>? Statuses { get; set; }
+        public BBParameter<NodeCanvasList<UnityObject>>? Statuses { get; set; }
 
         [JsonProperty("minLevel")]
         public BBParameter<int>? MinLevel { get; set; }
 
         protected override HasStatusLevelConfluxCondition BuildSubConfluxCondition(Graph graph) => new()
         {
-            Statuses = Statuses?.BuildConfluxBlackboardVariableReference<ConfluxList<UnityObject, ConfluxUnityObjectReference>>(graph),
+            Statuses = Statuses?.BuildConfluxBlackboardVariableReference<ConfluxList<ConfluxUnityObjectReference>>(graph),
             MinLevel = MinLevel?.BuildConfluxBlackboardVariableReference(graph),
         };
     }

@@ -1,4 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
 using Conflux.NodeCanvas.Blackboard;
 using Conflux.NodeCanvas.Serialization;
 using Conflux.Schema.Context;
@@ -8,7 +9,7 @@ using YamlDotNet.Serialization;
 
 namespace Conflux.Schema.Blackboards
 {
-    internal class ConfluxBlackboardVariableReference : IDefaultCheckable
+    internal class ConfluxBlackboardVariableReference : INodeCanvasObjectBuilder<BBParameter>, IDefaultCheckable
     {
         [YamlMember(Alias = "name")]
         public string? Name { get; set; }
@@ -62,6 +63,9 @@ namespace Conflux.Schema.Blackboards
             };
         }
 
+        [return: NotNull]
+        public BBParameter BuildNodeCanvasObject(NodeCanvasGraphContext context) => BuildBBParameter(context);
+
         public virtual bool IsDefaultValue(object? value)
         {
             if (value is not null)
@@ -73,7 +77,7 @@ namespace Conflux.Schema.Blackboards
         }
     }
 
-    internal class ConfluxBlackboardVariableReference<T> : ConfluxBlackboardVariableReference
+    internal class ConfluxBlackboardVariableReference<T> : ConfluxBlackboardVariableReference, INodeCanvasObjectBuilder
     {
         [ConfluxMainProperty]
         [YamlMember(Alias = "value")]
@@ -97,28 +101,28 @@ namespace Conflux.Schema.Blackboards
                 return BuildReferenceBBParameter<BBParameter<T2>>(context);
             }
 
-            T2? value;
-            if (Value is null)
-            {
-                value = default;
-            }
-            else if (Value is INodeCanvasObjectBuilder<T2> valueBuilder)
-            {
-                value = valueBuilder.BuildNodeCanvasObject(context);
-            }
-            else if (Value is T2 newValue)
-            {
-                value = newValue;
-            }
-            else
-            {
-                throw new ConfluxException($"Cannot build NodeCanvas type {typeof(T2).Name} from Conflux type {Value.GetType().Name}.");
-            }
-
             return new()
             {
-                Value = value,
+                Value = NodeCanvasObjectBuilder.Build<T, T2>(context, Value),
             };
+        }
+
+        public bool TryBuildNodeCanvasObject<T2>(NodeCanvasGraphContext context, [NotNullWhen(true)] out T2? target)
+        {
+            if (typeof(T2).IsGenericType && typeof(T2).GetGenericTypeDefinition() == typeof(BBParameter<>))
+            {
+                var buildMethod = GetType()
+                    .GetMethod(nameof(BuildBBParameter), BindingFlags.Instance)
+                    ?.MakeGenericMethod(typeof(T2).GetGenericArguments());
+                if (buildMethod is not null)
+                {
+                    target = (T2)buildMethod.Invoke(this, [context])!;
+                    return true;
+                }
+            }
+
+            target = default;
+            return false;
         }
 
         public override bool IsDefaultValue(object? value)

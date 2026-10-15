@@ -16,12 +16,12 @@ namespace Conflux.Schema.Conditions
         public ConfluxBlackboardVariableReference<ConfluxUnityObjectReference>? Character { get; set; }
 
         [YamlMember(Alias = "statuses")]
-        public ConfluxBlackboardVariableReference<ConfluxList<UnityObject, ConfluxUnityObjectReference>>? Statuses { get; set; }
+        public ConfluxBlackboardVariableReference<ConfluxList<ConfluxUnityObjectReference>>? Statuses { get; set; }
 
         public override HasStatusNodeCanvasCondition BuildCondition(NodeCanvasGraphContext context) => new()
         {
             Character = Character?.BuildBBParameter<UnityObject>(context),
-            Statuses = Statuses?.BuildBBParameter<NodeCanvasList<UnityObject, ConfluxUnityObjectReference>>(context),
+            Statuses = Statuses?.BuildBBParameter<NodeCanvasList<UnityObject>>(context),
         };
     }
 }

@@ -13,14 +13,14 @@ namespace Conflux.Schema.Conditions
     internal class HasStatusLevelConfluxCondition : ConfluxCondition
     {
         [YamlMember(Alias = "statuses")]
-        public ConfluxBlackboardVariableReference<ConfluxList<UnityObject, ConfluxUnityObjectReference>>? Statuses { get; set; }
+        public ConfluxBlackboardVariableReference<ConfluxList<ConfluxUnityObjectReference>>? Statuses { get; set; }
 
         [YamlMember(Alias = "minLevel")]
         public ConfluxBlackboardVariableReference<int>? MinLevel { get; set; }
 
         public override HasStatusLevelNodeCanvasCondition BuildCondition(NodeCanvasGraphContext context) => new()
         {
-            Statuses = Statuses?.BuildBBParameter<NodeCanvasList<UnityObject, ConfluxUnityObjectReference>>(context),
+            Statuses = Statuses?.BuildBBParameter<NodeCanvasList<UnityObject>>(context),
             MinLevel = MinLevel?.BuildBBParameter(context),
         };
     }

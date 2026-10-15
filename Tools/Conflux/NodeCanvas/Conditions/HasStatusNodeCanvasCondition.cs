@@ -17,12 +17,12 @@ namespace Conflux.NodeCanvas.Conditions
         public BBParameter<UnityObject>? Character { get; set; }
 
         [JsonProperty("statuses")]
-        public BBParameter<NodeCanvasList<UnityObject, ConfluxUnityObjectReference>>? Statuses { get; set; }
+        public BBParameter<NodeCanvasList<UnityObject>>? Statuses { get; set; }
 
         protected override HasStatusConfluxCondition BuildSubConfluxCondition(Graph graph) => new()
         {
             Character = Character?.BuildConfluxBlackboardVariableReference<ConfluxUnityObjectReference>(graph),
-            Statuses = Statuses?.BuildConfluxBlackboardVariableReference<ConfluxList<UnityObject, ConfluxUnityObjectReference>>(graph),
+            Statuses = Statuses?.BuildConfluxBlackboardVariableReference<ConfluxList<ConfluxUnityObjectReference>>(graph),
         };
     }
 }

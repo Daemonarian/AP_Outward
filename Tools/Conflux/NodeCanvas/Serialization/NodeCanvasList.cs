@@ -1,6 +1,7 @@
+using System.Diagnostics.CodeAnalysis;
+using System.Reflection;
 using System.Text;
 using Conflux.GraphViz;
-using Conflux.Schema.Context;
 using Conflux.Schema.Exceptions;
 using Conflux.Schema.Serialization;
 using Newtonsoft.Json;
@@ -8,42 +9,33 @@ using Newtonsoft.Json;
 namespace Conflux.NodeCanvas.Serialization
 {
     [JsonConverter(typeof(NodeCanvasListConverter))]
-    internal class NodeCanvasList<T> : IConfluxObjectBuilder<ConfluxList<T>>, IGraphVizLabelable where T : IGraphVizLabelable
+    internal class NodeCanvasList<T> : IConfluxObjectBuilder, IGraphVizLabelable
     {
         [GraphVizProperty(IsMainProperty = true)]
         public List<T>? Items { get; set; }
 
-        public ConfluxList<T> BuildConfluxObject(Graph graph) => new()
+        public ConfluxList<T2> BuildConfluxList<T2>(Graph graph) => new()
         {
-            Items = Items is null ? null : [.. Items],
+            Items = Items is null ? null : [.. Items.Select(item => ConfluxObjectBuilder.Build<T, T2>(graph, item)!)],
         };
 
-        public string ToGraphVizLabel()
+        public bool TryBuildConfluxObject<T2>(Graph graph, [NotNullWhen(true)] out T2? target)
         {
-            var content = new StringBuilder();
-            content.AppendLine();
-
-            if (Items is not null)
+            if (typeof(T2).IsGenericType && typeof(T2).GetGenericTypeDefinition() == typeof(ConfluxList<>))
             {
-                foreach (var item in Items)
+                var buildMethod = GetType()
+                    .GetMethod(nameof(BuildConfluxList), BindingFlags.Instance)
+                    ?.MakeGenericMethod(typeof(T2).GetGenericArguments());
+                if (buildMethod is not null)
                 {
-                    content.AppendLine($"- {GraphVizConverter.IndentLines(item.ToGraphVizLabel()).Trim()}");
+                    target = (T2)buildMethod.Invoke(this, [graph])!;
+                    return true;
                 }
             }
 
-            return content.ToString().TrimEnd();
+            target = default;
+            return false;
         }
-    }
-
-    [JsonConverter(typeof(NodeCanvasListConverter))]
-    internal class NodeCanvasList<TNodeCanvas, TConflux> : IConfluxObjectBuilder<ConfluxList<TNodeCanvas, TConflux>>, IGraphVizLabelable where TNodeCanvas : IConfluxObjectBuilder<TConflux>, IGraphVizLabelable where TConflux : INodeCanvasObjectBuilder<TNodeCanvas>
-    {
-        public List<TNodeCanvas>? Items { get; set; }
-
-        public ConfluxList<TNodeCanvas, TConflux> BuildConfluxObject(Graph graph) => new()
-        {
-            Items = Items is null ? null : [.. Items.Select(i => i.BuildConfluxObject(graph))],
-        };
 
         public string ToGraphVizLabel()
         {
@@ -54,7 +46,8 @@ namespace Conflux.NodeCanvas.Serialization
             {
                 foreach (var item in Items)
                 {
-                    content.AppendLine($"- {GraphVizConverter.IndentLines(item.ToGraphVizLabel()).Trim()}");
+                    var itemLabel = GraphVizConverter.BuildGraphVizLabel(item);
+                    content.AppendLine($"- {GraphVizConverter.IndentLines(itemLabel, indentFirstLine: false)}");
                 }
             }
 
