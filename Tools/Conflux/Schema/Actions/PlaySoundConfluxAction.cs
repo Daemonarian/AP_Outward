@@ -18,7 +18,7 @@ namespace Conflux.Schema.Actions
         public OutwardAudio.Sounds Sound { get; set; }
 
         [YamlMember(Alias = "transform")]
-        public ConfluxBlackboardVariableReference<UnityObject, ConfluxUnityObjectReference>? Transform { get; set; }
+        public ConfluxBlackboardVariableReference<ConfluxUnityObjectReference>? Transform { get; set; }
 
         [YamlMember(Alias = "position")]
         public ConfluxVector3? Position { get; set; }
@@ -33,7 +33,7 @@ namespace Conflux.Schema.Actions
             return new()
             {
                 Sound = Sound,
-                Transform = Transform?.BuildBBParameter(context),
+                Transform = Transform?.BuildBBParameter<UnityObject>(context),
                 Position = Position?.BuildNodeCanvasObject(context),
                 PlayAt = Transform is not null ? PlaySoundNodeCanvasAction.PositionType.Transform : (Position is not null ? PlaySoundNodeCanvasAction.PositionType.Pos : PlaySoundNodeCanvasAction.PositionType.Camera),
             };

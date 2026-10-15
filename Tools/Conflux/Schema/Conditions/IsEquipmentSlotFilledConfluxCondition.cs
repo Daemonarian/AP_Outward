@@ -14,7 +14,7 @@ namespace Conflux.Schema.Conditions
     internal class IsEquipmentSlotFilledConfluxCondition : ConfluxCondition
     {
         [YamlMember(Alias = "character")]
-        public ConfluxBlackboardVariableReference<UnityObject, ConfluxUnityObjectReference>? Character { get; set; }
+        public ConfluxBlackboardVariableReference<ConfluxUnityObjectReference>? Character { get; set; }
 
         [ConfluxMainProperty]
         [YamlMember(Alias = "slot")]
@@ -26,7 +26,7 @@ namespace Conflux.Schema.Conditions
 
         public override IsEquipmentSlotFilledNodeCanvasCondition BuildCondition(NodeCanvasGraphContext context) => new()
         {
-            Character = Character?.BuildBBParameter(context),
+            Character = Character?.BuildBBParameter<UnityObject>(context),
             Slot = Slot?.BuildBBParameter(context),
             MustBeEnchanted = MustBeEnchanted.BuildBBParameter(context),
         };

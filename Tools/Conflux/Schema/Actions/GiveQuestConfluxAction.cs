@@ -12,15 +12,15 @@ namespace Conflux.Schema.Actions
     internal class GiveQuestConfluxAction : ConfluxAction
     {
         [YamlMember(Alias = "questObject")]
-        public ConfluxBlackboardVariableReference<UnityObject, ConfluxUnityObjectReference>? QuestObject { get; set; }
+        public ConfluxBlackboardVariableReference<ConfluxUnityObjectReference>? QuestObject { get; set; }
 
         [YamlMember(Alias = "quest")]
-        public ConfluxBlackboardVariableReference<QuestReference, ConfluxQuestReference>? Quest { get; set; }
+        public ConfluxBlackboardVariableReference<ConfluxQuestReference>? Quest { get; set; }
 
         public override GiveQuestNodeCanvasAction BuildAction(NodeCanvasGraphContext context) => new()
         {
-            Quest = QuestObject?.BuildBBParameter(context),
-            QuestRef = Quest?.BuildBBParameter(context),
+            Quest = QuestObject?.BuildBBParameter<UnityObject>(context),
+            QuestRef = Quest?.BuildBBParameter<QuestReference>(context),
         };
     }
 }

@@ -53,7 +53,7 @@ namespace Conflux.Schema.Actions
         public class ItemReward
         {
             [YamlMember(Alias = "item")]
-            public ConfluxBlackboardVariableReference<ItemReference, ConfluxItemReference> Item { get; set; } = new();
+            public ConfluxBlackboardVariableReference<ConfluxItemReference> Item { get; set; } = new();
 
             [YamlMember(Alias = "quantity")]
             public ConfluxBlackboardVariableReference<int> Quantity { get; set; } = new() { Value = 1 };
@@ -63,7 +63,7 @@ namespace Conflux.Schema.Actions
 
             public GiveRewardNodeCanvasAction.ItemQuantity BuildItemQuantity(NodeCanvasGraphContext context) => new()
             {
-                Item = Item.BuildBBParameter(context),
+                Item = Item.BuildBBParameter<ItemReference>(context),
                 Quantity = Quantity.BuildBBParameter(context),
                 TryToEquip = TryToEquip.BuildBBParameter(context),
             };

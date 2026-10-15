@@ -1,7 +1,6 @@
 using Conflux.GraphViz;
 using Conflux.NodeCanvas.Serialization;
 using Conflux.Schema.Blackboards;
-using Conflux.Schema.Context;
 using Conflux.Schema.Exceptions;
 using Newtonsoft.Json;
 
@@ -32,7 +31,9 @@ namespace Conflux.NodeCanvas.Blackboard
             return string.Empty;
         }
 
-        public virtual ConfluxBlackboardVariableReference BuildConfluxBlackboardVariableReference(Graph graph) => new()
+        public virtual ConfluxBlackboardVariableReference BuildConfluxBlackboardVariableReference(Graph graph) => BuildReferenceBlackboardVariableReference<ConfluxBlackboardVariableReference>(graph);
+
+        protected T BuildReferenceBlackboardVariableReference<T>(Graph graph) where T : ConfluxBlackboardVariableReference, new() => new()
         {
             Name = Name,
             ID = string.IsNullOrWhiteSpace(Name) && !string.IsNullOrWhiteSpace(TargetVariableID) ? Guid.Parse(TargetVariableID) : null,
@@ -42,7 +43,7 @@ namespace Conflux.NodeCanvas.Blackboard
         {
             if (value is not null)
             {
-                throw new ConfluxException("The default value of a BBParameter must be null.");
+                throw new ConfluxException($"The default value of a {nameof(BBParameter)} must be null.");
             }
 
             return !IsReference();
@@ -64,48 +65,40 @@ namespace Conflux.NodeCanvas.Blackboard
             return GraphVizConverter.BuildGraphVizLabel(Value);
         }
 
-        public override ConfluxBlackboardVariableReference<T> BuildConfluxBlackboardVariableReference(Graph graph)
+        public override ConfluxBlackboardVariableReference<T> BuildConfluxBlackboardVariableReference(Graph graph) => BuildValueConfluxBlackboardVaraibleReference<T>(graph);
+
+        public ConfluxBlackboardVariableReference<T2> BuildConfluxBlackboardVariableReference<T2>(Graph graph) => BuildValueConfluxBlackboardVaraibleReference<T2>(graph);
+
+        protected ConfluxBlackboardVariableReference<T2> BuildValueConfluxBlackboardVaraibleReference<T2>(Graph graph)
         {
             if (IsReference())
             {
-                return new()
-                {
-                    Name = Name,
-                    ID = string.IsNullOrWhiteSpace(Name) && !string.IsNullOrWhiteSpace(TargetVariableID) ? Guid.Parse(TargetVariableID) : null,
-                };
+                return BuildReferenceBlackboardVariableReference<ConfluxBlackboardVariableReference<T2>>(graph);
             }
 
-            return new()
-            {
-                Value = Value,
-            };
-        }
-
-        public ConfluxBlackboardVariableReference<T, T2> BuildConfluxBlackboardVariableReference<T2>(Graph graph) where T2 : INodeCanvasObjectBuilder<T>
-        {
-            if (IsReference())
-            {
-                return new()
-                {
-                    Name = Name,
-                    ID = string.IsNullOrWhiteSpace(Name) && !string.IsNullOrWhiteSpace(TargetVariableID) ? Guid.Parse(TargetVariableID) : null,
-                };
-            }
-
+            T2? value;
             if (Value is null)
             {
-                return new();
+                value = default;
             }
-
-            var builder = Value as IConfluxObjectBuilder<T2> ?? throw new NotImplementedException($"The value of type {typeof(T).Name} does not implement IConfluxObjectBuilder<{typeof(T2).Name}>.");
+            else if (Value is IConfluxObjectBuilder<T2> valueBuilder)
+            {
+                value = valueBuilder.BuildConfluxObject(graph);
+            }
+            else if (Value is T2 newValue)
+            {
+                value = newValue;
+            }
+            else
+            {
+                throw new ConfluxException($"Cannot build Conflux type {typeof(T2).Name} from NodeCanvas type {typeof(T).Name}.");
+            }
 
             return new()
             {
-                Value = builder.BuildConfluxObject(graph),
+                Value = value,
             };
         }
-
-        public static implicit operator BBParameter<T>(T value) => new() { Value = value };
 
         public override bool IsDefaultValue(object? value)
         {
@@ -114,22 +107,14 @@ namespace Conflux.NodeCanvas.Blackboard
                 return false;
             }
 
-            if (typeof(IDefaultCheckable).IsAssignableFrom(typeof(T)))
+            if (Value is IDefaultCheckable checkableValue)
             {
-                if (Value is null)
-                {
-                    return value is null;
-                }
-
-                return ((IDefaultCheckable)Value).IsDefaultValue(value);
+                return checkableValue.IsDefaultValue(value);
             }
 
-            if (value is null)
-            {
-                return Value is null;
-            }
-
-            return EqualityComparer<T>.Default.Equals(Value, (T)value);
+            return EqualityComparer<T?>.Default.Equals(Value, (T?)value);
         }
+
+        public static implicit operator BBParameter<T>(T value) => new() { Value = value };
     }
 }

@@ -14,7 +14,7 @@ namespace Conflux.Schema.Actions
     {
         [ConfluxMainProperty]
         [YamlMember(Alias = "dialogue")]
-        public ConfluxBlackboardVariableReference<UnityObject, ConfluxUnityObjectReference> DialogueStarter { get; set; } = new();
+        public ConfluxBlackboardVariableReference<ConfluxUnityObjectReference> DialogueStarter { get; set; } = new();
 
         [YamlMember(Alias = "wait")]
         [DefaultValue(true)]
@@ -22,7 +22,7 @@ namespace Conflux.Schema.Actions
 
         public override BranchNodeCanvasAction BuildAction(NodeCanvasGraphContext context) => new()
         {
-            DialogueStarter = DialogueStarter.BuildBBParameter(context),
+            DialogueStarter = DialogueStarter.BuildBBParameter<UnityObject>(context),
             WaitActionFinish = DoWait,
         };
     }

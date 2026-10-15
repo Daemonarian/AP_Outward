@@ -14,7 +14,7 @@ namespace Conflux.Schema.Actions
     {
         [ConfluxMainProperty]
         [YamlMember(Alias = "target")]
-        public ConfluxBlackboardVariableReference<UnityObject, ConfluxUnityObjectReference>? Target { get; set; }
+        public ConfluxBlackboardVariableReference<ConfluxUnityObjectReference>? Target { get; set; }
 
         [YamlMember(Alias = "targetUID")]
         public string? TargetUID { get; set; }
@@ -31,7 +31,7 @@ namespace Conflux.Schema.Actions
         {
             FullHealth = FullHealth.BuildBBParameter(context),
             HealAmount = HealAmount.BuildBBParameter(context),
-            Target = Target?.BuildBBParameter(context),
+            Target = Target?.BuildBBParameter<UnityObject>(context),
             TargetUID = TargetUID,
         };
     }

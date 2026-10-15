@@ -12,11 +12,11 @@ namespace Conflux.Schema.Conditions
     internal class OwnsItemConfluxCondition : ConfluxCondition
     {
         [YamlMember(Alias = "character")]
-        public ConfluxBlackboardVariableReference<UnityObject, ConfluxUnityObjectReference>? Character { get; set; }
+        public ConfluxBlackboardVariableReference<ConfluxUnityObjectReference>? Character { get; set; }
 
         [ConfluxMainProperty]
         [YamlMember(Alias = "item")]
-        public ConfluxBlackboardVariableReference<ItemReference, ConfluxItemReference>? Item { get; set; }
+        public ConfluxBlackboardVariableReference<ConfluxItemReference>? Item { get; set; }
 
         [YamlMember(Alias = "minAmount")]
         public ConfluxBlackboardVariableReference<int>? MinAmount { get; set; }
@@ -29,8 +29,8 @@ namespace Conflux.Schema.Conditions
 
         public override OwnsItemNodeCanvasCondition BuildCondition(NodeCanvasGraphContext context) => new()
         {
-            Character = Character?.BuildBBParameter(context),
-            Item = Item?.BuildBBParameter(context),
+            Character = Character?.BuildBBParameter<UnityObject>(context),
+            Item = Item?.BuildBBParameter<ItemReference>(context),
             MinAmount = MinAmount?.BuildBBParameter(context),
             ItemMustBeEquipped = ItemMustBeEquipped?.BuildBBParameter(context),
             SaveMatchingContainerVariable = SaveMatchingContainerVariable,

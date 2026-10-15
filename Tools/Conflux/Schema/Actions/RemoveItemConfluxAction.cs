@@ -12,18 +12,18 @@ namespace Conflux.Schema.Actions
     internal class RemoveItemConfluxAction : ConfluxAction
     {
         [JsonProperty("fromCharacter")]
-        public ConfluxBlackboardVariableReference<UnityObject, ConfluxUnityObjectReference>? FromCharacter { get; set; }
+        public ConfluxBlackboardVariableReference<ConfluxUnityObjectReference>? FromCharacter { get; set; }
 
         [JsonProperty("Items")]
-        public List<ConfluxBlackboardVariableReference<ItemReference, ConfluxItemReference>>? Items { get; set; }
+        public List<ConfluxBlackboardVariableReference<ConfluxItemReference>>? Items { get; set; }
 
         [JsonProperty("Amount")]
         public List<ConfluxBlackboardVariableReference<int>>? Amount { get; set; }
 
         public override RemoveItemNodeCanvasAction BuildAction(NodeCanvasGraphContext context) => new()
         {
-            FromCharacter = FromCharacter?.BuildBBParameter(context),
-            Items = Items?.Select(i => i.BuildBBParameter(context)).ToList(),
+            FromCharacter = FromCharacter?.BuildBBParameter<UnityObject>(context),
+            Items = Items?.Select(i => i.BuildBBParameter<ItemReference>(context)).ToList(),
             Amount = Amount?.Select(a => a.BuildBBParameter(context)).ToList(),
         };
     }

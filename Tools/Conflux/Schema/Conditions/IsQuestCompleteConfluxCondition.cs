@@ -13,11 +13,11 @@ namespace Conflux.Schema.Conditions
     {
         [ConfluxMainProperty]
         [YamlMember(Alias = "quest")]
-        public ConfluxBlackboardVariableReference<QuestReference, ConfluxQuestReference> Quest { get; set; } = new();
+        public ConfluxBlackboardVariableReference<ConfluxQuestReference> Quest { get; set; } = new();
 
         public override IsQuestCompletedNodeCanvasAction BuildCondition(NodeCanvasGraphContext context) => new()
         {
-            Quest = Quest.BuildBBParameter(context),
+            Quest = Quest.BuildBBParameter<QuestReference>(context),
         };
     }
 }

@@ -12,16 +12,16 @@ namespace Conflux.Schema.Conditions
     internal class KnowSkillConfluxCondition : ConfluxCondition
     {
         [YamlMember(Alias = "character")]
-        public ConfluxBlackboardVariableReference<UnityObject, ConfluxUnityObjectReference>? Character { get; set; }
+        public ConfluxBlackboardVariableReference<ConfluxUnityObjectReference>? Character { get; set; }
 
         [ConfluxMainProperty]
         [YamlMember(Alias = "skill")]
-        public ConfluxBlackboardVariableReference<UnityObject, ConfluxUnityObjectReference>? Skill { get; set; }
+        public ConfluxBlackboardVariableReference<ConfluxUnityObjectReference>? Skill { get; set; }
 
         public override KnowSkillNodeCanvasCondition BuildCondition(NodeCanvasGraphContext context) => new()
         {
-            Character = Character?.BuildBBParameter(context),
-            Skill = Skill?.BuildBBParameter(context),
+            Character = Character?.BuildBBParameter<UnityObject>(context),
+            Skill = Skill?.BuildBBParameter<UnityObject>(context),
         };
     }
 }

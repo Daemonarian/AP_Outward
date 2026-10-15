@@ -18,10 +18,10 @@ namespace Conflux.Schema.Actions
         public ConfluxBlackboardVariableReference<bool>? TurnCamera { get; set; }
 
         [YamlMember(Alias = "target")]
-        public ConfluxBlackboardVariableReference<UnityObject, ConfluxUnityObjectReference>? Target { get; set; }
+        public ConfluxBlackboardVariableReference<ConfluxUnityObjectReference>? Target { get; set; }
 
         [YamlMember(Alias = "targetTransform")]
-        public ConfluxBlackboardVariableReference<UnityObject, ConfluxUnityObjectReference>? TargetTransform { get; set; }
+        public ConfluxBlackboardVariableReference<ConfluxUnityObjectReference>? TargetTransform { get; set; }
 
         [YamlMember(Alias = "targetUID")]
         public string? TargetUID { get; set; }
@@ -30,8 +30,8 @@ namespace Conflux.Schema.Actions
         {
             AllPlayers = AllPlayers?.BuildBBParameter(context),
             TurnCamera = TurnCamera?.BuildBBParameter(context),
-            Target = Target?.BuildBBParameter(context),
-            TargetTransform = TargetTransform?.BuildBBParameter(context),
+            Target = Target?.BuildBBParameter<UnityObject>(context),
+            TargetTransform = TargetTransform?.BuildBBParameter<UnityObject>(context),
             TargetUID = TargetUID,
         };
     }

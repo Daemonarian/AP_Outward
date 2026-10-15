@@ -15,7 +15,7 @@ namespace Conflux.Schema.Actions
     {
         [ConfluxMainProperty]
         [YamlMember(Alias = "object")]
-        public ConfluxBlackboardVariableReference<UnityObject, ConfluxUnityObjectReference> Object { get; set; } = new();
+        public ConfluxBlackboardVariableReference<ConfluxUnityObjectReference> Object { get; set; } = new();
 
         [YamlMember(Alias = "mode")]
         [DefaultValue(ActivateMode.Toggle)]
@@ -23,7 +23,7 @@ namespace Conflux.Schema.Actions
 
         public override SetObjectActiveNodeCanvasAction BuildAction(NodeCanvasGraphContext context) => new()
         {
-            Object = Object.BuildBBParameter(context),
+            Object = Object.BuildBBParameter<UnityObject>(context),
             Mode = Mode switch
             {
                 ActivateMode.Deactivate => SetObjectActiveNodeCanvasAction.SetActiveMode.Deactivate,

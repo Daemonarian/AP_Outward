@@ -13,15 +13,15 @@ namespace Conflux.Schema.Conditions
     internal class HasStatusConfluxCondition : ConfluxCondition
     {
         [YamlMember(Alias = "character")]
-        public ConfluxBlackboardVariableReference<UnityObject, ConfluxUnityObjectReference>? Character { get; set; }
+        public ConfluxBlackboardVariableReference<ConfluxUnityObjectReference>? Character { get; set; }
 
         [YamlMember(Alias = "statuses")]
-        public ConfluxBlackboardVariableReference<NodeCanvasList<UnityObject, ConfluxUnityObjectReference>, ConfluxList<UnityObject, ConfluxUnityObjectReference>>? Statuses { get; set; }
+        public ConfluxBlackboardVariableReference<ConfluxList<UnityObject, ConfluxUnityObjectReference>>? Statuses { get; set; }
 
         public override HasStatusNodeCanvasCondition BuildCondition(NodeCanvasGraphContext context) => new()
         {
-            Character = Character?.BuildBBParameter(context),
-            Statuses = Statuses?.BuildBBParameter(context),
+            Character = Character?.BuildBBParameter<UnityObject>(context),
+            Statuses = Statuses?.BuildBBParameter<NodeCanvasList<UnityObject, ConfluxUnityObjectReference>>(context),
         };
     }
 }

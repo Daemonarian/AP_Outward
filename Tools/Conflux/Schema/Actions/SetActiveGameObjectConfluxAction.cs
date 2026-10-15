@@ -13,14 +13,14 @@ namespace Conflux.Schema.Actions
     {
         [ConfluxMainProperty]
         [YamlMember(Alias = "target")]
-        public ConfluxBlackboardVariableReference<UnityObject, ConfluxUnityObjectReference>? Target { get; set; }
+        public ConfluxBlackboardVariableReference<ConfluxUnityObjectReference>? Target { get; set; }
 
         [YamlMember(Alias = "isActive")]
         public ConfluxBlackboardVariableReference<bool>? IsActive { get; set; }
 
         public override SetActiveGameObjectNodeCanvasAction BuildAction(NodeCanvasGraphContext context) => new()
         {
-            Target = Target?.BuildBBParameter(context),
+            Target = Target?.BuildBBParameter<UnityObject>(context),
             IsActive = IsActive?.BuildBBParameter(context),
         };
     }

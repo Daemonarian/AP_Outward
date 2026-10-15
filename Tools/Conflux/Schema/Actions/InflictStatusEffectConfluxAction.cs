@@ -12,15 +12,15 @@ namespace Conflux.Schema.Actions
     internal class InflictStatusEffectConfluxAction : ConfluxAction
     {
         [YamlMember(Alias = "target")]
-        public ConfluxBlackboardVariableReference<UnityObject, ConfluxUnityObjectReference>? Target { get; set; }
+        public ConfluxBlackboardVariableReference<ConfluxUnityObjectReference>? Target { get; set; }
 
         [YamlMember(Alias = "statusEffect")]
-        public ConfluxBlackboardVariableReference<UnityObject, ConfluxUnityObjectReference>? StatusEffect { get; set; }
+        public ConfluxBlackboardVariableReference<ConfluxUnityObjectReference>? StatusEffect { get; set; }
 
         public override InflictStatusEffectNodeCanvasAction BuildAction(NodeCanvasGraphContext context) => new()
         {
-            Target = Target?.BuildBBParameter(context),
-            StatusEffect = StatusEffect?.BuildBBParameter(context),
+            Target = Target?.BuildBBParameter<UnityObject>(context),
+            StatusEffect = StatusEffect?.BuildBBParameter<UnityObject>(context),
         };
     }
 }

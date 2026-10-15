@@ -34,6 +34,7 @@ namespace Conflux.Schema.Serialization
             .WithEventEmitter(next => new ConfluxPolymorphicEventEmitter(next))
             .WithEventEmitter(next => new ConfluxMainPropertyEventEmitter(next))
             .ConfigureDefaultValuesHandling(DefaultValuesHandling.OmitDefaults | DefaultValuesHandling.OmitEmptyCollections)
+            .WithEmissionPhaseObjectGraphVisitor(args => new ConfluxDefaultValuesVisitor(args.InnerVisitor))
             .Build();
 
         public static ConfluxScript Deserialize(string yaml)

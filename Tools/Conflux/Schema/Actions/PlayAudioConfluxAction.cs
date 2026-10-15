@@ -14,7 +14,7 @@ namespace Conflux.Schema.Actions
     {
         [ConfluxMainProperty]
         [YamlMember(Alias = "audioClip")]
-        public ConfluxBlackboardVariableReference<UnityObject, ConfluxUnityObjectReference>? AudioClip { get; set; }
+        public ConfluxBlackboardVariableReference<ConfluxUnityObjectReference>? AudioClip { get; set; }
 
         [YamlMember(Alias = "volume")]
         [DefaultValue(1f)]
@@ -26,7 +26,7 @@ namespace Conflux.Schema.Actions
 
         public override PlayAudioNodeCanvasAction BuildAction(NodeCanvasGraphContext context) => new()
         {
-            AudioClip = AudioClip?.BuildBBParameter(context),
+            AudioClip = AudioClip?.BuildBBParameter<UnityObject>(context),
             Volume = Volume,
             WaitActionFinish = WaitActionFinish,
         };

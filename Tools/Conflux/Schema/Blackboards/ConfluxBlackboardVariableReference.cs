@@ -1,4 +1,6 @@
+using System.Diagnostics.CodeAnalysis;
 using Conflux.NodeCanvas.Blackboard;
+using Conflux.NodeCanvas.Serialization;
 using Conflux.Schema.Context;
 using Conflux.Schema.Exceptions;
 using Conflux.Schema.Serialization;
@@ -6,7 +8,7 @@ using YamlDotNet.Serialization;
 
 namespace Conflux.Schema.Blackboards
 {
-    internal class ConfluxBlackboardVariableReference
+    internal class ConfluxBlackboardVariableReference : IDefaultCheckable
     {
         [YamlMember(Alias = "name")]
         public string? Name { get; set; }
@@ -14,7 +16,9 @@ namespace Conflux.Schema.Blackboards
         [YamlMember(Alias = "id")]
         public Guid? ID { get; set; }
 
-        public bool TryGetVariable(NodeCanvasGraphContext context, out ConfluxLocalBlackboardVariable variable)
+        public bool IsReference() => !string.IsNullOrWhiteSpace(Name) || ID.HasValue;
+
+        public bool TryGetVariable(NodeCanvasGraphContext context, [NotNullWhen(true)] out ConfluxLocalBlackboardVariable? variable)
         {
             if (string.IsNullOrWhiteSpace(Name))
             {
@@ -27,11 +31,13 @@ namespace Conflux.Schema.Blackboards
                 return true;
             }
 
-            variable = new();
+            variable = null;
             return false;
         }
 
-        public virtual BBParameter BuildBBParameter(NodeCanvasGraphContext context)
+        public virtual BBParameter BuildBBParameter(NodeCanvasGraphContext context) => BuildReferenceBBParameter<BBParameter>(context);
+
+        protected virtual T BuildReferenceBBParameter<T>(NodeCanvasGraphContext context) where T : BBParameter, new()
         {
             if (string.IsNullOrWhiteSpace(Name))
             {
@@ -49,117 +55,87 @@ namespace Conflux.Schema.Blackboards
                 id = variable.ID;
             }
 
-            return CreateBBParameter(Name, id?.ToString());
+            return new T
+            {
+                Name = Name,
+                TargetVariableID = id?.ToString()
+            };
         }
 
-        protected virtual BBParameter CreateBBParameter(string? name, string? id) => new()
+        public virtual bool IsDefaultValue(object? value)
         {
-            Name = name,
-            TargetVariableID = id,
-        };
+            if (value is not null)
+            {
+                throw new ConfluxException($"Default value of a {nameof(ConfluxBlackboardVariableReference)} may only be null.");
+            }
 
-        public override bool Equals(object? obj) => obj is ConfluxBlackboardVariableReference reference && Name == reference.Name && EqualityComparer<Guid?>.Default.Equals(ID, reference.ID);
-
-        public override int GetHashCode() => HashCode.Combine(Name, ID);
+            return !IsReference();
+        }
     }
 
     internal class ConfluxBlackboardVariableReference<T> : ConfluxBlackboardVariableReference
     {
         [ConfluxMainProperty]
         [YamlMember(Alias = "value")]
-        public T? Value { get; set; } = default;
+        public T? Value { get; set; }
 
-        public override BBParameter<T> BuildBBParameter(NodeCanvasGraphContext context)
+        public bool HasValue() => Value is not null;
+
+        public override BBParameter<T> BuildBBParameter(NodeCanvasGraphContext context) => BuildValueBBParameter<T>(context);
+
+        public virtual BBParameter<T2> BuildBBParameter<T2>(NodeCanvasGraphContext context) => BuildValueBBParameter<T2>(context);
+
+        protected BBParameter<T2> BuildValueBBParameter<T2>(NodeCanvasGraphContext context)
         {
+            if (IsReference())
+            {
+                if (HasValue())
+                {
+                    throw new ConfluxException($"A variable should specify either a reference of a value, not both {Name} ({ID}) and {Value}.");
+                }
+
+                return BuildReferenceBBParameter<BBParameter<T2>>(context);
+            }
+
+            T2? value;
             if (Value is null)
             {
-                return (BBParameter<T>)base.BuildBBParameter(context);
+                value = default;
             }
-
-            if (!string.IsNullOrWhiteSpace(Name))
+            else if (Value is INodeCanvasObjectBuilder<T2> valueBuilder)
             {
-                throw new ConfluxValueException($"The values variableReference.name and variable.value may not both be specified, not {Name} and {Value}.");
+                value = valueBuilder.BuildNodeCanvasObject(context);
             }
-
-            if (ID.HasValue)
+            else if (Value is T2 newValue)
             {
-                throw new ConfluxValueException($"The values variableReference.name and variable.id may not both be specified, not {Name} and {Value}");
+                value = newValue;
+            }
+            else
+            {
+                throw new ConfluxException($"Cannot build NodeCanvas type {typeof(T2).Name} from Conflux type {Value.GetType().Name}.");
             }
 
             return new()
             {
-                Value = Value,
+                Value = value,
             };
         }
 
-        protected override BBParameter<T> CreateBBParameter(string? name, string? id) => new()
+        public override bool IsDefaultValue(object? value)
         {
-            Name = name,
-            TargetVariableID = id,
-        };
+            if (IsReference())
+            {
+                return false;
+            }
+
+            if (Value is IDefaultCheckable checkableValue)
+            {
+                return checkableValue.IsDefaultValue(value);
+            }
+
+            return EqualityComparer<T?>.Default.Equals(Value, (T?)value);
+        }
 
         public static implicit operator ConfluxBlackboardVariableReference<T>(T value) => new() { Value = value };
-
-        public override bool Equals(object? obj)
-        {
-            if (obj is T value)
-            {
-                obj = (ConfluxBlackboardVariableReference<T>)value;
-            }
-
-            return obj is ConfluxBlackboardVariableReference<T> reference && base.Equals(obj) && EqualityComparer<T?>.Default.Equals(Value, reference.Value);
-        }
-
-        public override int GetHashCode() => HashCode.Combine(base.GetHashCode(), Value);
-    }
-
-    internal class ConfluxBlackboardVariableReference<Tout, Tin> : ConfluxBlackboardVariableReference where Tin : INodeCanvasObjectBuilder<Tout>
-    {
-        [ConfluxMainProperty]
-        [YamlMember(Alias = "value")]
-        public Tin? Value { get; set; } = default;
-
-        public override BBParameter<Tout> BuildBBParameter(NodeCanvasGraphContext context)
-        {
-            if (Value is null)
-            {
-                return (BBParameter<Tout>)base.BuildBBParameter(context);
-            }
-
-            if (!string.IsNullOrWhiteSpace(Name))
-            {
-                throw new ConfluxValueException($"The values variableReference.name and variable.value may not both be specified, not {Name} and {Value}.");
-            }
-
-            if (ID.HasValue)
-            {
-                throw new ConfluxValueException($"The values variableReference.name and variable.id may not both be specified, not {Name} and {Value}");
-            }
-
-            return new()
-            {
-                Value = Value.BuildNodeCanvasObject(context),
-            };
-        }
-
-        protected override BBParameter<Tout> CreateBBParameter(string? name, string? id) => new()
-        {
-            Name = name,
-            TargetVariableID = id,
-        };
-
-        public static implicit operator ConfluxBlackboardVariableReference<Tout, Tin>(Tin value) => new() { Value = value };
-
-        public override bool Equals(object? obj)
-        {
-            if (obj is Tin value)
-            {
-                obj = (ConfluxBlackboardVariableReference<Tout, Tin>)value;
-            }
-
-            return obj is ConfluxBlackboardVariableReference<Tout, Tin> reference && base.Equals(obj) && EqualityComparer<Tin?>.Default.Equals(Value, reference.Value);
-        }
-
-        public override int GetHashCode() => HashCode.Combine(base.GetHashCode(), Value);
     }
 }
